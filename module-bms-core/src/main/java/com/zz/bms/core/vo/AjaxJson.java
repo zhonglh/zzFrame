@@ -8,8 +8,8 @@ import java.util.Map;
 /**
  * $.ajax后需要接受的JSON
  *
- * @author
  *
+ * @author Administrator
  */
 public class AjaxJson {
 
@@ -38,7 +38,6 @@ public class AjaxJson {
 
 
 	public AjaxJson() {
-
 	}
 	public AjaxJson(boolean success) {
 		this.success = success;if(success){
@@ -49,7 +48,8 @@ public class AjaxJson {
 	}
 	public AjaxJson(boolean success, String msg) {
 
-		this.success = success;if(success){
+		this.success = success;
+		if(success){
 			this.code = EnumErrorMsg.success.getCode();
 		}else {
 			this.code = EnumErrorMsg.fail.getCode();

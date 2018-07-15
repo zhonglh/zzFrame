@@ -232,9 +232,9 @@
 
         var url = '${ctx}/login/login';
 
+
         ajaxPost(url , params ,  function(rsp, textStatus, jqXHR)
         {
-            alert(rsp);
             if (rsp.success)
             {
                 $.cookie('loginName', $('input[name="loginName"]').val(), {expires: 365});

@@ -3,6 +3,7 @@ package com.zz.bms.core.db.mybatis.query;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.zz.bms.core.enums.EnumSearchType;
+import com.zz.bms.util.base.data.StringFormatKit;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
@@ -23,12 +24,12 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
 
     /**
      * 属性转列名, 如userName ==> user_name
+     * 驼峰转下划线
      * @param fieldname
      * @return
      */
     protected String getVolumnByField(String fieldname){
-        //todo 属性转列名
-        return fieldname;
+        return StringFormatKit.toUnderlineName(fieldname);
     }
 
     @Override
@@ -49,7 +50,7 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
         }
 
 
-        Field[] fields = this.getClass().getFields();
+        Field[] fields = this.getClass().getDeclaredFields();
         for(Field field : fields){
             String fieldProperties = field.getName();
             try {

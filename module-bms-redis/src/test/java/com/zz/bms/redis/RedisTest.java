@@ -6,8 +6,13 @@ import com.zz.bms.util.base.spring.SpringUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
+import javax.annotation.Resource;
+
 public class RedisTest extends BaseTest {
 
+
+    @Resource(name="redisUtils")
+    private RedisUtil redisUtil ;
 
     @Test
     public void testSpringStart() {
@@ -21,8 +26,8 @@ public class RedisTest extends BaseTest {
         String key = "zz";
         String val = "i love you";
         try {
-            RedisUtil.setString(key , val);
-            String redisVal = RedisUtil.getString(key);
+            redisUtil.setString(key , val);
+            String redisVal = redisUtil.getString(key);
             Assert.assertEquals(val ,redisVal);
         } catch (Exception e) {
             e.printStackTrace();

@@ -108,7 +108,12 @@ public enum EnumErrorMsg {
 
 
     public String getMsg(){
-        String msg = SpringUtil.getMessage (i18n, args );
+        String msg = null;
+        try {
+            msg = SpringUtil.getMessage(i18n, args);
+        }catch (Exception e){
+
+        }
         if(StringUtils.isEmpty(msg)) {
             msg = this.getName();
         }

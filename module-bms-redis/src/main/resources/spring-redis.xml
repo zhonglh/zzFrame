@@ -130,7 +130,7 @@
     </bean>
 
 
-    <bean id="redisUtils4UserFirstPage" class="com.zz.bms.redis.utils.RedisUtil">
+    <bean id="redisUtils4UserSessoin" class="com.zz.bms.redis.utils.RedisUtil">
         <property name="jedisPool" ref="jedisPool4"/>
     </bean>
 

@@ -54,6 +54,10 @@ public class MyRealm extends AuthorizingRealm {
         if(EnumUserStatus.forbidden.getCode().equals(user.getStatus())){
             throw new LockedAccountException("帐号被禁用,请联系管理员!");
         }
+
+        String pw = new String ( ((UsernamePasswordToken)token).getPassword());
+        System.out.println(ShiroUtils.EncodeSalt(pw , user.getSalt()  ));
+
         SimpleAuthenticationInfo sainfo=new SimpleAuthenticationInfo(user,user.getLoginPassword(), ByteSource.Util.bytes(user.getSalt()),getName());
         return sainfo;
     }

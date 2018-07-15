@@ -189,7 +189,9 @@ public class StringFormatKit {
 
             if ((i >= 0) && Character.isUpperCase (c)) {
                 if (!upperCase || !nextUpperCase) {
-                    if (i > 0) sb.append (SEPARATOR);
+                    if (i > 0) {
+                        sb.append (SEPARATOR);
+                    }
                 }
                 upperCase = true;
             } else {
