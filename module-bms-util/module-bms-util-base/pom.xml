@@ -25,8 +25,8 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.zz.bsm</groupId>
-            <artifactId>module-bsm-config</artifactId>
+            <groupId>com.zz.bms</groupId>
+            <artifactId>module-bms-config</artifactId>
             <version>1.0.1</version>
         </dependency>
 

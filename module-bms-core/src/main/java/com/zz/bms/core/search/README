@@ -1,0 +1,38 @@
+    使用Searchable需要的配置:
+
+
+
+
+    spring.xml
+
+    <!-- 类型转换及数据格式化 -->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean"/>
+
+    <!-- 直接把id转换为entity 必须非lazy否则无法注册-->
+    <bean id="domainClassConverter" class="org.springframework.data.repository.support.DomainClassConverter">
+        <constructor-arg ref="conversionService"/>
+    </bean>
+
+    <task:executor id="executor" pool-size="10"/>
+
+
+
+
+
+
+
+
+
+    spring-mvc.xml
+
+    <mvc:annotation-driven  conversion-service="conversionService" >
+        <mvc:async-support default-timeout="30000" task-executor="executor"/>
+
+        <mvc:argument-resolvers>
+            <bean class="com.fullbloom.core.interceptors.SearchableMethodArgumentResolver"/>
+        </mvc:argument-resolvers>
+
+    </mvc:annotation-driven>
+
+
+

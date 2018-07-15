@@ -11,8 +11,8 @@ import java.io.UnsupportedEncodingException;
 public class DESThree {
 
 
-                 //定义加密算法，有DES、DESede(即3DES)、Blowfish
-                 private static final String Algorithm = "DESede";
+         //定义加密算法，有DES、DESede(即3DES)、Blowfish
+         private static final String Algorithm = "DESede";
          private static final String PASSWORD_CRYPT_KEY = "2012PinganVitality075522628888ForShenZhenBelter075561869839";
 
 

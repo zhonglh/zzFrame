@@ -1,6 +1,6 @@
 package com.zz.bms.util.base.java;
 
-import com.zz.bsm.annotaions.EntityAttrPageAnnotation;
+import com.zz.bms.annotaions.EntityAttrPageAnnotation;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
