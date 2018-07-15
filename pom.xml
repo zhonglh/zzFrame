@@ -7,10 +7,20 @@
   <groupId>com.zz.bms</groupId>
   <artifactId>zzFrame</artifactId>
   <version>1.0.1</version>
+  <modules>
+    <module>module-bms-config</module>
+    <module>module-bms-util</module>
+    <module>module-bms-controller-base</module>
+    <module>module-bms-core</module>
+    <module>module-bms-redis</module>
+    <module>module-bms-shiro</module>
+    <module>module-bms-system</module>
+    <module>project-bms-web-base</module>
+  </modules>
   <packaging>pom</packaging>
   <name>zzFrame</name>
   <url>http://www.example.com</url>
-
+  <description>Background Management System</description>
 
 
 
