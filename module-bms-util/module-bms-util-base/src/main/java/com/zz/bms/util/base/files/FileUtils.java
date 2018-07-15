@@ -1,6 +1,6 @@
 package com.zz.bms.util.base.files;
 
-import com.zz.bsm.util.base.data.ConvertUtils;
+import com.zz.bms.util.base.data.ConvertUtils;
 import org.apache.commons.fileupload.DiskFileUpload;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -88,8 +88,12 @@ public class FileUtils {
 	public static FileItem getUploadFileItem(HttpServletRequest request) throws FileUploadException {
 		DiskFileUpload diskFileUpload = new DiskFileUpload();
 		List<FileItem> list = diskFileUpload.parseRequest(request);
-		if(list != null && !list.isEmpty()) return list.get(0);
-		else return null;
+		if(list != null && !list.isEmpty()) {
+			return list.get(0);
+		}
+		else {
+			return null;
+		}
 	}
 	
 	/**

@@ -8,7 +8,7 @@ import java.io.UnsupportedEncodingException;
 /**
  * Created by lijiaojiao on 2017/1/20.
  */
-public class DESthree {
+public class DESThree {
 
 
                  //定义加密算法，有DES、DESede(即3DES)、Blowfish
@@ -90,10 +90,10 @@ public class DESthree {
         String msg = "3DES加密解密案例";
         System.out.println("【加密前】：" + msg);
         //加密
-        byte[] secretArr = DESthree.encryptMode(msg.getBytes());
+        byte[] secretArr = DESThree.encryptMode(msg.getBytes());
         System.out.println("【加密后】：" + new String(secretArr));
         //解密
-        byte[] myMsgArr = DESthree.decryptMode(secretArr);
+        byte[] myMsgArr = DESThree.decryptMode(secretArr);
         System.out.println("【解密后】：" + new String(myMsgArr));
     }
 }

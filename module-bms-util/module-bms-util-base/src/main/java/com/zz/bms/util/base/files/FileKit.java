@@ -1,6 +1,6 @@
 package com.zz.bms.util.base.files;
 
-import com.zz.bsm.util.base.encrypt.Base64;
+import com.zz.bms.util.base.encrypt.Base64;
 import org.apache.commons.fileupload.util.Streams;
 
 import java.io.*;
@@ -32,8 +32,12 @@ public class FileKit {
         }
 
         String suffix = name.substring(name.lastIndexOf(".") + 1);
-        if(suffix == null || suffix.isEmpty())  return "";
-        else return suffix.trim().toLowerCase();
+        if(suffix == null || suffix.isEmpty())  {
+            return "";
+        }
+        else {
+            return suffix.trim().toLowerCase();
+        }
     }
 
     /**
@@ -59,8 +63,12 @@ public class FileKit {
             ex.printStackTrace ();
         } finally {
             try {
-                if (null != in) in.close ();
-                if (null != out) out.close ();
+                if (null != in) {
+                    in.close ();
+                }
+                if (null != out) {
+                    out.close ();
+                }
             } catch (IOException e) {
                 e.printStackTrace ();
             }
@@ -147,7 +155,9 @@ public class FileKit {
         srcPath = separatorReplace (srcPath);
         desPath = separatorReplace (desPath);
         File folder = getFolder (srcPath);
-        if (null == folder) throw new FileNotFoundException(srcPath + " folder not found");
+        if (null == folder) {
+            throw new FileNotFoundException(srcPath + " folder not found");
+        }
         createFolder (desPath);
         File[] files = folder.listFiles ();
         for ( File file : files ) {
@@ -172,7 +182,9 @@ public class FileKit {
         srcPath = separatorReplace (srcPath);
         desPath = separatorReplace (desPath);
         File folder = getFolder (srcPath);
-        if (null == folder) throw new FileNotFoundException(srcPath + " folder not found");
+        if (null == folder) {
+            throw new FileNotFoundException(srcPath + " folder not found");
+        }
         createNewFolder (desPath);
         File[] files = folder.listFiles ();
         for ( File file : files ) {
@@ -452,7 +464,9 @@ public class FileKit {
     public static long getFileSize(String path) throws FileNotFoundException {
         path = separatorReplace (path);
         File file = getFile (path);
-        if (null == file) throw new FileNotFoundException(path + " file not found");
+        if (null == file) {
+            throw new FileNotFoundException(path + " file not found");
+        }
         return file.length ();
     }
 
@@ -495,7 +509,9 @@ public class FileKit {
         path = separatorReplace (path);
         long size = 0;
         File folder = getFolder (path);
-        if (null == folder) throw new FileNotFoundException(path + " folder not found");
+        if (null == folder) {
+            throw new FileNotFoundException(path + " folder not found");
+        }
         File[] files = folder.listFiles ();
         for ( File file : files ) {
             if (file.isDirectory ()) {
@@ -517,7 +533,9 @@ public class FileKit {
     public static File getFile(String path){
         path = separatorReplace (path);
         File file = new File(path);
-        if (!file.isFile ()) return null;
+        if (!file.isFile ()) {
+            return null;
+        }
         return file;
     }
 
@@ -531,7 +549,9 @@ public class FileKit {
     public static File getFolder(String path){
         path = separatorReplace (path);
         File folder = new File(path);
-        if (!folder.isDirectory ()) return null;
+        if (!folder.isDirectory ()) {
+            return null;
+        }
         return folder;
     }
 
@@ -545,7 +565,9 @@ public class FileKit {
     public static Date getFileLastModified(String path) throws FileNotFoundException {
         path = separatorReplace (path);
         File file = getFile (path);
-        if (null == file) throw new FileNotFoundException(path + " file not found");
+        if (null == file) {
+            throw new FileNotFoundException(path + " file not found");
+        }
         return new Date(file.lastModified ());
     }
 
@@ -559,7 +581,9 @@ public class FileKit {
     public static Date getFolderLastModified(String path) throws FileNotFoundException {
         path = separatorReplace (path);
         File folder = getFolder (path);
-        if (null == folder) throw new FileNotFoundException(path + " folder not found");
+        if (null == folder) {
+            throw new FileNotFoundException(path + " folder not found");
+        }
         return new Date(folder.lastModified ());
     }
 
@@ -710,7 +734,9 @@ public class FileKit {
         BufferedReader br = null;
         try {
         	File f = new File(filePath);
-        	if(!f.exists()) return null;
+        	if(!f.exists()) {
+        	    return null;
+            }
             in = new FileInputStream(f);
             br = new BufferedReader(new InputStreamReader(in,charset));
             String line = "";
@@ -722,8 +748,12 @@ public class FileKit {
             e.printStackTrace ();
         } finally {
             try {
-                if (null != in) in.close ();
-                if (null != br) br.close ();
+                if (null != in) {
+                    in.close ();
+                }
+                if (null != br) {
+                    br.close ();
+                }
             } catch (IOException e) {
                 e.printStackTrace ();
             }
@@ -754,8 +784,12 @@ public class FileKit {
             e.printStackTrace ();
         } finally {
             try {
-                if (null != in) in.close ();
-                if (null != br) br.close ();
+                if (null != in) {
+                    in.close ();
+                }
+                if (null != br) {
+                    br.close ();
+                }
             } catch (IOException e) {
                 e.printStackTrace ();
             }
@@ -773,13 +807,19 @@ public class FileKit {
      */
     public static List<File> getFolderAllFile(File file){
         List<File> list = new ArrayList<File>();
-        if (file.isFile ()) list.add (file);
+        if (file.isFile ()) {
+            list.add (file);
+        }
         else {
             File[] files = file.listFiles ();
             if (null != files && files.length > 0) {
                 for ( File file2 : files ) {
-                    if (file2.isDirectory ()) list.addAll (getFolderAllFile (file2));
-                    else list.add (file2);
+                    if (file2.isDirectory ()) {
+                        list.addAll (getFolderAllFile (file2));
+                    }
+                    else {
+                        list.add (file2);
+                    }
                 }
             }
         }

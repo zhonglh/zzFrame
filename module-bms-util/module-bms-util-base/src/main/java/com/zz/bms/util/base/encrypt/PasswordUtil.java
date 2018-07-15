@@ -8,6 +8,9 @@ import javax.crypto.spec.PBEParameterSpec;
 import java.security.Key;
 import java.security.SecureRandom;
 
+/**
+ * @author Administrator
+ */
 public class PasswordUtil {
 
 	/**

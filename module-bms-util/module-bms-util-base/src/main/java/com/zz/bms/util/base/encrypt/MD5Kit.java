@@ -14,8 +14,6 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * md5算法工具
- * 
- * @since 2009-8-7 14:46:27
  */
 public class MD5Kit {
 

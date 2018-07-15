@@ -1,6 +1,6 @@
 package com.zz.bms.util.base.mail;
 
-import com.zz.bsm.util.base.spring.SpringUtil;
+import com.zz.bms.util.base.spring.SpringUtil;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import org.apache.commons.mail.HtmlEmail;

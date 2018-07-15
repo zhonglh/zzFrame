@@ -11,15 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>
- * Title:
- * </p>
- * <p>
- * Date: Aug 30, 2012
- * </p>
- * 
- * @author lk
- * @version 1.0 获取不同操作系统的mac地址
+ * @author Administrator
+ * 获取不同操作系统的mac地址
  */
 public class MACAddress {
 

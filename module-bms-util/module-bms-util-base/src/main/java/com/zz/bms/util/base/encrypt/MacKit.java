@@ -2,7 +2,7 @@ package com.zz.bms.util.base.encrypt;
 
 
 import com.alibaba.fastjson.JSON;
-import com.zz.bsm.util.base.data.StringUtil;
+import com.zz.bms.util.base.data.StringUtil;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -12,9 +12,12 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.HashMap;
 
+/**
+ * @author Administrator
+ */
 public class MacKit {
     private final static String DES = "DES";
-    private static String IV_KEY = "FULLBLOOM_";
+    private static String IV_KEY = "ZZLL123OM_";
     private static String SECRETKEY= "QWERTTTQ";
 
     public static void main(String[] args) {

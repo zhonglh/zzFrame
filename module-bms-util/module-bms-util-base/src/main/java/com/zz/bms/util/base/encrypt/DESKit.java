@@ -1,5 +1,6 @@
 package com.zz.bms.util.base.encrypt;
-import com.zz.bsm.util.base.java.SystemPath;
+
+import com.zz.bms.util.base.java.SystemPath;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -11,7 +12,7 @@ import java.security.Security;
 public class DESKit {
 
     private static Key key;
-    private static String KEY_STR     = "hlWdy7BkxfeftwXPHE518oPv5w6rwFM0nDU0kcmLIOz75IaaQubn50pCB7ihLNGqEX8KilImQeYTctskMLlIS5vxb6kjmUvyAQkt"; // 密钥
+    private static String KEY_STR     = "UUYYy7BkxfeftwXPHE518oPv5w6rwFM0nDU0kcmLIOz21IaaQubn50pCB7ihLNGqEX8KilImQeYTctskMLlIS5vxb6kjmUvyAQkt"; // 密钥
     private static String CHARSETNAME = "UTF-8";                                                                                               // 编码
     private static String ALGORITHM   = "DES";                                                                                                 // 加密类型
 

@@ -1,6 +1,7 @@
 package com.zz.bms.util.base.mail;
 
-import com.zz.bsm.util.base.PropertyConfig;
+
+import com.zz.bms.util.base.PropertyConfig;
 
 public class MailConfig {
 

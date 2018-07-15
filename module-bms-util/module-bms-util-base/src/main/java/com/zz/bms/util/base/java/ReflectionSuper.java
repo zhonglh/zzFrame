@@ -1,6 +1,6 @@
 package com.zz.bms.util.base.java;
 
-import com.zz.bsm.util.base.data.StringUtil;
+import com.zz.bms.util.base.data.StringUtil;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
@@ -33,8 +33,12 @@ public class ReflectionSuper {
 		
 		for(;index < count; index ++){
 			clz = clz.getSuperclass();
-			if(clz == null) return list;
-			if(clz == Object.class) return list;
+			if(clz == null) {
+				return list;
+			}
+			if(clz == Object.class) {
+				return list;
+			}
 			list.add(clz);
 			
 		}
@@ -45,12 +49,16 @@ public class ReflectionSuper {
 
 	public static Map<Class,Class> getAllInterfaceClass(List<Class> list){
 		Map<Class,Class> sets = new HashMap<Class,Class>();
-		if(list == null || list.isEmpty()) return sets;
+		if(list == null || list.isEmpty()) {
+			return sets;
+		}
 		try {
 			for (Class c : list) {
 				Class<?>[] is = c.getInterfaces();
 				if (is != null && is.length > 0) {
-					for (Class cla : is) sets.put(cla, cla);
+					for (Class cla : is) {
+						sets.put(cla, cla);
+					}
 				}
 			}
 			return sets;
@@ -448,8 +456,7 @@ public class ReflectionSuper {
 	
 	/**
 	 * 返回类 中方法句柄
-	 * @param classname 	类全名称
-	 * @param methodname	方法名
+	 * @param classmethod 	类 方法全名称
 	 */
 	public static Method getMethod(String classmethod)throws Exception {
 		return getMethod(getMethodClassName(classmethod));
@@ -460,7 +467,9 @@ public class ReflectionSuper {
 	}
 	public static Method getMethod(String classname, String methodname)throws Exception {
 		
-		if(StringUtil.isEmpty(classname) || StringUtil.isEmpty(methodname) ) return null;
+		if(StringUtil.isEmpty(classname) || StringUtil.isEmpty(methodname) ) {
+			return null;
+		}
 		
 		try {
 			
@@ -494,17 +503,24 @@ public class ReflectionSuper {
 	public static Method[] getDeclaredMethods(Class clz, Object... param){
 		boolean isSort = false;
 		String regex = "";
-		if(param.length>=1 && param[0]!=null) isSort = ((Boolean)param[0]).booleanValue();
-		if(param.length>=2 && param[1]!=null) regex = param[1].toString();
+		if(param.length>=1 && param[0]!=null) {
+			isSort = ((Boolean)param[0]).booleanValue();
+		}
+		if(param.length>=2 && param[1]!=null) {
+			regex = param[1].toString();
+		}
 		List<Method> list = new ArrayList<Method>();
 		Method[] ms = clz.getDeclaredMethods();
 		//
-		if(regex!=null && regex.length()>0)
-		for(Method md : ms){
-			Pattern p = Pattern.compile(regex);
-			Matcher matcher = p.matcher(md.getName());
-			boolean b = matcher.find();
-			if(b) list.add(md);
+		if(regex!=null && regex.length()>0){
+			for(Method md : ms) {
+				Pattern p = Pattern.compile(regex);
+				Matcher matcher = p.matcher(md.getName());
+				boolean b = matcher.find();
+				if (b) {
+					list.add(md);
+				}
+			}
 		}else {
 			list = Arrays.asList(ms);
 		}
@@ -566,9 +582,11 @@ public class ReflectionSuper {
 	
 	public static String[][] getGetMethodName(Object obj){
 		
-		if(obj == null) return null;
+		if(obj == null) {return null;}
 		Method[] ms = getDeclaredMethods(obj.getClass());
-		if(ms == null || ms.length == 0) return null;
+		if(ms == null || ms.length == 0) {
+			return null;
+		}
 		
 		String mns[][] = null;
 		List<String[]> mnamelist =new ArrayList<String[]>();

@@ -9,7 +9,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class HMACKit {
 
     public static final String HMAC_SHA1_ALGORITHM = "HmacSHA1";
-    public static String key                 = "*&^%$6jdkhf7222sdfa21saw765%$32430-{}HMD9098:?><>?";
+    public static String key                 = "*&^%$6jdkhf1234sdfa21saw700%$32430-{}HMD90AA:?><>?";
 
     private HMACKit() {}
 

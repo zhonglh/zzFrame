@@ -1,7 +1,7 @@
 package com.zz.bms.util.base.remote;
 
 
-import com.zz.bsm.util.base.PropertyConfig;
+import com.zz.bms.util.base.PropertyConfig;
 
 public final class ShellConstant {
 

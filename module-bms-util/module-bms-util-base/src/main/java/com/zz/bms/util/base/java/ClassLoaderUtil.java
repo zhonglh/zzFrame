@@ -1,6 +1,6 @@
 package com.zz.bms.util.base.java;
 
-import com.zz.bsm.util.base.spring.ApplicationContextUtil;
+import com.zz.bms.util.base.spring.ApplicationContextUtil;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 
 import java.io.File;
