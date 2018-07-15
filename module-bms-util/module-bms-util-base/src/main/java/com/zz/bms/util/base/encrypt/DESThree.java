@@ -6,7 +6,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
 
 /**
- * Created by lijiaojiao on 2017/1/20.
+ * @author Administrator
  */
 public class DESThree {
 
