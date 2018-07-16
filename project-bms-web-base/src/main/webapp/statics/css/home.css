@@ -1,0 +1,123 @@
+/* 工作区样式 */
+.container-fluid {padding-left: 0px; padding-right: 0px}
+.navbar {color: #fff; font-size: 14px; background: #2dc3e8; padding: 0; margin: 0; border: 0; border-radius: 0px}
+.navbar .navbar-header {background: black; height: 50px; padding-left: 10px; width: 230px}
+.logo {height: 40px; margin-top: 5px; padding-left: 4px; padding-right: 25px}
+
+/* 导航按钮 */
+.navbar .navbar-nav>li>a {color: white; border-right: 1px solid #4cceee;padding-top: 14px !important;background-color: #2dc3e8 !important;height: 50px}
+.navbar .navbar-nav>li>a>i {font-size: 18px; width: auto; height: 17px; line-height: 19px; vertical-align: middle}
+.navbar .navbar-nav>li>a>i>.badge{margin-top: -22px; background: red;line-height:20px;min-width: 20px;padding: 0 5px}
+.navbar .navbar-nav>li>a>span {margin-left: 3px; vertical-align: middle;line-height: 21px}
+.navbar .navbar-nav>li>a:focus, .navbar .navbar-nav>li>a:hover {background: #06a4cb !important}
+
+/* 限制区域及更多导航按钮 */
+#limitSec{width: 0;float: left;position: relative}
+#limitSec .home-btn{float: left;padding: 14px 0 15px 0;width: 50px;text-align: center;border-right: 1px solid #4cceee;position: relative;;z-index: 10}
+#limitSec .home-btn:hover{background: #06a4cb}
+#limitSec .home-btn i{font-size: 18px;color: #fff;vertical-align: middle;line-height: 20px}
+#limitSec .last-nav{position: absolute;top: 0;left: auto;min-width: 50px;height: 50px;line-height: 50px;background-color: #2dc3e8;z-index: 99}
+#limitSec .last-nav>:first-child{color: white;font-size: 18px;display: block;width: 50px;height: 50px;text-align: center;border-right: 1px solid #4cceee;border-left: 1px solid #4cceee}
+#limitSec .last-nav>:first-child:hover{background: #06a4cb}
+#limitSec .last-nav>:first-child i{line-height: 50px;width: 100%}
+#limitSec .last-nav .nav-more{position: absolute;left: -352px;top: 50px;background-color: #fff;width:402px;padding:0 20px 10px 20px;border: 1px solid #ddd;z-index: 9}
+#limitSec .last-nav .nav-more a{display: block;width: 90px;padding-top: 11px;text-align: center;color: #333}
+#limitSec .last-nav .nav-more span{display: block;line-height: 23px;word-break: break-all;white-space: nowrap;overflow: hidden;text-overflow: ellipsis}
+#limitSec .last-nav .nav-more li{float:left;list-style-type: none;will-change: transform}
+#limitSec .last-nav .nav-more i{width: 50px;height: 50px;border-radius: 8px;background-color: #33c382;color: #fff;font-size: 30px;line-height:50px}
+#limitSec .last-nav .nav-more p{margin-top:10px;font-size: 12px}
+#limitSec .last-nav .pos-r{left: 0 !important}
+
+#nav-bar{width: 9999px;position: relative;z-index: 9}
+#nav-bar a{padding-left: 10px;padding-right: 10px;text-align: center;font-size: 0;box-sizing: border-box}
+#nav-more{*zoom: 1;min-height: 50px}
+#nav-more:before,#nav-more:after{display: table;content: ""}
+#nav-more:after{clear: both}
+.navbar-right>li{float: right !important;position: relative}
+/*.navbar .navbar-nav .last-nav>:first-child:hover+.nav-more{display: block}*/
+.navbar .navbar-nav .last-nav .nav-more a:hover{opacity: 0.8}
+.navbar-right>li .msg-toast-container{display: none;position: absolute;width: 300px;left: -235px;top: 50px;background-color: #ffffff;border: 1px solid #dddddd;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;-webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);box-shadow: 0 6px 12px rgba(0,0,0,.175)}
+.navbar-right>li .msg-toast-container:hover+a{background: #06a4cb !important}
+.navbar-right>li:not(.dropdown):hover .msg-toast-container{display: block}
+.navbar-right>li .msg-toast-container .msg-toast-title{color: #666666;line-height: 36px;padding: 0 10px;border-bottom: 1px solid #bcd4e5;background-color: #ecf2f7}
+.navbar-right>li .msg-toast-container .msg-toast-title>*{vertical-align: middle;color: #8090a0}
+.navbar-right>li .msg-toast-container .msg-toast-title>:first-child{width: 22px;height: 22px}
+.navbar-right>li .msg-toast-container .unread-list li a{display: block;padding: 5px 10px;*zoom: 1;border-bottom: 1px solid #dddddd}
+.navbar-right>li .msg-toast-container .unread-list li a:hover{background-color: #f5f5f5}
+.navbar-right>li .msg-toast-container .unread-list li a:before,.navbar-right>li .msg-toast-container .unread-list li:after{display: table;content: ""}
+.navbar-right>li .msg-toast-container .unread-list li a:after{clear: both}
+.navbar-right>li .msg-toast-container .unread-list li a>:first-child{width: 40px;height: 40px;float: left}
+.navbar-right>li .msg-toast-container .unread-list li a>:first-child img{width: 100%;height: 100%;background-color: #dddddd}
+.navbar-right>li .msg-toast-container .unread-list li a>:nth-child(2){margin-left: 50px;margin-right: 0;line-height: 20px;color: #333333}
+.navbar-right>li .msg-toast-container .unread-list li a>:nth-child(2)>:first-child{text-overflow: ellipsis; white-space: nowrap;overflow: hidden}
+.navbar-right>li .msg-toast-container .unread-list li a>:nth-child(2)>:first-child>*{color: #06a4cb}
+.navbar-right>li .msg-toast-container .unread-list li a>:nth-child(2)>:first-child>*{font-size: 12px}
+.navbar-right>li .msg-toast-container .unread-list li a>:nth-child(2)>:nth-child(2)>*{vertical-align: middle;font-size: 12px}
+.navbar-right>li .msg-toast-container .unread-list li a>:nth-child(2)>:nth-child(2)>:last-child{display: inline-block; margin-left: 5px; border-radius: 10px; padding: 0 10px; color: #ffffff; background-color: #9E9E9E}
+.navbar-right>li .msg-toast-container .unread-list+.show-all-msg{display: block; padding: 10px; text-align: center}
+.navbar-right>li .msg-toast-container .unread-list+.show-all-msg span{vertical-align: middle}
+.navbar-right>li .msg-toast-container .unread-list+.show-all-msg svg{width: 20px; height: 20px; padding-left: 5px; color: black;}
+
+@media (min-width: 768px)
+{
+	.navbar-nav{float: none;white-space: nowrap}
+	.navbar-nav>li{float: left;display: block;will-change: transform;box-sizing: border-box}
+	.navbar-right>li:first-child{margin-left: 0}
+	.navbar-right>li:nth-child(2)>a{padding: 0;width: 66px;text-align: center}
+}
+
+/* 下拉菜单 */
+.navbar .navbar-nav .dropdown-menu {width: 100%;min-width: inherit}
+.navbar .navbar-nav .dropdown-menu a {padding: 8px 0; padding-left: 10px}
+.navbar .navbar-nav .dropdown-menu a:hover {color: white; background-color: #2dc3e8}
+
+/* 左侧菜单导航 */
+.left-menu {position: absolute; top: 50px; bottom: 0px; left: 0; padding: 0; width: 230px; background: #1b1e24; border-top: solid 1px #2f3942}
+.menu {width: 100%; background: #1b1e24; border: none !important; top: 54px; left: 0; right: 0; bottom: 0}
+.menu li{width: 100%; overflow: hidden}
+.menu li[menulevel='1'] a {background-color: #1b1e24; border-color: #1b1e24; padding-left: 7px !important; padding: 8px 28px 8px 10px}
+.menu li[menulevel='1'] a:hover {background-color: #1f2831; border-color: #2dc3e8}
+.menu li a {display: block; text-decoration: none; padding: 6px 28px 6px 10px; color: #e1eaf1; border-left: 5px solid #1f2831; background-color: #1f2831; position: relative;word-break: break-all}
+.menu li a:hover {background-color: #1b1e24; border-color: #1b1e24}
+.menu li a i {width: 18px; margin-right: 5px; text-align: center}
+.menu li[menulevel='1'] .active {background-color: #1f2831; border-color: #2dc3e8}
+.menu li .active {background-color: #1b1e24 !important; border-color: #2dc3e8 !important}
+
+/* 左侧菜单导航上的搜索框 */
+.search-items{padding: 10px;margin-bottom: 0}
+.search-items>*{display: inline-block;vertical-align: middle}
+.search-items i{width: 18px;height: 18px;font-size: 18px}
+.search-items input{width: 188px;color: #ccc;padding-left: 4px;padding-right: 0;border-radius: 0;border: none;border-bottom: 1px solid #777}
+.search-items input:focus{border-color: #ccc;outline: none;-webkit-box-shadow: none;box-shadow: none}
+
+/* 右侧菜单 */
+.nav-personal{position: relative;z-index: 9;background-color: #2dc3e8;height: 50px}
+.nav-personal .dropdown>:first-child{height: 57px !important}
+.nav-personal .dropdown+li{border-left: 1px solid #4cceee}
+
+/* 告警动画 */
+@-moz-keyframes ringing
+{0%{-moz-transform:rotate(-15deg)}2%{-moz-transform:rotate(15deg)}12%,4%{-moz-transform:rotate(-18deg)}14%,6%{-moz-transform:rotate(18deg)}8%{-moz-transform:rotate(-22deg)}10%{-moz-transform:rotate(22deg)}16%{-moz-transform:rotate(-12deg)}18%{-moz-transform:rotate(12deg)}20%{-moz-transform:rotate(0)}}
+@-webkit-keyframes ringing
+{0%{-webkit-transform:rotate(-15deg)}2%{-webkit-transform:rotate(15deg)}12%,4%{-webkit-transform:rotate(-18deg)}14%,6%{-webkit-transform:rotate(18deg)}8%{-webkit-transform:rotate(-22deg)}10%{-webkit-transform:rotate(22deg)}16%{-webkit-transform:rotate(-12deg)}18%{-webkit-transform:rotate(12deg)}20%{-webkit-transform:rotate(0)}}
+@-ms-keyframes ringing
+{0%{-ms-transform:rotate(-15deg)}2%{-ms-transform:rotate(15deg)}12%,4%{-ms-transform:rotate(-18deg)}14%,6%{-ms-transform:rotate(18deg)}8%{-ms-transform:rotate(-22deg)}10%{-ms-transform:rotate(22deg)}16%{-ms-transform:rotate(-12deg)}18%{-ms-transform:rotate(12deg)}20%{-ms-transform:rotate(0)}}
+@keyframes ringing
+{0%{transform:rotate(-15deg)}2%{transform:rotate(15deg)}12%,4%{transform:rotate(-18deg)}14%,6%{transform:rotate(18deg)}8%{transform:rotate(-22deg)}10%{transform:rotate(22deg)}16%{transform:rotate(-12deg)}18%{transform:rotate(12deg)}20%{transform:rotate(0)}}
+
+.animated-bell {display: inline-block; -moz-animation: ringing 2s 5 ease 1s; -webkit-animation: ringing 2s 5 ease 1s; -o-animation: ringing 2s 5 ease 1s; -ms-animation: ringing 2s 5 ease 1s; animation: ringing 2s 5 ease 1s; -moz-transform-origin: 50% 0; -webkit-transform-origin: 50% 0; -o-transform-origin: 50% 0; -ms-transform-origin: 50% 0; transform-origin: 50% 0}
+
+/* 修正一级节点箭头 */
+.menu li[menulevel='1'] .arrow:after {margin-top: -6px}
+.menu li[menulevel='1'] .right-arrow:after {margin-top: -4px}
+/* 有展开节点的箭头————下箭头 */
+.arrow:after {content: ""; width: 8px; height: 8px; border: 2px solid #ddd; border-top-width: 0; border-right-width: 0; position: absolute; right: 15px; top: 50%; margin-top: -6px; -webkit-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); -webkit-transition: all .3s; -moz-transition: all .3s; -o-transition: all .3s; transition: all .3s}
+/* 有展开节点的箭头————右箭头 */
+.right-arrow:after {-webkit-transform: rotate(-135deg); -ms-transform: rotate(-135deg); -o-transform: rotate(-135deg); transform: rotate(-135deg); -webkit-transition: all .3s; -moz-transition: all .3s; -o-transition: all .3s; transition: all .3s}
+/* 拖拽placeholder */
+#drag-placeholder{display: none;width: 94px;line-height: 18px;padding: 5px 0;text-align: center;position: absolute;left: 50px;top: 0;z-index: 0;font-size: 12px;border: 2px dashed #ffffff}
+/* 搜索结果 */
+.search-menu{display: none}
+.search-menu li:hover a{background-color: #1b1e24 !important;border-color: #2dc3e8 !important}
+/* 菜单分割线 */
+.dropdown-menu .divider {margin: 0px}

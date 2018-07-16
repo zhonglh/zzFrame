@@ -1,0 +1,57 @@
+
+<%@include file="/WEB-INF/views/common/taglibs.min.jspf" %>
+
+
+
+<link type="text/css" rel="stylesheet" href="${staticUrl}/statics/plugins/font-wesome/font-awesome.min.css" />
+<link type="text/css" rel="stylesheet" href="${staticUrl}/statics/plugins/bootstrap335/css/bootstrap.min.css" >
+<link rel="stylesheet" href="${staticUrl}/statics/plugins/jquery-easyui-1.4.4/themes/default/easyui.css">
+<link rel="stylesheet" href="${staticUrl}/statics/plugins/jquery-easyui-1.4.4/themes/icon.css">
+
+<link rel="stylesheet" href="${staticUrl}/statics/plugins/jquery/opentip/css/opentip.css">
+
+
+
+<%--
+
+<link type="text/css" rel="stylesheet" href="${staticUrl}/statics/css/smtzfont.css" />
+--%>
+
+<!--[if IE 7]>
+<link rel="stylesheet" href="${staticUrl}/statics/plugins/font-wesome/font-awesome-ie7.min.css">
+<![endif]-->
+<%--
+<link rel="stylesheet" href="${staticUrl}/statics/plugins/jquery-validation/css/validationEngine.jquery.css" >
+<link rel="stylesheet" href="${staticUrl}/statics/plugins/jquery-validation/css/template.css">
+--%>
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!-- Shim to make HTML5 elements usable in older Internet Explorer versions -->
+<!--[if lt IE 9]><script src="${staticUrl}/statics/js/html5.js"></script><![endif]-->
+
+<!--[if lt IE 9]>
+<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+<![endif]-->
+
+
+<%--<link rel="stylesheet" href="${staticUrl}/statics/plugins/jquery-easyui-1.4.4/themes/icon.css">
+<link rel="stylesheet" href="${staticUrl}/statics/plugins/jquery-easyui-1.4.4/themes/icon.css">--%>
+
+
+
+
+<!--
+本项目css
+-->
+
+
+
+<%--
+    私募投资项目 css
+--%>
+
+<link rel="stylesheet" href="${staticUrl}/statics/css/smtz.css" rel="stylesheet">
+
+
+

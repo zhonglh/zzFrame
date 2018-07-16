@@ -14,7 +14,7 @@
 <script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/jquery/jquery.min.1.12.4.js" ></script>
 <script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/jquery/jquery-migrate.min.1.4.1.js" ></script>
 <script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/jquery/jquery.placeholder.min.js" ></script>
-<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/jquery/jquery-confirm.min.js" ></script>
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/jquery/jquery-confirm/jquery-confirm.min.js" ></script>
 <script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/js/slider.js" ></script>
 <script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/jquery/jquery.cookie.js" ></script>
 
