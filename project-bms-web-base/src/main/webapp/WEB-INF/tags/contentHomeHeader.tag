@@ -34,5 +34,23 @@
     <link rel="shortcut icon" href="${staticUrl}/statics/image/favicon.ico">
     <%@include file="/WEB-INF/views/common/import-homecss.jspf"%>
 
+
+    <script>
+        // Global Const
+        var ctx = '${ctx}';
+        var staticUrl = '${staticUrl}';
+    </script>
+
+
+
+    <style>
+        #full-screen {padding: 10px; background: #ffffff; position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 99999; overflow: auto}
+        .fixed-top-show{position: fixed;top: 0;left: 0;right: 0;bottom: 0}
+        @media (min-width: 992px){.col-md-3 .block-each{margin-left: 10px}}
+        @media (max-width: 767px){.col-xs-12 .block-each{margin-left: 0}}
+        .nav-personal .dropdown+li {border-left: 1px solid #0896ba;}
+    </style>
+
+
 </head>
-<body <c:if test="${index eq true}"></c:if> >
+<body>

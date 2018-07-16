@@ -7,6 +7,8 @@
        http://www.springframework.org/schema/util
        http://www.springframework.org/schema/util/spring-util.xsd">
 
+
+
     <!-- 继承自AuthorizingRealm的自定义Realm,即指定Shiro验证用户登录的类为自定义的MyRealm.java -->
     <bean id="myRealm" class="com.zz.bms.shiro.realm.MyRealm"/>
 
@@ -93,7 +95,11 @@
 
     <bean id="shiroSessionListener" class="com.zz.bms.shiro.redisSession.ShiroSessionListener"/>
 
-    <bean id="rememberAuthFilter" class="com.zz.bms.shiro.filter.RememberAuthenticationFilter"/>
+    <bean id="rememberAuthFilter" class="com.zz.bms.shiro.filter.RememberAuthenticationFilter">
+        <property name="usernameParam" value="loginName"/>
+        <property name="passwordParam" value="loginPassword"/>
+        <property name="rememberMeParam" value="rememberMe"/>
+    </bean>
 
     <!-- Shiro主过滤器本身功能十分强大,其强大之处就在于它支持任何基于URL路径表达式的、自定义的过滤器的执行 -->
     <!-- Web应用中,Shiro可控制的Web请求必须经过Shiro主过滤器的拦截,Shiro对基于Spring的Web应用提供了完美的支持 -->
@@ -103,7 +109,7 @@
         <!-- 要求登录时的链接(可根据项目的URL进行替换),非必须的属性,默认会自动寻找Web工程根目录下的"/login.html"页面 -->
         <property name="loginUrl" value="/toLogin"/>
         <!-- 登录成功后要跳转的连接 -->
-        <property name="successUrl" value="/main/index"/>
+        <property name="successUrl" value="/main/home"/>
         <!-- 用户访问未对其授权的资源时,所显示的连接 -->
         <!-- 若想更明显的测试此属性可以修改它的值,如unauthor.jsp,然后用[玄玉]登录后访问/admin/listUser.jsp就看见浏览器会显示unauthor.jsp -->
         <property name="unauthorizedUrl" value="/"/>

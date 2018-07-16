@@ -70,7 +70,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @param response
      * @return
      */
-    @RequestMapping(value = "toList" , method = RequestMethod.GET)
+    @RequestMapping(value = "toList" , method = RequestMethod.GET )
     public String toList(M m, ModelMap model , HttpServletRequest request, HttpServletResponse response) {
 
         this.permissionList.assertHasViewPermission();

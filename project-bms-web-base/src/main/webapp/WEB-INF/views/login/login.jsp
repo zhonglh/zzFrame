@@ -93,7 +93,7 @@
     <spring:message  code="common.copyright.info" />
 </footer>
 
-<bms:contentFooter/>
+<bms:contentLoginFooter/>
 
 
 
@@ -239,7 +239,7 @@
             {
                 $.cookie('loginName', $('input[name="loginName"]').val(), {expires: 365});
 
-                window.location.href = '${ctx}/home';
+                window.location.href = '${ctx}/main/home';
             }
             else
             {

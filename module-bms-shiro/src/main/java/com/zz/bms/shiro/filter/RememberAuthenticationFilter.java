@@ -14,6 +14,11 @@ import javax.servlet.ServletResponse;
 
 public class RememberAuthenticationFilter extends FormAuthenticationFilter{
 
+    //todo  参考es框架 和 跟开涛学shiro 目录的内容
+    //1. 在线用户
+    //2. 自动退出 ， 每个人同时只能在一个设备上登录
+    //3. 手工踢人
+
     /**
      * 这个方法决定了是否能让用户登录
      */
