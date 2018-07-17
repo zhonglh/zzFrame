@@ -1,48 +1,57 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <c:set var="staticUrl" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE HTML>
+<%--
 
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<!--<![endif]-->
+--%>
 
-
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="Window-target" content="_top">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>私募投资业务管理平台</title>
+
+
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!-- 页面按原比例显示 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>zz后台管理系统</title>
+    <link rel="icon" href="${staticUrl}/statics2/image/favicon.ico">
+    <link rel="shortcut icon" href="${staticUrl}/statics2/image/favicon.ico">
+
+
 
 
 
     <link rel="stylesheet" href="${ctx}/statics2/font-awesome/font-awesome.min.css"/>
     <link rel="stylesheet" href="${ctx}/statics2/bootstrap/css/bootstrap.min.css"/>
-
     <link rel="stylesheet" href="${ctx}/statics2/jquery/easyui/themes/default/easyui.css">
     <link rel="stylesheet" href="${ctx}/statics2/jquery/opentip/opentip.css" />
     <link rel="stylesheet" href="${ctx}/statics2/jquery/jquery-confirm/jquery-confirm.min.css"/>
     <link rel="stylesheet" href="${ctx}/statics2/jquery/toastr/toastr.min.css"/>
-
-
-
+    <link rel="stylesheet" href="${ctx}/statics2/jquery/cropper/cropper.min.css">
+    <link rel="stylesheet" href="${ctx}/statics2/jquery/cropper/main.css">
+    <link rel="stylesheet" href="${ctx}/statics2/jquery/custom-scrollbar/jquery.mCustomScrollbar.min.css">
 
 
     <link rel="stylesheet" href="${ctx}/statics2/css/home.css">
-    <link rel="stylesheet" href="${ctx}/statics2/jquery/toastr/toastr.min.css"/>
-    <!--start  cropper -->
-    <link rel="stylesheet" href="${ctx}/statics2/jquery/cropper/cropper.min.css">
-    <link rel="stylesheet" href="${ctx}/statics2/jquery/cropper/main.css"><!-- end cropper -->
-    <!-- Forp通用css和js补丁 -->
     <link rel="stylesheet" href="${ctx}/statics2/css/common.css"/>
-
-    <link rel="stylesheet" href="${ctx}/statics2/jquery/custom-scrollbar/jquery.mCustomScrollbar.min.css">
-
-    <link rel="icon" href="${ctx}/statics/image/favicon.ico" />
 
     <style>
         #full-screen {padding: 10px; background: #ffffff; position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 99999; overflow: auto}
@@ -54,16 +63,15 @@
 </head>
 
 <body>
-<!-- banner -->
 <nav class="navbar" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header"><img class="logo" src="http://123.57.235.9:88/tzcp/image/logo.png"/></div>
         <div class="collapse navbar-collapse" style="padding-left: 0;margin-left: 230px;">
-            <!-- 快捷方式 -->
+
             <div id="limitSec">
-                <!-- 拖拽placeholder -->
-                <div id="drag-placeholder">点"+"号定制<br/>快捷菜单</div>
-                <a href="http://123.57.235.9:88/tzcp/home" class="home-btn" data-ot=" 首页 " data-ot-delay="1"><i class="fa fa-home"></i></a>
+
+                <div id="drag-placeholder">点击"+"号定制<br/>快捷菜单</div>
+                <a href="${ctx}/main/home" class="home-btn" data-ot=" 首页 " data-ot-delay="1"><i class="fa fa-home"></i></a>
                 <ul class="nav navbar-nav" id="nav-bar">
 
                     <li menuId='100' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/100/3')"><i class="fa fa-list-alt"></i></i><span>发起流程</span></a></li>
@@ -92,19 +100,24 @@
 
             <!-- 右侧菜单按钮 -->
             <ul class="nav navbar-nav navbar-right nav-personal">
-                <!-- 个人参数 -->
+
                 <li class='dropdown'>
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" style='margin-top: -8px; margin-bottom: 0px; padding-bottom: 3px;'>
-                        <img id='imgUserAvatar' class='img-circle' src="${staticUrl}/statics2/image/default.png" width=40 height=40 style='border: solid 2px;' /><span>&nbsp;范红宇&nbsp;</span><span class="caret"></span></a>
+                        <img id='imgUserAvatar' class='img-circle' src="${staticUrl}/statics2/image/default.png"
+                             width=40 height=40 style='border:solid 2px;' />
+                        <span>&nbsp;范红宇&nbsp;</span><span class="caret"></span>
+                    </a>
                     <ul class="dropdown-menu">
-                        <li><a href="javascript: changeProfile();"><i class='fa fa-cog'></i>&nbsp;个人参数</a></li>
+                        <li><a href="javascript: changeProfile();"><i class='fa fa-cog'></i>&nbsp;个人设置</a></li>
                         <li role="presentation" class="divider"></li>
                         <li><a href="javascript: logoutSystem();"><i class='fa fa-power-off'></i>&nbsp;退出系统</a></li>
                     </ul>
                 </li>
 
                 <li>
-                    <a href="javascript:openMenu('http://123.57.235.9:88/tzcp/platform/msg')"><i class="fa fa-bell-o"><span class="badge hidden">0</span></i></a>
+                    <a href="javascript:openMenu('http://123.57.235.9:88/tzcp/platform/msg')">
+                        <i class="fa fa-bell-o"><span class="badge hidden">0</span></i>
+                    </a>
 
                     <div class="msg-toast-container">
                         <div class="msg-toast-title">
@@ -115,7 +128,8 @@
                         <ul class="unread-list"></ul>
 
                         <a href="javascript:openMenu('http://123.57.235.9:88/tzcp/platform/msg')" class="show-all-msg">
-                            <span>查看所有消息</span><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-showall"></use></svg>
+                            <span>查看所有消息</span>
+                            <svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-showall"></use></svg>
                         </a>
                     </div>
                 </li>
@@ -126,7 +140,12 @@
 
 <!-- 左侧菜单 -->
 <div class='left-menu'>
-    <label class="search-items"><i class="fa fa-search"></i><input type="text" class="form-control" placeholder="搜索功能模块" id="func-search"  oninput="OnInput()" onpropertychange="OnPropChanged() " /></label>
+
+    <label class="search-items"><i class="fa fa-search"></i>
+        <input type="text" class="form-control" placeholder="搜索功能模块" id="func-search"
+               oninput="OnInput()" onpropertychange="OnPropChanged() " />
+    </label>
+
     <ul class="menu" id="ul_cartList">
 
 
@@ -385,7 +404,9 @@
 
 
 <script src="${staticUrl}/statics2/js/common.js"></script>
-<script src="${staticUrl}/statics2/js/common-business.js"></script>
+<script src="${staticUrl}/statics2/js/common-tools.js"></script>
+<script src="${staticUrl}/statics2/js/common-setting.js"></script>
+<script src="${staticUrl}/statics2/js/common-data.js"></script>
 <script src="${staticUrl}/statics2/js/Sortable.min.js"></script>
 
 <script type="text/javascript">
@@ -540,10 +561,8 @@
 
         return flag;
     }
-</script>
-</div>
 
-<script>
+
     var myProfile = {headImg: 'default.png', mobilePhone: '13809896650', email: 'fanhy@ccne.com', pageLimit: 50};
     var msgInterval = null;
 
