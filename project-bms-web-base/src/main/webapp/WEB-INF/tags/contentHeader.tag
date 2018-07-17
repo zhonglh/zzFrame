@@ -32,7 +32,7 @@
     <title>${title}</title>
     <link rel="icon" href="${staticUrl}/statics2/image/favicon.ico">
     <link rel="shortcut icon" href="${staticUrl}/statics2/image/favicon.ico">
-    <%@include file="/WEB-INF/views/common/import-homecss.jspf"%>
+    <%@include file="/WEB-INF/views/common/import-css.jspf"%>
 
 
     <script>
@@ -42,29 +42,19 @@
 
         var $AppContext = ctx;
         var $PagingSize = 50 || 20;
-        var $DBType = 'mysql';
-        // var $ShowGlolalLoadingMask = true;
 
-        var $RootDeptId = '1';
-        var $RootDeptName = '西点软件';
-        var $RootDeptNodeNo = '001';
-        var $DomainId = '1';
-        var $AttachmentEngine = 'mongodb';
+
+
+        var $AttachmentEngine = 'file';
         var $AlibabaMediaNameSpace = '';
-        var opinionsContentDisply = 'true';  //流转意见是否显示
+
 
     </script>
 
 
 
-    <style>
-        #full-screen {padding: 10px; background: #ffffff; position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 99999; overflow: auto}
-        .fixed-top-show{position: fixed;top: 0;left: 0;right: 0;bottom: 0}
-        @media (min-width: 992px){.col-md-3 .block-each{margin-left: 10px}}
-        @media (max-width: 767px){.col-xs-12 .block-each{margin-left: 0}}
-        .nav-personal .dropdown+li {border-left: 1px solid #0896ba;}
-    </style>
-
 
 </head>
-<body>
+
+<body class="easyui-layout" id="content-all">
+

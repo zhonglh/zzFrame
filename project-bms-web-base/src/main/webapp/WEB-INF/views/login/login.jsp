@@ -143,10 +143,10 @@
 
 
 
-<script charset="utf-8" type="text/javascript"  src="${staticUrl}/statics2/js/common.js"></script>
-<script charset="utf-8" type="text/javascript"  src="${staticUrl}/statics2/js/common-tools.js"></script>
-<script charset="utf-8" type="text/javascript"  src="${staticUrl}/statics2/js/common-setting.js"></script>
-<script charset="utf-8" type="text/javascript"  src="${staticUrl}/statics2/js/common-data.js"></script>
+<script charset="utf-8" type="text/javascript"  src="${staticUrl}/statics2/js/project/common.js"></script>
+<script charset="utf-8" type="text/javascript"  src="${staticUrl}/statics2/js/project/common-tools.js"></script>
+<script charset="utf-8" type="text/javascript"  src="${staticUrl}/statics2/js/project/common-setting.js"></script>
+<script charset="utf-8" type="text/javascript"  src="${staticUrl}/statics2/js/project/common-data.js"></script>
 
 
 

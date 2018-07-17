@@ -38,6 +38,16 @@
     <link rel="stylesheet" href="${ctx}/statics2/jquery/custom-scrollbar/jquery.mCustomScrollbar.min.css">
 
 
+    <!--[if IE 7]>
+    <link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/font-wesome/font-awesome-ie7.min.css">
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <script src="${staticUrl}/statics2/js/html5shiv.min.js"></script>
+    <script src="${staticUrl}/statics2/js/respond.js"></script>
+    <![endif]-->
+
+
     <link rel="stylesheet" href="${ctx}/statics2/css/home.css">
     <link rel="stylesheet" href="${ctx}/statics2/css/common.css"/>
 
@@ -182,6 +192,17 @@
         </li>
 
 
+
+        <li menuNodeNo="SM" menuLevel="1" parentNodeNo="-1" style="display: block">
+            <a href="javascript: openMenu('');" title="系统管理" style="padding-left: 6px;"><i class="fa fa-users"></i>系统管理</a>
+        </li>
+
+        <li menuNodeNo="SM-1" menuLevel="2" parentNodeNo="SM" style="display: none">
+            <a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/34/3');" title="用户管理" style="padding-left: 28px;">
+                <i class="fa fa-list-alt"></i>用户管理</a>
+        </li>
+
+
     </ul>
 
     <ul class="menu search-menu"  id="sMenu"></ul>
@@ -299,6 +320,19 @@
 </div>
 
 
+<script>
+    // Global Const
+    var $AppContext = '${ctx}';
+    var ctx = $AppContext;
+    var $PagingSize = 50 || 20;
+    var $AttachmentEngine = 'file';
+    var $AlibabaMediaNameSpace = '';
+
+
+
+
+    var myProfile = {headImg: 'default.png', mobilePhone: '13809896650', email: 'fanhy@ccne.com', pageLimit: 50};
+</script>
 
 <script src="${staticUrl}/statics2/iconfont/iconfont.js"></script>
 
@@ -335,26 +369,14 @@
 <script src="${staticUrl}/statics2/js/Sortable.min.js"></script>
 
 
-<script>
-    // Global Const
-    var $AppContext = '${ctx}';
-    var ctx = $AppContext;
-    var $PagingSize = 50 || 20;
-    var $AttachmentEngine = 'file';
-    var $AlibabaMediaNameSpace = '';
 
 
-
-
-    var myProfile = {headImg: 'default.png', mobilePhone: '13809896650', email: 'fanhy@ccne.com', pageLimit: 50};
-</script>
-
-
-<script src="${staticUrl}/statics2/js/common.js"></script>
-<script src="${staticUrl}/statics2/js/common-tools.js"></script>
-<script src="${staticUrl}/statics2/js/common-setting.js"></script>
-<script src="${staticUrl}/statics2/js/common-data.js"></script>
-<script src="${staticUrl}/statics2/js/common-validate.js"></script>
+<script src="${staticUrl}/statics2/js/project/common.js"></script>
+<script src="${staticUrl}/statics2/js/project/common-tools.js"></script>
+<script src="${staticUrl}/statics2/js/project/common-function.js"></script>
+<script src="${staticUrl}/statics2/js/project/common-setting.js"></script>
+<script src="${staticUrl}/statics2/js/project/common-data.js"></script>
+<script src="${staticUrl}/statics2/js/project/common-validate.js"></script>
 <script src="${staticUrl}/statics2/js/home.js"></script>
 
 

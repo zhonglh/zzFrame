@@ -3,3 +3,41 @@
 <c:set var="staticUrl" value="${pageContext.request.contextPath}"/>
 
 
+
+<script src="${staticUrl}/statics2/iconfont/iconfont.js"></script>
+
+<script src="${staticUrl}/statics2/jquery/jquery.min.js"></script>
+<script src="${staticUrl}/statics2/jquery/jquery-migrate.min.js"></script>
+<script src="${staticUrl}/statics2/bootstrap/bootstrap.min.js"></script>
+
+<script src="${staticUrl}/statics2/jquery/easyui/jquery.easyui.min.js"></script>
+<script src="${staticUrl}/statics2/jquery/easyui/jquery.easyui.patch.js"></script>
+<script src="${staticUrl}/statics2/jquery/easyui/easyui-lang-zh_CN.js"></script>
+
+<script src="${staticUrl}/statics2/jquery/dialog/jquery.iDialog.min.js" dialog-theme="default"></script>
+
+<script src="${staticUrl}/statics2/jquery/opentip/opentip-jquery.min.js"></script>
+<script src="${staticUrl}/statics2/jquery/opentip/opentip-jquery-excanvas.min.js"></script>
+
+<script src="${staticUrl}/statics2/jquery/validate/jquery.validate.min.js"></script>
+<script src="${staticUrl}/statics2/jquery/validate/additional-methods.min.js"></script>
+<script src="${staticUrl}/statics2/jquery/validate/messages_zh.min.js"></script>
+
+<script src="${staticUrl}/statics2/jquery/97-date-picker/WdatePicker.js"></script>
+
+<!--[if IE 9]>
+<script src="${staticUrl}/statics2/base64.min.js"></script>
+<![endif]-->
+
+
+<script src="${staticUrl}/statics2/jquery/jquery-confirm/jquery-confirm.min.js"></script>
+<script src="${staticUrl}/statics2/jquery/jquery.form.js"></script>
+<script src="${staticUrl}/statics2/jquery/toastr/toastr.min.js"></script>
+
+
+<script src="${staticUrl}/statics2/js/project/common.js"></script>
+<script src="${staticUrl}/statics2/js/project/common-tools.js"></script>
+<script src="${staticUrl}/statics2/js/project/common-function.js"></script>
+<script src="${staticUrl}/statics2/js/project/common-setting.js"></script>
+<script src="${staticUrl}/statics2/js/project/common-data.js"></script>
+<script src="${staticUrl}/statics2/js/project/common-validate.js"></script>

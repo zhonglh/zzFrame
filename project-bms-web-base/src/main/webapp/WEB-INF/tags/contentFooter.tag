@@ -4,6 +4,10 @@
 <c:set var="staticUrl" value="${pageContext.request.contextPath}"/>
 
 
-</body>
+
 <%@include file="/WEB-INF/views/common/import-js.jspf"%>
+
+
+</body>
+
 </html>

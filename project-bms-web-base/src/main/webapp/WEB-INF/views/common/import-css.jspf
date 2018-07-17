@@ -4,3 +4,20 @@
 
 
 
+<link rel="stylesheet" href="${ctx}/statics2/font-awesome/font-awesome.min.css"/>
+<link rel="stylesheet" href="${ctx}/statics2/bootstrap/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="${ctx}/statics2/jquery/easyui/themes/default/easyui.css">
+<link rel="stylesheet" href="${ctx}/statics2/jquery/opentip/opentip.css" />
+<link rel="stylesheet" href="${ctx}/statics2/jquery/jquery-confirm/jquery-confirm.min.css"/>
+<link rel="stylesheet" href="${ctx}/statics2/jquery/toastr/toastr.min.css"/>
+<link rel="stylesheet" href="${ctx}/statics2/css/common.css"/>
+
+
+<!--[if IE 7]>
+<link type="text/css" href="${staticUrl}/statics2/font-wesome/font-awesome-ie7.min.css">
+<![endif]-->
+
+<!--[if lt IE 9]>
+<script src="${staticUrl}/statics2/js/html5shiv.min.js"></script>
+<script src="${staticUrl}/statics2/js/respond.js"></script>
+<![endif]-->
