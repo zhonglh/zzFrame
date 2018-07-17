@@ -419,3 +419,20 @@ function loadRichTextContent(type, id, callback)
         }
         });
 }
+
+
+
+// 给含有webuploader-container样式的元素绑定上传事件
+$(".webuploader-container").each(function(){
+    if(GetScriptParam("source") == "1"){
+        // 表单来源，不初始化组件
+        return;
+    }
+    // 获取参数
+    var options = $(this).attr("data-options");
+    options = stringToJson(options);
+    var isInit = options.init||true;
+    if(isInit == true){
+        $(this).UploadFile();
+    }
+});
