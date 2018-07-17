@@ -41,9 +41,9 @@ public class MainController extends BaseBussinessController {
 
 
 
-    @RequestMapping(value = "/home2", method = RequestMethod.GET)
+    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
     public String home2(HttpServletRequest request , HttpServletResponse response){
-        return "main/home2";
+        return "main/welcome";
     }
 
 }

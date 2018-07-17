@@ -3,6 +3,10 @@ var dlgData;
 var $image = $('#image');
 var avatar_callback;
 
+
+
+var msgInterval = null;
+
 /**
  * 初始化截图控件
  */
@@ -151,8 +155,6 @@ function cropImgUpload(callback)
     return flag;
 }
 
-var myProfile = {headImg: 'default.png', mobilePhone: '13809896650', email: 'fanhy@ccne.com', pageLimit: 50};
-var msgInterval = null;
 
 /**
  * Windows Resize事件

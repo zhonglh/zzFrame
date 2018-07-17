@@ -1,19 +1,6 @@
 
-<%@include file="/WEB-INF/views/common/taglibs.min.jspf" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<c:set var="staticUrl" value="${pageContext.request.contextPath}"/>
 
 
 
-
-<link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/bootstrap/css/bootstrap.min.css" >
-<link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/font-wesome/font-awesome.min.css" />
-
-<!--[if IE 7]>
-<link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/font-wesome/font-awesome-ie7.min.css">
-<![endif]-->
-
-<!--[if lt IE 9]>
-<script src="${staticUrl}/statics2/js/html5shiv.min.js"></script>
-<script src="${staticUrl}/statics2/js/respond.js"></script>
-<![endif]-->
-
-<link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/css/login.css" >

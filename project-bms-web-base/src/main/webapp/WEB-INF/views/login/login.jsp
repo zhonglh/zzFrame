@@ -40,9 +40,9 @@
 
 
 <div class="slider">
-    <div class="feather"><img src="${staticUrl}/statics/image/p_login_slider.jpg" ></div>
-    <div class="feather"><img src="${staticUrl}/statics/image/p_login_slider1.jpg" ></div>
-    <div class="feather"> <img src="${staticUrl}/statics/image/p_login_slider2.jpg" > </div>
+    <div class="feather"><img src="${staticUrl}/statics2/image/p_login_slider.jpg" ></div>
+    <div class="feather"><img src="${staticUrl}/statics2/image/p_login_slider1.jpg" ></div>
+    <div class="feather"> <img src="${staticUrl}/statics2/image/p_login_slider2.jpg" > </div>
 </div>
 
 
@@ -54,7 +54,7 @@
         <a>手机App下载
             <div class="log-h-layout">
                 <div class="log-h-arrow"></div>
-                <img  src="/tzcp/image/barcode/download.png">
+                <img  src="">
                 <p>扫描二维码下载手机app</p>
             </div>
         </a>
@@ -62,7 +62,7 @@
         <a>服务器地址
             <div class="log-h-layout">
                 <div class="log-h-arrow"></div>
-                <img  src="/tzcp/image/barcode/server-addr.png">
+                <img  src="">
                 <p>扫描二维码获取服务器地址</p>
             </div>
         </a>

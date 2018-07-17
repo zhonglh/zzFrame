@@ -342,6 +342,11 @@
     var $PagingSize = 50 || 20;
     var $AttachmentEngine = 'file';
     var $AlibabaMediaNameSpace = '';
+
+
+
+
+    var myProfile = {headImg: 'default.png', mobilePhone: '13809896650', email: 'fanhy@ccne.com', pageLimit: 50};
 </script>
 
 
