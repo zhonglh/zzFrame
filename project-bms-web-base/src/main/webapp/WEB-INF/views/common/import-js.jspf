@@ -4,15 +4,41 @@
 
 
 
-<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics2/jquery/jquery.min.1.12.4.js" ></script>
-<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics2/jquery/jquery-migrate.min.js" ></script>
-<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics2/jquery/jquery.placeholder.min.js" ></script>
-<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics2/jquery/jquery-confirm/jquery-confirm.min.js" ></script>
-<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics2/jquery/slider.js" ></script>
-<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics2/jquery/jquery.cookie.js" ></script>
+<%--
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/bootstrap335/js/bootstrap.min.js" ></script>
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/jquery-validation/js/jquery.validationEngine.js" ></script>
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/jquery-validation/js/languages/jquery.validationEngine-zh_CN.js"></script>
+
+--%>
+
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/jquery/jquery.min.1.12.4.js" ></script>
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/jquery/jquery-migrate.min.1.4.1.js" ></script>
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/jquery/jquery.placeholder.min.js" ></script>
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/jquery/jquery-confirm/jquery-confirm.min.js" ></script>
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/js/slider.js" ></script>
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/jquery/jquery.cookie.js" ></script>
 
 
-<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics2/js/common.js" ></script>
-<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics2/js/common-data.js" ></script>
-<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics2/js/common-setting.js" ></script>
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/js/common.js" ></script>
 
+
+<%--
+
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/jquery-easyui-1.4.4/jquery.easyui.min.js" ></script>
+
+
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/jquery/jquery.form.min.js" ></script>
+
+
+--%>
+
+<%--
+
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/jquery/WdatePicker.js" ></script>
+--%>
+
+
+<%--
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/html5shiv.min.js" ></script>
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/respond.min.js" ></script>
+--%>

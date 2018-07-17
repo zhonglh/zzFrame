@@ -1,6 +1,42 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/views/common/taglibs.jspf" %>
-<bms:contentLoginHeader title="用户登录" index="true"/>
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Window-target" content="_top">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>zz后台管理系统-登录</title>
+    <link rel="icon" href="${staticUrl}/statics2/image/favicon.ico">
+    <link rel="shortcut icon" href="${staticUrl}/statics2/image/favicon.ico">
+
+
+    <link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/bootstrap/css/bootstrap.min.css" >
+    <link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/font-wesome/font-awesome.min.css" />
+
+    <!--[if IE 7]>
+    <link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/font-wesome/font-awesome-ie7.min.css">
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <script src="${staticUrl}/statics2/js/html5shiv.min.js"></script>
+    <script src="${staticUrl}/statics2/js/respond.js"></script>
+    <![endif]-->
+
+    <link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/css/login.css" >
+
+</head>
+<body>
 
 
 <div class="slider">
@@ -93,7 +129,25 @@
     <spring:message  code="common.copyright.info" />
 </footer>
 
-<bms:contentLoginFooter/>
+
+</body>
+
+
+
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics2/jquery/jquery.min.1.12.4.js" ></script>
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics2/jquery/jquery-migrate.min.js" ></script>
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics2/jquery/jquery.placeholder.min.js" ></script>
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics2/jquery/jquery-confirm/jquery-confirm.min.js" ></script>
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics2/jquery/slider.js" ></script>
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics2/jquery/jquery.cookie.js" ></script>
+
+
+
+<script charset="utf-8" type="text/javascript"  src="${staticUrl}/statics2/js/common.js"></script>
+<script charset="utf-8" type="text/javascript"  src="${staticUrl}/statics2/js/common-tools.js"></script>
+<script charset="utf-8" type="text/javascript"  src="${staticUrl}/statics2/js/common-setting.js"></script>
+<script charset="utf-8" type="text/javascript"  src="${staticUrl}/statics2/js/common-data.js"></script>
+
 
 
 
@@ -271,5 +325,6 @@
             .stop(true).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500);
     }
 </script>
+
 
 </html>

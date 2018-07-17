@@ -30,8 +30,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>${title}</title>
-    <link rel="icon" href="${staticUrl}/statics/image/favicon.ico">
-    <link rel="shortcut icon" href="${staticUrl}/statics/image/favicon.ico">
+    <link rel="icon" href="${staticUrl}/statics2/image/favicon.ico">
+    <link rel="shortcut icon" href="${staticUrl}/statics2/image/favicon.ico">
     <%@include file="/WEB-INF/views/common/import-homecss.jspf"%>
 
 

@@ -861,6 +861,6 @@ function resizeIdialogHeight(idialogObj)
 }
 $(document).ready(function () {//为了保证能在img元素加载之后，才为这些元素设置error事件  
     /*$("img").error(function () {
-        $(this).attr("src", $AppContext + "/statics/image/no-image.png");//JSP页面
+        $(this).attr("src", $AppContext + "/statics2/image/no-image.png");//JSP页面
     });*/
 });  

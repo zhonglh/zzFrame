@@ -33,37 +33,37 @@
 
 <%--
 
-<link type="text/css" rel="stylesheet" href="${staticUrl}/statics/plugins/font-wesome/font-awesome.min.css" />
-<link type="text/css" rel="stylesheet" href="${staticUrl}/statics/plugins/bootstrap335/css/bootstrap.min.css" >
-<link rel="stylesheet" href="${staticUrl}/statics/plugins/jquery-easyui-1.4.4/themes/default/easyui.css">
+<link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/plugins/font-wesome/font-awesome.min.css" />
+<link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/plugins/bootstrap335/css/bootstrap.min.css" >
+<link rel="stylesheet" href="${staticUrl}/statics2/plugins/jquery-easyui-1.4.4/themes/default/easyui.css">
 
-<link rel="stylesheet" href="${staticUrl}/statics/plugins/jquery-easyui-1.4.4/themes/icon.css">
+<link rel="stylesheet" href="${staticUrl}/statics2/plugins/jquery-easyui-1.4.4/themes/icon.css">
 
-<link rel="stylesheet" href="${staticUrl}/statics/plugins/jquery/opentip/css/opentip.css">
-
-
-<link type="text/css" rel="stylesheet" href="${staticUrl}/statics/plugins/jquery/jquery-confirm/jquery-confirm.min.css" />
-<link type="text/css" rel="stylesheet" href="${staticUrl}/statics/plugins/jquery/custom-scrollbar/jquery.mCustomScrollbar.min.css" />
+<link rel="stylesheet" href="${staticUrl}/statics2/plugins/jquery/opentip/css/opentip.css">
 
 
-
-<link type="text/css" rel="stylesheet" href="${staticUrl}/statics/css/home.css" />
-
-
-<link type="text/css" rel="stylesheet" href="${staticUrl}/statics/plugins/jquery/cropper/cropper.min.css" />
-<link type="text/css" rel="stylesheet" href="${staticUrl}/statics/plugins/jquery/cropper/main.css" />
+<link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/plugins/jquery/jquery-confirm/jquery-confirm.min.css" />
+<link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/plugins/jquery/custom-scrollbar/jquery.mCustomScrollbar.min.css" />
 
 
 
-<link type="text/css" rel="stylesheet" href="${staticUrl}/statics/css/common.css" />
+<link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/css/home.css" />
+
+
+<link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/plugins/jquery/cropper/cropper.min.css" />
+<link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/plugins/jquery/cropper/main.css" />
+
+
+
+<link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/css/common.css" />
 
 
 <!--[if IE 7]>
-<link rel="stylesheet" href="${staticUrl}/statics/plugins/font-wesome/font-awesome-ie7.min.css">
+<link rel="stylesheet" href="${staticUrl}/statics2/plugins/font-wesome/font-awesome-ie7.min.css">
 <![endif]-->
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!-- Shim to make HTML5 elements usable in older Internet Explorer versions -->
-<!--[if lt IE 9]><script src="${staticUrl}/statics/js/html5.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="${staticUrl}/statics2/js/html5.js"></script><![endif]-->
 <!--[if lt IE 9]>
 <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>

@@ -42,7 +42,7 @@
 
     <link rel="stylesheet" href="${ctx}/statics2/jquery/custom-scrollbar/jquery.mCustomScrollbar.min.css">
 
-    <link rel="icon" href="${ctx}/statics/image/favicon.ico" />
+    <link rel="icon" href="${ctx}/statics2/image/favicon.ico" />
 
     <style>
         #full-screen {padding: 10px; background: #ffffff; position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 99999; overflow: auto}

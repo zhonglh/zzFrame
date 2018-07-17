@@ -125,10 +125,9 @@
         </property>
         <property name="filterChainDefinitions">
             <value>
-                /service/**=anon
                 /statics/**=anon
-                /js/**=anon
-                /login.html=anon
+                /statics2/**=anon
+                /toLogin=anon
                 /login.jsp=anon
                 /login/login=anon
                 /login/captcha=anon

@@ -12,7 +12,7 @@
 <!-- banner -->
 <nav class="navbar" role="navigation">
     <div class="container-fluid">
-        <div class="navbar-header"><img class="logo" src="${staticUrl}/statics/image/logo.png"/></div>
+        <div class="navbar-header"><img class="logo" src="${staticUrl}/statics2/image/logo.png"/></div>
         <div class="collapse navbar-collapse" style="padding-left: 0;margin-left: 230px;">
             <!-- 快捷方式 -->
             <div id="limitSec">
@@ -49,7 +49,7 @@
             <ul class="nav navbar-nav navbar-right nav-personal">
                 <!-- 个人参数 -->
                 <li class='dropdown'>
-                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" style='margin-top: -8px; margin-bottom: 0px; padding-bottom: 3px;'><img id='imgUserAvatar' class='img-circle' src="${staticUrl}/statics/image/default.png" width=40 height=40 style='border: solid 2px;' /><span>&nbsp;范红宇&nbsp;</span><span class="caret"></span></a>
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" style='margin-top: -8px; margin-bottom: 0px; padding-bottom: 3px;'><img id='imgUserAvatar' class='img-circle' src="${staticUrl}/statics2/image/default.png" width=40 height=40 style='border: solid 2px;' /><span>&nbsp;范红宇&nbsp;</span><span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="javascript: changeProfile();"><i class='fa fa-cog'></i>&nbsp;个人参数</a></li>
                         <li role="presentation" class="divider"></li>

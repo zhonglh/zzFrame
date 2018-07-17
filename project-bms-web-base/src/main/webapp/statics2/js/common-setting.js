@@ -58,6 +58,33 @@ $(document)
         }
     });
 
+
+
+
+function ajaxGet(url , data ,  successFun , failFun){
+    ajaxSend(url , data , 'Get' , successFun , failFun);
+}
+
+function ajaxPost(url , data ,  successFun , failFun){
+    ajaxSend(url , data , 'POST' , successFun , failFun);
+}
+
+function ajaxSend(url , data , type, successFun , failFun){
+    successFun = successFun || successFunction;
+    failFun = failFun || failFunction;
+    type = type || "POST";
+    $.ajax({url:url, data: data , timeout : 5000 , dataType:'json' ,type : type ,success:successFun , error : failFun});
+}
+
+function successFunction(res){
+
+}
+
+function failFunction(xhr,status,error){
+    errorTip("请求服务出现错误");
+}
+
+
 //------------------------------------------------------------------------------------------
 //		EasyUI
 //------------------------------------------------------------------------------------------

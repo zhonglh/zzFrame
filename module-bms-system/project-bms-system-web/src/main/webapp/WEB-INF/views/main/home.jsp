@@ -4,14 +4,6 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <c:set var="staticUrl" value="${pageContext.request.contextPath}"/>
-<%--
-
-<!DOCTYPE html>
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-<!--<![endif]-->
---%>
 
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -357,6 +349,7 @@
 <script src="${staticUrl}/statics2/js/common-tools.js"></script>
 <script src="${staticUrl}/statics2/js/common-setting.js"></script>
 <script src="${staticUrl}/statics2/js/common-data.js"></script>
+<script src="${staticUrl}/statics2/js/common-validate.js"></script>
 <script src="${staticUrl}/statics2/js/home.js"></script>
 
 
