@@ -1,0 +1,30 @@
+
+* {font-family: 'Microsoft YaHei', tahoma, arial; font-weight: normal; font-size : 13px;}
+
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover {text-decoration: none;}
+a:active {text-decoration: none;}
+
+.container {width: 100%; padding-right: 0px; overflow-x: hidden;}
+.row {margin-top: -10px;}
+
+.div_boder{border: 1px solid #dfdfdf; background-color:#FFFFFF; margin-top: 10px;}
+.col-md-8 {padding-top: 0px; padding-left:0px; padding-right:0px;}
+.div_padding {padding-top: 5px; padding-left:10px;}
+.div_page {padding-top: 5px; padding-right:30px; float: right;}
+.table_boder tr {BORDER-BOTTOM: 1px dashed #ADADAD}
+.body_bg {background-color: #f5f5f5;}
+.div_br {border-bottom: 1px solid #2dc3e8; padding-top: 10px;}
+.icon {display: inline-block; font: normal normal normal 14px/1 icomoon; font-size: inherit; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; vertical-align: middle;}
+.icon-angle-right:before {content: "\f105";}
+.icon-arrow-circle-o-right:before {content: "\f18e";}
+.table-condensed>tbody>tr>td, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>td, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>thead>tr>th {padding: 10px 5px 0px 5px;}
+
+.datagrid-row {text-align:center;  }  
+
+
+#tableFlow.datagrid-header {
+	position: absolute; visibility: hidden;
+}
+.nowrap-table tr td div p{margin: 0}

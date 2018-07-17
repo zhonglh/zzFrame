@@ -22,6 +22,7 @@
 
 	<mvc:default-servlet-handler />
 	<mvc:resources location="/statics/" mapping="/statics/**" />
+	<mvc:resources location="/statics2/" mapping="/statics2/**" />
 	<mvc:resources location="/statics/image/favicon.ico" mapping="/favicon.ico"  />
 	<mvc:resources location="/upload/" mapping="/upload/**" />
 

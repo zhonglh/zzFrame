@@ -3,6 +3,69 @@
 <c:set var="staticUrl" value="${pageContext.request.contextPath}"/>
 
 
+
+<script src="http://123.57.235.9:88/tzcp/css/iconfont/iconfont.js"></script>
+
+<script src="http://123.57.235.9:88/tzcp/js/jquery/jquery.min.js"></script>
+<script src="http://123.57.235.9:88/tzcp/js/jquery/jquery-migrate.min.js"></script>
+<script src="http://123.57.235.9:88/tzcp/js/bootstrap/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="http://123.57.235.9:88/tzcp/js/jquery/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="http://123.57.235.9:88/tzcp/js/jquery/easyui/jquery.easyui.patch.js"></script>
+<script type="text/javascript" src="http://123.57.235.9:88/tzcp/js/jquery/easyui/locale/easyui-lang-zh_CN.js"></script>
+
+<script src="http://123.57.235.9:88/tzcp/js/jquery/dialog/jquery.iDialog.min.js" dialog-theme="default"></script>
+
+<script src="http://123.57.235.9:88/tzcp/js/jquery/opentip/opentip-jquery.min.js"></script>
+<script src="http://123.57.235.9:88/tzcp/js/jquery/opentip/opentip-jquery-excanvas.min.js"></script>
+
+<script src="http://123.57.235.9:88/tzcp/js/jquery/validate/jquery.validate.min.js"></script>
+<script src="http://123.57.235.9:88/tzcp/js/jquery/validate/additional-methods.min.js"></script>
+<script src="http://123.57.235.9:88/tzcp/js/jquery/validate/localization/messages_zh.min.js"></script>
+
+<script src="http://123.57.235.9:88/tzcp/js/jquery/97-date-picker/WdatePicker.js"></script>
+
+<!--[if IE 9]>
+<script src="http://123.57.235.9:88/tzcp/js/base64.min.js"></script>
+<![endif]-->
+<script src="http://123.57.235.9:88/tzcp/js/bootstrap/jquery-confirm/jquery-confirm.min.js"></script>
+
+<script src="http://123.57.235.9:88/tzcp/js/jquery/jquery.form.js"></script>
+
+<script src="http://123.57.235.9:88/tzcp/js/jquery/toastr/toastr.min.js"></script>
+<script type="text/javascript" src='http://123.57.235.9:88/tzcp/js/jquery/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js'></script>
+
+<script src="http://123.57.235.9:88/tzcp/js/jquery/cropper/dist/cropper.min.js"></script>
+
+
+<script>
+    // Global Const
+    var $AppContext = 'http://123.57.235.9:88/tzcp';
+    var ctx = $AppContext;
+    var $PagingSize = 50 || 20;
+    var $DBType = 'mysql';
+    // var $ShowGlolalLoadingMask = true;
+
+    var $RootDeptId = '1';
+    var $RootDeptName = '西点软件';
+    var $RootDeptNodeNo = '001';
+    var $DomainId = '1';
+    var $AttachmentEngine = 'mongodb';
+    var $AlibabaMediaNameSpace = '';
+    var opinionsContentDisply = 'true';  //流转意见是否显示
+</script>
+
+
+
+<script src="http://123.57.235.9:88/tzcp/js/jquery/toastr/toastr.min.js"></script>
+<script src="http://123.57.235.9:88/tzcp/js/common.js"></script>
+<script src="http://123.57.235.9:88/tzcp/js/business.js"></script>
+<script src="http://123.57.235.9:88/tzcp/js/Sortable.min.js"></script>
+
+
+<%--
+
+
 <script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/js/iconfont.js" ></script>
 <script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/jquery/jquery.min.1.12.4.js" ></script>
 <script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/jquery/jquery-migrate.min.1.4.1.js" ></script>
@@ -38,8 +101,9 @@
 
 <script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/plugins/jquery/cropper/cropper.min.css" ></script>
 
-
-
 <script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/js/common.js" ></script>
-<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/js/business.js" ></script>
+<script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/js/common-business.js" ></script>
 <script charset="utf-8" type="text/javascript" src="${staticUrl}/statics/js/Sortable.min.js" ></script>
+
+--%>
+

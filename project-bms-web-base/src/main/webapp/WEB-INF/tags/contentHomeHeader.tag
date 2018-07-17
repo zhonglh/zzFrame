@@ -39,6 +39,20 @@
         // Global Const
         var ctx = '${ctx}';
         var staticUrl = '${staticUrl}';
+
+        var $AppContext = ctx;
+        var $PagingSize = 50 || 20;
+        var $DBType = 'mysql';
+        // var $ShowGlolalLoadingMask = true;
+
+        var $RootDeptId = '1';
+        var $RootDeptName = '西点软件';
+        var $RootDeptNodeNo = '001';
+        var $DomainId = '1';
+        var $AttachmentEngine = 'mongodb';
+        var $AlibabaMediaNameSpace = '';
+        var opinionsContentDisply = 'true';  //流转意见是否显示
+
     </script>
 
 

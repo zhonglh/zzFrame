@@ -860,7 +860,7 @@ function resizeIdialogHeight(idialogObj)
 	idialogObj.left = ($(window).width() - idialogObj.width)/2 + 'px';
 }
 $(document).ready(function () {//为了保证能在img元素加载之后，才为这些元素设置error事件  
-    $("img").error(function () {  
-        $(this).attr("src", $AppContext + "/image/no-image.png");//JSP页面  
-    });  
+    /*$("img").error(function () {
+        $(this).attr("src", $AppContext + "/statics/image/no-image.png");//JSP页面
+    });*/
 });  

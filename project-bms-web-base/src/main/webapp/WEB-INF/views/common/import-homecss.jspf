@@ -3,6 +3,36 @@
 
 
 
+
+
+<link rel="stylesheet" href="http://123.57.235.9:88/tzcp/js/font-awesome/font-awesome.min.css"/>
+<link rel="stylesheet" href="http://123.57.235.9:88/tzcp/js/bootstrap/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="http://123.57.235.9:88/tzcp/js/jquery/easyui/themes/default/easyui.css">
+<link rel="stylesheet" href="http://123.57.235.9:88/tzcp/js/jquery/opentip/opentip.css" />
+<link rel="stylesheet" href="http://123.57.235.9:88/tzcp/js/bootstrap/jquery-confirm/jquery-confirm.min.css"/>
+<link rel="stylesheet" href="http://123.57.235.9:88/tzcp/js/jquery/toastr/toastr.min.css"/>
+
+
+
+
+
+<link rel="stylesheet" href="http://123.57.235.9:88/tzcp/css/home.css">
+<link rel="stylesheet" href="http://123.57.235.9:88/tzcp/js/jquery/toastr/toastr.min.css"/>
+<!--start  cropper -->
+<link rel="stylesheet" href="http://123.57.235.9:88/tzcp/js/jquery/cropper/dist/cropper.min.css">
+<link rel="stylesheet" href="http://123.57.235.9:88/tzcp/js/jquery/cropper/custom/main.css"><!-- end cropper -->
+<!-- Forp通用css和js补丁 -->
+<link rel="stylesheet" href="http://123.57.235.9:88/tzcp/css/common.css"/>
+
+<link rel="stylesheet" href="http://123.57.235.9:88/tzcp/js/jquery/custom-scrollbar/jquery.mCustomScrollbar.min.css">
+
+<link rel="icon" href="http://123.57.235.9:88/tzcp/favicon.ico" />
+
+
+
+
+<%--
+
 <link type="text/css" rel="stylesheet" href="${staticUrl}/statics/plugins/font-wesome/font-awesome.min.css" />
 <link type="text/css" rel="stylesheet" href="${staticUrl}/statics/plugins/bootstrap335/css/bootstrap.min.css" >
 <link rel="stylesheet" href="${staticUrl}/statics/plugins/jquery-easyui-1.4.4/themes/default/easyui.css">
@@ -19,8 +49,10 @@
 
 <link type="text/css" rel="stylesheet" href="${staticUrl}/statics/css/home.css" />
 
+
 <link type="text/css" rel="stylesheet" href="${staticUrl}/statics/plugins/jquery/cropper/cropper.min.css" />
 <link type="text/css" rel="stylesheet" href="${staticUrl}/statics/plugins/jquery/cropper/main.css" />
+
 
 
 <link type="text/css" rel="stylesheet" href="${staticUrl}/statics/css/common.css" />
@@ -40,3 +72,4 @@
 
 
 
+--%>

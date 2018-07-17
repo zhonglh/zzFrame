@@ -29,13 +29,13 @@
         //根据传入参数控制截图框大小
         options.built = function()
         {
-            $image.cropper('setAspectRatio', $("#aspectRatioVal").val());
-            var croppBoxData = {width: 151, height: 171};
-            $image.cropper('setCropBoxData', croppBoxData);
+            //$image.cropper('setAspectRatio', $("#aspectRatioVal").val());
+            //var croppBoxData = {width: 151, height: 171};
+            //$image.cropper('setCropBoxData'/ croppBoxData);
         };
 
         // 响应 选框 事件
-        $image.on({}).cropper(options);
+        //$image.on({}).cropper(options);
 
         // 选择 图片 预览图片
         var $inputImage = $('#inputImage');

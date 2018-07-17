@@ -12,9 +12,7 @@
     <groupId>com.zz.bms</groupId>
     <artifactId>project-bms-system-web</artifactId>
     <packaging>war</packaging>
-
     <name>project-bms-system-web Maven Webapp</name>
-    <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
     <properties>
@@ -47,3 +45,4 @@
     </dependencies>
 
 </project>
+

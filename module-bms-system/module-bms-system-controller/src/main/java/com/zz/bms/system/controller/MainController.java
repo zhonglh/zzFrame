@@ -38,4 +38,12 @@ public class MainController extends BaseBussinessController {
         return "main/home";
     }
 
+
+
+
+    @RequestMapping(value = "/home2", method = RequestMethod.GET)
+    public String home2(HttpServletRequest request , HttpServletResponse response){
+        return "main/home2";
+    }
+
 }

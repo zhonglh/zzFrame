@@ -1,0 +1,29 @@
+@charset "UTF-8";
+.nowrap-table {width: 100%; table-layout: auto;}
+.nowrap-table>tbody>tr {border-bottom: 1px dashed #dddddd}
+.nowrap-table>tbody>tr:last-child {border: none}
+.nowrap-table tr {width: 100%;}
+.nowrap-table tr:hover td {background-color: #e2ecef;}
+.nowrap-table tr th {padding: 8px 10px; color: #333333; white-space: nowrap;}
+.nowrap-table tr td {padding: 5px 10px;}
+.nowrap-table tr>* {word-break: break-word; white-space: normal;}
+.nowrap-table tr .nr {white-space: nowrap;}
+
+.template .row {margin-top: 0; border-bottom: 1px solid #cccccc}
+.template .table-cell {padding: 5px 8px}
+.template .table-cell span {width: 80px !important}
+.template .table-cell .info-detail {margin-left: 80px !important}
+
+.whole-more-btn {display: block; height: 30px; line-height: 30px; text-align: center; border-top: 1px solid #dfdfdf;}
+.whole-more-btn:hover {background-color: #e2ecef;}
+.whole-more-btn>* {vertical-align: middle;}
+
+/* 头像卡片效果样式 */
+.card {border-bottom: dashed 1px #dcdcdc; margin: 7px 10px; padding: 0px 0px 5px 0px; display: block; *zoom: 1}
+.card:after {clear: both}
+.card>:first-child {width: 40px; height: 40px; float: left; background-color: #dddddd; border-radius: 50%; border: solid 1px #999}
+.card>:nth-child(2) {margin-left: 50px; line-height: 20px; color: #333333; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;}
+.card>:nth-child(3) {margin-left: 48px; color: #777;}
+.card>:nth-child(3)>* {vertical-align: middle; font-size: 12px}
+
+.empty-content {height: 100px; background-image: url("../image/empty2.png"); background-position: center; background-size: 50px; background-repeat: no-repeat}
