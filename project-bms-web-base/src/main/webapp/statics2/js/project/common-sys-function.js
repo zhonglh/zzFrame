@@ -452,7 +452,7 @@ function openUserRoleWin(config, callBack)
 };
 
 /**
- * 打开选择窗口
+ * 打开岗位选择窗口
  * callId	回显数据ID的控件ID
  * callName	回显数据名称的控件ID
  * clearId	清空选项的控件ID
