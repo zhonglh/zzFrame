@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bms.oss.base.dao.TsFilesDAO">
  	<!-- 映射配置 -->
-	<resultMap id="TsFilesResultMap" type="com.zz.bms.oss.base.domain.TsFilesEntity" >
+	<resultMap id="TsFilesResultMap" type="com.zz.bms.oss.base.entity.TsFilesEntity" >
          	<result column="id" property="id"/>
          	<result column="access_url" property="accessUrl"/>
          	<result column="file_host" property="fileHost"/>
@@ -143,7 +143,7 @@
 
 
     <!-- 根据条件查询第一条文件 -->
-    <select id="selectCheck" parameterType="com.zz.bms.oss.base.domain.TsFilesEntity" resultMap="TsFilesResultMap">
+    <select id="selectCheck" parameterType="com.zz.bms.oss.base.entity.TsFilesEntity" resultMap="TsFilesResultMap">
         SELECT T.* FROM ts_files T
         <include refid="TsFiles4CheckQueryFilter"/>  limit 1
     </select>

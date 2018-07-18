@@ -1,4 +1,4 @@
-package com.zz.bms.oss.base.domain;
+package com.zz.bms.oss.base.entity;
 
 
 

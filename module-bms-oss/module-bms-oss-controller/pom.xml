@@ -28,6 +28,24 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.zz.bms</groupId>
+            <artifactId>module-bms-controller-base</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zz.bms</groupId>
+            <artifactId>module-bms-oss-base</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zz.bms</groupId>
+            <artifactId>module-bms-oss-engine</artifactId>
+            <version>1.0.1</version>
+        </dependency>
     </dependencies>
 
 </project>
