@@ -6,7 +6,17 @@
 
 <div region='north'>
     <div class="navigation">
-        <span class="words"><a>我的项目</a></span>
+        <!-- 面包屑 -->
+        <%--<ul class="breadcrumb">
+            <li><a href="#">首页</a> <span class="divider">/</span></li>
+            <li><a href="#">Library</a> <span class="divider">/</span></li>
+            <li class="active">Data</li>
+        </ul>--%>
+
+
+        <span class="words"><a>${breadcrumb}</a></span>
+
+
     </div>
     <div id="content-sec" style="padding: 10px 10px 0 10px;">
         <!-- 筛选条件表单开始 -->

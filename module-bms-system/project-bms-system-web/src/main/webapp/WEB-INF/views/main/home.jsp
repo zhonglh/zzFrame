@@ -377,7 +377,7 @@
 <script src="${staticUrl}/statics2/js/project/common-setting.js"></script>
 <script src="${staticUrl}/statics2/js/project/common-data.js"></script>
 <script src="${staticUrl}/statics2/js/project/common-validate.js"></script>
-<script src="${staticUrl}/statics2/js/home.js"></script>
+<script src="${staticUrl}/statics2/js/project/home.js"></script>
 
 
 

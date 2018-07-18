@@ -15,9 +15,9 @@ public class SerializableUtil {
         if(id instanceof String){
             return ((String)id).isEmpty();
         }else if(id instanceof Long){
-            return id == 0L;
+            return (Long)id == 0L;
         }else if(id instanceof Integer){
-            return id == 0;
+            return (Integer)id == 0;
         }else {
             return false;
         }

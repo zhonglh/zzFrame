@@ -7,8 +7,6 @@ import java.io.IOException;
 /**
  * 类XssFilter的功能描述:
  * XSS过滤
- * @auther hxy
- * @date 2017-08-25 16:20:08
  */
 public class XssFilter implements Filter {
 

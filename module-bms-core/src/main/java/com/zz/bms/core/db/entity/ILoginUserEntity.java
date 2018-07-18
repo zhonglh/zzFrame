@@ -15,11 +15,22 @@ public interface ILoginUserEntity<PK extends Serializable> {
     public PK getId();
 
     /**
+     * 获取租户信息
+     * @return
+     */
+    public PK getTenantId();
+
+    /**
      * 获取登录人员名称
      * @return
      */
     public String getUserName();
 
 
-    public PK getTenantId();
+
+    public String getPhone() ;
+
+    public String getEmail() ;
+
+
 }

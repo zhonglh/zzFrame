@@ -543,11 +543,7 @@ function changeProfile(id)
 /// 更换新头像
 function changeHeadImage()
 {
-// 	uploadNewHeadImage({}, function(newFileName)
-// 	{
-// 		$('#userHeadImg').prop('src', 'http://123.57.235.9:88/tzcp/third/avatar/temp/' + newFileName);
-// 		$('input[name="headImg"]').val(newFileName);
-// 	});
+
 
     initCropImgDialog(function(newFileName){
 

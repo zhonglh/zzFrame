@@ -131,7 +131,7 @@ legend{padding: 0px 3px; margin: 0px; border: 0; width: auto; font-size: 13px; c
 /* TreeGrid 层级间距*/
 .treegrid-tr-tree td[colspan] {padding: 0}
 /* Grid Filter */
-.icon-filter {background: url('../js/jquery/easyui/extensions/datagrid-filter/filter.png') no-repeat center center}
+.icon-filter {background: url('../image/filter.png') no-repeat center center}
 /* 排序列鼠标样式 */
 .datagrid-sort {cursor: pointer}
 /* 排序列排序符号样式：未排序列取消排序图标标识
@@ -464,7 +464,6 @@ select.multiselect+.open>.dropdown-toggle.btn-default{background-color: transpar
 
 /**------------------------------------------------------------------------------------------
  *		列表页过滤筛选条件
- *	 【投行项目移植过来的,颜色可能需要重新定制】
  *------------------------------------------------------------------------------------------*/
 .filter-container{*zoom: 1;margin-bottom: -8px;}
 .filter-container:before,.filter-container:after{content: "";display: table}

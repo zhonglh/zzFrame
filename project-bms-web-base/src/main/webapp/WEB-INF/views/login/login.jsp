@@ -104,7 +104,8 @@
 
                             <div class="input-group">
                                 <div class="input-group-addon" for="loginPassword" title='密码'><i class="icon icon-lock4"></i></div>
-                                <input type="password" id="loginPassword" name="loginPassword" maxlength=15 autocomplete="off"
+                                <input type="password" id="loginPassword" name="loginPassword" maxlength=15
+                                       autocorrect="off" autocapitalize="off"
                                        class="input-login" placeholder="请输入密码">
                             </div>
 
