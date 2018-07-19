@@ -1,4 +1,4 @@
-package com.zz.bms.oss.engine.cloudconfig;
+package com.zz.bms.oss.engine.config.cloudconfig;
 
 import com.zz.bms.oss.engine.OssConfig;
 

@@ -341,7 +341,7 @@ public class BeanKit extends org.springframework.beans.BeanUtils {
      * 循环向上转型,获取对象的DeclaredField.
      */
     public static Field getDeclaredField(Object object, String fieldName) throws NoSuchFieldException {
-        Assert.notNull (object);
+        Assert.notNull (object , "Object is null");
         return getDeclaredField (object.getClass (), fieldName);
     }
 
@@ -349,8 +349,8 @@ public class BeanKit extends org.springframework.beans.BeanUtils {
      * 循环向上转型,获取类的DeclaredField.
      */
     public static Field getDeclaredField(Class<?> clazz, String fieldName) throws NoSuchFieldException {
-        Assert.notNull (clazz);
-        Assert.hasText (fieldName);
+        Assert.notNull (clazz , "Class is null");
+        Assert.hasText (fieldName , "Field name is null");
         for (Class<?> superClass = clazz; superClass != Object.class ; superClass = superClass.getSuperclass () ) {
             try {
                 return superClass.getDeclaredField (fieldName);

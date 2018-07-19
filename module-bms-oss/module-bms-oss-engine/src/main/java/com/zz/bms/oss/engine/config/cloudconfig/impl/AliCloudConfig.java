@@ -1,8 +1,9 @@
-package com.zz.bms.oss.engine.cloudconfig.impl;
+package com.zz.bms.oss.engine.config.cloudconfig.impl;
 
-import com.zz.bms.oss.engine.cloudconfig.CloudConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import com.zz.bms.oss.engine.config.cloudconfig.CloudConfig;
 
 /**
  * 阿里云设置
@@ -13,6 +14,10 @@ public class AliCloudConfig implements CloudConfig{
 
     @Value("#{aliyun.domain}")
     private String domain;
+
+
+    @Value("#{aliyun.prefix}")
+    private String prefix;
 
 
     @Value("#{aliyun.bucketName}")
@@ -34,12 +39,12 @@ public class AliCloudConfig implements CloudConfig{
 
     @Override
     public String getCloudDomain() {
-        return null;
+        return domain;
     }
 
     @Override
     public String getCloudPrefix() {
-        return domain;
+        return prefix;
     }
 
     @Override

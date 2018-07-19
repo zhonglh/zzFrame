@@ -28,6 +28,19 @@ public interface StorageProcess {
      * 删除文件
      * @param filename
      */
-    public void delete(String filename);
+    public boolean delete(String filename);
+
+    /**
+     * 获取文件
+     * @param filename
+     * @return
+     */
+    public Object get(String filename);
+
+    /**
+     * Engine 是否有效
+     * @return
+     */
+    public boolean isActive();
 
 }

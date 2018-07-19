@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <util:properties id="aliyun" location="classpath:sso-cloud-aliyun.properties"/>
+    <util:properties id="qiniuyun"  location="classpath:sso-cloud-qiniuyun.properties"/>
+    <util:properties id="tenxunyun" location="classpath:sso-cloud-tenxunyun.properties"/>
+    <util:properties id="filesystem" location="classpath:sso-file.properties"/>
+    <util:properties id="fsnfs" location="classpath:sso-fsnfs.properties"/>
+    <util:properties id="mongodb" location="sso-mongodb.properties"/>
+
+</beans>

@@ -101,6 +101,7 @@ public class PropertiesUtil {
             logger.error ("getConfPath MalformedURLException = " + e);
         } catch (IOException e) {
             logger.error ("getConfPath IOException = " + e);
+            throw new RuntimeException(e);
         }
         return propURL;
     }

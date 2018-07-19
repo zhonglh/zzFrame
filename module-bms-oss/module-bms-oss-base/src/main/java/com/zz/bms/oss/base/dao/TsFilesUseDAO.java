@@ -1,19 +1,14 @@
 package com.zz.bms.oss.base.dao;
 
 import com.zz.bms.core.db.base.dao.BaseDAO;
-import com.zz.bms.oss.base.entity.TsFilesEntity;
+import com.zz.bms.oss.base.entity.TsFilesUseEntity;
 import org.springframework.stereotype.Repository;
 
 
-
 /**
- * 文件表操作DAO
+ * 文件使用表操作DAO
  * @author Administrator
  */
 @Repository
-public interface TsFilesDAO  extends BaseDAO<TsFilesEntity, String> {
-
-
+public interface TsFilesUseDAO extends BaseDAO<TsFilesUseEntity, String> {
 }
-
-

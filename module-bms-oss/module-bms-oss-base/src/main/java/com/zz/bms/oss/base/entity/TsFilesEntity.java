@@ -74,8 +74,8 @@ public class TsFilesEntity extends BaseBusinessExEntity<String> implements Seria
 
 
 
-    @EntityAttrDBAnnotation(attrName="显示名称",sort=8  , attrLength=100    )
-	private String showName;
+    @EntityAttrDBAnnotation(attrName="文件类型",sort=8  , attrLength=50    )
+	private String contentType;
 
 
 
@@ -93,8 +93,6 @@ public class TsFilesEntity extends BaseBusinessExEntity<String> implements Seria
 
 
 
-    @EntityAttrDBAnnotation(attrName="备注",sort=11  , attrLength=200    )
-	private String remark;
 
 
 
@@ -196,20 +194,7 @@ public class TsFilesEntity extends BaseBusinessExEntity<String> implements Seria
 	public void setFileEngine(String fileEngine) {
 		this.fileEngine = fileEngine;
 	}
-	/** 
-	 * 显示名称
-	 * @return the showName
-	 */
-	public String getShowName() {
-		return showName;
-	}
-	
-	/** 
-	 * 显示名称
-	 */
-	public void setShowName(String showName) {
-		this.showName = showName;
-	}
+
 	/** 
 	 * MD5码
 	 * @return the md5
@@ -238,19 +223,6 @@ public class TsFilesEntity extends BaseBusinessExEntity<String> implements Seria
 	public void setUseFrequency(Integer useFrequency) {
 		this.useFrequency = useFrequency;
 	}
-	/** 
-	 * 备注
-	 * @return the remark
-	 */
-	public String getRemark() {
-		return remark;
-	}
 	
-	/** 
-	 * 备注
-	 */
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
 
 }

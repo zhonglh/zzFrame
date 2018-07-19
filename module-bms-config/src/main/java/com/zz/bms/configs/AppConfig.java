@@ -21,6 +21,12 @@ public final class AppConfig {
     public static boolean DEBUG_MODE = false;
 
 
+    /**
+     * 部署时是否使用了动静分离  SASS:Static and static separation
+     */
+    public static boolean USE_SASS = false;
+
+
 
 
 }

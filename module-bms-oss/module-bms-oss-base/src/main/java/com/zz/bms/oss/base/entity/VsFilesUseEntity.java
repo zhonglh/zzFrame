@@ -1,0 +1,168 @@
+package com.zz.bms.oss.base.entity;
+
+
+import com.zz.bms.annotaions.EntityAttrDBAnnotation;
+import com.zz.bms.core.db.entity.BaseBusinessExEntity;
+
+import java.lang.String;
+import java.sql.Timestamp;
+import java.lang.Integer;
+
+/**
+ * 文件使用视图实体类
+ * 
+ * @author Administrator
+ * @date 2018-7-19 23:40:02
+ */
+public class VsFilesUseEntity extends TsFilesUseEntity {
+
+	private static final long serialVersionUID = 1L;
+
+    @EntityAttrDBAnnotation(attrName="访问路径",sort=15  , attrLength=200    )
+	//不包括前缀  
+	private String accessUrl;
+
+
+    @EntityAttrDBAnnotation(attrName="文件所在主机",sort=16  , attrLength=30    )
+	private String fileHost;
+
+
+    @EntityAttrDBAnnotation(attrName="文件路径",sort=17  , attrLength=200    )
+	private String filePath;
+
+
+    @EntityAttrDBAnnotation(attrName="文件大小",sort=18  , attrLength=0    )
+	private Integer fileSize;
+
+
+    @EntityAttrDBAnnotation(attrName="文件后缀",sort=19  , attrLength=10    )
+	private String fileSuffix;
+
+
+    @EntityAttrDBAnnotation(attrName="文件名",sort=20  , attrLength=100    )
+	private String fileName;
+
+
+    @EntityAttrDBAnnotation(attrName="文件类型",sort=21  , attrLength=50    )
+	private String contentType;
+
+
+    @EntityAttrDBAnnotation(attrName="文件引擎",sort=22  , attrLength=20    )
+	//文件系统 七牛  阿里云  腾讯 FastNFS MongoDB  
+	private String fileEngine;
+
+
+	/** 
+	 * 访问路径
+	 * @return the accessUrl
+	 */
+	public String getAccessUrl() {
+		return accessUrl;
+	}
+	
+	/** 
+	 * 访问路径
+	 */
+	public void setAccessUrl(String accessUrl) {
+		this.accessUrl = accessUrl;
+	}
+	/** 
+	 * 文件所在主机
+	 * @return the fileHost
+	 */
+	public String getFileHost() {
+		return fileHost;
+	}
+	
+	/** 
+	 * 文件所在主机
+	 */
+	public void setFileHost(String fileHost) {
+		this.fileHost = fileHost;
+	}
+	/** 
+	 * 文件路径
+	 * @return the filePath
+	 */
+	public String getFilePath() {
+		return filePath;
+	}
+	
+	/** 
+	 * 文件路径
+	 */
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+	/** 
+	 * 文件大小
+	 * @return the fileSize
+	 */
+	public Integer getFileSize() {
+		return fileSize;
+	}
+	
+	/** 
+	 * 文件大小
+	 */
+	public void setFileSize(Integer fileSize) {
+		this.fileSize = fileSize;
+	}
+	/** 
+	 * 文件后缀
+	 * @return the fileSuffix
+	 */
+	public String getFileSuffix() {
+		return fileSuffix;
+	}
+	
+	/** 
+	 * 文件后缀
+	 */
+	public void setFileSuffix(String fileSuffix) {
+		this.fileSuffix = fileSuffix;
+	}
+	/** 
+	 * 文件名
+	 * @return the fileName
+	 */
+	public String getFileName() {
+		return fileName;
+	}
+	
+	/** 
+	 * 文件名
+	 */
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	/** 
+	 * 文件类型
+	 * @return the contentType
+	 */
+	public String getContentType() {
+		return contentType;
+	}
+	
+	/** 
+	 * 文件类型
+	 */
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
+	/** 
+	 * 文件引擎
+	 * @return the fileEngine
+	 */
+	public String getFileEngine() {
+		return fileEngine;
+	}
+	
+	/** 
+	 * 文件引擎
+	 */
+	public void setFileEngine(String fileEngine) {
+		this.fileEngine = fileEngine;
+	}
+	
+}
