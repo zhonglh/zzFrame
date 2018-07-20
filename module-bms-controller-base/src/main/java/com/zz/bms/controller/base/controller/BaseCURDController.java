@@ -103,6 +103,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         processQuery(query , m);
 
         page = baseService.selectPage(page , query.buildWrapper());
+
+        processResult(page.getRecords());
+
         return toList(page);
 
     }
@@ -118,7 +121,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     @RequestMapping(value = "/{id}/view", method = RequestMethod.GET)
     public String showViewForm(ModelMap model, @PathVariable("id") PK id) {
 
-            this.permissionList.assertHasViewPermission();
+        this.permissionList.assertHasViewPermission();
 
         setCommonData(model);
         M m = baseService.selectById(id) ;
@@ -131,7 +134,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public String showCreateForm(M m ,ModelMap model) {
 
-            this.permissionList.assertHasCreatePermission();
+        this.permissionList.assertHasCreatePermission();
 
         setCommonData(model);
 
@@ -146,7 +149,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     @RequestMapping(value = "{id}/update", method = RequestMethod.GET)
     public String showUpdateForm(ModelMap model, @PathVariable("id") PK id) {
 
-            this.permissionList.assertHasUpdatePermission();
+        this.permissionList.assertHasUpdatePermission();
 
         setCommonData(model);
         M m = baseService.selectById(id) ;
@@ -163,7 +166,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     @ResponseBody
     public Object create( M m, ModelMap model,BindingResult result, RedirectAttributes redirectAttributes) {
 
-            this.permissionList.assertHasCreatePermission();
+        this.permissionList.assertHasCreatePermission();
 
 
         if (isExist(m)) {throw DbException.DB_SAVE_SAME;}
@@ -233,7 +236,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @param redirectAttributes
      * @return
      */
-    @RequestMapping(value = "{id}/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
     @ResponseBody
     public Object delete(         @PathVariable("id") PK id,           RedirectAttributes redirectAttributes) {
 
@@ -261,21 +264,21 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @param redirectAttributes
      * @return
      */
-    @RequestMapping(value = "batch/delete", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/batch/delete", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public Object deleteInBatch(
-            @RequestParam(value = "ids", required = false) PK[] ids,
+            @RequestParam(value = "ids", required = false) String ids,
             RedirectAttributes redirectAttributes) {
 
 
             this.permissionList.assertHasDeletePermission();
 
-        if(ids == null || ids.length == 0){
+        if(ids == null || ids.isEmpty()){
             throw EnumErrorMsg.not_select_todelete.toException();
         }
 
 
-        List<M> list = baseService.selectBatchIds(Arrays.asList(ids));
+        List<M> list = baseService.selectBatchIds(Arrays.asList(ids.split(",")));
 
         if(list == null && list.isEmpty()){
             throw EnumErrorMsg.no_auth.toException();
@@ -311,7 +314,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      *
      * @param m
      */
-    @RequestMapping(value="checkUnique"  ,method = RequestMethod.GET)
+    @RequestMapping(value="/checkUnique"  ,method = RequestMethod.GET)
     @ResponseBody
     public Object checkUnique(M m) {
         M temp = baseService.selectCheck(m);
@@ -328,7 +331,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      *
      * @param m
      */
-    @RequestMapping(value = "checkAllUnique"  ,method = RequestMethod.GET)
+    @RequestMapping(value = "/checkAllUnique"  ,method = RequestMethod.GET)
     @ResponseBody
     public AjaxJson checkAllUnique(M m) {
         boolean isExist = this.isExist(m);
@@ -476,6 +479,12 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @param query
      */
     protected abstract void processQuery(Q query , M m);
+
+    /**
+     * 处理查询结果
+     * @param records
+     */
+    protected abstract void processResult(List<M> records);
 
 
 

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 /**
  * 处理用户信息
  * @author Administrator
@@ -70,6 +72,11 @@ public class VsUserController extends DefaultController<VsUserEntity , String , 
         return isExist;
     }
 
+    /**
+     * 处理查询参数
+     * @param query
+     * @param userEntity
+     */
     @Override
     protected void processQuery(VsUserQueryWebImpl query , VsUserEntity userEntity) {
         if(StringUtils.isNotEmpty(userEntity.getKeyword())){
@@ -78,6 +85,15 @@ public class VsUserController extends DefaultController<VsUserEntity , String , 
             query.setPhone_LIKE(userEntity.getKeyword());
             query.setEmail_LIKE(userEntity.getKeyword());
         }
+    }
+
+    /**
+     * 处理查询结果
+     * @param records
+     */
+    @Override
+    protected void processResult(List<VsUserEntity> records) {
+
     }
 
 

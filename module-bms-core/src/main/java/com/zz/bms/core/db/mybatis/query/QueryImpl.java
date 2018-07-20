@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.zz.bms.core.enums.EnumSearchType;
 import com.zz.bms.util.base.data.StringFormatKit;
+import com.zz.bms.util.base.java.ReflectionSuper;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
@@ -49,8 +50,10 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
             }
         }
 
+        Field[] fields = ReflectionSuper.getAllField(this.getClass() , QueryImpl.class);
+        //Field[] fields = this.getClass().getDeclaredFields();
 
-        Field[] fields = this.getClass().getDeclaredFields();
+
         for(Field field : fields){
             String fieldProperties = field.getName();
             try {

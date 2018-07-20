@@ -24,14 +24,19 @@ public class ReflectionSuper {
 	
 	@SuppressWarnings("rawtypes")
 	public static List<Class> getAllParentClass(Class class_){
-		int index = 0;
-		int count = 6;
+		return getAllParentClass(class_ , Object.class);
+	}
+
+
+	@SuppressWarnings("rawtypes")
+	public static List<Class> getAllParentClass(Class class_ , Class top){
+
 		Class clz = class_;
-		
+
 		List<Class> list = new ArrayList<Class>();
 		list.add(clz);
-		
-		for(;index < count; index ++){
+
+		while(true){
 			clz = clz.getSuperclass();
 			if(clz == null) {
 				return list;
@@ -39,10 +44,12 @@ public class ReflectionSuper {
 			if(clz == Object.class) {
 				return list;
 			}
+			if(clz.getName().equals(top.getName())){
+				return list;
+			}
 			list.add(clz);
-			
+
 		}
-		return list;
 	}
 
 
@@ -119,6 +126,27 @@ public class ReflectionSuper {
 	        fieldList.toArray(result);
 	        return result;
 	    }
+
+
+
+
+	public static Field[] getAllField(Class<?> clazz , Class stop) {
+		ArrayList<Field> fieldList = new ArrayList<Field>();
+
+		List<Class> clzs = getAllParentClass(clazz, stop);
+
+		for(Class clz : clzs){
+			Field[] dFields = clz.getDeclaredFields();
+			if (null != dFields && dFields.length > 0) {
+				fieldList.addAll(Arrays.asList(dFields));
+			}
+		}
+
+
+		Field[] result=new Field[fieldList.size()];
+		fieldList.toArray(result);
+		return result;
+	}
 
 	/**
 	 * 直接读取对象属性值, 无视private/protected修饰符, 不经过getter函数.

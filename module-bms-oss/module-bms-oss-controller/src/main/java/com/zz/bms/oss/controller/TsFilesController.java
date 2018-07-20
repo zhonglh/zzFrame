@@ -3,6 +3,7 @@ package com.zz.bms.oss.controller;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.zz.bms.controller.base.controller.DefaultController;
+import com.zz.bms.core.db.mybatis.query.QueryNullImpl;
 import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.exceptions.InternalException;
@@ -38,7 +39,7 @@ import java.util.List;
  */
 @RequestMapping("oss/files")
 @Controller
-public class TsFilesController extends DefaultController<TsFilesEntity, String> {
+public class TsFilesController extends DefaultController<TsFilesEntity, String , QueryNullImpl> {
 
 
     @Autowired
@@ -195,8 +196,15 @@ public class TsFilesController extends DefaultController<TsFilesEntity, String> 
         return true;
     }
 
+    @Override
+    protected void processQuery(QueryNullImpl query, TsFilesEntity tsFilesEntity) {
 
+    }
 
+    @Override
+    protected void processResult(List<TsFilesEntity> records) {
+
+    }
 
 
 }
