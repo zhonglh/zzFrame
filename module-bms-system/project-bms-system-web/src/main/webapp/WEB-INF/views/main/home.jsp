@@ -198,7 +198,7 @@
         </li>
 
         <li menuNodeNo="SM-1" menuLevel="2" parentNodeNo="SM" style="display: none">
-            <a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/34/3');" title="用户管理" style="padding-left: 28px;">
+            <a href="javascript: openMenu('${ctx}/sys/user/toList');" title="用户管理" style="padding-left: 28px;">
                 <i class="fa fa-list-alt"></i>用户管理</a>
         </li>
 

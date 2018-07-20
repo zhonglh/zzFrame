@@ -80,15 +80,13 @@
         <thead>
         <tr>
             <th field="ck" checkbox="true"></th>
-            <th field='projectName' align="left" width="1" sortable='true' formatter='titleFmt'>项目名称</th>
-            <th field='typeName' align="left" width="1" sortable='true' >项目类型</th>
-            <th field='companyName' align="left" width="1" sortable='true'>项目企业名称</th>
-            <th field='companyCode' align="left" width="1" sortable='true'>企业信用代码</th>
-            <th field='investTradeName' align="left" width="1" sortable='true'>投资行业</th>
-            <th field='investStageName' align="left" width="1" sortable='true'>投资阶段</th>
-            <th field='statusName' align="left" width="1" sortable='true'>执行状态</th>
-            <th field='stageName' align="left" width="1" sortable='true'>执行阶段</th>
-            <th field='makes' align="center" formatter='makesFmt'>操作</th>
+            <th field='userName' align="left" width="1" sortable='true' formatter='titleFmt'>用户名称</th>
+            <th field='loginName' align="left" width="1" sortable='true' >用户登录名</th>
+            <th field='status' align="left" width="1" sortable='true'>状态</th>
+            <th field='phone' align="left" width="1" sortable='true'>手机</th>
+            <th field='email' align="left" width="1" sortable='true'>邮箱</th>
+            <th field='depName' align="left" width="1" sortable='true'>部门</th>
+            <%--<th field='makes' align="center" formatter='makesFmt'>操作</th>--%>
         </tr>
         </thead>
     </table>
@@ -99,11 +97,9 @@
 
 <script>
     // Global Const
-    var $AppContext = '${ctx}';
-    var ctx = $AppContext;
+    var ctx = '${ctx}';
+    var $AppContext = ctx ;
     var $PagingSize = 50 || 20;
-    var $AttachmentEngine = 'file';
-    var $AlibabaMediaNameSpace = '';
 </script>
 
 <script language="JavaScript">
