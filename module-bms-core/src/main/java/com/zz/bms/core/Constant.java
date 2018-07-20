@@ -78,32 +78,11 @@ public class Constant {
 
 
     /**
-     * 云服务商
+     * 用于列表界面
      */
-    public enum CloudService {
-        /**
-         * 七牛云
-         */
-        QINIU(1),
-        /**
-         * 阿里云
-         */
-        ALIYUN(2),
-        /**
-         * 腾讯云
-         */
-        QCLOUD(3);
-
-        private int value;
-
-        private CloudService(int value) {
-            this.value = value;
-        }
-
-        public int getValue() {
-            return value;
-        }
-    }
+    public final static String TABLEID = "tableId";
+    public final static String CURR_PARENT_URL = "currParentUrl";
+    public final static String BREADCRUMB = "breadcrumb";
 
 
 

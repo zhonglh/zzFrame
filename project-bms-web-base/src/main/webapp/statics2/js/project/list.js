@@ -27,16 +27,15 @@ function isChecked(obj, value ,filed){
 
 function initPage() {
     //加载table列表数据
-    $('#tableDataArea').datagrid({
-        url : '/tzcp/prj/project/list',
+    $('#'+tableid).datagrid({
+        url : ctx+dataUrl+"/list",
         queryParams: getQueryParams(),
-        emptyMsg: '<img style="margin-top:50px;" src="/tzcp/image/wushuju.png">',
+        emptyMsg: '<img style="margin-top:50px;" src="'+staticUrl+'/statics2/image/empty.png">',
         onDblClickRow: function(index, row){
             doView(row.id)
         }
     });
 }
-
 
 //组合查询条件
 function getQueryParams(){
@@ -51,7 +50,7 @@ function search(){
 //查看页面
 function doView(id){
     var title = '<a id="iframePath">项目资源库</a>\><a>项目管理</a>';
-    showIframeWindow(title, '/tzcp/prj/project/index?id=' + id);
+    showIframeWindow(title,     ctx+dataUrl+"/"+id+"/view");
 }
 
 function IframePath(title)
@@ -91,20 +90,16 @@ function deleteOne (obj)
     var project = $ (obj);
     //获取项目名称和Id
     var names = project.attr ('customName');
-    var ids = project.attr ('id');
+    var id = project.attr ('id');
     confirm ('您确定要删除吗？', function ()
     {
         //这里与批量删除访问的是同一个路径
         $.ajax (
             {
-                url : '/tzcp/cherry/crm/custom/deletes',
+                url : ctx+dataUrl+"/"+id+"/delete",
                 type : 'POST',
                 traditional : true,//阻止JQuery深度序列化数据
-                data :
-                    {
-                        'ids' : ids,
-                        'names' : names
-                    },
+
                 success : function (rsp, status)
                 {
                     if (rsp.success)
@@ -119,30 +114,32 @@ function deleteOne (obj)
     });
 }
 
+//新建
+function doAdd(){
+    showIframeWindow('<a>'+breadcrumb+'</a> ＞ <a>新建</a>', ctx+dataUrl+"/create");
+}
 
 
 //删除
-function doDel(id){
+function doDel(){
     var idArray = new Array();
     var toDel = true;
-    if(id==-1){
-        var r = $('#tableDataArea').datagrid('getSelections');
-        if (r.length==0){
-            warn('请先选择您要删除的数据！');
-            return false;
-        }else{
-            $(r).each(function(){
-                idArray.push(this.id);
-            })
-        }
+
+    var r = $('#'+tableid).datagrid('getSelections');
+    if (r.length==0){
+        warn('请先选择您要删除的数据！');
+        return false;
     }else{
-        idArray.push(id);
+        $(r).each(function(){
+            idArray.push(this.id);
+        })
     }
+
     if(toDel){
         //执行ajax删除
         confirm('您确定要删除选中的信息吗？', function() {
             $.ajax({
-                url: '/tzcp/prj/project/doDel?ids='+idArray.join(","),
+                url: ctx+dataUrl+"/batch/delete"+'?ids='+idArray.join(","),
                 type: 'DELETE',
                 success: function(rsp, status){
                     if (rsp.success){

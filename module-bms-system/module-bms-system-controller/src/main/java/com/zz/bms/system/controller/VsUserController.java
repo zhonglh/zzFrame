@@ -1,8 +1,11 @@
 package com.zz.bms.system.controller;
 
 import com.zz.bms.controller.base.controller.DefaultController;
+import com.zz.bms.core.enums.EnumYesNo;
+import com.zz.bms.shiro.utils.ShiroUtils;
 import com.zz.bms.system.base.entity.VsUserEntity;
 import com.zz.bms.system.base.logic.query.impl.VsUserQueryWebImpl;
+import com.zz.bms.util.base.java.IdUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,8 +20,6 @@ import java.util.List;
 @RequestMapping("sys/user")
 @Controller
 public class VsUserController extends DefaultController<VsUserEntity , String , VsUserQueryWebImpl> {
-
-
 
 
 
@@ -93,6 +94,23 @@ public class VsUserController extends DefaultController<VsUserEntity , String , 
      */
     @Override
     protected void processResult(List<VsUserEntity> records) {
+
+    }
+
+    @Override
+    protected void setCustomInfoByInsert(VsUserEntity vsUserEntity) {
+        vsUserEntity.setSystemAdmin(EnumYesNo.NO.getCode());
+        vsUserEntity.setSalt(IdUtils.getId().substring(0,10));
+        vsUserEntity.setLoginPassword(ShiroUtils.encodeSalt(vsUserEntity.getLoginPassword(),vsUserEntity.getSalt()));
+        vsUserEntity.setStatus(EnumYesNo.YES.getCode());
+
+        //todo
+        vsUserEntity.setDepId("1");
+        vsUserEntity.setOrganId("1");
+    }
+
+    @Override
+    protected void setCustomInfoByUpdate(VsUserEntity vsUserEntity) {
 
     }
 

@@ -20,7 +20,7 @@ public class ShiroUtils {
 	 */
 	public static final int hashIterations= 2;
 
-	public static String EncodeSalt(String password, String salt) {
+	public static String encodeSalt(String password, String salt) {
 		return new SimpleHash(algorithmName, password, salt, hashIterations).toString();
 	}
 

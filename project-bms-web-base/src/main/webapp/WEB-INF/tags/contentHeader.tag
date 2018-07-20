@@ -34,6 +34,11 @@
     <link rel="shortcut icon" href="${staticUrl}/statics2/image/favicon.ico">
     <%@include file="/WEB-INF/views/common/import-css.jspf"%>
 
+    <style>
+        body{overflow-y: auto !important}
+    </style>
+
+
 
     <script>
         // Global Const

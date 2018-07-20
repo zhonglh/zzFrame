@@ -43,7 +43,8 @@
                     </div>
 
                     <div class="form-group">
-                        <input  class="form-control input-sm" id="keyword" name='keyword' placeholder='用户姓名/手机号//邮件/登录名' onkeydown='enterKeySearch(event, search);'>
+                        <input  class="form-control input-sm" style='width: 300px;'
+                                id="keyword" name='keyword' placeholder='用户姓名/手机号/邮件/登录名' onkeydown='enterKeySearch(event, search);'>
                     </div>
 
                     <div class="form-group">
@@ -64,7 +65,7 @@
                 </svg>
                 <span>新建 </span>
             </button>
-            <button type="button" class="btn btn-primary btn-sm" onclick="doDel(-1)">
+            <button type="button" class="btn btn-primary btn-sm" onclick="doDel()">
                 <svg class="icon" aria-hidden="true">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use>
                 </svg>
@@ -76,16 +77,17 @@
 </div>
 
 <div region='center' style="padding: 0px 10px 0 10px;">
-    <table id='tableDataArea' class='easyui-datagrid' method='post' fit='true' pagination='true' fitColumns="true" border='true' sortName="id" sortOrder="desc" style="width: 100%;">
+    <table id='tableData-${tableId}' class='easyui-datagrid' method='post' fit='true' pagination='true' fitColumns="true"
+           border='true' sortName="id" sortOrder="desc" style="width: 100%;">
         <thead>
         <tr>
             <th field="ck" checkbox="true"></th>
-            <th field='userName' align="left" width="1" sortable='true' formatter='titleFmt'>用户名称</th>
-            <th field='loginName' align="left" width="1" sortable='true' >用户登录名</th>
-            <th field='status' align="left" width="1" sortable='true'>状态</th>
-            <th field='phone' align="left" width="1" sortable='true'>手机</th>
-            <th field='email' align="left" width="1" sortable='true'>邮箱</th>
-            <th field='depName' align="left" width="1" sortable='true'>部门</th>
+            <th field='userName' align="left" width="2" sortable='false' formatter='titleFmt'>用户名称</th>
+            <th field='loginName' align="left" width="2" sortable='false' >用户登录名</th>
+            <th field='status' align="left" width="1" sortable='false'>状态</th>
+            <th field='phone' align="left" width="2" sortable='false'>手机</th>
+            <th field='email' align="left" width="2" sortable='false'>邮箱</th>
+            <th field='depName' align="left" width="2" sortable='false'>部门</th>
             <%--<th field='makes' align="center" formatter='makesFmt'>操作</th>--%>
         </tr>
         </thead>
@@ -98,8 +100,14 @@
 <script>
     // Global Const
     var ctx = '${ctx}';
+    var staticUrl = '${staticUrl}';
     var $AppContext = ctx ;
     var $PagingSize = 50 || 20;
+
+
+    var tableid = "tableData-${tableId}";
+    var dataUrl = "/${currParentUrl}";
+    var breadcrumb = "${breadcrumb}";
 </script>
 
 <script language="JavaScript">
@@ -131,6 +139,11 @@
 </script>
 
 
+<bms:contentJS />
+
 <script src="${staticUrl}/statics2/js/project/list.js"></script>
 <script src="${staticUrl}/statics2/js/project/common-sys-function.js"></script>
+
+
 <bms:contentFooter />
+

@@ -206,5 +206,15 @@ public class TsFilesController extends DefaultController<TsFilesEntity, String ,
 
     }
 
+    @Override
+    protected void setCustomInfoByInsert(TsFilesEntity tsFilesEntity) {
+
+    }
+
+    @Override
+    protected void setCustomInfoByUpdate(TsFilesEntity tsFilesEntity) {
+
+    }
+
 
 }

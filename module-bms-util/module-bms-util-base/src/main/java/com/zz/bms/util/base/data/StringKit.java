@@ -61,7 +61,6 @@ public class StringKit {
     /**
      * 获取去掉横线的长度为32的UUID串.
      *
-     * @author WuShuicheng.
      * @return uuid.
      */
     public static String get32UUID() {
@@ -71,7 +70,6 @@ public class StringKit {
     /**
      * 获取带横线的长度为36的UUID串.
      *
-     * @author WuShuicheng.
      * @return uuid.
      */
     public static String get36UUID() {

@@ -35,7 +35,12 @@ public class TsFilesUseEntity extends BaseBusinessExEntity<String> {
     @EntityAttrDBAnnotation(attrName="业务ID",sort=5  , attrLength=32    )
 	private String businessId;
 
-    @EntityAttrDBAnnotation(attrName="备注",sort=6  , attrLength=200    )
+
+
+	@EntityAttrDBAnnotation(attrName="细分",sort=6  , attrLength=50    )
+	private String businessSubd;
+
+    @EntityAttrDBAnnotation(attrName="备注",sort=7  , attrLength=200    )
 	private String remark;
 
     @EntityAttrDBAnnotation(attrName="租户ID",sort=14  , attrLength=32    )
@@ -101,5 +106,14 @@ public class TsFilesUseEntity extends BaseBusinessExEntity<String> {
 	@Override
 	public void setTenantId(String tenantId) {
 		this.tenantId = tenantId;
+	}
+
+
+	public String getBusinessSubd() {
+		return businessSubd;
+	}
+
+	public void setBusinessSubd(String businessSubd) {
+		this.businessSubd = businessSubd;
 	}
 }

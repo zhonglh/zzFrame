@@ -10,6 +10,8 @@
          	<result column="business_type" property="businessType"/>
          	<result column="business_tmp_id" property="businessTmpId"/>
          	<result column="business_id" property="businessId"/>
+			<result column="business_subd" property="businessSubd"/>
+
          	<result column="remark" property="remark"/>
          	<result column="create_user_id" property="createUserId"/>
          	<result column="create_user_name" property="createUserName"/>

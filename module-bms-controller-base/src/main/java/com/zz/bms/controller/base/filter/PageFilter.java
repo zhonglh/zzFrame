@@ -17,18 +17,26 @@ public class PageFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        if(request instanceof HttpServletRequest){
+            String uri = ((HttpServletRequest) request).getRequestURI() ;
+            if(!uri.endsWith("list") && !uri.endsWith("searchList")){
+                chain.doFilter(request, response);
+            }else {
+                HttpServletRequest httpRequest = (HttpServletRequest) request;
 
-        PaginationContext.setPageNum(getPageNum(httpRequest));
-        PaginationContext.setPageSize(getPageSize(httpRequest));
+                PaginationContext.setPageNum(getPageNum(httpRequest));
+                PaginationContext.setPageSize(getPageSize(httpRequest));
 
-        try {
-            chain.doFilter(request, response);
+                try {
+                    chain.doFilter(request, response);
+                }
+                finally {
+                    PaginationContext.removePageNum();
+                    PaginationContext.removePageSize();
+                }
+            }
         }
-        finally {
-            PaginationContext.removePageNum();
-            PaginationContext.removePageSize();
-        }
+
     }
 
 
@@ -57,7 +65,7 @@ public class PageFilter implements Filter {
      * @return
      */
     protected int getPageSize(HttpServletRequest request) {
-        int pageSize = 10;    // 默认每页10条记录
+        int pageSize = 20;    // 默认每页20条记录
         try {
             String pageSizes = request.getParameter("rows");
             if (pageSizes != null && StringUtils.isNumeric(pageSizes)) {
@@ -66,6 +74,7 @@ public class PageFilter implements Filter {
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
+
         return pageSize;
     }
 

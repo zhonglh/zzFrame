@@ -5,6 +5,7 @@ import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
+import com.zz.bms.core.db.entity.ILoginUserEntity;
 
 import java.io.Serializable;
 
@@ -14,7 +15,7 @@ import java.io.Serializable;
  */
 @EntityAnnotation(value="用户" , resource = "sys.user")
 @TableName(value="ts_user" , resultMap = "TsUserResultMap")
-public class TsUserEntity extends BaseBusinessExEntity<String> implements Serializable {
+public class TsUserEntity extends BaseBusinessExEntity<String> implements  ILoginUserEntity, Serializable {
 
     @EntityAttrDBAnnotation(attrName="用户姓名", attrLength=60  ,  notNull = true)
     private String userName;
@@ -100,6 +101,7 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements Serial
 
 
 
+    @Override
     public String getUserName() {
         return userName;
     }
@@ -148,6 +150,7 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements Serial
         this.leadId = leadId;
     }
 
+    @Override
     public String getPhone() {
         return phone;
     }
@@ -156,6 +159,7 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements Serial
         this.phone = phone;
     }
 
+    @Override
     public String getEmail() {
         return email;
     }

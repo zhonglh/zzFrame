@@ -96,8 +96,7 @@ public class ValidateUtils {
 
 	/**
 	 * 验证一个字符串是否完全由纯数字组成的字符串，当字符串为空时也返回false.
-	 * 
-	 * @author WuShuicheng .
+	 *
 	 * @param str
 	 *            要判断的字符串 .
 	 * @return true or false .

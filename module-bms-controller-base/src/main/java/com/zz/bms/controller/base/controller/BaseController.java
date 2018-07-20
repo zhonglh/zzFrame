@@ -3,16 +3,15 @@ package com.zz.bms.controller.base.controller;
 import com.zz.bms.controller.base.converteditor.BigDecimalConvertEditor;
 import com.zz.bms.controller.base.converteditor.DateConvertEditor;
 import com.zz.bms.controller.base.converteditor.TimestampConvertEditor;
-import com.zz.bms.controller.base.vo.SessionUserVO;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.shiro.utils.ShiroUtils;
+import com.zz.bms.system.base.entity.TsUserEntity;
 import com.zz.bms.util.base.spring.SpringUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
@@ -60,13 +59,13 @@ public abstract class BaseController {
     }
 
 
-    protected SessionUserVO getSessionUser(HttpServletRequest request){
-        return (SessionUserVO)request.getSession().getAttribute(SESSION_USER);
+    protected TsUserEntity getSessionUser(HttpServletRequest request){
+        return getSessionUser();
     }
 
 
-    protected SessionUserVO getSessionUser(){
-        return getSessionUser(((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest());
+    protected TsUserEntity getSessionUser(){
+        return (TsUserEntity)ShiroUtils.getSubject().getPrincipal();
     }
 
     protected Locale getLocale(HttpServletRequest req){

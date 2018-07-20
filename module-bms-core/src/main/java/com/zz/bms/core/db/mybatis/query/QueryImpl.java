@@ -60,7 +60,14 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
                 field.setAccessible(true);
                 Object fieldvalue = field.get(this);
                 if(fieldvalue != null) {
-                    analysis(wrapper, fieldProperties, fieldvalue);
+                    if(fieldvalue instanceof String){
+                        if(!((String)fieldvalue).trim().isEmpty()){
+                            analysis(wrapper, fieldProperties, fieldvalue);
+                        }
+                    }else {
+                        analysis(wrapper, fieldProperties, fieldvalue);
+                    }
+
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();

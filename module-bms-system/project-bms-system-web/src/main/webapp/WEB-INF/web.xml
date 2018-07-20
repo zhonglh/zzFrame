@@ -79,6 +79,15 @@
   </filter-mapping>
 
 
+  <filter>
+    <filter-name>PageFilter</filter-name>
+    <filter-class>com.zz.bms.controller.base.filter.PageFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>PageFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
 
   <!-- Spring监听器 -->
   <listener>

@@ -2,7 +2,7 @@ package com.zz.bms.controller.base.controller;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.zz.bms.controller.base.PermissionList;
-import com.zz.bms.controller.base.vo.SessionUserVO;
+import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.base.service.BaseService;
 import com.zz.bms.core.db.entity.BaseBusinessEntity;
 import com.zz.bms.core.db.entity.BaseEntity;
@@ -11,6 +11,7 @@ import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.ui.Pages;
 import com.zz.bms.core.vo.AjaxJson;
+import com.zz.bms.system.base.entity.TsUserEntity;
 import com.zz.bms.util.base.java.GenericsHelper;
 import com.zz.bms.util.base.spring.PaginationContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,10 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     private String resourceIdentity = null;
 
 
+
+
+
+
     /**
      * 实体类型
      */
@@ -69,7 +74,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @param response
      * @return
      */
-    @RequestMapping(value = "toList" , method = RequestMethod.GET )
+    @RequestMapping(value = "/toList" , method = RequestMethod.GET )
     public String toList(M m,  ModelMap model , HttpServletRequest request, HttpServletResponse response) {
 
         this.permissionList.assertHasViewPermission();
@@ -79,11 +84,23 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         if (listAlsoSetCommonData) {
             setCommonData(model);
         }
+
+
+        String prefix =  getViewPrefix();
+        String tableid = prefix.replaceAll("/" , "");
+
+        model.put(Constant.TABLEID, tableid);
+        model.put(Constant.CURR_PARENT_URL, prefix);
+
+        //todo 菜单路径
+        model.put(Constant.BREADCRUMB , "");
+
+
         return viewName("list");
     }
 
 
-    @RequestMapping(value = "list" , method = RequestMethod.GET)
+    @RequestMapping(value = "/list" , method = RequestMethod.POST)
     @ResponseBody
     public Object list(M m , Q query, Pages<M> pages , Model model , HttpServletRequest request, HttpServletResponse response) {
 
@@ -131,7 +148,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
 
-    @RequestMapping(value = "create", method = RequestMethod.GET)
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String showCreateForm(M m ,ModelMap model) {
 
         this.permissionList.assertHasCreatePermission();
@@ -146,7 +163,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
 
-    @RequestMapping(value = "{id}/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
     public String showUpdateForm(ModelMap model, @PathVariable("id") PK id) {
 
         this.permissionList.assertHasUpdatePermission();
@@ -162,7 +179,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
 
-    @RequestMapping(value = "create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
     public Object create( M m, ModelMap model,BindingResult result, RedirectAttributes redirectAttributes) {
 
@@ -172,9 +189,10 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         if (isExist(m)) {throw DbException.DB_SAVE_SAME;}
 
 
-        SessionUserVO sessionUserVO = getSessionUser();
+        TsUserEntity sessionUserVO = getSessionUser();
 
         this.setInsertInfo(m, sessionUserVO);
+        this.setCustomInfoByInsert(m);
         checkEntityRequired(m);
 
         boolean success = false;
@@ -194,7 +212,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     }
 
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
     @ResponseBody
     public Object update(
             ModelMap model, M m , BindingResult result,
@@ -205,7 +223,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         if (isExist(m)) {throw DbException.DB_SAVE_SAME;}
 
-        SessionUserVO sessionUserVO = getSessionUser();
+        TsUserEntity sessionUserVO = getSessionUser();
 
         M temp = baseService.selectById(m.getId());
         if(m instanceof BaseBusinessEntity) {
@@ -213,6 +231,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
             bbe.setVersionNo(((BaseBusinessEntity)temp).getVersionNo());
         }
         this.setUpdateInfo(m, sessionUserVO);
+        setCustomInfoByUpdate(m);
         checkEntityLegality(m);
 
         boolean success = false;
@@ -264,7 +283,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @param redirectAttributes
      * @return
      */
-    @RequestMapping(value = "/batch/delete", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/batch/delete", method = {RequestMethod.GET, RequestMethod.DELETE})
     @ResponseBody
     public Object deleteInBatch(
             @RequestParam(value = "ids", required = false) String ids,
@@ -487,6 +506,18 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     protected abstract void processResult(List<M> records);
 
 
+    /**
+     * 保存前设置一些 业务定制的值
+     * @param m
+     */
+    protected abstract void setCustomInfoByInsert(M m);
+
+
+    /**
+     * 保存前设置一些 业务定制的值
+     * @param m
+     */
+    protected abstract void setCustomInfoByUpdate(M m);
 
 
 }

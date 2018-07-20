@@ -34,97 +34,11 @@
          	<result column="tenant_name" property="tenantName"/>
 	</resultMap>
 
-	 <!-- 条件配置 -->
-	<sql id="VsUserQueryFilter">
-		<where>
-				<if test="id != null"> AND T.id = #{id} </if>
-
-
-				<if test="userName != null and userName != ''"> AND T.user_name = #{userName} </if>
-
-
-
-				<if test="loginName != null and loginName != ''"> AND T.login_name = #{loginName} </if>
-
-
-
-				<if test="loginPassword != null and loginPassword != ''"> AND T.login_password = #{loginPassword} </if>
-
-
-
-				<if test="salt != null and salt != ''"> AND T.salt = #{salt} </if>
-
-
-
-				<if test="status != null"> AND T.status = #{status} </if>
-
-				<if test="leadId != null"> AND T.lead_id = #{leadId} </if>
-
-				<if test="phone != null and phone != ''"> AND T.phone = #{phone} </if>
-
-
-
-				<if test="email != null and email != ''"> AND T.email = #{email} </if>
-
-
-
-				<if test="avatarUrl != null and avatarUrl != ''"> AND T.avatar_url = #{avatarUrl} </if>
-
-
-
-				<if test="openId != null and openId != ''"> AND T.open_id = #{openId} </if>
-
-
-
-				<if test="unionId != null and unionId != ''"> AND T.union_id = #{unionId} </if>
-
-
-
-				<if test="systemAdmin != null"> AND T.system_admin = #{systemAdmin} </if>
-
-				<if test="depId != null"> AND T.dep_id = #{depId} </if>
-
-				<if test="organId != null"> AND T.organ_id = #{organId} </if>
-
-				<if test="remark != null and remark != ''"> AND T.remark = #{remark} </if>
-
-
-
-				<if test="deleteFlag != null"> AND T.delete_flag = #{deleteFlag} </if>
-
-				<if test="createUserId != null"> AND T.create_user_id = #{createUserId} </if>
-
-
-
-
-				<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
-
-				<if test="tenantId != null"> AND T.tenant_id = #{tenantId} </if>
-
-				<if test="depName != null and depName != ''"> AND T.dep_name = #{depName} </if>
-
-
-
-				<if test="organName != null and organName != ''"> AND T.organ_name = #{organName} </if>
-
-
-
-				<if test="tenantName != null and tenantName != ''"> AND T.tenant_name = #{tenantName} </if>
-
-				<if test="rbac != null and rbac != ''"> and( ${rbac} )</if>
-				<if test="searchSql != null and searchSql != ''"> and( ${searchSql} )</if>
-
-				<if test="queryIdList != null"> AND T.ID IN
-				 <foreach collection="queryIdList" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
-				</if>
-		</where>
-	</sql>
-
 
     <!-- 校验条件配置 -->
     <sql id="VsUser4CheckQueryFilter">
         <where>
-							<if test="id != null"> AND T.id != #{id} </if>
+							<if test="id != null and id != '' "> AND T.id != #{id} </if>
 
                         <if test="userName != null and userName != ''"> AND T.user_name = #{userName} </if>
 
@@ -205,36 +119,12 @@
 
 
 
-
-    <!-- 根据条件查询第一条VIEW -->
-    <select id="findTopOne" parameterType="com.zz.bms.system.base.entity.VsUserEntity" resultMap="VsUserResultMap">
-        SELECT T.* FROM vs_user T
-        <include refid="VsUserQueryFilter"/>  limit 1
-    </select>
-
-
 	<!-- 根据条件查询第一条VIEW -->
-	<select id="findTopOne4Check" parameterType="com.zz.bms.system.base.entity.VsUserEntity" resultMap="VsUserResultMap">
+	<select id="selectCheck" parameterType="com.zz.bms.system.base.entity.VsUserEntity" resultMap="VsUserResultMap">
 		SELECT T.* FROM vs_user T
 		<include refid="VsUser4CheckQueryFilter"/>  limit 1
 	</select>
-	
 
 
-	<!-- 根据条件查询保存VIEW列表 -->
-    <select id="findList" parameterType="com.zz.bms.system.base.entity.VsUserEntity" resultMap="VsUserResultMap">
-        SELECT T.* FROM vs_user T
-        <include refid="VsUserQueryFilter"/>
-    </select>
 
-    <!-- 查询所有 -->
-    <select id="findAll"  resultMap="VsUserResultMap">
-        SELECT T.* FROM vs_user T
-    </select>
-
-    <!--根据条件查询保存VIEW总数 -->
-    <select id="count" parameterType="com.zz.bms.system.base.entity.VsUserEntity" resultType="long">
-        SELECT COUNT(*) FROM vs_user T
-        <include refid="VsUserQueryFilter"/>
-    </select>
 </mapper>

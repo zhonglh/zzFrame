@@ -324,6 +324,7 @@
     // Global Const
     var $AppContext = '${ctx}';
     var ctx = $AppContext;
+    var staticUrl = '${staticUrl}';
     var $PagingSize = 50 || 20;
     var $AttachmentEngine = 'file';
     var $AlibabaMediaNameSpace = '';
@@ -373,10 +374,11 @@
 
 <script src="${staticUrl}/statics2/js/project/common.js"></script>
 <script src="${staticUrl}/statics2/js/project/common-tools.js"></script>
-<script src="${staticUrl}/statics2/js/project/common-function.js"></script>
 <script src="${staticUrl}/statics2/js/project/common-setting.js"></script>
 <script src="${staticUrl}/statics2/js/project/common-data.js"></script>
 <script src="${staticUrl}/statics2/js/project/common-validate.js"></script>
+<script src="${staticUrl}/statics2/js/project/common-sys-function.js"></script>
+
 <script src="${staticUrl}/statics2/js/project/home.js"></script>
 
 
