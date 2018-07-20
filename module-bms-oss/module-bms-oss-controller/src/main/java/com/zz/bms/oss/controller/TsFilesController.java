@@ -8,12 +8,15 @@ import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.exceptions.InternalException;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.oss.base.entity.TsFilesEntity;
+import com.zz.bms.oss.base.entity.VsFilesUseEntity;
 import com.zz.bms.oss.base.logic.vo.FileVO;
 import com.zz.bms.oss.base.service.TsFilesService;
+import com.zz.bms.oss.base.service.VsFilesUseService;
 import com.zz.bms.oss.engine.engine.StorageProcess;
 import com.zz.bms.oss.engine.enums.EnumFileEngine;
 import com.zz.bms.oss.engine.util.FileVOUtil;
 import com.zz.bms.util.base.files.FileKit;
+import com.zz.bms.util.base.java.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -43,12 +46,16 @@ public class TsFilesController extends DefaultController<TsFilesEntity, String> 
 
 
     @Autowired
+    private VsFilesUseService vsFilesUseService;
+
+
+    @Autowired
     private StorageProcess[] storageProcesss;
 
 
 
     /**
-     * 上传文件 fastdfs
+     * 上传文件
      * @param files
      * @param res
      * @param request
@@ -64,6 +71,11 @@ public class TsFilesController extends DefaultController<TsFilesEntity, String> 
             return AjaxJson.errorAjax;
         }
 
+        String businessType = request.getParameter("businessType");
+        String businessTmpId = request.getParameter("businessTmpId");
+        String businessId = request.getParameter("businessId");
+        String remark = request.getParameter("remark");
+
         StorageProcess sp = buildStorageProcess(null , null , 0) ;
 
         List<FileVO> list = new ArrayList<FileVO>();
@@ -73,7 +85,19 @@ public class TsFilesController extends DefaultController<TsFilesEntity, String> 
             for(MultipartFile file : files){
                 //处理每个文件
 
+                VsFilesUseEntity vsFilesUseEntity = new VsFilesUseEntity();
+
+                String showName = file.getOriginalFilename();
                 String md5 = FileKit.getFileMD5(file.getInputStream());
+
+                vsFilesUseEntity.setShowName(showName);
+                vsFilesUseEntity.setMd5(md5);
+                vsFilesUseEntity.setBusinessId(businessId);
+                vsFilesUseEntity.setBusinessTmpId(businessTmpId);
+                vsFilesUseEntity.setBusinessType(businessType);
+                vsFilesUseEntity.setRemark(remark);
+                vsFilesUseEntity.setId(IdUtils.getId());
+
                 Wrapper<TsFilesEntity> wrapper = new EntityWrapper<TsFilesEntity>();
                 wrapper.eq("md5" , md5);
                 wrapper.eq("delete_flag" , EnumYesNo.NO.getCode());
@@ -81,14 +105,29 @@ public class TsFilesController extends DefaultController<TsFilesEntity, String> 
                 TsFilesEntity one = tsFilesService.selectOne(wrapper);
                 if( one != null ){
                     list.add(FileVOUtil.toFileVO(one));
+                    FileVOUtil.toVsFileUser(vsFilesUseEntity , one);
+                    vsFilesUseService.insert(vsFilesUseEntity);
                     continue;
                 }
 
-                String suffix = FileKit.getSuffix(file.getOriginalFilename());
 
                 String accessUrl = sp.store(file.getInputStream() , sp.getPath(""));
+                String suffix = FileKit.getSuffix(showName);
+                long fileSize = file.getSize();
+                String fileEngine = ((Component)(sp.getClass().getAnnotation(Component.class))).value();
+                String contentType = file.getContentType();
 
-
+                vsFilesUseEntity.setMd5(md5);
+                vsFilesUseEntity.setAccessUrl(accessUrl);
+                vsFilesUseEntity.setContentType(contentType);
+                vsFilesUseEntity.setFileEngine(fileEngine);
+                vsFilesUseEntity.setFileHost("");
+                vsFilesUseEntity.setFileName("");
+                vsFilesUseEntity.setFilePath("");
+                vsFilesUseEntity.setFileSize(fileSize);
+                vsFilesUseEntity.setFileSuffix(suffix);
+                vsFilesUseEntity.setUseFrequency(0);
+                vsFilesUseService.insert(vsFilesUseEntity);
 
 
             }

@@ -27,6 +27,8 @@
          	<result column="file_name" property="fileName"/>
          	<result column="content_type" property="contentType"/>
          	<result column="file_engine" property="fileEngine"/>
+			<result column="md5" property="md5"/>
+			<result column="use_frequency" property="useFrequency"/>
 	</resultMap>
 
     <!-- 校验条件配置 -->
@@ -156,6 +158,7 @@
 
                         <if test="fileEngine != null and fileEngine != ''"> AND T.file_engine = #{fileEngine} </if>
 
+						<if test="md5 != null and md5 != ''"> AND T.md5 = #{md5} </if>
 
 
 

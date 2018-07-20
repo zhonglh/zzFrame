@@ -32,7 +32,7 @@ public class VsFilesUseEntity extends TsFilesUseEntity {
 
 
     @EntityAttrDBAnnotation(attrName="文件大小",sort=18  , attrLength=0    )
-	private Integer fileSize;
+	private Long fileSize;
 
 
     @EntityAttrDBAnnotation(attrName="文件后缀",sort=19  , attrLength=10    )
@@ -50,6 +50,12 @@ public class VsFilesUseEntity extends TsFilesUseEntity {
     @EntityAttrDBAnnotation(attrName="文件引擎",sort=22  , attrLength=20    )
 	//文件系统 七牛  阿里云  腾讯 FastNFS MongoDB  
 	private String fileEngine;
+
+	@EntityAttrDBAnnotation(attrName="md5",sort=23  , attrLength=60    )
+	private String md5;
+
+	@EntityAttrDBAnnotation(attrName="md5",sort=24  )
+	private int useFrequency;
 
 
 	/** 
@@ -98,14 +104,14 @@ public class VsFilesUseEntity extends TsFilesUseEntity {
 	 * 文件大小
 	 * @return the fileSize
 	 */
-	public Integer getFileSize() {
+	public Long getFileSize() {
 		return fileSize;
 	}
 	
 	/** 
 	 * 文件大小
 	 */
-	public void setFileSize(Integer fileSize) {
+	public void setFileSize(Long fileSize) {
 		this.fileSize = fileSize;
 	}
 	/** 
@@ -164,5 +170,21 @@ public class VsFilesUseEntity extends TsFilesUseEntity {
 	public void setFileEngine(String fileEngine) {
 		this.fileEngine = fileEngine;
 	}
-	
+
+
+	public String getMd5() {
+		return md5;
+	}
+
+	public void setMd5(String md5) {
+		this.md5 = md5;
+	}
+
+	public int getUseFrequency() {
+		return useFrequency;
+	}
+
+	public void setUseFrequency(int useFrequency) {
+		this.useFrequency = useFrequency;
+	}
 }
