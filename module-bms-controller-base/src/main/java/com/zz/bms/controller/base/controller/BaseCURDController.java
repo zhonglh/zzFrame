@@ -1,15 +1,14 @@
 package com.zz.bms.controller.base.controller;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.zz.bms.controller.base.PermissionList;
 import com.zz.bms.controller.base.vo.SessionUserVO;
 import com.zz.bms.core.db.base.service.BaseService;
 import com.zz.bms.core.db.entity.BaseBusinessEntity;
 import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.DbException;
-import com.zz.bms.core.search.RepositoryHelper;
-import com.zz.bms.core.search.Searchable;
-import com.zz.bms.core.search.callback.SearchCallback;
 import com.zz.bms.core.ui.Pages;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.util.base.java.GenericsHelper;
@@ -33,7 +32,7 @@ import java.util.List;
  * 处理数据库基础的增加 修改 读取 删除 功能
  * @author Administrator
  */
-public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Serializable> extends BaseBussinessController {
+public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Serializable  , Q extends Query > extends BaseBussinessController {
 
 
 
@@ -71,7 +70,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @return
      */
     @RequestMapping(value = "toList" , method = RequestMethod.GET )
-    public String toList(M m, ModelMap model , HttpServletRequest request, HttpServletResponse response) {
+    public String toList(M m,  ModelMap model , HttpServletRequest request, HttpServletResponse response) {
 
         this.permissionList.assertHasViewPermission();
 
@@ -86,7 +85,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     @RequestMapping(value = "list" , method = RequestMethod.GET)
     @ResponseBody
-    public Object list(M m , Searchable searchable, Pages pages , Model model , HttpServletRequest request, HttpServletResponse response) {
+    public Object list(M m , Q query, Pages<M> pages , Model model , HttpServletRequest request, HttpServletResponse response) {
 
             this.permissionList.assertHasViewPermission();
 
@@ -99,14 +98,15 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
             pages.setPageSize(PaginationContext.getPageSize());
         }
 
+        Page<M> page = new Page<M>(pages.getPageNum(), pages.getPageSize());
 
-        m.setSearchSql(RepositoryHelper.prepareQL(searchable , SearchCallback.DEFAULT ));
+        processQuery(query , m);
 
-        //todo
-        Pages<M> pages1 = null; //baseService.findPageList(m , pages);
-        return toList(pages1);
+        page = baseService.selectPage(page , query.buildWrapper());
+        return toList(page);
 
     }
+
 
 
     /**
@@ -469,6 +469,13 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @return
      */
     protected abstract boolean isExist(M m) ;
+
+
+    /**
+     * 处理查询参数
+     * @param query
+     */
+    protected abstract void processQuery(Q query , M m);
 
 
 

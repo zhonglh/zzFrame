@@ -2,6 +2,7 @@ package com.zz.bms.controller.base.intercepts;
 
 
 import com.zz.bms.configs.AppConfig;
+import com.zz.bms.configs.BusinessConfig;
 import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -24,7 +25,7 @@ public class TenantIntercept {
     public Object invoke(ProceedingJoinPoint joinPoint) throws Throwable {
 
         Object[] args = joinPoint.getArgs();
-        if(AppConfig.USE_TENANT) {
+        if(BusinessConfig.USE_TENANT) {
             //todo 此处给所有的对象自动加入租户ID
             //args
         }

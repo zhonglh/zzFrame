@@ -1,5 +1,6 @@
 package com.zz.bms.core.ui.easyui;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.zz.bms.core.ui.Pages;
 import com.zz.bms.core.ui.TreeModel;
 
@@ -26,5 +27,12 @@ public class EasyUiUtil {
     public static EasyUiDataGrid toDataGrid(Pages pages){
         return new EasyUiDataGrid(pages.getTotal() , pages.getResults());
     }
+
+
+    public static EasyUiDataGrid toDataGrid(Page page){
+        return new EasyUiDataGrid(page.getTotal() ,page.getRecords());
+    }
+
+
 
 }

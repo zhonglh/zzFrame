@@ -7,11 +7,6 @@ package com.zz.bms.configs;
 public final class AppConfig {
 
 
-    /**
-     * 是否启用租户模式，即多企业
-     * 该属性的内容如果要修改，在需求开始阶段就要确定
-     */
-    public static boolean USE_TENANT = true;
 
 
     /**

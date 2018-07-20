@@ -2,6 +2,8 @@ package com.zz.bms.system.controller;
 
 import com.zz.bms.controller.base.controller.DefaultController;
 import com.zz.bms.system.base.entity.VsUserEntity;
+import com.zz.bms.system.base.logic.query.impl.VsUserQueryWebImpl;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @RequestMapping("sys/user")
 @Controller
-public class VsUserController extends DefaultController<VsUserEntity , String> {
+public class VsUserController extends DefaultController<VsUserEntity , String , VsUserQueryWebImpl> {
 
 
 
@@ -68,9 +70,15 @@ public class VsUserController extends DefaultController<VsUserEntity , String> {
         return isExist;
     }
 
-
-
-
+    @Override
+    protected void processQuery(VsUserQueryWebImpl query , VsUserEntity userEntity) {
+        if(StringUtils.isNotEmpty(userEntity.getKeyword())){
+            query.setUserName_LIKE(userEntity.getKeyword());
+            query.setLoginName_LIKE(userEntity.getKeyword());
+            query.setPhone_LIKE(userEntity.getKeyword());
+            query.setEmail_LIKE(userEntity.getKeyword());
+        }
+    }
 
 
 }

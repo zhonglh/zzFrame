@@ -24,13 +24,22 @@ public abstract class BaseEntity<PK extends Serializable> implements Serializabl
     @TableField(exist = false)
     private List<PK> queryIdList;
 
-    //权限SQL
+    /**
+     * 权限SQL
+     */
     @TableField(exist = false)
     private String rbac ;
 
-    //对应界面查询条件
+    @Deprecated
+    //对应界面查询条件 ,  todo 可能是不需要了
     @TableField(exist = false)
     private String searchSql ;
+
+    /**
+     * 关键字， 用于查询时记录关键字信息
+     */
+    @TableField(exist = false)
+    private String keyword;
 
 
 
@@ -87,6 +96,14 @@ public abstract class BaseEntity<PK extends Serializable> implements Serializabl
 
     public void setSearchSql(String searchSql) {
         this.searchSql = searchSql;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 
     public int getPageNum() {

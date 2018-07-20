@@ -1,6 +1,6 @@
 package com.zz.bms.system.base.logic.query.impl;
 
-import com.zz.bms.system.base.logic.query.TsUserQuery;
+import com.zz.bms.system.base.logic.query.VsUserQuery;
 import com.zz.bms.util.base.java.IdUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -11,11 +11,15 @@ import java.util.List;
  * 用户查询， 用于手工链式加条件
  * @param <PK>
  */
-public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQueryImpl<PK> implements TsUserQuery<PK>, Serializable  {
+public class VsUserQueryImpl<PK extends Serializable> extends VsUserAbstractQueryImpl<PK> implements VsUserQuery<PK>, Serializable  {
 
 
     private List<PK> id_IN;
     private List<PK> id_NOTIN;
+
+
+    private List<String> userName_IN;
+    private List<String> userName_NOTIN;
 
 
     private List<String> loginName_IN;
@@ -67,7 +71,7 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
 
 
     @Override
-    public TsUserQuery userId(PK id) {
+    public VsUserQuery userId(PK id) {
         if(!IdUtils.isEmpty(id)){
             this.id = id;
         }
@@ -75,7 +79,7 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
     }
 
     @Override
-    public TsUserQuery userIdNot(PK idNot) {
+    public VsUserQuery userIdNot(PK idNot) {
         if(!IdUtils.isEmpty(idNot)) {
             this.id_NE = idNot;
         }
@@ -83,7 +87,7 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
     }
 
     @Override
-    public TsUserQuery userIdIn(PK idIn) {
+    public VsUserQuery userIdIn(PK idIn) {
         if(!IdUtils.isEmpty(idIn)) {
             this.id_IN.add(idIn);
         }
@@ -91,7 +95,7 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
     }
 
     @Override
-    public TsUserQuery userIdNotIn(PK idNotIn) {
+    public VsUserQuery userIdNotIn(PK idNotIn) {
         if(!IdUtils.isEmpty(idNotIn)) {
             this.id_NOTIN.add(idNotIn);
         }
@@ -99,13 +103,13 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
     }
 
     @Override
-    public TsUserQuery userIdIsNull() {
+    public VsUserQuery userIdIsNull() {
         this.isNulls.add("id");
         return this;
     }
 
     @Override
-    public TsUserQuery userIdIsNotNull() {
+    public VsUserQuery userIdIsNotNull() {
         this.isNotNulls.add("id");
         return this;
     }
@@ -114,7 +118,56 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
 
 
     @Override
-    public TsUserQuery loginName(String loginName) {
+    public VsUserQuery userName(String userName) {
+        if(StringUtils.isNotEmpty(userName)) {
+            this.userName = userName;
+        }
+        return this;
+    }
+
+    @Override
+    public VsUserQuery userNameNot(String userNameNot) {
+        if(StringUtils.isNotEmpty(userNameNot)) {
+            this.userName_NE = userNameNot;
+        }
+        return this;
+    }
+
+    @Override
+    public VsUserQuery userNameIn(String userNameIn) {
+        if(StringUtils.isNotEmpty(userNameIn)) {
+            this.userName_IN.add(userNameIn);
+        }
+        return this;
+    }
+
+    @Override
+    public VsUserQuery userNameNotIn(String userNameNotIn) {
+        if(StringUtils.isNotEmpty(userNameNotIn)) {
+            this.userName_NOTIN.add(userNameNotIn);
+        }
+        return this;
+    }
+
+    @Override
+    public VsUserQuery userNameLike(String userNameLike) {
+        if(StringUtils.isNotEmpty(userNameLike)) {
+            this.userName_LIKE = userNameLike;
+        }
+        return this;
+    }
+
+    @Override
+    public VsUserQuery userNameNotLike(String userNameNotLike) {
+        if(StringUtils.isNotEmpty(userNameNotLike)) {
+            this.userName_NOTLIKE = userNameNotLike;
+        }
+        return this;
+    }
+
+
+    @Override
+    public VsUserQuery loginName(String loginName) {
         if(StringUtils.isNotEmpty(loginName)) {
             this.loginName = loginName;
         }
@@ -122,7 +175,7 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
     }
 
     @Override
-    public TsUserQuery loginNameNot(String loginNameNot) {
+    public VsUserQuery loginNameNot(String loginNameNot) {
         if(StringUtils.isNotEmpty(loginNameNot)) {
             this.loginName_NE = loginNameNot;
         }
@@ -130,7 +183,7 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
     }
 
     @Override
-    public TsUserQuery loginNameIn(String loginNameIn) {
+    public VsUserQuery loginNameIn(String loginNameIn) {
         if(StringUtils.isNotEmpty(loginNameIn)) {
             this.loginName_IN.add(loginNameIn);
         }
@@ -138,7 +191,7 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
     }
 
     @Override
-    public TsUserQuery loginNameNotIn(String loginNameNotIn) {
+    public VsUserQuery loginNameNotIn(String loginNameNotIn) {
         if(StringUtils.isNotEmpty(loginNameNotIn)) {
             this.loginName_NOTIN.add(loginNameNotIn);
         }
@@ -146,7 +199,7 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
     }
 
     @Override
-    public TsUserQuery loginNameLike(String loginNameLike) {
+    public VsUserQuery loginNameLike(String loginNameLike) {
         if(StringUtils.isNotEmpty(loginNameLike)) {
             this.loginName_LIKE = loginNameLike;
         }
@@ -154,7 +207,7 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
     }
 
     @Override
-    public TsUserQuery loginNameNotLike(String loginNameNotLike) {
+    public VsUserQuery loginNameNotLike(String loginNameNotLike) {
         if(StringUtils.isNotEmpty(loginNameNotLike)) {
             this.loginName_NOTLIKE = loginNameNotLike;
         }
@@ -162,13 +215,13 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
     }
 
     @Override
-    public TsUserQuery loginNameNull() {
+    public VsUserQuery loginNameNull() {
         this.isNulls.add("loginName");
         return this;
     }
 
     @Override
-    public TsUserQuery loginNameNotNull() {
+    public VsUserQuery loginNameNotNull() {
         this.isNotNulls.add("loginName");
         return this;
     }

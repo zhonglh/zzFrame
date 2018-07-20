@@ -1,8 +1,10 @@
 package com.zz.bms.controller.base.controller;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.zz.bms.annotaions.EntityAttrCheckAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.configs.AppConfig;
+import com.zz.bms.configs.BusinessConfig;
 import com.zz.bms.controller.base.vo.SessionUserVO;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessEntity;
@@ -142,6 +144,10 @@ public abstract class BaseBussinessController extends BaseController {
         return EasyUiUtil.toDataGrid(pages);
     }
 
+    public EasyUiDataGrid toList(Page page ){
+        return EasyUiUtil.toDataGrid(page);
+    }
+
 
 
 
@@ -219,7 +225,7 @@ public abstract class BaseBussinessController extends BaseController {
         if(entity == null || SerializableUtil.isEmpty(entity.getId())){
             throw EnumErrorMsg.code_error.toException();
         }
-        if(AppConfig.USE_TENANT && SerializableUtil.isEmpty(entity.getTenantId())){
+        if(BusinessConfig.USE_TENANT && SerializableUtil.isEmpty(entity.getTenantId())){
             throw EnumErrorMsg.code_error.toException();
         }
 

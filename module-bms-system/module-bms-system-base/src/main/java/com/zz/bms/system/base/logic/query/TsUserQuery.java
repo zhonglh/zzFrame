@@ -2,7 +2,6 @@ package com.zz.bms.system.base.logic.query;
 
 import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.system.base.entity.TsUserEntity;
-import com.zz.bms.system.base.logic.query.impl.TsUserQueryImpl;
 
 import java.io.Serializable;
 

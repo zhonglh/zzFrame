@@ -1,12 +1,11 @@
 package com.zz.bms.oss.base.entity;
 
 
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.zz.bms.annotaions.EntityAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
-import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 
 import java.lang.String;
-import java.sql.Timestamp;
-import java.lang.Integer;
 
 /**
  * 文件使用视图实体类
@@ -14,6 +13,8 @@ import java.lang.Integer;
  * @author Administrator
  * @date 2018-7-19 23:40:02
  */
+@EntityAnnotation(value="文件使用" , resource = "oss.filesuse")
+@TableName(value="vs_files_use" , resultMap = "VsFilesUseResultMap")
 public class VsFilesUseEntity extends TsFilesUseEntity {
 
 	private static final long serialVersionUID = 1L;

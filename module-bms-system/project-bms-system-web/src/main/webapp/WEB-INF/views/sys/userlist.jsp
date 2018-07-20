@@ -21,84 +21,41 @@
     <div id="content-sec" style="padding: 10px 10px 0 10px;">
         <!-- 筛选条件表单开始 -->
         <form id="searchForm" onsubmit="return false" >
-            <!-- 隐藏域 -->
-            <input type="hidden"  name="typeId" value="0">
-            <input type="hidden"  name="statusId" value="0">
-            <input type="hidden"  name="stageId" value="0">
-            <input type="hidden"  name="investStageId" value="0">
-            <input type="hidden"  name="item1" value="1">
 
-            <!-- 筛选条件数据表格开始 -->
-            <table class="table table-bbd table-search">
-                <tr>
-                    <td width="120px" align="right">项目类型  ：</td>
-                    <td>
-                        <div class="filter-container" >
-                            <a href="javascript:void(0);" onclick="isChecked(this,'0','typeId');" class="active">全部</a>
+            <div id='toolbar' style='height: 40px;'>
+                <div class="form-inline" role="form">
 
-                            <a href="javascript:void(0);"  onclick="isChecked(this,166,'typeId');">三板定增</a>
 
-                            <a href="javascript:void(0);"  onclick="isChecked(this,37,'typeId');">股权投资项目</a>
+                    <div class="form-group" style='margin-left: -15px;'>
+                        <select name="status" id="status" class="form-control input-sm" onChange='search();' placeholder='状态' title='状态'>
+                            <option value="" selected>状态</option>
+                            <option value="1">正常</option>
+                            <option value="0">禁用</option>
+                        </select>
+                    </div>
 
-                            <a href="javascript:void(0);"  onclick="isChecked(this,161,'typeId');">地产投资并购</a>
 
-                            <a href="javascript:void(0);"  onclick="isChecked(this,162,'typeId');">不良资产处置</a>
+                    <div class="input-group">
+                        <input type="hidden" id="depId" name="depId" value="">
+                        <input name='depName' id='depName' class="form-control input-sm" placeholder='部门' title='点击选择部门'
+                               style='width: 150px; cursor: pointer;' readonly="readonly" onclick="showSysDepWindow()">
+                        <div class="input-group-addon" title='清除' onclick="clearSysDep()"><i class="fa fa-remove"></i></div>
+                    </div>
 
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="150px" align="right">执行状态  ：</td>
-                    <td>
-                        <div class="filter-container" >
-                            <a href="javascript:void(0);" onclick="isChecked(this,'0','statusId');" class="active">全部</a>
+                    <div class="form-group">
+                        <input  class="form-control input-sm" id="keyword" name='keyword' placeholder='用户姓名/手机号//邮件/登录名' onkeydown='enterKeySearch(event, search);'>
+                    </div>
 
-                            <a href="javascript:void(0);"  onclick="isChecked(this,1,'statusId');">进行中</a>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-sm" onclick='search();'><i class="fa fa-search"></i>&nbsp;查询</button>
+                    </div>
 
-                            <a href="javascript:void(0);"  onclick="isChecked(this,2,'statusId');">已暂缓</a>
 
-                            <a href="javascript:void(0);"  onclick="isChecked(this,3,'statusId');">已终止</a>
 
-                            <a href="javascript:void(0);"  onclick="isChecked(this,4,'statusId');">已退出</a>
 
-                        </div>
-                    </td>
-                </tr>
-                <tr class="more-conditions hidden">
-                    <td width="150px" align="right" >投资阶段  ：</td>
-                    <td>
-                        <div class="filter-container" >
-                            <a href="javascript:void(0);" onclick="isChecked(this,'0','investStageId');" class="active">全部</a>
+                </div>
+            </div>
 
-                            <a href="javascript:void(0);"  onclick="isChecked(this,40,'investStageId');">种子期</a>
-
-                            <a href="javascript:void(0);"  onclick="isChecked(this,41,'investStageId');">起步期</a>
-
-                            <a href="javascript:void(0);"  onclick="isChecked(this,42,'investStageId');">扩张期</a>
-
-                            <a href="javascript:void(0);"  onclick="isChecked(this,43,'investStageId');">过渡期</a>
-
-                            <a href="javascript:void(0);"  onclick="isChecked(this,44,'investStageId');"> 重建期</a>
-
-                            <a href="javascript:void(0);"  onclick="isChecked(this,45,'investStageId');">已上市</a>
-
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">关键字：</td>
-                    <td><input style="display: inline-block;" type="text" name="keyWords" class="form-control input-sm" placeholder="项目名称/项目企业名称/项目经理/投资阶段" onkeydown='enterKeySearch(event, search);' />
-                        <button type="button" class="btn btn-primary btn-sm" onclick="search()">
-                            <svg class="icon" aria-hidden="true">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-sousuo"></use>
-                            </svg>
-                            <span>查 询</span>
-                        </button>
-
-                        <button type="button" class="btn btn-warning btn-sm" id="showMore"></button></td>
-                    </td>
-                </tr>
-            </table>
         </form>
         <div class="btn-bar" style="margin-left: -10px;">
             <button type="button" class="btn btn-primary btn-sm" onclick="doAdd()">
@@ -150,10 +107,34 @@
 </script>
 
 <script language="JavaScript">
+    /**
+     * 选择模板
+     */
+    function showSysDepWindow()
+    {
+        openDeptWin(function(dep)
+        {
+            $('#depId').val(dep.id);
+            $('#depName').val(dep.depName);
+            // 刷新
+            search();
+        });
+    }
+    /**
+     * 清除模板查询条件
+     */
+    function clearSysDep()
+    {
+        $('#depId').val('');
+        $('#depName').val('');
+        waitOperateDG.datagrid('reload',getQueryParams());
+    }
 
 
 
 </script>
 
 
+<script src="${staticUrl}/statics2/js/project/list.js"></script>
+<script src="${staticUrl}/statics2/js/project/common-sys-function.js"></script>
 <bms:contentFooter />

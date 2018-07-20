@@ -115,10 +115,18 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
                 wrapper.notLike(columnName , fieldValue.toString());
                 break;
             case in:
-                wrapper.in(columnName , (Collection) fieldValue);
+                if(fieldValue instanceof String){
+                    wrapper.in(columnName, ((String) fieldValue).split(","));
+                }else {
+                    wrapper.in(columnName, (Collection) fieldValue);
+                }
                 break;
             case notin:
-                wrapper.notIn(columnName , (Collection) fieldValue);
+                if(fieldValue instanceof String){
+                    wrapper.notIn(columnName , ((String) fieldValue).split(","));
+                }else {
+                    wrapper.notIn(columnName , (Collection) fieldValue);
+                }
                 break;
             default:
 
