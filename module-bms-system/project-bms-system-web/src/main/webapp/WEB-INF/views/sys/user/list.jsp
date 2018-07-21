@@ -88,7 +88,9 @@
             <th field='phone' align="left" width="2" sortable='false'>手机</th>
             <th field='email' align="left" width="2" sortable='false'>邮箱</th>
             <th field='depName' align="left" width="2" sortable='false'>部门</th>
-            <%--<th field='makes' align="center" formatter='makesFmt'>操作</th>--%>
+            <th field='makes' align="center" formatter='makesFmt'>操作</th>
+
+
         </tr>
         </thead>
     </table>
@@ -108,6 +110,10 @@
     var tableid = "tableData-${tableId}";
     var dataUrl = "/${currParentUrl}";
     var breadcrumb = "${breadcrumb}";
+    var detailname = "${detailname}";
+    if(detailname == ""){
+        detailname = "详情";
+    }
 </script>
 
 <script language="JavaScript">
@@ -133,6 +139,36 @@
         $('#depName').val('');
         waitOperateDG.datagrid('reload',getQueryParams());
     }
+
+
+    //操作
+    function makesFmt (val, r, index)
+    {
+        // 操作栏为图标
+        var html = '';
+        html += '<div class="grid-column-option">';
+
+        html += '<a href="javascript:;"'
+            + '" id="'
+            + r.id
+            + '" onclick="doUpdate(this);" title="编辑">' +
+            '<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use></svg></a>';
+
+
+        //删除按钮，绑定名称和id
+        html += '<a href="javascript:;"'
+            + '" name="'
+            + r.userName
+            + '" id="'
+            + r.id
+            + '" onclick="deleteOne(this);" title="删除">' +
+            '<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use></svg></a>';
+
+
+        html += '</div>';
+        return html;
+    }
+
 
 
 

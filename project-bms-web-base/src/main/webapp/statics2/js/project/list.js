@@ -49,7 +49,7 @@ function search(){
 
 //查看页面
 function doView(id){
-    var title = '<a id="iframePath">项目资源库</a>\><a>项目管理</a>';
+    var title = '<a id="iframePath">'+breadcrumb+'</a>\><a>'+detailname+'</a>';
     showIframeWindow(title,     ctx+dataUrl+"/"+id+"/view");
 }
 
@@ -87,13 +87,12 @@ function clearTime(time){
 //点击删除图标删除
 function deleteOne (obj)
 {
-    var project = $ (obj);
-    //获取项目名称和Id
-    var names = project.attr ('customName');
-    var id = project.attr ('id');
+    var $Obj = $ (obj);
+    //获取名称和Id
+    var names = $Obj.attr ('name');
+    var id = $Obj.attr ('id');
     confirm ('您确定要删除吗？', function ()
     {
-        //这里与批量删除访问的是同一个路径
         $.ajax (
             {
                 url : ctx+dataUrl+"/"+id+"/delete",
@@ -118,6 +117,17 @@ function deleteOne (obj)
 function doAdd(){
     showIframeWindow('<a>'+breadcrumb+'</a> ＞ <a>新建</a>', ctx+dataUrl+"/create");
 }
+
+
+
+//编辑
+function doUpdate(obj){
+    var $Obj = $ (obj);
+    var id = $Obj.attr ('id');
+    var title = '<a id="iframePath">'+breadcrumb+'</a>\><a>'+detailname+'</a>';
+    showIframeWindow(title,     ctx+dataUrl+"/"+id+"/update");
+}
+
 
 
 //删除

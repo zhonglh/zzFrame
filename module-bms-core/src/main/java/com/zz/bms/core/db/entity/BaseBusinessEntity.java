@@ -1,5 +1,10 @@
 package com.zz.bms.core.db.entity;
 
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableLogic;
+import com.baomidou.mybatisplus.annotations.Version;
+import org.apache.solr.client.solrj.beans.Field;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -35,12 +40,15 @@ public abstract class BaseBusinessEntity<PK extends Serializable> extends BaseEn
     /**
      * 版本号
      */
+    @Version
     private Integer versionNo ;
 
     /**
      * 删除标志
      * 1: 已删除    0：正常
      */
+    @TableLogic
+    @TableField(value = "delete_flag")
     private String deleteFlag ;
 
 

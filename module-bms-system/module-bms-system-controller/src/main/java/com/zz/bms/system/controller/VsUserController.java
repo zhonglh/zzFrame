@@ -1,5 +1,7 @@
 package com.zz.bms.system.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.zz.bms.controller.base.controller.DefaultController;
 import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.shiro.utils.ShiroUtils;
@@ -80,12 +82,27 @@ public class VsUserController extends DefaultController<VsUserEntity , String , 
      */
     @Override
     protected void processQuery(VsUserQueryWebImpl query , VsUserEntity userEntity) {
+    }
+
+
+    /**
+     * 专门处理查询
+     * @param query
+     * @param userEntity
+     * @return
+     */
+    @Override
+    protected Wrapper buildWrapper(VsUserQueryWebImpl query , VsUserEntity userEntity) {
         if(StringUtils.isNotEmpty(userEntity.getKeyword())){
-            query.setUserName_LIKE(userEntity.getKeyword());
-            query.setLoginName_LIKE(userEntity.getKeyword());
-            query.setPhone_LIKE(userEntity.getKeyword());
-            query.setEmail_LIKE(userEntity.getKeyword());
+            VsUserQueryWebImpl tmpQuery = new VsUserQueryWebImpl();
+            tmpQuery.setUserName_LIKE(userEntity.getKeyword());
+            tmpQuery.setLoginName_LIKE(userEntity.getKeyword());
+            tmpQuery.setPhone_LIKE(userEntity.getKeyword());
+            tmpQuery.setEmail_LIKE(userEntity.getKeyword());
+            query.orQuery(tmpQuery);
         }
+
+        return super.buildWrapper(query, userEntity);
     }
 
     /**

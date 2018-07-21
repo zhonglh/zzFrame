@@ -3,6 +3,8 @@ package com.zz.bms.core.db.mybatis.query;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.zz.bms.core.enums.EnumSearchType;
+import com.zz.bms.core.exceptions.BizException;
+import com.zz.bms.core.exceptions.InternalException;
 import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.base.java.ReflectionSuper;
 import org.apache.commons.lang3.StringUtils;
@@ -12,6 +14,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Administrator
@@ -23,6 +26,14 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
     protected List<String> isNulls = new ArrayList<String>();
     protected List<String> isNotNulls = new ArrayList<String>();
 
+
+    protected List<Query> ors = new ArrayList<Query>();
+
+
+    public void orQuery(Query query){
+        ors.add(query);
+    }
+
     /**
      * 属性转列名, 如userName ==> user_name
      * 驼峰转下划线
@@ -33,25 +44,46 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
         return StringFormatKit.toUnderlineName(fieldname);
     }
 
-    @Override
-    public Wrapper<M> buildWrapper(){
 
+
+    @Override
+    public  Wrapper<M> buildWrapper(){
         Wrapper<M> wrapper = new EntityWrapper<M>();
+        return buildWrapper(wrapper);
+    }
+
+
+    @Override
+    public Wrapper<M> buildWrapper(Wrapper wrapper){
+        return buildWrapper(wrapper , false);
+    }
+
+    @Override
+    public Wrapper<M> buildWrapper(Wrapper wrapper , boolean orBoolean){
+
+        AtomicInteger ai = new AtomicInteger(0);
 
         if(!isNulls.isEmpty()){
             for(String fieldName : isNulls) {
-                wrapper.isNull(getVolumnByField(fieldName));
+                try {
+                    analysis(ai , orBoolean , wrapper, fieldName+splitStr+EnumSearchType.isnull, null);
+                } catch (IllegalAccessException e) {
+                    throw new InternalException(e);
+                }
             }
         }
 
         if(!isNotNulls.isEmpty()){
             for(String fieldName : isNotNulls) {
-                wrapper.isNotNull(getVolumnByField(fieldName));
+                try {
+                    analysis(ai , orBoolean ,wrapper, fieldName+splitStr+EnumSearchType.isnotnull, null);
+                } catch (IllegalAccessException e) {
+                    throw new InternalException(e);
+                }
             }
         }
 
         Field[] fields = ReflectionSuper.getAllField(this.getClass() , QueryImpl.class);
-        //Field[] fields = this.getClass().getDeclaredFields();
 
 
         for(Field field : fields){
@@ -62,17 +94,27 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
                 if(fieldvalue != null) {
                     if(fieldvalue instanceof String){
                         if(!((String)fieldvalue).trim().isEmpty()){
-                            analysis(wrapper, fieldProperties, fieldvalue);
+                            analysis(ai , orBoolean ,wrapper, fieldProperties, fieldvalue);
                         }
                     }else {
-                        analysis(wrapper, fieldProperties, fieldvalue);
+                        analysis(ai , orBoolean ,wrapper, fieldProperties, fieldvalue);
                     }
 
                 }
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                throw new InternalException(e);
             }
         }
+
+
+        if(ors != null && !ors.isEmpty()){
+            for(Query orQuery : ors){
+                wrapper.andNew();
+                orQuery.buildWrapper(wrapper , true);
+            }
+        }
+
+
 
         return wrapper;
 
@@ -84,7 +126,7 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
      * @param fieldProperties
      * @param fieldValue
      */
-    protected void analysis(Wrapper<M> wrapper , String fieldProperties , Object fieldValue) throws IllegalAccessException{
+    protected void analysis(AtomicInteger ai , boolean orBoolean ,Wrapper<M> wrapper , String fieldProperties , Object fieldValue) throws IllegalAccessException{
         EnumSearchType searchType = null;
         String fieldName = null;
 
@@ -98,6 +140,11 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
         }
 
         String columnName = this.getVolumnByField(fieldName);
+
+        int count = ai.getAndIncrement();
+        if(orBoolean && count > 0){
+            wrapper.or();
+        }
 
         switch (searchType){
             case eq:
@@ -138,7 +185,15 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
                     wrapper.notIn(columnName , (Collection) fieldValue);
                 }
                 break;
+            case isnull:
+                wrapper.isNull(columnName);
+                break;
+            case isnotnull:
+                wrapper.isNotNull(columnName);
+                break;
+
             default:
+
 
         }
 

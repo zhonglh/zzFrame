@@ -1,5 +1,6 @@
 package com.zz.bms.controller.base.controller;
 
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.zz.bms.controller.base.PermissionList;
 import com.zz.bms.core.Constant;
@@ -119,7 +120,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         processQuery(query , m);
 
-        page = baseService.selectPage(page , query.buildWrapper());
+        Wrapper wrapper = buildWrapper(query , m);
+
+        page = baseService.selectPage(page , wrapper );
 
         processResult(page.getRecords());
 
@@ -142,6 +145,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         setCommonData(model);
         M m = baseService.selectById(id) ;
+
+        customInfoByViewForm(m , model);
         model.addAttribute("m", m);
         return viewName("viewForm");
     }
@@ -156,7 +161,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         setCommonData(model);
 
         setInit(m);
-
+        customInfoByCreateForm(m , model);
         model.addAttribute("m",  m);
         return viewName("editForm");
     }
@@ -170,12 +175,11 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         setCommonData(model);
         M m = baseService.selectById(id) ;
+
+        customInfoByUpdateForm(m , model);
         model.addAttribute("m", m);
         return viewName("editForm");
     }
-
-
-
 
 
 
@@ -477,21 +481,12 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      */
     public abstract String getResourceIdentity() ;
 
-
-    /**
-     * 设置通用数据
-     * 在新增 或编辑界面，  提供下拉数据等
-     * @param model
-     */
-    protected abstract void setCommonData(ModelMap model)  ;
-
     /**
      * 是否重复
      * @param m
      * @return
      */
     protected abstract boolean isExist(M m) ;
-
 
     /**
      * 处理查询参数
@@ -512,12 +507,63 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      */
     protected abstract void setCustomInfoByInsert(M m);
 
-
     /**
      * 保存前设置一些 业务定制的值
      * @param m
      */
     protected abstract void setCustomInfoByUpdate(M m);
+
+
+
+
+
+
+
+    /**
+     * 查询数据转Wrapper
+     * @param query
+     * @param m
+     * @return
+     */
+    protected Wrapper buildWrapper(Q query , M m) {
+        return  query.buildWrapper();
+    }
+
+
+    /**
+     * 查看界面一些定制的操作
+     * @param m
+     * @param model
+     */
+    protected void customInfoByViewForm(M m, ModelMap model) {
+    }
+
+    /**
+     * 创建界面一些定制的操作
+     * @param m
+     * @param model
+     */
+    protected void customInfoByCreateForm(M m, ModelMap model) {
+    }
+
+
+    /**
+     * 修改界面一些定制的操作
+     * @param m
+     * @param model
+     */
+    protected void customInfoByUpdateForm(M m, ModelMap model) {
+    }
+
+
+
+    /**
+     * 设置通用数据
+     * 在新增 或 修改界面，  提供下拉数据等
+     * @param model
+     */
+    protected void setCommonData(ModelMap model) {
+    }
 
 
 }

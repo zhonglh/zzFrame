@@ -2,6 +2,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <c:set var="staticUrl" value="${pageContext.request.contextPath}"/>
 
@@ -103,7 +106,10 @@
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" style='margin-top: -8px; margin-bottom: 0px; padding-bottom: 3px;'>
                         <img id='imgUserAvatar' class='img-circle' src="${staticUrl}/statics2/image/default.png"
                              width=40 height=40 style='border:solid 2px;' />
-                        <span>&nbsp;范红宇&nbsp;</span><span class="caret"></span>
+                        <span>&nbsp; <shiro:principal property="userName" /> &nbsp;</span><span class="caret"></span>
+
+
+
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="javascript: changeProfile();"><i class='fa fa-cog'></i>&nbsp;个人设置</a></li>
@@ -332,7 +338,7 @@
 
 
 
-    var myProfile = {headImg: 'default.png', mobilePhone: '13809896650', email: 'fanhy@ccne.com', pageLimit: 50};
+    var myProfile = {headImg: 'default.png', mobilePhone: '<shiro:principal property="phone" />', email: '<shiro:principal property="email" />', pageLimit: 50};
 </script>
 
 <script src="${staticUrl}/statics2/iconfont/iconfont.js"></script>

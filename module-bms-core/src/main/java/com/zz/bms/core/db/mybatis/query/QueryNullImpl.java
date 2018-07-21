@@ -7,4 +7,14 @@ public class QueryNullImpl implements Query {
     public Wrapper buildWrapper() {
         return null;
     }
+
+    @Override
+    public Wrapper buildWrapper(Wrapper w) {
+        return null;
+    }
+
+    @Override
+    public Wrapper buildWrapper(Wrapper wrapper, boolean orBoolean) {
+        return null;
+    }
 }

@@ -17,12 +17,15 @@
                     <table class="info-table">
                         <tr>
                             <th width="15%">用户名称<font color="red">*</font></th>
-                            <td><input type="text" class="form-control input-sm required"  placeholder="请输入用户名称" id="userName" name="userName" minlength="2" maxlength='50'/></td>
+                            <td><input type="text" class="form-control input-sm required"  placeholder="请输入用户名称"
+                                       value="${m.userName}" id="userName" name="userName" minlength="2" maxlength='50'/></td>
 
                             <th width="15%">用户登录名<font color="red">*</font></th>
-                            <td><input type="text" class="form-control input-sm required"  placeholder="请输入用户登录名"
-                                       autocorrect="off" autocapitalize="off" id="loginName" name="loginName" minlength="4" maxlength='20'/></td>
+                            <td><input type="text" class="form-control input-sm required"  placeholder="请输入用户登录名"  autocorrect="off" autocapitalize="off"
+                                       value="${m.loginName}" id="loginName" name="loginName" minlength="4" maxlength='20'/></td>
                         </tr>
+
+                        <c:if test="${empty m.id}">
                         <tr>
                             <th width="15%">密码<font color="red">*</font></th>
                             <td><input type="password" class="form-control input-sm required"  placeholder="请输入用户名称"
@@ -32,13 +35,15 @@
                             <td><input type="password" class="form-control input-sm required"  placeholder="请输入用户名称" id="loginPasswordConfirm" name="loginPasswordConfirm"
                                        autocorrect="off" autocapitalize="off" equalto="#loginPassword" data-msg-equalto="您2次输入的新密码不一致！" minlength="6" maxlength='10'/></td>
                         </tr>
+                        </c:if>
+
                         <tr>
                             <th>直属领导</th>
                             <td>
                                 <div class="input-group">
                                     <input type="text"  id="leadName" name="leadName" class="form-control input-sm sysuserInfo"
                                            placeholder="请选择直属领导" readonly="readonly">
-                                    <input type="hidden" id="leadId" name="leadId" >
+                                    <input type="hidden" id="leadId" name="leadId" value="${m.leadId}">
                                     <div class="input-group-btn">
                                         <button type="button"  class="btn btn-primary btn-sm crm-sysuserInfo">
                                             <svg class="icon" aria-hidden="true">
@@ -56,9 +61,9 @@
                             <th>所在部门<font color="red">*</font></th>
                             <td>
                                 <div class="input-group">
-                                    <input type="text"  id="depName" name="depName" class="form-control input-sm  sysdepInfo "
+                                    <input type="text"  id="depName" name="depName" value="${m.depId}" class="form-control input-sm  sysdepInfo "
                                            placeholder="请选择所在部门" readonly="readonly" >
-                                    <input type="hidden" id="depId" name="depId" >
+                                    <input type="hidden" id="depId" name="depId" value="${m.depId}">
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-primary btn-sm crm-sysdepInfo">
                                             <svg class="icon" aria-hidden="true">
@@ -77,16 +82,18 @@
 
                         <tr>
                             <th width="15%">手机号<font color="red">*</font></th>
-                            <td><input type="text" class="form-control input-sm required"  placeholder="请输入手机号" id="phone" name="phone" minlength="11" maxlength='11'/></td>
+                            <td><input type="text" class="form-control input-sm required"  placeholder="请输入手机号"
+                                       value="${m.phone}" id="phone" name="phone" minlength="11" maxlength='11'/></td>
 
                             <th width="15%">邮箱<font color="red">*</font></th>
-                            <td><input type="email" class="form-control input-sm required"  placeholder="请输入邮箱" id="email" name="email" minlength="4" maxlength='50'/></td>
+                            <td><input type="email" class="form-control input-sm required"  placeholder="请输入邮箱"
+                                       value="${m.email}"  id="email" name="email" minlength="4" maxlength='50'/></td>
                         </tr>
                         <tr>
                             <th >备注</th>
                             <td colspan="3">
                                 <div class="info-detail">
-                                    <textarea class="form-control input-sm" name="remark" placeholder="请输入备注，500字以内" maxlength="500" rows="3"></textarea>
+                                    <textarea class="form-control input-sm" name="remark" placeholder="请输入备注，500字以内" maxlength="500" rows="3">${m.remark}</textarea>
                                 </div>
                             </td>
                         </tr>
