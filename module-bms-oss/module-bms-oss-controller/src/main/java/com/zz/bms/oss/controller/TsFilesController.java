@@ -176,8 +176,8 @@ public class TsFilesController extends DefaultController<TsFilesEntity, String ,
 
 
     @Override
-    public String getResourceIdentity() {
-        return "oss:files";
+    protected boolean isExist(TsFilesEntity tsFilesEntity) {
+        return false;
     }
 
     /**
@@ -191,30 +191,6 @@ public class TsFilesController extends DefaultController<TsFilesEntity, String ,
     }
 
 
-    @Override
-    protected boolean isExist(TsFilesEntity tsFilesEntity) {
-        return true;
-    }
-
-    @Override
-    protected void processQuery(QueryNullImpl query, TsFilesEntity tsFilesEntity) {
-
-    }
-
-    @Override
-    protected void processResult(List<TsFilesEntity> records) {
-
-    }
-
-    @Override
-    protected void setCustomInfoByInsert(TsFilesEntity tsFilesEntity) {
-
-    }
-
-    @Override
-    protected void setCustomInfoByUpdate(TsFilesEntity tsFilesEntity) {
-
-    }
 
 
 }

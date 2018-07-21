@@ -25,13 +25,12 @@ public enum EnumErrorMsg {
 
 
     success(200,"操作成功" , "EnumErrorMsg.success"),
-
-    fail(700,"出现内部错误" , "EnumErrorMsg.fail"),
+    no_auth(401, "出现错误， 您没有这个权限" , "EnumErrorMsg.no_auth"),
+    fail(500,"出现内部错误" , "EnumErrorMsg.fail"),
 
     frequent_operation(1010,"操作太频繁，请稍后再使用！" , "EnumErrorMsg.frequent_operation"),
     param_format_error(2010,"参数格式错误！" , "EnumErrorMsg.param_format_error"),
     information_too_long(2020,"输入信息过长！" , "EnumErrorMsg.information_too_long"),
-    no_auth(2030, "出现错误， 您没有这个权限" , "EnumErrorMsg.no_auth"),
 
     check_data_required(8000,"s% 字段为必填项" , "EnumErrorMsg.check_data_required" ),
     check_data_too(8010,"s% 字段数据太长"  , "EnumErrorMsg.check_data_too"),

@@ -25,11 +25,6 @@ public class VsUserController extends DefaultController<VsUserEntity , String , 
 
 
 
-    @Override
-    public String getResourceIdentity() {
-        return "sys:user";
-    }
-
     /**
      * 设置通用数据
      * 在新增 或编辑界面，  提供下拉数据等
@@ -75,15 +70,6 @@ public class VsUserController extends DefaultController<VsUserEntity , String , 
         return isExist;
     }
 
-    /**
-     * 处理查询参数
-     * @param query
-     * @param userEntity
-     */
-    @Override
-    protected void processQuery(VsUserQueryWebImpl query , VsUserEntity userEntity) {
-    }
-
 
     /**
      * 专门处理查询
@@ -126,10 +112,6 @@ public class VsUserController extends DefaultController<VsUserEntity , String , 
         vsUserEntity.setOrganId("1");
     }
 
-    @Override
-    protected void setCustomInfoByUpdate(VsUserEntity vsUserEntity) {
-
-    }
 
 
 }

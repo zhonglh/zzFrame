@@ -14,7 +14,6 @@ import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.ui.Pages;
 import com.zz.bms.core.vo.AjaxJson;
-import com.zz.bms.system.base.entity.TsUserEntity;
 import com.zz.bms.util.base.java.GenericsHelper;
 import com.zz.bms.util.base.spring.PaginationContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -65,7 +63,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     protected BaseCURDController() {
         this.entityClass = GenericsHelper.getSuperClassGenricType(getClass(), 0);
         setViewPrefix(defaultViewPrefix());
-        setResourceIdentity(getResourceIdentity());
+        setResourceIdentity(this.getViewPrefix().replaceAll("/","\\."));
     }
 
 
@@ -291,6 +289,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         Wrapper<M> wrapper = new EntityWrapper<M>();
         wrapper.eq("id" , id);
+        setCustomInfoByDelete(wrapper);
         M m = baseService.selectOne(wrapper);
         if(m == null){
             throw EnumErrorMsg.no_auth.toException();
@@ -308,6 +307,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         }
         return AjaxJson.successAjax;
     }
+
 
     /**
      * 批量删除
@@ -340,6 +340,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
             wrapper.eq("id", id);
             index ++;
         }
+
+        setCustomInfoByDelete(wrapper);
+
         List<M> list = baseService.selectList(wrapper);
 
         if(list == null && list.isEmpty()){
@@ -514,11 +517,6 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         }
     }
 
-    /**
-     * 提供自己的 资源ID
-     * @return
-     */
-    public abstract String getResourceIdentity() ;
 
     /**
      * 是否重复
@@ -527,30 +525,57 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      */
     protected abstract boolean isExist(M m) ;
 
+
+
+
+
+
+
+
+
+
+
     /**
      * 处理查询参数
      * @param query
      */
-    protected abstract void processQuery(Q query , M m);
+    protected void processQuery(Q query , M m){
+
+    }
 
     /**
      * 处理查询结果
      * @param records
      */
-    protected abstract void processResult(List<M> records);
+    protected void processResult(List<M> records){
+
+    }
 
 
     /**
      * 保存前设置一些 业务定制的值
      * @param m
      */
-    protected abstract void setCustomInfoByInsert(M m);
+    protected void setCustomInfoByInsert(M m){
+
+    }
 
     /**
      * 保存前设置一些 业务定制的值
      * @param m
      */
-    protected abstract void setCustomInfoByUpdate(M m);
+    protected void setCustomInfoByUpdate(M m){
+
+    }
+
+    /**
+     * 对删除的数据再次过滤
+     * 比如规定不能删除admin的 用户,不能删除正在运行流程的数据等
+     * @param wrapper
+     */
+    protected void setCustomInfoByDelete(Wrapper<M> wrapper) {
+
+    }
 
 
 

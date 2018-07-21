@@ -90,12 +90,17 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
         AjaxJson json = new AjaxJson();
         json.setSuccess(false);
         if(e instanceof BizException){
-            json.setMsg(((BizException)e).getMsg());
+            BizException be = (BizException)e;
+            json.setMsg(be.getMsg());
+            if(be.getCode() != 500 && be.getCode() != 401 ){
+                json.setCode(500);
+            }
         }else {
             if(e.getMessage() != null && e.getMessage().indexOf("index")!=-1){
+                json.setCode(500);
                 json.setMsg( "数据重复， 请修改后重试！" );
             }else {
-
+                json.setCode(500);
                 json.setMsg("内部错误，请联系管理员");
             }
         }
