@@ -15,7 +15,7 @@ import java.io.Serializable;
  */
 @EntityAnnotation(value="用户" , resource = "sys.user")
 @TableName(value="ts_user" , resultMap = "TsUserResultMap")
-public class TsUserEntity extends BaseBusinessExEntity<String> implements  ILoginUserEntity, Serializable {
+public class TsUserEntity extends BaseBusinessExEntity<String> implements  ILoginUserEntity<String>, Serializable {
 
     @EntityAttrDBAnnotation(attrName="用户姓名", attrLength=60  ,  notNull = true)
     private String userName;
