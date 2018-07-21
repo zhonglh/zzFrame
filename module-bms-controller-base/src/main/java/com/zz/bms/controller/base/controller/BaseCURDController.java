@@ -1,5 +1,6 @@
 package com.zz.bms.controller.base.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.zz.bms.controller.base.PermissionList;
@@ -7,6 +8,7 @@ import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.base.service.BaseService;
 import com.zz.bms.core.db.entity.BaseBusinessEntity;
 import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.DbException;
@@ -144,8 +146,13 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         this.permissionList.assertHasViewPermission();
 
         setCommonData(model);
-        M m = baseService.selectById(id) ;
 
+        Wrapper<M> wrapper = new EntityWrapper<M>();
+        wrapper.eq("id" , id);
+        M m = baseService.selectOne(wrapper);
+        if(m == null){
+            throw EnumErrorMsg.no_auth.toException();
+        }
         customInfoByViewForm(m , model);
         model.addAttribute("m", m);
         return viewName("viewForm");
@@ -174,7 +181,13 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         this.permissionList.assertHasUpdatePermission();
 
         setCommonData(model);
-        M m = baseService.selectById(id) ;
+
+        Wrapper<M> wrapper = new EntityWrapper<M>();
+        wrapper.eq("id" , id);
+        M m = baseService.selectOne(wrapper);
+        if(m == null){
+            throw EnumErrorMsg.no_auth.toException();
+        }
 
         customInfoByUpdateForm(m , model);
         model.addAttribute("m", m);
@@ -193,7 +206,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         if (isExist(m)) {throw DbException.DB_SAVE_SAME;}
 
 
-        TsUserEntity sessionUserVO = getSessionUser();
+        ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
         this.setInsertInfo(m, sessionUserVO);
         this.setCustomInfoByInsert(m);
@@ -218,24 +231,34 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     @RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
     @ResponseBody
-    public Object update(
+    public Object update(@PathVariable("id") PK id,
             ModelMap model, M m , BindingResult result,
             RedirectAttributes redirectAttributes) {
 
-            this.permissionList.assertHasUpdatePermission();
+        this.permissionList.assertHasUpdatePermission();
 
 
         if (isExist(m)) {throw DbException.DB_SAVE_SAME;}
 
-        TsUserEntity sessionUserVO = getSessionUser();
+        ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
-        M temp = baseService.selectById(m.getId());
+
+        Wrapper<M> wrapper = new EntityWrapper<M>();
+        wrapper.eq("id" , id);
+        M temp = baseService.selectOne(wrapper);
+        if(temp == null){
+            throw EnumErrorMsg.no_auth.toException();
+        }
+
+
+
         if(m instanceof BaseBusinessEntity) {
             BaseBusinessEntity bbe = (BaseBusinessEntity)m;
             bbe.setVersionNo(((BaseBusinessEntity)temp).getVersionNo());
         }
         this.setUpdateInfo(m, sessionUserVO);
         setCustomInfoByUpdate(m);
+
         checkEntityLegality(m);
 
         boolean success = false;
@@ -264,9 +287,14 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     public Object delete(         @PathVariable("id") PK id,           RedirectAttributes redirectAttributes) {
 
 
-            this.permissionList.assertHasDeletePermission();
+        this.permissionList.assertHasDeletePermission();
 
-        M m = baseService.selectById(id);
+        Wrapper<M> wrapper = new EntityWrapper<M>();
+        wrapper.eq("id" , id);
+        M m = baseService.selectOne(wrapper);
+        if(m == null){
+            throw EnumErrorMsg.no_auth.toException();
+        }
 
         boolean success = false;
         try {
@@ -294,14 +322,25 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
             RedirectAttributes redirectAttributes) {
 
 
-            this.permissionList.assertHasDeletePermission();
+        this.permissionList.assertHasDeletePermission();
 
         if(ids == null || ids.isEmpty()){
             throw EnumErrorMsg.not_select_todelete.toException();
         }
 
 
-        List<M> list = baseService.selectBatchIds(Arrays.asList(ids.split(",")));
+
+        Wrapper<M> wrapper = new EntityWrapper<M>();
+        String idList[] = ids.split(",");
+        int index = 0;
+        for(String id : idList) {
+            if(index > 0){
+                wrapper.or();
+            }
+            wrapper.eq("id", id);
+            index ++;
+        }
+        List<M> list = baseService.selectList(wrapper);
 
         if(list == null && list.isEmpty()){
             throw EnumErrorMsg.no_auth.toException();

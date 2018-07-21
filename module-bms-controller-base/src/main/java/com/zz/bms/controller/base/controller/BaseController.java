@@ -5,6 +5,7 @@ import com.zz.bms.controller.base.converteditor.DateConvertEditor;
 import com.zz.bms.controller.base.converteditor.TimestampConvertEditor;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.shiro.utils.ShiroUtils;
 import com.zz.bms.system.base.entity.TsUserEntity;
 import com.zz.bms.util.base.spring.SpringUtil;
@@ -59,12 +60,12 @@ public abstract class BaseController {
     }
 
 
-    protected TsUserEntity getSessionUser(HttpServletRequest request){
+    protected ILoginUserEntity getSessionUser(HttpServletRequest request){
         return getSessionUser();
     }
 
 
-    protected TsUserEntity getSessionUser(){
+    protected ILoginUserEntity getSessionUser(){
         return (TsUserEntity)ShiroUtils.getSubject().getPrincipal();
     }
 
