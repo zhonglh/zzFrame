@@ -1,9 +1,7 @@
-package com.zz.bms.system.base.logic.query;
+package com.zz.bms.system.base.query;
 
 import com.zz.bms.core.db.mybatis.query.Query;
-import com.zz.bms.system.base.entity.TsUserEntity;
 import com.zz.bms.system.base.entity.VsUserEntity;
-import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 

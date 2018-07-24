@@ -1,4 +1,4 @@
-package com.zz.bms.system.base.logic.query.impl;
+package com.zz.bms.system.base.query.impl;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  * 用户查询， 用于装载用户在查询时提交的数据
  * @param <PK>
  */
-public class TsUserQueryWebImpl<PK extends Serializable> extends TsUserAbstractQueryImpl<PK> {
+public class VsUserQueryWebImpl<PK extends Serializable> extends VsUserAbstractQueryImpl<PK> {
 
 
     private PK id_IN;
@@ -278,6 +278,41 @@ public class TsUserQueryWebImpl<PK extends Serializable> extends TsUserAbstractQ
     public void setId_NE(PK id_NE) {
         this.id_NE = id_NE;
     }
+
+
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserName_NE() {
+        return userName_NE;
+    }
+
+    public void setUserName_NE(String userName_NE) {
+        this.userName_NE = userName_NE;
+    }
+
+    public String getUserName_LIKE() {
+        return userName_LIKE;
+    }
+
+    public void setUserName_LIKE(String userName_LIKE) {
+        this.userName_LIKE = userName_LIKE;
+    }
+
+    public String getUserName_NOTLIKE() {
+        return userName_NOTLIKE;
+    }
+
+    public void setUserName_NOTLIKE(String userName_NOTLIKE) {
+        this.userName_NOTLIKE = userName_NOTLIKE;
+    }
+
 
     public String getLoginName() {
         return loginName;

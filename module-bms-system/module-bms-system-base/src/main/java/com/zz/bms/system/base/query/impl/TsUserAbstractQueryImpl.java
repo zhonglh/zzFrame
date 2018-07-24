@@ -1,7 +1,7 @@
-package com.zz.bms.system.base.logic.query.impl;
+package com.zz.bms.system.base.query.impl;
 
 import com.zz.bms.core.db.mybatis.query.QueryImpl;
-import com.zz.bms.system.base.entity.VsUserEntity;
+import com.zz.bms.system.base.entity.TsUserEntity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -16,17 +16,11 @@ import java.sql.Timestamp;
  * 普通字符串 eq ne in notin like notlike
  * 参考 EnumSearchType
  */
-public abstract class VsUserAbstractQueryImpl<PK extends Serializable> extends QueryImpl<VsUserEntity,PK> {
+public abstract class TsUserAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TsUserEntity,PK> {
 
 
     protected PK id ;
     protected PK id_NE ;
-
-
-    protected String userName;
-    protected String userName_NE;
-    protected String userName_LIKE;
-    protected String userName_NOTLIKE;
 
     protected String loginName;
     protected String loginName_NE;

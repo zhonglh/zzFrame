@@ -1,7 +1,7 @@
-package com.zz.bms.system.base.logic.query;
+package com.zz.bms.system.base.query;
 
-import com.zz.bms.system.base.logic.query.impl.TsUserQueryImpl;
-import com.zz.bms.system.base.logic.query.impl.VsUserQueryImpl;
+import com.zz.bms.system.base.query.impl.TsUserQueryImpl;
+import com.zz.bms.system.base.query.impl.VsUserQueryImpl;
 
 /**
  * 系统查询器构建工厂

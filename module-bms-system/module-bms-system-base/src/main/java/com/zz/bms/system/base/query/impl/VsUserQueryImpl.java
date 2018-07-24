@@ -1,6 +1,6 @@
-package com.zz.bms.system.base.logic.query.impl;
+package com.zz.bms.system.base.query.impl;
 
-import com.zz.bms.system.base.logic.query.VsUserQuery;
+import com.zz.bms.system.base.query.VsUserQuery;
 import com.zz.bms.util.base.java.IdUtils;
 import org.apache.commons.lang3.StringUtils;
 

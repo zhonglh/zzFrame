@@ -3,18 +3,17 @@ package com.zz.bms.core.db.entity;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.baomidou.mybatisplus.annotations.Version;
-import org.apache.solr.client.solrj.beans.Field;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * 业务实体类
- * 有逻辑删除
+ * 没有逻辑删除
  * 包括新建，修改 的人和时间信息， 以及版本号
  * @author Administrator
  */
-public abstract class BaseBusinessEntity<PK extends Serializable> extends BaseEntity<PK> implements Serializable {
+public abstract class BaseBusinessSimpleEntity<PK extends Serializable> extends BaseEntity<PK> implements Serializable {
 
     /**
      * 创建时间
@@ -44,13 +43,6 @@ public abstract class BaseBusinessEntity<PK extends Serializable> extends BaseEn
     @Version
     private Integer versionNo ;
 
-    /**
-     * 删除标志
-     * 1: 已删除    0：正常
-     */
-    @TableLogic
-    @TableField(value = "delete_flag")
-    private String deleteFlag ;
 
 
     public Timestamp getCreateTime() {
@@ -80,14 +72,6 @@ public abstract class BaseBusinessEntity<PK extends Serializable> extends BaseEn
     }
 
 
-
-    public String getDeleteFlag() {
-        return deleteFlag;
-    }
-
-    public void setDeleteFlag(String deleteFlag) {
-        this.deleteFlag = deleteFlag;
-    }
 
     public PK getCreateUserId() {
         return createUserId;

@@ -1,12 +1,11 @@
 package com.zz.bms.system.controller;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.zz.bms.controller.base.controller.DefaultController;
 import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.shiro.utils.ShiroUtils;
 import com.zz.bms.system.base.entity.VsUserEntity;
-import com.zz.bms.system.base.logic.query.impl.VsUserQueryWebImpl;
+import com.zz.bms.system.base.query.impl.VsUserQueryWebImpl;
 import com.zz.bms.util.base.java.IdUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
@@ -19,7 +18,7 @@ import java.util.List;
  * 处理用户信息
  * @author Administrator
  */
-@RequestMapping("sys/user")
+@RequestMapping("/sys/user")
 @Controller
 public class VsUserController extends DefaultController<VsUserEntity , String , VsUserQueryWebImpl> {
 

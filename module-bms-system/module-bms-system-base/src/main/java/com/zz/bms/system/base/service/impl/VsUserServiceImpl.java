@@ -19,7 +19,7 @@ public class VsUserServiceImpl extends BaseServiceImpl<VsUserEntity,String> impl
 
 
     @Autowired
-    private VsUserDAO vsUserDAO ;
+    private VsUserDAO vsUserDAO;
 
 
     @Autowired
