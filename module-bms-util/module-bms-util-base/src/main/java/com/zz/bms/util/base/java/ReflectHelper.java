@@ -75,7 +75,7 @@ public class ReflectHelper {
 				param = setM.matcher(methodName).replaceAll(rapl).toLowerCase();
 				setMethods.put(param, m);
 			} else {
-				// org.jeecgframework.core.util.LogUtil.info(methodName + " 不是getter,setter方法！");
+				;
 			}
 		}
 		  

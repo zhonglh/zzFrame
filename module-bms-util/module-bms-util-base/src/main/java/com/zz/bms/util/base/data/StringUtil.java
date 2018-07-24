@@ -1097,7 +1097,7 @@ public class StringUtil {
 		while (matcher.find()) {
 			for (int i = 0; i < matcher.groupCount(); i++) { // int groupCount()
 																// 返回当前查找所获得的匹配组的数量。
-				// org.jeecgframework.core.util.LogUtil.info(matcher.group(i));
+
 				result.add(matcher.group(i));
 
 			}
@@ -1123,9 +1123,6 @@ public class StringUtil {
 	 * @return b,e之间的字符串
 	 */
 
-	/*
-	 * String aaa="abcdefghijklmn"; String[] bbb=StringProcessor.midString(aaa, "b","l"); org.jeecgframework.core.util.LogUtil.info("bbb[0]:"+bbb[0]);//cdefghijk org.jeecgframework.core.util.LogUtil.info("bbb[1]:"+bbb[1]);//lmn ★这个方法是得到第二个参数和第三个参数之间的字符串,赋给元素0;然后把元素0代表的字符串之后的,赋给元素1
-	 */
 
 	/*
 	 * String aaa="abcdefgllhijklmn5465"; String[] bbb=StringProcessor.midString(aaa, "b","l"); //ab cdefg llhijklmn5465 // 元素0 元素1

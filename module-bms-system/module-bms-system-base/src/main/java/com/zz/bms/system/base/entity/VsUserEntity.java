@@ -14,8 +14,6 @@ import java.lang.String;
  * @author admin
  * @date 2018-6-2 0:24:57
  */
-@EntityAnnotation(value="用户" , resource = "sys.user")
-@TableName(value="vs_user" , resultMap = "VsUserResultMap")
 public class VsUserEntity extends TsUserEntity implements java.io.Serializable{
 
 	private static final long serialVersionUID = 1L;

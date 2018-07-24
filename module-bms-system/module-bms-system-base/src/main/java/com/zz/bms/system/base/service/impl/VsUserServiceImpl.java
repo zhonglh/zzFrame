@@ -2,6 +2,7 @@ package com.zz.bms.system.base.service.impl;
 
 import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
+import com.zz.bms.system.base.bo.VsUserBO;
 import com.zz.bms.system.base.service.VsUserService;
 import com.zz.bms.system.base.dao.TsUserDAO;
 import com.zz.bms.system.base.dao.VsUserDAO;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
  * @author Administrator
  */
 @Service
-public class VsUserServiceImpl extends BaseServiceImpl<VsUserEntity,String> implements VsUserService {
+public class VsUserServiceImpl extends BaseServiceImpl<VsUserBO,String> implements VsUserService {
 
 
     @Autowired

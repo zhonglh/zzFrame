@@ -1,11 +1,12 @@
 package com.zz.bms.system.base.service;
 
 import com.zz.bms.core.db.base.service.BaseService;
+import com.zz.bms.system.base.bo.VsUserBO;
 import com.zz.bms.system.base.entity.VsUserEntity;
 
 /**
  * @author Administrator
  */
-public interface VsUserService extends BaseService<VsUserEntity , String> {
+public interface VsUserService extends BaseService<VsUserBO, String> {
 
 }

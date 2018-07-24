@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zz.bms.system.base.dao.VsUserDAO">
 	<!-- 映射配置 -->
-	<resultMap id="VsUserResultMap" type="com.zz.bms.system.base.entity.VsUserEntity" >
+	<resultMap id="VsUserResultMap" type="com.zz.bms.system.base.bo.VsUserBO" >
          	<result column="id" property="id"/>
          	<result column="user_name" property="userName"/>
          	<result column="login_name" property="loginName"/>

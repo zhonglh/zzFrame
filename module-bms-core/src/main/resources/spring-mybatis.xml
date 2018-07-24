@@ -29,7 +29,7 @@
     <!-- Spring整合Mybatis，更多查看文档：http://mp.baomidou.com -->
     <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="typeAliasesPackage" value="com.**.domain;com.**.entity"/>
+        <property name="typeAliasesPackage" value="com.**.domain;com.**.entity;com.**.bo"/>
         <property name="configuration" ref="mybatisConfig"/>
         <!-- MP 全局配置注入 -->
         <property name="globalConfig" ref="globalConfig"/>

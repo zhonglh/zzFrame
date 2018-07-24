@@ -1,6 +1,7 @@
 package com.zz.bms.system.base.dao;
 
 import com.zz.bms.core.db.base.dao.BaseDAO;
+import com.zz.bms.system.base.bo.VsUserBO;
 import com.zz.bms.system.base.entity.VsUserEntity;
 import org.springframework.stereotype.Repository;
 
@@ -10,5 +11,5 @@ import org.springframework.stereotype.Repository;
  * @author Administrator
  */
 @Repository
-public interface VsUserDAO extends BaseDAO<VsUserEntity , String> {
+public interface VsUserDAO extends BaseDAO<VsUserBO, String> {
 }

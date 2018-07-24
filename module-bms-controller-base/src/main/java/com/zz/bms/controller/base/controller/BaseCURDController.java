@@ -105,7 +105,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     @ResponseBody
     public Object list(M m , Q query, Pages<M> pages , Model model , HttpServletRequest request, HttpServletResponse response) {
 
-            this.permissionList.assertHasViewPermission();
+        this.permissionList.assertHasViewPermission();
 
 
         if(pages.getPageNum() == 0) {

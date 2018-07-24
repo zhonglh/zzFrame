@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.zz.bms.controller.base.controller.DefaultController;
 import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.shiro.utils.ShiroUtils;
-import com.zz.bms.system.base.entity.VsUserEntity;
+import com.zz.bms.system.base.bo.VsUserBO;
 import com.zz.bms.system.base.query.impl.VsUserQueryWebImpl;
 import com.zz.bms.util.base.java.IdUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -20,7 +20,7 @@ import java.util.List;
  */
 @RequestMapping("/sys/user")
 @Controller
-public class VsUserController extends DefaultController<VsUserEntity , String , VsUserQueryWebImpl> {
+public class VsUserController extends DefaultController<VsUserBO, String , VsUserQueryWebImpl> {
 
 
 
@@ -36,28 +36,28 @@ public class VsUserController extends DefaultController<VsUserEntity , String , 
 
 
     @Override
-    protected boolean isExist(VsUserEntity userEntity) {
+    protected boolean isExist(VsUserBO userEntity) {
 
-        VsUserEntity ckEntity ;
+        VsUserBO ckEntity ;
         boolean isExist = false;
 
 
-        VsUserEntity temp ;
+        VsUserBO temp ;
 
-        ckEntity = new VsUserEntity();
+        ckEntity = new VsUserBO();
         ckEntity.setLoginName(userEntity.getLoginName());
         ckEntity.setId(userEntity.getId());
         temp = this.baseService.selectCheck(ckEntity);
         if (isEntityExist(temp)) {return true;}
 
-        ckEntity = new VsUserEntity();
+        ckEntity = new VsUserBO();
         ckEntity.setPhone(userEntity.getPhone());
         ckEntity.setId(userEntity.getId());
         temp = this.baseService.selectCheck(ckEntity);
         if (isEntityExist(temp)) {return true;}
 
 
-        ckEntity = new VsUserEntity();
+        ckEntity = new VsUserBO();
         ckEntity.setEmail(userEntity.getEmail());
         ckEntity.setId(userEntity.getId());
         temp = this.baseService.selectCheck(ckEntity);
@@ -77,7 +77,7 @@ public class VsUserController extends DefaultController<VsUserEntity , String , 
      * @return
      */
     @Override
-    protected Wrapper buildWrapper(VsUserQueryWebImpl query , VsUserEntity userEntity) {
+    protected Wrapper buildWrapper(VsUserQueryWebImpl query , VsUserBO userEntity) {
         if(StringUtils.isNotEmpty(userEntity.getKeyword())){
             VsUserQueryWebImpl tmpQuery = new VsUserQueryWebImpl();
             tmpQuery.setUserName_LIKE(userEntity.getKeyword());
@@ -95,20 +95,20 @@ public class VsUserController extends DefaultController<VsUserEntity , String , 
      * @param records
      */
     @Override
-    protected void processResult(List<VsUserEntity> records) {
+    protected void processResult(List<VsUserBO> records) {
 
     }
 
     @Override
-    protected void setCustomInfoByInsert(VsUserEntity vsUserEntity) {
-        vsUserEntity.setSystemAdmin(EnumYesNo.NO.getCode());
-        vsUserEntity.setSalt(IdUtils.getId().substring(0,10));
-        vsUserEntity.setLoginPassword(ShiroUtils.encodeSalt(vsUserEntity.getLoginPassword(),vsUserEntity.getSalt()));
-        vsUserEntity.setStatus(EnumYesNo.YES.getCode());
+    protected void setCustomInfoByInsert(VsUserBO VsUserBO) {
+        VsUserBO.setSystemAdmin(EnumYesNo.NO.getCode());
+        VsUserBO.setSalt(IdUtils.getId().substring(0,10));
+        VsUserBO.setLoginPassword(ShiroUtils.encodeSalt(VsUserBO.getLoginPassword(),VsUserBO.getSalt()));
+        VsUserBO.setStatus(EnumYesNo.YES.getCode());
 
         //todo
-        vsUserEntity.setDepId("1");
-        vsUserEntity.setOrganId("1");
+        VsUserBO.setDepId("1");
+        VsUserBO.setOrganId("1");
     }
 
 

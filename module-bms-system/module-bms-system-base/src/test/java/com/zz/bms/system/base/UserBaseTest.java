@@ -3,6 +3,7 @@ package com.zz.bms.system.base;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.enums.EnumYesNo;
+import com.zz.bms.system.base.bo.VsUserBO;
 import com.zz.bms.system.base.entity.VsUserEntity;
 import com.zz.bms.system.base.logic.enums.EnumUserStatus;
 import com.zz.bms.system.base.service.VsUserService;
@@ -31,7 +32,7 @@ public class UserBaseTest extends BaseTest {
     @Test
     @Rollback(false)
     public void testCreateUser() {
-        VsUserEntity userEntity = buildUserEntity();
+        VsUserBO userEntity = buildUserEntity();
         boolean b = false;
         try{
             b = vsUserServiceImpl.insert(userEntity);
@@ -48,8 +49,8 @@ public class UserBaseTest extends BaseTest {
     }
 
 
-    private VsUserEntity buildUserEntity(){
-        VsUserEntity userEntity = new VsUserEntity();
+    private VsUserBO buildUserEntity(){
+        VsUserBO userEntity = new VsUserBO();
         userEntity.setLoginName("zz");
         userEntity.setUserName("zz name");
         userEntity.setLoginPassword("123456");
