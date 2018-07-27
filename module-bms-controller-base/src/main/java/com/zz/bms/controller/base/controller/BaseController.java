@@ -61,12 +61,25 @@ public abstract class BaseController {
 
 
     protected ILoginUserEntity getSessionUser(HttpServletRequest request){
-        return getSessionUser();
+
+        ILoginUserEntity loginUser = getSessionUser();
+        if(loginUser == null){
+            return (ILoginUserEntity)request.getSession().getAttribute(Constant.SESSION_USER);
+        }
+        return loginUser;
     }
 
 
     protected ILoginUserEntity getSessionUser(){
-        return (TsUserEntity)ShiroUtils.getSubject().getPrincipal();
+        try {
+            ILoginUserEntity loginUser = (ILoginUserEntity) ShiroUtils.getSubject().getPrincipal();
+            if (loginUser == null) {
+                return null;
+            }
+        }catch(Exception e){
+
+        }
+        return null;
     }
 
     protected Locale getLocale(HttpServletRequest req){
