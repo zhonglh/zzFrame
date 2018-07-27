@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -87,6 +88,10 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
 
 
         for(Field field : fields){
+            boolean isStatic = Modifier.isStatic(field.getModifiers());
+            if(isStatic){
+                continue;
+            }
             String fieldProperties = field.getName();
             try {
                 field.setAccessible(true);

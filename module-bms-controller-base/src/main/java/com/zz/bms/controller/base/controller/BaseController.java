@@ -13,6 +13,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
@@ -74,10 +77,18 @@ public abstract class BaseController {
         try {
             ILoginUserEntity loginUser = (ILoginUserEntity) ShiroUtils.getSubject().getPrincipal();
             if (loginUser == null) {
-                return null;
+                RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
+                 if (requestAttributes != null) {
+                     HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
+                     return (ILoginUserEntity)request.getSession().getAttribute(Constant.SESSION_USER);
+                 }
             }
         }catch(Exception e){
-
+            RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
+            if (requestAttributes != null) {
+                HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
+                return (ILoginUserEntity)request.getSession().getAttribute(Constant.SESSION_USER);
+            }
         }
         return null;
     }

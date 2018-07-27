@@ -101,7 +101,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     }
 
 
-    @RequestMapping(value = "/list" , method = RequestMethod.POST)
+    @RequestMapping(value = "/list" , method = RequestMethod.GET)
     @ResponseBody
     public Object list(M m , Q query, Pages<M> pages , Model model , HttpServletRequest request, HttpServletResponse response) {
 
@@ -280,7 +280,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @param redirectAttributes
      * @return
      */
-    @RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}/delete", method = {RequestMethod.GET, RequestMethod.DELETE})
     @ResponseBody
     public Object delete(         @PathVariable("id") PK id,           RedirectAttributes redirectAttributes) {
 

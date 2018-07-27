@@ -11,6 +11,7 @@ import java.util.List;
  */
 public abstract class BaseEntity<PK extends Serializable> implements Serializable {
 
+    @TableField
     private PK id;
     private PK tenantId;
 
