@@ -32,7 +32,9 @@ public class ContextHolderUtils {
 	 */
 	public static HttpSession getSession() {
 		HttpServletRequest request = getRequest();
-		if(request == null) return null;
+		if(request == null) {
+			return null;
+		}
 		return request.getSession();
 
 	}
