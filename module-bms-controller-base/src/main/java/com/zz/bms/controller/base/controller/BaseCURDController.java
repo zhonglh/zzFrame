@@ -83,7 +83,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         model.put("entity" ,m);
 
         if (listAlsoSetCommonData) {
-            setCommonData(model);
+            setCommonData(m,model);
         }
 
 
@@ -116,6 +116,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
             pages.setPageSize(PaginationContext.getPageSize());
         }
 
+        processPages(pages , request);
+
         Page<M> page = new Page<M>(pages.getPageNum(), pages.getPageSize());
 
         processQuery(query , m);
@@ -143,7 +145,6 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         this.permissionList.assertHasViewPermission();
 
-        setCommonData(model);
 
         Wrapper<M> wrapper = new EntityWrapper<M>();
         wrapper.eq("id" , id);
@@ -151,6 +152,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         if(m == null){
             throw EnumErrorMsg.no_auth.toException();
         }
+
+        setCommonData(m,model);
         customInfoByViewForm(m , model);
         model.addAttribute("m", m);
         model.addAttribute("entity", m);
@@ -164,7 +167,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         this.permissionList.assertHasCreatePermission();
 
-        setCommonData(model);
+        setCommonData(m,model);
 
         setInit(m);
         customInfoByCreateForm(m , model);
@@ -180,7 +183,6 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         this.permissionList.assertHasUpdatePermission();
 
-        setCommonData(model);
 
         Wrapper<M> wrapper = new EntityWrapper<M>();
         wrapper.eq("id" , id);
@@ -189,6 +191,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
             throw EnumErrorMsg.no_auth.toException();
         }
 
+        setCommonData(m,model);
         customInfoByUpdateForm(m , model);
         model.addAttribute("m", m);
         model.addAttribute("entity", m);
@@ -641,9 +644,10 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     /**
      * 设置通用数据
      * 在新增 或 修改界面，  提供下拉数据等
+     * @param m
      * @param model
      */
-    protected void setCommonData(ModelMap model) {
+    protected void setCommonData(M m ,ModelMap model) {
     }
 
 

@@ -425,22 +425,37 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
     @Override
     public T selectById(Serializable id) {
-        return (T)this.getQueryDAO().selectById(id);
+
+        T t =  (T)this.getQueryDAO().selectById(id);
+        return processResult(t);
     }
 
     @Override
     public List<T> selectBatchIds(Collection<? extends Serializable> idList) {
-        return this.getQueryDAO().selectBatchIds(idList);
+        List<T> list =  this.getQueryDAO().selectBatchIds(idList);
+        if(list != null && !list.isEmpty()){
+            for(T t : list){
+                processResult(t);
+            }
+        }
+        return list;
     }
 
     @Override
     public List<T> selectByMap(Map<String, Object> columnMap) {
-        return this.getQueryDAO().selectByMap(columnMap);
+        List<T> list =  this.getQueryDAO().selectByMap(columnMap);
+        if(list != null && !list.isEmpty()){
+            for(T t : list){
+                processResult(t);
+            }
+        }
+        return list;
     }
 
     @Override
     public T selectOne(Wrapper<T> wrapper) {
-        return (T)SqlHelper.getObject(this.getQueryDAO().selectList(wrapper));
+        T t=  (T)SqlHelper.getObject(this.getQueryDAO().selectList(wrapper));
+        return processResult(t);
     }
 
 
@@ -453,12 +468,24 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
     @Override
     public Map<String, Object> selectMap(Wrapper<T> wrapper) {
-        return (Map)SqlHelper.getObject(this.getQueryDAO().selectMaps(wrapper));
+        Map<String, Object>  map = (Map)SqlHelper.getObject(this.getQueryDAO().selectMaps(wrapper));
+        if(map != null && !map.isEmpty()){
+            for(Object o : map.values()){
+                processResult((T)o);
+            }
+        }
+        return map;
     }
 
     @Override
     public Object selectObj(Wrapper<T> wrapper) {
-        return SqlHelper.getObject(this.getQueryDAO().selectObjs(wrapper));
+
+        Object o =  SqlHelper.getObject(this.getQueryDAO().selectObjs(wrapper));
+        if(o == null) {
+            return null;
+        }else {
+            return processResult((T)o);
+        }
     }
 
     @Override
@@ -468,12 +495,26 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
     @Override
     public List<T> selectList(Wrapper<T> wrapper) {
-        return this.getQueryDAO().selectList(wrapper);
+        List<T> list =  this.getQueryDAO().selectList(wrapper);
+        if(list != null && !list.isEmpty()){
+            for(T t : list){
+                processResult(t);
+            }
+        }
+        return list;
     }
 
     @Override
     public Page<T> selectPage(Page<T> page) {
-        return this.selectPage(page, Condition.EMPTY);
+
+        Page<T> result =  this.selectPage(page, Condition.EMPTY);
+        List<T> list = result.getRecords();
+        if(list != null && !list.isEmpty()){
+            for(T t : list){
+                    processResult(t);
+            }
+        }
+        return result;
     }
 
     @Override
@@ -483,7 +524,16 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
     @Override
     public List<Object> selectObjs(Wrapper<T> wrapper) {
-        return this.getQueryDAO().selectObjs(wrapper);
+
+        List<Object> list =this.getQueryDAO().selectObjs(wrapper);
+        if(list != null && !list.isEmpty()){
+            for(Object o : list){
+                if(o != null) {
+                    processResult((T) o);
+                }
+            }
+        }
+        return list;
     }
 
     @Override
@@ -497,6 +547,19 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
     public Page<T> selectPage(Page<T> page, Wrapper<T> wrapper) {
         wrapper = (Wrapper<T>)SqlHelper.fillWrapper(page, wrapper);
         page.setRecords(this.getQueryDAO().selectPage(page, wrapper));
+        List<T> list = page.getRecords();
+        if(list != null && !list.isEmpty()){
+            for(T t : list){
+                processResult(t);
+            }
+        }
         return page;
     }
+
+
+    @Override
+    public T processResult(T t){
+        return t;
+    }
+
 }

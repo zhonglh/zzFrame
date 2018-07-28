@@ -30,4 +30,13 @@ public interface BaseService<T extends BaseEntity, PK extends Serializable> exte
 
     T selectCheck(T t) ;
 
+
+    /**
+     * 处理返回的对象
+     * 加入状态等内容的处理
+     * @param t
+     * @return
+     */
+    T processResult(T t);
+
 }
