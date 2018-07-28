@@ -153,6 +153,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         }
         customInfoByViewForm(m , model);
         model.addAttribute("m", m);
+        model.addAttribute("entity", m);
         return viewName("viewForm");
     }
 
@@ -168,6 +169,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         setInit(m);
         customInfoByCreateForm(m , model);
         model.addAttribute("m",  m);
+        model.addAttribute("entity", m);
         return viewName("editForm");
     }
 
@@ -189,6 +191,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         customInfoByUpdateForm(m , model);
         model.addAttribute("m", m);
+        model.addAttribute("entity", m);
         return viewName("editForm");
     }
 
@@ -214,6 +217,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         try{
             success = baseService.insert(m);
         }catch(Exception e){
+            logger.error(e.getMessage() , e);
             throw DbException.DB_SAVE_SAME;
         }
 
@@ -263,6 +267,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         try {
             success = baseService.updateById(m);
         }catch(Exception e){
+            logger.error(e.getMessage() , e);
             throw DbException.DB_SAVE_SAME;
         }
 
@@ -280,7 +285,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @param redirectAttributes
      * @return
      */
-    @RequestMapping(value = "/{id}/delete", method = {RequestMethod.GET, RequestMethod.DELETE})
+    @RequestMapping(value = "/{id}/delete", method = {RequestMethod.POST, RequestMethod.DELETE})
     @ResponseBody
     public Object delete(         @PathVariable("id") PK id,           RedirectAttributes redirectAttributes) {
 
@@ -299,6 +304,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         try {
             success = baseService.deleteById(m);
         }catch(Exception e){
+            logger.error(e.getMessage() , e);
             throw DbException.DB_DELETE_RESULT_0;
         }
 
@@ -315,7 +321,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @param redirectAttributes
      * @return
      */
-    @RequestMapping(value = "/batch/delete", method = {RequestMethod.GET, RequestMethod.DELETE})
+    @RequestMapping(value = "/batch/delete" ,method = {RequestMethod.POST, RequestMethod.DELETE})
     @ResponseBody
     public Object deleteInBatch(
             @RequestParam(value = "ids", required = false) String ids,
@@ -354,6 +360,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         try {
             success = baseService.deletesByIds(list) ;
         }catch(Exception e){
+            logger.error(e.getMessage() , e);
             throw DbException.DB_DELETE_RESULT_0;
         }
 
