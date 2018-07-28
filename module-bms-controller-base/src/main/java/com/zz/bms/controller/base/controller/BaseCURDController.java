@@ -215,7 +215,10 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         boolean success = false;
         try{
+            insertBefore(m);
             success = baseService.insert(m);
+            insertAfter(m);
+
         }catch(Exception e){
             logger.error(e.getMessage() , e);
             throw DbException.DB_SAVE_SAME;
@@ -229,6 +232,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         return AjaxJson.successAjax;
 
     }
+
 
 
     @RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
@@ -265,7 +269,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         boolean success = false;
         try {
+            updateBefore(m);
             success = baseService.updateById(m);
+            updateAfter(m);
         }catch(Exception e){
             logger.error(e.getMessage() , e);
             throw DbException.DB_SAVE_SAME;
@@ -277,6 +283,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
             return AjaxJson.successAjax;
         }
     }
+
 
 
     /**
@@ -302,7 +309,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         boolean success = false;
         try {
+            deleteBefore(m);
             success = baseService.deleteById(m);
+            deleteAfter(m);
         }catch(Exception e){
             logger.error(e.getMessage() , e);
             throw DbException.DB_DELETE_RESULT_0;
@@ -313,6 +322,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         }
         return AjaxJson.successAjax;
     }
+
 
 
     /**
@@ -636,5 +646,31 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     protected void setCommonData(ModelMap model) {
     }
 
+
+    /**
+     * 修改之前要处理的
+     * @param m
+     */
+    private void updateAfter(M m) {
+    }
+
+    /**
+     * 修改之后要处理的
+     * @param m
+     */
+    private void updateBefore(M m) {
+
+    }
+
+
+    private void deleteAfter(M m) {
+    }
+    private void deleteBefore(M m) {
+    }
+
+    private void insertAfter(M m) {
+    }
+    private void insertBefore(M m) {
+    }
 
 }
