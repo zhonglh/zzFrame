@@ -180,15 +180,7 @@ public class TsFilesController extends DefaultController<TsFilesEntity, String ,
         return false;
     }
 
-    /**
-     * 设置通用数据
-     * 在新增 或编辑界面，  提供下拉数据等
-     * @param model
-     */
-    @Override
-    protected void setCommonData(ModelMap model) {
 
-    }
 
 
 

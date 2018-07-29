@@ -48,7 +48,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     /**
      * 判断列表是否需要设置一些公共信息
      */
-    private boolean listAlsoSetCommonData = true;
+    protected boolean listAlsoSetCommonData = true;
 
     /**
      * 本功能总的权限列表
@@ -58,7 +58,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     /**
      * 本功能的资源名称
      */
-    private String resourceIdentity = null;
+    protected String resourceIdentity = null;
 
 
 
@@ -68,9 +68,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     /**
      * 实体类型
      */
-    private final Class<M> entityClass;
+    protected final Class<M> entityClass;
 
-    private String viewPrefix;
+    protected String viewPrefix;
 
 
     protected BaseCURDController() {
@@ -707,7 +707,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     /**
      * 设置通用数据
-     * 在新增 或 修改 列表 等界面 ，  提供下拉数据等
+     * 在新增  修改 列表 等界面 ，  提供下拉数据或者其他数据等
      * 如有， 需要重载
      * @param m
      * @param model
@@ -722,7 +722,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * 如有， 需要重载
      * @param m
      */
-    private void updateBefore(M m) {
+    protected void updateBefore(M m) {
 
     }
 
@@ -732,7 +732,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * 如有， 需要重载
      * @param m
      */
-    private void updateAfter(M m) {
+    protected void updateAfter(M m) {
     }
 
 
@@ -745,7 +745,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * 如有， 需要重载
      * @param m
      */
-    private void deleteBefore(M m) {
+    protected void deleteBefore(M m) {
     }
     /**
      * 删除之后要处理的
@@ -753,7 +753,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * 如有， 需要重载
      * @param m
      */
-    private void deleteAfter(M m) {
+    protected void deleteAfter(M m) {
     }
 
 
@@ -764,7 +764,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * 如有， 需要重载
      * @param m
      */
-    private void insertBefore(M m) {
+    protected void insertBefore(M m) {
     }
     /**
      * 增加之后要处理的
@@ -772,7 +772,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * 如有， 需要重载
      * @param m
      */
-    private void insertAfter(M m) {
+    protected void insertAfter(M m) {
     }
 
 
