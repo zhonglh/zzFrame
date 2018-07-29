@@ -21,6 +21,11 @@ public final class AppConfig {
      */
     public static boolean USE_SASS = false;
 
+    /**
+     * 是否有面包屑(导航)功能
+     */
+    public static boolean USE_CRUMB = true;
+
 
 
 

@@ -233,8 +233,12 @@ public abstract class BaseController {
     }
 
 
-
-    public void processPages(Pages page , HttpServletRequest request){
+    /**
+     * 处理分页信息， 设置页数 和每页记录数
+     * @param pages
+     * @param request
+     */
+    public void processPages(Pages pages , HttpServletRequest request){
 
     }
 

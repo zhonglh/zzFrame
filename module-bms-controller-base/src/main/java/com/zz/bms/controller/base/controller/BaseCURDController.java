@@ -3,6 +3,7 @@ package com.zz.bms.controller.base.controller;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.zz.bms.configs.AppConfig;
 import com.zz.bms.controller.base.PermissionList;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.base.service.BaseService;
@@ -36,15 +37,27 @@ import java.util.List;
  */
 public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Serializable  , Q extends Query > extends BaseBussinessController {
 
-
+    public final String defaultEditPageName = "editForm";
+    public final String defaultAddPageName = "editForm";
+    public final String defaultViewPageName = "viewForm";
+    public final String defaultListPageName = "listForm";
 
 
     protected BaseService<M, PK> baseService;
 
+    /**
+     * 判断列表是否需要设置一些公共信息
+     */
     private boolean listAlsoSetCommonData = true;
 
+    /**
+     * 本功能总的权限列表
+     */
     protected PermissionList permissionList = null;
 
+    /**
+     * 本功能的资源名称
+     */
     private String resourceIdentity = null;
 
 
@@ -93,12 +106,18 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         model.put(Constant.TABLEID, tableid);
         model.put(Constant.CURR_PARENT_URL, prefix);
 
-        //todo 菜单路径
-        model.put(Constant.BREADCRUMB , "");
+        //todo 处理面包屑 菜单路径
+        if(AppConfig.USE_CRUMB) {
+            model.put(Constant.BREADCRUMB, "");
+        }
 
-
-        return viewName("list");
+        String pageName = this.getListPageName();
+        if(StringUtils.isEmpty(pageName)){
+            pageName = defaultListPageName;
+        }
+        return viewName(pageName);
     }
+
 
 
     @RequestMapping(value = "/list" , method = RequestMethod.GET)
@@ -157,7 +176,12 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         customInfoByViewForm(m , model);
         model.addAttribute("m", m);
         model.addAttribute("entity", m);
-        return viewName("viewForm");
+
+        String pageName = this.getViewPageName();
+        if(StringUtils.isEmpty(pageName)){
+            pageName = defaultViewPageName;
+        }
+        return viewName(pageName);
     }
 
 
@@ -173,7 +197,12 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         customInfoByCreateForm(m , model);
         model.addAttribute("m",  m);
         model.addAttribute("entity", m);
-        return viewName("editForm");
+
+        String pageName = this.getAddPageName();
+        if(StringUtils.isEmpty(pageName)){
+            pageName = defaultAddPageName;
+        }
+        return viewName(pageName);
     }
 
 
@@ -195,7 +224,12 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         customInfoByUpdateForm(m , model);
         model.addAttribute("m", m);
         model.addAttribute("entity", m);
-        return viewName("editForm");
+
+        String pageName = this.getEditPageName();
+        if(StringUtils.isEmpty(pageName)){
+            pageName = defaultEditPageName;
+        }
+        return viewName(pageName);
     }
 
 
@@ -390,8 +424,34 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
 
+    /**
+     * 权限前缀：如sys:user
+     * 则生成的新增权限为 sys:user:create
+     */
+    public void setResourceIdentity(String resourceIdentity) {
+        if (!StringUtils.isEmpty(resourceIdentity)) {
+            this.resourceIdentity = resourceIdentity ;
+            permissionList = PermissionList.newPermissionList(resourceIdentity);
+        }
+    }
 
 
+
+
+
+
+
+
+
+
+
+
+    /**
+     * 是否重复
+     * @param m
+     * @return
+     */
+    protected abstract boolean isExist(M m) ;
 
 
     /**
@@ -503,11 +563,6 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     }
 
 
-
-
-
-
-
     /**
      * 设置基础service
      *
@@ -518,6 +573,35 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         this.baseService = baseService;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * 列表也设置common data
      */
@@ -527,36 +611,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
     /**
-     * 权限前缀：如sys:user
-     * 则生成的新增权限为 sys:user:create
-     */
-    public void setResourceIdentity(String resourceIdentity) {
-        if (!StringUtils.isEmpty(resourceIdentity)) {
-            this.resourceIdentity = resourceIdentity ;
-            permissionList = PermissionList.newPermissionList(resourceIdentity);
-        }
-    }
-
-
-    /**
-     * 是否重复
-     * @param m
-     * @return
-     */
-    protected abstract boolean isExist(M m) ;
-
-
-
-
-
-
-
-
-
-
-
-    /**
      * 处理查询参数
+     * 查询参数如果需要特殊处理， 需要重载
      * @param query
      */
     protected void processQuery(Q query , M m){
@@ -565,6 +621,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     /**
      * 处理查询结果
+     * 查询结果数据需要特殊处理， 需要重载
      * @param records
      */
     protected void processResult(List<M> records){
@@ -574,6 +631,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     /**
      * 保存前设置一些 业务定制的值
+     * 保存时有特殊的值需要先设置，需要重载 ， 否则无法通过校验
+     * 比如一些状态值， 比如有效状态， 在新增是如果在界面上没有设置，应该默认设置一个状态
      * @param m
      */
     protected void setCustomInfoByInsert(M m){
@@ -581,7 +640,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     }
 
     /**
-     * 保存前设置一些 业务定制的值
+     * 更新前设置一些 业务定制的值
+     * 更新时有特殊的值需要联动或定制，需要重载
      * @param m
      */
     protected void setCustomInfoByUpdate(M m){
@@ -590,7 +650,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     /**
      * 对删除的数据再次过滤
-     * 比如规定不能删除admin的 用户,不能删除正在运行流程的数据等
+     * 比如规定不能删除admin的用户,不能删除正在审批的数据等 ,
+     * 如有， 需要重载
      * @param wrapper
      */
     protected void setCustomInfoByDelete(Wrapper<M> wrapper) {
@@ -605,6 +666,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     /**
      * 查询数据转Wrapper
+     * 有些特殊的界面，比如 查询条件之间是 OR 的关系而不是默认的 AND ,  或者关键字查询多个业务字段 查用户时关键字包括姓名 手机号 邮箱
      * @param query
      * @param m
      * @return
@@ -616,6 +678,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     /**
      * 查看界面一些定制的操作
+     * 如有， 需要重载
      * @param m
      * @param model
      */
@@ -623,8 +686,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     }
 
     /**
-     * 创建界面一些定制的操作
-     * @param m
+     * 增加界面一些定制的操作
+     * 如有， 需要重载
      * @param model
      */
     protected void customInfoByCreateForm(M m, ModelMap model) {
@@ -633,6 +696,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     /**
      * 修改界面一些定制的操作
+     * 如有， 需要重载
      * @param m
      * @param model
      */
@@ -643,7 +707,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     /**
      * 设置通用数据
-     * 在新增 或 修改界面，  提供下拉数据等
+     * 在新增 或 修改 列表 等界面 ，  提供下拉数据等
+     * 如有， 需要重载
      * @param m
      * @param model
      */
@@ -653,28 +718,101 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     /**
      * 修改之前要处理的
-     * @param m
-     */
-    private void updateAfter(M m) {
-    }
-
-    /**
-     * 修改之后要处理的
+     * 比如修改前再次校验
+     * 如有， 需要重载
      * @param m
      */
     private void updateBefore(M m) {
 
     }
 
-
-    private void deleteAfter(M m) {
+    /**
+     * 修改之后要处理的
+     * 比如修改后其他功能的数据需要处理
+     * 如有， 需要重载
+     * @param m
+     */
+    private void updateAfter(M m) {
     }
+
+
+
+
+
+    /**
+     * 删除之前要处理的
+     * 比如删除前再次校验
+     * 如有， 需要重载
+     * @param m
+     */
     private void deleteBefore(M m) {
     }
+    /**
+     * 删除之后要处理的
+     * 比如删除后其他功能的数据需要删除或者修改
+     * 如有， 需要重载
+     * @param m
+     */
+    private void deleteAfter(M m) {
+    }
 
+
+
+    /**
+     * 增加之前要处理的
+     * 比如增加前再次校验
+     * 如有， 需要重载
+     * @param m
+     */
+    private void insertBefore(M m) {
+    }
+    /**
+     * 增加之后要处理的
+     * 比如增加后其他功能的数据需要处理
+     * 如有， 需要重载
+     * @param m
+     */
     private void insertAfter(M m) {
     }
-    private void insertBefore(M m) {
+
+
+    /**
+     * 返回新增页面指定的Page 名称
+     * 如果没有指定，将会使用默认的名称: editForm  对应新增页面为 editForm.jsp
+     * @return
+     */
+    protected String getAddPageName(){
+        return null;
+    }
+
+
+    /**
+     * 返回编辑页面指定的Page 名称
+     * 如果没有指定，将会使用默认的名称: editForm  对应编辑页面为 editForm.jsp
+     * @return
+     */
+    protected String getEditPageName(){
+        return null;
+    }
+
+
+    /**
+     * 返回查看页面指定的Page 名称
+     * 如果没有指定，将会使用默认的名称: viewForm  对应编辑页面为 viewForm.jsp
+     * @return
+     */
+    protected String getViewPageName(){
+        return null;
+    }
+
+
+    /**
+     * 返回列表页面指定的Page 名称
+     * 如果没有指定，将会使用默认的名称: listForm  对应编辑页面为 list.jsp
+     * @return
+     */
+    protected String getListPageName(){
+        return null;
     }
 
 }

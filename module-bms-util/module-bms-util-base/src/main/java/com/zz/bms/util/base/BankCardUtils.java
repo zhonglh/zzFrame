@@ -24,12 +24,14 @@ public class BankCardUtils {
 
 	private final static String ILLEGAL_NUMBER = "请输入正确的银行卡号";
 
+
+	final static Pattern pattern = Pattern.compile("[0-9]*");
+
 	public static String luhmCheck(String bankno) {
 		if (bankno.length() < 16 || bankno.length() > 19) {
 			return BAD_LENGTH;
 		}
 
-		final Pattern pattern = Pattern.compile("[0-9]*");
 		Matcher match = pattern.matcher(bankno);
 		if (match.matches() == false) {
 			return NOT_NUMBER;
@@ -57,13 +59,15 @@ public class BankCardUtils {
 
 		for (int j = 0; j < newArr.length; j++) {
 			if ((j + 1) % 2 == 1) {// 奇数位
-				if ((int) (newArr[j] - 48) * 2 < 9)
+				if ((int) (newArr[j] - 48) * 2 < 9) {
 					arrSingleNum[j] = (int) (newArr[j] - 48) * 2;
-				else
+				}else {
 					arrSingleNum2[j] = (int) (newArr[j] - 48) * 2;
-			} else
+				}
+			} else {
 				// 偶数位
 				arrDoubleNum[j] = (int) (newArr[j] - 48);
+			}
 		}
 
 		int[] arrSingleNumChild = new int[newArr.length]; // 奇数位*2 >9
