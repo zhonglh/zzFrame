@@ -40,7 +40,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     public final String defaultEditPageName = "editForm";
     public final String defaultAddPageName = "editForm";
     public final String defaultViewPageName = "viewForm";
-    public final String defaultListPageName = "listForm";
+    public final String defaultListPageName = "list";
 
 
     protected BaseService<M, PK> baseService;
