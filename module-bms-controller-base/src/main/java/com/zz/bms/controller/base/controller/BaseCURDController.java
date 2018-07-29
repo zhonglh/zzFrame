@@ -160,7 +160,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @return
      */
     @RequestMapping(value = "/{id}/view", method = RequestMethod.GET)
-    public String showViewForm(ModelMap model, @PathVariable("id") PK id) {
+    public String showViewForm(ModelMap model, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
 
         this.permissionList.assertHasViewPermission();
 
@@ -187,7 +187,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String showCreateForm(M m ,ModelMap model) {
+    public String showCreateForm(M m ,ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 
         this.permissionList.assertHasCreatePermission();
 
@@ -208,7 +208,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
-    public String showUpdateForm(ModelMap model, @PathVariable("id") PK id) {
+    public String showUpdateForm(ModelMap model, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
 
         this.permissionList.assertHasUpdatePermission();
 
@@ -236,7 +236,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public Object create( M m, ModelMap model,BindingResult result, RedirectAttributes redirectAttributes) {
+    public Object create( M m, ModelMap model , HttpServletRequest request, HttpServletResponse response) {
 
         this.permissionList.assertHasCreatePermission();
 
@@ -274,9 +274,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     @RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
     @ResponseBody
-    public Object update(@PathVariable("id") PK id,
-            ModelMap model, M m , BindingResult result,
-            RedirectAttributes redirectAttributes) {
+    public Object update(@PathVariable("id") PK id, ModelMap model, M m , HttpServletRequest request, HttpServletResponse response) {
 
         this.permissionList.assertHasUpdatePermission();
 
@@ -326,12 +324,13 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     /**
      * 单条删除
      * @param id
-     * @param redirectAttributes
+     * @param request
+     * @param response
      * @return
      */
     @RequestMapping(value = "/{id}/delete", method = {RequestMethod.POST, RequestMethod.DELETE})
     @ResponseBody
-    public Object delete(         @PathVariable("id") PK id,           RedirectAttributes redirectAttributes) {
+    public Object delete(         @PathVariable("id") PK id , HttpServletRequest request, HttpServletResponse response) {
 
 
         this.permissionList.assertHasDeletePermission();
@@ -365,14 +364,13 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     /**
      * 批量删除
      * @param ids
-     * @param redirectAttributes
+     * @param request
+     * @param response
      * @return
      */
     @RequestMapping(value = "/batch/delete" ,method = {RequestMethod.POST, RequestMethod.DELETE})
     @ResponseBody
-    public Object deleteInBatch(
-            @RequestParam(value = "ids", required = false) String ids,
-            RedirectAttributes redirectAttributes) {
+    public Object deleteInBatch(@RequestParam(value = "ids", required = false) String ids, HttpServletRequest request, HttpServletResponse response) {
 
 
         this.permissionList.assertHasDeletePermission();
