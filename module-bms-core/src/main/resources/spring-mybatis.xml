@@ -29,7 +29,7 @@
     <!-- Spring整合Mybatis，更多查看文档：http://mp.baomidou.com -->
     <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="typeAliasesPackage" value="com.**.domain;com.**.entity;com.**.bo"/>
+        <property name="typeAliasesPackage" value="com.zz.**.domain;com.zz.**.entity;com.zz.**.bo"/>
         <property name="configuration" ref="mybatisConfig"/>
         <!-- MP 全局配置注入 -->
         <property name="globalConfig" ref="globalConfig"/>
@@ -49,14 +49,8 @@
                 <!-- 分页插件配置 -->
                 <bean id="paginationInterceptor" class="com.baomidou.mybatisplus.plugins.PaginationInterceptor" />
                 <!-- 乐观锁插件 -->
-                <bean id="optimisticLockerInterceptor"  class="com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor">
-                </bean>
-                <!-- 性能拦截器，兼打印sql，不建议生产环境配置-->
-                <bean id="performanceInterceptor"  class="com.baomidou.mybatisplus.plugins.PerformanceInterceptor" >
-                    <property name="maxTime" value="100" />
-                    <!--SQL是否格式化 默认false-->
-                    <property name="format" value="true" />
-                </bean>
+                <bean id="optimisticLockerInterceptor"  class="com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor" />
+
             </array>
         </property>
     </bean>
@@ -101,7 +95,7 @@
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.**.dao" />
+        <property name="basePackage" value="com.zz.**.dao" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
     </bean>
 

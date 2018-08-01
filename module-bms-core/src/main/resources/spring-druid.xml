@@ -94,8 +94,8 @@
           scope="prototype">
         <property name="patterns">
             <list>
-                <value>com.*.controller.*</value>
-                <value>com.*.service.*.*</value>
+                <value>com.zz.*.controller.*</value>
+                <value>com.zz.*.service.*.*</value>
             </list>
         </property>
     </bean>
