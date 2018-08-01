@@ -169,8 +169,6 @@ public class StringFormatKit {
     /**
      * @Title: toUnderlineName
      * @Description: 驼峰转下划线方法
-     * @Author: Hongli
-     * @Since: 2014年5月6日下午3:05:03
      * @param s
      * @return
      */
@@ -206,8 +204,6 @@ public class StringFormatKit {
     /**
      * @Title: toCamelCase
      * @Description: 下划线转驼峰
-     * @Author: Hongli
-     * @Since: 2014年5月6日下午2:40:44
      * @param s
      * @return
      */

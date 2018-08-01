@@ -248,6 +248,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         this.setInsertInfo(m, sessionUserVO);
         this.setCustomInfoByInsert(m);
+        this.processBO(m);
         checkEntityRequired(m);
 
         boolean success = false;
@@ -299,7 +300,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         }
         this.setUpdateInfo(m, sessionUserVO);
         setCustomInfoByUpdate(m);
-
+        this.processBO(m);
         checkEntityLegality(m);
 
         boolean success = false;
@@ -628,6 +629,16 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
     /**
+     * 保存或修改之前， 处理BO中属性的值
+     * 如反填 状态名称的值
+     * @param m
+     */
+    protected void processBO(M m){
+
+    }
+
+
+    /**
      * 保存前设置一些 业务定制的值
      * 保存时有特殊的值需要先设置，需要重载 ， 否则无法通过校验
      * 比如一些状态值， 比如有效状态， 在新增是如果在界面上没有设置，应该默认设置一个状态
@@ -672,6 +683,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     protected Wrapper buildWrapper(Q query , M m) {
         return  query.buildWrapper();
     }
+
+
+
 
 
     /**

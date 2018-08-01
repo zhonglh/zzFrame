@@ -65,41 +65,9 @@ public abstract class BaseBussinessController extends BaseController {
      * @param sessionUserVO
      */
     public void setInsertInfo(BaseEntity be , ILoginUserEntity sessionUserVO){
-
-        //todo , 如果是自增数字类型， 就不需要设置id
-        be.setId(IdUtils.getId());
-
-        Timestamp currDate_ = DateKit.getCurrentDate();
-        if(BusinessConfig.USE_TENANT) {
-            be.setTenantId(sessionUserVO.getTenantId());
-        }
-        if(be instanceof BaseBusinessSimpleEntity){
-            BaseBusinessSimpleEntity bbe = (BaseBusinessSimpleEntity)be;
-            bbe.setCreateTime(currDate_);
-            bbe.setCreateUserId(sessionUserVO.getId());
-            bbe.setUpdateTime(currDate_);
-            bbe.setUpdateUserId(sessionUserVO.getId());
-            bbe.setVersionNo(Constant.INIT_VERSION);
-        }else if(be instanceof BaseBusinessEntity){
-            BaseBusinessEntity bbe = (BaseBusinessEntity)be;
-            bbe.setCreateTime(currDate_);
-            bbe.setCreateUserId(sessionUserVO.getId());
-            bbe.setUpdateTime(currDate_);
-            bbe.setUpdateUserId(sessionUserVO.getId());
-            bbe.setVersionNo(Constant.INIT_VERSION);
-            bbe.setDeleteFlag(EnumYesNo.NO.getCode());
-        }
-        if(be instanceof BaseBusinessExEntity ){
-            BaseBusinessExEntity bbex = (BaseBusinessExEntity)be;
-            bbex.setCreateUserName(sessionUserVO.getUserName());
-            bbex.setUpdateUserName(sessionUserVO.getUserName());
-        }
-        if(be instanceof BaseBusinessSimpleExEntity ){
-            BaseBusinessSimpleExEntity bbex = (BaseBusinessSimpleExEntity)be;
-            bbex.setCreateUserName(sessionUserVO.getUserName());
-            bbex.setUpdateUserName(sessionUserVO.getUserName());
-        }
+        EntityUtil.autoSetEntity(be, sessionUserVO);
     }
+
 
     /**
      * 修改对象 将 加上修改信息
@@ -113,7 +81,16 @@ public abstract class BaseBussinessController extends BaseController {
             bbe.setUpdateTime(currDate_);
             bbe.setUpdateUserId(sessionUserVO.getId());
         }
+        if(be instanceof BaseBusinessSimpleEntity){
+            BaseBusinessEntity bbe = (BaseBusinessEntity)be;
+            bbe.setUpdateTime(currDate_);
+            bbe.setUpdateUserId(sessionUserVO.getId());
+        }
         if(be instanceof BaseBusinessExEntity){
+            BaseBusinessExEntity bbex = (BaseBusinessExEntity)be;
+            bbex.setUpdateUserName(sessionUserVO.getUserName());
+        }
+        if(be instanceof BaseBusinessSimpleExEntity){
             BaseBusinessExEntity bbex = (BaseBusinessExEntity)be;
             bbex.setUpdateUserName(sessionUserVO.getUserName());
         }
