@@ -99,7 +99,7 @@ public class PropertiesUtil {
             propURL = fil.toURI ().toURL ();
         } catch (MalformedURLException e) {
             logger.error ("getConfPath MalformedURLException = " + e);
-        } catch (IOException e) {
+        } catch (Exception e) {
             logger.error ("getConfPath IOException = " + e);
             throw new RuntimeException(e);
         }
