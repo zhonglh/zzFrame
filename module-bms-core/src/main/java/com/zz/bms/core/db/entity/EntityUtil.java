@@ -15,6 +15,10 @@ public class EntityUtil {
 
 
     public static void autoSetEntity(BaseEntity be, ILoginUserEntity sessionUserVO) {
+        if(be == null || sessionUserVO == null){
+            return ;
+        }
+
         //todo , 如果是自增数字类型， 就不需要设置id
         be.setId(IdUtils.getId());
 
