@@ -23,9 +23,6 @@ import java.util.List;
 public class VsUserController extends DefaultController<VsUserBO, String , VsUserQueryWebImpl> {
 
 
-
-
-
     @Override
     protected boolean isExist(VsUserBO userEntity) {
 
