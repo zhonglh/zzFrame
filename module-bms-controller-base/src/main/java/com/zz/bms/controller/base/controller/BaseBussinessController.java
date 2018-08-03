@@ -82,7 +82,7 @@ public abstract class BaseBussinessController extends BaseController {
             bbe.setUpdateUserId(sessionUserVO.getId());
         }
         if(be instanceof BaseBusinessSimpleEntity){
-            BaseBusinessEntity bbe = (BaseBusinessEntity)be;
+            BaseBusinessSimpleEntity bbe = (BaseBusinessSimpleEntity)be;
             bbe.setUpdateTime(currDate_);
             bbe.setUpdateUserId(sessionUserVO.getId());
         }
@@ -91,7 +91,7 @@ public abstract class BaseBussinessController extends BaseController {
             bbex.setUpdateUserName(sessionUserVO.getUserName());
         }
         if(be instanceof BaseBusinessSimpleExEntity){
-            BaseBusinessExEntity bbex = (BaseBusinessExEntity)be;
+            BaseBusinessSimpleExEntity bbex = (BaseBusinessSimpleExEntity)be;
             bbex.setUpdateUserName(sessionUserVO.getUserName());
         }
     }
