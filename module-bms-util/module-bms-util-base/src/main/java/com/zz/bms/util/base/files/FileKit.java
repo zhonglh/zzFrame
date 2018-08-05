@@ -450,8 +450,6 @@ public class FileKit {
     /**
      * @Title: getFileName
      * @Description: 在文件路径中截取文件名
-     * @Author: Hongli
-     * @Since: 2014年4月2日下午1:05:29
      * @param filePath
      * @return
      * @throws FileNotFoundException
@@ -714,7 +712,7 @@ public class FileKit {
 
     /**
      * 判断文件类型
-     * 
+     *
      * @param filePath
      *            文件路径
      * @return 文件类型

@@ -65,25 +65,7 @@ public class FileUtils {
 		return fileName.substring(0, splitIndex);
 	}
 	
-	
-	/**
-	public static FileItem getUploadFileItem(HttpServletRequest request) throws FileUploadException {
-		FileCleaningTracker fileCleaningTracker = FileCleanerCleanup.getFileCleaningTracker(request.getSession().getServletContext());
-		DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
-		diskFileItemFactory.setFileCleaningTracker(fileCleaningTracker);
-		ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory);
-		servletFileUpload.setHeaderEncoding("utf-8");
-		List<?> list = servletFileUpload.parseRequest(request);
-		for (int i = 0; i < list.size(); i++) {
-			FileItem fileItem = (FileItem) list.get(i);
-			if (!fileItem.isFormField() && fileItem.getName().length() > 0) {
-				 return fileItem;
-			}
-		}
-		return null;
-	}
-	*/
-	
+
 
 	public static FileItem getUploadFileItem(HttpServletRequest request) throws FileUploadException {
 		DiskFileUpload diskFileUpload = new DiskFileUpload();
