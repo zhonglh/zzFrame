@@ -15,6 +15,9 @@ import java.lang.reflect.*;
 import java.util.*;
 import java.util.Map.Entry;
 
+/**
+ * @author Administrator
+ */
 public class BeanKit extends org.springframework.beans.BeanUtils {
 
     public static void copyProperties(Object source, Object target) throws BeansException {
@@ -60,7 +63,9 @@ public class BeanKit extends org.springframework.beans.BeanUtils {
                         }
                         Object value = readMethod.invoke (source);
                         if (!nullOverWrite) {
-                            if (value == null) continue;
+                            if (value == null) {
+                                continue;
+                            }
                         }
                         Method writeMethod = targetPd.getWriteMethod ();
                         if (!Modifier.isPublic (writeMethod.getDeclaringClass ().getModifiers ())) {
@@ -526,10 +531,14 @@ public class BeanKit extends org.springframework.beans.BeanUtils {
             try {
                 object = constructors[counter].newInstance (params);
             } catch (Exception e) {
-                if (e instanceof InvocationTargetException) logger.error ("", ((InvocationTargetException) e).getTargetException ());
+                if (e instanceof InvocationTargetException) {
+                    logger.error ("", ((InvocationTargetException) e).getTargetException ());
+                }
             }
         }
-        if (object == null) throw new InstantiationException();
+        if (object == null) {
+            throw new InstantiationException();
+        }
         return object;
     }
 
@@ -552,7 +561,9 @@ public class BeanKit extends org.springframework.beans.BeanUtils {
                 for ( int i = 0 ; i < pojoClass.getInterfaces ().length ; i++ ) {
                     Class<?> ifc = pojoClass.getInterfaces ()[i];
                     // not add jdk interface
-                    if (!ifc.getName ().startsWith ("java.")) interfacesL.add (ifc);
+                    if (!ifc.getName ().startsWith ("java.")) {
+                        interfacesL.add (ifc);
+                    }
                 }
                 pojoClass = pojoClass.getSuperclass ();
             }

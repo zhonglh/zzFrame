@@ -1,6 +1,7 @@
 package com.zz.bms.util.base.java;
 
 import com.zz.bms.util.base.data.StringUtil;
+import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
@@ -73,8 +74,6 @@ public class ReflectionSuper {
 			return sets;
 		}
 	}
-
-	
 
 
 	/**
