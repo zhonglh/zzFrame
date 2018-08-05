@@ -339,8 +339,9 @@ public class FileKit {
         try {
             path = separatorReplace(path);
             File file = getFile(path);
-            if (null != file && file.exists()) file.delete();
-            // if (!file.delete ()) { throw new Exception ("delete file failure"); }
+            if (null != file && file.exists()) {
+                file.delete();
+            }
         }catch(Exception e){
 
         }
@@ -357,7 +358,9 @@ public class FileKit {
     public static void deleteFile(String dir, String prefix, String suffix) throws Exception {
         dir = separatorReplace (dir);
         File directory = getFolder (dir);
-        if (null == directory) return;
+        if (null == directory) {
+            return;
+        }
         File[] files = directory.listFiles ();
         for ( File file : files ) {
             if (file.isFile ()) {
@@ -378,7 +381,9 @@ public class FileKit {
     public static void deleteFolder(String path) throws Exception {
         path = separatorReplace (path);
         File folder = getFolder (path);
-        if (null == folder) return;
+        if (null == folder) {
+            return;
+        }
         File[] files = folder.listFiles ();
         for ( File file : files ) {
             if (file.isDirectory ()) {
@@ -402,7 +407,9 @@ public class FileKit {
         dir = separatorReplace (dir);
         File f = null;
         File folder = getFolder (dir);
-        if (null == folder) throw new FileNotFoundException(dir + " folder not found");
+        if (null == folder) {
+            throw new FileNotFoundException(dir + " folder not found");
+        }
         File[] files = folder.listFiles ();
         for ( File file : files ) {
             if (file.isDirectory ()) {
@@ -431,7 +438,9 @@ public class FileKit {
     public static String getFileType(String path) throws FileNotFoundException {
         path = separatorReplace (path);
         File file = getFile (path);
-        if (null == file) throw new FileNotFoundException(path + " file not found");
+        if (null == file) {
+            throw new FileNotFoundException(path + " file not found");
+        }
         String fileName = file.getName ();
         String[] strs = fileName.split ("\\.");
         if (strs.length < 2) { return "unknownType"; }
@@ -450,7 +459,9 @@ public class FileKit {
     public static String getFileName(String filePath){
         filePath = separatorReplace (filePath);
         String fileName = filePath;
-        if (fileName.indexOf ("/") > -1) fileName = filePath.substring (filePath.lastIndexOf ("/") + 1, filePath.length ());
+        if (fileName.indexOf ("/") > -1) {
+            fileName = filePath.substring (filePath.lastIndexOf ("/") + 1, filePath.length ());
+        }
         return fileName;
     }
 
@@ -764,7 +775,6 @@ public class FileKit {
     /**
      * @Title: getString4File
      * @Description: 读取流文件
-     * @Author: Hongli
      * @Since: 2014年4月8日下午4:47:44
      * @param in
      * @param charset
@@ -800,7 +810,6 @@ public class FileKit {
     /**
      * @Title: getFolderAllFile
      * @Description: 返回某个目录下所有文件
-     * @Author: Hongli
      * @Since: 2014年4月18日上午10:05:51
      * @param file
      * @return
@@ -829,7 +838,6 @@ public class FileKit {
     /**
      * @Title: getFolderAllFile
      * @Description: 返回某个目录下所有文件
-     * @Author: Hongli
      * @Since: 2014年4月18日上午10:08:25
      * @param folderPath
      * @return
