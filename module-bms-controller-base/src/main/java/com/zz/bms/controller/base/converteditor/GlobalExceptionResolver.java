@@ -3,6 +3,7 @@ package com.zz.bms.controller.base.converteditor;
 import com.alibaba.fastjson.JSON;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.vo.AjaxJson;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -64,6 +65,9 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
         String msg =  null;
         if(e instanceof BizException){
             msg = (((BizException)e).getMsg());
+            if(StringUtils.isEmpty(msg)){
+                msg = e.getMessage();
+            }
             model.put("exceptionMessage", msg);
             model.put("e", e);
             return new ModelAndView("common/error", model);
@@ -92,6 +96,9 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
         if(e instanceof BizException){
             BizException be = (BizException)e;
             json.setMsg(be.getMsg());
+            if(StringUtils.isEmpty(json.getMsg())){
+                json.setMsg(be.getMessage());
+            }
             if(be.getCode() != 500 && be.getCode() != 401 ){
                 json.setCode(500);
             }
