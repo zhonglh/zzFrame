@@ -43,6 +43,7 @@ public class BizException extends RuntimeException {
 
     public BizException(String message) {
         super(message);
+        this.msg = msg;
     }
 
     public String getMsg() {
