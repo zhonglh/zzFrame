@@ -450,7 +450,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @param m
      * @return
      */
-    protected abstract boolean isExist(M m) ;
+    protected boolean isExist(M m) {
+        return false;
+    }
 
 
     /**
