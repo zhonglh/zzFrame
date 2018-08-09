@@ -3,12 +3,10 @@ package com.zz.bms.controller.base.controller;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.zz.bms.annotaions.EntityAttrCheckAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
-import com.zz.bms.configs.AppConfig;
 import com.zz.bms.configs.BusinessConfig;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.*;
 import com.zz.bms.core.enums.EnumErrorMsg;
-import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.ui.Pages;
 import com.zz.bms.core.ui.TreeModel;
@@ -19,7 +17,6 @@ import com.zz.bms.util.base.BankCardUtils;
 import com.zz.bms.util.base.data.DateKit;
 import com.zz.bms.util.base.data.SerializableUtil;
 import com.zz.bms.util.base.data.StringUtil;
-import com.zz.bms.util.base.java.IdUtils;
 import com.zz.bms.util.base.java.ReflectionUtil;
 import com.zz.bms.util.base.spring.SpringUtil;
 
@@ -65,7 +62,7 @@ public abstract class BaseBussinessController extends BaseController {
      * @param sessionUserVO
      */
     public void setInsertInfo(BaseEntity be , ILoginUserEntity sessionUserVO){
-        EntityUtil.autoSetEntity(be, sessionUserVO);
+        EntityUtil.autoSetInsertEntity(be, sessionUserVO);
     }
 
 
@@ -75,25 +72,7 @@ public abstract class BaseBussinessController extends BaseController {
      * @param sessionUserVO
      */
     public void setUpdateInfo(BaseEntity be , ILoginUserEntity sessionUserVO){
-        Timestamp currDate_ = DateKit.getCurrentDate();
-        if(be instanceof BaseBusinessEntity){
-            BaseBusinessEntity bbe = (BaseBusinessEntity)be;
-            bbe.setUpdateTime(currDate_);
-            bbe.setUpdateUserId(sessionUserVO.getId());
-        }
-        if(be instanceof BaseBusinessSimpleEntity){
-            BaseBusinessSimpleEntity bbe = (BaseBusinessSimpleEntity)be;
-            bbe.setUpdateTime(currDate_);
-            bbe.setUpdateUserId(sessionUserVO.getId());
-        }
-        if(be instanceof BaseBusinessExEntity){
-            BaseBusinessExEntity bbex = (BaseBusinessExEntity)be;
-            bbex.setUpdateUserName(sessionUserVO.getUserName());
-        }
-        if(be instanceof BaseBusinessSimpleExEntity){
-            BaseBusinessSimpleExEntity bbex = (BaseBusinessSimpleExEntity)be;
-            bbex.setUpdateUserName(sessionUserVO.getUserName());
-        }
+        EntityUtil.autoSetUpdateEntity(be, sessionUserVO);
     }
 
 

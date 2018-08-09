@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 public class EntityUtil {
 
 
-    public static void autoSetEntity(BaseEntity be, ILoginUserEntity sessionUserVO) {
+    public static void autoSetInsertEntity(BaseEntity be, ILoginUserEntity sessionUserVO) {
         if(be == null || sessionUserVO == null){
             return ;
         }
@@ -50,6 +50,29 @@ public class EntityUtil {
         if(be instanceof BaseBusinessSimpleExEntity ){
             BaseBusinessSimpleExEntity bbex = (BaseBusinessSimpleExEntity)be;
             bbex.setCreateUserName(sessionUserVO.getUserName());
+            bbex.setUpdateUserName(sessionUserVO.getUserName());
+        }
+    }
+
+
+    public static void autoSetUpdateEntity(BaseEntity be, ILoginUserEntity sessionUserVO) {
+        Timestamp currDate_ = DateKit.getCurrentDate();
+        if(be instanceof BaseBusinessEntity){
+            BaseBusinessEntity bbe = (BaseBusinessEntity)be;
+            bbe.setUpdateTime(currDate_);
+            bbe.setUpdateUserId(sessionUserVO.getId());
+        }
+        if(be instanceof BaseBusinessSimpleEntity){
+            BaseBusinessSimpleEntity bbe = (BaseBusinessSimpleEntity)be;
+            bbe.setUpdateTime(currDate_);
+            bbe.setUpdateUserId(sessionUserVO.getId());
+        }
+        if(be instanceof BaseBusinessExEntity){
+            BaseBusinessExEntity bbex = (BaseBusinessExEntity)be;
+            bbex.setUpdateUserName(sessionUserVO.getUserName());
+        }
+        if(be instanceof BaseBusinessSimpleExEntity){
+            BaseBusinessSimpleExEntity bbex = (BaseBusinessSimpleExEntity)be;
             bbex.setUpdateUserName(sessionUserVO.getUserName());
         }
     }
