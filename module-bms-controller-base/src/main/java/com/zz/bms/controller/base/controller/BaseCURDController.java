@@ -7,9 +7,7 @@ import com.zz.bms.configs.AppConfig;
 import com.zz.bms.controller.base.PermissionList;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.base.service.BaseService;
-import com.zz.bms.core.db.entity.BaseBusinessEntity;
-import com.zz.bms.core.db.entity.BaseEntity;
-import com.zz.bms.core.db.entity.ILoginUserEntity;
+import com.zz.bms.core.db.entity.*;
 import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.DbException;
@@ -683,7 +681,11 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @return
      */
     protected Wrapper buildWrapper(Q query , M m) {
-        return  query.buildWrapper();
+        Wrapper wrapper =   query.buildWrapper();
+        if(m instanceof BaseBusinessEntity || m instanceof BaseBusinessSimpleEntity){
+            wrapper.orderBy(" create_time " , false);
+        }
+        return wrapper;
     }
 
 
