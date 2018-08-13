@@ -22,23 +22,23 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
-      <module name="module-bms-config" target="1.7" />
-      <module name="module-bms-controller-base" target="1.7" />
-      <module name="module-bms-core" target="1.7" />
-      <module name="module-bms-oss" target="1.7" />
-      <module name="module-bms-oss-base" target="1.7" />
-      <module name="module-bms-oss-controller" target="1.7" />
-      <module name="module-bms-oss-engine" target="1.7" />
-      <module name="module-bms-redis" target="1.7" />
-      <module name="module-bms-shiro" target="1.7" />
-      <module name="module-bms-system" target="1.7" />
-      <module name="module-bms-system-base" target="1.7" />
-      <module name="module-bms-system-controller" target="1.7" />
-      <module name="module-bms-util" target="1.7" />
-      <module name="module-bms-util-base" target="1.7" />
-      <module name="project-bms-system-web" target="1.7" />
-      <module name="project-bms-web-base" target="1.7" />
-      <module name="zzFrame" target="1.7" />
+      <module name="module-bms-config" target="1.8" />
+      <module name="module-bms-controller-base" target="1.8" />
+      <module name="module-bms-core" target="1.8" />
+      <module name="module-bms-oss" target="1.8" />
+      <module name="module-bms-oss-base" target="1.8" />
+      <module name="module-bms-oss-controller" target="1.8" />
+      <module name="module-bms-oss-engine" target="1.8" />
+      <module name="module-bms-redis" target="1.8" />
+      <module name="module-bms-shiro" target="1.8" />
+      <module name="module-bms-system" target="1.8" />
+      <module name="module-bms-system-base" target="1.8" />
+      <module name="module-bms-system-controller" target="1.8" />
+      <module name="module-bms-util" target="1.8" />
+      <module name="module-bms-util-base" target="1.8" />
+      <module name="project-bms-system-web" target="1.8" />
+      <module name="project-bms-web-base" target="1.8" />
+      <module name="zzFrame" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
