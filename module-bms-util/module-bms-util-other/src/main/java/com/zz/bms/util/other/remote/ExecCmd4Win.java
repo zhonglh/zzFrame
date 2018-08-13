@@ -1,4 +1,4 @@
-package com.zz.bms.util.base.remote;
+package com.zz.bms.util.other.remote;
 
 
 import net.neoremind.sshxcute.core.Result;
@@ -29,7 +29,9 @@ public class ExecCmd4Win {
             
             String stdin = r.sysout;
             StringBuffer stdinBuffer = null;
-            if(stdin != null) stdinBuffer = new StringBuffer(r.sysout);
+            if(stdin != null) {
+                stdinBuffer = new StringBuffer(r.sysout);
+            }
 
             if (stdinBuffer != null && stdinBuffer.toString ().length () > 0) { return stdinBuffer.toString (); }
         } catch (Exception e) {

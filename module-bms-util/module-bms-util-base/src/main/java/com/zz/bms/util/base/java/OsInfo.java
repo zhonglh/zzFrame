@@ -1,7 +1,6 @@
 package com.zz.bms.util.base.java;
 
 
-import com.zz.bms.util.base.remote.EnumOsPlatform;
 
 public class OsInfo {
 	

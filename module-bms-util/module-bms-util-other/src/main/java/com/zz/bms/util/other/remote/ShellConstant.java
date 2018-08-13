@@ -1,4 +1,4 @@
-package com.zz.bms.util.base.remote;
+package com.zz.bms.util.other.remote;
 
 
 import com.zz.bms.util.base.PropertyConfig;

@@ -17,6 +17,7 @@
         <module name="module-bms-system-base" />
         <module name="module-bms-system-controller" />
         <module name="module-bms-util-base" />
+        <module name="module-bms-util-other" />
         <module name="project-bms-system-web" />
         <module name="project-bms-web-base" />
       </profile>
@@ -36,6 +37,7 @@
       <module name="module-bms-system-controller" target="1.8" />
       <module name="module-bms-util" target="1.8" />
       <module name="module-bms-util-base" target="1.8" />
+      <module name="module-bms-util-other" target="1.8" />
       <module name="project-bms-system-web" target="1.8" />
       <module name="project-bms-web-base" target="1.8" />
       <module name="zzFrame" target="1.8" />

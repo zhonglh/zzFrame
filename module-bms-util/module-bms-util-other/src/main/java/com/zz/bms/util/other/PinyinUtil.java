@@ -1,4 +1,4 @@
-package com.zz.bms.util.base.data;
+package com.zz.bms.util.other;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;

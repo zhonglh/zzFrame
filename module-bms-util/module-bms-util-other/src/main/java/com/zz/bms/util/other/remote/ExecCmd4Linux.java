@@ -1,4 +1,4 @@
-package com.zz.bms.util.base.remote;
+package com.zz.bms.util.other.remote;
 
 import org.apache.log4j.Logger;
 
@@ -36,6 +36,7 @@ public class ExecCmd4Linux {
 
                 ErrorStreamThread errThread = new ErrorStreamThread () {
 
+                    @Override
                     public void run(){
                         BufferedReader errReader = new BufferedReader(errInput);
                         try {
@@ -121,7 +122,7 @@ public class ExecCmd4Linux {
      * 该方法只验证错误流，如果有操作系统错误，就抛出
      * 
      * @param cmd
-     * @throws VMException
+     * @throws RuntimeException
      */
     public static String validateErrorStream(String[] cmd) throws RuntimeException {
         String data = Runtime (cmd);

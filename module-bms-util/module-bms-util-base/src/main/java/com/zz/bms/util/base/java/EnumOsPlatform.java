@@ -1,4 +1,4 @@
-package com.zz.bms.util.base.remote;
+package com.zz.bms.util.base.java;
 
 public enum EnumOsPlatform {
 

@@ -16,6 +16,7 @@
       <module fileurl="file://$PROJECT_DIR$/module-bms-system/module-bms-system-controller/module-bms-system-controller.iml" filepath="$PROJECT_DIR$/module-bms-system/module-bms-system-controller/module-bms-system-controller.iml" />
       <module fileurl="file://$PROJECT_DIR$/module-bms-util/module-bms-util.iml" filepath="$PROJECT_DIR$/module-bms-util/module-bms-util.iml" />
       <module fileurl="file://$PROJECT_DIR$/module-bms-util/module-bms-util-base/module-bms-util-base.iml" filepath="$PROJECT_DIR$/module-bms-util/module-bms-util-base/module-bms-util-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module-bms-util/module-bms-util-other/module-bms-util-other.iml" filepath="$PROJECT_DIR$/module-bms-util/module-bms-util-other/module-bms-util-other.iml" />
       <module fileurl="file://$PROJECT_DIR$/module-bms-system/project-bms-system-web/project-bms-system-web.iml" filepath="$PROJECT_DIR$/module-bms-system/project-bms-system-web/project-bms-system-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/project-bms-web-base/project-bms-web-base.iml" filepath="$PROJECT_DIR$/project-bms-web-base/project-bms-web-base.iml" />
       <module fileurl="file://$PROJECT_DIR$/zzFrame.iml" filepath="$PROJECT_DIR$/zzFrame.iml" />

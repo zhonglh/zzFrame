@@ -7,7 +7,6 @@
     <file url="file://$PROJECT_DIR$/module-bms-core" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/module-bms-oss" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/module-bms-oss/module-bms-oss-base" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/module-bms-oss/module-bms-oss-common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/module-bms-oss/module-bms-oss-controller" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/module-bms-oss/module-bms-oss-engine" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/module-bms-redis" charset="UTF-8" />
@@ -18,6 +17,7 @@
     <file url="file://$PROJECT_DIR$/module-bms-system/project-bms-system-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/module-bms-util" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/module-bms-util/module-bms-util-base" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-bms-util/module-bms-util-other" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project-bms-web-base" charset="UTF-8" />
   </component>
 </project>
