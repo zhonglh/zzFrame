@@ -250,11 +250,13 @@ public class StringUtil {
 	public static boolean check(String str) {
 		String sIllegal = "'\"";
 		int len = sIllegal.length();
-		if (null == str)
+		if (null == str) {
 			return false;
+		}
 		for (int i = 0; i < len; i++) {
-			if (str.indexOf(sIllegal.charAt(i)) != -1)
+			if (str.indexOf(sIllegal.charAt(i)) != -1) {
 				return true;
+			}
 		}
 
 		return false;
@@ -1374,17 +1376,20 @@ public class StringUtil {
 	 * @return 以“,”相隔的字符串
 	 */
 	public static <T> String listTtoString(List<T> list) {
-		if (list == null || list.size() < 1)
+		if (list == null || list.size() < 1) {
 			return "";
+		}
 		Iterator<T> i = list.iterator();
-		if (!i.hasNext())
+		if (!i.hasNext()) {
 			return "";
+		}
 		StringBuilder sb = new StringBuilder();
 		for (;;) {
 			T e = i.next();
 			sb.append(e);
-			if (!i.hasNext())
+			if (!i.hasNext()) {
 				return sb.toString();
+			}
 			sb.append(",");
 		}
 	}
@@ -1399,16 +1404,19 @@ public class StringUtil {
 	 * @return 以“,”相隔的字符串
 	 */
 	public static String intArraytoString(int[] a) {
-		if (a == null)
+		if (a == null) {
 			return "";
+		}
 		int iMax = a.length - 1;
-		if (iMax == -1)
+		if (iMax == -1) {
 			return "";
+		}
 		StringBuilder b = new StringBuilder();
 		for (int i = 0;; i++) {
 			b.append(a[i]);
-			if (i == iMax)
+			if (i == iMax) {
 				return b.toString();
+			}
 			b.append(",");
 		}
 	}
@@ -1429,29 +1437,34 @@ public class StringUtil {
 		boolean result = false;
 		float endNum = (float) 0.0;
 		if (content != null && content.length() > 0) {
-			if (content.length() % 1000 > 0)
+			if (content.length() % 1000 > 0) {
 				thousandNum = (int) Math.floor(content.length() / 1000) + 1;
-			else
+			} else {
 				thousandNum = (int) Math.floor(content.length() / 1000);
-			if (thousandNum < 3)
+			}
+			if (thousandNum < 3) {
 				subNum = 100 * thousandNum;
-			else if (thousandNum < 6)
+			} else if (thousandNum < 6) {
 				subNum = 200 * thousandNum;
-			else if (thousandNum < 9)
+			} else if (thousandNum < 9){
 				subNum = 300 * thousandNum;
-			else
+			} else {
 				subNum = 3000;
+			}
+
 			for (int j = 1; j < subNum; j++) {
-				if (content.length() % j > 0)
+				if (content.length() % j > 0) {
 					forNum = (int) Math.floor(content.length() / j) + 1;
-				else
+				}else {
 					forNum = (int) Math.floor(content.length() / j);
-				if (result || j >= content.length())
+				}
+				if (result || j >= content.length()) {
 					break;
-				else {
+				}else {
 					for (int m = 0; m < forNum; m++) {
-						if (m * j > content.length() || (m + 1) * j > content.length() || (m + 2) * j > content.length())
+						if (m * j > content.length() || (m + 1) * j > content.length() || (m + 2) * j > content.length()) {
 							break;
+						}
 						startStr = content.substring(m * j, (m + 1) * j);
 						nextStr = content.substring((m + 1) * j, (m + 2) * j);
 						if (startStr.equals(nextStr)) {
@@ -1461,8 +1474,9 @@ public class StringUtil {
 								result = true;
 								break;
 							}
-						} else
+						} else {
 							similarNum = 0;
+						}
 					}
 				}
 			}
@@ -1476,8 +1490,12 @@ public class StringUtil {
 		return valueOf(obj,false);
 	}
 	public static String valueOf(Object obj, boolean isWriteNullStringAsEmpty){
-		if(isWriteNullStringAsEmpty) return (obj == null) ? "" : obj.toString();
-		else return String.valueOf(obj);
+		if(isWriteNullStringAsEmpty) {
+			return (obj == null) ? "" : obj.toString();
+		}
+		else {
+			return String.valueOf(obj);
+		}
 	}
 
 	/**
@@ -1489,17 +1507,19 @@ public class StringUtil {
 	 * @return
 	 */
 	public static String full2Half(String str) {
-		if (str == null || "".equals(str))
+		if (str == null || "".equals(str)) {
 			return "";
+		}
 		StringBuffer sb = new StringBuffer();
 
 		for (int i = 0; i < str.length(); i++) {
 			char c = str.charAt(i);
 
-			if (c >= 65281 && c < 65373)
+			if (c >= 65281 && c < 65373) {
 				sb.append((char) (c - 65248));
-			else
+			}else {
 				sb.append(str.charAt(i));
+			}
 		}
 
 		return sb.toString();
@@ -1598,10 +1618,11 @@ public class StringUtil {
 				returnStr.append(list.get(i)).append(slipStr);
 			}
 		}
-		if (returnStr.toString().length() > 0)
+		if (returnStr.toString().length() > 0) {
 			return returnStr.toString().substring(0, returnStr.toString().lastIndexOf(slipStr));
-		else
+		}else {
 			return "";
+		}
 	}
 
 	/**
@@ -1832,7 +1853,7 @@ public class StringUtil {
 	 * @return
 	 */
 	public static String firstUpperCase(String realName) {
-		return StringUtils.replaceChars(realName, realName.substring(0, 1),realName.substring(0, 1).toUpperCase());
+		return realName.substring(0, 1).toUpperCase() + realName.substring(1);
 	}
 
 	/**
@@ -1841,7 +1862,7 @@ public class StringUtil {
 	 * @return
 	 */
 	public static String firstLowerCase(String realName) {
-		return StringUtils.replaceChars(realName, realName.substring(0, 1),realName.substring(0, 1).toLowerCase());
+		return realName.substring(0, 1).toLowerCase() + realName.substring(1);
 	}
 	
 	/**
