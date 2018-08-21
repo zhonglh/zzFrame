@@ -16,6 +16,13 @@ import java.util.Map;
 public class FreemarkerUtils {
 
 
+    private static Configuration configuration = new Configuration();
+
+    static {
+        configuration.setNumberFormat("#");
+    }
+
+
     /**
      * 根据模板生成文件
      * @param model 模板参数
@@ -47,7 +54,7 @@ public class FreemarkerUtils {
     public static String renderString(String templateString, Map<String, ?> model) {
         try {
             StringWriter result = new StringWriter();
-            Template t = new Template("default", new StringReader(templateString), new Configuration());
+            Template t = new Template("default", new StringReader(templateString), configuration);
             t.process(model, result);
             return result.toString();
         } catch (Exception e) {
