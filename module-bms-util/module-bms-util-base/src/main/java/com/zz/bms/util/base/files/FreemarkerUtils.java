@@ -80,6 +80,7 @@ public class FreemarkerUtils {
      */
     public static Configuration buildConfiguration(String directory) throws IOException {
         Configuration cfg = new Configuration();
+        cfg.setNumberFormat("#");
         Resource path = new DefaultResourceLoader().getResource(directory);
         cfg.setDirectoryForTemplateLoading(path.getFile());
         return cfg;

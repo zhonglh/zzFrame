@@ -105,6 +105,17 @@ public class PermissionList implements Serializable {
         if (resourcePermission == null) {
             resourcePermission = this.resourceIdentity + ":" + permission;
         }
+
+        checkPermission(resourcePermission);
+
+    }
+
+    /**
+     * 检查是否有权限
+     * 如果没有使用Shiro 来管理权限， 可以重载该方法
+     * @param resourcePermission
+     */
+    public void checkPermission(String resourcePermission){
         //todo 先注释  等权限弄好后再打开
         /*if (!SecurityUtils.getSubject().isPermitted(resourcePermission)) {
             throw new UnauthorizedException(MessageUtils.message(errorCode, resourcePermission));
