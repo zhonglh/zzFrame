@@ -15,12 +15,18 @@ public class EntityUtil {
 
 
     public static void autoSetInsertEntity(BaseEntity be, ILoginUserEntity sessionUserVO) {
+        autoSetInsertEntity(be,sessionUserVO,true);
+    }
+
+    public static void autoSetInsertEntity(BaseEntity be, ILoginUserEntity sessionUserVO, boolean isSetId) {
         if(be == null || sessionUserVO == null){
             return ;
         }
 
         //todo , 如果是自增数字类型， 就不需要设置id
-        be.setId(IdUtils.getId());
+        if(isSetId) {
+            be.setId(IdUtils.getId());
+        }
 
         Timestamp currDate_ = DateKit.getCurrentDate();
         if(BusinessConfig.USE_TENANT) {
