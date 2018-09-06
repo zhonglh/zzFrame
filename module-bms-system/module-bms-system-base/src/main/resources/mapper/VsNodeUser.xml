@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.system.dao.VsNodeUserDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="VsNodeUserResultMap" type="com.zz.bms.system.bo.VsNodeUserBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="user_name" property="userName"/>
+
+         	<result column="login_name" property="loginName"/>
+
+         	<result column="login_password" property="loginPassword"/>
+
+         	<result column="salt" property="salt"/>
+
+         	<result column="user_status" property="userStatus"/>
+
+         	<result column="lead_user_id" property="leadUserId"/>
+
+         	<result column="phone" property="phone"/>
+
+         	<result column="email" property="email"/>
+
+         	<result column="avatar_url" property="avatarUrl"/>
+
+         	<result column="open_id" property="openId"/>
+
+         	<result column="union_id" property="unionId"/>
+
+         	<result column="system_admin" property="systemAdmin"/>
+
+         	<result column="dep_id" property="depId"/>
+
+         	<result column="organ_id" property="organId"/>
+
+         	<result column="remark" property="remark"/>
+
+         	<result column="delete_flag" property="deleteFlag"/>
+
+         	<result column="create_user_id" property="createUserId"/>
+
+         	<result column="create_user_name" property="createUserName"/>
+
+         	<result column="create_time" property="createTime"/>
+
+         	<result column="update_user_id" property="updateUserId"/>
+
+         	<result column="update_user_name" property="updateUserName"/>
+
+         	<result column="update_time" property="updateTime"/>
+
+         	<result column="version_no" property="versionNo"/>
+
+         	<result column="tenant_id" property="tenantId"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="VsNodeUser4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="userName != null and userName != ''"> AND T.user_name = #{userName} </if>
+					<if test="loginName != null and loginName != ''"> AND T.login_name = #{loginName} </if>
+					<if test="loginPassword != null and loginPassword != ''"> AND T.login_password = #{loginPassword} </if>
+					<if test="salt != null and salt != ''"> AND T.salt = #{salt} </if>
+					<if test="userStatus != null and userStatus != ''"> AND T.user_status = #{userStatus} </if>
+					<if test="leadUserId != null and leadUserId != ''"> AND T.lead_user_id = #{leadUserId} </if>
+					<if test="phone != null and phone != ''"> AND T.phone = #{phone} </if>
+					<if test="email != null and email != ''"> AND T.email = #{email} </if>
+					<if test="avatarUrl != null and avatarUrl != ''"> AND T.avatar_url = #{avatarUrl} </if>
+					<if test="openId != null and openId != ''"> AND T.open_id = #{openId} </if>
+					<if test="unionId != null and unionId != ''"> AND T.union_id = #{unionId} </if>
+					<if test="systemAdmin != null and systemAdmin != ''"> AND T.system_admin = #{systemAdmin} </if>
+					<if test="depId != null and depId != ''"> AND T.dep_id = #{depId} </if>
+					<if test="organId != null and organId != ''"> AND T.organ_id = #{organId} </if>
+					<if test="remark != null and remark != ''"> AND T.remark = #{remark} </if>
+					<if test="deleteFlag != null and deleteFlag != ''"> AND T.delete_flag = #{deleteFlag} </if>
+					<if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+					<if test="createUserName != null and createUserName != ''"> AND T.create_user_name = #{createUserName} </if>
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+					<if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+					<if test="updateUserName != null and updateUserName != ''"> AND T.update_user_name = #{updateUserName} </if>
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+					<if test="tenantId != null and tenantId != ''"> AND T.tenant_id = #{tenantId} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.system.bo.VsNodeUserBO" resultMap="VsNodeUserResultMap">
+        SELECT T.* FROM vs_node_user T
+        <include refid="VsNodeUser4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

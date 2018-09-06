@@ -1,8 +1,8 @@
 package com.zz.bms.system.base.mybatisplus;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.zz.bms.system.base.entity.TsUserEntity;
-import com.zz.bms.system.base.entity.VsUserEntity;
+import com.zz.bms.system.domain.TsUserEntity;
+import com.zz.bms.system.domain.VsUserEntity;
 import org.junit.Assert;
 import org.junit.Test;
 

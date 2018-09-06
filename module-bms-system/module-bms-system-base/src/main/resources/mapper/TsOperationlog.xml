@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.system.dao.TsOperationlogDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TsOperationlogResultMap" type="com.zz.bms.system.bo.TsOperationlogBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="operation_type" property="operationType"/>
+
+         	<result column="entity_type" property="entityType"/>
+
+         	<result column="operationlog_name" property="operationlogName"/>
+
+         	<result column="dep_id" property="depId"/>
+
+         	<result column="organ_id" property="organId"/>
+
+         	<result column="operation_user_id" property="operationUserId"/>
+
+         	<result column="operation_ip" property="operationIp"/>
+
+         	<result column="operation_user_name" property="operationUserName"/>
+
+         	<result column="operation_time" property="operationTime"/>
+
+         	<result column="tenant_id" property="tenantId"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TsOperationlog4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="operationType != null and operationType != ''"> AND T.operation_type = #{operationType} </if>
+					<if test="entityType != null and entityType != ''"> AND T.entity_type = #{entityType} </if>
+					<if test="operationlogName != null and operationlogName != ''"> AND T.operationlog_name = #{operationlogName} </if>
+					<if test="depId != null and depId != ''"> AND T.dep_id = #{depId} </if>
+					<if test="organId != null and organId != ''"> AND T.organ_id = #{organId} </if>
+					<if test="operationUserId != null and operationUserId != ''"> AND T.operation_user_id = #{operationUserId} </if>
+					<if test="operationIp != null and operationIp != ''"> AND T.operation_ip = #{operationIp} </if>
+					<if test="operationUserName != null and operationUserName != ''"> AND T.operation_user_name = #{operationUserName} </if>
+					<if test="operationTime != null"> AND T.operation_time = #{operationTime} </if>
+					<if test="tenantId != null and tenantId != ''"> AND T.tenant_id = #{tenantId} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.system.bo.TsOperationlogBO" resultMap="TsOperationlogResultMap">
+        SELECT T.* FROM ts_operationlog T
+        <include refid="TsOperationlog4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

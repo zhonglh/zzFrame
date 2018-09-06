@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.system.dao.TsOrganDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TsOrganResultMap" type="com.zz.bms.system.bo.TsOrganBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="organ_name" property="organName"/>
+
+         	<result column="organ_code" property="organCode"/>
+
+         	<result column="organ_type" property="organType"/>
+
+         	<result column="organ_addr" property="organAddr"/>
+
+         	<result column="pid" property="pid"/>
+
+         	<result column="organ_status" property="organStatus"/>
+
+         	<result column="lead_user_id" property="leadUserId"/>
+
+         	<result column="remark" property="remark"/>
+
+         	<result column="delete_flag" property="deleteFlag"/>
+
+         	<result column="create_user_id" property="createUserId"/>
+
+         	<result column="create_user_name" property="createUserName"/>
+
+         	<result column="create_time" property="createTime"/>
+
+         	<result column="update_user_id" property="updateUserId"/>
+
+         	<result column="update_user_name" property="updateUserName"/>
+
+         	<result column="update_time" property="updateTime"/>
+
+         	<result column="version_no" property="versionNo"/>
+
+         	<result column="tenant_id" property="tenantId"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TsOrgan4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="organName != null and organName != ''"> AND T.organ_name = #{organName} </if>
+					<if test="organCode != null and organCode != ''"> AND T.organ_code = #{organCode} </if>
+					<if test="organType != null and organType != ''"> AND T.organ_type = #{organType} </if>
+					<if test="organAddr != null and organAddr != ''"> AND T.organ_addr = #{organAddr} </if>
+					<if test="pid != null and pid != ''"> AND T.pid = #{pid} </if>
+					<if test="organStatus != null and organStatus != ''"> AND T.organ_status = #{organStatus} </if>
+					<if test="leadUserId != null and leadUserId != ''"> AND T.lead_user_id = #{leadUserId} </if>
+					<if test="remark != null and remark != ''"> AND T.remark = #{remark} </if>
+					<if test="deleteFlag != null and deleteFlag != ''"> AND T.delete_flag = #{deleteFlag} </if>
+					<if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+					<if test="createUserName != null and createUserName != ''"> AND T.create_user_name = #{createUserName} </if>
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+					<if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+					<if test="updateUserName != null and updateUserName != ''"> AND T.update_user_name = #{updateUserName} </if>
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+					<if test="tenantId != null and tenantId != ''"> AND T.tenant_id = #{tenantId} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.system.bo.TsOrganBO" resultMap="TsOrganResultMap">
+        SELECT T.* FROM ts_organ T
+        <include refid="TsOrgan4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

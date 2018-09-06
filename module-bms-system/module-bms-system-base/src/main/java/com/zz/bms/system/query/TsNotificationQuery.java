@@ -1,0 +1,202 @@
+package com.zz.bms.system.query;
+
+
+import com.zz.bms.core.db.mybatis.query.Query;
+import com.zz.bms.system.domain.TsNotificationEntity;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.sql.Timestamp;
+import java.lang.String;
+import java.lang.Integer;
+
+/**
+ * 系统通知 查询抽象类
+ *
+ * @author Administrator
+ * @date 2018-9-6 23:56:30
+ */
+public interface TsNotificationQuery<PK extends Serializable> extends Query<TsNotificationEntity,PK> {
+
+        public TsNotificationQuery id(PK id);
+        public TsNotificationQuery idNot(PK idNot);
+        public TsNotificationQuery idIn(PK idIn);
+        public TsNotificationQuery idNotIn(PK idNotIn);
+        public TsNotificationQuery idIsNull();
+        public TsNotificationQuery idIsNotNull();
+
+
+
+
+
+        public TsNotificationQuery toUserId(PK toUserId);
+        public TsNotificationQuery toUserIdNot(PK toUserIdNot);
+        public TsNotificationQuery toUserIdIn(PK toUserIdIn);
+        public TsNotificationQuery toUserIdNotIn(PK toUserIdNotIn);
+        public TsNotificationQuery toUserIdIsNull();
+        public TsNotificationQuery toUserIdIsNotNull();
+
+
+
+
+
+        public TsNotificationQuery notifyModule(String notifyModule);
+        public TsNotificationQuery notifyModuleNot(String notifyModuleNot);
+        public TsNotificationQuery notifyModuleIn(String notifyModuleIn);
+        public TsNotificationQuery notifyModuleNotIn(String notifyModuleNotIn);
+        public TsNotificationQuery notifyModuleLike(String notifyModuleLike);
+        public TsNotificationQuery notifyModuleNotLike(String notifyModuleNotLike);
+        public TsNotificationQuery notifyModuleIsNull();
+        public TsNotificationQuery notifyModuleIsNotNull();
+
+
+
+
+
+        public TsNotificationQuery title(String title);
+        public TsNotificationQuery titleNot(String titleNot);
+        public TsNotificationQuery titleIn(String titleIn);
+        public TsNotificationQuery titleNotIn(String titleNotIn);
+        public TsNotificationQuery titleLike(String titleLike);
+        public TsNotificationQuery titleNotLike(String titleNotLike);
+        public TsNotificationQuery titleIsNull();
+        public TsNotificationQuery titleIsNotNull();
+
+
+
+
+
+        public TsNotificationQuery content(String content);
+        public TsNotificationQuery contentNot(String contentNot);
+        public TsNotificationQuery contentIn(String contentIn);
+        public TsNotificationQuery contentNotIn(String contentNotIn);
+        public TsNotificationQuery contentLike(String contentLike);
+        public TsNotificationQuery contentNotLike(String contentNotLike);
+        public TsNotificationQuery contentIsNull();
+        public TsNotificationQuery contentIsNotNull();
+
+
+
+
+
+        public TsNotificationQuery notifyTime(Date notifyTime);
+        public TsNotificationQuery notifyTimeNot(Date notifyTimeNot);
+        public TsNotificationQuery notifyTimeGreaterThan(Date notifyTimeGreaterThan);
+        public TsNotificationQuery notifyTimeGreaterEqual(Date notifyTimeGreaterEqual);
+        public TsNotificationQuery notifyTimeLessThan(Date notifyTimeLessThan);
+        public TsNotificationQuery notifyTimeLessEqual(Date notifyTimeLessEqual);
+
+
+
+
+
+        public TsNotificationQuery isRead(String isRead);
+        public TsNotificationQuery isReadNot(String isReadNot);
+        public TsNotificationQuery isReadIn(String isReadIn);
+        public TsNotificationQuery isReadNotIn(String isReadNotIn);
+        public TsNotificationQuery isReadIsNull();
+        public TsNotificationQuery isReadIsNotNull();
+
+
+
+
+
+        public TsNotificationQuery createUserId(String createUserId);
+        public TsNotificationQuery createUserIdNot(String createUserIdNot);
+        public TsNotificationQuery createUserIdIn(String createUserIdIn);
+        public TsNotificationQuery createUserIdNotIn(String createUserIdNotIn);
+        public TsNotificationQuery createUserIdLike(String createUserIdLike);
+        public TsNotificationQuery createUserIdNotLike(String createUserIdNotLike);
+        public TsNotificationQuery createUserIdIsNull();
+        public TsNotificationQuery createUserIdIsNotNull();
+
+
+
+
+
+        public TsNotificationQuery createUserName(String createUserName);
+        public TsNotificationQuery createUserNameNot(String createUserNameNot);
+        public TsNotificationQuery createUserNameIn(String createUserNameIn);
+        public TsNotificationQuery createUserNameNotIn(String createUserNameNotIn);
+        public TsNotificationQuery createUserNameLike(String createUserNameLike);
+        public TsNotificationQuery createUserNameNotLike(String createUserNameNotLike);
+        public TsNotificationQuery createUserNameIsNull();
+        public TsNotificationQuery createUserNameIsNotNull();
+
+
+
+
+
+        public TsNotificationQuery createTime(Timestamp createTime);
+        public TsNotificationQuery createTimeNot(Timestamp createTimeNot);
+        public TsNotificationQuery createTimeGreaterThan(Timestamp createTimeGreaterThan);
+        public TsNotificationQuery createTimeGreaterEqual(Timestamp createTimeGreaterEqual);
+        public TsNotificationQuery createTimeLessThan(Timestamp createTimeLessThan);
+        public TsNotificationQuery createTimeLessEqual(Timestamp createTimeLessEqual);
+
+
+
+
+
+        public TsNotificationQuery updateUserId(String updateUserId);
+        public TsNotificationQuery updateUserIdNot(String updateUserIdNot);
+        public TsNotificationQuery updateUserIdIn(String updateUserIdIn);
+        public TsNotificationQuery updateUserIdNotIn(String updateUserIdNotIn);
+        public TsNotificationQuery updateUserIdLike(String updateUserIdLike);
+        public TsNotificationQuery updateUserIdNotLike(String updateUserIdNotLike);
+        public TsNotificationQuery updateUserIdIsNull();
+        public TsNotificationQuery updateUserIdIsNotNull();
+
+
+
+
+
+        public TsNotificationQuery updateUserName(String updateUserName);
+        public TsNotificationQuery updateUserNameNot(String updateUserNameNot);
+        public TsNotificationQuery updateUserNameIn(String updateUserNameIn);
+        public TsNotificationQuery updateUserNameNotIn(String updateUserNameNotIn);
+        public TsNotificationQuery updateUserNameLike(String updateUserNameLike);
+        public TsNotificationQuery updateUserNameNotLike(String updateUserNameNotLike);
+        public TsNotificationQuery updateUserNameIsNull();
+        public TsNotificationQuery updateUserNameIsNotNull();
+
+
+
+
+
+        public TsNotificationQuery updateTime(Timestamp updateTime);
+        public TsNotificationQuery updateTimeNot(Timestamp updateTimeNot);
+        public TsNotificationQuery updateTimeGreaterThan(Timestamp updateTimeGreaterThan);
+        public TsNotificationQuery updateTimeGreaterEqual(Timestamp updateTimeGreaterEqual);
+        public TsNotificationQuery updateTimeLessThan(Timestamp updateTimeLessThan);
+        public TsNotificationQuery updateTimeLessEqual(Timestamp updateTimeLessEqual);
+
+
+
+
+
+        public TsNotificationQuery versionNo(Integer versionNo);
+        public TsNotificationQuery versionNoNot(Integer versionNoNot);
+        public TsNotificationQuery versionNoGreaterThan(Integer versionNoGreaterThan);
+        public TsNotificationQuery versionNoGreaterEqual(Integer versionNoGreaterEqual);
+        public TsNotificationQuery versionNoLessThan(Integer versionNoLessThan);
+        public TsNotificationQuery versionNoLessEqual(Integer versionNoLessEqual);
+
+
+
+
+
+        public TsNotificationQuery tenantId(PK tenantId);
+        public TsNotificationQuery tenantIdNot(PK tenantIdNot);
+        public TsNotificationQuery tenantIdIn(PK tenantIdIn);
+        public TsNotificationQuery tenantIdNotIn(PK tenantIdNotIn);
+        public TsNotificationQuery tenantIdIsNull();
+        public TsNotificationQuery tenantIdIsNotNull();
+
+
+
+
+
+
+	
+}

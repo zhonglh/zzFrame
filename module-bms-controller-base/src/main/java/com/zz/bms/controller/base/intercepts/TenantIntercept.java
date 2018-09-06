@@ -7,7 +7,6 @@ import com.zz.bms.configs.BusinessConfig;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.shiro.utils.ShiroUtils;
-import com.zz.bms.system.base.entity.TsUserEntity;
 import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

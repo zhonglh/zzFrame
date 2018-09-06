@@ -8,7 +8,6 @@ import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.ui.Pages;
 import com.zz.bms.shiro.utils.ShiroUtils;
-import com.zz.bms.system.base.entity.TsUserEntity;
 import com.zz.bms.util.base.spring.SpringUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.system.dao.TsMsgTempletDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TsMsgTempletResultMap" type="com.zz.bms.system.bo.TsMsgTempletBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="msg_templet_name" property="msgTempletName"/>
+
+         	<result column="msg_templet_type" property="msgTempletType"/>
+
+         	<result column="msg_title" property="msgTitle"/>
+
+         	<result column="msg_content" property="msgContent"/>
+
+         	<result column="msg_language" property="msgLanguage"/>
+
+         	<result column="templet_effective" property="templetEffective"/>
+
+         	<result column="dep_id" property="depId"/>
+
+         	<result column="organ_id" property="organId"/>
+
+         	<result column="create_user_id" property="createUserId"/>
+
+         	<result column="create_user_name" property="createUserName"/>
+
+         	<result column="create_time" property="createTime"/>
+
+         	<result column="update_user_id" property="updateUserId"/>
+
+         	<result column="update_user_name" property="updateUserName"/>
+
+         	<result column="update_time" property="updateTime"/>
+
+         	<result column="version_no" property="versionNo"/>
+
+         	<result column="tenant_id" property="tenantId"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TsMsgTemplet4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="msgTempletName != null and msgTempletName != ''"> AND T.msg_templet_name = #{msgTempletName} </if>
+					<if test="msgTempletType != null and msgTempletType != ''"> AND T.msg_templet_type = #{msgTempletType} </if>
+					<if test="msgTitle != null and msgTitle != ''"> AND T.msg_title = #{msgTitle} </if>
+					<if test="msgContent != null and msgContent != ''"> AND T.msg_content = #{msgContent} </if>
+					<if test="msgLanguage != null and msgLanguage != ''"> AND T.msg_language = #{msgLanguage} </if>
+					<if test="templetEffective != null and templetEffective != ''"> AND T.templet_effective = #{templetEffective} </if>
+					<if test="depId != null and depId != ''"> AND T.dep_id = #{depId} </if>
+					<if test="organId != null and organId != ''"> AND T.organ_id = #{organId} </if>
+					<if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+					<if test="createUserName != null and createUserName != ''"> AND T.create_user_name = #{createUserName} </if>
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+					<if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+					<if test="updateUserName != null and updateUserName != ''"> AND T.update_user_name = #{updateUserName} </if>
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+					<if test="tenantId != null and tenantId != ''"> AND T.tenant_id = #{tenantId} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.system.bo.TsMsgTempletBO" resultMap="TsMsgTempletResultMap">
+        SELECT T.* FROM ts_msg_templet T
+        <include refid="TsMsgTemplet4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

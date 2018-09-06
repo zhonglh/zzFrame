@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.system.dao.TsRolePermitDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TsRolePermitResultMap" type="com.zz.bms.system.bo.TsRolePermitBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="role_id" property="roleId"/>
+
+         	<result column="permit_id" property="permitId"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TsRolePermit4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="roleId != null and roleId != ''"> AND T.role_id = #{roleId} </if>
+					<if test="permitId != null and permitId != ''"> AND T.permit_id = #{permitId} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.system.bo.TsRolePermitBO" resultMap="TsRolePermitResultMap">
+        SELECT T.* FROM ts_role_permit T
+        <include refid="TsRolePermit4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="module-bms-base" />
         <module name="module-bms-config" />
         <module name="module-bms-controller-base" />
         <module name="module-bms-core" />
@@ -23,6 +24,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
+      <module name="module-bms-base" target="1.8" />
       <module name="module-bms-config" target="1.8" />
       <module name="module-bms-controller-base" target="1.8" />
       <module name="module-bms-core" target="1.8" />

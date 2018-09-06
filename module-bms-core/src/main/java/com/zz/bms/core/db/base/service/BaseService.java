@@ -27,8 +27,14 @@ public interface BaseService<T extends BaseEntity, PK extends Serializable> exte
      */
     boolean deletesByIds(List<T> ts);
 
-
+    /**
+     * 用于校验是否已经存在
+     * @param t
+     * @return
+     */
     T selectCheck(T t) ;
+
+
 
 
     /**

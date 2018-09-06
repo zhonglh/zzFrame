@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/module-bms-base/module-bms-base.iml" filepath="$PROJECT_DIR$/module-bms-base/module-bms-base.iml" />
       <module fileurl="file://$PROJECT_DIR$/module-bms-config/module-bms-config.iml" filepath="$PROJECT_DIR$/module-bms-config/module-bms-config.iml" />
       <module fileurl="file://$PROJECT_DIR$/module-bms-controller-base/module-bms-controller-base.iml" filepath="$PROJECT_DIR$/module-bms-controller-base/module-bms-controller-base.iml" />
       <module fileurl="file://$PROJECT_DIR$/module-bms-core/module-bms-core.iml" filepath="$PROJECT_DIR$/module-bms-core/module-bms-core.iml" />

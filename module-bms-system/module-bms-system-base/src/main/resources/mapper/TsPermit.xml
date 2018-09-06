@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.system.dao.TsPermitDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TsPermitResultMap" type="com.zz.bms.system.bo.TsPermitBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="permit_name" property="permitName"/>
+
+         	<result column="permit_code" property="permitCode"/>
+
+         	<result column="remark" property="remark"/>
+
+         	<result column="delete_flag" property="deleteFlag"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TsPermit4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="permitName != null and permitName != ''"> AND T.permit_name = #{permitName} </if>
+					<if test="permitCode != null and permitCode != ''"> AND T.permit_code = #{permitCode} </if>
+					<if test="remark != null and remark != ''"> AND T.remark = #{remark} </if>
+					<if test="deleteFlag != null and deleteFlag != ''"> AND T.delete_flag = #{deleteFlag} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.system.bo.TsPermitBO" resultMap="TsPermitResultMap">
+        SELECT T.* FROM ts_permit T
+        <include refid="TsPermit4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

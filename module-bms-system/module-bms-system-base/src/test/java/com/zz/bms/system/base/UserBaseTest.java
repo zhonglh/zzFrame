@@ -3,10 +3,9 @@ package com.zz.bms.system.base;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.enums.EnumYesNo;
-import com.zz.bms.system.base.bo.VsUserBO;
-import com.zz.bms.system.base.entity.VsUserEntity;
-import com.zz.bms.system.base.logic.enums.EnumUserStatus;
-import com.zz.bms.system.base.service.VsUserService;
+import com.zz.bms.enums.EnumUserStatus;
+import com.zz.bms.system.bo.VsUserBO;
+import com.zz.bms.system.service.VsUserService;
 import com.zz.bms.util.base.data.DateKit;
 import com.zz.bms.util.base.java.IdUtils;
 import com.zz.bms.util.base.spring.SpringUtil;
@@ -63,7 +62,7 @@ public class UserBaseTest extends BaseTest {
         userEntity.setCreateTime(DateKit.getCurrentDate());
         userEntity.setCreateUserName("admin");
         userEntity.setDeleteFlag(EnumYesNo.NO.getCode());
-        userEntity.setStatus(EnumUserStatus.normal.getCode());
+        userEntity.setUserStatus(EnumUserStatus.normal.getCode());
         userEntity.setVersionNo(Constant.INIT_VERSION);
         return userEntity;
     }

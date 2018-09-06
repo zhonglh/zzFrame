@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.system.dao.VsUserPermitDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="VsUserPermitResultMap" type="com.zz.bms.system.bo.VsUserPermitBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="permit_code" property="permitCode"/>
+
+         	<result column="user_name" property="userName"/>
+
+         	<result column="login_name" property="loginName"/>
+
+         	<result column="user_id" property="userId"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="VsUserPermit4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="permitCode != null and permitCode != ''"> AND T.permit_code = #{permitCode} </if>
+					<if test="userName != null and userName != ''"> AND T.user_name = #{userName} </if>
+					<if test="loginName != null and loginName != ''"> AND T.login_name = #{loginName} </if>
+					<if test="userId != null and userId != ''"> AND T.user_id = #{userId} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.system.bo.VsUserPermitBO" resultMap="VsUserPermitResultMap">
+        SELECT T.* FROM vs_user_permit T
+        <include refid="VsUserPermit4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

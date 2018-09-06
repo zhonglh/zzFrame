@@ -17,6 +17,7 @@
     <module>module-bms-system</module>
     <module>project-bms-web-base</module>
       <module>module-bms-oss</module>
+      <module>module-bms-base</module>
   </modules>
   <packaging>pom</packaging>
   <name>zzFrame</name>

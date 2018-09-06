@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.system.dao.TsDictDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TsDictResultMap" type="com.zz.bms.system.bo.TsDictBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="dict_type_id" property="dictTypeId"/>
+
+         	<result column="dict_val" property="dictVal"/>
+
+         	<result column="dict_name" property="dictName"/>
+
+         	<result column="dict_i18n" property="dictI18n"/>
+
+         	<result column="dict_reg" property="dictReg"/>
+
+         	<result column="orderby" property="orderby"/>
+
+         	<result column="create_user_id" property="createUserId"/>
+
+         	<result column="create_user_name" property="createUserName"/>
+
+         	<result column="create_time" property="createTime"/>
+
+         	<result column="update_user_id" property="updateUserId"/>
+
+         	<result column="update_user_name" property="updateUserName"/>
+
+         	<result column="update_time" property="updateTime"/>
+
+         	<result column="version_no" property="versionNo"/>
+
+         	<result column="delete_flag" property="deleteFlag"/>
+
+         	<result column="tenant_id" property="tenantId"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TsDict4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="dictTypeId != null and dictTypeId != ''"> AND T.dict_type_id = #{dictTypeId} </if>
+					<if test="dictVal != null and dictVal != ''"> AND T.dict_val = #{dictVal} </if>
+					<if test="dictName != null and dictName != ''"> AND T.dict_name = #{dictName} </if>
+					<if test="dictI18n != null and dictI18n != ''"> AND T.dict_i18n = #{dictI18n} </if>
+					<if test="dictReg != null and dictReg != ''"> AND T.dict_reg = #{dictReg} </if>
+					<if test="orderby != null"> AND T.orderby = #{orderby} </if>
+					<if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+					<if test="createUserName != null and createUserName != ''"> AND T.create_user_name = #{createUserName} </if>
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+					<if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+					<if test="updateUserName != null and updateUserName != ''"> AND T.update_user_name = #{updateUserName} </if>
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+					<if test="deleteFlag != null and deleteFlag != ''"> AND T.delete_flag = #{deleteFlag} </if>
+					<if test="tenantId != null and tenantId != ''"> AND T.tenant_id = #{tenantId} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.system.bo.TsDictBO" resultMap="TsDictResultMap">
+        SELECT T.* FROM ts_dict T
+        <include refid="TsDict4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

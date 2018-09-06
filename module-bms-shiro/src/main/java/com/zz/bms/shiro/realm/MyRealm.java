@@ -1,11 +1,11 @@
 package com.zz.bms.shiro.realm;
 
+import com.zz.bms.enums.EnumUserStatus;
 import com.zz.bms.shiro.utils.ShiroUtils;
-import com.zz.bms.system.base.entity.TsUserEntity;
-import com.zz.bms.system.base.logic.enums.EnumUserStatus;
-import com.zz.bms.system.base.query.SystemQueryFactory;
-import com.zz.bms.system.base.query.TsUserQuery;
-import com.zz.bms.system.base.service.TsUserService;
+import com.zz.bms.system.domain.TsUserEntity;
+import com.zz.bms.system.query.TsUserQuery;
+import com.zz.bms.system.query.impl.TsUserQueryImpl;
+import com.zz.bms.system.service.TsUserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
@@ -44,14 +44,14 @@ public class MyRealm extends AuthorizingRealm {
 
         String loginName= (String) token.getPrincipal();
 
-        TsUserQuery userQuery = SystemQueryFactory.buildTsUserQuery();
+        TsUserQuery userQuery = new TsUserQueryImpl();
         userQuery.loginName(loginName);
         TsUserEntity user = userService.selectOne(userQuery.buildWrapper());
 
         if(user == null){
             throw new AuthenticationException("帐号密码错误");
         }
-        if(EnumUserStatus.forbidden.getCode().equals(user.getStatus())){
+        if(EnumUserStatus.forbidden.getCode().equals(user.getUserStatus())){
             throw new LockedAccountException("帐号被禁用,请联系管理员!");
         }
 

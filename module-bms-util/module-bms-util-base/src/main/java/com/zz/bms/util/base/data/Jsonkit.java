@@ -37,43 +37,68 @@ public class Jsonkit {
     public static String object2JsonString(Object object, final List<String> propertyFilter, final Map<String, String> nameFilter, boolean isToCamelCase, boolean isToBooleanToInt){
         PropertyFilter pf = new PropertyFilter() {
 
+            @Override
             public boolean apply(Object object, String name, Object value){
-                if (propertyFilter.contains (name)) return false;
+                if (propertyFilter.contains (name)) {
+                    return false;
+                }
                 return true;
             }
         };
         NameFilter _nameFilter = new NameFilter() {
 
+            @Override
             public String process(Object object, String name, Object value){
-                if (nameFilter.containsKey (name)) name = nameFilter.get (name);
+                if (nameFilter.containsKey (name)) {
+                    name = nameFilter.get (name);
+                }
                 return name;
             }
         };
         NameFilter toCamelCase = new NameFilter() {
 
+            @Override
             public String process(Object object, String name, Object value){
-                if (name.indexOf (StringFormatKit.SEPARATOR) > -1) name = StringFormatKit.toCamelCase (name);
+                if (name.indexOf (StringFormatKit.SEPARATOR) > -1) {
+                    name = StringFormatKit.toCamelCase (name);
+                }
                 return name;
             }
         };
 
         ValueFilter toBooleanToInt = new ValueFilter() {
 
+            @Override
             public Object process(Object object, String name, Object value){
                 if (value instanceof Boolean) {
                     boolean _value = (Boolean) value;
-                    if (_value == Boolean.TRUE) return "1";
-                    else return "0";
+                    if (_value == Boolean.TRUE) {
+                        return "1";
+                    }else {
+                        return "0";
+                    }
                 }
                 return value;
             }
         };
         JSONSerializer serializer = new JSONSerializer(config);
 
-        if (null != propertyFilter && propertyFilter.size () > 0) serializer.getPropertyFilters ().add (pf);// 增加字段过滤
-        if (null != nameFilter && nameFilter.size () > 0) serializer.getNameFilters ().add (_nameFilter);// 增加字段转换
-        if (isToCamelCase) serializer.getNameFilters ().add (toCamelCase);// 增加下划线转驼峰
-        if (isToBooleanToInt) serializer.getValueFilters ().add (toBooleanToInt);// 增加blean转int
+        if (null != propertyFilter && propertyFilter.size () > 0) {
+            // 增加字段过滤
+            serializer.getPropertyFilters ().add (pf);
+        }
+        if (null != nameFilter && nameFilter.size () > 0) {
+            // 增加字段转换
+            serializer.getNameFilters ().add (_nameFilter);
+        }
+        if (isToCamelCase) {
+            // 增加下划线转驼峰
+            serializer.getNameFilters ().add (toCamelCase);
+        }
+        if (isToBooleanToInt) {
+            // 增加blean转int
+            serializer.getValueFilters ().add (toBooleanToInt);
+        }
         for ( SerializerFeature feature : features ) {
             serializer.config (feature, true);
         }
@@ -84,8 +109,6 @@ public class Jsonkit {
     /**
      * @Title: object2JsonString
      * @Description: 可以过滤不需要的属性
-     * @Author: Hongli
-     * @Since: 2014年5月6日下午2:47:50
      * @param object
      * @param propertyFilter
      *            过滤不需要的属性
@@ -98,8 +121,6 @@ public class Jsonkit {
     /**
      * @Title: object2JsonString
      * @Description: 可以重命名某些元素
-     * @Author: Hongli
-     * @Since: 2014年6月27日下午9:06:21
      * @param object
      * @param nameFilter
      *            需要重新命名的属性
@@ -112,8 +133,6 @@ public class Jsonkit {
     /**
      * @Title: object2JsonString
      * @Description:转json时下划线可以转驼峰
-     * @Author: Hongli
-     * @Since: 2014年6月27日下午9:07:56
      * @param object
      * @param isToCamelCase
      *            true 下划线转驼峰
@@ -126,8 +145,6 @@ public class Jsonkit {
     /**
      * @Title: object2JsonString
      * @Description: 可以过滤不需要的属性，并重命名某些属性
-     * @Author: Hongli
-     * @Since: 2014年6月27日下午9:11:33
      * @param object
      * @param propertyFilter
      *            过滤不需要的属性
@@ -142,8 +159,6 @@ public class Jsonkit {
     /**
      * @Title: object2JsonString
      * @Description: 可以过滤不需要的属性,下划线可以转驼峰
-     * @Author: Hongli
-     * @Since: 2014年6月27日下午9:13:05
      * @param object
      * @param propertyFilter
      *            可以过滤不需要的属性
@@ -158,8 +173,6 @@ public class Jsonkit {
     /**
      * @Title: object2JsonString
      * @Description: 支持重命名某些属性，支持下划线可以转驼峰
-     * @Author: Hongli
-     * @Since: 2014年6月27日下午9:14:39
      * @param object
      * @param nameFilter
      *            重命名某些属性
@@ -174,8 +187,6 @@ public class Jsonkit {
     /**
      * @Title: object2JsonString
      * @Description: 支持下划线转驼峰，支持boolean 转true=1，false=0
-     * @Author: Hongli
-     * @Since: 2014年6月27日下午9:20:17
      * @param object
      * @param isToCamelCase
      *            true 支持下划线转驼峰
@@ -190,8 +201,6 @@ public class Jsonkit {
     /**
      * @Title: object2JsonString
      * @Description: 支持下划线转驼峰，支持属性过滤，支持重命名
-     * @Author: Hongli
-     * @Since: 2014年6月27日下午9:23:59
      * @param object
      * @param propertyFilter
      *            需要过滤的属性
@@ -208,8 +217,6 @@ public class Jsonkit {
     /**
      * @Title: object2JsonString
      * @Description: 支持下划线转驼峰， 支持重命名,支持boolean 转true=1，false=0
-     * @Author: Hongli
-     * @Since: 2014年6月27日下午9:23:59
      * @param object
      * @param propertyFilter
      *            需要过滤的属性
@@ -226,8 +233,6 @@ public class Jsonkit {
     /**
      * @Title: object2JsonString
      * @Description: 支持下划线转驼峰， 支持属性过滤,支持boolean 转true=1，false=0
-     * @Author: Hongli
-     * @Since: 2014年6月27日下午9:23:59
      * @param object
      * @param nameFilter
      *            属性过滤
@@ -244,9 +249,6 @@ public class Jsonkit {
     /**
      * @Title: object2JsonString
      * @Description: Object 转json
-     * @Author: Hongli
-     * @Since: 2014年6月27日下午9:33:44
-     * @param object
      * @return
      */
     public static String object2JsonString(Object object){
@@ -256,10 +258,6 @@ public class Jsonkit {
     /**
      * @Title: jsonString2Object
      * @Description: josn 转OBject
-     * @Author: Hongli
-     * @Since: 2014年6月27日下午9:34:03
-     * @param jsonString
-     * @param classes
      * @return
      */
     public static <T> T jsonString2Object(String jsonString, Class<T> classes){
@@ -275,17 +273,15 @@ public class Jsonkit {
      * @return
      */
     public static <T> T jsonString2Object(String jsonString, Class<T> clazz, boolean verify){
-        if (verify && null == String2JSON (jsonString)) return null;
+        if (verify && null == String2JSON (jsonString)) {
+            return null;
+        }
         return JSON.parseObject (jsonString, (Type) clazz);
     }
 
     /**
      * @Title: jsonString2Array
      * @Description: josn 转List
-     * @Author: Hongli
-     * @Since: 2014年6月27日下午9:34:21
-     * @param jsonString
-     * @param classes
      * @return
      */
     public static <T> List<T> jsonString2Array(String jsonString, Class<T> classes){
@@ -302,18 +298,18 @@ public class Jsonkit {
      */
     public static <T> List<T> jsonString2Array(String jsonString, Class<T> classes, boolean verify){
         if (verify) {
-            if (null == String2JSON (jsonString)) return null;
+            if (null == String2JSON (jsonString)) {
+                return null;
+            }
             return JSON.parseArray (jsonString, classes);
-        } else return JSON.parseArray (jsonString, classes);
+        } else {
+            return JSON.parseArray (jsonString, classes);
+        }
     }
 
     /**
      * @Title: json2Object
      * @Description:JSONObject 转javaObject
-     * @Author: Hongli
-     * @Since: 2014年6月27日下午9:34:43
-     * @param json
-     * @param classes
      * @return
      */
     public static <T> T json2Object(JSON json, Class<T> classes){
@@ -334,9 +330,6 @@ public class Jsonkit {
     /**
      * @Title: String2JSON
      * @Description: String 转json对像JSONObject ,JSONArray,Integer,String
-     * @Author: Hongli
-     * @Since: 2014年6月30日下午9:17:45
-     * @param json
      * @return
      */
     public static Object String2JSON(String json){

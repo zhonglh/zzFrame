@@ -21,6 +21,7 @@
     <orderEntry type="module" module-name="module-bms-shiro" />
     <orderEntry type="module" module-name="module-bms-redis" />
     <orderEntry type="module" module-name="module-bms-system-base" />
+    <orderEntry type="module" module-name="module-bms-base" />
     <orderEntry type="module" module-name="module-bms-oss-engine" />
     <orderEntry type="module" module-name="module-bms-util-base" />
     <orderEntry type="module" module-name="module-bms-config" />

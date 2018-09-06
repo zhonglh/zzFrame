@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.system.dao.TsNotificationDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TsNotificationResultMap" type="com.zz.bms.system.bo.TsNotificationBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="to_user_id" property="toUserId"/>
+
+         	<result column="notify_module" property="notifyModule"/>
+
+         	<result column="title" property="title"/>
+
+         	<result column="content" property="content"/>
+
+         	<result column="notify_time" property="notifyTime"/>
+
+         	<result column="is_read" property="isRead"/>
+
+         	<result column="create_user_id" property="createUserId"/>
+
+         	<result column="create_user_name" property="createUserName"/>
+
+         	<result column="create_time" property="createTime"/>
+
+         	<result column="update_user_id" property="updateUserId"/>
+
+         	<result column="update_user_name" property="updateUserName"/>
+
+         	<result column="update_time" property="updateTime"/>
+
+         	<result column="version_no" property="versionNo"/>
+
+         	<result column="tenant_id" property="tenantId"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TsNotification4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="toUserId != null and toUserId != ''"> AND T.to_user_id = #{toUserId} </if>
+					<if test="notifyModule != null and notifyModule != ''"> AND T.notify_module = #{notifyModule} </if>
+					<if test="title != null and title != ''"> AND T.title = #{title} </if>
+					<if test="content != null and content != ''"> AND T.content = #{content} </if>
+					<if test="notifyTime != null"> AND T.notify_time = #{notifyTime} </if>
+					<if test="isRead != null and isRead != ''"> AND T.is_read = #{isRead} </if>
+					<if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+					<if test="createUserName != null and createUserName != ''"> AND T.create_user_name = #{createUserName} </if>
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+					<if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+					<if test="updateUserName != null and updateUserName != ''"> AND T.update_user_name = #{updateUserName} </if>
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+					<if test="tenantId != null and tenantId != ''"> AND T.tenant_id = #{tenantId} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.system.bo.TsNotificationBO" resultMap="TsNotificationResultMap">
+        SELECT T.* FROM ts_notification T
+        <include refid="TsNotification4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

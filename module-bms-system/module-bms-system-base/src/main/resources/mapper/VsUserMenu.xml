@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.system.dao.VsUserMenuDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="VsUserMenuResultMap" type="com.zz.bms.system.bo.VsUserMenuBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="pid" property="pid"/>
+
+         	<result column="title" property="title"/>
+
+         	<result column="icon" property="icon"/>
+
+         	<result column="component" property="component"/>
+
+         	<result column="sortno" property="sortno"/>
+
+         	<result column="path" property="path"/>
+
+         	<result column="name" property="name"/>
+
+         	<result column="user_name" property="userName"/>
+
+         	<result column="login_name" property="loginName"/>
+
+         	<result column="user_id" property="userId"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="VsUserMenu4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="pid != null and pid != ''"> AND T.pid = #{pid} </if>
+					<if test="title != null and title != ''"> AND T.title = #{title} </if>
+					<if test="icon != null and icon != ''"> AND T.icon = #{icon} </if>
+					<if test="component != null and component != ''"> AND T.component = #{component} </if>
+					<if test="sortno != null"> AND T.sortno = #{sortno} </if>
+					<if test="path != null and path != ''"> AND T.path = #{path} </if>
+					<if test="name != null and name != ''"> AND T.name = #{name} </if>
+					<if test="userName != null and userName != ''"> AND T.user_name = #{userName} </if>
+					<if test="loginName != null and loginName != ''"> AND T.login_name = #{loginName} </if>
+					<if test="userId != null and userId != ''"> AND T.user_id = #{userId} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.system.bo.VsUserMenuBO" resultMap="VsUserMenuResultMap">
+        SELECT T.* FROM vs_user_menu T
+        <include refid="VsUserMenu4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

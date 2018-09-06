@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.system.dao.TsMenuDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TsMenuResultMap" type="com.zz.bms.system.bo.TsMenuBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="menu_name" property="menuName"/>
+
+         	<result column="menu_code" property="menuCode"/>
+
+         	<result column="pid" property="pid"/>
+
+         	<result column="menu_sort" property="menuSort"/>
+
+         	<result column="menu_url" property="menuUrl"/>
+
+         	<result column="menu_msg" property="menuMsg"/>
+
+         	<result column="menu_icon" property="menuIcon"/>
+
+         	<result column="menu_redirect" property="menuRedirect"/>
+
+         	<result column="remark" property="remark"/>
+
+         	<result column="delete_flag" property="deleteFlag"/>
+
+         	<result column="create_user_id" property="createUserId"/>
+
+         	<result column="create_user_name" property="createUserName"/>
+
+         	<result column="create_time" property="createTime"/>
+
+         	<result column="update_user_id" property="updateUserId"/>
+
+         	<result column="update_user_name" property="updateUserName"/>
+
+         	<result column="update_time" property="updateTime"/>
+
+         	<result column="version_no" property="versionNo"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TsMenu4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="menuName != null and menuName != ''"> AND T.menu_name = #{menuName} </if>
+					<if test="menuCode != null and menuCode != ''"> AND T.menu_code = #{menuCode} </if>
+					<if test="pid != null and pid != ''"> AND T.pid = #{pid} </if>
+					<if test="menuSort != null"> AND T.menu_sort = #{menuSort} </if>
+					<if test="menuUrl != null and menuUrl != ''"> AND T.menu_url = #{menuUrl} </if>
+					<if test="menuMsg != null and menuMsg != ''"> AND T.menu_msg = #{menuMsg} </if>
+					<if test="menuIcon != null and menuIcon != ''"> AND T.menu_icon = #{menuIcon} </if>
+					<if test="menuRedirect != null and menuRedirect != ''"> AND T.menu_redirect = #{menuRedirect} </if>
+					<if test="remark != null and remark != ''"> AND T.remark = #{remark} </if>
+					<if test="deleteFlag != null and deleteFlag != ''"> AND T.delete_flag = #{deleteFlag} </if>
+					<if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+					<if test="createUserName != null and createUserName != ''"> AND T.create_user_name = #{createUserName} </if>
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+					<if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+					<if test="updateUserName != null and updateUserName != ''"> AND T.update_user_name = #{updateUserName} </if>
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.system.bo.TsMenuBO" resultMap="TsMenuResultMap">
+        SELECT T.* FROM ts_menu T
+        <include refid="TsMenu4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

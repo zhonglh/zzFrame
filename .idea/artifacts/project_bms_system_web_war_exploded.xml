@@ -41,6 +41,9 @@
           <element id="archive" name="module-bms-redis-1.0.1.jar">
             <element id="module-output" name="module-bms-redis" />
           </element>
+          <element id="archive" name="module-bms-base-1.0.1.jar">
+            <element id="module-output" name="module-bms-base" />
+          </element>
           <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-core:1.3" />
           <element id="library" level="project" name="Maven: cglib:cglib:3.2.2" />
           <element id="library" level="project" name="Maven: org.ow2.asm:asm:5.0.4" />
