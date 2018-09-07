@@ -80,9 +80,7 @@ public class VsNodeUserEntity extends BaseBusinessExEntity<String> implements ja
 	
 	private String  remark ;
 
-	//租户
-	
-	private String  tenantId ;
+
 
 
 
@@ -222,14 +220,6 @@ public class VsNodeUserEntity extends BaseBusinessExEntity<String> implements ja
     	return this.remark;
     }
 
-
-	public void setTenantId(String tenantId){
-		this.tenantId = tenantId;
-	}
-
-    public String getTenantId(){
-    	return this.tenantId;
-    }
 
 
 	

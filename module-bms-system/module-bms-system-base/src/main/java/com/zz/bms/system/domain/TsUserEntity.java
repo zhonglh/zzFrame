@@ -80,10 +80,6 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
 	
 	private String  remark ;
 
-	//租户
-	
-	private String  tenantId ;
-
 
 
 

@@ -48,9 +48,6 @@ public class TsFilesUseEntity extends BaseBusinessSimpleExEntity<String> impleme
 	
 	private String  remark ;
 
-	//租户
-	
-	private String  tenantId ;
 
 
 
@@ -119,13 +116,6 @@ public class TsFilesUseEntity extends BaseBusinessSimpleExEntity<String> impleme
     }
 
 
-	public void setTenantId(String tenantId){
-		this.tenantId = tenantId;
-	}
-
-    public String getTenantId(){
-    	return this.tenantId;
-    }
 
 
 	

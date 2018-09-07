@@ -49,9 +49,6 @@ public class VsFilesUseEntity extends BaseBusinessSimpleExEntity<String> impleme
 	
 	private String  remark ;
 
-	//租户
-	
-	private String  tenantId ;
 
 	//访问路径
 	//不包括前缀        
@@ -160,13 +157,6 @@ public class VsFilesUseEntity extends BaseBusinessSimpleExEntity<String> impleme
     }
 
 
-	public void setTenantId(String tenantId){
-		this.tenantId = tenantId;
-	}
-
-    public String getTenantId(){
-    	return this.tenantId;
-    }
 
 
 	public void setAccessUrl(String accessUrl){

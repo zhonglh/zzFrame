@@ -44,9 +44,6 @@ public class TsDictEntity extends BaseBusinessExEntity<String> implements java.i
 	
 	private Integer  orderby ;
 
-	//租户
-	
-	private String  tenantId ;
 
 
 
@@ -105,14 +102,6 @@ public class TsDictEntity extends BaseBusinessExEntity<String> implements java.i
     	return this.orderby;
     }
 
-
-	public void setTenantId(String tenantId){
-		this.tenantId = tenantId;
-	}
-
-    public String getTenantId(){
-    	return this.tenantId;
-    }
 
 
 	

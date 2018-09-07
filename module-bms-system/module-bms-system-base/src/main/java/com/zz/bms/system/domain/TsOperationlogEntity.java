@@ -55,9 +55,6 @@ public class TsOperationlogEntity extends BaseEntity<String> implements java.io.
 	
 	private Timestamp  operationTime ;
 
-	//租户
-	
-	private String  tenantId ;
 
 
 
@@ -144,13 +141,6 @@ public class TsOperationlogEntity extends BaseEntity<String> implements java.io.
     }
 
 
-	public void setTenantId(String tenantId){
-		this.tenantId = tenantId;
-	}
-
-    public String getTenantId(){
-    	return this.tenantId;
-    }
 
 
 	

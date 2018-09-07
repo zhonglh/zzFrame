@@ -52,9 +52,7 @@ public class TsMsgTempletEntity extends BaseBusinessSimpleExEntity<String> imple
 	
 	private String  organId ;
 
-	//租户
-	
-	private String  tenantId ;
+
 
 
 
@@ -132,13 +130,6 @@ public class TsMsgTempletEntity extends BaseBusinessSimpleExEntity<String> imple
     }
 
 
-	public void setTenantId(String tenantId){
-		this.tenantId = tenantId;
-	}
-
-    public String getTenantId(){
-    	return this.tenantId;
-    }
 
 
 	

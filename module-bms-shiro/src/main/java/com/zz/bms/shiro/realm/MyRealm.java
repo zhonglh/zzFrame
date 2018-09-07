@@ -53,7 +53,6 @@ public class MyRealm extends AuthorizingRealm {
         }
 
         String pw = new String ( ((UsernamePasswordToken)token).getPassword());
-        System.out.println(ShiroUtils.encodeSalt(pw , user.getSalt()  ));
 
 
         SimpleAuthenticationInfo sainfo=new SimpleAuthenticationInfo(user,user.getLoginPassword(), ByteSource.Util.bytes(user.getSalt()),getName());

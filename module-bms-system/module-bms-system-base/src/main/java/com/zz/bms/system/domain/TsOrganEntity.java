@@ -52,10 +52,6 @@ public class TsOrganEntity extends BaseBusinessExEntity<String> implements java.
 	
 	private String  remark ;
 
-	//租户
-	
-	private String  tenantId ;
-
 
 
 
@@ -129,15 +125,6 @@ public class TsOrganEntity extends BaseBusinessExEntity<String> implements java.
 
     public String getRemark(){
     	return this.remark;
-    }
-
-
-	public void setTenantId(String tenantId){
-		this.tenantId = tenantId;
-	}
-
-    public String getTenantId(){
-    	return this.tenantId;
     }
 
 

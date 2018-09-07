@@ -45,9 +45,6 @@ public class TsNotificationEntity extends BaseBusinessSimpleExEntity<String> imp
 	//yes_no        
 	private String  isRead ;
 
-	//租户
-	
-	private String  tenantId ;
 
 
 
@@ -107,13 +104,6 @@ public class TsNotificationEntity extends BaseBusinessSimpleExEntity<String> imp
     }
 
 
-	public void setTenantId(String tenantId){
-		this.tenantId = tenantId;
-	}
-
-    public String getTenantId(){
-    	return this.tenantId;
-    }
 
 
 	
