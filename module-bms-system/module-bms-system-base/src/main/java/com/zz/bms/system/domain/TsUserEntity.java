@@ -223,13 +223,6 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
     }
 
 
-	public void setTenantId(String tenantId){
-		this.tenantId = tenantId;
-	}
-
-    public String getTenantId(){
-    	return this.tenantId;
-    }
 
 
 	

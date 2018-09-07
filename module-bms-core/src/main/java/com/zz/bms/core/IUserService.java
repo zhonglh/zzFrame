@@ -1,4 +1,4 @@
-package com.zz.bms.shiro;
+package com.zz.bms.core;
 
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 

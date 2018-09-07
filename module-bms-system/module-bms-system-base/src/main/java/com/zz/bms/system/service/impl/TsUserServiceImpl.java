@@ -1,11 +1,15 @@
 package com.zz.bms.system.service.impl;
 
+import com.zz.bms.core.IUserService;
 import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 
+import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.system.bo.TsUserBO;
 import com.zz.bms.system.dao.TsUserDAO;
+import com.zz.bms.system.query.TsUserQuery;
+import com.zz.bms.system.query.impl.TsUserQueryImpl;
 import com.zz.bms.system.service.TsUserService;
 
 import com.zz.bms.system.bo.TsOrganBO;
@@ -26,7 +30,7 @@ import org.springframework.stereotype.Service;
 * @date 2018-9-6 23:56:30
 */
 @Service
-public class TsUserServiceImpl extends BaseServiceImpl<TsUserBO,String> implements TsUserService {
+public class TsUserServiceImpl extends BaseServiceImpl<TsUserBO,String> implements TsUserService,IUserService {
 
 
 
@@ -63,4 +67,12 @@ public class TsUserServiceImpl extends BaseServiceImpl<TsUserBO,String> implemen
 	}
 
 
+	@Override
+	public ILoginUserEntity getUserEntityByLoginName(String loginName) {
+
+		TsUserQuery userQuery = new TsUserQueryImpl();
+		userQuery.loginName(loginName);
+		return this.selectOne(userQuery.buildWrapper());
+
+	}
 }

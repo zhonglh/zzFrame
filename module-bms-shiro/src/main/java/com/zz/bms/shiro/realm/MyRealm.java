@@ -2,7 +2,7 @@ package com.zz.bms.shiro.realm;
 
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.enums.EnumUserStatus;
-import com.zz.bms.shiro.IUserService;
+import com.zz.bms.core.IUserService;
 import com.zz.bms.shiro.utils.ShiroUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
