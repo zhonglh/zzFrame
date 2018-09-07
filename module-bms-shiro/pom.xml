@@ -47,9 +47,11 @@
 
         <dependency>
             <groupId>com.zz.bms</groupId>
-            <artifactId>module-bms-system-base</artifactId>
+            <artifactId>module-bms-base</artifactId>
             <version>1.0.1</version>
         </dependency>
+
+
 
     </dependencies>
 </project>

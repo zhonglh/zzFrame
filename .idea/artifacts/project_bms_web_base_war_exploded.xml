@@ -35,9 +35,6 @@
           <element id="archive" name="module-bms-redis-1.0.1.jar">
             <element id="module-output" name="module-bms-redis" />
           </element>
-          <element id="archive" name="module-bms-system-base-1.0.1.jar">
-            <element id="module-output" name="module-bms-system-base" />
-          </element>
           <element id="archive" name="module-bms-base-1.0.1.jar">
             <element id="module-output" name="module-bms-base" />
           </element>

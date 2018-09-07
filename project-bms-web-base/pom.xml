@@ -29,11 +29,14 @@
             <scope>test</scope>
         </dependency>
 
+
+
         <dependency>
             <groupId>com.zz.bms</groupId>
             <artifactId>module-bms-controller-base</artifactId>
             <version>1.0.1</version>
         </dependency>
+
 
 
     </dependencies>

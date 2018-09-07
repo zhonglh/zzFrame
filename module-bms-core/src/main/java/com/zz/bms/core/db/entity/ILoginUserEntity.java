@@ -33,4 +33,12 @@ public interface ILoginUserEntity<PK extends Serializable> {
     public String getEmail() ;
 
 
+    public String getUserStatus();
+
+    public String getSalt();
+
+
+    public String getLoginPassword();
+
+
 }

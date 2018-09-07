@@ -1,11 +1,9 @@
 package com.zz.bms.shiro.realm;
 
+import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.enums.EnumUserStatus;
+import com.zz.bms.shiro.IUserService;
 import com.zz.bms.shiro.utils.ShiroUtils;
-import com.zz.bms.system.domain.TsUserEntity;
-import com.zz.bms.system.query.TsUserQuery;
-import com.zz.bms.system.query.impl.TsUserQueryImpl;
-import com.zz.bms.system.service.TsUserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
@@ -28,8 +26,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class MyRealm extends AuthorizingRealm {
 
     private static final Logger logger = LoggerFactory.getLogger(MyRealm.class);
-    @Autowired
-    private TsUserService userService;
+
+    @Autowired(required = false)
+    private IUserService userService;
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -44,9 +43,7 @@ public class MyRealm extends AuthorizingRealm {
 
         String loginName= (String) token.getPrincipal();
 
-        TsUserQuery userQuery = new TsUserQueryImpl();
-        userQuery.loginName(loginName);
-        TsUserEntity user = userService.selectOne(userQuery.buildWrapper());
+        ILoginUserEntity user = userService.getUserEntityByLoginName(loginName);
 
         if(user == null){
             throw new AuthenticationException("帐号密码错误");
