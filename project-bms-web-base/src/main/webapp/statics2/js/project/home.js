@@ -504,10 +504,12 @@ function changeProfile(id)
                                     return false;
                                 }
 
+                                debugger;
                                 $('#formProfile').ajaxSubmit(
                                     {
                                         success: function(rsp)
                                         {
+                                            debugger;
                                             if (rsp.success)
                                             {
                                                 profileDlg.hide();
@@ -518,6 +520,7 @@ function changeProfile(id)
                                         }
                                     });
 
+                                debugger;
                                 // 不关闭对话框
                                 return false;
                             }
@@ -560,7 +563,7 @@ function logoutSystem()
 {
     confirm('您确定现在就退出系统吗？', function()
     {
-        window.location = 'http://123.57.235.9:88/tzcp/platform/logout/3';
+        window.location = ctx+'/login/logout';
     });
 }
 
@@ -594,10 +597,11 @@ function saveShortcut()
     {
         lies.push($(li).attr('menuId'));
     });
-
+    var url = ctx+"/system/myshortcut/saveAll";
+    console.log({menuIds: lies.join(',')});
     $.post
     (
-        'http://123.57.235.9:88/tzcp/platform/shortcut', {menuIds: lies.join(',')},
+        url, {menuIds: lies.join(',')},
         function(rsp, textStatus, jqXHR)
         {
             if (!rsp.success)

@@ -20,6 +20,21 @@ public interface ILoginUserEntity<PK extends Serializable> {
      */
     public PK getTenantId();
 
+
+    /**
+     * 获取部门ID
+     * @return
+     */
+    public PK getDepId();
+
+
+
+    /**
+     * 获取机构ID
+     * @return
+     */
+    public PK getOrganId();
+
     /**
      * 获取登录人员名称
      * @return

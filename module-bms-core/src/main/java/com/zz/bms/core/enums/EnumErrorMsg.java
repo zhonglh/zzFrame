@@ -16,7 +16,7 @@ public enum EnumErrorMsg {
 
 
     db_insert_error(-810 , "操作错误,新增失败" , "EnumErrorMsg.db_insert_error"),
-    db_update_error(-820 , "操作错误,修改失败" , "EnumErrorMsg.db_update_error"),
+    db_update_error(-820 , "数据没有改变" , "EnumErrorMsg.db_update_error"),
     db_delete_error(-830 , "操作错误,删除失败" , "EnumErrorMsg.db_delete_error"),
     db_same_error(-800 , "数据重复" , "EnumErrorMsg.db_same_error"),
 
@@ -27,6 +27,7 @@ public enum EnumErrorMsg {
     success(200,"操作成功" , "EnumErrorMsg.success"),
     no_auth(401, "出现错误， 您没有这个权限" , "EnumErrorMsg.no_auth"),
     fail(500,"出现内部错误" , "EnumErrorMsg.fail"),
+    illegal(550, "非法操作" , "EnumErrorMsg.illegal"),
 
     frequent_operation(1010,"操作太频繁，请稍后再使用！" , "EnumErrorMsg.frequent_operation"),
     param_format_error(2010,"参数格式错误！" , "EnumErrorMsg.param_format_error"),

@@ -18,6 +18,13 @@ import java.io.Serializable;
 @TableName(value="vs_user_menu" , resultMap = "VsUserMenuResultMap")
 public class VsUserMenuBO extends VsUserMenuEntity implements Serializable {
 
+    private int level ;
 
+    public int getLevel() {
+        return level;
+    }
 
+    public void setLevel(int level) {
+        this.level = level;
+    }
 }

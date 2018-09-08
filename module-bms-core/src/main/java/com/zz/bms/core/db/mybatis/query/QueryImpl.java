@@ -2,8 +2,7 @@ package com.zz.bms.core.db.mybatis.query;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.zz.bms.core.enums.EnumSearchType;
-import com.zz.bms.core.exceptions.BizException;
+import com.zz.bms.core.enums.EnumSearchOperator;
 import com.zz.bms.core.exceptions.InternalException;
 import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.base.java.ReflectionSuper;
@@ -67,7 +66,7 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
         if(!isNulls.isEmpty()){
             for(String fieldName : isNulls) {
                 try {
-                    analysis(ai , orBoolean , wrapper, fieldName+splitStr+EnumSearchType.isnull, null);
+                    analysis(ai , orBoolean , wrapper, fieldName+splitStr+EnumSearchOperator.isNull, null);
                 } catch (IllegalAccessException e) {
                     throw new InternalException(e);
                 }
@@ -77,7 +76,7 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
         if(!isNotNulls.isEmpty()){
             for(String fieldName : isNotNulls) {
                 try {
-                    analysis(ai , orBoolean ,wrapper, fieldName+splitStr+EnumSearchType.isnotnull, null);
+                    analysis(ai , orBoolean ,wrapper, fieldName+splitStr+ EnumSearchOperator.isNotNull, null);
                 } catch (IllegalAccessException e) {
                     throw new InternalException(e);
                 }
@@ -132,7 +131,7 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
      * @param fieldValue
      */
     protected void analysis(AtomicInteger ai , boolean orBoolean ,Wrapper<M> wrapper , String fieldProperties , Object fieldValue) throws IllegalAccessException{
-        EnumSearchType searchType = null;
+        EnumSearchOperator searchType = null;
         String fieldName = null;
 
         String[] fields = fieldProperties.split(splitStr);
@@ -158,13 +157,13 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
             case ne:
                 wrapper.ne(columnName , fieldValue);
                 break;
-            case ge:
+            case gte:
                 wrapper.ge(columnName , fieldValue);
                 break;
             case gt:
                 wrapper.gt(columnName , fieldValue);
                 break;
-            case le:
+            case lte:
                 wrapper.le(columnName , fieldValue);
                 break;
             case lt:
@@ -173,7 +172,7 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
             case like:
                 wrapper.like(columnName , fieldValue.toString());
                 break;
-            case notlike:
+            case notLike:
                 wrapper.notLike(columnName , fieldValue.toString());
                 break;
             case in:
@@ -183,17 +182,17 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
                     wrapper.in(columnName, (Collection) fieldValue);
                 }
                 break;
-            case notin:
+            case notIn:
                 if(fieldValue instanceof String){
                     wrapper.notIn(columnName , ((String) fieldValue).split(","));
                 }else {
                     wrapper.notIn(columnName , (Collection) fieldValue);
                 }
                 break;
-            case isnull:
+            case isNull:
                 wrapper.isNull(columnName);
                 break;
-            case isnotnull:
+            case isNotNull:
                 wrapper.isNotNull(columnName);
                 break;
 
@@ -205,12 +204,12 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
     }
 
 
-    private EnumSearchType getSearchType(String searchType) throws IllegalAccessException{
+    private EnumSearchOperator getSearchType(String searchType) throws IllegalAccessException{
         if(StringUtils.isEmpty(searchType)){
-            return EnumSearchType.eq ;
+            return EnumSearchOperator.eq ;
         }else {
             try {
-                return EnumSearchType.valueOf(searchType.toLowerCase());
+                return EnumSearchOperator.valueOf(searchType.toLowerCase());
             }catch (Exception e){
                 throw new IllegalAccessException(this.getClass().getName() +" fields setting error , by suffix is '"+ searchType +"'");
             }

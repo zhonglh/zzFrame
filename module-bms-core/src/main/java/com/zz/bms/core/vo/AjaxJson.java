@@ -34,6 +34,10 @@ public class AjaxJson {
 	public static final AjaxJson errorAjax = EnumErrorMsg.fail.toAjaxJson();
 	public static final AjaxJson successAjax = EnumErrorMsg.success.toAjaxJson();
 
+	public static final AjaxJson illegalAjax = EnumErrorMsg.illegal.toAjaxJson();
+
+	public static final AjaxJson notAuthAjax = EnumErrorMsg.no_auth.toAjaxJson();
+
 
 
 

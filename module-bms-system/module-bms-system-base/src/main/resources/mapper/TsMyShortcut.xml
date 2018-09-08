@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.system.dao.TsMyShortcutDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TsMyShortcutResultMap" type="com.zz.bms.system.bo.TsMyShortcutBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="menu_id" property="menuId"/>
+
+         	<result column="user_id" property="userId"/>
+
+            <result column="orderby" property="orderby"/>
+
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TsMyShortcut4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="menuId != null and menuId != ''"> AND T.menu_id = #{menuId} </if>
+					<if test="userId != null and userId != ''"> AND T.user_id = #{userId} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.system.bo.TsMyShortcutBO" resultMap="TsMyShortcutResultMap">
+        SELECT T.* FROM ts_my_shortcut T
+        <include refid="TsMyShortcut4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

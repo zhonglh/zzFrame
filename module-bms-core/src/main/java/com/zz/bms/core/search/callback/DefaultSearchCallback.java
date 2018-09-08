@@ -116,6 +116,7 @@ public class DefaultSearchCallback implements SearchCallback {
         if (operator == EnumSearchOperator.like || operator == EnumSearchOperator.notLike) {
             return "%" + value + "%";
         }
+        /**
         if (operator == EnumSearchOperator.prefixLike || operator == EnumSearchOperator.prefixNotLike) {
             return value + "%";
         }
@@ -123,6 +124,7 @@ public class DefaultSearchCallback implements SearchCallback {
         if (operator == EnumSearchOperator.suffixLike || operator == EnumSearchOperator.suffixNotLike) {
             return "%" + value;
         }
+         */
         return value;
     }
 

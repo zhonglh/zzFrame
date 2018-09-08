@@ -25,6 +25,10 @@ public class TsUserBO extends TsUserEntity implements Serializable , ILoginUserE
 
 
 
+    private String avatarImageUrl ;
+
+
+
     public void setUserStatusName(String userStatusName){
         this.userStatusName = userStatusName;
     }
@@ -41,4 +45,11 @@ public class TsUserBO extends TsUserEntity implements Serializable , ILoginUserE
         return this.systemAdminName;
     }
 
+    public String getAvatarImageUrl() {
+        return avatarImageUrl;
+    }
+
+    public void setAvatarImageUrl(String avatarImageUrl) {
+        this.avatarImageUrl = avatarImageUrl;
+    }
 }

@@ -66,7 +66,7 @@
 <body>
 <nav class="navbar" role="navigation">
     <div class="container-fluid">
-        <div class="navbar-header"><img class="logo" src="http://123.57.235.9:88/tzcp/image/logo.png"/></div>
+        <div class="navbar-header"><img class="logo" src="logo.png"/></div>
         <div class="collapse navbar-collapse" style="padding-left: 0;margin-left: 230px;">
 
             <div id="limitSec">
@@ -75,11 +75,21 @@
                 <a href="${ctx}/main/home" class="home-btn" data-ot=" 首页 " data-ot-delay="1"><i class="fa fa-home"></i></a>
                 <ul class="nav navbar-nav" id="nav-bar">
 
+                    <c:forEach items="${topShortcutMenus}" var="shortcut">
+
+                        <li menuId='${shortcut.id}' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('${ctx}${shortcut.menuUrl}')"><c:if test="${not empty shortcut.menuIcon}"><i class="fa ${shortcut.menuIcon}"></i></c:if><span>${shortcut.menuName}</span></a></li>
+
+                    </c:forEach>
+
+
+                    <%--
+
                     <li menuId='100' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/100/3')"><i class="fa fa-list-alt"></i></i><span>发起流程</span></a></li>
 
                     <li menuId='2' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/2/3')"><i class="fa fa-random"></i></i><span>待办流程</span></a></li>
 
                     <li menuId='34' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/34/3')"><i class="fa fa-list-alt"></i></i><span>我的项目</span></a></li>
+                    --%>
 
                 </ul>
 
@@ -88,12 +98,19 @@
                     <div class="nav-more" style="display: none">
                         <ul id="nav-more">
 
+                            <c:forEach items="${moreShortcutMenus}" var="shortcut">
+
+                                <li menuId='${topShortcutMenus.id}' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('${ctx}${topShortcut.url}')"><c:if test="${not empty topShortcutMenus.menuIcon}"><i class="fa ${topShortcutMenus.menuIcon}"></i></c:if><span>${topShortcutMenus.menuName}</span></a></li>
+
+                            </c:forEach>
+
+                           <%--
                             <li menuId='61' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/61/3')"><i class="fa fa-calendar-o"></i></i><span title='会议室预定'>会议室预定</span></a></li>
 
                             <li menuId='58' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/58/3')"><i class="fa fa-bar-chart"></i></i><span title='我的报表'>我的报表</span></a></li>
 
                             <li menuId='62' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/62/3')"><i class="fa fa-list-alt"></i></i><span title='员工通讯录'>员工通讯录</span></a></li>
-
+                            --%>
                         </ul>
                     </div>
                 </div>
@@ -215,7 +232,7 @@
 </div>
 
 <div style='position: absolute; left: 230px; top: 50px; bottom: 0px; right: 0px;'>
-    <iframe id='ifrmWorkspace' name='ifrmWorkspace' width='100%' height='100%' frameborder='0'  style="background-color: #ffffff;"></iframe>
+    <iframe id='ifrmWorkspace'  name='ifrmWorkspace' src="${ctx}/main/welcome" width='100%' height='100%' frameborder='0'  style="background-color: #ffffff;"></iframe>
 </div>
 
 
@@ -227,7 +244,7 @@
 </div>
 
 <div class="hidden">
-    <form id="formProfile" class="form-horizontal" action="http://123.57.235.9:88/tzcp/platform/profile" method="post">
+    <form id="formProfile" class="form-horizontal" action="${ctx}/system/user/${loginUser.id}/updateMyProfile" method="post">
         <input name="headImg" type="hidden" value="default.png">
         <table width="100%">
             <tr>
@@ -235,17 +252,17 @@
                     <table width="100%">
                         <tr>
                             <td align="right" width="100">手机号码：</td>
-                            <td><input name="mobilePhone" class="form-control input-sm" pattern='1\d{10}' data-msg-pattern='无效的手机号码！'></td>
+                            <td><input name="phone" id="phone"  class="form-control input-sm" pattern='1\d{10}' data-msg-pattern='无效的手机号码！'></td>
                         </tr>
 
                         <tr>
                             <td align="right">电子邮件：</td>
-                            <td><input name="email" class="form-control input-sm email" maxlength="30"></td>
+                            <td><input name="email" id="email"  class="form-control input-sm email" maxlength="30"></td>
                         </tr>
 
                         <tr>
                             <td align="right">每页记录数：</td>
-                            <td><select name="pageLimit" class="form-control input-sm"></select></td>
+                            <td><select name="pageLimit" name="pageLimit"  class="form-control input-sm"></select></td>
                         </tr>
 
                         <tr>
@@ -338,7 +355,7 @@
 
 
 
-    var myProfile = {headImg: 'default.png', mobilePhone: '<shiro:principal property="phone" />', email: '<shiro:principal property="email" />', pageLimit: 50};
+    var myProfile = {headImg: 'default.png', phone: '<shiro:principal property="phone" />', email: '<shiro:principal property="email" />', pageLimit: <shiro:principal property="pageLimit" /> };
 </script>
 
 <script src="${staticUrl}/statics2/iconfont/iconfont.js"></script>

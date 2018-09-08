@@ -30,22 +30,6 @@ public class VsUserMenuController extends DefaultController<VsUserMenuBO, String
 
 
 
-	@Override
-	protected boolean isExist(VsUserMenuBO vsUserMenuBO) {
-
-		VsUserMenuBO ckBO ;
-		boolean isExist = false;
-		VsUserMenuBO temp = null ;
-
-		ckBO = new VsUserMenuBO();
-		ckBO.setId( vsUserMenuBO.getId() );
-        ckBO.setMenuCode(vsUserMenuBO.getMenuCode());
-        temp = this.baseService.selectCheck(ckBO);
-        if (isEntityExist(temp)) {return true;}
-
-		return isExist;
-	}
-
 
 
 

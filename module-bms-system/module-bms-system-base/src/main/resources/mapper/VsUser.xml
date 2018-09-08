@@ -22,7 +22,7 @@
 
          	<result column="email" property="email"/>
 
-         	<result column="avatar_url" property="avatarUrl"/>
+			<result column="avatar_image" property="avatarImage"/>
 
          	<result column="open_id" property="openId"/>
 
@@ -33,6 +33,8 @@
          	<result column="dep_id" property="depId"/>
 
          	<result column="organ_id" property="organId"/>
+
+			<result column="page_limit" property="pageLimit"/>
 
          	<result column="remark" property="remark"/>
 

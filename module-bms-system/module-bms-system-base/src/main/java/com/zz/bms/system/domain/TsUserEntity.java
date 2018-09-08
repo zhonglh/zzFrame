@@ -52,9 +52,13 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
 	
 	private String  email ;
 
+
+
 	//头像
 	
-	private String  avatarUrl ;
+	private String  avatarImage ;
+
+
 
 	//微信ID
 	
@@ -75,6 +79,8 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
 	//机构
 	
 	private String  organId ;
+
+	private int pageLimit;
 
 	//备注
 	
@@ -155,15 +161,13 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
     	return this.email;
     }
 
-
-	public void setAvatarUrl(String avatarUrl){
-		this.avatarUrl = avatarUrl;
+	public String getAvatarImage() {
+		return avatarImage;
 	}
 
-    public String getAvatarUrl(){
-    	return this.avatarUrl;
-    }
-
+	public void setAvatarImage(String avatarImage) {
+		this.avatarImage = avatarImage;
+	}
 
 	public void setOpenId(String openId){
 		this.openId = openId;
@@ -218,8 +222,11 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
     	return this.remark;
     }
 
+	public int getPageLimit() {
+		return pageLimit;
+	}
 
-
-
-	
+	public void setPageLimit(int pageLimit) {
+		this.pageLimit = pageLimit;
+	}
 }

@@ -75,4 +75,17 @@ public class LoginController extends BaseBussinessController {
     }
 
 
+
+    @RequestMapping("/logout")
+    public String logout() {
+        try{
+            Subject subject = ShiroUtils.getSubject();
+            subject.logout();
+        }catch (Exception e) {
+
+        }
+        return "redirect:/toLogin";
+    }
+
+
 }

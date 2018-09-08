@@ -8,14 +8,16 @@ import com.zz.bms.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.core.Constant;
 import java.lang.String;
 import java.lang.Integer;
+
+import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.system.domain.TsMenuEntity;
 /**
  * 菜单 实体类
- *         path                       menu_url        co        
+ *
  * @author Administrator
  * @date 2018-9-7 0:01:37
  */
-public class VsUserMenuEntity extends TsMenuEntity implements java.io.Serializable{
+public class VsUserMenuEntity extends BaseEntity<String> implements java.io.Serializable{
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
@@ -39,6 +41,10 @@ public class VsUserMenuEntity extends TsMenuEntity implements java.io.Serializab
 	//菜单地址
 	
 	private String  path ;
+
+	//是否为快捷菜单
+
+	private String shortcut;
 
 	//用户姓名
 	
@@ -141,5 +147,11 @@ public class VsUserMenuEntity extends TsMenuEntity implements java.io.Serializab
     }
 
 
-	
+	public String getShortcut() {
+		return shortcut;
+	}
+
+	public void setShortcut(String shortcut) {
+		this.shortcut = shortcut;
+	}
 }

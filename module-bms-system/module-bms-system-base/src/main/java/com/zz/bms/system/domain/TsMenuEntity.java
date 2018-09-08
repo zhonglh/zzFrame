@@ -49,6 +49,10 @@ public class TsMenuEntity extends BaseBusinessExEntity<String> implements java.i
 	
 	private String  menuIcon ;
 
+	//是否快捷菜单
+
+	private String  shortcut;
+
 	//跳转目标
 	
 	private String  menuRedirect ;
@@ -141,6 +145,11 @@ public class TsMenuEntity extends BaseBusinessExEntity<String> implements java.i
     	return this.remark;
     }
 
+	public String getShortcut() {
+		return shortcut;
+	}
 
-	
+	public void setShortcut(String shortcut) {
+		this.shortcut = shortcut;
+	}
 }

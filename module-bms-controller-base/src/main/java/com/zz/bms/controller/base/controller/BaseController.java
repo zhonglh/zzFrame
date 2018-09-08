@@ -83,6 +83,8 @@ public abstract class BaseController {
                      return (ILoginUserEntity)request.getSession().getAttribute(Constant.SESSION_USER);
                  }
             }
+
+            return loginUser;
         }catch(Exception e){
             RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
             if (requestAttributes != null) {

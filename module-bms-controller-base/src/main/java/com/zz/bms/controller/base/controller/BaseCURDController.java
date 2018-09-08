@@ -15,6 +15,7 @@ import com.zz.bms.core.ui.Pages;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.util.base.java.GenericsHelper;
 import com.zz.bms.util.base.spring.PaginationContext;
+import io.jsonwebtoken.lang.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.ui.Model;
@@ -304,6 +305,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         boolean success = false;
         try {
             updateBefore(m);
+            Assert.notNull(m.getId(),"出现内部错误");
             success = baseService.updateById(m);
             updateAfter(m);
         }catch(Exception e){

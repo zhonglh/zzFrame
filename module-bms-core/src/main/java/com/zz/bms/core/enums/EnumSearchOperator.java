@@ -4,37 +4,70 @@ package com.zz.bms.core.enums;
 import com.zz.bms.core.exceptions.BizException;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
  * <p>查询操作符</p>
  * @author Administrator
  */
-public enum EnumSearchOperator {
-    eq("等于", "="),
-    ne("不等于", "!="),
-    gt("大于", ">"),
-    gte("大于等于", ">="),
-    lt("小于", "<"),
-    lte("小于等于", "<="),
-    prefixLike("前缀模糊匹配", "like"),
-    prefixNotLike("前缀模糊不匹配", "not like"),
-    suffixLike("后缀模糊匹配", "like"),
-    suffixNotLike("后缀模糊不匹配", "not like"),
-    like("模糊匹配", "like"),
-    notLike("不匹配", "not like"),
-    isNull("空", "is null"),
-    isNotNull("非空", "is not null"),
-    in("包含", "in"),
-    notIn("不包含", "not in"),
-    custom("自定义默认的", null);
+public enum EnumSearchOperator implements EnumBase {
+    eq("","等于", "="),
+    ne("ne","不等于", "!="),
+    gt("gt","大于", ">"),
+    gte("gte","大于等于", ">="),
+    lt("lt","小于", "<"),
+    lte("lte","小于等于", "<="),
+    isNull("isNull","空", "is null"),
+    isNotNull("isNotNull","非空", "is not null"),
 
-    private final String info;
-    private final String symbol;
+    /*
+    prefixLike("prefixLike","前缀模糊匹配", "like"),
+    prefixNotLike("prefixNotLike","前缀模糊不匹配", "not like"),
+    suffixLike("suffixLike","后缀模糊匹配", "like"),
+    suffixNotLike("suffixNotLike","后缀模糊不匹配", "not like"),
+    */
 
-    EnumSearchOperator(final String info, String symbol) {
+
+
+    between("between" , "范围-左闭右闭" , "between"),
+    betweenOpen("betweenOpen" , "范围-左开右开" , "betweenOpen"),
+    betweenLeftOpen("betweenLeftOpen" , "范围-左开右闭", "betweenLeftOpen"),
+    betweenRightOpen("betweenRightOpen" , "范围-右开左闭", "betweenRightOpen"),
+
+    like("like","模糊匹配", "like"),
+    notLike("notLike","不匹配", "not like"),
+    in("in","包含", "in"),
+    notIn("notIn","不包含", "not in"),
+    custom("custom","自定义默认的", null)
+    ;
+
+    private String code;
+    private String info;
+    private String symbol;
+
+    EnumSearchOperator(String code, String info, String symbol) {
+        this.code = code;
         this.info = info;
         this.symbol = symbol;
+    }
+
+
+    @Override
+    public Serializable getTheValue() {
+        return code;
+    }
+
+
+    @Override
+    public String getTheName() {
+        return info;
+    }
+
+
+
+    public String getCode() {
+        return code;
     }
 
     public String getInfo() {
@@ -77,4 +110,6 @@ public enum EnumSearchOperator {
         }
         return symbol.trim().toLowerCase().replace("  ", " ");
     }
+
+
 }
