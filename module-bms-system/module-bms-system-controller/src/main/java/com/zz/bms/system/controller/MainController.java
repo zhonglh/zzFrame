@@ -1,14 +1,9 @@
 package com.zz.bms.system.controller;
 
-import com.google.code.kaptcha.Constants;
-import com.google.code.kaptcha.Producer;
 import com.zz.bms.controller.base.controller.BaseBussinessController;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.enums.EnumYesNo;
-import com.zz.bms.core.vo.AjaxJson;
-import com.zz.bms.shiro.utils.ShiroUtils;
 import com.zz.bms.system.bo.TsMyShortcutBO;
-import com.zz.bms.system.bo.TsUserBO;
 import com.zz.bms.system.bo.VsUserMenuBO;
 import com.zz.bms.system.domain.TsUserEntity;
 import com.zz.bms.system.query.TsMyShortcutQuery;
@@ -17,22 +12,14 @@ import com.zz.bms.system.query.impl.TsMyShortcutQueryImpl;
 import com.zz.bms.system.query.impl.VsUserMenuQueryImpl;
 import com.zz.bms.system.service.TsMyShortcutService;
 import com.zz.bms.system.service.VsUserMenuService;
-import org.apache.shiro.authc.*;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.imageio.ImageIO;
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

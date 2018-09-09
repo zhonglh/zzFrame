@@ -220,8 +220,14 @@
             <a href="javascript: openMenu('');" title="系统管理" style="padding-left: 6px;"><i class="fa fa-users"></i>系统管理</a>
         </li>
 
-        <li menuNodeNo="SM-1" menuLevel="2" parentNodeNo="SM" style="display: none">
-            <a href="javascript: openMenu('${ctx}/sys/user/toList');" title="用户管理" style="padding-left: 28px;">
+
+
+
+        <li menuNodeNo="SM-1" menuLevel="2" parentNodeNo="SM" style="display: none;padding-left: 28px;">
+            <a href="javascript: openMenu('');" title="系统管理" style="padding-left: 6px;"><i class="fa fa-users"></i>系统管理12</a>
+        </li>
+        <li menuNodeNo="SM-1-1" menuLevel="3" parentNodeNo="SM-1" style="display: none">
+            <a href="javascript: openMenu('${ctx}/sys/user/toList');" title="用户管理" style="padding-left: 56px;">
                 <i class="fa fa-list-alt"></i>用户管理</a>
         </li>
 

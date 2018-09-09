@@ -138,16 +138,18 @@ function cropImgUpload(callback)
             url: $AppContext + '/third/corpper/avatar', type: 'post', data: {"imageData": result.toDataURL().toString()}, dataType: 'json', async: false,
             success: function (data)
             {
-                if (data.id)
-                {
-                    avatar_callback(data.id);
-                    resetCrop();
-                    $("#modal").modal('hide');
-                }
-                else
-                {
-                    error("设置失败");
-                    flag = false;
+                if(data.success) {
+                    if (data.id) {
+                        avatar_callback(data.id);
+                        resetCrop();
+                        $("#modal").modal('hide');
+                    }
+                    else {
+                        error("设置失败");
+                        flag = false;
+                    }
+                }else {
+                    error(data.msg);
                 }
             }
         });
@@ -547,7 +549,7 @@ function changeProfile(id)
 function changeHeadImage()
 {
 
-
+    //todo , oss 还没有做， 替换头像功能
     initCropImgDialog(function(newFileName){
 
         $('#userHeadImg').prop('src', 'http://123.57.235.9:88/tzcp/third/avatar/temp/' + newFileName);

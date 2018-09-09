@@ -114,6 +114,9 @@ public class CachingShiroSessionDao extends CachingSessionDAO {
         } catch (Exception e) {
             logger.error("ValidatingSession error");
         }
+
+
+
         try {
             try {
                 redisUtil.setObject(prefix+session.getId(),session,seconds);
