@@ -1,5 +1,6 @@
 package com.zz.bms.system.bo;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bms.system.domain.TsMsgTempletEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -18,10 +19,13 @@ import java.io.Serializable;
 @TableName(value="ts_msg_templet" , resultMap = "TsMsgTempletResultMap")
 public class TsMsgTempletBO extends TsMsgTempletEntity implements Serializable {
 
+    @TableField(exist = false)
     private String msgTempletTypeName ;
 
+    @TableField(exist = false)
     private String msgLanguageName ;
 
+    @TableField(exist = false)
     private String templetEffectiveName ;
 
 

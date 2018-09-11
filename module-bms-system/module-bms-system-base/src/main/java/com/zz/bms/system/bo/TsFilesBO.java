@@ -1,5 +1,6 @@
 package com.zz.bms.system.bo;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bms.system.domain.TsFilesEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -18,6 +19,7 @@ import java.io.Serializable;
 @TableName(value="ts_files" , resultMap = "TsFilesResultMap")
 public class TsFilesBO extends TsFilesEntity implements Serializable {
 
+    @TableField(exist = false)
     private String fileEngineName ;
 
 

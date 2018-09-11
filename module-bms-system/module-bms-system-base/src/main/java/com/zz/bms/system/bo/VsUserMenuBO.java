@@ -1,5 +1,6 @@
 package com.zz.bms.system.bo;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bms.system.domain.VsUserMenuEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -18,6 +19,7 @@ import java.io.Serializable;
 @TableName(value="vs_user_menu" , resultMap = "VsUserMenuResultMap")
 public class VsUserMenuBO extends VsUserMenuEntity implements Serializable {
 
+    @TableField(exist = false)
     private int level ;
 
     public int getLevel() {
@@ -26,5 +28,15 @@ public class VsUserMenuBO extends VsUserMenuEntity implements Serializable {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+
+    @Override
+    public String toString() {
+        return "VsUserMenuBO{" +
+                "id=" + getId() +
+                "pid=" + getPid() +
+                "level=" + level +
+                '}';
     }
 }

@@ -29,7 +29,7 @@ public abstract class AbstractNotifyWebSocket {
     private ILoginUserEntity<String> loginUser ;
 
     protected abstract ILoginUserEntity getCurrLoginUser(String userKey, String userSessoinId);
-    protected abstract void logout(String userKey);
+    protected abstract void logout(String userKey, String userSessoinId);
 
 
     @OnOpen
@@ -70,7 +70,7 @@ public abstract class AbstractNotifyWebSocket {
 
         //从连接集合中移除
         WebSocketHelp.removeConnect(this);
-        logout(userKey);
+        logout(userKey , userSessoinId);
     }
 
     /**

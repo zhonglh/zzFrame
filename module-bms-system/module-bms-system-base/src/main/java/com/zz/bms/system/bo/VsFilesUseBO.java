@@ -1,5 +1,6 @@
 package com.zz.bms.system.bo;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bms.system.domain.VsFilesUseEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -18,8 +19,10 @@ import java.io.Serializable;
 @TableName(value="vs_files_use" , resultMap = "VsFilesUseResultMap")
 public class VsFilesUseBO extends VsFilesUseEntity implements Serializable {
 
+    @TableField(exist = false)
     private String businessTypeName ;
 
+    @TableField(exist = false)
     private String fileEngineName ;
 
 

@@ -136,11 +136,11 @@
                 </li>
 
                 <li>
-                    <a href="javascript:openMenu('http://123.57.235.9:88/tzcp/platform/msg')">
+                    <a href="javascript:openMenu('${ctx}/system/notification/toList')" >
                         <i class="fa fa-bell-o"><span class="badge hidden">0</span></i>
                     </a>
 
-                    <div class="msg-toast-container">
+                    <%--<div class="msg-toast-container">
                         <div class="msg-toast-title">
                             <svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-message"></use></svg>
                             <span><font color="red">0</font> 条未读消息</span>
@@ -152,7 +152,7 @@
                             <span>查看所有消息</span>
                             <svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-showall"></use></svg>
                         </a>
-                    </div>
+                    </div>--%>
                 </li>
             </ul>
         </div>
@@ -164,25 +164,37 @@
     <label class="search-items"><i class="fa fa-search"></i><input type="text" class="form-control" placeholder="搜索功能模块" id="func-search" oninput="OnInput()" onpropertychange="OnPropChanged() " /></label>
     <ul class="menu" id="ul_cartList">
 
+        <c:forEach items="${menus}" var="menu">
+
+            <li menuNodeNo="${menu.id}" menuLevel="${menu.level}"
+                style="display : <c:if test="${menu.level == 1}">block</c:if><c:if test="${menu.level > 1}">none</c:if>"
+                parentNodeNo="<c:if test="${empty menu.pid}">-1</c:if><c:if test="${not empty menu.pid}">${pid}</c:if>"  >
+                <a href="javascript: openMenu('${ctx}${menu.path}');" title="${menu.title}"
+                   style="padding-left: <c:if test="${menu.level == 1}">6</c:if><c:if test="${menu.level != 1}">${(menu.levle-1)*22}</c:if>px;">
+                    <i class="fa ${menu.icon}"></i>${menu.title}</a>
+            </li>
+
+        </c:forEach>
 
 
+        <!--
         <li menuNodeNo="2" menuLevel="1" parentNodeNo="-1" style="display: block">
-            <a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/2/3');" title="待办流程" style="padding-left: 6px;">
+            <a href="javascript: openMenu('url/2/3');" title="待办流程" style="padding-left: 6px;">
                 <i class="fa fa-random"></i>待办流程</a>
         </li>
 
         <li menuNodeNo="100" menuLevel="1" parentNodeNo="-1" style="display: block">
-            <a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/100/3');" title="发起流程" style="padding-left: 6px;">
+            <a href="javascript: openMenu('url/100/3');" title="发起流程" style="padding-left: 6px;">
                 <i class="fa fa-list-alt"></i>发起流程</a>
         </li>
 
         <li menuNodeNo="32" menuLevel="1" parentNodeNo="-1" style="display: block">
-            <a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/32/3');" title="投资人管理" style="padding-left: 6px;">
+            <a href="javascript: openMenu('url/32/3');" title="投资人管理" style="padding-left: 6px;">
                 <i class="fa fa-user"></i>投资人管理</a>
         </li>
 
         <li menuNodeNo="31" menuLevel="1" parentNodeNo="-1" style="display: block">
-            <a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/31/3');" title="私募基金管理" style="padding-left: 6px;">
+            <a href="javascript: openMenu('url/31/3');" title="私募基金管理" style="padding-left: 6px;">
                 <i class="fa fa-shield"></i>私募基金管理</a>
         </li>
 
@@ -191,12 +203,12 @@
         </li>
 
         <li menuNodeNo="33-34" menuLevel="2" parentNodeNo="33" style="display: none">
-            <a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/34/3');" title="我的项目" style="padding-left: 28px;">
+            <a href="javascript: openMenu('url/34/3');" title="我的项目" style="padding-left: 28px;">
                 <i class="fa fa-list-alt"></i>我的项目</a>
         </li>
 
         <li menuNodeNo="33-35" menuLevel="2" parentNodeNo="33" style="display: none">
-            <a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/35/3');" title="投资项目管理" style="padding-left: 28px;">
+            <a href="javascript: openMenu('url/35/3');" title="投资项目管理" style="padding-left: 28px;">
                 <i class="fa fa-list-alt"></i>投资项目管理</a>
         </li>
 
@@ -205,31 +217,15 @@
         </li>
 
         <li menuNodeNo="54-57" menuLevel="2" parentNodeNo="54" style="display: none">
-            <a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/57/3');" title="基金风险检测" style="padding-left: 28px;">
+            <a href="javascript: openMenu('url/57/3');" title="基金风险检测" style="padding-left: 28px;">
                 <i class="fa fa-list-alt"></i>基金风险检测</a>
         </li>
 
         <li menuNodeNo="54-56" menuLevel="2" parentNodeNo="54" style="display: none">
-            <a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/56/3');" title="项目风险检测" style="padding-left: 28px;">
+            <a href="javascript: openMenu('url/56/3');" title="项目风险检测" style="padding-left: 28px;">
                 <i class="fa fa-list-alt"></i>项目风险检测</a>
         </li>
-
-
-
-        <li menuNodeNo="SM" menuLevel="1" parentNodeNo="-1" style="display: block">
-            <a href="javascript: openMenu('');" title="系统管理" style="padding-left: 6px;"><i class="fa fa-users"></i>系统管理</a>
-        </li>
-
-
-
-
-        <li menuNodeNo="SM-1" menuLevel="2" parentNodeNo="SM" style="display: none;padding-left: 28px;">
-            <a href="javascript: openMenu('');" title="系统管理" style="padding-left: 6px;"><i class="fa fa-users"></i>系统管理12</a>
-        </li>
-        <li menuNodeNo="SM-1-1" menuLevel="3" parentNodeNo="SM-1" style="display: none">
-            <a href="javascript: openMenu('${ctx}/sys/user/toList');" title="用户管理" style="padding-left: 56px;">
-                <i class="fa fa-list-alt"></i>用户管理</a>
-        </li>
+        -->
 
 
     </ul>
@@ -359,7 +355,9 @@
     var $AlibabaMediaNameSpace = '';
 
 
-
+    var notReadCount = ${notReadNotifyCount};
+    var userKey = "${loginUser.id}";
+    var userSessoinId = "${userSessoinId}";
 
     var myProfile = {headImg: 'default.png', phone: '<shiro:principal property="phone" />', email: '<shiro:principal property="email" />', pageLimit: <shiro:principal property="pageLimit" /> };
 </script>
@@ -410,7 +408,6 @@
 <script src="${staticUrl}/statics2/js/project/common-sys-function.js"></script>
 
 <script src="${staticUrl}/statics2/js/project/home.js"></script>
-
 
 
 </body>

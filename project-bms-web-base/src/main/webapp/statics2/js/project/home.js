@@ -135,6 +135,7 @@ function cropImgUpload(callback)
     var flag=true;
     $.ajax(
         {
+            //todo 需要替换 url
             url: $AppContext + '/third/corpper/avatar', type: 'post', data: {"imageData": result.toDataURL().toString()}, dataType: 'json', async: false,
             success: function (data)
             {
@@ -208,8 +209,12 @@ $(function()
     });
 
     // 查询未读消息
-    loadMyMessage();
-    msgInterval = setInterval("loadMyMessage()", 60 * 1000);
+    loadMyMessageCount(notReadCount);
+
+
+    //启动 websocket , 获取通知个数
+    startMyNotify();
+
 });
 
 // 搜索功能模块，非IE内核浏览器调用方法
@@ -285,6 +290,7 @@ function initShortcutMenu()
 
     // 传参数修正导航个数的问题
     sortShortcutMenu();
+
 }
 
 // 初始化和调整窗口时都要调用的公共事件
@@ -619,52 +625,163 @@ function saveShortcut()
 /***
  * 查询我的未读消息
  */
+
+
+
+function startMyNotify(){
+    var ws = null;
+    var targetUrl = "ws://localhost:8081"+ctx+"/websocket/notify/"+userKey+"/"+userSessoinId;
+
+    if('WebSocket' in window){
+        ws = new WebSocket(targetUrl);
+    }else if('MozWebSocket' in window){
+        ws = new MozWebSocket(targetUrl);
+    }else{
+        return;
+    }
+
+    ws.onopen = function () {
+    };
+    ws.onmessage = function (event) {
+        if(event) {
+            var notify = event.data;
+            if(notify){
+                //解析数据
+                notify = JSON.parse(notify);
+                if(notify.messageType == '1'){
+                    //跳转到登录界面
+                    window.location = ctx+'/login/logout';
+                }else {
+                    loadMyMessageCount(notify.noReadCount);
+                    //$(".badge").shake(3);
+                    //弹框显示通知信息
+                    showWsMsg(notify);
+                    console.log(notify.title + notify.content);
+                }
+            }
+        }
+    };
+    ws.onclose = function (event) {
+    };
+
+
+}
+
+
+function showWsMsg(notify){
+    var contentHtml = "<div style='height: 200px;overflow:auto'>" +  notify.content + "</div>";
+    var dialog = iDialog({
+             content: contentHtml , lock: true, effect: 'i-super-scale', width: 550, height: 300,
+             btn: {ok: {val: '已阅', type: 'green', click: readNotify(notify.id)}, cancel: {val: '取消'}}
+        });
+
+    var title = notify.title;
+    if(!title){
+        title = "通知";
+    }
+    dialog.$title.html(title);
+    dialog.show();
+
+
+}
+
+function readNotify(notifyId){
+
+}
+
+function loadMyMessageCount(total){
+    if (0 == total)
+    {
+        $('.badge').addClass('hidden');
+        $('i.fa-bell-o').removeClass('animated-bell');
+    }else {
+
+        $('.badge').removeClass('hidden');
+        $('.badge').addClass('hidden');
+        $('i.fa-bell-o').removeClass('animated-bell');
+
+        $('.badge').removeClass('hidden');
+        $(".badge").html(total > 99 ? '99+' : total);
+        $('i.fa-bell-o').addClass('animated-bell');
+    }
+}
+
+/**
+ * 抖动效果
+ * @param intShakes
+ * @param intDistance
+ * @param intDuration
+ * @returns {jQuery}
+ */
+jQuery.fn.shake = function (intShakes ) {
+    this.each(function () {
+        var jqNode = $(this);
+        var x = jqNode.width();
+        var y = jqNode.height();
+        jqNode.css({ position: 'relative' });
+        for (var x = 1; x <= intShakes; x++) {
+            jqNode.animate({width: x * 1.3, height: y * 1.3}, 100);
+            jqNode.animate({width: x, height: y}, 100);
+            jqNode.animate({width: x, height: y}, 500);
+        }
+    });
+    return this;
+}
+
+/**
 function loadMyMessage()
 {
     $.post('http://123.57.235.9:88/tzcp/platform/msg/unread', function(rsp, textStatus, jqXHR)
     {
         if (200 == rsp.code)
         {
-            if (0 == rsp.data.total)
-            {
-                $('.badge').addClass('hidden');
-                $('i.fa-bell-o').removeClass('animated-bell');
-                $('.msg-toast-container').addClass('hidden');
-
-                $(".unread-list").html('');
-            }
-            else
-            {
-                $('.badge').removeClass('hidden');
-                $(".badge").html(rsp.data.total > 99 ? '99+' : rsp.data.total);
-                $('i.fa-bell-o').addClass('animated-bell');
-                $('.msg-toast-container').removeClass('hidden');
-                $('.msg-toast-title font').html(rsp.data.total);
-
-                var html = '';
-                $.each(rsp.data.rows, function(index, r)
-                {
-                    html +=
-                        '<li>' +
-                        '	<a href="javascript:openMenu(\'http://123.57.235.9:88/tzcp/platform/msg?id=' + r.id + '\')">' +
-                        '		<div><img src="' + getUserAvatarUrl(r.headImg, r.domainId) + '"/></div>' +
-                        '		<div>' +
-                        '			<div>' +
-                        '				<span>' + r.userName + ': </span>' +
-                        '				<span title="' + r.title + '">' + r.title + '</span>' +
-                        '			</div>' +
-                        '			<div>' +
-                        '				<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-time"></use></svg>' +
-                        '				<span>' + r.createDate.substring(0, 16) + '</span>' +
-                        '				<span>' + r.category + '</span>' +
-                        '			</div>' +
-                        '		</div>' +
-                        '	</a>' +
-                        '</li>';
-                });
-
-                $(".unread-list").html(html);
-            }
         }
     });
 }
+ */
+
+/**
+function showMessage(rspData){
+
+    if (0 == rspData.total)
+    {
+        $('.badge').addClass('hidden');
+        $('i.fa-bell-o').removeClass('animated-bell');
+        $('.msg-toast-container').addClass('hidden');
+
+        $(".unread-list").html('');
+    }
+    else
+    {
+        $('.badge').removeClass('hidden');
+        $(".badge").html(rspData.total > 99 ? '99+' : rspData.total);
+        $('i.fa-bell-o').addClass('animated-bell');
+        $('.msg-toast-container').removeClass('hidden');
+        $('.msg-toast-title font').html(rspData.total);
+
+        var html = '';
+        $.each(rspData.rows, function(index, r)
+        {
+            html +=
+                '<li>' +
+                '	<a href="javascript:openMenu(\'http://123.57.235.9:88/tzcp/platform/msg?id=' + r.id + '\')">' +
+                '		<div><img src="' + getUserAvatarUrl(r.headImg, r.domainId) + '"/></div>' +
+                '		<div>' +
+                '			<div>' +
+                '				<span>' + r.userName + ': </span>' +
+                '				<span title="' + r.title + '">' + r.title + '</span>' +
+                '			</div>' +
+                '			<div>' +
+                '				<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-time"></use></svg>' +
+                '				<span>' + r.createDate.substring(0, 16) + '</span>' +
+                '				<span>' + r.category + '</span>' +
+                '			</div>' +
+                '		</div>' +
+                '	</a>' +
+                '</li>';
+        });
+
+        $(".unread-list").html(html);
+    }
+}
+*/

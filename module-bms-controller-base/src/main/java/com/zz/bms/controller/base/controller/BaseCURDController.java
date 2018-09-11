@@ -119,7 +119,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
 
-    @RequestMapping(value = "/list" , method = RequestMethod.GET)
+    @RequestMapping(value = "/list" , method={ RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
     public Object list(M m , Q query, Pages<M> pages , Model model , HttpServletRequest request, HttpServletResponse response) {
 

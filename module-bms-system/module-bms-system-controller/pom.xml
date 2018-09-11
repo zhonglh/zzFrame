@@ -42,6 +42,11 @@
         </dependency>
 
 
+        <dependency>
+            <groupId>com.zz.bms</groupId>
+            <artifactId>module-bms-shiro</artifactId>
+            <version>1.0.1</version>
+        </dependency>
 
         <dependency>
             <groupId>javax.websocket</groupId>

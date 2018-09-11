@@ -32,7 +32,7 @@ public class WebSocketHelp {
      * 给客户端发送消息
      * @param notification
      */
-    public static void sendMessage(TsNotificationBO notification){
+    public static void sendMessage(TsNotificationBO notification , int noReadCount){
 
         if(userConnectionMap.containsKey(notification.getToUserId())) {
 
@@ -43,6 +43,8 @@ public class WebSocketHelp {
             message.setContent(notification.getContent());
             message.setNotifyModule(notification.getNotifyModule());
             message.setToUserId(new String[]{notification.getToUserId()});
+            message.setNotifyTime(notification.getCreateTime());
+            message.setNoReadCount(noReadCount);
 
             AbstractNotifyWebSocket.broadcastToSpecia(message);
 
@@ -50,7 +52,7 @@ public class WebSocketHelp {
 
     }
 
-
+    @Deprecated
     public static void sendMessage(WsMessage message){
         if (message.getToUserId() == null || message.getToUserId().length == 0 ) {
             AbstractNotifyWebSocket.broadcastToAll(message);

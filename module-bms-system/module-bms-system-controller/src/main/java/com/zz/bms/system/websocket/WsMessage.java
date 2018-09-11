@@ -31,6 +31,9 @@ public class WsMessage implements Serializable {
 
     private Timestamp notifyTime;
 
+    //未读通知数
+    private int noReadCount ;
+
 
     public String getFromUserId() {
         return fromUserId;
@@ -108,5 +111,13 @@ public class WsMessage implements Serializable {
     @Override
     public String toString() {
         return JSONObject.toJSONString(this) ;
+    }
+
+    public int getNoReadCount() {
+        return noReadCount;
+    }
+
+    public void setNoReadCount(int noReadCount) {
+        this.noReadCount = noReadCount;
     }
 }

@@ -1,5 +1,6 @@
 package com.zz.bms.system.bo;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bms.system.domain.VsNodeUserEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -18,8 +19,10 @@ import java.io.Serializable;
 @TableName(value="vs_node_user" , resultMap = "VsNodeUserResultMap")
 public class VsNodeUserBO extends VsNodeUserEntity implements Serializable {
 
+    @TableField(exist = false)
     private String userStatusName ;
 
+    @TableField(exist = false)
     private String systemAdminName ;
 
 

@@ -43,7 +43,7 @@
                                 <div class="input-group">
                                     <input type="text"  id="leadName" name="leadName" class="form-control input-sm sysuserInfo"
                                            placeholder="请选择直属领导" readonly="readonly">
-                                    <input type="hidden" id="leadId" name="leadId" value="${m.leadId}">
+                                    <input type="hidden" id="leadUserId" name="leadUserId" value="${m.leadUserId}">
                                     <div class="input-group-btn">
                                         <button type="button"  class="btn btn-primary btn-sm crm-sysuserInfo">
                                             <svg class="icon" aria-hidden="true">

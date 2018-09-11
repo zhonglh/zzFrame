@@ -1,5 +1,6 @@
 package com.zz.bms.system.bo;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.system.domain.TsUserEntity;
 
@@ -19,8 +20,10 @@ import java.io.Serializable;
 @TableName(value="ts_user" , resultMap = "TsUserResultMap")
 public class TsUserBO extends TsUserEntity implements Serializable , ILoginUserEntity<String> {
 
+    @TableField(exist = false)
     private String userStatusName ;
 
+    @TableField(exist = false)
     private String systemAdminName ;
 
 

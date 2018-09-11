@@ -22,6 +22,11 @@ public class VsUserMenuEntity extends BaseEntity<String> implements java.io.Seri
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
 
+
+	//上级菜单
+
+	private String  pid ;
+
 	//菜单编号
 	
 	private String  title ;
@@ -153,5 +158,13 @@ public class VsUserMenuEntity extends BaseEntity<String> implements java.io.Seri
 
 	public void setShortcut(String shortcut) {
 		this.shortcut = shortcut;
+	}
+
+	public String getPid() {
+		return pid;
+	}
+
+	public void setPid(String pid) {
+		this.pid = pid;
 	}
 }

@@ -16,6 +16,9 @@ import com.zz.bms.system.dao.TsTenantDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
 * 系统通知 ServiceImpl
 * @author Administrator
@@ -45,6 +48,15 @@ public class TsNotificationServiceImpl extends BaseServiceImpl<TsNotificationBO,
 		return tsNotificationDAO ;
 	}
 
+
+
+	@Override
+	public List<Map<String,Object>> getUserNotReadCount(String[] userIds){
+		if(userIds == null || userIds.length == 0){
+			return null;
+		}
+		return this.tsNotificationDAO.getUserNotReadCount(userIds);
+	}
 
 	@Override
 	public TsNotificationBO processResult(TsNotificationBO tsNotificationBO) {

@@ -1,5 +1,6 @@
 package com.zz.bms.system.bo;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bms.system.domain.TsRoleEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -18,8 +19,10 @@ import java.io.Serializable;
 @TableName(value="ts_role" , resultMap = "TsRoleResultMap")
 public class TsRoleBO extends TsRoleEntity implements Serializable {
 
+    @TableField(exist = false)
     private String roleTypeName ;
 
+    @TableField(exist = false)
     private String roleStatusName ;
 
 

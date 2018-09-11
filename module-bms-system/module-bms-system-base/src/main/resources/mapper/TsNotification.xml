@@ -65,5 +65,15 @@
         <include refid="TsNotification4CheckQueryFilter"/>  limit 1
     </select>
 
+	<select id="getUserNotReadCount"  resultType="java.util.Map">
+		SELECT count(*) as  c ,to_user_id as u  FROM ts_notification T where isRead = '0'
+		<if test="userIds != null"> AND T.to_user_id IN
+			<foreach collection="userIds" index="index" item="item" open="(" separator="," close=")">#{item}</foreach>
+		</if>
+
+		 group by to_user_id
+	</select>
+
+
 
 </mapper>

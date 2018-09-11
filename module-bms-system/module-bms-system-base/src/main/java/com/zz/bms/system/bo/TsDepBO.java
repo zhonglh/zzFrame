@@ -1,5 +1,6 @@
 package com.zz.bms.system.bo;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bms.system.domain.TsDepEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -18,6 +19,7 @@ import java.io.Serializable;
 @TableName(value="ts_dep" , resultMap = "TsDepResultMap")
 public class TsDepBO extends TsDepEntity implements Serializable {
 
+    @TableField(exist = false)
     private String depStatusName ;
 
 

@@ -1,5 +1,6 @@
 package com.zz.bms.system.bo;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bms.system.domain.TsOrganEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -18,8 +19,10 @@ import java.io.Serializable;
 @TableName(value="ts_organ" , resultMap = "TsOrganResultMap")
 public class TsOrganBO extends TsOrganEntity implements Serializable {
 
+    @TableField(exist = false)
     private String organTypeName ;
 
+    @TableField(exist = false)
     private String organStatusName ;
 
 

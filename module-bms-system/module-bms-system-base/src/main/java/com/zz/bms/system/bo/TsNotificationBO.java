@@ -1,9 +1,11 @@
 package com.zz.bms.system.bo;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bms.system.domain.TsNotificationEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
+import org.apache.solr.client.solrj.beans.Field;
 
 import java.io.Serializable;
 
@@ -18,6 +20,7 @@ import java.io.Serializable;
 @TableName(value="ts_notification" , resultMap = "TsNotificationResultMap")
 public class TsNotificationBO extends TsNotificationEntity implements Serializable {
 
+    @TableField(exist = false)
     private String isReadName ;
 
 
