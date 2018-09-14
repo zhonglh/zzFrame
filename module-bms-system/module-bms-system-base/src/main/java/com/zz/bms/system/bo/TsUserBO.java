@@ -2,6 +2,7 @@ package com.zz.bms.system.bo;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
+import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.system.domain.TsUserEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -32,6 +33,13 @@ public class TsUserBO extends TsUserEntity implements Serializable , ILoginUserE
 
 
 
+    @Override
+    public boolean isSystemUser() {
+        return EnumYesNo.YES.getCode().equals(this.getSystemAdmin());
+    }
+
+
+
     public void setUserStatusName(String userStatusName){
         this.userStatusName = userStatusName;
     }
@@ -55,4 +63,5 @@ public class TsUserBO extends TsUserEntity implements Serializable , ILoginUserE
     public void setAvatarImageUrl(String avatarImageUrl) {
         this.avatarImageUrl = avatarImageUrl;
     }
+
 }

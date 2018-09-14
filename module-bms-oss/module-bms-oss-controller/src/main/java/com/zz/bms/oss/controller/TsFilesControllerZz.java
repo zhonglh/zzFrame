@@ -2,10 +2,9 @@ package com.zz.bms.oss.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.zz.bms.controller.base.controller.DefaultController;
+import com.zz.bms.controller.base.controller.ZzDefaultController;
 import com.zz.bms.core.db.mybatis.query.QueryNullImpl;
 import com.zz.bms.core.enums.EnumYesNo;
-import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.exceptions.InternalException;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.oss.base.entity.TsFilesEntity;
@@ -21,7 +20,6 @@ import com.zz.bms.util.base.java.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,7 +37,7 @@ import java.util.List;
  */
 @RequestMapping("oss/files")
 @Controller
-public class TsFilesController extends DefaultController<TsFilesEntity, String , QueryNullImpl> {
+public class TsFilesControllerZz extends ZzDefaultController<TsFilesEntity, String , QueryNullImpl> {
 
 
     @Autowired

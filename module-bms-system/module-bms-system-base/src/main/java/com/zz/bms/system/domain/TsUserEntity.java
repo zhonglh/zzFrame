@@ -10,6 +10,8 @@ import java.sql.Timestamp;
 import java.lang.String;
 import java.lang.Integer;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
+import com.zz.bms.core.enums.EnumYesNo;
+
 /**
  * 用户 实体类
  * @author Administrator
@@ -85,7 +87,6 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
 	//备注
 	
 	private String  remark ;
-
 
 
 

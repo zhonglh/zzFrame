@@ -20,6 +20,10 @@
 
          	<result column="name" property="name"/>
 
+			<result column="leaf" property="leaf"/>
+
+			<result column="level" property="level"/>
+
          	<result column="user_name" property="userName"/>
 
          	<result column="login_name" property="loginName"/>

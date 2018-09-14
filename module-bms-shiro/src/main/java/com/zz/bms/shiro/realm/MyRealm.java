@@ -48,9 +48,9 @@ public class MyRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         ILoginUserEntity loginUser = (ILoginUserEntity)principals.getPrimaryPrincipal();
 
-        List<ILoginRoleEntity> roles = userService.getUserRoleInfo(loginUser.getId());
+        List<ILoginRoleEntity> roles = userService.getUserRoleInfo(loginUser);
 
-        List<ILoginPermitEntity> permits = userService.getUserPermitInfo(loginUser.getId());
+        List<ILoginPermitEntity> permits = userService.getUserPermitInfo(loginUser);
 
         Set<String> roleSet = new HashSet<String>();
         if(roles != null && !roles.isEmpty()){

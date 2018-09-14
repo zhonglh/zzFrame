@@ -55,5 +55,11 @@ public interface ILoginUserEntity<PK extends Serializable> {
 
     public String getLoginPassword();
 
+    /**
+     * 是否为系统用户
+     * @return
+     */
+    public boolean isSystemUser() ;
+
 
 }

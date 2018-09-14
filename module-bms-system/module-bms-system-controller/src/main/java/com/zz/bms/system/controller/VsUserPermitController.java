@@ -1,23 +1,13 @@
 package com.zz.bms.system.controller;
 
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.zz.bms.controller.base.controller.DefaultController;
-import com.zz.bms.core.enums.EnumYesNo;
-import com.zz.bms.shiro.utils.ShiroUtils;
-
+import com.zz.bms.controller.base.controller.ZzDefaultController;
 
 
 import com.zz.bms.system.bo.VsUserPermitBO;
 import  com.zz.bms.system.query.impl.VsUserPermitQueryWebImpl;
 
-import com.zz.bms.util.base.java.IdUtils;
-
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
 
 /**
  * 用户许可视图 控制层
@@ -26,7 +16,7 @@ import java.util.List;
  */
 @RequestMapping("/system/userpermit")
 @Controller
-public class VsUserPermitController extends DefaultController<VsUserPermitBO, String , VsUserPermitQueryWebImpl> {
+public class VsUserPermitController extends ZzDefaultController<VsUserPermitBO, String , VsUserPermitQueryWebImpl> {
 
 
 

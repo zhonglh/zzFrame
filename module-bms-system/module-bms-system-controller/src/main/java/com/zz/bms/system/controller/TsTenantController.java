@@ -1,23 +1,13 @@
 package com.zz.bms.system.controller;
 
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.zz.bms.controller.base.controller.DefaultController;
-import com.zz.bms.core.enums.EnumYesNo;
-import com.zz.bms.shiro.utils.ShiroUtils;
-
+import com.zz.bms.controller.base.controller.ZzDefaultController;
 
 
 import com.zz.bms.system.bo.TsTenantBO;
 import  com.zz.bms.system.query.impl.TsTenantQueryWebImpl;
 
-import com.zz.bms.util.base.java.IdUtils;
-
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
 
 /**
  * 租户 控制层
@@ -26,7 +16,7 @@ import java.util.List;
  */
 @RequestMapping("/system/tenant")
 @Controller
-public class TsTenantController extends DefaultController<TsTenantBO, String , TsTenantQueryWebImpl> {
+public class TsTenantController extends ZzDefaultController<TsTenantBO, String , TsTenantQueryWebImpl> {
 
 
 

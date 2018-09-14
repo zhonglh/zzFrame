@@ -22,17 +22,17 @@ public interface IUserService<PK extends Serializable> {
 
     /**
      * 获取用户所有的角色信息
-     * @param userId
+     * @param loginUserEntity
      * @return
      */
-    public List<ILoginRoleEntity> getUserRoleInfo(PK userId) ;
+    public List<ILoginRoleEntity> getUserRoleInfo(ILoginUserEntity loginUserEntity) ;
 
 
     /**
      * 获取用户所有的许可信息
-     * @param userId
+     * @param loginUserEntity
      * @return
      */
-    public List<ILoginPermitEntity> getUserPermitInfo(PK userId) ;
+    public List<ILoginPermitEntity> getUserPermitInfo(ILoginUserEntity loginUserEntity) ;
 
 }

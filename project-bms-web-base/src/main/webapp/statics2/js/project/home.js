@@ -355,6 +355,7 @@ function sortShortcutMenu(obj)
  */
 function initMenu()
 {
+
     // 顶部菜单 - 鼠标移动自动展示
     $('ul.nav li.dropdown').hover
     (
@@ -365,6 +366,7 @@ function initMenu()
     // 左侧导航菜单
     $(window).on("load",function()
     {
+        debugger;
         addMenuEvent();
         // 菜单区域添加滚动条效果
         $(".menu").mCustomScrollbar(
@@ -379,17 +381,19 @@ function initMenu()
  */
 function addMenuEvent()
 {
+
+    debugger;
     var $lis = $(".menu li");
     for (var i = 0; i < $lis.length; i++)
     {
         var curLi = $lis.eq(i);
-        if (curLi.siblings('[menuNodeNo^=\'' + curLi.attr("menuNodeNo") + '-\']').length > 0)
+        if (curLi.attr("menuLeaf")=='0')
             curLi.find("a").addClass("arrow").parent().attr('hasChild',"1").attr('num',0);
         else
             curLi.find("a").parent().attr('hasChild',"0").attr('num',0);
 
         // 1级大类添加右侧箭头
-        if (1 == curLi.attr('menuLevel'))
+        if ('1' == curLi.attr('menuLevel'))
         {
             curLi.find("a").addClass("right-arrow");
         }
@@ -410,7 +414,8 @@ function addMenuEvent()
 
         if (_hasChild == '1')
         {
-            var children = $this.siblings('[menuNodeNo^=\'' + _thisMenuNo + '-\']');
+            var children = $this.siblings('[parentNodeNo=\'' + _thisMenuNo + '\']');
+            debugger;
             // 菜单展开合并
             if ($this.find("a").hasClass('right-arrow'))
             {
@@ -512,12 +517,10 @@ function changeProfile(id)
                                     return false;
                                 }
 
-                                debugger;
                                 $('#formProfile').ajaxSubmit(
                                     {
                                         success: function(rsp)
                                         {
-                                            debugger;
                                             if (rsp.success)
                                             {
                                                 profileDlg.hide();
@@ -528,7 +531,6 @@ function changeProfile(id)
                                         }
                                     });
 
-                                debugger;
                                 // 不关闭对话框
                                 return false;
                             }

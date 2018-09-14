@@ -57,6 +57,14 @@ public class TsMenuEntity extends BaseBusinessExEntity<String> implements java.i
 	
 	private String  menuRedirect ;
 
+	//是否叶节点
+
+	private String leaf ;
+
+
+	//层级
+	private int level ;
+
 	//备注
 	
 	private String  remark ;
@@ -151,5 +159,21 @@ public class TsMenuEntity extends BaseBusinessExEntity<String> implements java.i
 
 	public void setShortcut(String shortcut) {
 		this.shortcut = shortcut;
+	}
+
+	public String getLeaf() {
+		return leaf;
+	}
+
+	public void setLeaf(String leaf) {
+		this.leaf = leaf;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
 	}
 }

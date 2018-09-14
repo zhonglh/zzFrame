@@ -1,10 +1,8 @@
 package com.zz.bms.system.controller;
 
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.zz.bms.controller.base.controller.DefaultController;
+import com.zz.bms.controller.base.controller.ZzDefaultController;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.enums.EnumErrorMsg;
-import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.shiro.utils.ShiroUtils;
@@ -13,8 +11,6 @@ import com.zz.bms.shiro.utils.ShiroUtils;
 
 import com.zz.bms.system.bo.VsUserBO;
 import  com.zz.bms.system.query.impl.VsUserQueryWebImpl;
-
-import com.zz.bms.util.base.java.IdUtils;
 
 import io.jsonwebtoken.lang.Assert;
 import org.apache.commons.lang3.StringUtils;
@@ -27,7 +23,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  * 用户 控制层
@@ -36,7 +31,7 @@ import java.util.List;
  */
 @RequestMapping("/system/user")
 @Controller
-public class VsUserController extends DefaultController<VsUserBO, String , VsUserQueryWebImpl> {
+public class VsUserController extends ZzDefaultController<VsUserBO, String , VsUserQueryWebImpl> {
 
 
 

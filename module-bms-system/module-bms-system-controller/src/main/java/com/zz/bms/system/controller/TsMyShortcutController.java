@@ -1,18 +1,14 @@
 package com.zz.bms.system.controller;
 
-import com.zz.bms.controller.base.controller.DefaultController;
+import com.zz.bms.controller.base.controller.ZzDefaultController;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.vo.AjaxJson;
-import com.zz.bms.shiro.utils.ShiroUtils;
 import com.zz.bms.system.bo.TsMyShortcutBO;
-import com.zz.bms.system.query.TsMyShortcutQuery;
-import com.zz.bms.system.query.impl.TsMyShortcutQueryImpl;
 import com.zz.bms.system.query.impl.TsMyShortcutQueryWebImpl;
 import com.zz.bms.system.service.TsMyShortcutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -26,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RequestMapping("/system/myshortcut")
 @Controller
-public class TsMyShortcutController extends DefaultController<TsMyShortcutBO, String , TsMyShortcutQueryWebImpl> {
+public class TsMyShortcutController extends ZzDefaultController<TsMyShortcutBO, String , TsMyShortcutQueryWebImpl> {
 
     @Autowired
     private TsMyShortcutService tsMyShortcutService;

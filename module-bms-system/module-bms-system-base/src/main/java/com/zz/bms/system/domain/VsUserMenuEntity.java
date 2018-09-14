@@ -55,6 +55,17 @@ public class VsUserMenuEntity extends BaseEntity<String> implements java.io.Seri
 	
 	private String  name ;
 
+
+	//是否叶节点
+
+	private String leaf ;
+
+
+	//层级
+	private int level ;
+
+
+
 	//用户姓名
 	
 	private String  userName ;
@@ -166,5 +177,21 @@ public class VsUserMenuEntity extends BaseEntity<String> implements java.io.Seri
 
 	public void setPid(String pid) {
 		this.pid = pid;
+	}
+
+	public String getLeaf() {
+		return leaf;
+	}
+
+	public void setLeaf(String leaf) {
+		this.leaf = leaf;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
 	}
 }

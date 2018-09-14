@@ -83,13 +83,14 @@ public class MainController extends BaseBussinessController {
         if (menus == null) {
             menus = new ArrayList<VsUserMenuBO>();
         }
-        menus = MenuLogic.sortMenu(menus);
+        //menus = MenuLogic.sortMenu(menus);
+        menus.sort((o1,o2)-> (o1.getLevel() * 100000 + o1.getSortno()) - (o2.getLevel() * 100000 + o2.getSortno()));
         model.put("menus", menus);
 
         //处理快捷菜单
         List<VsUserMenuBO> shortcutMenus = new ArrayList<VsUserMenuBO>();
         for (VsUserMenuBO menu : menus) {
-            if (EnumYesNo.YES.getCode().equals(menu.getShortcut())) {
+            if (EnumYesNo.YES.getCode().equals(menu.getLeaf()) && EnumYesNo.YES.getCode().equals(menu.getShortcut())) {
                 shortcutMenus.add(menu);
             }
         }
@@ -123,7 +124,7 @@ public class MainController extends BaseBussinessController {
         int count = tsNotificationService.selectCount(notifyQuery.buildWrapper());
         model.put("notReadNotifyCount", count);
 
-        //todo 测试使用
+        //todo 测试使用 , 后期需要删除
         //testNotify(loginUser);
 
         return "main/home";

@@ -1,5 +1,6 @@
 package com.zz.bms.system.bo;
 
+import com.zz.bms.core.db.entity.ILoginPermitEntity;
 import com.zz.bms.system.domain.TsPermitEntity;
 
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -16,8 +17,21 @@ import java.io.Serializable;
 */
 @EntityAnnotation(value="许可" , resource = "")
 @TableName(value="ts_permit" , resultMap = "TsPermitResultMap")
-public class TsPermitBO extends TsPermitEntity implements Serializable {
+public class TsPermitBO extends TsPermitEntity implements Serializable,ILoginPermitEntity<String> {
 
 
+    @Override
+    public String getPermissionId() {
+        return this.getId();
+    }
 
+    @Override
+    public String getPermissionName() {
+        return this.getPermitName();
+    }
+
+    @Override
+    public String getPermissionCode() {
+        return this.getPermissionCode();
+    }
 }

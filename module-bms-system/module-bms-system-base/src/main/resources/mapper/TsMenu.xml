@@ -22,6 +22,10 @@
 
          	<result column="menu_redirect" property="menuRedirect"/>
 
+			<result column="leaf" property="leaf"/>
+
+			<result column="level" property="level"/>
+
          	<result column="remark" property="remark"/>
 
          	<result column="delete_flag" property="deleteFlag"/>
