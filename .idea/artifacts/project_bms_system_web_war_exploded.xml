@@ -1,0 +1,41 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="project-bms-system-web:war exploded">
+    <output-path>$PROJECT_DIR$/module-bms-system/project-bms-system-web/target/project-bms-system-web-1.0.1</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="project-bms-system-web" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="archive" name="module-bms-system-controller-1.0.1.jar">
+            <element id="module-output" name="module-bms-system-controller" />
+          </element>
+          <element id="archive" name="module-bms-controller-base-1.0.1.jar">
+            <element id="module-output" name="module-bms-controller-base" />
+          </element>
+          <element id="archive" name="module-bms-core-1.0.1.jar">
+            <element id="module-output" name="module-bms-core" />
+          </element>
+          <element id="archive" name="module-bms-system-base-1.0.1.jar">
+            <element id="module-output" name="module-bms-system-base" />
+          </element>
+          <element id="archive" name="module-bms-redis-1.0.1.jar">
+            <element id="module-output" name="module-bms-redis" />
+          </element>
+          <element id="archive" name="module-bms-base-1.0.1.jar">
+            <element id="module-output" name="module-bms-base" />
+          </element>
+          <element id="archive" name="module-bms-shiro-1.0.1.jar">
+            <element id="module-output" name="module-bms-shiro" />
+          </element>
+          <element id="library" level="project" name="Maven: com.zz.bms:module-bms-util-base:1.0.1" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/module-bms-system/project-bms-system-web/target/project-bms-system-web-1.0.1/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="project-bms-system-web/web/Web" />
+      <element id="artifact" artifact-name="project-bms-web-base:war exploded" />
+    </root>
+  </artifact>
+</component>

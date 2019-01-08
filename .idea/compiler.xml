@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="module-bms-base" />
+        <module name="module-bms-config" />
+        <module name="module-bms-controller-base" />
+        <module name="module-bms-core" />
+        <module name="module-bms-oss-base" />
+        <module name="module-bms-oss-controller" />
+        <module name="module-bms-oss-engine" />
+        <module name="module-bms-redis" />
+        <module name="module-bms-shiro" />
+        <module name="module-bms-system-base" />
+        <module name="module-bms-system-controller" />
+        <module name="project-bms-system-web" />
+        <module name="project-bms-web-base" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.8">
+      <module name="module-bms-base" target="1.8" />
+      <module name="module-bms-config" target="1.8" />
+      <module name="module-bms-controller-base" target="1.8" />
+      <module name="module-bms-core" target="1.8" />
+      <module name="module-bms-oss" target="1.8" />
+      <module name="module-bms-oss-base" target="1.8" />
+      <module name="module-bms-oss-controller" target="1.8" />
+      <module name="module-bms-oss-engine" target="1.8" />
+      <module name="module-bms-redis" target="1.8" />
+      <module name="module-bms-shiro" target="1.8" />
+      <module name="module-bms-system" target="1.8" />
+      <module name="module-bms-system-base" target="1.8" />
+      <module name="module-bms-system-controller" target="1.8" />
+      <module name="module-bms-util" target="1.8" />
+      <module name="module-bms-util-base" target="1.8" />
+      <module name="module-bms-util-other" target="1.8" />
+      <module name="project-bms-system-web" target="1.8" />
+      <module name="project-bms-web-base" target="1.8" />
+      <module name="zzFrame" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

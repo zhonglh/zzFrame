@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-bms-base" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-bms-config" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-bms-controller-base" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-bms-core" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-bms-oss" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-bms-oss/module-bms-oss-base" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-bms-oss/module-bms-oss-controller" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-bms-oss/module-bms-oss-engine" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-bms-redis" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-bms-shiro" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-bms-system" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-bms-system/module-bms-system-base" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-bms-system/module-bms-system-controller" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-bms-system/project-bms-system-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-bms-util" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-bms-util/module-bms-util-base" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module-bms-util/module-bms-util-other" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/project-bms-web-base" charset="UTF-8" />
+  </component>
+</project>
