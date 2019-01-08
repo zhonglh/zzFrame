@@ -101,8 +101,7 @@
                     </table>
                 </form>
             </div>
-
-            <div style="margin-top:10px;position:absolute;" align="center">
+            <div style="margin-top:10px;position:absolute;">
                 <button type="button" class="btn btn-primary btn-sm" onclick="save()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>

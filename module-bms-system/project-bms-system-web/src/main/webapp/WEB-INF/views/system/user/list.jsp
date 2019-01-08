@@ -6,12 +6,6 @@
 
 <div region='north'>
     <div class="navigation">
-        <!-- 面包屑 -->
-        <%--<ul class="breadcrumb">
-            <li><a href="#">首页</a> <span class="divider">/</span></li>
-            <li><a href="#">Library</a> <span class="divider">/</span></li>
-            <li class="active">Data</li>
-        </ul>--%>
 
 
         <span class="words"><a>${breadcrumb}</a></span>
@@ -65,7 +59,7 @@
                 </svg>
                 <span>新建 </span>
             </button>
-            <button type="button" class="btn btn-primary btn-sm" onclick="doDel()">
+            <button type="button" class="btn btn-primary btn-sm" url=""" onclick="doDel('url')">
                 <svg class="icon" aria-hidden="true">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use>
                 </svg>
@@ -110,10 +104,7 @@
     var tableid = "tableData-${tableId}";
     var dataUrl = "/${currParentUrl}";
     var breadcrumb = "${breadcrumb}";
-    var detailname = "${detailname}";
-    if(detailname == ""){
-        detailname = "详情";
-    }
+
 </script>
 
 <script language="JavaScript">
@@ -147,12 +138,6 @@
         // 操作栏为图标
         var html = '';
         html += '<div class="grid-column-option">';
-
-        html += '<a href="javascript:;"'
-            + '" id="'
-            + r.id
-            + '" onclick="doUpdate(this);" title="编辑">' +
-            '<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use></svg></a>';
 
 
         //删除按钮，绑定名称和id
