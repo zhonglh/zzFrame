@@ -1,6 +1,6 @@
 package com.zz.bms.core.db.base.dao;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zz.bms.core.db.entity.BaseEntity;
 
 import java.io.Serializable;

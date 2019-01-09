@@ -1,9 +1,9 @@
 package com.zz.bms.system.bo;
 
-import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.zz.bms.system.domain.VsUserMenuEntity;
 
-import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 
 import java.io.Serializable;

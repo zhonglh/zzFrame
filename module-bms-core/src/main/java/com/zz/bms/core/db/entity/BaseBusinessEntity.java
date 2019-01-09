@@ -1,9 +1,8 @@
 package com.zz.bms.core.db.entity;
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableLogic;
-import com.baomidou.mybatisplus.annotations.Version;
-import org.apache.solr.client.solrj.beans.Field;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.Version;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

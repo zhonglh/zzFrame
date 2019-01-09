@@ -1,11 +1,11 @@
 package com.zz.bms.system.bo;
 
-import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.system.domain.TsUserEntity;
 
-import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
 
 import java.io.Serializable;

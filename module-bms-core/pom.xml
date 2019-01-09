@@ -7,8 +7,8 @@
         <groupId>com.zz.bms</groupId>
         <version>1.0.1</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <modelVersion>4.0.0</modelVersion>
     <groupId>com.zz.bms</groupId>
     <artifactId>module-bms-core</artifactId>
     <packaging>jar</packaging>
@@ -19,6 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <shiro.version>1.3.0</shiro.version>
     </properties>
 
 
@@ -37,11 +38,26 @@
             <version>${shiro.version}</version>
         </dependency>
 
+
         <dependency>
-            <groupId>com.zz.bms</groupId>
-            <artifactId>module-bms-util-base</artifactId>
-            <version>1.0.1</version>
+            <groupId>com.zz.bms.util</groupId>
+            <artifactId>baseUtil</artifactId>
+            <version>${zzutil.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.zz.bms.util</groupId>
+            <artifactId>springWebUtil</artifactId>
+            <version>${zzutil.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.zz.bms.util</groupId>
+            <artifactId>webUtil</artifactId>
+            <version>${zzutil.version}</version>
+        </dependency>
+
 
 
     </dependencies>

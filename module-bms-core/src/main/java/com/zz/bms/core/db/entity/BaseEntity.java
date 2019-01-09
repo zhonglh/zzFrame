@@ -1,6 +1,6 @@
 package com.zz.bms.core.db.entity;
 
-import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotation.TableField;
 
 import java.io.Serializable;
 import java.util.List;

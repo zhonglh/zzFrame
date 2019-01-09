@@ -38,7 +38,7 @@
 
     <java.version>1.8</java.version>
 
-
+    <zzutil.version>1.0.1</zzutil.version>
 
 
   </properties>
