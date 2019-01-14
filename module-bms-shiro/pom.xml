@@ -87,12 +87,6 @@
         <!-- shiro 包结束 -->
 
 
-        <dependency>
-            <groupId>com.zz.bms.util</groupId>
-            <artifactId>baseWebUtil</artifactId>
-            <version>1.0.1</version>
-        </dependency>
-
 
         <dependency>
             <groupId>com.zz.bms</groupId>

@@ -71,6 +71,8 @@ public class LoginController extends BaseBussinessController {
             return AjaxJson.fail("账号已被锁定,请联系管理员");
         }catch (AuthenticationException e) {
             return AjaxJson.fail(e.getMessage());
+        }catch (Exception e) {
+            return AjaxJson.fail(e.getMessage());
         }
     }
 

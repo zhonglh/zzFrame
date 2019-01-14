@@ -46,8 +46,7 @@
 
 
 	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射， 配置一个基于注解的定制的WebBindingInitializer，解决日期转换问题，方法级别的处理器映射 -->
-	<bean
-			class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 		<property name="cacheSeconds" value="0" />
 		<property name="messageConverters">
 			<list>
@@ -58,6 +57,7 @@
 			<bean class="com.zz.bms.controller.base.converteditor.MyWebBinding" />
 		</property>
 	</bean>
+
 
 
 

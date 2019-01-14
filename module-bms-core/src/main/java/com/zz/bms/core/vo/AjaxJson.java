@@ -44,7 +44,8 @@ public class AjaxJson {
 	public AjaxJson() {
 	}
 	public AjaxJson(boolean success) {
-		this.success = success;if(success){
+		this.success = success;
+		if(success){
 			this.code = EnumErrorMsg.success.getCode();
 		}else {
 			this.code = EnumErrorMsg.fail.getCode();
@@ -75,7 +76,8 @@ public class AjaxJson {
 
 	public AjaxJson(boolean success, String msg,String url) {
 
-		this.success = success;if(success){
+		this.success = success;
+		if(success){
 			this.code = EnumErrorMsg.success.getCode();
 		}else {
 			this.code = EnumErrorMsg.fail.getCode();
