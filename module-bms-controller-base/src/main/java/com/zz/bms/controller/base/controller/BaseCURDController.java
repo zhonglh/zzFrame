@@ -1,8 +1,8 @@
 package com.zz.bms.controller.base.controller;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zz.bms.configs.AppConfig;
 import com.zz.bms.controller.base.PermissionList;
 import com.zz.bms.core.Constant;
@@ -14,12 +14,12 @@ import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.ui.Pages;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.util.base.java.GenericsHelper;
-import com.zz.bms.util.base.spring.PaginationContext;
-import io.jsonwebtoken.lang.Assert;
+import com.zz.bms.util.web.PaginationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -142,7 +142,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         Wrapper wrapper = buildWrapper(query , m);
 
-        page = baseService.selectPage(page , wrapper );
+
+        page = (Page<M>)baseService.page(page , wrapper );
 
         processResult(page.getRecords());
 
@@ -164,9 +165,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         this.permissionList.assertHasViewPermission();
 
 
-        Wrapper<M> wrapper = new EntityWrapper<M>();
+        QueryWrapper<M> wrapper = new QueryWrapper<M>();
         wrapper.eq("id" , id);
-        M m = baseService.selectOne(wrapper);
+        M m = baseService.getOne(wrapper);
         if(m == null){
             throw EnumErrorMsg.no_auth.toException();
         }
@@ -212,9 +213,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         this.permissionList.assertHasUpdatePermission();
 
 
-        Wrapper<M> wrapper = new EntityWrapper<M>();
+        QueryWrapper<M> wrapper = new QueryWrapper<>();
         wrapper.eq("id" , id);
-        M m = baseService.selectOne(wrapper);
+        M m = baseService.getOne(wrapper);
         if(m == null){
             throw EnumErrorMsg.no_auth.toException();
         }
@@ -253,7 +254,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         boolean success = false;
         try{
             insertBefore(m);
-            success = baseService.insert(m);
+            success = baseService.save(m);
             insertAfter(m);
 
         }catch(Exception e){
@@ -284,9 +285,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
 
-        Wrapper<M> wrapper = new EntityWrapper<M>();
+        QueryWrapper<M> wrapper = new QueryWrapper<>();
         wrapper.eq("id" , id);
-        M temp = baseService.selectOne(wrapper);
+        M temp = baseService.getOne(wrapper);
         if(temp == null){
             throw EnumErrorMsg.no_auth.toException();
         }
@@ -336,10 +337,10 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         this.permissionList.assertHasDeletePermission();
 
-        Wrapper<M> wrapper = new EntityWrapper<M>();
+        QueryWrapper<M> wrapper = new QueryWrapper<>();
         wrapper.eq("id" , id);
         setCustomInfoByDelete(wrapper);
-        M m = baseService.selectOne(wrapper);
+        M m = baseService.getOne(wrapper);
         if(m == null){
             throw EnumErrorMsg.no_auth.toException();
         }
@@ -382,7 +383,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
 
-        Wrapper<M> wrapper = new EntityWrapper<M>();
+        QueryWrapper<M> wrapper = new QueryWrapper<>();
         String idList[] = ids.split(",");
         int index = 0;
         for(String id : idList) {
@@ -395,7 +396,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         setCustomInfoByDelete(wrapper);
 
-        List<M> list = baseService.selectList(wrapper);
+        List<M> list = baseService.list(wrapper);
 
         if(list == null && list.isEmpty()){
             throw EnumErrorMsg.no_auth.toException();
@@ -683,9 +684,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @return
      */
     protected Wrapper buildWrapper(Q query , M m) {
-        Wrapper wrapper =   query.buildWrapper();
+        QueryWrapper wrapper =   query.buildWrapper();
         if(m instanceof BaseBusinessEntity || m instanceof BaseBusinessSimpleEntity){
-            wrapper.orderBy(" create_time " , false);
+            wrapper.orderByDesc(" create_time " );
         }
         return wrapper;
     }

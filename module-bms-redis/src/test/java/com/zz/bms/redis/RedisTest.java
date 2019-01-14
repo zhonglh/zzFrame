@@ -1,8 +1,8 @@
 package com.zz.bms.redis;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.zz.bms.redis.utils.RedisUtil;
-import com.zz.bms.util.base.spring.SpringUtil;
+import com.zz.bms.util.redis.RedisUtil;
+import com.zz.bms.util.spring.SpringUtil;
 import org.junit.Assert;
 import org.junit.Test;
 

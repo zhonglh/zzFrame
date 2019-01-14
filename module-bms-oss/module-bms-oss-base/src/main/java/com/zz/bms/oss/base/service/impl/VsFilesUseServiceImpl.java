@@ -30,7 +30,7 @@ public class VsFilesUseServiceImpl extends BaseServiceImpl<VsFilesUseEntity,Stri
 
 
     @Override
-    public boolean insert(VsFilesUseEntity vsFilesUseEntity){
+    public boolean save(VsFilesUseEntity vsFilesUseEntity){
         //todo
 
         if(StringUtils.isEmpty(vsFilesUseEntity.getFileId())){

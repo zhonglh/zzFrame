@@ -1,6 +1,6 @@
 package com.zz.bms.system.websocket;
 
-import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.enums.EnumYesNo;
@@ -44,13 +44,13 @@ public class ZzSendNotify {
             notify.setIsRead(EnumYesNo.NO.getCode());
             notify.setIsReadName(EnumYesNo.NO.getName());
             notify.setNotifyTime(DateKit.getCurrentDate());
-            tsNotificationService.insert(notify);
+            tsNotificationService.save(notify);
         }
 
         TsNotificationQuery query = new TsNotificationQueryImpl();
         query.toUserId(notify.getToUserId());
         query.isRead(EnumYesNo.NO.getCode());
-        int count = tsNotificationService.selectCount(query.buildWrapper());
+        int count = tsNotificationService.count(query.buildWrapper());
         WebSocketHelp.sendMessage(notify, count);
 
 
@@ -81,14 +81,14 @@ public class ZzSendNotify {
             toUserIdSet.add(notify.getToUserId());
         }
         //只保存有内容的通知
-        tsNotificationService.insertBatch(addNotifyList);
+        tsNotificationService.saveBatch(addNotifyList , 1000);
 
         if(toUserIdSet.size() ==1) {
             TsNotificationQuery query = new TsNotificationQueryImpl();
                 query.toUserId((String)toUserIdSet.toArray()[0]);
                 query.isRead(EnumYesNo.NO.getCode());
 
-            int count = tsNotificationService.selectCount(query.buildWrapper());
+            int count = tsNotificationService.count(query.buildWrapper());
             for(TsNotificationBO notify: notifys) {
                 WebSocketHelp.sendMessage(notify, count);
             }

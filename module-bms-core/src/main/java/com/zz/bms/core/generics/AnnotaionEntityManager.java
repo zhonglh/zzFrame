@@ -5,7 +5,7 @@ import com.zz.bms.annotaions.EntityAttrCheckAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.annotaions.EntityAttrPageAnnotation;
 import com.zz.bms.core.enums.EnumErrorMsg;
-import com.zz.bms.util.base.java.ReflectionUtil;
+import com.zz.bms.util.spring.ReflectionUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +22,7 @@ public class AnnotaionEntityManager {
 
     public List<AnnotaionEntity>  takeAnnotaions(Class clz){
         List<AnnotaionEntity> list = new ArrayList<AnnotaionEntity>();
-        List<Field> fields = ReflectionUtil.getBusinessFields(clz);
+        List<Field> fields = ReflectionUtil.getBusinessFields(clz , EntityAttrPageAnnotation.class);
         if(fields == null || fields.isEmpty()){
             return list;
         }

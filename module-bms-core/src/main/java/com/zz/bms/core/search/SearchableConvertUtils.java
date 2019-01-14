@@ -4,7 +4,7 @@ package com.zz.bms.core.search;
 import com.google.common.collect.Lists;
 import com.zz.bms.core.enums.EnumSearchOperator;
 import com.zz.bms.core.exceptions.BizException;
-import com.zz.bms.util.base.spring.SpringUtil;
+import com.zz.bms.util.spring.SpringUtil;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.InvalidPropertyException;
 import org.springframework.core.convert.ConversionService;

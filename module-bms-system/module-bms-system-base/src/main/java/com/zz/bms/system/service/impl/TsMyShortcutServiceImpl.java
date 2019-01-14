@@ -63,7 +63,7 @@ public class TsMyShortcutServiceImpl extends BaseServiceImpl<TsMyShortcutBO,Stri
 
 		TsMyShortcutQuery query = new TsMyShortcutQueryImpl();
 		query.userId(userId);
-		this.delete(query.buildWrapper());
+		this.remove(query.buildWrapper());
 
 		if(menuIds != null && menuIds.length > 0 && StringUtils.isNotEmpty(userId)){
 			List<TsMyShortcutBO> list = new ArrayList<TsMyShortcutBO>();
@@ -74,7 +74,7 @@ public class TsMyShortcutServiceImpl extends BaseServiceImpl<TsMyShortcutBO,Stri
 				myShortcutBO.setUserId(userId);
 			}
 
-			this.insertBatch(list);
+			this.saveBatch(list,1000);
 		}
 	}
 

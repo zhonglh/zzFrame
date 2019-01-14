@@ -29,6 +29,7 @@ public class TsUserBO extends TsUserEntity implements Serializable , ILoginUserE
 
 
 
+    @TableField(exist = false)
     private String avatarImageUrl ;
 
 

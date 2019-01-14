@@ -2,7 +2,7 @@
 package com.zz.bms.controller.base;
 
 import com.google.common.collect.Maps;
-import com.zz.bms.util.base.spring.MessageUtils;
+import com.zz.bms.util.spring.MessageUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.subject.Subject;

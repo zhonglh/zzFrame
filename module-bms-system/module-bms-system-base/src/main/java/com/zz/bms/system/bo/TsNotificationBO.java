@@ -5,7 +5,6 @@ import com.zz.bms.system.domain.TsNotificationEntity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.zz.bms.annotaions.EntityAnnotation;
-import org.apache.solr.client.solrj.beans.Field;
 
 import java.io.Serializable;
 

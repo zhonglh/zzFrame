@@ -4,7 +4,7 @@ package com.zz.bms.system.websocket;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.shiro.redisSession.CachingShiroSessionDao;
 import com.zz.bms.system.bo.TsUserBO;
-import com.zz.bms.util.base.spring.SpringUtil;
+import com.zz.bms.util.spring.SpringUtil;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.support.DefaultSubjectContext;

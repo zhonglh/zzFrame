@@ -19,6 +19,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
+
+        <quartz.version>2.2.3</quartz.version>
+        <shiro.version>1.3.0</shiro.version>
+        <cas.client.version>3.1.9</cas.client.version>
+
     </properties>
 
     <dependencies>
@@ -30,12 +36,62 @@
             <scope>test</scope>
         </dependency>
 
+
+
+
         <dependency>
-            <groupId>com.zz.bms</groupId>
-            <artifactId>module-bms-util-base</artifactId>
-            <version>1.0.1</version>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>${quartz.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>c3p0</artifactId>
+                    <groupId>c3p0</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
+
+        <!-- shiro包开始 -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-cas</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jasig.cas</groupId>
+            <artifactId>cas-client-core</artifactId>
+            <version>${cas.client.version}</version>
+        </dependency>
+        <!-- shiro 包结束 -->
+
+
+        <dependency>
+            <groupId>com.zz.bms.util</groupId>
+            <artifactId>baseWebUtil</artifactId>
+            <version>1.0.1</version>
+        </dependency>
 
 
         <dependency>

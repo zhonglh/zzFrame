@@ -2,7 +2,7 @@ package com.zz.bms.core.enums;
 
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.vo.AjaxJson;
-import com.zz.bms.util.base.spring.SpringUtil;
+import com.zz.bms.util.spring.SpringUtil;
 import org.apache.commons.lang3.StringUtils;
 
 public enum EnumErrorMsg {

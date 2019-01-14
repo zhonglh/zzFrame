@@ -51,7 +51,7 @@ public class UserServiceImpl implements IUserService<String> {
 
         TsUserQuery userQuery = new TsUserQueryImpl();
         userQuery.loginName(loginName);
-        return tsUserService.selectOne(userQuery.buildWrapper());
+        return tsUserService.getOne(userQuery.buildWrapper());
 
     }
 
@@ -67,11 +67,11 @@ public class UserServiceImpl implements IUserService<String> {
             //系统管理人查询所有的许可
             TsPermitQuery query = new TsPermitQueryImpl();
             query.deleteFlag(EnumYesNo.NO.getCode());
-            return tsPermitService.selectList(query.buildWrapper());
+            return tsPermitService.list(query.buildWrapper());
         }else {
             VsUserPermitQuery query = new VsUserPermitQueryImpl();
             query.userId(loginUserEntity.getId());
-            return vsUserPermitService.selectList(query.buildWrapper());
+            return vsUserPermitService.list(query.buildWrapper());
         }
     }
 }

@@ -1,8 +1,8 @@
 package com.zz.bms.shiro.redisSession;
 
 
-import com.zz.bms.redis.utils.RedisUtil;
 import com.zz.bms.util.base.data.SerializeUtil;
+import com.zz.bms.util.redis.RedisUtil;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.session.mgt.ValidatingSession;

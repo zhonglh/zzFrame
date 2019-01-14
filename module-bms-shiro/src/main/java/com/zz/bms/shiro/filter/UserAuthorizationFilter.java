@@ -1,7 +1,7 @@
 package com.zz.bms.shiro.filter;
 
 import com.zz.bms.shiro.utils.ShiroUtils;
-import com.zz.bms.util.base.servlet.WebUtils;
+import com.zz.bms.util.web.WebUtils;
 import org.apache.shiro.web.filter.authz.RolesAuthorizationFilter;
 import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
 import org.apache.shiro.web.servlet.ShiroHttpServletResponse;

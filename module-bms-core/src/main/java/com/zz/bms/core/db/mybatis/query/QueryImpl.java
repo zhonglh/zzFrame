@@ -1,7 +1,6 @@
 package com.zz.bms.core.db.mybatis.query;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.core.enums.EnumSearchOperator;
 import com.zz.bms.core.exceptions.InternalException;
 import com.zz.bms.util.base.data.StringFormatKit;
@@ -47,19 +46,19 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
 
 
     @Override
-    public  Wrapper<M> buildWrapper(){
-        Wrapper<M> wrapper = new EntityWrapper<M>();
+    public QueryWrapper<M> buildWrapper(){
+        QueryWrapper<M> wrapper = new QueryWrapper<>();
         return buildWrapper(wrapper);
     }
 
 
     @Override
-    public Wrapper<M> buildWrapper(Wrapper wrapper){
+    public QueryWrapper<M> buildWrapper(QueryWrapper wrapper){
         return buildWrapper(wrapper , false);
     }
 
     @Override
-    public Wrapper<M> buildWrapper(Wrapper wrapper , boolean orBoolean){
+    public QueryWrapper<M> buildWrapper(QueryWrapper wrapper , boolean orBoolean){
 
         AtomicInteger ai = new AtomicInteger(0);
 
@@ -113,7 +112,6 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
 
         if(ors != null && !ors.isEmpty()){
             for(Query orQuery : ors){
-                wrapper.andNew();
                 orQuery.buildWrapper(wrapper , true);
             }
         }
@@ -130,7 +128,7 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
      * @param fieldProperties
      * @param fieldValue
      */
-    protected void analysis(AtomicInteger ai , boolean orBoolean ,Wrapper<M> wrapper , String fieldProperties , Object fieldValue) throws IllegalAccessException{
+    protected void analysis(AtomicInteger ai , boolean orBoolean ,QueryWrapper<M> wrapper , String fieldProperties , Object fieldValue) throws IllegalAccessException{
         EnumSearchOperator searchType = null;
         String fieldName = null;
 

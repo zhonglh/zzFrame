@@ -10,12 +10,13 @@ import java.util.Date;
 public class MyWebBinding implements WebBindingInitializer {
 
 	@Override
-	public void initBinder(WebDataBinder binder, WebRequest request) {
+	public void initBinder(WebDataBinder binder) {
+
 
 		binder.registerCustomEditor(Date.class, new DateConvertEditor());
 		binder.registerCustomEditor(Timestamp.class, new DateConvertEditor());
 		binder.registerCustomEditor(java.math.BigDecimal.class, new BigDecimalConvertEditor());
-
 	}
+
 
 }

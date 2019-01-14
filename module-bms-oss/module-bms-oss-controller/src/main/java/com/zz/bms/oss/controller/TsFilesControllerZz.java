@@ -1,7 +1,7 @@
 package com.zz.bms.oss.controller;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.controller.base.controller.ZzDefaultController;
 import com.zz.bms.core.db.mybatis.query.QueryNullImpl;
 import com.zz.bms.core.enums.EnumYesNo;
@@ -15,8 +15,8 @@ import com.zz.bms.oss.base.service.VsFilesUseService;
 import com.zz.bms.oss.engine.engine.StorageProcess;
 import com.zz.bms.oss.engine.enums.EnumFileEngine;
 import com.zz.bms.oss.engine.util.FileVOUtil;
-import com.zz.bms.util.base.files.FileKit;
 import com.zz.bms.util.base.java.IdUtils;
+import com.zz.bms.util.file.FileKit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -97,15 +97,15 @@ public class TsFilesControllerZz extends ZzDefaultController<TsFilesEntity, Stri
                 vsFilesUseEntity.setRemark(remark);
                 vsFilesUseEntity.setId(IdUtils.getId());
 
-                Wrapper<TsFilesEntity> wrapper = new EntityWrapper<TsFilesEntity>();
+                QueryWrapper<TsFilesEntity> wrapper = new QueryWrapper<>();
                 wrapper.eq("md5" , md5);
                 wrapper.eq("delete_flag" , EnumYesNo.NO.getCode());
                 wrapper.gt("use_frequency" , 0) ;
-                TsFilesEntity one = tsFilesService.selectOne(wrapper);
+                TsFilesEntity one = tsFilesService.getOne(wrapper);
                 if( one != null ){
                     list.add(FileVOUtil.toFileVO(one));
                     FileVOUtil.toVsFileUser(vsFilesUseEntity , one);
-                    vsFilesUseService.insert(vsFilesUseEntity);
+                    vsFilesUseService.save(vsFilesUseEntity);
                     continue;
                 }
 
@@ -126,7 +126,7 @@ public class TsFilesControllerZz extends ZzDefaultController<TsFilesEntity, Stri
                 vsFilesUseEntity.setFileSize(fileSize);
                 vsFilesUseEntity.setFileSuffix(suffix);
                 vsFilesUseEntity.setUseFrequency(0);
-                vsFilesUseService.insert(vsFilesUseEntity);
+                vsFilesUseService.save(vsFilesUseEntity);
 
 
             }

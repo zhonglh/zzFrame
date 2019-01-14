@@ -1,6 +1,6 @@
 package com.zz.bms.system.base;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.system.domain.VsUserEntity;
 import org.junit.Test;
 
@@ -10,10 +10,10 @@ public class SqlTest {
     @Test
     public void testSql(){
 
-
-        EntityWrapper<VsUserEntity> ew = new EntityWrapper<VsUserEntity>();
+        /*
+        QueryWrapper<VsUserEntity> ew = new QueryWrapper<VsUserEntity>();
         ew.setEntity(new VsUserEntity());
-        ew.where("user_name={0}", "'zhangsan'").and("id=1")
+        ew.("user_name={0}", "'zhangsan'").and("id=1")
                 .orNew("user_status={0}", "0").or("status=1")
                 .notLike("user_nickname", "notvalue")
                 .andNew("new=xx").like("hhh", "ddd")
@@ -22,6 +22,6 @@ public class SqlTest {
                 .having("x1=11").having("x3=433")
                 .orderBy("dd").orderBy("d1,d2");
         System.out.println(ew.getSqlSegment());
-
+        */
     }
 }

@@ -1,25 +1,28 @@
 package com.zz.bms.core.db.base.service.impl;
 
-import com.baomidou.mybatisplus.entity.TableInfo;
-import com.baomidou.mybatisplus.enums.SqlMethod;
-import com.baomidou.mybatisplus.exceptions.MybatisPlusException;
-import com.baomidou.mybatisplus.mapper.Condition;
-import com.baomidou.mybatisplus.mapper.SqlHelper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.toolkit.*;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.enums.SqlMethod;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.metadata.TableInfo;
+import com.baomidou.mybatisplus.core.toolkit.*;
+import com.baomidou.mybatisplus.extension.service.additional.query.impl.LambdaQueryChainWrapper;
+import com.baomidou.mybatisplus.extension.service.additional.query.impl.QueryChainWrapper;
+import com.baomidou.mybatisplus.extension.service.additional.update.impl.LambdaUpdateChainWrapper;
+import com.baomidou.mybatisplus.extension.service.additional.update.impl.UpdateChainWrapper;
+import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
 import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.BaseService;
 import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.util.base.java.GenericsHelper;
 import org.apache.ibatis.binding.MapperMethod;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @author Administrator
@@ -46,7 +49,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
     }
 
     protected Class<T> currentModelClass() {
-        return ReflectionKit.getSuperClassGenricType(this.getClass(), 1);
+        return GenericsHelper.getSuperClassGenricType(this.getClass(), 1);
     }
 
     protected SqlSession sqlSessionBatch() {
@@ -57,407 +60,206 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
         return SqlHelper.table(this.currentModelClass()).getSqlStatement(sqlMethod.getMethod());
     }
 
+
+
+
+
+
+
     @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean insert(T entity) {
+    public boolean save(T entity) {
         return retBool(this.getRwDAO().insert(entity));
     }
 
-
+    /**
+     * 批量插入
+     *
+     * @param entityList
+     * @param batchSize
+     * @return
+     */
+    @Transactional(rollbackFor = Exception.class)
     @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean insertAllColumn(T entity) {
-        return retBool(this.getRwDAO().insertAllColumn(entity));
-    }
-
-    @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean insertBatch(List<T> entityList) {
-        return this.insertBatch(entityList, 30);
-    }
-
-    @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean insertBatch(List<T> entityList, int batchSize) {
-        if (CollectionUtils.isEmpty(entityList)) {
-            throw new IllegalArgumentException("Error: entityList must not be empty");
-        } else {
-            try {
-                SqlSession batchSqlSession = this.sqlSessionBatch();
-                Throwable var4 = null;
-
-                try {
-                    int size = entityList.size();
-                    String sqlStatement = this.sqlStatement(SqlMethod.INSERT_ONE);
-
-                    for(int i = 0; i < size; ++i) {
-                        batchSqlSession.insert(sqlStatement, entityList.get(i));
-                        if (i >= 1 && i % batchSize == 0) {
-                            batchSqlSession.flushStatements();
-                        }
-                    }
-
+    public boolean saveBatch(Collection<T> entityList, int batchSize) {
+        String sqlStatement = sqlStatement(SqlMethod.INSERT_ONE);
+        try (SqlSession batchSqlSession = sqlSessionBatch()) {
+            int i = 0;
+            for (T anEntityList : entityList) {
+                batchSqlSession.insert(sqlStatement, anEntityList);
+                if (i >= 1 && i % batchSize == 0) {
                     batchSqlSession.flushStatements();
-                } catch (Throwable var16) {
-                    var4 = var16;
-                    throw var16;
-                } finally {
-                    if (batchSqlSession != null) {
-                        if (var4 != null) {
-                            try {
-                                batchSqlSession.close();
-                            } catch (Throwable var15) {
-                                var4.addSuppressed(var15);
-                            }
-                        } else {
-                            batchSqlSession.close();
-                        }
-                    }
-
                 }
-
-                return true;
-            } catch (Throwable var18) {
-                throw new MybatisPlusException("Error: Cannot execute insertBatch Method. Cause", var18);
+                i++;
             }
+            batchSqlSession.flushStatements();
         }
+        return true;
     }
 
+    /**
+     * <p>
+     * TableId 注解存在更新记录，否插入一条记录
+     * </p>
+     *
+     * @param entity 实体对象
+     * @return boolean
+     */
+    @Transactional(rollbackFor = Exception.class)
     @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean insertOrUpdate(T entity) {
-        if (null == entity) {
-            return false;
-        } else {
+    public boolean saveOrUpdate(T entity) {
+        if (null != entity) {
             Class<?> cls = entity.getClass();
             TableInfo tableInfo = TableInfoHelper.getTableInfo(cls);
-            if (null != tableInfo && StringUtils.isNotEmpty(tableInfo.getKeyProperty())) {
-                Object idVal = ReflectionKit.getMethodValue(cls, entity, tableInfo.getKeyProperty());
-                if (StringUtils.checkValNull(idVal)) {
-                    return this.insert(entity);
-                } else {
-                    return this.updateById(entity) || this.insert(entity);
-                }
-            } else {
-                throw new MybatisPlusException("Error:  Can not execute. Could not find @TableId.");
-            }
+            Assert.notNull(tableInfo, "error: can not execute. because can not find cache of TableInfo for entity!");
+            String keyProperty = tableInfo.getKeyProperty();
+            Assert.notEmpty(keyProperty, "error: can not execute. because can not find column for id from entity!");
+            Object idVal = ReflectionKit.getMethodValue(cls, entity, tableInfo.getKeyProperty());
+            return StringUtils.checkValNull(idVal) || Objects.isNull(getById((Serializable) idVal)) ? save(entity) : updateById(entity);
         }
+        return false;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean insertOrUpdateAllColumn(T entity) {
-        if (null == entity) {
-            return false;
-        } else {
-            Class<?> cls = entity.getClass();
-            TableInfo tableInfo = TableInfoHelper.getTableInfo(cls);
-            if (null != tableInfo && StringUtils.isNotEmpty(tableInfo.getKeyProperty())) {
-                Object idVal = ReflectionKit.getMethodValue(cls, entity, tableInfo.getKeyProperty());
-                if (StringUtils.checkValNull(idVal)) {
-                    return this.insertAllColumn(entity);
+    public boolean saveOrUpdateBatch(Collection<T> entityList, int batchSize) {
+        Assert.notEmpty(entityList, "error: entityList must not be empty");
+        Class<?> cls = currentModelClass();
+        TableInfo tableInfo = TableInfoHelper.getTableInfo(cls);
+        Assert.notNull(tableInfo, "error: can not execute. because can not find cache of TableInfo for entity!");
+        String keyProperty = tableInfo.getKeyProperty();
+        Assert.notEmpty(keyProperty, "error: can not execute. because can not find column for id from entity!");
+        try (SqlSession batchSqlSession = sqlSessionBatch()) {
+            int i = 0;
+            for (T entity : entityList) {
+                Object idVal = ReflectionKit.getMethodValue(cls, entity, keyProperty);
+                if (StringUtils.checkValNull(idVal) || Objects.isNull(getById((Serializable) idVal))) {
+                    batchSqlSession.insert(sqlStatement(SqlMethod.INSERT_ONE), entity);
                 } else {
-                    return this.updateAllColumnById(entity) || this.insertAllColumn(entity);
+                    MapperMethod.ParamMap<T> param = new MapperMethod.ParamMap<>();
+                    param.put(Constants.ENTITY, entity);
+                    batchSqlSession.update(sqlStatement(SqlMethod.UPDATE_BY_ID), param);
                 }
-            } else {
-                throw new MybatisPlusException("Error:  Can not execute. Could not find @TableId.");
-            }
-        }
-    }
 
-    @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean insertOrUpdateBatch(List<T> entityList) {
-        return this.insertOrUpdateBatch(entityList, 30);
-    }
 
-    @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean insertOrUpdateBatch(List<T> entityList, int batchSize) {
-        return this.insertOrUpdateBatch(entityList, batchSize, true);
-    }
-
-    @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean insertOrUpdateAllColumnBatch(List<T> entityList) {
-        return this.insertOrUpdateBatch(entityList, 30, false);
-    }
-
-    @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean insertOrUpdateAllColumnBatch(List<T> entityList, int batchSize) {
-        return this.insertOrUpdateBatch(entityList, batchSize, false);
-    }
-
-    private boolean insertOrUpdateBatch(List<T> entityList, int batchSize, boolean selective) {
-        if (CollectionUtils.isEmpty(entityList)) {
-            throw new IllegalArgumentException("Error: entityList must not be empty");
-        } else {
-            try {
-                SqlSession batchSqlSession = this.sqlSessionBatch();
-                Throwable var5 = null;
-
-                try {
-                    int size = entityList.size();
-
-                    for(int i = 0; i < size; ++i) {
-                        if (selective) {
-                            this.insertOrUpdate(entityList.get(i));
-                        } else {
-                            this.insertOrUpdateAllColumn(entityList.get(i));
-                        }
-
-                        if (i >= 1 && i % batchSize == 0) {
-                            batchSqlSession.flushStatements();
-                        }
-                    }
-
+                if (i >= 1 && i % batchSize == 0) {
                     batchSqlSession.flushStatements();
-                    return true;
-                } catch (Throwable var16) {
-                    var5 = var16;
-                    throw var16;
-                } finally {
-                    if (batchSqlSession != null) {
-                        if (var5 != null) {
-                            try {
-                                batchSqlSession.close();
-                            } catch (Throwable var15) {
-                                var5.addSuppressed(var15);
-                            }
-                        } else {
-                            batchSqlSession.close();
-                        }
-                    }
-
                 }
-            } catch (Throwable var18) {
-                throw new MybatisPlusException("Error: Cannot execute insertOrUpdateBatch Method. Cause", var18);
+                i++;
             }
+            batchSqlSession.flushStatements();
         }
+        return true;
     }
 
     @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean deleteById(Serializable id) {
-        return SqlHelper.delBool(this.getRwDAO().deleteById(id));
-    }
-
-
-
-    @Override
-    public boolean deleteById(T t){
-        return deleteById(t.getId());
-    }
-    @Override
-    public boolean deletesByIds(List<T> ts){
-        List<PK> ids = new ArrayList<PK>();
-        for(T t : ts){
-            ids.add(t.getId());
-        }
-        return this.deleteBatchIds(ids);
-    }
-
-
-    @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean deleteByMap(Map<String, Object> columnMap) {
-        if (MapUtils.isEmpty(columnMap)) {
-            throw new MybatisPlusException("deleteByMap columnMap is empty.");
-        } else {
-            return SqlHelper.delBool(this.getRwDAO().deleteByMap(columnMap));
-        }
+    public boolean removeById(Serializable id) {
+        return SqlHelper.delBool(getRwDAO().deleteById(id));
     }
 
     @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean delete(Wrapper<T> wrapper) {
-        return SqlHelper.delBool(this.getRwDAO().delete(wrapper));
+    public boolean removeByMap(Map<String, Object> columnMap) {
+        Assert.notEmpty(columnMap, "error: columnMap must not be empty");
+        return SqlHelper.delBool(getRwDAO().deleteByMap(columnMap));
     }
 
     @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean deleteBatchIds(Collection<? extends Serializable> idList) {
-        return SqlHelper.delBool(this.getRwDAO().deleteBatchIds(idList));
+    public boolean remove(Wrapper<T> wrapper) {
+        return SqlHelper.delBool(getRwDAO().delete(wrapper));
     }
 
     @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
+    public boolean removeByIds(Collection<? extends Serializable> idList) {
+        return SqlHelper.delBool(getRwDAO().deleteBatchIds(idList));
+    }
+
+    @Override
     public boolean updateById(T entity) {
-        return retBool(this.getRwDAO().updateById(entity));
+        return retBool(getRwDAO().updateById(entity));
     }
 
     @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean updateAllColumnById(T entity) {
-        return retBool(this.getRwDAO().updateAllColumnById(entity));
+    public boolean update(T entity, Wrapper<T> updateWrapper) {
+        return retBool(getRwDAO().update(entity, updateWrapper));
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean update(T entity, Wrapper<T> wrapper) {
-        return retBool(this.getRwDAO().update(entity, wrapper));
-    }
-
-    @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean updateForSet(String setStr, Wrapper<T> wrapper) {
-        return retBool(this.getRwDAO().updateForSet(setStr, wrapper));
-    }
-
-    @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean updateBatchById(List<T> entityList) {
-        return this.updateBatchById(entityList, 30);
-    }
-
-    @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean updateBatchById(List<T> entityList, int batchSize) {
-        return this.updateBatchById(entityList, batchSize, true);
-    }
-
-    @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean updateAllColumnBatchById(List<T> entityList) {
-        return this.updateAllColumnBatchById(entityList, 30);
-    }
-
-    @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean updateAllColumnBatchById(List<T> entityList, int batchSize) {
-        return this.updateBatchById(entityList, batchSize, false);
-    }
-
-    private boolean updateBatchById(List<T> entityList, int batchSize, boolean selective) {
-        if (CollectionUtils.isEmpty(entityList)) {
-            throw new IllegalArgumentException("Error: entityList must not be empty");
-        } else {
-            try {
-                SqlSession batchSqlSession = this.sqlSessionBatch();
-                Throwable var5 = null;
-
-                try {
-                    int size = entityList.size();
-                    SqlMethod sqlMethod = selective ? SqlMethod.UPDATE_BY_ID : SqlMethod.UPDATE_ALL_COLUMN_BY_ID;
-                    String sqlStatement = this.sqlStatement(sqlMethod);
-
-                    for(int i = 0; i < size; ++i) {
-                        MapperMethod.ParamMap<T> param = new MapperMethod.ParamMap();
-                        param.put("et", entityList.get(i));
-                        batchSqlSession.update(sqlStatement, param);
-                        if (i >= 1 && i % batchSize == 0) {
-                            batchSqlSession.flushStatements();
-                        }
-                    }
-
+    public boolean updateBatchById(Collection<T> entityList, int batchSize) {
+        Assert.notEmpty(entityList, "error: entityList must not be empty");
+        String sqlStatement = sqlStatement(SqlMethod.UPDATE_BY_ID);
+        try (SqlSession batchSqlSession = sqlSessionBatch()) {
+            int i = 0;
+            for (T anEntityList : entityList) {
+                MapperMethod.ParamMap<T> param = new MapperMethod.ParamMap<>();
+                param.put(Constants.ENTITY, anEntityList);
+                batchSqlSession.update(sqlStatement, param);
+                if (i >= 1 && i % batchSize == 0) {
                     batchSqlSession.flushStatements();
-                    return true;
-                } catch (Throwable var19) {
-                    var5 = var19;
-                    throw var19;
-                } finally {
-                    if (batchSqlSession != null) {
-                        if (var5 != null) {
-                            try {
-                                batchSqlSession.close();
-                            } catch (Throwable var18) {
-                                var5.addSuppressed(var18);
-                            }
-                        } else {
-                            batchSqlSession.close();
-                        }
-                    }
-
                 }
-            } catch (Throwable var21) {
-                throw new MybatisPlusException("Error: Cannot execute updateBatchById Method. Cause", var21);
+                i++;
             }
+            batchSqlSession.flushStatements();
         }
-    }
-
-
-
-
-    @Override
-    public T selectById(Serializable id) {
-
-        T t =  (T)this.getQueryDAO().selectById(id);
-        return processResult(t);
+        return true;
     }
 
     @Override
-    public List<T> selectBatchIds(Collection<? extends Serializable> idList) {
-        List<T> list =  this.getQueryDAO().selectBatchIds(idList);
-        if(list != null && !list.isEmpty()){
-            for(T t : list){
-                processResult(t);
-            }
+    public T getById(Serializable id) {
+        return (T)getQueryDAO().selectById(id);
+    }
+
+    @Override
+    public Collection<T> listByIds(Collection<? extends Serializable> idList) {
+        return getQueryDAO().selectBatchIds(idList);
+    }
+
+    @Override
+    public Collection<T> listByMap(Map<String, Object> columnMap) {
+        return getQueryDAO().selectByMap(columnMap);
+    }
+
+    @Override
+    public T getOne(Wrapper<T> queryWrapper, boolean throwEx) {
+        if (throwEx) {
+            return (T)getQueryDAO().selectOne(queryWrapper);
         }
-        return list;
+        return SqlHelper.getObject((List<T>)getQueryDAO().selectList(queryWrapper));
     }
 
     @Override
-    public List<T> selectByMap(Map<String, Object> columnMap) {
-        List<T> list =  this.getQueryDAO().selectByMap(columnMap);
-        if(list != null && !list.isEmpty()){
-            for(T t : list){
-                processResult(t);
-            }
-        }
-        return list;
+    public Map<String, Object> getMap(Wrapper<T> queryWrapper) {
+        return SqlHelper.getObject((List<Map<String, Object>>)getQueryDAO().selectMaps(queryWrapper));
     }
 
     @Override
-    public T selectOne(Wrapper<T> wrapper) {
-        T t=  (T)SqlHelper.getObject(this.getQueryDAO().selectList(wrapper));
-        return processResult(t);
+    public int count(Wrapper<T> queryWrapper) {
+        return SqlHelper.retCount(getQueryDAO().selectCount(queryWrapper));
     }
 
+    @Override
+    public List<T> list(Wrapper<T> queryWrapper) {
+        return getQueryDAO().selectList(queryWrapper);
+    }
+
+    @Override
+    public IPage<T> page(IPage<T> page, Wrapper<T> queryWrapper) {
+        return getQueryDAO().selectPage(page, queryWrapper);
+    }
+
+    @Override
+    public List<Map<String, Object>> listMaps(Wrapper<T> queryWrapper) {
+        return getQueryDAO().selectMaps(queryWrapper);
+    }
+
+    @Override
+    public <V> List<V> listObjs(Wrapper<T> queryWrapper, Function<? super Object, V> mapper) {
+        return (List<V>)getQueryDAO().selectObjs(queryWrapper).stream().filter(Objects::nonNull).map(mapper).collect(Collectors.toList());
+    }
+
+    @Override
+    public IPage<Map<String, Object>> pageMaps(IPage<T> page, Wrapper<T> queryWrapper) {
+        return getQueryDAO().selectMapsPage(page, queryWrapper);
+    }
 
 
 
@@ -467,99 +269,151 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
     }
 
     @Override
-    public Map<String, Object> selectMap(Wrapper<T> wrapper) {
-        Map<String, Object>  map = (Map)SqlHelper.getObject(this.getQueryDAO().selectMaps(wrapper));
-        if(map != null && !map.isEmpty()){
-            for(Object o : map.values()){
-                processResult((T)o);
-            }
-        }
-        return map;
-    }
-
-    @Override
-    public Object selectObj(Wrapper<T> wrapper) {
-
-        Object o =  SqlHelper.getObject(this.getQueryDAO().selectObjs(wrapper));
-        if(o == null) {
-            return null;
-        }else {
-            return processResult((T)o);
-        }
-    }
-
-    @Override
-    public int selectCount(Wrapper<T> wrapper) {
-        return SqlHelper.retCount(this.getQueryDAO().selectCount(wrapper));
-    }
-
-    @Override
-    public List<T> selectList(Wrapper<T> wrapper) {
-        List<T> list =  this.getQueryDAO().selectList(wrapper);
-        if(list != null && !list.isEmpty()){
-            for(T t : list){
-                processResult(t);
-            }
-        }
-        return list;
-    }
-
-    @Override
-    public Page<T> selectPage(Page<T> page) {
-
-        Page<T> result =  this.selectPage(page, Condition.EMPTY);
-        List<T> list = result.getRecords();
-        if(list != null && !list.isEmpty()){
-            for(T t : list){
-                    processResult(t);
-            }
-        }
-        return result;
-    }
-
-    @Override
-    public List<Map<String, Object>> selectMaps(Wrapper<T> wrapper) {
-        return this.getQueryDAO().selectMaps(wrapper);
-    }
-
-    @Override
-    public List<Object> selectObjs(Wrapper<T> wrapper) {
-
-        List<Object> list =this.getQueryDAO().selectObjs(wrapper);
-        if(list != null && !list.isEmpty()){
-            for(Object o : list){
-                if(o != null) {
-                    processResult((T) o);
-                }
-            }
-        }
-        return list;
-    }
-
-    @Override
-    public Page<Map<String, Object>> selectMapsPage(Page page, Wrapper<T> wrapper) {
-        wrapper = (Wrapper<T>)SqlHelper.fillWrapper(page, wrapper);
-        page.setRecords(this.getQueryDAO().selectMapsPage(page, wrapper));
-        return page;
-    }
-
-    @Override
-    public Page<T> selectPage(Page<T> page, Wrapper<T> wrapper) {
-        wrapper = (Wrapper<T>)SqlHelper.fillWrapper(page, wrapper);
-        page.setRecords(this.getQueryDAO().selectPage(page, wrapper));
-        List<T> list = page.getRecords();
-        if(list != null && !list.isEmpty()){
-            for(T t : list){
-                processResult(t);
-            }
-        }
-        return page;
-    }
-
-
-    @Override
     public T processResult(T t){
         return t;
     }
 
+
+    @Override
+    public boolean deleteById(T t) {
+        return removeById(t.getId());
+    }
+
+    @Override
+    public boolean deletesByIds(List<T> ts) {
+        List<PK> ids = new ArrayList<PK>();
+        for(T t : ts){
+            ids.add(t.getId());
+        }
+        return removeByIds(ids);
+    }
+
+
+
+    @Override
+    public boolean saveBatch(Collection<T> entityList) {
+        return saveBatch(entityList, 1000);
+    }
+
+    @Override
+    public boolean saveOrUpdateBatch(Collection<T> entityList) {
+        return saveOrUpdateBatch(entityList, 1000);
+    }
+
+
+
+    @Override
+    public boolean update(Wrapper<T> updateWrapper) {
+        return update(null, updateWrapper);
+    }
+
+    @Override
+    public boolean updateBatchById(Collection<T> entityList) {
+        return updateBatchById(entityList, 1000);
+    }
+
+
+    @Override
+    public T getOne(Wrapper<T> queryWrapper) {
+        return getOne(queryWrapper, false);
+    }
+
+
+    @Override
+    public <V> V getObj(Wrapper<T> queryWrapper, Function<? super Object, V> mapper) {
+        return SqlHelper.getObject(listObjs(queryWrapper, mapper));
+    }
+
+
+    @Override
+    public int count() {
+        return count(Wrappers.emptyWrapper());
+    }
+
+
+    @Override
+    public List<T> list() {
+        return list(Wrappers.emptyWrapper());
+    }
+
+
+    @Override
+    public IPage<T> page(IPage<T> page) {
+        return page(page, Wrappers.emptyWrapper());
+    }
+
+
+    @Override
+    public List<Map<String, Object>> listMaps() {
+        return listMaps(Wrappers.emptyWrapper());
+    }
+
+    @Override
+    public List<Object> listObjs() {
+        return listObjs(Function.identity());
+    }
+
+    @Override
+    public <V> List<V> listObjs(Function<? super Object, V> mapper) {
+        return listObjs(Wrappers.emptyWrapper(), mapper);
+    }
+
+    @Override
+    public List<Object> listObjs(Wrapper<T> queryWrapper) {
+        return listObjs(Function.identity());
+    }
+
+
+
+    @Override
+    public IPage<Map<String, Object>> pageMaps(IPage<T> page) {
+        return pageMaps(page, Wrappers.emptyWrapper());
+    }
+
+    @Override
+    public BaseMapper<T> getBaseMapper() {
+        return null;
+    }
+
+
+
+    /**
+     * 链式查询 普通
+     *
+     * @return QueryWrapper 的包装类
+     */
+    @Override
+    public QueryChainWrapper<T> query() {
+        return new QueryChainWrapper<>(getQueryDAO());
+    }
+
+    /**
+     * 链式查询 lambda 式
+     *
+     * @return LambdaQueryWrapper 的包装类
+     */
+    @Override
+    public LambdaQueryChainWrapper<T> lambdaQuery() {
+        return new LambdaQueryChainWrapper<>(getQueryDAO());
+    }
+
+    /**
+     * 链式更改 普通
+     *
+     * @return UpdateWrapper 的包装类
+     */
+    @Override
+    public UpdateChainWrapper<T> update() {
+        return new UpdateChainWrapper<>(getRwDAO());
+    }
+
+    /**
+     * 链式更改 lambda 式
+     *
+     * @return LambdaUpdateWrapper 的包装类
+     */
+    @Override
+    public LambdaUpdateChainWrapper<T> lambdaUpdate() {
+        return new LambdaUpdateChainWrapper<>(getRwDAO());
+    }
 }

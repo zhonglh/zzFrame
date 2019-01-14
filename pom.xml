@@ -16,9 +16,11 @@
     <module>module-bms-controller-base</module>
     <module>module-bms-redis</module>
     <module>module-bms-shiro</module>
+    <module>module-bms-oss</module>
+
     <module>module-bms-system</module>
     <module>project-bms-web-base</module>
-    <module>module-bms-oss</module>
+
   </modules>
   <packaging>pom</packaging>
   <name>zzFrame</name>

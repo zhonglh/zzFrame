@@ -1,5 +1,6 @@
 package com.zz.bms.system.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.controller.base.controller.BaseBussinessController;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.enums.EnumYesNo;
@@ -79,7 +80,7 @@ public class MainController extends BaseBussinessController {
         //处理菜单
         VsUserMenuQuery query = new VsUserMenuQueryImpl();
         query.userId(loginUser.getId());
-        List<VsUserMenuBO> menus = vsUserMenuService.selectList(query.buildWrapper());
+        List<VsUserMenuBO> menus = vsUserMenuService.list(query.buildWrapper());
         if (menus == null) {
             menus = new ArrayList<VsUserMenuBO>();
         }
@@ -96,7 +97,9 @@ public class MainController extends BaseBussinessController {
         }
         TsMyShortcutQuery shortcutQuery = new TsMyShortcutQueryImpl();
         shortcutQuery.userId(loginUser.getId());
-        List<TsMyShortcutBO> shortcuts = myShortcutService.selectList(shortcutQuery.buildWrapper().orderBy("orderby"));
+        QueryWrapper shortcutQ = shortcutQuery.buildWrapper();
+        shortcutQ.orderByAsc("orderby");
+        List<TsMyShortcutBO> shortcuts = myShortcutService.list(shortcutQ);
         Map<String, String> myShortcutMap = new HashMap<String, String>();
         if (shortcuts != null && !shortcuts.isEmpty()) {
             for (TsMyShortcutBO shortcut : shortcuts) {
@@ -121,7 +124,7 @@ public class MainController extends BaseBussinessController {
         notifyQuery.toUserId(loginUser.getId());
         notifyQuery.isRead(EnumYesNo.NO.getCode());
 
-        int count = tsNotificationService.selectCount(notifyQuery.buildWrapper());
+        int count = tsNotificationService.count(notifyQuery.buildWrapper());
         model.put("notReadNotifyCount", count);
 
         //todo 测试使用 , 后期需要删除

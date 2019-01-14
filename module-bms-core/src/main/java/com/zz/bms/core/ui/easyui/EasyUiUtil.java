@@ -1,6 +1,6 @@
 package com.zz.bms.core.ui.easyui;
 
-import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zz.bms.core.ui.Pages;
 import com.zz.bms.core.ui.TreeModel;
 

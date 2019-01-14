@@ -12,10 +12,10 @@ import com.zz.bms.shiro.utils.ShiroUtils;
 import com.zz.bms.system.bo.VsUserBO;
 import  com.zz.bms.system.query.impl.VsUserQueryWebImpl;
 
-import io.jsonwebtoken.lang.Assert;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -61,7 +61,7 @@ public class VsUserController extends ZzDefaultController<VsUserBO, String , VsU
 		}
 
 		vsUserBO.setId(id);
-		VsUserBO temp = this.baseService.selectById(id);
+		VsUserBO temp = this.baseService.getById(id);
 		if(temp == null){
 			throw EnumErrorMsg.no_auth.toException();
 		}

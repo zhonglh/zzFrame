@@ -1,20 +1,22 @@
 package com.zz.bms.core.db.mybatis.query;
 
-import com.baomidou.mybatisplus.mapper.Wrapper;
+
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 public class QueryNullImpl implements Query {
     @Override
-    public Wrapper buildWrapper() {
+    public QueryWrapper buildWrapper() {
         return null;
     }
 
     @Override
-    public Wrapper buildWrapper(Wrapper w) {
+    public QueryWrapper buildWrapper(QueryWrapper w) {
         return null;
     }
 
     @Override
-    public Wrapper buildWrapper(Wrapper wrapper, boolean orBoolean) {
+    public QueryWrapper buildWrapper(QueryWrapper wrapper, boolean orBoolean) {
         return null;
     }
 }

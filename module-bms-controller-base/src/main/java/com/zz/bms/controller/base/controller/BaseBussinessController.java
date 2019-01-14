@@ -1,8 +1,9 @@
 package com.zz.bms.controller.base.controller;
 
-import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zz.bms.annotaions.EntityAttrCheckAnnotation;
 import com.zz.bms.annotaions.EntityAttrDBAnnotation;
+import com.zz.bms.annotaions.EntityAttrPageAnnotation;
 import com.zz.bms.configs.BusinessConfig;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.*;
@@ -13,12 +14,12 @@ import com.zz.bms.core.ui.TreeModel;
 import com.zz.bms.core.ui.easyui.EasyUiDataGrid;
 import com.zz.bms.core.ui.easyui.EasyUiUtil;
 import com.zz.bms.core.vo.AjaxJson;
-import com.zz.bms.util.base.BankCardUtils;
+import com.zz.bms.util.base.BankNoValidateUtils;
 import com.zz.bms.util.base.data.DateKit;
 import com.zz.bms.util.base.data.SerializableUtil;
 import com.zz.bms.util.base.data.StringUtil;
-import com.zz.bms.util.base.java.ReflectionUtil;
-import com.zz.bms.util.base.spring.SpringUtil;
+import com.zz.bms.util.spring.ReflectionUtil;
+import com.zz.bms.util.spring.SpringUtil;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
@@ -39,7 +40,7 @@ public abstract class BaseBussinessController extends BaseController {
      * @return
      */
     public AjaxJson checkBankNo(String bankNo){
-        String result = BankCardUtils.luhmCheck(bankNo);
+        String result = BankNoValidateUtils.luhmCheck(bankNo);
         if(result.equals("true")){
             return AjaxJson.successAjax;
         }else {
@@ -130,7 +131,7 @@ public abstract class BaseBussinessController extends BaseController {
      */
     public void checkEntityLegality(BaseEntity entity){
 
-        List<Field> list = ReflectionUtil.getBusinessFields(entity.getClass());
+        List<Field> list = ReflectionUtil.getBusinessFields(entity.getClass(),EntityAttrPageAnnotation.class);
 
         if(list != null && !list.isEmpty()){
                 for (Field field : list) {
@@ -213,7 +214,7 @@ public abstract class BaseBussinessController extends BaseController {
 
 
 
-        List<Field> list = ReflectionUtil.getBusinessFields(entity.getClass());
+        List<Field> list = ReflectionUtil.getBusinessFields(entity.getClass(),EntityAttrPageAnnotation.class);
 
         if(list != null && !list.isEmpty()){
 

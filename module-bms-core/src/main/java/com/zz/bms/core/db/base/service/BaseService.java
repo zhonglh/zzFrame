@@ -1,6 +1,6 @@
 package com.zz.bms.core.db.base.service;
 
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.zz.bms.core.db.entity.BaseEntity;
 
 import java.io.Serializable;

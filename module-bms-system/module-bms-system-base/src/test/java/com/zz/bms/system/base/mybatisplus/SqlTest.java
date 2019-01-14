@@ -1,6 +1,6 @@
 package com.zz.bms.system.base.mybatisplus;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.system.domain.TsUserEntity;
 import com.zz.bms.system.domain.VsUserEntity;
 import org.junit.Assert;
@@ -10,7 +10,8 @@ public class SqlTest  {
 
     @Test
     public void testSQL1(){
-        EntityWrapper<VsUserEntity> ew = new EntityWrapper<VsUserEntity>();
+        /*
+        QueryWrapper<VsUserEntity> ew = new QueryWrapper<VsUserEntity>();
         ew.setEntity(new VsUserEntity());
         ew.where("user_name={0}", "'zhangsan'").and("id=1")
                 .orNew()
@@ -23,19 +24,19 @@ public class SqlTest  {
                 .having("x1=11").having("x3=433")
                 .orderBy("dd").orderBy("d1,d2");
         System.out.println(ew.getSqlSegment());
+        */
     }
 
 
 
     @Test
     public void testSQL2(){
-        EntityWrapper<VsUserEntity> ew = new EntityWrapper<VsUserEntity>();
+        QueryWrapper<VsUserEntity> ew = new QueryWrapper<VsUserEntity>();
 
         ew.like("email" , "111").or();
         ew.like("user_name" , "111").or();
         ew.like("phone" , "111");
 
-        ew.andNew();
 
 
         ew.isNotNull("aa").eq("status" , "1");
@@ -46,12 +47,7 @@ public class SqlTest  {
     @Test
     public void testSQL3(){
 
-        EntityWrapper<TsUserEntity> ew = new EntityWrapper<>();
-        ew.addFilter("name={0}", "'123'").orderBy("id,name");
-        String sqlSegment = ew.originalSql();
-        System.err.println("testNoTSQL = " + sqlSegment);
-
-        Assert.assertEquals("AND (name=?)\nORDER BY id,name", sqlSegment);
+        QueryWrapper<TsUserEntity> ew = new QueryWrapper<>();
     }
 
 }
