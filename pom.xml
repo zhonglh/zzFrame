@@ -18,8 +18,8 @@
     <module>module-bms-shiro</module>
     <module>module-bms-oss</module>
 
-    <module>module-bms-system</module>
     <module>project-bms-web-base</module>
+    <module>module-bms-system</module>
 
   </modules>
   <packaging>pom</packaging>

@@ -57,6 +57,12 @@
 
         <dependency>
             <groupId>com.zz.bms.util</groupId>
+            <artifactId>springUtil</artifactId>
+            <version>${zzutil.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zz.bms.util</groupId>
             <artifactId>springWebUtil</artifactId>
             <version>${zzutil.version}</version>
         </dependency>

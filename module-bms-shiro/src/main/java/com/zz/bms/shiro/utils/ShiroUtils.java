@@ -10,6 +10,7 @@ import org.apache.shiro.subject.Subject;
 /**
  * 类ShiroUtils的功能描述:
  * Shiro工具类
+ * @author Administrator
  */
 public class ShiroUtils {
 
