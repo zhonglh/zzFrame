@@ -7,70 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3315624-fab0-4c70-b13d-98ed58c474e1" name="Default" comment="提交JSP">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/module-bms-redis/src/main/java/com/zz/bms/redis/JedisSentinelPoolCustom.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/module-bms-redis/src/main/java/com/zz/bms/redis/RedisSentinelConfigurationCustom.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/module-bms-redis/src/main/java/com/zz/bms/redis/SetSentinel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/module-bms-redis/src/main/java/com/zz/bms/redis/utils/RedisSentinelUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/module-bms-redis/src/main/java/com/zz/bms/redis/utils/RedisUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/module-bms-redis/src/main/resources/redis.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/module-bms-redis/src/main/resources/redisSentinel.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/module-bms-redis/src/main/resources/spring-redis.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/module-bms-redis/src/main/resources/spring-sentinel_redis.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/project_bms_system_web_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/project_bms_system_web_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/project_bms_web_base_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/project_bms_web_base_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-base/module-bms-base.iml" afterPath="$PROJECT_DIR$/module-bms-base/module-bms-base.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-controller-base/module-bms-controller-base.iml" afterPath="$PROJECT_DIR$/module-bms-controller-base/module-bms-controller-base.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-controller-base/pom.xml" afterPath="$PROJECT_DIR$/module-bms-controller-base/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-controller-base/src/main/java/com/zz/bms/controller/base/PermissionList.java" afterPath="$PROJECT_DIR$/module-bms-controller-base/src/main/java/com/zz/bms/controller/base/PermissionList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-controller-base/src/main/java/com/zz/bms/controller/base/controller/BaseBussinessController.java" afterPath="$PROJECT_DIR$/module-bms-controller-base/src/main/java/com/zz/bms/controller/base/controller/BaseBussinessController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-controller-base/src/main/java/com/zz/bms/controller/base/controller/BaseCURDController.java" afterPath="$PROJECT_DIR$/module-bms-controller-base/src/main/java/com/zz/bms/controller/base/controller/BaseCURDController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-controller-base/src/main/java/com/zz/bms/controller/base/controller/BaseController.java" afterPath="$PROJECT_DIR$/module-bms-controller-base/src/main/java/com/zz/bms/controller/base/controller/BaseController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-controller-base/src/main/java/com/zz/bms/controller/base/converteditor/MyWebBinding.java" afterPath="$PROJECT_DIR$/module-bms-controller-base/src/main/java/com/zz/bms/controller/base/converteditor/MyWebBinding.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-controller-base/src/main/java/com/zz/bms/controller/base/filter/PageFilter.java" afterPath="$PROJECT_DIR$/module-bms-controller-base/src/main/java/com/zz/bms/controller/base/filter/PageFilter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-controller-base/src/main/java/com/zz/bms/controller/base/intercepts/TenantIntercept.java" afterPath="$PROJECT_DIR$/module-bms-controller-base/src/main/java/com/zz/bms/controller/base/intercepts/TenantIntercept.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-core/module-bms-core.iml" afterPath="$PROJECT_DIR$/module-bms-core/module-bms-core.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-core/pom.xml" afterPath="$PROJECT_DIR$/module-bms-core/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/db/base/service/BaseService.java" afterPath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/db/base/service/BaseService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/db/base/service/impl/BaseServiceImpl.java" afterPath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/db/base/service/impl/BaseServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/db/mybatis/MyMetaObjectHandler.java" afterPath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/db/mybatis/MyMetaObjectHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/db/mybatis/query/Query.java" afterPath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/db/mybatis/query/Query.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/db/mybatis/query/QueryImpl.java" afterPath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/db/mybatis/query/QueryImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/db/mybatis/query/QueryNullImpl.java" afterPath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/db/mybatis/query/QueryNullImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/enums/EnumErrorMsg.java" afterPath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/enums/EnumErrorMsg.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/generics/AnnotaionEntityManager.java" afterPath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/generics/AnnotaionEntityManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/search/SearchableConvertUtils.java" afterPath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/search/SearchableConvertUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/ui/easyui/EasyUiUtil.java" afterPath="$PROJECT_DIR$/module-bms-core/src/main/java/com/zz/bms/core/ui/easyui/EasyUiUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-core/src/test/java/com/zz/bms/core/SpringTest.java" afterPath="$PROJECT_DIR$/module-bms-core/src/test/java/com/zz/bms/core/SpringTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-oss/module-bms-oss-base/module-bms-oss-base.iml" afterPath="$PROJECT_DIR$/module-bms-oss/module-bms-oss-base/module-bms-oss-base.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-oss/module-bms-oss-base/src/main/java/com/zz/bms/oss/base/service/impl/VsFilesUseServiceImpl.java" afterPath="$PROJECT_DIR$/module-bms-oss/module-bms-oss-base/src/main/java/com/zz/bms/oss/base/service/impl/VsFilesUseServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-oss/module-bms-oss-controller/module-bms-oss-controller.iml" afterPath="$PROJECT_DIR$/module-bms-oss/module-bms-oss-controller/module-bms-oss-controller.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-oss/module-bms-oss-controller/pom.xml" afterPath="$PROJECT_DIR$/module-bms-oss/module-bms-oss-controller/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-oss/module-bms-oss-controller/src/main/java/com/zz/bms/oss/controller/TsFilesControllerZz.java" afterPath="$PROJECT_DIR$/module-bms-oss/module-bms-oss-controller/src/main/java/com/zz/bms/oss/controller/TsFilesControllerZz.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-oss/module-bms-oss-engine/module-bms-oss-engine.iml" afterPath="$PROJECT_DIR$/module-bms-oss/module-bms-oss-engine/module-bms-oss-engine.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-redis/module-bms-redis.iml" afterPath="$PROJECT_DIR$/module-bms-redis/module-bms-redis.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-redis/pom.xml" afterPath="$PROJECT_DIR$/module-bms-redis/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-redis/src/test/java/com/zz/bms/redis/RedisTest.java" afterPath="$PROJECT_DIR$/module-bms-redis/src/test/java/com/zz/bms/redis/RedisTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-shiro/module-bms-shiro.iml" afterPath="$PROJECT_DIR$/module-bms-shiro/module-bms-shiro.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-shiro/pom.xml" afterPath="$PROJECT_DIR$/module-bms-shiro/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-shiro/src/main/java/com/zz/bms/shiro/filter/UserAuthorizationFilter.java" afterPath="$PROJECT_DIR$/module-bms-shiro/src/main/java/com/zz/bms/shiro/filter/UserAuthorizationFilter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-shiro/src/main/java/com/zz/bms/shiro/redisSession/CachingShiroSessionDao.java" afterPath="$PROJECT_DIR$/module-bms-shiro/src/main/java/com/zz/bms/shiro/redisSession/CachingShiroSessionDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-system/module-bms-system-base/module-bms-system-base.iml" afterPath="$PROJECT_DIR$/module-bms-system/module-bms-system-base/module-bms-system-base.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-system/module-bms-system-base/src/main/java/com/zz/bms/system/bo/TsNotificationBO.java" afterPath="$PROJECT_DIR$/module-bms-system/module-bms-system-base/src/main/java/com/zz/bms/system/bo/TsNotificationBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-system/module-bms-system-base/src/main/java/com/zz/bms/system/bo/TsUserBO.java" afterPath="$PROJECT_DIR$/module-bms-system/module-bms-system-base/src/main/java/com/zz/bms/system/bo/TsUserBO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-system/module-bms-system-base/src/main/java/com/zz/bms/system/service/impl/TsMyShortcutServiceImpl.java" afterPath="$PROJECT_DIR$/module-bms-system/module-bms-system-base/src/main/java/com/zz/bms/system/service/impl/TsMyShortcutServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-system/module-bms-system-base/src/main/java/com/zz/bms/system/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/module-bms-system/module-bms-system-base/src/main/java/com/zz/bms/system/service/impl/UserServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-system/module-bms-system-base/src/test/java/com/zz/bms/system/base/SqlTest.java" afterPath="$PROJECT_DIR$/module-bms-system/module-bms-system-base/src/test/java/com/zz/bms/system/base/SqlTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-system/module-bms-system-base/src/test/java/com/zz/bms/system/base/UserBaseTest.java" afterPath="$PROJECT_DIR$/module-bms-system/module-bms-system-base/src/test/java/com/zz/bms/system/base/UserBaseTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-system/module-bms-system-base/src/test/java/com/zz/bms/system/base/mybatisplus/SqlTest.java" afterPath="$PROJECT_DIR$/module-bms-system/module-bms-system-base/src/test/java/com/zz/bms/system/base/mybatisplus/SqlTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-system/module-bms-system-controller/module-bms-system-controller.iml" afterPath="$PROJECT_DIR$/module-bms-system/module-bms-system-controller/module-bms-system-controller.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-system/module-bms-system-controller/src/main/java/com/zz/bms/system/controller/MainController.java" afterPath="$PROJECT_DIR$/module-bms-system/module-bms-system-controller/src/main/java/com/zz/bms/system/controller/MainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-system/module-bms-system-controller/src/main/java/com/zz/bms/system/controller/VsUserController.java" afterPath="$PROJECT_DIR$/module-bms-system/module-bms-system-controller/src/main/java/com/zz/bms/system/controller/VsUserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-system/module-bms-system-controller/src/main/java/com/zz/bms/system/websocket/ZzNotifyWs.java" afterPath="$PROJECT_DIR$/module-bms-system/module-bms-system-controller/src/main/java/com/zz/bms/system/websocket/ZzNotifyWs.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-system/module-bms-system-controller/src/main/java/com/zz/bms/system/websocket/ZzSendNotify.java" afterPath="$PROJECT_DIR$/module-bms-system/module-bms-system-controller/src/main/java/com/zz/bms/system/websocket/ZzSendNotify.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module-bms-system/project-bms-system-web/project-bms-system-web.iml" afterPath="$PROJECT_DIR$/module-bms-system/project-bms-system-web/project-bms-system-web.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project-bms-web-base/project-bms-web-base.iml" afterPath="$PROJECT_DIR$/project-bms-web-base/project-bms-web-base.iml" />
     </list>
     <ignored path="$PROJECT_DIR$/module-bms-system/module-bms-system-base/target/" />
     <ignored path="$PROJECT_DIR$/module-bms-system/module-bms-system-controller/target/" />
@@ -110,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TsFilesControllerZz.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TsFilesControllerZz.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/module-bms-oss/module-bms-oss-controller/src/main/java/com/zz/bms/oss/controller/TsFilesControllerZz.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="123" column="14" lean-forward="false" selection-start-line="123" selection-start-column="14" selection-end-line="123" selection-end-column="14" />
+            <state relative-caret-position="34">
+              <caret line="121" column="59" lean-forward="false" selection-start-line="121" selection-start-column="59" selection-end-line="121" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -122,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/module-bms-oss/module-bms-oss-controller/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="50" column="20" lean-forward="false" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
+            <state relative-caret-position="150">
+              <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -411,7 +348,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../mybatis-plus3/mybatis-plus" />
@@ -566,7 +503,7 @@
       <properties />
       <listeners />
     </configuration>
-    <configuration name="sysweb" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.86" ALTERNATIVE_JRE_ENABLED="false">
+    <configuration name="sysweb" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.0.44" ALTERNATIVE_JRE_ENABLED="false">
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
       <deployment>
@@ -689,7 +626,7 @@
       <workItem from="1546958747088" duration="29469000" />
       <workItem from="1547083423610" duration="4313000" />
       <workItem from="1547112002862" duration="4634000" />
-      <workItem from="1547446305199" duration="10885000" />
+      <workItem from="1547446305199" duration="11293000" />
     </task>
     <task id="LOCAL-00001" summary="提交JSP">
       <created>1546952996605</created>
@@ -725,7 +662,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108409000" />
+    <option name="totallyTimeSpent" value="108817000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
@@ -740,7 +677,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3420622" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.65302783" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41571194" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -748,10 +685,10 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48772505" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48772505" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30927053" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30927053" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49918166" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -763,40 +700,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19967267" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3420622" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41571194" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.299509" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30927053" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49918166" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -1065,7 +968,7 @@
         <state relative-caret-position="68">
           <caret line="20" column="73" lean-forward="false" selection-start-line="20" selection-start-column="73" selection-end-line="20" selection-end-column="73" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1260,21 +1163,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/module-bms-oss/module-bms-oss-controller/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="50" column="20" lean-forward="false" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/module-bms-oss/module-bms-oss-controller/src/main/java/com/zz/bms/oss/controller/TsFilesControllerZz.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="123" column="14" lean-forward="false" selection-start-line="123" selection-start-column="14" selection-end-line="123" selection-end-column="14" />
+        <state relative-caret-position="34">
+          <caret line="121" column="59" lean-forward="false" selection-start-line="121" selection-start-column="59" selection-end-line="121" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module-bms-oss/module-bms-oss-controller/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1332,11 +1235,12 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>module-bms-redis</last-edited>
+          <last-edited>zzFrame</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
@@ -1370,10 +1274,10 @@
   </component>
   <component name="mavenExecuteGoalHistory">
     <option value="$PROJECT_DIR$" />
+    <option value="clean" />
     <option value="clean install -Dmaven.test.skip=true" />
     <option value="clean install -Dmaven.skip.test=true" />
     <option value="clean install" />
-    <option value="clean" />
     <option value="install" />
   </component>
 </project>
