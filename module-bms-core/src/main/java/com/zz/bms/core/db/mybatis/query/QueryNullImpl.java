@@ -1,7 +1,6 @@
 package com.zz.bms.core.db.mybatis.query;
 
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 public class QueryNullImpl implements Query {
@@ -21,7 +20,7 @@ public class QueryNullImpl implements Query {
     }
 
     @Override
-    public void processKeyword(String keyword) {
+    public void processKeyword(QueryWrapper wrapper, String keyword) {
 
     }
 
