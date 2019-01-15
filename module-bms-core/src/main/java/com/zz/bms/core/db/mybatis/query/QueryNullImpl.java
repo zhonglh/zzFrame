@@ -19,4 +19,11 @@ public class QueryNullImpl implements Query {
     public QueryWrapper buildWrapper(QueryWrapper wrapper, boolean orBoolean) {
         return null;
     }
+
+    @Override
+    public void processKeyword(String keyword) {
+
+    }
+
+
 }

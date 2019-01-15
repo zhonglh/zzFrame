@@ -30,4 +30,10 @@ public interface Query<M ,PK extends Serializable> {
      * @return
      */
     public QueryWrapper<M> buildWrapper(QueryWrapper w , boolean orBoolean) ;
+
+
+    /**
+     * 处理关键字查询 ，比如用户查询， 关键字可以查询姓名/手机号/邮件/登录名
+     */
+    public void processKeyword(QueryWrapper<M> wrapper,String keyword) ;
 }

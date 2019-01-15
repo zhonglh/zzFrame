@@ -42,9 +42,7 @@ public class UserBaseTest extends BaseTest {
 
         Assert.assertEquals(true, b);
 
-        //userService.findById(userEntity.getId());
-
-        //userService.delete(userService.findById(userEntity.getId()));
+        vsUserService.removeById(userEntity.getId());
     }
 
 

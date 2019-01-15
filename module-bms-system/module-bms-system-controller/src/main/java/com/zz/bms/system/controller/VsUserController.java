@@ -51,6 +51,17 @@ public class VsUserController extends ZzDefaultController<VsUserBO, String , VsU
 		return isExist;
 	}
 
+	/**
+	 * 修改个人设置
+	 * @param vsUserBO
+	 * @param id
+	 * @param origPassword
+	 * @param newPassword
+	 * @param model
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}/updateMyProfile" , method = RequestMethod.POST)
 	@ResponseBody
 	public Object updateMyProfile(VsUserBO vsUserBO ,  @PathVariable("id") String id, String origPassword, String newPassword,

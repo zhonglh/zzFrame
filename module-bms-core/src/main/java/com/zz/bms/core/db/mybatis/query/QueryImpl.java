@@ -1,5 +1,6 @@
 package com.zz.bms.core.db.mybatis.query;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.core.enums.EnumSearchOperator;
 import com.zz.bms.core.exceptions.InternalException;
@@ -21,6 +22,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK> , Serializable{
 
     protected static String splitStr = "_";
+
+    /**
+     * 关键字查询
+     */
+    public String keyword;
+
+    /**
+     * 权限SQL
+     */
+    private String rbac ;
+
 
     protected List<String> isNulls = new ArrayList<String>();
     protected List<String> isNotNulls = new ArrayList<String>();
@@ -47,7 +59,7 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
 
     @Override
     public QueryWrapper<M> buildWrapper(){
-        QueryWrapper<M> wrapper = new QueryWrapper<>();
+        QueryWrapper<M> wrapper = new QueryWrapper<M>();
         return buildWrapper(wrapper);
     }
 
@@ -143,6 +155,18 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
 
         String columnName = this.getVolumnByField(fieldName);
 
+        //处理权限
+        if(columnName.equals("rbac") && fieldValue!=null){
+            wrapper.apply((String)fieldValue);
+            return ;
+        }
+
+        //处理关键字查询
+        if(columnName.equals("keyword") && fieldValue!=null){
+            processKeyword(wrapper ,(String)fieldValue);
+            return ;
+        }
+
         int count = ai.getAndIncrement();
         if(orBoolean && count > 0){
             wrapper.or();
@@ -215,4 +239,19 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
     }
 
 
+
+    @Override
+    public void processKeyword(QueryWrapper<M> wrapper ,String keyword) {
+
+    }
+
+
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public void setRbac(String rbac) {
+        this.rbac = rbac;
+    }
 }

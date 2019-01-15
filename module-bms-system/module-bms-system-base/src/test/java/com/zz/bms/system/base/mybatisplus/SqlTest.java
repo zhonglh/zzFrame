@@ -32,6 +32,7 @@ public class SqlTest  {
     @Test
     public void testSQL2(){
         QueryWrapper<VsUserEntity> ew = new QueryWrapper<VsUserEntity>();
+        ew.setEntity(new VsUserEntity());
 
         ew.like("email" , "111").or();
         ew.like("user_name" , "111").or();

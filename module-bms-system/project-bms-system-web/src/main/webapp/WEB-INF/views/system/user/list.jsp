@@ -21,7 +21,7 @@
 
 
                     <div class="form-group" style='margin-left: -15px;'>
-                        <select name="status" id="status" class="form-control input-sm" onChange='search();' placeholder='状态' title='状态'>
+                        <select name="userStatus" id="userStatus" class="form-control input-sm" onChange='search();' placeholder='状态' title='状态'>
                             <option value="" selected>状态</option>
                             <option value="1">正常</option>
                             <option value="0">禁用</option>
