@@ -78,7 +78,6 @@
 					<if test="leadUserId != null and leadUserId != ''"> AND T.lead_user_id = #{leadUserId} </if>
 					<if test="phone != null and phone != ''"> AND T.phone = #{phone} </if>
 					<if test="email != null and email != ''"> AND T.email = #{email} </if>
-					<if test="avatarUrl != null and avatarUrl != ''"> AND T.avatar_url = #{avatarUrl} </if>
 					<if test="openId != null and openId != ''"> AND T.open_id = #{openId} </if>
 					<if test="unionId != null and unionId != ''"> AND T.union_id = #{unionId} </if>
 					<if test="systemAdmin != null and systemAdmin != ''"> AND T.system_admin = #{systemAdmin} </if>
@@ -101,10 +100,13 @@
         </where>
     </sql>
 
+<!--
+
     <select id="selectCheck" parameterType="com.zz.bms.system.bo.VsUserBO" resultMap="VsUserResultMap">
         SELECT T.* FROM vs_user T
         <include refid="VsUser4CheckQueryFilter"/>  limit 1
     </select>
+-->
 
 
 </mapper>

@@ -265,7 +265,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
     @Override
     public T selectCheck(T t){
-        return (T)this.getQueryDAO().selectCheck(t);
+        return (T)this.getRwDAO().selectCheck(t);
     }
 
     @Override
