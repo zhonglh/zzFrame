@@ -29,7 +29,7 @@ public class UserBaseTest extends BaseTest {
 
 
     @Test
-    @Rollback(false)
+    //@Rollback(false)
     public void testCreateUser() {
         VsUserBO userEntity = buildUserEntity();
         boolean b = false;

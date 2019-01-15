@@ -51,7 +51,9 @@ public class UserServiceImpl implements IUserService<String> {
 
         TsUserQuery userQuery = new TsUserQueryImpl();
         userQuery.loginName(loginName);
-        return tsUserService.getOne(userQuery.buildWrapper());
+        userQuery.email(loginName);
+        userQuery.phone(loginName);
+        return tsUserService.getOne(userQuery.buildWrapper(true)  );
 
     }
 

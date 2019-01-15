@@ -14,12 +14,14 @@ public interface Query<M ,PK extends Serializable> {
      */
     public QueryWrapper<M> buildWrapper() ;
 
+    public QueryWrapper<M> buildWrapper(boolean orBoolean) ;
+
     /**
      * Query 转 Wrapper , 在 参数w的基础上
      * @param w
      * @return
      */
-    public  QueryWrapper<M> buildWrapper(QueryWrapper w) ;
+    public  QueryWrapper<M> buildWrapper(QueryWrapper<M> w) ;
 
 
     /**
@@ -29,7 +31,7 @@ public interface Query<M ,PK extends Serializable> {
      * @param orBoolean    是否为OR 的关系
      * @return
      */
-    public QueryWrapper<M> buildWrapper(QueryWrapper w , boolean orBoolean) ;
+    public QueryWrapper<M> buildWrapper(QueryWrapper<M> w , boolean orBoolean) ;
 
 
     /**

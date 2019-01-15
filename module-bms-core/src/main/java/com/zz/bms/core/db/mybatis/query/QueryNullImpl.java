@@ -3,9 +3,17 @@ package com.zz.bms.core.db.mybatis.query;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
+/**
+ * @author Administrator
+ */
 public class QueryNullImpl implements Query {
     @Override
     public QueryWrapper buildWrapper() {
+        return null;
+    }
+
+    @Override
+    public QueryWrapper buildWrapper(boolean orBoolean) {
         return null;
     }
 
