@@ -26,12 +26,12 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
     /**
      * 关键字查询
      */
-    public String keyword;
+    private  String keyword;
 
     /**
      * 权限SQL
      */
-    private String rbac ;
+    public String rbac ;
 
 
     protected List<String> isNulls = new ArrayList<String>();
@@ -245,13 +245,8 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
 
     }
 
-
-
     public void setKeyword(String keyword) {
         this.keyword = keyword;
     }
 
-    public void setRbac(String rbac) {
-        this.rbac = rbac;
-    }
 }
