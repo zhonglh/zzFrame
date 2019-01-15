@@ -3,7 +3,7 @@ package com.zz.bms.system.query.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.core.db.entity.BaseEntity;
-import com.zz.bms.core.db.mybatis.query.QueryImpl;
+import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
 import com.zz.bms.system.domain.VsUserEntity;
 
 import java.io.Serializable;
@@ -17,7 +17,7 @@ import java.lang.Integer;
  * @author Administrator
  * @date 2018-9-6 23:56:30
  */
-public abstract class VsUserAbstractQueryImpl<PK extends Serializable> extends QueryImpl<VsUserEntity,PK> {
+public abstract class VsUserAbstractQueryImpl<PK extends Serializable> extends CommonQueryImpl<VsUserEntity,PK> {
 
     protected PK id;
     protected PK id_NE;

@@ -3,6 +3,7 @@ package com.zz.bms.oss.controller;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.controller.base.controller.ZzDefaultController;
+import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
 import com.zz.bms.core.db.mybatis.query.QueryImpl;
 import com.zz.bms.core.db.mybatis.query.QueryNullImpl;
 import com.zz.bms.core.enums.EnumYesNo;

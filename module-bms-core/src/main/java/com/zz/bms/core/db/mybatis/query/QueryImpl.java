@@ -23,15 +23,6 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
 
     protected static String splitStr = "_";
 
-    /**
-     * 关键字查询
-     */
-    private  String keyword;
-
-    /**
-     * 权限SQL
-     */
-    public String rbac ;
 
 
     protected List<String> isNulls = new ArrayList<String>();
@@ -317,8 +308,5 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
 
     }
 
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
-    }
 
 }

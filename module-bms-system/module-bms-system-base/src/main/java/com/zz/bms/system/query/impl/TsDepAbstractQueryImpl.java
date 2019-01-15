@@ -1,7 +1,7 @@
 package com.zz.bms.system.query.impl;
 
 
-import com.zz.bms.core.db.mybatis.query.QueryImpl;
+import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
 import com.zz.bms.system.domain.TsDepEntity;
 
 import java.io.Serializable;
@@ -15,7 +15,7 @@ import java.lang.Integer;
  * @author Administrator
  * @date 2018-9-6 23:56:31
  */
-public abstract class TsDepAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TsDepEntity,PK> {
+public abstract class TsDepAbstractQueryImpl<PK extends Serializable> extends CommonQueryImpl<TsDepEntity,PK> {
 
             protected PK id;
             protected PK id_NE;
