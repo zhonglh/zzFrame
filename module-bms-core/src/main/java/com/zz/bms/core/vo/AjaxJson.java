@@ -3,6 +3,7 @@ package com.zz.bms.core.vo;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.BizException;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -21,6 +22,8 @@ public class AjaxJson {
 
 	// 提示信息
 	private String msg ;
+
+	private Serializable id ;
 
 	//地址
 	private String url;
@@ -165,5 +168,13 @@ public class AjaxJson {
 
 	public void setCode(int code) {
 		this.code = code;
+	}
+
+	public Serializable getId() {
+		return id;
+	}
+
+	public void setId(Serializable id) {
+		this.id = id;
 	}
 }

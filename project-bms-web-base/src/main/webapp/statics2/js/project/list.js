@@ -32,7 +32,7 @@ function initPage() {
         queryParams: getQueryParams(),
         emptyMsg: '<img style="margin-top:50px;" src="'+staticUrl+'/statics2/image/empty.png">',
         onDblClickRow: function(index, row){
-            doView(row.id)
+            toUpdate(row.id)
         }
     });
 }
@@ -47,11 +47,6 @@ function search(){
     initPage();
 }
 
-//查看页面
-function doView(id){
-    var title = '<a id="iframePath">'+breadcrumb+'</a>\><a>'+detailname+'</a>';
-    showIframeWindow(title,     ctx+dataUrl+"/"+id+"/view");
-}
 
 function IframePath(title)
 {
@@ -66,13 +61,13 @@ function dateFmt(val,row){
     return val.substring(0,10);
 }
 
-//标题FMT
+//标题格式化
 function titleFmt(val, row){
-    var html ='<a href="javascript: doView(' + row.id + ')"; title="'+val+'">'+val+'</a>';
+    var html ='<a href="javascript: toUpdate(\'' + row.id + '\')"; title="'+val+'">'+val+'</a>';
     return html;
 }
 
-//金额FMT
+//金额格式化
 function moneyFmt(val, r){
     return FormatMoney(val,4,true);
 }
@@ -114,20 +109,17 @@ function deleteOne (obj)
 }
 
 //新建
-function doAdd(){
+function toAdd(){
     showIframeWindow('<a>'+breadcrumb+'</a> ＞ <a>新建</a>', ctx+dataUrl+"/create");
 }
 
 
 
 //编辑
-function doUpdate(obj){
-    var $Obj = $ (obj);
-    var id = $Obj.attr ('id');
-    var title = '<a id="iframePath">'+breadcrumb+'</a>\><a>'+detailname+'</a>';
+function toUpdate(id){
+    var title = '<a id="iframePath">'+breadcrumb+'</a>＞<a>详情</a>';
     showIframeWindow(title,     ctx+dataUrl+"/"+id+"/update");
 }
-
 
 
 //删除

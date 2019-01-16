@@ -1717,7 +1717,6 @@ div[region="north"] .input-group-btn .btn {
 	border-bottom: 2px solid #0896ba
 }
 
-/* 投行上的navigation Bar 比平台上 (35) 要高,这里重置一下 */
 .fullScreenMask .autoScrollContainer {
 	top: 40px
 }

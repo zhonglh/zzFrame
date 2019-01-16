@@ -12,7 +12,43 @@
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
                     </svg>基本信息
                 </div>
-                <form id="editForm" action="" method="post">
+
+
+
+
+                <form id="detailForm" action="" method="post">
+                    <table class="info-table">
+                        <tr>
+                            <th width="15%">用户名称</th>
+                            <td class="fd_userName">${m.userName}</td>
+
+                            <th width="15%">用户登录名</th>
+                            <td class="fd_loginName">${m.loginName}</td>
+                        </tr>
+                        <tr>
+                            <th>直属领导</th>
+                            <td></td>
+                            <th>所在部门</th>
+                            <td class="fd_depName">${m.depName}</td>
+                        </tr>
+
+                        <tr>
+                            <th width="15%">手机号</th>
+                            <td class="fd_phone">${m.phone}</td>
+
+                            <th width="15%">邮箱</th>
+                            <td class="fd_email">${m.email}</td>
+                        </tr>
+                        <tr>
+                            <th >备注</th>
+                            <td colspan="3" class="fd_remark">${m.remark}</td>
+                        </tr>
+
+                    </table>
+                </form>
+
+
+                <form id="editForm" action="" method="post" class="form-auto-fill hide" viewId="detailForm">
                     <input type="hidden" id="id" name="id" value="${m.id}">
                     <table class="info-table">
                         <tr>
@@ -102,19 +138,38 @@
                 </form>
             </div>
 
-            <div style="margin-top:10px;position:absolute;" align="center">
-                <button type="button" class="btn btn-primary btn-sm" onclick="save()">
+            <div style="margin-top:10px;position:absolute;" align="center" id="toolBar">
+
+
+
+                <button type="button" class="btn btn-primary btn-sm btn-showEdit" onclick="switchEditDetail()">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use>
+                    </svg>
+                    <span>编 辑</span>
+                </button>
+
+                <button type="button" class="btn  btn-warning btn-sm btn-showEdit" onclick="closeWindow()">
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chexiao"></use>
+                    </svg>
+                    <span>返 回</span>
+                </button>
+
+
+                <button type="button" class="btn btn-primary btn-sm hide" onclick="doUpdate()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
                     </svg>
                     <span>保 存</span>
                 </button>
-                <button type="button" class="btn  btn-warning btn-sm" onclick="cancel()">
+                <button type="button" class="btn  btn-warning btn-sm hide" onclick="switchEditDetail()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                     </svg>
                     <span>取 消</span>
                 </button>
+
             </div>
         </div>
     </div>
@@ -134,6 +189,9 @@
 
     var tableid = "tableData-${tableId}";
     var dataUrl = "/${currParentUrl}";
+
+    //显示模式   明细/编辑
+    var showMode = "detail";
 </script>
 
 <script language="JavaScript">

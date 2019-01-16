@@ -1,10 +1,12 @@
 package com.zz.bms.system.controller;
 
 import com.zz.bms.controller.base.controller.ZzDefaultController;
+import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.vo.AjaxJson;
+import com.zz.bms.enums.EnumUserStatus;
 import com.zz.bms.shiro.utils.ShiroUtils;
 
 
@@ -40,7 +42,7 @@ public class VsUserController extends ZzDefaultController<VsUserBO, String , VsU
 
 		VsUserBO ckBO ;
 		boolean isExist = false;
-		VsUserBO temp = null ;
+		BaseEntity temp = null ;
 
 		ckBO = new VsUserBO();
 		ckBO.setId( vsUserBO.getId() );
@@ -50,6 +52,16 @@ public class VsUserController extends ZzDefaultController<VsUserBO, String , VsU
 
 		return isExist;
 	}
+
+
+
+	@Override
+	public void setCustomInfoByInsert(VsUserBO vsUserBO){
+		vsUserBO.setUserStatus(EnumUserStatus.normal.getCode());
+		vsUserBO.setUserStatusName(EnumUserStatus.normal.getName());
+		vsUserBO.setOrganId("11111111111111111111111111111111");
+	}
+
 
 	/**
 	 * 修改个人设置

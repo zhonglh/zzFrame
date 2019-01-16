@@ -16,7 +16,7 @@
         <!-- 筛选条件表单开始 -->
         <form id="searchForm" onsubmit="return false" >
 
-            <div id='toolbar' style='height: 40px;'>
+            <div id='toolbar' style='height: 40px;     border-bottom: 2px solid #0896ba; '>
                 <div class="form-inline" role="form">
 
 
@@ -53,7 +53,7 @@
 
         </form>
         <div class="btn-bar" style="margin-left: -10px;">
-            <button type="button" class="btn btn-primary btn-sm" onclick="doAdd()">
+            <button type="button" class="btn btn-primary btn-sm" onclick="toAdd()">
                 <svg class="icon" aria-hidden="true">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
                 </svg>

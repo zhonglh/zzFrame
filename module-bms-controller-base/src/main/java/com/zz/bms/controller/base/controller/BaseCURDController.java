@@ -267,8 +267,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         }
 
 
-        return AjaxJson.successAjax;
-
+        AjaxJson result =  AjaxJson.ok();
+        result.setId(m.getId());
+        return result;
     }
 
 
@@ -317,7 +318,10 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         if(!success){
             throw DbException.DB_UPDATE_RESULT_0;
         }else {
-            return AjaxJson.successAjax;
+
+            AjaxJson result =  AjaxJson.ok();
+            result.setId(m.getId());
+            return result;
         }
     }
 

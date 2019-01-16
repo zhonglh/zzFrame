@@ -15,23 +15,31 @@
                 <form id="editForm" action="" method="post">
                     <input type="hidden" id="id" name="id" value="${m.id}">
                     <table class="info-table">
+                        <colgroup>
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                        </colgroup>
+
+                        <tbody>
                         <tr>
-                            <th width="15%">用户名称<font color="red">*</font></th>
+                            <th>用户名称<font color="red">*</font></th>
                             <td><input type="text" class="form-control input-sm required"  placeholder="请输入用户名称"
                                        value="${m.userName}" id="userName" name="userName" minlength="2" maxlength='50'/></td>
 
-                            <th width="15%">用户登录名<font color="red">*</font></th>
+                            <th>用户登录名<font color="red">*</font></th>
                             <td><input type="text" class="form-control input-sm required"  placeholder="请输入用户登录名"  autocorrect="off" autocapitalize="off"
                                        value="${m.loginName}" id="loginName" name="loginName" minlength="4" maxlength='20'/></td>
                         </tr>
 
                         <c:if test="${empty m.id}">
                         <tr>
-                            <th width="15%">密码<font color="red">*</font></th>
+                            <th>密码<font color="red">*</font></th>
                             <td><input type="password" class="form-control input-sm required"  placeholder="请输入用户名称"
                                        autocorrect="off" autocapitalize="off" id="loginPassword" name="loginPassword" minlength="6" maxlength='10'/></td>
 
-                            <th width="15%">确认密码<font color="red">*</font></th>
+                            <th>确认密码<font color="red">*</font></th>
                             <td><input type="password" class="form-control input-sm required"  placeholder="请输入用户名称" id="loginPasswordConfirm" name="loginPasswordConfirm"
                                        autocorrect="off" autocapitalize="off" equalto="#loginPassword" data-msg-equalto="您2次输入的新密码不一致！" minlength="6" maxlength='10'/></td>
                         </tr>
@@ -81,11 +89,11 @@
                         </tr>
 
                         <tr>
-                            <th width="15%">手机号<font color="red">*</font></th>
+                            <th>手机号<font color="red">*</font></th>
                             <td><input type="text" class="form-control input-sm required"  placeholder="请输入手机号"
                                        value="${m.phone}" id="phone" name="phone" minlength="11" maxlength='11'/></td>
 
-                            <th width="15%">邮箱<font color="red">*</font></th>
+                            <th>邮箱<font color="red">*</font></th>
                             <td><input type="email" class="form-control input-sm required"  placeholder="请输入邮箱"
                                        value="${m.email}"  id="email" name="email" minlength="4" maxlength='50'/></td>
                         </tr>
@@ -97,18 +105,19 @@
                                 </div>
                             </td>
                         </tr>
+                        </tbody>
 
                     </table>
                 </form>
             </div>
             <div style="margin-top:10px;position:absolute;">
-                <button type="button" class="btn btn-primary btn-sm" onclick="save()">
+                <button type="button" class="btn btn-primary btn-sm" onclick="doSave()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
                     </svg>
                     <span>保 存</span>
                 </button>
-                <button type="button" class="btn  btn-warning btn-sm" onclick="cancel()">
+                <button type="button" class="btn  btn-warning btn-sm" onclick="closeWindow()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                     </svg>
