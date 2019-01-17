@@ -7,7 +7,7 @@ import com.zz.bms.core.enums.EnumBase;
  * 字典类型 状态
  * @author Administrator
  */
-public enum EnumOrganStatus implements EnumBase {
+public enum EnumOrganStatus implements EnumBase<String> {
 
   ;
 
@@ -20,25 +20,27 @@ public enum EnumOrganStatus implements EnumBase {
   String theName ;
 
 
-   @Override
-   public Serializable getTheValue() {
-       return theValue;
-   }
-
-
-   @Override
-   public String getTheName() {
-       return theName;
-   }
-
-
    public static EnumOrganStatus getEnumByValue(String v){
        for(EnumOrganStatus enum1 : EnumOrganStatus.values()){
-           if(enum1.getTheValue().equals(v)){
+           if(enum1.theValue.equals(v)){
                return enum1;
            }
        }
        return  null;
    }
 
+    @Override
+    public String getVal() {
+        return theValue;
+    }
+
+    @Override
+    public String getLabel() {
+        return theName;
+    }
+
+    @Override
+    public String getValue() {
+        return theValue;
+    }
 }

@@ -76,8 +76,8 @@ public class VsUserController extends ZzDefaultController<VsUserBO, String , VsU
 
 	@Override
 	public void setCustomInfoByInsert(VsUserBO vsUserBO){
-		vsUserBO.setUserStatus(EnumUserStatus.normal.getCode());
-		vsUserBO.setUserStatusName(EnumUserStatus.normal.getName());
+		vsUserBO.setUserStatus(EnumUserStatus.normal.getVal());
+		vsUserBO.setUserStatusName(EnumUserStatus.normal.getLabel());
 		vsUserBO.setOrganId("11111111111111111111111111111111");
 	}
 

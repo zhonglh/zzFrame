@@ -175,10 +175,8 @@ public class TsFilesControllerZz extends ZzDefaultController<TsFilesEntity, Stri
     }
 
 
+    @Override
+    protected void isExist(TsFilesEntity tsFilesEntity) {
 
-
-
-
-
-
+    }
 }

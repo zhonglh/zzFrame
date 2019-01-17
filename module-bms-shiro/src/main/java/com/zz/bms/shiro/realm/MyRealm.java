@@ -91,7 +91,7 @@ public class MyRealm extends AuthorizingRealm {
         if(user == null){
             throw new AuthenticationException("帐号密码错误");
         }
-        if(EnumUserStatus.forbidden.getCode().equals(user.getUserStatus())){
+        if(EnumUserStatus.forbidden.getVal().equals(user.getUserStatus())){
             throw new LockedAccountException("帐号被禁用,请联系管理员!");
         }
 

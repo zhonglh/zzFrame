@@ -49,11 +49,11 @@
                             <th>直属领导</th>
                             <td>
                                 <div class="input-group">
-                                    <input type="text"  id="leadName" name="leadName" class="form-control input-sm sysuserInfo"
+                                    <input type="text"  id="leadName" name="leadName" class="form-control input-sm leadName-systemUser"
                                            placeholder="请选择直属领导" readonly="readonly">
                                     <input type="hidden" id="leadUserId" name="leadUserId" value="${m.leadUserId}">
                                     <div class="input-group-btn">
-                                        <button type="button"  class="btn btn-primary btn-sm crm-sysuserInfo">
+                                        <button type="button"  class="btn btn-primary btn-sm leadName-systemUser">
                                             <svg class="icon" aria-hidden="true">
                                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-sousuo"></use>
                                             </svg>
@@ -170,11 +170,11 @@
     //部门选择
     $(".sysdepInfo").OpenSysDepSelectWin({title: "部门",selectType: "t1",callId: "deptId",callName: "deptName",clearId: "clearSysdepInfo"});
 
-    //人员选择
-    $(".sysuserInfo").OpenSysUserSelectWin({title: "人员",selectType: "t1",callId: "leadId",leadId: "leadName",clearId: "clearSysdepInfo"});
-
-
 */
+    //人员选择
+    $(".leadName-systemUser").OpenSysUserSelectWin({title: "选择直属领导",selectType: "d1",callId: "leadUserId",callName: "leadName",clearId: "clearSysdepInfo"});
+
+
 
 
 

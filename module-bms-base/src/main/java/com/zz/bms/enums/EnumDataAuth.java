@@ -4,7 +4,11 @@ import com.zz.bms.core.enums.EnumBase;
 
 import java.io.Serializable;
 
-public enum EnumDataAuth implements EnumBase {
+/**
+ * @author Administrator
+ */
+
+public enum EnumDataAuth implements EnumBase<String> {
 
 
 
@@ -56,21 +60,32 @@ public enum EnumDataAuth implements EnumBase {
         this.i18n = i18n;
     }
 
-    public String getCode() {
+
+    public static EnumDataAuth getEnumByValue(String v){
+        for(EnumDataAuth enum1 : EnumDataAuth.values()){
+            if(enum1.code.equals(v)){
+                return enum1;
+            }
+        }
+        return  null;
+    }
+
+
+    @Override
+    public String getVal() {
         return code;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
+    @Override
+    public String getLabel() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public String getValue() {
+        return code;
     }
+
 
     public String getI18n() {
         return i18n;
@@ -78,16 +93,5 @@ public enum EnumDataAuth implements EnumBase {
 
     public void setI18n(String i18n) {
         this.i18n = i18n;
-    }
-
-
-    @Override
-    public Serializable getTheValue() {
-        return code;
-    }
-
-    @Override
-    public String getTheName() {
-        return name;
     }
 }

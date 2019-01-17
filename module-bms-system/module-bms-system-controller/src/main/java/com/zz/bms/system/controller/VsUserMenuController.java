@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class VsUserMenuController extends ZzDefaultController<VsUserMenuBO, String , VsUserMenuQueryWebImpl> {
 
 
+    @Override
+    protected void isExist(VsUserMenuBO vsUserMenuBO) {
 
-
-
-
+    }
 }

@@ -11,7 +11,7 @@ import java.util.Arrays;
  * <p>查询操作符</p>
  * @author Administrator
  */
-public enum EnumSearchOperator implements EnumBase {
+public enum EnumSearchOperator {
     eq("","等于", "="),
     ne("ne","不等于", "!="),
     gt("gt","大于", ">"),
@@ -53,13 +53,11 @@ public enum EnumSearchOperator implements EnumBase {
     }
 
 
-    @Override
-    public Serializable getTheValue() {
+    public String getTheValue() {
         return code;
     }
 
 
-    @Override
     public String getTheName() {
         return info;
     }

@@ -9,7 +9,7 @@ import java.io.Serializable;
  * 用户状态
  * @author Administrator
  */
-public enum EnumUserStatus implements EnumBase {
+public enum EnumUserStatus implements EnumBase<String> {
 
 
     normal("1","正常" , "userstatus.normal"),
@@ -27,37 +27,29 @@ public enum EnumUserStatus implements EnumBase {
         this.i18n = i18n;
     }
 
-    public String getCode() {
-        return code;
-    }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getI18n() {
-        return i18n;
-    }
-
-    public void setI18n(String i18n) {
-        this.i18n = i18n;
+    public static EnumUserStatus getEnumByValue(String v){
+        for(EnumUserStatus enum1 : EnumUserStatus.values()){
+            if(enum1.code.equals(v)){
+                return enum1;
+            }
+        }
+        return  null;
     }
 
     @Override
-    public Serializable getTheValue() {
+    public String getVal() {
         return code;
     }
 
     @Override
-    public String getTheName() {
+    public String getLabel() {
         return name;
     }
+
+    @Override
+    public String getValue() {
+        return code;
+    }
+
 }

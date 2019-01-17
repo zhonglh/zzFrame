@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author Administrator
  */
 
-public enum EnumNoticeType implements EnumBase {
+public enum EnumNoticeType implements EnumBase<String> {
 
 
     /**
@@ -34,37 +34,31 @@ public enum EnumNoticeType implements EnumBase {
         this.i18n = i18n;
     }
 
-    public String getCode() {
-        return code;
+
+
+    public static EnumNoticeType getEnumByValue(String v){
+        for(EnumNoticeType enum1 : EnumNoticeType.values()){
+            if(enum1.code.equals(v)){
+                return enum1;
+            }
+        }
+        return  null;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getI18n() {
-        return i18n;
-    }
-
-    public void setI18n(String i18n) {
-        this.i18n = i18n;
-    }
 
     @Override
-    public Serializable getTheValue() {
+    public String getVal() {
         return code;
     }
 
     @Override
-    public String getTheName() {
+    public String getLabel() {
         return name;
     }
+
+    @Override
+    public String getValue() {
+        return code;
+    }
+
 }

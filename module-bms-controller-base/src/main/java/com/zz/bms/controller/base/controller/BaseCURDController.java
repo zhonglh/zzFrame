@@ -153,6 +153,10 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
 
+
+
+
+
     /**
      * 查看界面
      * @param model
@@ -456,7 +460,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @param m
      * @return
      */
-    protected void isExist(M m) { }
+    protected abstract void isExist(M m) ;
 
 
     /**

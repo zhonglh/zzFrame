@@ -19,9 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TsOperationlogController extends ZzDefaultController<TsOperationlogBO, String , TsOperationlogQueryWebImpl> {
 
 
+    @Override
+    protected void isExist(TsOperationlogBO tsOperationlogBO) {
 
-
-
-
-
+    }
 }

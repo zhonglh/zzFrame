@@ -62,7 +62,7 @@ public class UserBaseTest extends BaseTest {
         userEntity.setCreateTime(DateKit.getCurrentDate());
         userEntity.setCreateUserName("admin");
         userEntity.setDeleteFlag(EnumYesNo.NO.getCode());
-        userEntity.setUserStatus(EnumUserStatus.normal.getCode());
+        userEntity.setUserStatus(EnumUserStatus.normal.getVal());
         userEntity.setVersionNo(Constant.INIT_VERSION);
         return userEntity;
     }

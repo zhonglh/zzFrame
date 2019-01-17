@@ -76,16 +76,16 @@
                             <th>直属领导</th>
                             <td>
                                 <div class="input-group">
-                                    <input type="text"  id="leadName" name="leadName" class="form-control input-sm sysuserInfo"
+                                    <input type="text"  id="leadName" name="leadName" class="form-control input-sm leadName"
                                            placeholder="请选择直属领导" readonly="readonly">
                                     <input type="hidden" id="leadUserId" name="leadUserId" value="${m.leadUserId}">
                                     <div class="input-group-btn">
-                                        <button type="button"  class="btn btn-primary btn-sm crm-sysuserInfo">
+                                        <button type="button"  class="btn btn-primary btn-sm leadName">
                                             <svg class="icon" aria-hidden="true">
                                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-sousuo"></use>
                                             </svg>
                                         </button>
-                                        <button type="button"  id="clearSysuserInfo"  class="btn btn-primary btn-sm">
+                                        <button type="button"  id="clearLeadName"  class="btn btn-primary btn-sm">
                                             <svg class="icon" aria-hidden="true">
                                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                                             </svg>
@@ -219,11 +219,12 @@
     //部门选择
     $(".sysdepInfo").OpenSysDepSelectWin({title: "部门",selectType: "t1",callId: "deptId",callName: "deptName",clearId: "clearSysdepInfo"});
 
-    //人员选择
-    $(".sysuserInfo").OpenSysUserSelectWin({title: "人员",selectType: "t1",callId: "leadId",leadId: "leadName",clearId: "clearSysdepInfo"});
-
 
 */
+    //人员选择
+    $(".leadName").OpenSysUserSelectWin({title: "人员",selectType: "t1",callId: "leadId",leadId: "leadName",clearId: "clearSysdepInfo"});
+
+
 
 
 
@@ -235,6 +236,9 @@
 
 <script src="${staticUrl}/statics2/js/project/form.js"></script>
 <script src="${staticUrl}/statics2/js/project/common-sys-function.js"></script>
+
+
+<script src="${staticUrl}/statics2/business-js/system/user.js"></script>
 
 
 <bms:contentFooter />

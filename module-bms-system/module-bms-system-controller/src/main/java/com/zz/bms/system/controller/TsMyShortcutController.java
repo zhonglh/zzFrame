@@ -38,9 +38,8 @@ public class TsMyShortcutController extends ZzDefaultController<TsMyShortcutBO, 
     }
 
 
+    @Override
+    protected void isExist(TsMyShortcutBO tsMyShortcutBO) {
 
-
-
-
-
+    }
 }

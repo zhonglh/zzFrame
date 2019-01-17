@@ -7,7 +7,7 @@ import com.zz.bms.core.enums.EnumBase;
  * 字典类型 业务类型
  * @author Administrator
  */
-public enum EnumBusinessType implements EnumBase {
+public enum EnumBusinessType implements EnumBase<String> {
 
   ;
 
@@ -20,25 +20,29 @@ public enum EnumBusinessType implements EnumBase {
   String theName ;
 
 
-   @Override
-   public Serializable getTheValue() {
-       return theValue;
-   }
 
 
-   @Override
-   public String getTheName() {
-       return theName;
-   }
-
-
-   public static EnumBusinessType getEnumByValue(String v){
+   public static EnumBusinessType getEnumByValue(Serializable v){
        for(EnumBusinessType enum1 : EnumBusinessType.values()){
-           if(enum1.getTheValue().equals(v)){
+           if(enum1.theValue.equals(v)){
                return enum1;
            }
        }
        return  null;
    }
 
+    @Override
+    public String getVal() {
+        return theValue;
+    }
+
+    @Override
+    public String getLabel() {
+        return theName;
+    }
+
+    @Override
+    public String getValue() {
+        return theValue;
+    }
 }

@@ -19,9 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class VsFilesUseController extends ZzDefaultController<VsFilesUseBO, String , VsFilesUseQueryWebImpl> {
 
 
+    @Override
+    protected void isExist(VsFilesUseBO vsFilesUseBO) {
 
-
-
-
-
+    }
 }

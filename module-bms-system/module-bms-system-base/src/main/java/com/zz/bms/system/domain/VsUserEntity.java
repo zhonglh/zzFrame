@@ -21,15 +21,12 @@ public class VsUserEntity extends TsUserEntity implements java.io.Serializable{
     private static final long serialVersionUID = 1L;
 
 	//部门名称
-	
 	private String  depName ;
 
 	//机构名称
-	
 	private String  organName ;
 
 	//企业名称
-	
 	private String  tenantName ;
 
 
