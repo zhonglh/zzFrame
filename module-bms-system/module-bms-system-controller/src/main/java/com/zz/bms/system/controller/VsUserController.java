@@ -4,6 +4,7 @@ import com.zz.bms.controller.base.controller.ZzDefaultController;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.enums.EnumErrorMsg;
+import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.enums.EnumUserStatus;
@@ -38,19 +39,37 @@ public class VsUserController extends ZzDefaultController<VsUserBO, String , VsU
 
 
 	@Override
-	protected boolean isExist(VsUserBO vsUserBO) {
+	protected void isExist(VsUserBO vsUserBO) {
 
 		VsUserBO ckBO ;
-		boolean isExist = false;
 		BaseEntity temp = null ;
 
 		ckBO = new VsUserBO();
 		ckBO.setId( vsUserBO.getId() );
         ckBO.setLoginName(vsUserBO.getLoginName());
         temp = this.baseService.selectCheck(ckBO);
-        if (isEntityExist(temp)) {return true;}
+        if (isEntityExist(temp)) {
+        	throw new BizException(EnumErrorMsg.business_error.getCode(),"该登录名已使用");
+		}
 
-		return isExist;
+
+		ckBO = new VsUserBO();
+		ckBO.setId( vsUserBO.getId() );
+		ckBO.setPhone(vsUserBO.getPhone());
+		temp = this.baseService.selectCheck(ckBO);
+		if (isEntityExist(temp)) {
+			throw new BizException(EnumErrorMsg.business_error.getCode(),"该手机号已使用");
+		}
+
+
+		ckBO = new VsUserBO();
+		ckBO.setId( vsUserBO.getId() );
+		ckBO.setEmail(vsUserBO.getEmail());
+		temp = this.baseService.selectCheck(ckBO);
+		if (isEntityExist(temp)) {
+			throw new BizException(EnumErrorMsg.business_error.getCode(),"该邮箱已使用");
+		}
+
 	}
 
 

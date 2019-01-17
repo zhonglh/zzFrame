@@ -3,6 +3,8 @@ package com.zz.bms.system.controller;
 import com.zz.bms.controller.base.controller.ZzDefaultController;
 
 
+import com.zz.bms.core.enums.EnumErrorMsg;
+import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.system.bo.TsRoleBO;
 import  com.zz.bms.system.query.impl.TsRoleQueryWebImpl;
 
@@ -21,7 +23,7 @@ public class TsRoleController extends ZzDefaultController<TsRoleBO, String , TsR
 
 
 	@Override
-	protected boolean isExist(TsRoleBO tsRoleBO) {
+	protected void isExist(TsRoleBO tsRoleBO) {
 
 		TsRoleBO ckBO ;
 		boolean isExist = false;
@@ -32,15 +34,19 @@ public class TsRoleController extends ZzDefaultController<TsRoleBO, String , TsR
         ckBO.setRoleCode(tsRoleBO.getRoleCode());
         ckBO.setTenantId(tsRoleBO.getTenantId());
         temp = this.baseService.selectCheck(ckBO);
-        if (isEntityExist(temp)) {return true;}
+
+		if (isEntityExist(temp)) {
+			throw new BizException(EnumErrorMsg.business_error.getCode(),"角色编号已使用");
+		}
+
 		ckBO = new TsRoleBO();
 		ckBO.setId( tsRoleBO.getId() );
         ckBO.setRoleName(tsRoleBO.getRoleName());
         ckBO.setTenantId(tsRoleBO.getTenantId());
         temp = this.baseService.selectCheck(ckBO);
-        if (isEntityExist(temp)) {return true;}
-
-		return isExist;
+		if (isEntityExist(temp)) {
+			throw new BizException(EnumErrorMsg.business_error.getCode(),"角色名称已使用");
+		}
 	}
 
 

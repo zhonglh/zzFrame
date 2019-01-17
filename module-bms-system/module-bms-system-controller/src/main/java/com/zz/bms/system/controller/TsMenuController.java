@@ -3,6 +3,8 @@ package com.zz.bms.system.controller;
 import com.zz.bms.controller.base.controller.ZzDefaultController;
 
 
+import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.system.bo.TsMenuBO;
 import  com.zz.bms.system.query.impl.TsMenuQueryWebImpl;
 
@@ -21,19 +23,18 @@ public class TsMenuController extends ZzDefaultController<TsMenuBO, String , TsM
 
 
 	@Override
-	protected boolean isExist(TsMenuBO tsMenuBO) {
+	protected void isExist(TsMenuBO tsMenuBO) {
 
 		TsMenuBO ckBO ;
-		boolean isExist = false;
-		TsMenuBO temp = null ;
+		BaseEntity temp = null ;
 
 		ckBO = new TsMenuBO();
 		ckBO.setId( tsMenuBO.getId() );
         ckBO.setMenuCode(tsMenuBO.getMenuCode());
         temp = this.baseService.selectCheck(ckBO);
-        if (isEntityExist(temp)) {return true;}
-
-		return isExist;
+		if (isEntityExist(temp)) {
+			throw DbException.DB_SAVE_SAME;
+		}
 	}
 
 

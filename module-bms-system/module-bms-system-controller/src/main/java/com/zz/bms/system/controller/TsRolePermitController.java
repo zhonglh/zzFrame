@@ -3,6 +3,7 @@ package com.zz.bms.system.controller;
 import com.zz.bms.controller.base.controller.ZzDefaultController;
 
 
+import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.system.bo.TsRolePermitBO;
 import  com.zz.bms.system.query.impl.TsRolePermitQueryWebImpl;
 
@@ -21,7 +22,7 @@ public class TsRolePermitController extends ZzDefaultController<TsRolePermitBO, 
 
 
 	@Override
-	protected boolean isExist(TsRolePermitBO tsRolePermitBO) {
+	protected void isExist(TsRolePermitBO tsRolePermitBO) {
 
 		TsRolePermitBO ckBO ;
 		boolean isExist = false;
@@ -32,9 +33,10 @@ public class TsRolePermitController extends ZzDefaultController<TsRolePermitBO, 
         ckBO.setPermitId(tsRolePermitBO.getPermitId());
         ckBO.setRoleId(tsRolePermitBO.getRoleId());
         temp = this.baseService.selectCheck(ckBO);
-        if (isEntityExist(temp)) {return true;}
+		if (isEntityExist(temp)) {
+			throw DbException.DB_SAVE_SAME;
+		}
 
-		return isExist;
 	}
 
 

@@ -15,8 +15,7 @@
 
 
 
-
-                <form id="detailForm" action="" method="post">
+                <div>
                     <table class="info-table">
                         <tr>
                             <th width="15%">用户名称</th>
@@ -45,7 +44,7 @@
                         </tr>
 
                     </table>
-                </form>
+                </div>
 
 
                 <form id="editForm" action="" method="post" class="form-auto-fill hide" viewId="detailForm">

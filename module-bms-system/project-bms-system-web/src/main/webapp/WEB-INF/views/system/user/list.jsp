@@ -59,7 +59,7 @@
                 </svg>
                 <span>新建 </span>
             </button>
-            <button type="button" class="btn btn-primary btn-sm" url=""" onclick="doDel('url')">
+            <button type="button" class="btn btn-primary btn-sm" url="" onclick="doDel('url')">
                 <svg class="icon" aria-hidden="true">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use>
                 </svg>

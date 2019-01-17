@@ -3,6 +3,8 @@ package com.zz.bms.system.controller;
 import com.zz.bms.controller.base.controller.ZzDefaultController;
 
 
+import com.zz.bms.core.enums.EnumErrorMsg;
+import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.system.bo.TsDictTypeBO;
 import  com.zz.bms.system.query.impl.TsDictTypeQueryWebImpl;
 
@@ -21,24 +23,27 @@ public class TsDictTypeController extends ZzDefaultController<TsDictTypeBO, Stri
 
 
 	@Override
-	protected boolean isExist(TsDictTypeBO tsDictTypeBO) {
+	protected void isExist(TsDictTypeBO tsDictTypeBO) {
 
 		TsDictTypeBO ckBO ;
-		boolean isExist = false;
 		TsDictTypeBO temp = null ;
 
 		ckBO = new TsDictTypeBO();
 		ckBO.setId( tsDictTypeBO.getId() );
         ckBO.setDictTypeCode(tsDictTypeBO.getDictTypeCode());
         temp = this.baseService.selectCheck(ckBO);
-        if (isEntityExist(temp)) {return true;}
+		if (isEntityExist(temp)) {
+			throw new BizException(EnumErrorMsg.business_error.getCode(),"该编号已使用");
+		}
+
 		ckBO = new TsDictTypeBO();
 		ckBO.setId( tsDictTypeBO.getId() );
         ckBO.setDictTypeName(tsDictTypeBO.getDictTypeName());
         temp = this.baseService.selectCheck(ckBO);
-        if (isEntityExist(temp)) {return true;}
+		if (isEntityExist(temp)) {
+			throw new BizException(EnumErrorMsg.business_error.getCode(),"该名称已使用");
+		}
 
-		return isExist;
 	}
 
 

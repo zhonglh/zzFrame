@@ -3,6 +3,8 @@ package com.zz.bms.system.controller;
 import com.zz.bms.controller.base.controller.ZzDefaultController;
 
 
+import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.system.bo.TsFilesBO;
 import  com.zz.bms.system.query.impl.TsFilesQueryWebImpl;
 
@@ -21,19 +23,19 @@ public class TsFilesController extends ZzDefaultController<TsFilesBO, String , T
 
 
 	@Override
-	protected boolean isExist(TsFilesBO tsFilesBO) {
+	protected void isExist(TsFilesBO tsFilesBO) {
 
 		TsFilesBO ckBO ;
-		boolean isExist = false;
-		TsFilesBO temp = null ;
+		BaseEntity temp = null ;
 
 		ckBO = new TsFilesBO();
 		ckBO.setId( tsFilesBO.getId() );
         ckBO.setFilePath(tsFilesBO.getFilePath());
         temp = this.baseService.selectCheck(ckBO);
-        if (isEntityExist(temp)) {return true;}
 
-		return isExist;
+		if (isEntityExist(temp)) {
+			throw DbException.DB_SAVE_SAME;
+		}
 	}
 
 

@@ -241,7 +241,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         this.permissionList.assertHasCreatePermission();
 
 
-        if (isExist(m)) {throw DbException.DB_SAVE_SAME;}
+        //检查重复数据
+        isExist(m);
 
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
@@ -280,8 +281,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         this.permissionList.assertHasUpdatePermission();
 
-
-        if (isExist(m)) {throw DbException.DB_SAVE_SAME;}
+        //检查重复数据
+        isExist(m);
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
@@ -455,13 +456,11 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @param m
      * @return
      */
-    protected boolean isExist(M m) {
-        return false;
-    }
+    protected void isExist(M m) { }
 
 
     /**
-     * 新增或者修改时，检验数据是否唯一(单条件)
+     * 新增或者修改时，检验数据是否唯一(单条件) , 界面上校验， 比如注册时校验用户名唯一
      *
      * @param m
      */
@@ -485,13 +484,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     @RequestMapping(value = "/checkAllUnique"  ,method = RequestMethod.GET)
     @ResponseBody
     public AjaxJson checkAllUnique(M m) {
-        boolean isExist = this.isExist(m);
-        if (isExist) {
-            throw DbException.DB_SAVE_SAME;
-        }
-        else {
-            return AjaxJson.successAjax;
-        }
+        this.isExist(m);
+        return AjaxJson.successAjax;
     }
 
 

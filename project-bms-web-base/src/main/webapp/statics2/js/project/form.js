@@ -58,11 +58,25 @@ function switchEditDetail() {
 }
 
 
+
+
+
+
 //保存方法
 function doSave() {
-    $("#editForm").validate();
+    var formCount = $("form").length;
+    if(formCount == 0){
+        warn('保存失败：没有表单信息！');
+    }else if(formCount == 1){
+        doSingleFormSave();
+    }else {
+        doMultiFormSave();
+    }
+}
+function doSingleFormSave() {
+    $("form").validate();
     // 校验数据规则
-    if(!$("#editForm").valid()) {
+    if(!$("form").valid()) {
         warn('保存失败：表单信息填写不完整！');
         return false;
     }
@@ -71,28 +85,27 @@ function doSave() {
     $.ajax({
         url: '',
         type: 'POST',
-        data: $("#editForm").serializeToString() ,
+        data: $("form").serializeToString() ,
         success: function(rsp, status) {
-            if(rsp.success) {
-                info(rsp.msg);
-                parent.search();
-                parent.toUpdate(rsp.id);
-                closeWindow();
-            }else{
-                warn(rsp.msg);
-            }
+            saveSuccess(rsp, status);
         }
     });
 }
+function doMultiFormSave() {
 
-
-
-//修改方法
-function doUpdate() {
-    $("#editForm").validate();
+    $("form").validate();
     // 校验数据规则
-    if(!$("editForm").valid()) {
-        warn('更新失败：表单信息填写不完整！');
+
+    var valid = true;
+    var forms = $("form");
+    forms.each(function(index,f){
+        var check = $(f).valid();
+        if(check == false){
+            valid = false;
+        }
+    });
+    if(!valid) {
+        warn('保存失败：表单信息填写不完整！');
         return false;
     }
 
@@ -100,18 +113,107 @@ function doUpdate() {
     $.ajax({
         url: '',
         type: 'POST',
-        data: $("#editForm").serializeToString() ,
+        data: $("form").serializeToString() ,
         success: function(rsp, status) {
-            if(rsp.success) {
-                parent.search();
-                switchEditDetail();
-                debugger;
-                $("#editForm").tform().showDetail(true);
-                info(rsp.msg);
-            }else{
-                warn(rsp.msg);
-            }
+            saveSuccess(rsp, status);
         }
     });
+}
+
+/**
+ * 保存成功后的逻辑
+ * @param rsp
+ * @param status
+ */
+function saveSuccess(rsp, status){
+    if(rsp.success) {
+        info(rsp.msg);
+        parent.search();
+        parent.toUpdate(rsp.id);
+        closeWindow();
+    }else{
+        warn(rsp.msg);
+    }
+}
+
+
+
+
+
+
+//修改方法
+function doUpdate() {
+    var formCount = $("form").length;
+    if(formCount == 0){
+        warn('保存失败：没有表单信息！');
+    }else if(formCount == 1){
+        doSingleFormUpdate();
+    }else {
+        doMultiFormUpdate();
+    }
+}
+function doSingleFormUpdate() {
+    $("form").validate();
+    // 校验数据规则
+    if(!$("form").valid()) {
+        warn('保存失败：表单信息填写不完整！');
+        return false;
+    }
+
+    //提交表单
+    $.ajax({
+        url: '',
+        type: 'POST',
+        data: $("form").serializeToString() ,
+        success: function(rsp, status) {
+            updateSuccess(rsp, status);
+        }
+    });
+}
+function doMultiFormUpdate() {
+
+    $("form").validate();
+    // 校验数据规则
+
+    var valid = true;
+    var forms = $("form");
+    forms.each(function(index,f){
+        var check = $(f).valid();
+        if(check == false){
+            valid = false;
+        }
+    });
+    if(!valid) {
+        warn('保存失败：表单信息填写不完整！');
+        return false;
+    }
+
+    //提交表单
+    $.ajax({
+        url: '',
+        type: 'POST',
+        data: $("form").serializeToString() ,
+        success: function(rsp, status) {
+            updateSuccess(rsp, status);
+        }
+    });
+}
+
+
+
+/**
+ * 修改成功后的处理逻辑
+ * @param rsp
+ * @param status
+ */
+function updateSuccess(rsp, status){
+    if(rsp.success) {
+        switchEditDetail();
+        $("#editForm").tform().showDetail(true);
+        parent.search();
+        info(rsp.msg);
+    }else{
+        warn(rsp.msg);
+    }
 }
 

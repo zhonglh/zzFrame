@@ -175,10 +175,6 @@ public class TsFilesControllerZz extends ZzDefaultController<TsFilesEntity, Stri
     }
 
 
-    @Override
-    protected boolean isExist(TsFilesEntity tsFilesEntity) {
-        return false;
-    }
 
 
 

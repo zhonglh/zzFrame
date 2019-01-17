@@ -3,6 +3,8 @@ package com.zz.bms.system.controller;
 import com.zz.bms.controller.base.controller.ZzDefaultController;
 
 
+import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.system.bo.TsMenuPermitBO;
 import  com.zz.bms.system.query.impl.TsMenuPermitQueryWebImpl;
 
@@ -21,20 +23,20 @@ public class TsMenuPermitController extends ZzDefaultController<TsMenuPermitBO, 
 
 
 	@Override
-	protected boolean isExist(TsMenuPermitBO tsMenuPermitBO) {
+	protected void isExist(TsMenuPermitBO tsMenuPermitBO) {
 
 		TsMenuPermitBO ckBO ;
-		boolean isExist = false;
-		TsMenuPermitBO temp = null ;
+		BaseEntity temp = null ;
 
 		ckBO = new TsMenuPermitBO();
 		ckBO.setId( tsMenuPermitBO.getId() );
         ckBO.setMenuId(tsMenuPermitBO.getMenuId());
         ckBO.setPermitId(tsMenuPermitBO.getPermitId());
         temp = this.baseService.selectCheck(ckBO);
-        if (isEntityExist(temp)) {return true;}
 
-		return isExist;
+		if (isEntityExist(temp)) {
+			throw DbException.DB_SAVE_SAME;
+		}
 	}
 
 

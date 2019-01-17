@@ -15,12 +15,10 @@ public enum EnumErrorMsg {
     header_invalid(-500,"Header 信息错误！" , "EnumErrorMsg.header_invalid"),
 
 
+    db_same_error(-800 , "数据重复" , "EnumErrorMsg.db_same_error"),
     db_insert_error(-810 , "操作错误,新增失败" , "EnumErrorMsg.db_insert_error"),
     db_update_error(-820 , "数据没有改变" , "EnumErrorMsg.db_update_error"),
     db_delete_error(-830 , "操作错误,删除失败" , "EnumErrorMsg.db_delete_error"),
-    db_same_error(-800 , "数据重复" , "EnumErrorMsg.db_same_error"),
-
-
     not_select_todelete(-840 , "请选择要删除的数据" , "EnumErrorMsg.not_select_todelete"),
 
 
@@ -28,6 +26,7 @@ public enum EnumErrorMsg {
     no_auth(401, "出现错误， 您没有这个权限" , "EnumErrorMsg.no_auth"),
     fail(500,"出现内部错误" , "EnumErrorMsg.fail"),
     illegal(550, "非法操作" , "EnumErrorMsg.illegal"),
+    business_error(590, "业务错误" , "EnumErrorMsg.business_error"),
 
     frequent_operation(1010,"操作太频繁，请稍后再使用！" , "EnumErrorMsg.frequent_operation"),
     param_format_error(2010,"参数格式错误！" , "EnumErrorMsg.param_format_error"),
@@ -41,7 +40,7 @@ public enum EnumErrorMsg {
 
 
 
-    notLogin(-9120 , "没有登录或登录已过期" , "EnumErrorMsg.notLogin"),
+    notLogin(9130 , "没有登录或登录已过期" , "EnumErrorMsg.notLogin"),
     user_password_error(9010,"用户名密码错误！" , "EnumErrorMsg.user_password_error"),
     user_forbidden(9020,"用户已被禁用！" , "EnumErrorMsg.user_forbidden"),
     user_deleted(9030,"用户已经删除！" , "EnumErrorMsg.user_deleted"),

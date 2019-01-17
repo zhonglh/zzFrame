@@ -3,6 +3,9 @@ package com.zz.bms.system.controller;
 import com.zz.bms.controller.base.controller.ZzDefaultController;
 
 
+import com.zz.bms.core.enums.EnumErrorMsg;
+import com.zz.bms.core.exceptions.BizException;
+import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.system.bo.TsTenantBO;
 import  com.zz.bms.system.query.impl.TsTenantQueryWebImpl;
 
@@ -21,24 +24,27 @@ public class TsTenantController extends ZzDefaultController<TsTenantBO, String ,
 
 
 	@Override
-	protected boolean isExist(TsTenantBO tsTenantBO) {
+	protected void isExist(TsTenantBO tsTenantBO) {
 
 		TsTenantBO ckBO ;
-		boolean isExist = false;
 		TsTenantBO temp = null ;
 
 		ckBO = new TsTenantBO();
 		ckBO.setId( tsTenantBO.getId() );
         ckBO.setTenantName(tsTenantBO.getTenantName());
         temp = this.baseService.selectCheck(ckBO);
-        if (isEntityExist(temp)) {return true;}
+		if (isEntityExist(temp)) {
+			throw new BizException(EnumErrorMsg.business_error.getCode(),"租户名称已使用");
+		}
 		ckBO = new TsTenantBO();
 		ckBO.setId( tsTenantBO.getId() );
         ckBO.setTenantCode(tsTenantBO.getTenantCode());
         temp = this.baseService.selectCheck(ckBO);
-        if (isEntityExist(temp)) {return true;}
 
-		return isExist;
+
+		if (isEntityExist(temp)) {
+			throw new BizException(EnumErrorMsg.business_error.getCode(),"租户编号已使用");
+		}
 	}
 
 

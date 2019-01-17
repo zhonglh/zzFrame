@@ -3,6 +3,8 @@ package com.zz.bms.system.controller;
 import com.zz.bms.controller.base.controller.ZzDefaultController;
 
 
+import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.system.bo.TsDictBO;
 import  com.zz.bms.system.query.impl.TsDictQueryWebImpl;
 
@@ -21,11 +23,10 @@ public class TsDictController extends ZzDefaultController<TsDictBO, String , TsD
 
 
 	@Override
-	protected boolean isExist(TsDictBO tsDictBO) {
+	protected void isExist(TsDictBO tsDictBO) {
 
 		TsDictBO ckBO ;
-		boolean isExist = false;
-		TsDictBO temp = null ;
+		BaseEntity temp = null ;
 
 		ckBO = new TsDictBO();
 		ckBO.setId( tsDictBO.getId() );
@@ -33,9 +34,10 @@ public class TsDictController extends ZzDefaultController<TsDictBO, String , TsD
         ckBO.setDictVal(tsDictBO.getDictVal());
         ckBO.setTenantId(tsDictBO.getTenantId());
         temp = this.baseService.selectCheck(ckBO);
-        if (isEntityExist(temp)) {return true;}
+        if (isEntityExist(temp)) {
+			throw DbException.DB_SAVE_SAME;
+		}
 
-		return isExist;
 	}
 
 

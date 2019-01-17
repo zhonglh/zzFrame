@@ -133,6 +133,12 @@ function doDel(){
         return false;
     }else{
         $(r).each(function(){
+
+            if(this.checkStatus != undefined && this.checkStatus != null && this.checkStatus != '0'){
+                warn('【' + this.userName + '】已审核，不能删除!');
+                return false;
+            }
+
             idArray.push(this.id);
         })
     }
