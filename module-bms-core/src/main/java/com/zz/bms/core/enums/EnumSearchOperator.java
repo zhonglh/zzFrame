@@ -91,6 +91,15 @@ public enum EnumSearchOperator {
     }
 
 
+    public static EnumSearchOperator getEnumByCode(String code){
+        for (EnumSearchOperator operator : values()) {
+            if (operator.getCode().trim().toLowerCase().equals(code.trim().toLowerCase())) {
+                return operator;
+            }
+        }
+        return null;
+    }
+
     public static EnumSearchOperator valueBySymbol(String symbol) throws BizException {
         symbol = formatSymbol(symbol);
         for (EnumSearchOperator operator : values()) {
