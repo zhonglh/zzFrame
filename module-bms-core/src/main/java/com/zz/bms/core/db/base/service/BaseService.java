@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.zz.bms.core.db.entity.BaseEntity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -42,6 +43,14 @@ public interface BaseService<T extends BaseEntity, PK extends Serializable> exte
      * @return
      */
     T getById(PK id , boolean lazy);
+
+    /**
+     * 获取多个数据记录
+     * @param idList
+     * @param lazy
+     * @return
+     */
+    Collection<T> listByIds(Collection<? extends Serializable> idList , boolean lazy);
 
 
     /**

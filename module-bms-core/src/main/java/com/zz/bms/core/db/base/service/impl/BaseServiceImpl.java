@@ -220,14 +220,24 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
         }
     }
 
+
+
+
     @Override
     public Collection<T> listByIds(Collection<? extends Serializable> idList) {
+        return listByIds(idList , false);
+    }
+
+    @Override
+    public Collection<T> listByIds(Collection<? extends Serializable> idList , boolean lazy) {
         Collection<T> list =  getQueryDAO().selectBatchIds(idList);
         if(list == null || list.isEmpty()) {
             return list;
         }
-        for(T t : list){
-            processResult(t);
+        if(!lazy) {
+            for (T t : list) {
+                processResult(t);
+            }
         }
         return list;
     }
