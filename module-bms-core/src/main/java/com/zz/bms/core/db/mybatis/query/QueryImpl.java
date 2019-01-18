@@ -294,7 +294,7 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
             return EnumSearchOperator.eq ;
         }else {
             try {
-                return EnumSearchOperator.valueOf(searchType.toLowerCase());
+                return EnumSearchOperator.getEnumByCode(searchType.toLowerCase());
             }catch (Exception e){
                 throw new IllegalAccessException(this.getClass().getName() +" fields setting error , by suffix is '"+ searchType +"'");
             }

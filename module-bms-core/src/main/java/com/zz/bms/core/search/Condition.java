@@ -46,7 +46,7 @@ public final class Condition implements SearchFilter {
             operator = EnumSearchOperator.custom;
         } else {
             try {
-                operator = EnumSearchOperator.valueOf(searchs[1]);
+                operator = EnumSearchOperator.getEnumByCode(searchs[1]);
             } catch (IllegalArgumentException e) {
                 throw new BizException("error: "+searchProperty +" --> "+ searchs[1]);
             }
