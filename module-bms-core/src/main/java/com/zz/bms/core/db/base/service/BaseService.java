@@ -35,6 +35,13 @@ public interface BaseService<T extends BaseEntity, PK extends Serializable> exte
     T selectCheck(T t) ;
 
 
+    /**
+     * 根据ID获取数据
+     * @param id        ID
+     * @param lazy      是否加载关联的信息
+     * @return
+     */
+    T getById(PK id , boolean lazy);
 
 
     /**

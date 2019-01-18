@@ -205,25 +205,57 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
     @Override
     public T getById(Serializable id) {
-        return (T)getQueryDAO().selectById(id);
+        T result =  (T)getQueryDAO().selectById(id);
+        return processResult(result);
+    }
+
+
+
+    @Override
+    public T getById(PK id , boolean lazy){
+        if(!lazy){
+            return getById(id);
+        }else {
+            return (T)getQueryDAO().selectById(id);
+        }
     }
 
     @Override
     public Collection<T> listByIds(Collection<? extends Serializable> idList) {
-        return getQueryDAO().selectBatchIds(idList);
+        Collection<T> list =  getQueryDAO().selectBatchIds(idList);
+        if(list == null || list.isEmpty()) {
+            return list;
+        }
+        for(T t : list){
+            processResult(t);
+        }
+        return list;
     }
 
     @Override
     public Collection<T> listByMap(Map<String, Object> columnMap) {
-        return getQueryDAO().selectByMap(columnMap);
+        Collection<T> list =   getQueryDAO().selectByMap(columnMap);
+        if(list == null || list.isEmpty()) {
+            return list;
+        }
+        for(T t : list){
+            processResult(t);
+        }
+        return list;
     }
 
     @Override
     public T getOne(Wrapper<T> queryWrapper, boolean throwEx) {
+        T result = null;
         if (throwEx) {
-            return (T)getQueryDAO().selectOne(queryWrapper);
+            result =  (T)getQueryDAO().selectOne(queryWrapper);
         }
-        return SqlHelper.getObject((List<T>)getQueryDAO().selectList(queryWrapper));
+        result = SqlHelper.getObject((List<T>)getQueryDAO().selectList(queryWrapper));
+        if(result != null){
+            return processResult(result);
+        }else {
+            return null;
+        }
     }
 
     @Override
@@ -238,12 +270,26 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
     @Override
     public List<T> list(Wrapper<T> queryWrapper) {
-        return getQueryDAO().selectList(queryWrapper);
+        List<T> list =  getQueryDAO().selectList(queryWrapper);
+
+        if(list == null || list.isEmpty()) {
+            return list;
+        }
+        for(T t : list){
+            processResult(t);
+        }
+        return list;
     }
 
     @Override
     public IPage<T> page(IPage<T> page, Wrapper<T> queryWrapper) {
-        return getQueryDAO().selectPage(page, queryWrapper);
+        IPage<T> iPage =  getQueryDAO().selectPage(page, queryWrapper);
+        if(iPage.getRecords() != null && !iPage.getRecords().isEmpty()){
+            for(T t : iPage.getRecords()){
+                processResult(t);
+            }
+        }
+        return iPage;
     }
 
     @Override
