@@ -33,12 +33,30 @@ public class TsUserBO extends TsUserEntity implements Serializable , ILoginUserE
     private String avatarImageUrl ;
 
 
+    @Override
+    public String getDepName() {
+        return null;
+    }
+
+    @Override
+    public String getOrganName() {
+        return null;
+    }
 
     @Override
     public boolean isSystemUser() {
         return EnumYesNo.YES.getCode().equals(this.getSystemAdmin());
     }
 
+    @Override
+    public String getLeadId() {
+        return null;
+    }
+
+    @Override
+    public String getLeadName() {
+        return null;
+    }
 
 
     public void setUserStatusName(String userStatusName){
