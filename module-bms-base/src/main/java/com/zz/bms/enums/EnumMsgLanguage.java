@@ -1,6 +1,8 @@
 
 package com.zz.bms.enums; 
 import java.io.Serializable;
+import java.util.Locale;
+
 import com.zz.bms.core.enums.EnumBase;
 
 /**
@@ -9,9 +11,13 @@ import com.zz.bms.core.enums.EnumBase;
  */
 public enum EnumMsgLanguage implements EnumBase<String> {
 
+    zh("cn","中文"),
+    us("en","英文"),
+
   ;
 
   EnumMsgLanguage(String theValue, String theName) {
+
         this.theValue = theValue;
         this.theName = theName;
     }

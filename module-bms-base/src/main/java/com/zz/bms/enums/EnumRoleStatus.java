@@ -9,6 +9,8 @@ import com.zz.bms.core.enums.EnumBase;
  */
 public enum EnumRoleStatus implements EnumBase<String> {
 
+    normal("1","正常" ),
+    invalid ("0","失效"),
   ;
 
   EnumRoleStatus(String theValue, String theName) {

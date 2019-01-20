@@ -11,4 +11,21 @@ import com.zz.bms.system.bo.TsDictBO;
 */
 public interface TsDictService extends BaseService<TsDictBO , String> {
 
+    /**
+     * 获取字典名称
+     * @param value         字典值
+     * @param dictType      字典类型
+     * @return
+     */
+    public String getDictName(String value , String dictType) ;
+
+
+    /**
+     * 获取字典值
+     * @param name         字典名称
+     * @param dictType      字典类型
+     * @return
+     */
+    public String getDictValue(String name , String dictType) ;
+
 }

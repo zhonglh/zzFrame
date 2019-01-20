@@ -99,16 +99,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         }
 
 
-        String prefix =  getViewPrefix();
-        String tableid = prefix.replaceAll("/" , "");
-
-        model.put(Constant.TABLEID, tableid);
-        model.put(Constant.CURR_PARENT_URL, prefix);
-
-        //todo 处理面包屑 菜单路径
-        if(AppConfig.USE_CRUMB) {
-            model.put(Constant.BREADCRUMB, "");
-        }
+        processPath(model);
 
         String pageName = this.getListPageName();
         if(StringUtils.isEmpty(pageName)){
@@ -117,6 +108,20 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         return viewName(pageName);
     }
 
+    /**
+     * 处理各种路径
+     * @param model
+     */
+    protected void processPath(ModelMap model) {
+        String prefix =  getViewPrefix();
+        String tableid = prefix.replaceAll("/" , "");
+        model.put(Constant.TABLEID, tableid);
+        model.put(Constant.CURR_PARENT_URL, prefix);
+        //todo 处理面包屑 菜单路径
+        if(AppConfig.USE_CRUMB) {
+            model.put(Constant.BREADCRUMB, "");
+        }
+    }
 
 
     @RequestMapping(value = "/list" , method={ RequestMethod.POST, RequestMethod.GET})

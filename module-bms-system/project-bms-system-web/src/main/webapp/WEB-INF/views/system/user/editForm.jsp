@@ -179,67 +179,59 @@
 
 
 <script>
-    // Global Const
-    var ctx = '${ctx}';
-    var staticUrl = '${staticUrl}';
-    var $AppContext = ctx ;
-    var $PagingSize = 50 || 20;
 
 
     var tableid = "tableData-${tableId}";
-    var dataUrl = "/${currParentUrl}";
 
     //显示模式   明细/编辑
     var showMode = "detail";
-</script>
-
-<script language="JavaScript">
-
-/*
-
-    //绑定区域选择弹窗
-    $('.areaInfo').OpenAreaSelectWin({
-        title: '省市',
-        selectType: 't1',
-        callId: 'areaId',
-        callName: 'areaName',
-        clearId: 'clearAreaInfo',
-        isSelectedLeaf: "true",
-        checkFun: function(id, name, obj){
-            if(obj.parentId <= 1){
-                warn('请选择市名称');
-                return false;
-            }
-            return true;
-        }
-    }, function(id, name, obj){
-        $("#areaName").val(obj.parentName + ">" + name);
-    });
-
-    //部门选择
-    $(".sysdepInfo").OpenSysDepSelectWin({title: "部门",selectType: "t1",callId: "deptId",callName: "deptName",clearId: "clearSysdepInfo"});
-
-
-*/
-    //人员选择
-    $(".leadName").OpenSysUserSelectWin({title: "人员",selectType: "t1",callId: "leadId",leadId: "leadName",clearId: "clearSysdepInfo"});
-
-
-
-
-
 
 </script>
+
 
 
 <bms:contentJS />
 
 <script src="${staticUrl}/statics2/js/project/form.js"></script>
-<script src="${staticUrl}/statics2/js/project/common-sys-function.js"></script>
 
 
 <script src="${staticUrl}/statics2/business-js/system/user.js"></script>
 
+
+<script language="JavaScript">
+
+    /*
+
+        //绑定区域选择弹窗
+        $('.areaInfo').OpenAreaSelectWin({
+            title: '省市',
+            selectType: 't1',
+            callId: 'areaId',
+            callName: 'areaName',
+            clearId: 'clearAreaInfo',
+            isSelectedLeaf: "true",
+            checkFun: function(id, name, obj){
+                if(obj.parentId <= 1){
+                    warn('请选择市名称');
+                    return false;
+                }
+                return true;
+            }
+        }, function(id, name, obj){
+            $("#areaName").val(obj.parentName + ">" + name);
+        });
+
+        //部门选择
+        $(".sysdepInfo").OpenSysDepSelectWin({title: "部门",selectType: "t1",callId: "deptId",callName: "deptName",clearId: "clearSysdepInfo"});
+
+    */
+
+
+    //人员选择
+    $(".leadName").OpenSysUserSelectWin({title: "人员",selectType: "t1",callId: "leadId",leadId: "leadName",clearId: "clearSysdepInfo"});
+
+
+</script>
 
 <bms:contentFooter />
 

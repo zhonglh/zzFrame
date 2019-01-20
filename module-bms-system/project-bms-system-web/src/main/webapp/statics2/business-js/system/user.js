@@ -38,13 +38,9 @@ function openSystemUserWin(config, callBack)
     options.columns = [[
         {field:"id", checkbox: true, width: 40},
         {field:"userName", title:"姓名", width: 170, align:"left"},
-        {field:"loginName", title:"账号", width: 145, align:"left"},
+        {field:"loginName", title:"登录名", width: 145, align:"left"},
         {field:"deptName", title:"部门", width: 170, align:"left"},
-        {field:'state', title: "状态", width: 100, align:"left",
-            formatter: function(val,row,index){
-                return val == "1"?"有效":"已停用";
-            }
-        }
+        {field:'userStatusName', title: "状态", width: 100, align:"left"}
     ]];
     options.sampleData = {id: "id", name: "userName"};
     options.htmlTemple = tableTemple;
@@ -84,8 +80,8 @@ function openSystemUserWin(config, callBack)
 
 
 // 用户选择控件
-$.fn.OpenUserSelectWin = function(config, callBack){
-    var win = openUserWin(config, callBack);
+$.fn.OpenSystemUserSelectWin = function(config, callBack){
+    var win = openSystemUserWin(config, callBack);
     $(this).unbind("click");
     $(this).bind("click", function(){
         win.show();

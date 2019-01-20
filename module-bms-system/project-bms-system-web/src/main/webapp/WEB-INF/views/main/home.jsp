@@ -61,6 +61,27 @@
         @media (max-width: 767px){.col-xs-12 .block-each{margin-left: 0}}
         .nav-personal .dropdown+li {border-left: 1px solid #0896ba;}
     </style>
+
+
+
+    <script>
+        // Global Const
+        var ctx = '${ctx}';
+        var $AppContext = ctx;
+
+
+        var staticUrl = '${staticUrl}';
+
+        var $PagingSize = 50 || 20;
+
+        var $AttachmentEngine = 'file';
+
+
+        var dataUrl = "/${currParentUrl}";
+        var breadcrumb = "${breadcrumb}";
+
+
+    </script>
 </head>
 
 <body>
@@ -344,13 +365,6 @@
 
 
 <script>
-    // Global Const
-    var $AppContext = '${ctx}';
-    var ctx = $AppContext;
-    var staticUrl = '${staticUrl}';
-    var $PagingSize = 50 || 20;
-    var $AttachmentEngine = 'file';
-    var $AlibabaMediaNameSpace = '';
 
 
     var notReadCount = ${notReadNotifyCount};

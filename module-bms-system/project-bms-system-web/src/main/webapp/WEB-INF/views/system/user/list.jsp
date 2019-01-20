@@ -65,6 +65,79 @@
                 </svg>
                 <span>删除 </span>
             </button>
+<%--
+            <button type="button" class="btn btn-primary btn-sm" onclick="explor();">
+                <svg class="icon" aria-hidden="true">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
+                </svg>
+                <span>导出</span>
+                <a class="btn no-disabled dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-laptop"></i>
+                    Excel导入/导出
+                    <i class="caret"></i>
+                </a>
+            </button>--%>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Excel导入/导出 <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+
+                    <li>
+                        <a href="#">
+                            <svg class="icon" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daoru"></use>
+                            </svg>导入
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <svg class="icon" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-download"></use>
+                            </svg>下载模板(Excel2003)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <svg class="icon" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-download"></use>
+                            </svg>下载模板(Excel2007)
+                        </a>
+                    </li>
+
+                    <li role="separator" class="divider"></li>
+
+                    <li>
+                        <a href="#">
+                            <svg class="icon" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
+                            </svg>导出CVS
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <svg class="icon" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
+                            </svg>导出Excel2003
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <svg class="icon" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
+                            </svg>导出Excel2007
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+
+
+
         </div>
     </div>
     <!-- 筛选条div结束 -->
@@ -78,7 +151,7 @@
             <th field="ck" checkbox="true"></th>
             <th field='userName' align="left" width="2" sortable='false' formatter='titleFmt'>用户名称</th>
             <th field='loginName' align="left" width="2" sortable='false' >用户登录名</th>
-            <th field='status' align="left" width="1" sortable='false'>状态</th>
+            <th field='userStatusName' align="left" width="1" sortable='false'>状态</th>
             <th field='phone' align="left" width="2" sortable='false'>手机</th>
             <th field='email' align="left" width="2" sortable='false'>邮箱</th>
             <th field='depName' align="left" width="2" sortable='false'>部门</th>
@@ -94,18 +167,15 @@
 
 
 <script>
-    // Global Const
-    var ctx = '${ctx}';
-    var staticUrl = '${staticUrl}';
-    var $AppContext = ctx ;
-    var $PagingSize = 50 || 20;
-
-
     var tableid = "tableData-${tableId}";
-    var dataUrl = "/${currParentUrl}";
-    var breadcrumb = "${breadcrumb}";
-
 </script>
+
+
+
+<bms:contentJS />
+
+<script src="${staticUrl}/statics2/js/project/list.js"></script>
+<script src="${staticUrl}/statics2/js/project/common-sys-function.js"></script>
 
 <script language="JavaScript">
     /**
@@ -132,39 +202,10 @@
     }
 
 
-    //操作
-    function makesFmt (val, r, index)
-    {
-        // 操作栏为图标
-        var html = '';
-        html += '<div class="grid-column-option">';
-
-
-        //删除按钮，绑定名称和id
-        html += '<a href="javascript:;"'
-            + '" name="'
-            + r.userName
-            + '" id="'
-            + r.id
-            + '" onclick="deleteOne(this);" title="删除">' +
-            '<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use></svg></a>';
-
-
-        html += '</div>';
-        return html;
-    }
-
 
 
 
 </script>
-
-
-<bms:contentJS />
-
-<script src="${staticUrl}/statics2/js/project/list.js"></script>
-<script src="${staticUrl}/statics2/js/project/common-sys-function.js"></script>
-
 
 <bms:contentFooter />
 

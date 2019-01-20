@@ -1,5 +1,6 @@
 package com.zz.bms.system.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
@@ -43,6 +44,46 @@ public class TsDictServiceImpl extends BaseServiceImpl<TsDictBO,String> implemen
 	@Override
 	public BaseDAO getRwDAO() {
 		return tsDictDAO ;
+	}
+
+
+
+	@Override
+	public String getDictName(String value , String dictType) {
+		if(value == null || dictType == null){
+			return "";
+		}
+
+		QueryWrapper<TsDictBO> queryWrapper = new QueryWrapper<TsDictBO>();
+		queryWrapper.lambda().eq(TsDictBO::getDictVal ,  value)
+				.inSql(TsDictBO::getDictTypeId , "select id from ts_dict_type where dict_type_code = '"+dictType+"'");
+		TsDictBO tsDictBO = tsDictDAO.selectOne(queryWrapper);
+		if(tsDictBO == null){
+			return "";
+		}else {
+			return tsDictBO.getDictName();
+		}
+	}
+
+
+
+
+	@Override
+	public String getDictValue(String name , String dictType) {
+
+		if(name == null || dictType == null){
+			return null;
+		}
+
+		QueryWrapper<TsDictBO> queryWrapper = new QueryWrapper<TsDictBO>();
+		queryWrapper.lambda().eq(TsDictBO::getDictName ,  name)
+				.inSql(TsDictBO::getDictTypeId , "select id from ts_dict_type where dict_type_code = '"+dictType+"'");
+		TsDictBO tsDictBO = tsDictDAO.selectOne(queryWrapper);
+		if(tsDictBO == null){
+			return null;
+		}else {
+			return tsDictBO.getDictVal();
+		}
 	}
 
 

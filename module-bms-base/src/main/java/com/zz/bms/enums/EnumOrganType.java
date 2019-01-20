@@ -9,6 +9,9 @@ import com.zz.bms.core.enums.EnumBase;
  */
 public enum EnumOrganType implements EnumBase<String> {
 
+    //一级机构
+    //二级机构
+    //三级机构
   ;
 
   EnumOrganType(String theValue, String theName) {

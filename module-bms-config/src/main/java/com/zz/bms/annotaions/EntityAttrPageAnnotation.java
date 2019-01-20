@@ -61,6 +61,7 @@ public @interface EntityAttrPageAnnotation {
 
     /**
      * 默认值 , 会有一些特殊的值需要解析(如当前日期， 当前登录人ID)
+     * 参考 EnumDefaultValue
      * @return
      */
     public String defaultVal() default  "" ;

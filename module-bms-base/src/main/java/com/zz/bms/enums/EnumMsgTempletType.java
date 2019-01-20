@@ -9,6 +9,9 @@ import com.zz.bms.core.enums.EnumBase;
  */
 public enum EnumMsgTempletType implements EnumBase<String> {
 
+    SMS("sms","短信模板"),
+    EMAIL("email","邮件模板"),
+
   ;
 
   EnumMsgTempletType(String theValue, String theName) {

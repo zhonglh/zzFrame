@@ -9,6 +9,9 @@ import com.zz.bms.core.enums.EnumBase;
  */
 public enum EnumRoleType implements EnumBase<String> {
 
+
+    SYSTEM_ROLE("1","系统角色" ),
+    USER_ROLE ("2","用户角色"),
   ;
 
   EnumRoleType(String theValue, String theName) {

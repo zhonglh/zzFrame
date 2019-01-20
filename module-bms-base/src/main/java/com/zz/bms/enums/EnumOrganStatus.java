@@ -9,6 +9,9 @@ import com.zz.bms.core.enums.EnumBase;
  */
 public enum EnumOrganStatus implements EnumBase<String> {
 
+    normal("1","正常" ),
+    disband("0","解散" ),
+    ;
   ;
 
   EnumOrganStatus(String theValue, String theName) {

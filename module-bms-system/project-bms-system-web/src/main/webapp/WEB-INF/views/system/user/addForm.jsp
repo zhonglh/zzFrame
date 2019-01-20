@@ -49,16 +49,16 @@
                             <th>直属领导</th>
                             <td>
                                 <div class="input-group">
-                                    <input type="text"  id="leadName" name="leadName" class="form-control input-sm leadName-systemUser"
+                                    <input type="text"  id="leadUserName" name="leadUserName" class="form-control input-sm leadUserName"
                                            placeholder="请选择直属领导" readonly="readonly">
                                     <input type="hidden" id="leadUserId" name="leadUserId" value="${m.leadUserId}">
                                     <div class="input-group-btn">
-                                        <button type="button"  class="btn btn-primary btn-sm leadName-systemUser">
+                                        <button type="button"  class="btn btn-primary btn-sm leadUserName">
                                             <svg class="icon" aria-hidden="true">
                                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-sousuo"></use>
                                             </svg>
                                         </button>
-                                        <button type="button"  id="clearSysuserInfo"  class="btn btn-primary btn-sm">
+                                        <button type="button"  id="clearLeadUserId"  class="btn btn-primary btn-sm">
                                             <svg class="icon" aria-hidden="true">
                                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                                             </svg>
@@ -133,59 +133,66 @@
 
 
 <script>
-    // Global Const
-    var ctx = '${ctx}';
-    var staticUrl = '${staticUrl}';
-    var $AppContext = ctx ;
-    var $PagingSize = 50 || 20;
-
-
     var tableid = "tableData-${tableId}";
-    var dataUrl = "/${currParentUrl}";
 </script>
 
-<script language="JavaScript">
-
-/*
-
-    //绑定区域选择弹窗
-    $('.areaInfo').OpenAreaSelectWin({
-        title: '省市',
-        selectType: 't1',
-        callId: 'areaId',
-        callName: 'areaName',
-        clearId: 'clearAreaInfo',
-        isSelectedLeaf: "true",
-        checkFun: function(id, name, obj){
-            if(obj.parentId <= 1){
-                warn('请选择市名称');
-                return false;
-            }
-            return true;
-        }
-    }, function(id, name, obj){
-        $("#areaName").val(obj.parentName + ">" + name);
-    });
-
-    //部门选择
-    $(".sysdepInfo").OpenSysDepSelectWin({title: "部门",selectType: "t1",callId: "deptId",callName: "deptName",clearId: "clearSysdepInfo"});
-
-*/
-    //人员选择
-    $(".leadName-systemUser").OpenSysUserSelectWin({title: "选择直属领导",selectType: "d1",callId: "leadUserId",callName: "leadName",clearId: "clearSysdepInfo"});
-
-
-
-
-
-
-</script>
 
 
 <bms:contentJS />
 
 <script src="${staticUrl}/statics2/js/project/form.js"></script>
-<script src="${staticUrl}/statics2/js/project/common-sys-function.js"></script>
+
+
+<script src="${staticUrl}/statics2/business-js/system/user.js"></script>
+
+
+<script language="JavaScript">
+
+    /*
+
+        //绑定区域选择弹窗
+        $('.areaInfo').OpenAreaSelectWin({
+            title: '省市',
+            selectType: 't1',
+            callId: 'areaId',
+            callName: 'areaName',
+            clearId: 'clearAreaInfo',
+            isSelectedLeaf: "true",
+            checkFun: function(id, name, obj){
+                if(obj.parentId <= 1){
+                    warn('请选择市名称');
+                    return false;
+                }
+                return true;
+            }
+        }, function(id, name, obj){
+            $("#areaName").val(obj.parentName + ">" + name);
+        });
+
+        //部门选择
+        $(".sysdepInfo").OpenSysDepSelectWin({title: "部门",selectType: "t1",callId: "deptId",callName: "deptName",clearId: "clearSysdepInfo"});
+
+    */
+
+
+    $(function() {
+
+        //人员选择
+        $(".leadUserName").OpenSystemUserSelectWin({
+            title: "直属领导",
+            selectType: "d1",
+            callId: "leadUserId",
+            callName: "leadUserName",
+            clearId: "clearLeadUserId"
+        });
+
+
+    });
+
+
+
+</script>
+
 
 
 <bms:contentFooter />

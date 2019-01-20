@@ -9,6 +9,11 @@ import com.zz.bms.core.enums.EnumBase;
  */
 public enum EnumOperationType implements EnumBase<String> {
 
+    //增加
+    //修改
+    //删除
+    //提交
+    //...
   ;
 
   EnumOperationType(String theValue, String theName) {

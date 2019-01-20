@@ -15,7 +15,7 @@ import java.io.Serializable;
 * @author Administrator
 * @date 2018-9-6 23:56:30
 */
-@EntityAnnotation(value="用户" , resource = "")
+@EntityAnnotation(value="用户" , resource = "system.user")
 @TableName(value="vs_user" , resultMap = "VsUserResultMap")
 public class VsUserBO extends VsUserEntity implements Serializable {
 

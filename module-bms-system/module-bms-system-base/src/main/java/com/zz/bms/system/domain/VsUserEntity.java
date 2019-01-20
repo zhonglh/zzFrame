@@ -17,17 +17,28 @@ import com.zz.bms.system.domain.TsUserEntity;
  */
 public class VsUserEntity extends TsUserEntity implements java.io.Serializable{
 
-    @TableField(exist=false)
-    private static final long serialVersionUID = 1L;
 
-	//部门名称
+	/**
+	 * 直属领导名称
+	 */
+	private String leadUserName;
+
+	/**
+	 * 部门名称
+	 */
 	private String  depName ;
 
-	//机构名称
+	/**
+	 * 机构名称
+	 */
 	private String  organName ;
 
-	//企业名称
+	/**
+	 * 企业名称
+	 */
 	private String  tenantName ;
+
+
 
 
 
@@ -59,6 +70,11 @@ public class VsUserEntity extends TsUserEntity implements java.io.Serializable{
     	return this.tenantName;
     }
 
+	public String getLeadUserName() {
+		return leadUserName;
+	}
 
-	
+	public void setLeadUserName(String leadUserName) {
+		this.leadUserName = leadUserName;
+	}
 }

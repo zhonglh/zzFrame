@@ -9,6 +9,8 @@ import com.zz.bms.core.enums.EnumBase;
  */
 public enum EnumDepStatus implements EnumBase<String> {
 
+    normal("1","正常" ),
+    disband("0","解散" ),
   ;
 
   EnumDepStatus(String theValue, String theName) {

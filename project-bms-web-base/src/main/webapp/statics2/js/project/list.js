@@ -37,9 +37,28 @@ function initPage() {
     });
 }
 
-//组合查询条件
+
+/**
+ * 组合查询条件
+ * 先找界面上id为searchForm的值，
+ * 如果没有， 使用界面上定义好的变量(searchData)
+ * 上述两种都没有， 返回一个空的对象
+ * @returns {*}
+ */
 function getQueryParams(){
-    return $("#searchForm").serializeJson();
+    try {
+        var sData ;
+        var searchForm = $("#searchForm");
+        if (searchForm.length == 1) {
+             sData = searchForm.serializeJson();
+            return sData;
+        }else {
+            sData = searchData;
+            return sData;
+        }
+    }catch(e) {
+        return searchData || {};
+    }
 }
 
 //点击查询按钮查询
@@ -77,6 +96,35 @@ function clearTime(time){
     $(time).val('');
 }
 
+
+
+
+
+
+
+
+
+//操作
+function makesFmt (val, r, index)
+{
+    // 操作栏为图标
+    var html = '';
+    html += '<div class="grid-column-option">';
+
+
+    //删除按钮，绑定名称和id
+    html += '<a href="javascript:;"'
+        + '" name="'
+        + r.userName
+        + '" id="'
+        + r.id
+        + '" onclick="deleteOne(this);" title="删除">' +
+        '<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use></svg></a>';
+
+
+    html += '</div>';
+    return html;
+}
 
 
 //点击删除图标删除

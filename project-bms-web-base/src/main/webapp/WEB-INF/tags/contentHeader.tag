@@ -14,7 +14,7 @@
 --%>
 
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" >
 
 
 <head>
@@ -43,15 +43,18 @@
     <script>
         // Global Const
         var ctx = '${ctx}';
+        var $AppContext = ctx;
+
+
         var staticUrl = '${staticUrl}';
 
-        var $AppContext = ctx;
         var $PagingSize = 50 || 20;
 
-
-
         var $AttachmentEngine = 'file';
-        var $AlibabaMediaNameSpace = '';
+
+
+        var dataUrl = "/${currParentUrl}";
+        var breadcrumb = "${breadcrumb}";
 
 
     </script>
