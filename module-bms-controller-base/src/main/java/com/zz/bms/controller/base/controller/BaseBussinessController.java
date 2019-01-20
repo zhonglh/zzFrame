@@ -14,17 +14,21 @@ import com.zz.bms.core.ui.TreeModel;
 import com.zz.bms.core.ui.easyui.EasyUiDataGrid;
 import com.zz.bms.core.ui.easyui.EasyUiUtil;
 import com.zz.bms.core.vo.AjaxJson;
+import com.zz.bms.enums.EnumDefaultValue;
 import com.zz.bms.util.base.BankNoValidateUtils;
 import com.zz.bms.util.base.data.DateKit;
 import com.zz.bms.util.base.data.SerializableUtil;
 import com.zz.bms.util.base.data.StringUtil;
 import com.zz.bms.util.spring.ReflectionUtil;
 import com.zz.bms.util.spring.SpringUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -49,13 +53,90 @@ public abstract class BaseBussinessController extends BaseController {
     }
 
 
-
+    /**
+     * 设置初始值 ,  一般用于新增界面
+     * @param be
+     */
     public void setInit(BaseEntity be){
 
-        //todo  ,设置初始值
+        try {
+            List<Field>  fields = ReflectionUtil.getBusinessFields(be.getClass() , EntityAttrPageAnnotation.class);
+            for(Field field : fields){
+                EntityAttrPageAnnotation pageAnnotation = field.getAnnotation(EntityAttrPageAnnotation.class);
+                if(StringUtils.isNotEmpty(pageAnnotation.defaultVal())){
+                    EnumDefaultValue defaultValue = EnumDefaultValue.getEnum(pageAnnotation.defaultVal());
+                    Object obj = getDefaultValue(defaultValue);
+                    field.setAccessible(true);
+
+                        field.set(be , obj);
+                }
+            }
+
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
+    public Object getDefaultValue(EnumDefaultValue defaultValue){
+
+        if(defaultValue == null){
+            return null;
+        }
+        Calendar date = Calendar.getInstance();
+        ILoginUserEntity loginUser = this.getSessionUser();
+
+        Object result = null;
+        switch (defaultValue.getVal()){
+            case "CURRENT_YEAR":
+                result = date.get(Calendar.YEAR);
+                break;
+            case "CURRENT_MONTH":
+                result = date.get(Calendar.MONTH) + 1;
+                break;
+            case "CURRENT_DATE":
+                result = new Date();
+                break;
+            case "CURRENT_TIME":
+                result = new Timestamp(System.currentTimeMillis());
+                break;
+
+
+            case "CURRENT_USERID":
+                result = loginUser.getId();
+                break;
+            case "CURRENT_USERNAME":
+                result = loginUser.getUserName();
+                break;
+            case "CURRENT_USER_LEADID":
+                result = loginUser.getLeadId();
+                break;
+            case "CURRENT_USER_LEADNAME":
+                result = loginUser.getLeadName();
+                break;
+
+
+            case "CURRENT_USER_DEPTID":
+                result = loginUser.getDepId();
+                break;
+            case "CURRENT_USER_DEPTNAME":
+                result = loginUser.getDepName();
+                break;
+            case "CURRENT_USER_ORGAID":
+                result = loginUser.getOrganId();
+                break;
+            case "CURRENT_USER_ORGANAME":
+                result = loginUser.getOrganName();
+                break;
+
+            default:
+                break;
+
+        }
+
+        return result;
+    }
 
     /**
      * 插入对象加上插入信息

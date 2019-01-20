@@ -57,6 +57,9 @@ public class VsUserServiceImpl extends BaseServiceImpl<VsUserBO,String> implemen
 	@Override
 	public VsUserBO processResult(VsUserBO vsUserBO) {
 
+        vsUserBO.setLoginPassword(null);
+        vsUserBO.setSalt(null);
+
         try {
             String dictName = tsDictService.getDictName(vsUserBO.getSystemAdmin(), EnumDictType.YES_NO.getVal());
             vsUserBO.setSystemAdminName(dictName);

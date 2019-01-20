@@ -54,7 +54,7 @@ public enum EnumDefaultValue implements EnumBase<String> {
     }
 
 
-    public EnumDefaultValue getEnum(String code){
+    public static EnumDefaultValue getEnum(String code){
         for(EnumDefaultValue e : EnumDefaultValue.values()){
             if(e.code.equals(code)){
                 return e;

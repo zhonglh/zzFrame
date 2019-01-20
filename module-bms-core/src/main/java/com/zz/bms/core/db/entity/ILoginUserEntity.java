@@ -27,6 +27,12 @@ public interface ILoginUserEntity<PK extends Serializable> {
      */
     public PK getDepId();
 
+    /**
+     * 获取部门
+     * @return
+     */
+    public PK getDepName();
+
 
 
     /**
@@ -34,6 +40,14 @@ public interface ILoginUserEntity<PK extends Serializable> {
      * @return
      */
     public PK getOrganId();
+
+
+
+    /**
+     * 获取机构
+     * @return
+     */
+    public PK getOrganName();
 
     /**
      * 获取登录人员名称
@@ -60,6 +74,12 @@ public interface ILoginUserEntity<PK extends Serializable> {
      * @return
      */
     public boolean isSystemUser() ;
+
+
+
+    public String getLeadId() ;
+
+    public String getLeadName() ;
 
 
 }
