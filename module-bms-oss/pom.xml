@@ -20,6 +20,7 @@
         <module>module-bms-oss-base</module>
         <module>module-bms-oss-controller</module>
         <module>module-bms-oss-engine</module>
+        <module>project-bms-netdisk</module>
     </modules>
 
     <properties>
