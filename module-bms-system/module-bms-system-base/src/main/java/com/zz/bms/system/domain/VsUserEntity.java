@@ -7,6 +7,7 @@ import com.zz.bms.annotaions.*;
 import com.zz.bms.constants.DefaultTypeConstant;
 import com.zz.bms.constants.DictTypeConstant;
 import com.zz.bms.constants.ExcelTypeConstant;
+import com.zz.bms.constants.PageElementConstant;
 import com.zz.bms.core.Constant;
 import java.sql.Timestamp;
 import java.lang.String;
@@ -23,8 +24,8 @@ public class VsUserEntity extends TsUserEntity implements java.io.Serializable{
 
 	@EntityAttrDBAnnotation(attrName="部门名称" ,type = "varchar" ,  attrLength = 100 , notNull = true )
 	@EntityAttrFkAnnotation(group = "dep" , groupName = "部门" ,  isFkBusinessKey = true, isFkBusinessName = true , dbColumnName = "dep_name" , dbColumnType = "varchar" , dbColumnLength = 100 , dbColumnNotNull = true, fkEntity="com.zz.bms.system.bo.TsDepBO")
-	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.IMPORT_EXPORT)
-	@EntityAttrPageAnnotation(title = "部门名称",sort = 401 )
+	@EntityAttrExcelAnnotation()
+	@EntityAttrPageAnnotation(title = "部门名称",sort = 401  , pageElement = PageElementConstant.openwin )
 	private String  depName ;
 
 
@@ -38,7 +39,7 @@ public class VsUserEntity extends TsUserEntity implements java.io.Serializable{
 	@EntityAttrDBAnnotation(attrName="企业名称" ,type = "varchar" ,  attrLength = 150 , notNull = true )
 	@EntityAttrFkAnnotation(group = "tenant" , groupName = "企业" ,  isFkBusinessKey = true, isFkBusinessName = true , dbColumnName = "tenant_name" , dbColumnType = "varchar" , dbColumnLength = 150 , dbColumnNotNull = true, fkEntity="com.zz.bms.system.bo.TsTenantBO")
 	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_EXPORT)
-	@EntityAttrPageAnnotation(title = "机构名称",sort = 501 , required = true , defaultType = DefaultTypeConstant.CURRENT_USER_ORGANAME)
+	@EntityAttrPageAnnotation(title = "机构名称",sort = 501 , required = true , defaultType = DefaultTypeConstant.CURRENT_USER_ORGANNAME)
 	private String  tenantName ;
 
 

@@ -20,8 +20,8 @@ public class DefaultTypeConstant {
 
     public static final String CURRENT_USER_DEPTID = "CURRENT_USER_DEPTID";
     public static final String CURRENT_USER_DEPTNAME = "CURRENT_USER_DEPTNAME";
-    public static final String CURRENT_USER_ORGAID = "CURRENT_USER_ORGAID";
-    public static final String CURRENT_USER_ORGANAME = "CURRENT_USER_ORGANAME";
+    public static final String CURRENT_USER_ORGANID = "CURRENT_USER_ORGANID";
+    public static final String CURRENT_USER_ORGANNAME = "CURRENT_USER_ORGANNAME";
     public static final String CURRENT_USER_TENANTID = "CURRENT_USER_TENANTID";
     public static final String CURRENT_USER_TENANTNAME = "CURRENT_USER_TENANTNAME";
 

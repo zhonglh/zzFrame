@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import java.lang.String;
 
 import com.zz.bms.annotaions.*;
+import com.zz.bms.constants.DefaultTypeConstant;
 import com.zz.bms.constants.DictTypeConstant;
 import com.zz.bms.constants.ExcelTypeConstant;
 import com.zz.bms.constants.PageElementConstant;
@@ -88,22 +89,34 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
 	@EntityAttrPageAnnotation(title = "微信唯一ID",sort = 1100 )
 	private String  unionId ;
 
-	//系统管理人员
-	//yes_no        
+
+	@EntityAttrDBAnnotation(attrName="是否系统管理人员" ,type = "char" ,  attrLength = 1  )
+	@EntityAttrDictAnnotation(group = "systemAdmin", groupName = "是否系统管理人员" ,  isValueField = true , dictType = DictTypeConstant.YES_NO)
+	@EntityAttrPageAnnotation(title = "是否系统管理人员" , sort = 1200 , required = true, defaultType = DefaultTypeConstant.CUSTOM , defaultValue = "EnumYESNO.NO.getVal()")
 	private String  systemAdmin ;
 
-	//部门
-	
+
+
+	@EntityAttrDBAnnotation(attrName="部门" ,type = "char" ,  attrLength = 32 , notNull = false )
+	@EntityAttrFkAnnotation(group = "dep" , groupName = "部门" ,    dbColumnNotNull = true, fkEntity="com.zz.bms.system.bo.TsDepBO")
+	@EntityAttrPageAnnotation(title = "部门" , sort = 1300 , existEditPage = true , hidden = true  )
 	private String  depId ;
 
-	//机构
-	
+
+
+
+	@EntityAttrDBAnnotation(attrName="机构" ,type = "char" ,  attrLength = 32 , notNull = true )
+	@EntityAttrFkAnnotation(group = "organ" , groupName = "机构" ,    dbColumnNotNull = true, fkEntity="com.zz.bms.system.bo.TsOrganBO")
+	@EntityAttrPageAnnotation(title = "机构" , sort = 1400 ,  defaultType = DefaultTypeConstant.CURRENT_USER_ORGANID )
 	private String  organId ;
 
+
+	@EntityAttrDBAnnotation(attrName="页记录数" ,type = "int" ,  attrLength = 11 , notNull = true )
+	@EntityAttrPageAnnotation(title = "页记录数" , sort = 1500 ,  pageElement = PageElementConstant.digits)
 	private int pageLimit;
 
-	//备注
-	
+	@EntityAttrDBAnnotation(attrName="备注" ,type = "varchar" ,  attrLength = 500 )
+	@EntityAttrPageAnnotation(title = "备注" , sort = 1600 ,  pageElement = PageElementConstant.textarea)
 	private String  remark ;
 
 
