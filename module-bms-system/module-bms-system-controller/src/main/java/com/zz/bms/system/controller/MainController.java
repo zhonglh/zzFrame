@@ -3,13 +3,12 @@ package com.zz.bms.system.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.controller.base.controller.BaseBussinessController;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
-import com.zz.bms.core.enums.EnumYesNo;
+import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.shiro.utils.ShiroUtils;
 import com.zz.bms.system.bo.TsMyShortcutBO;
 import com.zz.bms.system.bo.TsNotificationBO;
 import com.zz.bms.system.bo.VsUserMenuBO;
 import com.zz.bms.system.domain.TsUserEntity;
-import com.zz.bms.system.logic.MenuLogic;
 import com.zz.bms.system.query.TsMyShortcutQuery;
 import com.zz.bms.system.query.TsNotificationQuery;
 import com.zz.bms.system.query.VsUserMenuQuery;
@@ -20,7 +19,6 @@ import com.zz.bms.system.service.TsMyShortcutService;
 import com.zz.bms.system.service.TsNotificationService;
 import com.zz.bms.system.service.VsUserMenuService;
 import com.zz.bms.system.websocket.ZzSendNotify;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -30,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 /**

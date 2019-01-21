@@ -1,12 +1,9 @@
 package com.zz.bms.oss.controller;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.controller.base.controller.ZzDefaultController;
-import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
 import com.zz.bms.core.db.mybatis.query.QueryImpl;
-import com.zz.bms.core.db.mybatis.query.QueryNullImpl;
-import com.zz.bms.core.enums.EnumYesNo;
+import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.InternalException;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.oss.base.entity.TsFilesEntity;

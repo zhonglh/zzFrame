@@ -15,5 +15,11 @@ public @interface EntityAttrCheckAnnotation {
     //检查内容是否符合该表达式
     public String[] checkRule() default {};
 
+    /**
+     * 提示的内容
+     * @return
+     */
+    public String[] checkTipMsg() default {};
+
 
 }

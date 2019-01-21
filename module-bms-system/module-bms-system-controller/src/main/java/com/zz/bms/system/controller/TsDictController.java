@@ -5,7 +5,7 @@ import com.zz.bms.controller.base.controller.ZzDefaultController;
 
 
 import com.zz.bms.core.db.entity.BaseEntity;
-import com.zz.bms.core.enums.EnumYesNo;
+import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.system.bo.TsDictBO;
 import com.zz.bms.system.bo.TsDictTypeBO;

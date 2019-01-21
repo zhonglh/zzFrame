@@ -1,9 +1,8 @@
 package com.zz.bms.system.websocket;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
-import com.zz.bms.core.enums.EnumYesNo;
+import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.InternalException;
 import com.zz.bms.system.bo.TsNotificationBO;
 import com.zz.bms.system.query.TsNotificationQuery;

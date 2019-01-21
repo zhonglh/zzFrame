@@ -14,24 +14,15 @@ import java.lang.annotation.*;
 @Documented
 public @interface EntityAttrPageAnnotation {
 
-    /**
-     * 组 ， 比如项目ID, 项目编码  项目名称是一组
-     * @return
-     */
-    public String group() default "";
 
-    /**
-     * 组对应的列名称(属性名称)
-     * @return
-     */
-    public String groupField() default "";
 
 
     /**
-     * 页面元素, 如input , select , check , file , lookup 等
+     * 页面元素, 如 text , select , check , file , lookup 等
+     * 参考 EnumPageElement 或 PageElementConstant
      * @return
      */
-    public String pageElement() default "input";
+    public String pageElement() default "text";
 
     /**
      * 是否隐藏
@@ -71,6 +62,12 @@ public @interface EntityAttrPageAnnotation {
      * @return
      */
     public int maxLength() default Integer.MAX_VALUE ;
+
+    /**
+     * 顺序
+     * @return
+     */
+    public int sort() default 999999999;
 
 
     /**

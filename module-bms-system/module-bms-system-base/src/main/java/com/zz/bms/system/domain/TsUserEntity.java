@@ -2,15 +2,10 @@ package com.zz.bms.system.domain;
 
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.zz.bms.annotaions.EntityAnnotation;
-import com.zz.bms.annotaions.EntityAttrDBAnnotation;
-import com.zz.bms.core.Constant;
-import java.sql.Timestamp;
+
 import java.lang.String;
-import java.lang.Integer;
+
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
-import com.zz.bms.core.enums.EnumYesNo;
 
 /**
  * 用户 实体类

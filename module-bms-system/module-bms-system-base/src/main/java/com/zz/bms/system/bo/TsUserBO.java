@@ -2,7 +2,7 @@ package com.zz.bms.system.bo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
-import com.zz.bms.core.enums.EnumYesNo;
+import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.system.domain.TsUserEntity;
 
 import com.baomidou.mybatisplus.annotation.TableName;

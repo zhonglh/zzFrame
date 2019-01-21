@@ -26,6 +26,7 @@ public @interface EntityAttrExcelAnnotation {
      */
     public int excelProcess() default 3;
 
+
     //todo
     //excel 导入时 不用像ftp 一样每个列都写一个类来处理，  根据注解， 自动循环每个属性来处理
 

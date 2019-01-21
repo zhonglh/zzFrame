@@ -2,7 +2,7 @@ package com.zz.bms.system.base;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.zz.bms.core.Constant;
-import com.zz.bms.core.enums.EnumYesNo;
+import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.enums.EnumUserStatus;
 import com.zz.bms.system.bo.VsUserBO;
 import com.zz.bms.system.service.VsUserService;
@@ -12,7 +12,6 @@ import com.zz.bms.util.spring.SpringUtil;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 
 public class UserBaseTest extends BaseTest {
 
