@@ -14,11 +14,6 @@ public interface ILoginUserEntity<PK extends Serializable> {
      */
     public PK getId();
 
-    /**
-     * 获取租户信息
-     * @return
-     */
-    public PK getTenantId();
 
 
     /**
@@ -31,7 +26,7 @@ public interface ILoginUserEntity<PK extends Serializable> {
      * 获取部门
      * @return
      */
-    public PK getDepName();
+    public String getDepName();
 
 
 
@@ -41,13 +36,29 @@ public interface ILoginUserEntity<PK extends Serializable> {
      */
     public PK getOrganId();
 
-
-
     /**
      * 获取机构
      * @return
      */
-    public PK getOrganName();
+    public String getOrganName();
+
+
+
+
+    /**
+     * 获取租户ID
+     * @return
+     */
+    public PK getTenantId();
+
+
+
+    /**
+     * 获取租户名称
+     * @return
+     */
+    public String getTenantName();
+
 
     /**
      * 获取登录人员名称

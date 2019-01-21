@@ -44,6 +44,11 @@ public class TsUserBO extends TsUserEntity implements Serializable , ILoginUserE
     }
 
     @Override
+    public String getTenantName() {
+        return null;
+    }
+
+    @Override
     public boolean isSystemUser() {
         return EnumYesNo.YES.getCode().equals(this.getSystemAdmin());
     }

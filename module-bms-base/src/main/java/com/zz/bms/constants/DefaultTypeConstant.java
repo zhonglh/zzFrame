@@ -1,10 +1,10 @@
 package com.zz.bms.constants;
 
 /**
- * 默认值常量 ， 同 EnumDefaultValue
+ * 默认值常量 ， 同 EnumDefaultType
  * @author Administrator
  */
-public class DefaultValueConstant {
+public class DefaultTypeConstant {
 
 
 
@@ -22,5 +22,9 @@ public class DefaultValueConstant {
     public static final String CURRENT_USER_DEPTNAME = "CURRENT_USER_DEPTNAME";
     public static final String CURRENT_USER_ORGAID = "CURRENT_USER_ORGAID";
     public static final String CURRENT_USER_ORGANAME = "CURRENT_USER_ORGANAME";
+    public static final String CURRENT_USER_TENANTID = "CURRENT_USER_TENANTID";
+    public static final String CURRENT_USER_TENANTNAME = "CURRENT_USER_TENANTNAME";
+
+    public static final String CUSTOM = "CUSTOM";
 
 }

@@ -24,7 +24,7 @@ public @interface EntityAttrExcelAnnotation {
      * 参考 EnumExcelType
      * @return
      */
-    public int excelProcess() default 3;
+    public String excelProcess() default "3";
 
 
     //todo

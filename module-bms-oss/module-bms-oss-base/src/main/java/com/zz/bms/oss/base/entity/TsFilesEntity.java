@@ -22,46 +22,46 @@ public class TsFilesEntity extends BaseBusinessExEntity<String> implements Seria
 	private static final long serialVersionUID = 1L;
 
 
-    @EntityAttrDBAnnotation(attrName="访问路径",sort=1  , attrLength=200    )
+    //@EntityAttrDBAnnotation(attrName="访问路径",sort=1  , attrLength=200    )
 	//不包括前缀  
 	private String accessUrl;
 
 
-    @EntityAttrDBAnnotation(attrName="文件所在主机",sort=2  , attrLength=30    )
+    //@EntityAttrDBAnnotation(attrName="文件所在主机",sort=2  , attrLength=30    )
 	private String fileHost;
 
 
-    @EntityAttrDBAnnotation(attrName="文件路径",sort=3  , attrLength=200    )
+    //@EntityAttrDBAnnotation(attrName="文件路径",sort=3  , attrLength=200    )
 	private String filePath;
 
 
-    @EntityAttrDBAnnotation(attrName="文件名",sort=4  , attrLength=100    )
+    //@EntityAttrDBAnnotation(attrName="文件名",sort=4  , attrLength=100    )
 	private String fileName;
 
 
-    @EntityAttrDBAnnotation(attrName="文件大小",sort=5  , attrLength=0    )
+    //@EntityAttrDBAnnotation(attrName="文件大小",sort=5  , attrLength=0    )
 	private Long fileSize;
 
 
-    @EntityAttrDBAnnotation(attrName="文件后缀",sort=6  , attrLength=10    )
+    //@EntityAttrDBAnnotation(attrName="文件后缀",sort=6  , attrLength=10    )
 	private String fileSuffix;
 
 
-    @EntityAttrDBAnnotation(attrName="文件引擎",sort=7  , attrLength=20    )
+    //@EntityAttrDBAnnotation(attrName="文件引擎",sort=7  , attrLength=20    )
 	//文件系统 七牛  阿里云  腾讯 FastNFS MongoDB
 	//参考EnumFileEngine
 	private String fileEngine;
 
 
-    @EntityAttrDBAnnotation(attrName="文件类型",sort=8  , attrLength=50    )
+    //@EntityAttrDBAnnotation(attrName="文件类型",sort=8  , attrLength=50    )
 	private String contentType;
 
 
-    @EntityAttrDBAnnotation(attrName="MD5码",sort=9  , attrLength=128    )
+    //@EntityAttrDBAnnotation(attrName="MD5码",sort=9  , attrLength=128    )
 	private String md5;
 
 
-    @EntityAttrDBAnnotation(attrName="使用次数",sort=10  , attrLength=0    )
+    //@EntityAttrDBAnnotation(attrName="使用次数",sort=10  , attrLength=0    )
 	private Integer useFrequency;
 
 

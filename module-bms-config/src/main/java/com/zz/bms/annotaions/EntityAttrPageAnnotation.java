@@ -15,7 +15,12 @@ import java.lang.annotation.*;
 public @interface EntityAttrPageAnnotation {
 
 
-
+    /**
+     * 标题
+     * 例如 user_name 的标题是 用户姓名
+     * @return
+     */
+    public String title();
 
     /**
      * 页面元素, 如 text , select , check , file , lookup 等
@@ -23,6 +28,12 @@ public @interface EntityAttrPageAnnotation {
      * @return
      */
     public String pageElement() default "text";
+
+    /**
+     * 是否在编辑界面中
+     * @return
+     */
+    public boolean existEditPage() default false;
 
     /**
      * 是否隐藏
@@ -35,6 +46,12 @@ public @interface EntityAttrPageAnnotation {
      * @return
      */
     public boolean readonly() default false;
+
+    /**
+     * 是否必须的
+     * @return
+     */
+    public boolean required() default false;
 
     /**
      * 如果是数字， 最小值
@@ -72,9 +89,12 @@ public @interface EntityAttrPageAnnotation {
 
     /**
      * 默认值 , 会有一些特殊的值需要解析(如当前日期， 当前登录人ID)
-     * 参考 EnumDefaultValue
+     * 参考 EnumDefaultType
      * @return
      */
-    public String defaultVal() default  "" ;
+    public String defaultType() default  "" ;
+
+
+    public String defaultValue() default  "" ;
 
 }

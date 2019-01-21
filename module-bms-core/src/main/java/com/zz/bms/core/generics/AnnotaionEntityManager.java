@@ -60,8 +60,9 @@ public class AnnotaionEntityManager {
             if(field.isAnnotationPresent(EntityAttrPageAnnotation.class)){
                 EntityAttrPageAnnotation pageAnnotation = field.getAnnotation(EntityAttrPageAnnotation.class);
                 ae.setPage(true);
-                ae.setGroup(pageAnnotation.group());
-                ae.setGroupField(pageAnnotation.groupField());
+                //todo
+                //ae.setGroup(pageAnnotation.group());
+                //ae.setGroupField(pageAnnotation.groupField());
                 if(StringUtils.isNotEmpty(ae.getGroup())){
                     List aes = groupMap.get(ae.getGroup());
                     if(aes == null){
@@ -75,7 +76,8 @@ public class AnnotaionEntityManager {
                 ae.setReadonly(pageAnnotation.readonly());
 
                 //todo 解析初始值 , 配合 EnumPageElement
-                ae.setDefaultVal(pageAnnotation.defaultVal());
+                ae.setDefaultType(pageAnnotation.defaultType());
+                ae.setDefaultVal(pageAnnotation.defaultValue());
 
                 if(ft.isAssignableFrom(Number.class)) {
                     ae.setMin(pageAnnotation.min());

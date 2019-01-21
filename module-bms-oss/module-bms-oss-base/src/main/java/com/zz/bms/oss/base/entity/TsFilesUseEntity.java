@@ -20,30 +20,30 @@ public class TsFilesUseEntity extends BaseBusinessExEntity<String> {
 
 	private static final long serialVersionUID = 1L;
 
-    @EntityAttrDBAnnotation(attrName="文件ID",sort=1  , attrLength=32    )
+    //@EntityAttrDBAnnotation(attrName="文件ID",sort=1  , attrLength=32    )
 	private String fileId;
 
-    @EntityAttrDBAnnotation(attrName="显示名称",sort=2  , attrLength=100    )
+    //@EntityAttrDBAnnotation(attrName="显示名称",sort=2  , attrLength=100    )
 	private String showName;
 
-    @EntityAttrDBAnnotation(attrName="业务类型",sort=3  , attrLength=80    )
+    //@EntityAttrDBAnnotation(attrName="业务类型",sort=3  , attrLength=80    )
 	private String businessType;
 
-    @EntityAttrDBAnnotation(attrName="业务临时ID",sort=4  , attrLength=32    )
+    //@EntityAttrDBAnnotation(attrName="业务临时ID",sort=4  , attrLength=32    )
 	private String businessTmpId;
 
-    @EntityAttrDBAnnotation(attrName="业务ID",sort=5  , attrLength=32    )
+    //@EntityAttrDBAnnotation(attrName="业务ID",sort=5  , attrLength=32    )
 	private String businessId;
 
 
 
-	@EntityAttrDBAnnotation(attrName="细分",sort=6  , attrLength=50    )
+	//@EntityAttrDBAnnotation(attrName="细分",sort=6  , attrLength=50    )
 	private String businessSubd;
 
-    @EntityAttrDBAnnotation(attrName="备注",sort=7  , attrLength=200    )
+    //@EntityAttrDBAnnotation(attrName="备注",sort=7  , attrLength=200    )
 	private String remark;
 
-    @EntityAttrDBAnnotation(attrName="租户ID",sort=14  , attrLength=32    )
+    //@EntityAttrDBAnnotation(attrName="租户ID",sort=14  , attrLength=32    )
 	private String tenantId;
 
 	public static long getSerialVersionUID() {

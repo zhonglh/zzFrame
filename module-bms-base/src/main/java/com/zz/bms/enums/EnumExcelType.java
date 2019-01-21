@@ -3,7 +3,7 @@ package com.zz.bms.enums;
 import com.zz.bms.core.enums.EnumBase;
 
 /**
- * Excel 类型
+ * Excel 处理类型
  * @author Administrator
  */
 public enum EnumExcelType implements EnumBase<String> {

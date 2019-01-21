@@ -3,8 +3,10 @@ package com.zz.bms.system.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.zz.bms.annotaions.EntityAnnotation;
-import com.zz.bms.annotaions.EntityAttrDBAnnotation;
+import com.zz.bms.annotaions.*;
+import com.zz.bms.constants.DefaultTypeConstant;
+import com.zz.bms.constants.DictTypeConstant;
+import com.zz.bms.constants.ExcelTypeConstant;
 import com.zz.bms.core.Constant;
 import java.sql.Timestamp;
 import java.lang.String;
@@ -18,19 +20,18 @@ import com.zz.bms.system.domain.TsUserEntity;
 public class VsUserEntity extends TsUserEntity implements java.io.Serializable{
 
 
-	/**
-	 * 直属领导名称
-	 */
-	private String leadUserName;
 
-	/**
-	 * 部门名称
-	 */
+	@EntityAttrDBAnnotation(attrName="部门名称" ,type = "varchar" ,  attrLength = 100 , notNull = true )
+	@EntityAttrFkAnnotation(group = "dep" , groupName = "部门" ,  isFkBusinessKey = true, isFkName = true , dbColumnName = "dep_name" , dbColumnType = "varchar" , dbColumnLength = 100 , dbColumnNotNull = true, fkEntity="com.zz.bms.system.bo.TsDepBO")
+	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.IMPORT_EXPORT)
+	@EntityAttrPageAnnotation(title = "部门名称",sort = 401 )
 	private String  depName ;
 
-	/**
-	 * 机构名称
-	 */
+
+	@EntityAttrDBAnnotation(attrName="机构名称" ,type = "varchar" ,  attrLength = 100 , notNull = true )
+	@EntityAttrFkAnnotation(group = "organ" , groupName = "机构" ,  isFkBusinessKey = true, isFkName = true , dbColumnName = "organ_name" , dbColumnType = "varchar" , dbColumnLength = 100 , dbColumnNotNull = true, fkEntity="com.zz.bms.system.bo.TsOrganBO")
+	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_EXPORT)
+	@EntityAttrPageAnnotation(title = "机构名称",sort = 501 , required = true , defaultType = DefaultTypeConstant.CURRENT_USER_DEPTID)
 	private String  organName ;
 
 	/**
@@ -70,11 +71,4 @@ public class VsUserEntity extends TsUserEntity implements java.io.Serializable{
     	return this.tenantName;
     }
 
-	public String getLeadUserName() {
-		return leadUserName;
-	}
-
-	public void setLeadUserName(String leadUserName) {
-		this.leadUserName = leadUserName;
-	}
 }

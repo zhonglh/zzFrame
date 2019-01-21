@@ -115,6 +115,9 @@ public class AnnotaionEntity implements Serializable{
     public Integer max = null ;
 
 
+
+    public String defaultType =   "" ;
+
     /**
      * 默认值 , 会有一些特殊的值需要解析(如当前日期， 当前登录人ID)
      * @return
@@ -288,5 +291,13 @@ public class AnnotaionEntity implements Serializable{
 
     public void setDefaultVal(String defaultVal) {
         this.defaultVal = defaultVal;
+    }
+
+    public String getDefaultType() {
+        return defaultType;
+    }
+
+    public void setDefaultType(String defaultType) {
+        this.defaultType = defaultType;
     }
 }

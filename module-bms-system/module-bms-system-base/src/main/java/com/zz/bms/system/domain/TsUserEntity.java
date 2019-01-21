@@ -30,7 +30,6 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
 	private String  loginPassword ;
 
 	//加密盐
-	
 	private String  salt ;
 
 	//状态

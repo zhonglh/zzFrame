@@ -2,11 +2,12 @@ package com.zz.bms.core.db.entity;
 
 import com.zz.bms.configs.BusinessConfig;
 import com.zz.bms.core.Constant;
-import com.zz.bms.core.enums.EnumYesNo;
 import com.zz.bms.util.base.data.DateKit;
 import com.zz.bms.util.base.java.IdUtils;
 
 import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @author Administrator
@@ -46,7 +47,7 @@ public class EntityUtil {
             bbe.setUpdateTime(currDate_);
             bbe.setUpdateUserId(sessionUserVO.getId());
             bbe.setVersionNo(Constant.INIT_VERSION);
-            bbe.setDeleteFlag(EnumYesNo.NO.getCode());
+            bbe.setDeleteFlag("0");
         }
         if(be instanceof BaseBusinessExEntity){
             BaseBusinessExEntity bbex = (BaseBusinessExEntity)be;
@@ -82,5 +83,6 @@ public class EntityUtil {
             bbex.setUpdateUserName(sessionUserVO.getUserName());
         }
     }
+
 
 }

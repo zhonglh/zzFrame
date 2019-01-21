@@ -19,43 +19,43 @@ public class VsFilesUseEntity extends TsFilesUseEntity {
 
 	private static final long serialVersionUID = 1L;
 
-    @EntityAttrDBAnnotation(attrName="访问路径",sort=15  , attrLength=200    )
+    //@EntityAttrDBAnnotation(attrName="访问路径",sort=15  , attrLength=200    )
 	//不包括前缀  
 	private String accessUrl;
 
 
-    @EntityAttrDBAnnotation(attrName="文件所在主机",sort=16  , attrLength=30    )
+    //@EntityAttrDBAnnotation(attrName="文件所在主机",sort=16  , attrLength=30    )
 	private String fileHost;
 
 
-    @EntityAttrDBAnnotation(attrName="文件路径",sort=17  , attrLength=200    )
+    //@EntityAttrDBAnnotation(attrName="文件路径",sort=17  , attrLength=200    )
 	private String filePath;
 
 
-    @EntityAttrDBAnnotation(attrName="文件大小",sort=18  , attrLength=0    )
+    //@EntityAttrDBAnnotation(attrName="文件大小",sort=18  , attrLength=0    )
 	private Long fileSize;
 
 
-    @EntityAttrDBAnnotation(attrName="文件后缀",sort=19  , attrLength=10    )
+    //@EntityAttrDBAnnotation(attrName="文件后缀",sort=19  , attrLength=10    )
 	private String fileSuffix;
 
 
-    @EntityAttrDBAnnotation(attrName="文件名",sort=20  , attrLength=100    )
+    //@EntityAttrDBAnnotation(attrName="文件名",sort=20  , attrLength=100    )
 	private String fileName;
 
 
-    @EntityAttrDBAnnotation(attrName="文件类型",sort=21  , attrLength=50    )
+    //@EntityAttrDBAnnotation(attrName="文件类型",sort=21  , attrLength=50    )
 	private String contentType;
 
 
-    @EntityAttrDBAnnotation(attrName="文件引擎",sort=22  , attrLength=20    )
+    //@EntityAttrDBAnnotation(attrName="文件引擎",sort=22  , attrLength=20    )
 	//文件系统 七牛  阿里云  腾讯 FastNFS MongoDB  
 	private String fileEngine;
 
-	@EntityAttrDBAnnotation(attrName="md5",sort=23  , attrLength=60    )
+	//@EntityAttrDBAnnotation(attrName="md5",sort=23  , attrLength=60    )
 	private String md5;
 
-	@EntityAttrDBAnnotation(attrName="md5",sort=24  )
+	//@EntityAttrDBAnnotation(attrName="md5",sort=24  )
 	private int useFrequency;
 
 

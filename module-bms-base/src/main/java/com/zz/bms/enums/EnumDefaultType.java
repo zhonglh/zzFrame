@@ -6,7 +6,7 @@ import com.zz.bms.core.enums.EnumBase;
  * 默认值枚举
  * @author Administrator
  */
-public enum EnumDefaultValue implements EnumBase<String> {
+public enum EnumDefaultType implements EnumBase<String> {
 
 
     CURRENT_YEAR("CURRENT_YEAR","当前年份" ),
@@ -23,6 +23,11 @@ public enum EnumDefaultValue implements EnumBase<String> {
     CURRENT_USER_DEPTNAME("CURRENT_USER_DEPTNAME","当前用户部门名称" ),
     CURRENT_USER_ORGAID("CURRENT_USER_ORGAID","当前用户机构ID" ),
     CURRENT_USER_ORGANAME("CURRENT_USER_ORGANAME","当前用户机构名称" ),
+    CURRENT_USER_TENANTID("CURRENT_USER_TENANTID","当前用户企业ID" ),
+    CURRENT_USER_TENANTNAME("CURRENT_USER_TENANTNAME","当前用户企业名称" ),
+
+
+    CUSTOM("CUSTOM","自定义" ),
 
 
         ;
@@ -32,7 +37,7 @@ public enum EnumDefaultValue implements EnumBase<String> {
     String code;
     String name;
 
-    EnumDefaultValue(String code, String name) {
+    EnumDefaultType(String code, String name) {
         this.code = code;
         this.name = name;
     }
@@ -57,12 +62,12 @@ public enum EnumDefaultValue implements EnumBase<String> {
 
 
     @Override
-    public EnumDefaultValue getEnum(String v){
-        return EnumDefaultValue.getEnumByValue(v);
+    public EnumDefaultType getEnum(String v){
+        return EnumDefaultType.getEnumByValue(v);
     }
 
-    public static EnumDefaultValue getEnumByValue(String code){
-        for(EnumDefaultValue e : EnumDefaultValue.values()){
+    public static EnumDefaultType getEnumByValue(String code){
+        for(EnumDefaultType e : EnumDefaultType.values()){
             if(e.code.equals(code)){
                 return e;
             }
