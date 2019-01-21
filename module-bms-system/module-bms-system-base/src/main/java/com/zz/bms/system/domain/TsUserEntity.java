@@ -5,6 +5,10 @@ import com.baomidou.mybatisplus.annotation.TableField;
 
 import java.lang.String;
 
+import com.zz.bms.annotaions.*;
+import com.zz.bms.constants.DictTypeConstant;
+import com.zz.bms.constants.ExcelTypeConstant;
+import com.zz.bms.constants.PageElementConstant;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 
 /**
@@ -17,51 +21,71 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
 
-	//用户姓名
-	
+
+	@EntityAttrDBAnnotation(attrName="用户姓名" ,type = "varchar" ,  attrLength = 50 , notNull = true )
+	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.IMPORT_EXPORT)
+	@EntityAttrPageAnnotation(title = "用户姓名",sort = 100 ,  existEditPage = true  , required = true  , isBusinessName = true)
 	private String  userName ;
 
-	//登录名
-	
+
+	@EntityAttrDBAnnotation(attrName="登录名" ,type = "varchar" ,  attrLength = 20 , notNull = true )
+	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.IMPORT_EXPORT)
+	@EntityAttrPageAnnotation(title = "登录名",sort = 200 , existEditPage = true  , required = true)
 	private String  loginName ;
 
-	//登录密码
-	
+
+	@EntityAttrDBAnnotation(attrName="登录密码" ,type = "varchar" ,  attrLength = 128 , notNull = true )
+	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_IMPORT)
+	@EntityAttrPageAnnotation(title = "登录密码",sort = 300 , pageElement= PageElementConstant.password, existEditPage = true  , maxLength = 20 , minLength = 6 ,required = true)
 	private String  loginPassword ;
 
-	//加密盐
+
+	@EntityAttrDBAnnotation(attrName="加密盐" ,type = "varchar" ,  attrLength = 64 , notNull = false )
+	@EntityAttrPageAnnotation(title = "加密盐",sort = 400 )
 	private String  salt ;
 
-	//状态
-	//字典类型: user_status        
+
+	@EntityAttrDBAnnotation(attrName="用户状态" ,type = "char" ,  attrLength = 1 , notNull = true )
+	@EntityAttrDictAnnotation(group = "userStatus", groupName = "用户状态" ,  isValueField = true , dictType = DictTypeConstant.USER_STATUS)
+	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_EXPORT)
+	@EntityAttrPageAnnotation(title = "用户状态",sort = 500 , required = true)
 	private String  userStatus ;
 
-	//上级领导
-	
+
+	@EntityAttrDBAnnotation(attrName="上级领导" ,type = "char" ,  attrLength = 32 , notNull = false )
+	@EntityAttrFkAnnotation(group = "leadUser" , groupName = "上级领导" ,  isFkId = true ,   dbColumnNotNull = true, fkEntity="com.zz.bms.system.bo.TsUserBO")
+	@EntityAttrPageAnnotation(title = "上级领导" , sort = 601 )
 	private String  leadUserId ;
 
-	//电话
-	
+
+	@EntityAttrDBAnnotation(attrName="电话" ,type = "varchar" ,  attrLength = 20 , notNull = true )
+	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.IMPORT_EXPORT)
+	@EntityAttrPageAnnotation(title = "电话",sort = 700 , pageElement= PageElementConstant.phone, existEditPage = true  , required = true , isBusinessKey = true)
 	private String  phone ;
 
-	//邮箱
-	
+
+	@EntityAttrDBAnnotation(attrName="邮箱" ,type = "varchar" ,  attrLength = 60 , notNull = true )
+	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.IMPORT_EXPORT)
+	@EntityAttrPageAnnotation(title = "邮箱",sort = 800 , pageElement= PageElementConstant.email, existEditPage = true  , required = true )
 	private String  email ;
 
 
 
-	//头像
-	
+
+	@EntityAttrDBAnnotation(attrName="头像" ,type = "char" ,  attrLength = 32  )
+	@EntityAttrPageAnnotation(title = "头像",sort = 900 )
 	private String  avatarImage ;
 
 
 
-	//微信ID
-	
+
+	@EntityAttrDBAnnotation(attrName="微信ID" ,type = "varchar" ,  attrLength = 64  )
+	@EntityAttrPageAnnotation(title = "微信ID",sort = 1000 )
 	private String  openId ;
 
-	//微信唯一ID
-	
+
+	@EntityAttrDBAnnotation(attrName="微信唯一ID" ,type = "varchar" ,  attrLength = 64  )
+	@EntityAttrPageAnnotation(title = "微信唯一ID",sort = 1100 )
 	private String  unionId ;
 
 	//系统管理人员

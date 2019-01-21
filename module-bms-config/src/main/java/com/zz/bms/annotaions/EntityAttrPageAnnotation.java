@@ -80,6 +80,25 @@ public @interface EntityAttrPageAnnotation {
      */
     public int maxLength() default Integer.MAX_VALUE ;
 
+
+
+
+
+
+    /**
+     * 是否为业务名称 ,  比如 project_name 为 true
+     * @return
+     */
+    public boolean isBusinessName() default false;
+
+    /**
+     * 是否为业务识别字段 ，
+     * 比如人员， 不能通过姓名识别， 需要通过工号或者身份证号码识别
+     * 如果识别字段为多个联合， 有多个字段值为 true
+     * @return
+     */
+    public boolean isBusinessKey() default false;
+
     /**
      * 顺序
      * @return

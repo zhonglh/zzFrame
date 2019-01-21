@@ -41,7 +41,7 @@ public @interface EntityAttrFkAnnotation {
      * 是否为外键名称 ,  比如 project_name 为 true
      * @return
      */
-    public boolean isFkName() default false;
+    public boolean isFkBusinessName() default false;
 
     /**
      * 是否为业务识别字段 ，
@@ -56,7 +56,7 @@ public @interface EntityAttrFkAnnotation {
      * 例如 project_id ,  project_code , project_name
      * @return
      */
-    public String dbColumnName() ;
+    public String dbColumnName() default "id";
 
 
     /**
@@ -64,19 +64,13 @@ public @interface EntityAttrFkAnnotation {
      * 如 char , varchar , date
      * @return
      */
-    public String dbColumnType() ;
+    public String dbColumnType() default "char";
 
     /**
      * 对应列的长度
      * @return
      */
-    public int dbColumnLength() ;
-
-    /**
-     * 对应列的小数点长度
-     * @return
-     */
-    public int dbColumnDecimals() default 0;
+    public int dbColumnLength() default 32;
 
     /**
      * 对应列是否可以为空
@@ -88,7 +82,7 @@ public @interface EntityAttrFkAnnotation {
 
     /**
      * 外键对应的实体类全称
-     * 例： com.zz.bms.system.VsUserBO
+     * 例： com.zz.bms.system.bo.TsUserBO
      * @return
      */
     public String fkEntity() ;

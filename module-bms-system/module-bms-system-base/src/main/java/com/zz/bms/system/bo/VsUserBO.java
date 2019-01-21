@@ -27,7 +27,7 @@ public class VsUserBO extends VsUserEntity implements Serializable {
     @TableField(exist = false)
     @EntityAttrDictAnnotation(group = "userStatus", groupName = "用户状态" ,  dbColumnName = "dict_name" , dbColumnLength = 50 , isNameField = true , dictType = DictTypeConstant.USER_STATUS)
     @EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_EXPORT)
-    @EntityAttrPageAnnotation(title = "用户状态" , sort = 101 , required = true, defaultType = DefaultTypeConstant.CUSTOM , defaultValue = "EnumUserStatus.normal.getLabel()")
+    @EntityAttrPageAnnotation(title = "用户状态" , sort = 501 , required = true, defaultType = DefaultTypeConstant.CUSTOM , defaultValue = "EnumUserStatus.normal.getLabel()")
     private String userStatusName ;
 
     @TableField(exist = false)
@@ -39,15 +39,15 @@ public class VsUserBO extends VsUserEntity implements Serializable {
 
     @TableField(exist = false)
     @EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.IMPORT_EXPORT)
-    @EntityAttrFkAnnotation(group = "leadUser" , groupName = "直属领导" ,  isFkName = true , dbColumnName = "user_name" , dbColumnType = "varchar" , dbColumnLength = 50 , dbColumnNotNull = true, fkEntity="com.zz.bms.system.bo.TsUserBO")
-    @EntityAttrPageAnnotation(title = "直属领导名称" , sort = 301 )
+    @EntityAttrFkAnnotation(group = "leadUser" , groupName = "上级领导" ,  isFkBusinessName = true , dbColumnName = "user_name" , dbColumnType = "varchar" , dbColumnLength = 50 , dbColumnNotNull = true, fkEntity="com.zz.bms.system.bo.TsUserBO")
+    @EntityAttrPageAnnotation(title = "上级领导名称" , sort = 601 )
     private String leadUserName;
 
 
     @TableField(exist = false)
     @EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.IMPORT_EXPORT)
     @EntityAttrFkAnnotation(group = "leadUser" , groupName = "直属领导" ,  isFkBusinessKey = true, dbColumnName = "phone" , dbColumnType = "varchar" , dbColumnLength = 20 , dbColumnNotNull = true, fkEntity="com.zz.bms.system.bo.TsUserBO")
-    @EntityAttrPageAnnotation(title = "直属领导手机号" , sort = 302 )
+    @EntityAttrPageAnnotation(title = "直属领导手机号" , sort = 602 )
     private String leadUserPhone;
 
 

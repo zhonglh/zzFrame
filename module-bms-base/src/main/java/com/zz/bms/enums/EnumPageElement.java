@@ -10,6 +10,7 @@ import com.zz.bms.core.enums.EnumBase;
 public enum EnumPageElement implements EnumBase<String> {
 
     text("input","text" , "文本") ,
+    password("input","password" , "密码") ,
     digits("input","digits" , "整数") ,
     number("input","number" , "数字") ,
     date("input","date" , "日期") ,

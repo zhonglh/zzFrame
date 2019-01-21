@@ -65,6 +65,14 @@ public class BaseUtil {
                 result = loginUser.getOrganName();
                 break;
 
+            case "CURRENT_USER_TENANTID":
+                result = loginUser.getTenantId();
+                break;
+
+            case "CURRENT_USER_TENANTNAME":
+                result = loginUser.getTenantName();
+                break;
+
             default:
                 break;
 

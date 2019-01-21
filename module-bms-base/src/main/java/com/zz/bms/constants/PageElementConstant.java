@@ -9,6 +9,7 @@ import com.zz.bms.enums.EnumPageElement;
 public class PageElementConstant {
 
     public static final String text = "text";
+    public static final String password = "password";
     public static final String digits = "digits";
     public static final String number = "number";
     public static final String date = "date";

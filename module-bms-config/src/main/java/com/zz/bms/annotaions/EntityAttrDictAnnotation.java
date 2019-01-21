@@ -49,11 +49,6 @@ public @interface EntityAttrDictAnnotation {
      */
     public int dbColumnLength() default 2;
 
-    /**
-     * 对应列的小数点长度
-     * @return
-     */
-    public int dbColumnDecimals() default 0;
 
     /**
      * 对应列是否可以为空
