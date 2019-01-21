@@ -51,8 +51,9 @@ public class AnnotaionEntityManager {
             if(field.isAnnotationPresent(EntityAttrCheckAnnotation.class)){
                 EntityAttrCheckAnnotation checkAnnotation = field.getAnnotation(EntityAttrCheckAnnotation.class);
                 ae.setCheck(true);
-                ae.setCheckRule(checkAnnotation.checkRule());
-                ae.setDictType(checkAnnotation.dictType());
+                //todo
+                //ae.setCheckRule(checkAnnotation.checkRule());
+                //ae.setDictType(checkAnnotation.dictType());
                 ae.setCustomCheck(ae.customCheck);
             }
 

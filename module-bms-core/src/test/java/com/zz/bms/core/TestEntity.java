@@ -19,7 +19,7 @@ public class TestEntity extends BaseBusinessExEntity<String> {
 
 
     @EntityAttrDBAnnotation(attrName="类型" , attrLength = 1 , notNull = true, sort = 90 )
-    @EntityAttrCheckAnnotation(checkRule = "[0,1]{1}" , dictType="YESNO")
+    @EntityAttrCheckAnnotation(checkRule = "[0,1]{1}")
     @EntityAttrPageAnnotation(group = "type" ,pageElement="select" )
     private String type ;
 

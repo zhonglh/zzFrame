@@ -49,7 +49,7 @@ public @interface EntityAttrPageAnnotation {
      * 如果是数字， 最小值
      * @return
      */
-    public int min() default Integer.MIN_VALUE ;
+    public int min() default 0 ;
 
 
     /**
@@ -57,6 +57,20 @@ public @interface EntityAttrPageAnnotation {
      * @return
      */
     public int max() default Integer.MAX_VALUE ;
+
+
+    /**
+     * 界面上最小输入长度
+     * @return
+     */
+    public int minLength() default 0 ;
+
+
+    /**
+     * 界面上最大输入长度
+     * @return
+     */
+    public int maxLength() default Integer.MAX_VALUE ;
 
 
     /**

@@ -254,10 +254,12 @@ public abstract class BaseBussinessController extends BaseController {
 
                     EntityAttrCheckAnnotation eac = field.getAnnotation(EntityAttrCheckAnnotation.class);
                     //检查规则
-                    if(eac != null && !eac.checkRule().isEmpty()){
-                        if(!Pattern.matches(eac.checkRule() ,val.toString())){
-                            String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_format.getI18n(), name);
-                            throw new BizException(EnumErrorMsg.check_data_format.getCode(), msg);
+                    if(eac != null && eac.checkRule() != null && eac.checkRule().length > 0 && val != null){
+                        for(String checkRule : eac.checkRule()) {
+                            if (!Pattern.matches(checkRule, val.toString())) {
+                                String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_format.getI18n(), name);
+                                throw new BizException(EnumErrorMsg.check_data_format.getCode(), msg);
+                            }
                         }
                     }
 
@@ -339,10 +341,12 @@ public abstract class BaseBussinessController extends BaseController {
 
                     EntityAttrCheckAnnotation eac = field.getAnnotation(EntityAttrCheckAnnotation.class);
                     //检查规则
-                    if(eac != null && !eac.checkRule().isEmpty()){
-                        if(!Pattern.matches(eac.checkRule() ,val.toString())){
-                            String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_format.getI18n(), name);
-                            throw new BizException(EnumErrorMsg.check_data_format.getCode(), msg);
+                    if(eac != null && eac.checkRule() != null && eac.checkRule().length > 0 && val != null){
+                        for(String checkRule : eac.checkRule()) {
+                            if (!Pattern.matches(checkRule, val.toString())) {
+                                String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_format.getI18n(), name);
+                                throw new BizException(EnumErrorMsg.check_data_format.getCode(), msg);
+                            }
                         }
                     }
 
