@@ -61,6 +61,11 @@ public enum EnumDataAuth implements EnumBase<String> {
     }
 
 
+    @Override
+    public EnumDataAuth getEnum(String v){
+        return EnumDataAuth.getEnumByValue(v);
+    }
+
     public static EnumDataAuth getEnumByValue(String v){
         for(EnumDataAuth enum1 : EnumDataAuth.values()){
             if(enum1.code.equals(v)){

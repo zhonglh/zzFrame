@@ -21,6 +21,13 @@ public interface EnumBase<T extends Serializable> extends IEnum<T>{
      */
     T getLabel();
 
+    /**
+     * 获取枚举
+     * @param val   值
+     * @return
+     */
+    EnumBase<T> getEnum(T val) ;
+
 
 
 }

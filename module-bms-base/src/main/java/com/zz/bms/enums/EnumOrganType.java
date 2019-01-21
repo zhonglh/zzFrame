@@ -23,6 +23,14 @@ public enum EnumOrganType implements EnumBase<String> {
   String theName ;
 
 
+
+
+
+    @Override
+    public EnumOrganType getEnum(String v){
+        return EnumOrganType.getEnumByValue(v);
+    }
+
    public static EnumOrganType getEnumByValue(String v){
        for(EnumOrganType enum1 : EnumOrganType.values()){
            if(enum1.theValue.equals(v)){

@@ -22,6 +22,13 @@ public enum EnumRoleStatus implements EnumBase<String> {
   String theName ;
 
 
+
+
+    @Override
+    public EnumRoleStatus getEnum(String v){
+        return EnumRoleStatus.getEnumByValue(v);
+    }
+
    public static EnumRoleStatus getEnumByValue(String v){
        for(EnumRoleStatus enum1 : EnumRoleStatus.values()){
            if(enum1.theValue.equals(v)){

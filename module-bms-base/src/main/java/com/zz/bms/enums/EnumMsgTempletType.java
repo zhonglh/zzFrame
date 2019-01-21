@@ -23,6 +23,12 @@ public enum EnumMsgTempletType implements EnumBase<String> {
   String theName ;
 
 
+
+    @Override
+    public EnumMsgTempletType getEnum(String v){
+        return EnumMsgTempletType.getEnumByValue(v);
+    }
+
    public static EnumMsgTempletType getEnumByValue(String v){
        for(EnumMsgTempletType enum1 : EnumMsgTempletType.values()){
            if(enum1.theValue.equals(v)){

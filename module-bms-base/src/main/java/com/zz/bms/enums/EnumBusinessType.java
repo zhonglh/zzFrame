@@ -20,9 +20,13 @@ public enum EnumBusinessType implements EnumBase<String> {
   String theName ;
 
 
+    @Override
+    public EnumBusinessType getEnum(String v){
+        return EnumBusinessType.getEnumByValue(v);
+    }
 
 
-   public static EnumBusinessType getEnumByValue(Serializable v){
+   public static EnumBusinessType getEnumByValue(String v){
        for(EnumBusinessType enum1 : EnumBusinessType.values()){
            if(enum1.theValue.equals(v)){
                return enum1;

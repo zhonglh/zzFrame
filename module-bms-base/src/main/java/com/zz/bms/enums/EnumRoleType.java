@@ -23,6 +23,11 @@ public enum EnumRoleType implements EnumBase<String> {
   String theName ;
 
 
+    @Override
+    public EnumRoleType getEnum(String v){
+        return EnumRoleType.getEnumByValue(v);
+    }
+
    public static EnumRoleType getEnumByValue(String v){
        for(EnumRoleType enum1 : EnumRoleType.values()){
            if(enum1.theValue.equals(v)){

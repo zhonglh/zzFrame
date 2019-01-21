@@ -23,6 +23,10 @@ public enum EnumDepStatus implements EnumBase<String> {
 
 
 
+    @Override
+    public EnumDepStatus getEnum(String v){
+        return EnumDepStatus.getEnumByValue(v);
+    }
 
    public static EnumDepStatus getEnumByValue(String v){
        for(EnumDepStatus enum1 : EnumDepStatus.values()){

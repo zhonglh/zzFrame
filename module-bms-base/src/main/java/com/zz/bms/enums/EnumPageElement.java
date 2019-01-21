@@ -50,7 +50,7 @@ public enum EnumPageElement implements EnumBase<String> {
 
     @Override
     public String getVal(){
-        return this.name();
+        return value;
     }
 
     @Override
@@ -61,12 +61,17 @@ public enum EnumPageElement implements EnumBase<String> {
 
     @Override
     public String getValue(){
-        return this.name();
+        return value;
     }
 
 
 
-    public static EnumPageElement getPageElement(String val){
+    @Override
+    public EnumPageElement getEnum(String v){
+        return EnumPageElement.getEnumByValue(v);
+    }
+
+    public static EnumPageElement getEnumByValue(String val){
         try {
             return EnumPageElement.valueOf(val);
         }catch(Exception e){

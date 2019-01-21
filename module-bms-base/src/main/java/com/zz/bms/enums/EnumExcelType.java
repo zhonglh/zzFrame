@@ -42,7 +42,13 @@ public enum EnumExcelType implements EnumBase<String> {
     }
 
 
-    public EnumExcelType getEnum(String code){
+
+    @Override
+    public EnumExcelType getEnum(String v){
+        return EnumExcelType.getEnumByValue(v);
+    }
+
+    public static  EnumExcelType getEnumByValue(String code){
         for(EnumExcelType e : EnumExcelType.values()){
             if(e.code.equals(code)){
                 return e;

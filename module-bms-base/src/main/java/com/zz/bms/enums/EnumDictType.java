@@ -36,4 +36,21 @@ public enum EnumDictType implements EnumBase<String> {
     public String getValue() {
         return code;
     }
+
+
+
+
+    @Override
+    public EnumDictType getEnum(String v){
+        return EnumDictType.getEnumByValue(v);
+    }
+
+    public static EnumDictType getEnumByValue(String v){
+        for(EnumDictType enum1 : EnumDictType.values()){
+            if(enum1.code.equals(v)){
+                return enum1;
+            }
+        }
+        return  null;
+    }
 }

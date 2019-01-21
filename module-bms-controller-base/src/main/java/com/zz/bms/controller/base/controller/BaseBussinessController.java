@@ -64,11 +64,10 @@ public abstract class BaseBussinessController extends BaseController {
             for(Field field : fields){
                 EntityAttrPageAnnotation pageAnnotation = field.getAnnotation(EntityAttrPageAnnotation.class);
                 if(StringUtils.isNotEmpty(pageAnnotation.defaultVal())){
-                    EnumDefaultValue defaultValue = EnumDefaultValue.getEnum(pageAnnotation.defaultVal());
+                    EnumDefaultValue defaultValue = EnumDefaultValue.getEnumByValue(pageAnnotation.defaultVal());
                     Object obj = getDefaultValue(defaultValue);
                     field.setAccessible(true);
-
-                        field.set(be , obj);
+                    field.set(be , obj);
                 }
             }
 

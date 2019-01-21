@@ -22,6 +22,11 @@ public enum EnumEntityType implements EnumBase<String> {
 
 
 
+    @Override
+    public EnumEntityType getEnum(String v){
+        return EnumEntityType.getEnumByValue(v);
+    }
+
    public static EnumEntityType getEnumByValue(String v){
        for(EnumEntityType enum1 : EnumEntityType.values()){
            if(enum1.theValue.equals(v)){

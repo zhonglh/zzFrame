@@ -26,6 +26,11 @@ public enum EnumMsgLanguage implements EnumBase<String> {
   String theName ;
 
 
+    @Override
+    public EnumMsgLanguage getEnum(String v){
+        return EnumMsgLanguage.getEnumByValue(v);
+    }
+
    public static EnumMsgLanguage getEnumByValue(String v){
        for(EnumMsgLanguage enum1 : EnumMsgLanguage.values()){
            if(enum1.theValue.equals(v)){

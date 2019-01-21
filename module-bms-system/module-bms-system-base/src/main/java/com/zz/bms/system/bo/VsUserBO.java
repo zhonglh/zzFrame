@@ -1,6 +1,8 @@
 package com.zz.bms.system.bo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.zz.bms.annotaions.EntityAttrDBAnnotation;
+import com.zz.bms.constants.DictTypeConstant;
 import com.zz.bms.system.domain.VsUserEntity;
 
 import com.baomidou.mybatisplus.annotation.TableName;

@@ -28,6 +28,13 @@ public enum EnumUserStatus implements EnumBase<String> {
     }
 
 
+
+
+    @Override
+    public EnumUserStatus getEnum(String v){
+        return EnumUserStatus.getEnumByValue(v);
+    }
+
     public static EnumUserStatus getEnumByValue(String v){
         for(EnumUserStatus enum1 : EnumUserStatus.values()){
             if(enum1.code.equals(v)){

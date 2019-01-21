@@ -36,6 +36,13 @@ public enum EnumNoticeType implements EnumBase<String> {
 
 
 
+
+
+    @Override
+    public EnumNoticeType getEnum(String v){
+        return EnumNoticeType.getEnumByValue(v);
+    }
+
     public static EnumNoticeType getEnumByValue(String v){
         for(EnumNoticeType enum1 : EnumNoticeType.values()){
             if(enum1.code.equals(v)){

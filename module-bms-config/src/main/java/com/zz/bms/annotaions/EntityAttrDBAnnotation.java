@@ -16,12 +16,14 @@ public @interface EntityAttrDBAnnotation {
     //属性名称
     public String attrName();
 
+    //属性类型(字段类型)
+    public String type() default "char";
+
     //属性长度
     public int attrLength() default 0;
 
     //属性小数点长度
     public int attrDecimals() default 0;
-
 
     //属性是否不能为空
     public boolean notNull() default false;

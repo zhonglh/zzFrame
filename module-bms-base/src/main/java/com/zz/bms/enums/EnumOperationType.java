@@ -26,6 +26,12 @@ public enum EnumOperationType implements EnumBase<String> {
 
 
 
+
+    @Override
+    public EnumOperationType getEnum(String v){
+        return EnumOperationType.getEnumByValue(v);
+    }
+
    public static EnumOperationType getEnumByValue(String v){
        for(EnumOperationType enum1 : EnumOperationType.values()){
            if(enum1.theValue.equals(v)){
