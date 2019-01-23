@@ -17,6 +17,7 @@ import com.zz.bms.util.BaseUtil;
 import com.zz.bms.util.base.BankNoValidateUtils;
 import com.zz.bms.util.base.data.SerializableUtil;
 import com.zz.bms.util.base.data.StringUtil;
+import com.zz.bms.util.configs.util.AnnotaionEntityUtil;
 import com.zz.bms.util.spring.ReflectionUtil;
 import com.zz.bms.util.spring.SpringUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -202,7 +203,7 @@ public abstract class BaseBussinessController extends BaseController {
 
                     //检查必填
                     if(checkRequired) {
-                        if (isEmpty && annotaionEntityManager.isRequired(dbAnnotation, fkAnnotation, dictAnnotation, pageAnnotation)) {
+                        if (isEmpty && AnnotaionEntityUtil.isRequired(dbAnnotation, fkAnnotation, dictAnnotation, pageAnnotation)) {
                             String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_required.getI18n(), name);
                             throw new BizException(EnumErrorMsg.check_data_required.getCode(), msg);
                         }
@@ -210,7 +211,7 @@ public abstract class BaseBussinessController extends BaseController {
 
                     if(checkLength) {
                         //检查长度
-                        int maxLength = annotaionEntityManager.maxLength(dbAnnotation, fkAnnotation, dictAnnotation, pageAnnotation);
+                        int maxLength = AnnotaionEntityUtil.maxLength(dbAnnotation, fkAnnotation, dictAnnotation, pageAnnotation);
 
                         if (!isEmpty && maxLength > 0) {
 
@@ -227,7 +228,7 @@ public abstract class BaseBussinessController extends BaseController {
                                 if ((str.length() - 1) > maxLength) {
                                     throw new BizException(EnumErrorMsg.check_data_too.getCode(), msg);
                                 } else {
-                                    if (str.indexOf("\\.") <= maxLength - annotaionEntityManager.decimalsLength(dbAnnotation, fkAnnotation)) {
+                                    if (str.indexOf("\\.") <= maxLength - AnnotaionEntityUtil.decimalsLength(dbAnnotation, fkAnnotation)) {
                                         msg = SpringUtil.getMessage(EnumErrorMsg.check_decimal_too.getI18n(), name);
                                         throw new BizException(EnumErrorMsg.check_decimal_too.getCode(), msg);
                                     }

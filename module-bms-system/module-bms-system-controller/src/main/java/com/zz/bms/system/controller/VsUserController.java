@@ -132,7 +132,7 @@ public class VsUserController extends ZzDefaultController<VsUserBO, String , VsU
 		setUpdateInfo(vsUserBO , loginUser);
 		vsUserBO.setVersionNo(temp.getVersionNo());
 
-		checkEntityLegality(vsUserBO);
+		checkEntityLegality(vsUserBO , false , true , true );
 		boolean success = false;
 		try {
 			Assert.notNull(vsUserBO.getId(),"出现内部错误");
