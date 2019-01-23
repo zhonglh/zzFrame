@@ -1,9 +1,7 @@
 package com.zz.bms.core.generics;
 
 
-import com.zz.bms.annotaions.EntityAttrCheckAnnotation;
-import com.zz.bms.annotaions.EntityAttrDBAnnotation;
-import com.zz.bms.annotaions.EntityAttrPageAnnotation;
+import com.zz.bms.util.configs.annotaions.*;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.util.spring.ReflectionUtil;
 import org.apache.commons.lang.StringUtils;
@@ -15,9 +13,88 @@ import java.util.*;
 /**
  * 处理类属性中的所有注解
  * 将所有的注解汇聚在 AnnotaionEntity 类里
+ * @author Administrator
  */
 @Component
 public class AnnotaionEntityManager {
+
+    /**
+     * 获取属性(字段)是否必填
+     * @param dbAnnotation
+     * @param fkAnnotation
+     * @param dictAnnotation
+     * @param pageAnnotation
+     * @return
+     */
+    public boolean isRequired(EntityAttrDBAnnotation dbAnnotation ,
+                         EntityAttrFkAnnotation fkAnnotation ,
+                         EntityAttrDictAnnotation dictAnnotation,
+                         EntityAttrPageAnnotation pageAnnotation){
+        if(!pageAnnotation.required()){
+            return false;
+        }
+        if(dbAnnotation != null){
+            return dbAnnotation.notNull();
+        }
+        if(fkAnnotation != null){
+            return fkAnnotation.dbColumnNotNull();
+        }
+        if(dictAnnotation != null){
+            return dictAnnotation.dbColumnNotNull();
+        }
+
+        throw EnumErrorMsg.code_error.toException();
+    }
+
+
+    /**
+     * 获取属性(字段)最大长度
+     * @param dbAnnotation
+     * @param fkAnnotation
+     * @param dictAnnotation
+     * @param pageAnnotation
+     * @return
+     */
+    public int  maxLength(EntityAttrDBAnnotation dbAnnotation ,
+                              EntityAttrFkAnnotation fkAnnotation ,
+                              EntityAttrDictAnnotation dictAnnotation,
+                              EntityAttrPageAnnotation pageAnnotation){
+
+        int pageMaxLength = pageAnnotation.maxLength();
+
+        if(dbAnnotation != null){
+            return Math.min(pageMaxLength , dbAnnotation.attrLength());
+        }
+        if(fkAnnotation != null){
+            return Math.min(pageMaxLength , fkAnnotation.dbColumnLength());
+        }
+        if(dictAnnotation != null){
+            return Math.min(pageMaxLength , dictAnnotation.dbColumnLength());
+        }
+
+        throw EnumErrorMsg.code_error.toException();
+    }
+
+    public int  decimalsLength(EntityAttrDBAnnotation dbAnnotation ,
+                          EntityAttrFkAnnotation fkAnnotation ){
+
+
+
+        if(dbAnnotation != null){
+            return dbAnnotation.attrDecimals();
+        }
+        if(fkAnnotation != null){
+            return fkAnnotation.dbColumnDecimals();
+        }
+
+        throw EnumErrorMsg.code_error.toException();
+    }
+
+
+
+
+    //todo
+    //Anntotain 重新编写过，  需要调整所有的逻辑
 
 
     public List<AnnotaionEntity>  takeAnnotaions(Class clz){

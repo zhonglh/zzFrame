@@ -9,7 +9,6 @@
   <version>1.0.1</version>
   <modules>
 
-    <module>module-bms-config</module>
     <module>module-bms-core</module>
 
     <module>module-bms-base</module>

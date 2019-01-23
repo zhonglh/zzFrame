@@ -1,10 +1,8 @@
 package com.zz.bms.controller.base.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zz.bms.annotaions.EntityAttrCheckAnnotation;
-import com.zz.bms.annotaions.EntityAttrDBAnnotation;
-import com.zz.bms.annotaions.EntityAttrPageAnnotation;
-import com.zz.bms.configs.BusinessConfig;
+import com.zz.bms.util.configs.annotaions.*;
+import com.zz.bms.util.configs.BusinessConfig;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.*;
 import com.zz.bms.core.enums.EnumErrorMsg;
@@ -22,6 +20,7 @@ import com.zz.bms.util.base.data.StringUtil;
 import com.zz.bms.util.spring.ReflectionUtil;
 import com.zz.bms.util.spring.SpringUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
@@ -36,6 +35,8 @@ import java.util.regex.Pattern;
  * @author Administrator
  */
 public abstract class BaseBussinessController extends BaseController {
+
+
 
 
     /**
@@ -149,75 +150,7 @@ public abstract class BaseBussinessController extends BaseController {
 
 
 
-    /**
-     * 检查实体数据的合法性
-     * @param entity
-     */
-    public void checkEntityLegality(BaseEntity entity){
-
-        List<Field> list = ReflectionUtil.getBusinessFields(entity.getClass(),EntityAttrPageAnnotation.class);
-
-        if(list != null && !list.isEmpty()){
-                for (Field field : list) {
-
-                    EntityAttrDBAnnotation eaa = field.getAnnotation(EntityAttrDBAnnotation.class);
-
-                    String name = SpringUtil.getMessage(entity.getClass().getName() + "." + field.getName());
-
-                    Object val = ReflectionUtil.getField(field, entity);
-                    boolean isEmpty = StringUtil.isEmpty(val);
-
-                    if (isEmpty) {
-                        continue;
-                    }
-
-                    //检查长度
-                    if(eaa.attrLength() >0 && !isEmpty){
-
-                        String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_too.getI18n(), name);
-
-                        if(val instanceof String){
-                            if(((String)val).length() > eaa.attrLength() ){
-                                throw new BizException(EnumErrorMsg.check_data_too.getCode(), msg);
-                            }
-                        }
-
-                        if(val instanceof Double || val instanceof BigDecimal){
-                            String str = val.toString();
-                            if((str.length() - 1 ) > eaa.attrLength()){
-                                throw new BizException(EnumErrorMsg.check_data_too.getCode(), msg);
-                            }else {
-                                if(str.indexOf("\\.")<= str.length() - eaa.attrDecimals()){
-                                    msg = SpringUtil.getMessage(EnumErrorMsg.check_decimal_too.getI18n(), name);
-                                    throw new BizException(EnumErrorMsg.check_decimal_too.getCode(), msg);
-                                }
-                            }
-                        }
-                    }
-
-                    EntityAttrCheckAnnotation eac = field.getAnnotation(EntityAttrCheckAnnotation.class);
-                    //检查规则
-                    if(eac != null && eac.checkRule() != null && eac.checkRule().length > 0 && val != null){
-                        for(String checkRule : eac.checkRule()) {
-                            if (!Pattern.matches(checkRule, val.toString())) {
-                                String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_format.getI18n(), name);
-                                throw new BizException(EnumErrorMsg.check_data_format.getCode(), msg);
-                            }
-                        }
-                    }
-
-                }
-
-        }
-    }
-
-
-
-    /**
-     * 检查实体数据的必填项和合法性
-     * @param entity
-     */
-    public void checkEntityRequired(BaseEntity entity){
+    public void checkInsertInfo(BaseEntity entity){
         if(entity == null || SerializableUtil.isEmpty(entity.getId())){
             throw EnumErrorMsg.code_error.toException();
         }
@@ -237,6 +170,18 @@ public abstract class BaseBussinessController extends BaseController {
                 businessEntity.setVersionNo(Constant.INIT_VERSION);
             }
         }
+    }
+
+
+    /**
+     * 检查实体数据的合法性
+     * @param entity            需要检查的实体
+     * @param checkRequired     是否检查必填
+     * @param checkLength       是否检查长度
+     * @param checkRule         是否检查规则
+     */
+    public void checkEntityLegality(BaseEntity entity , boolean checkRequired , boolean checkLength , boolean checkRule){
+
 
 
 
@@ -245,7 +190,10 @@ public abstract class BaseBussinessController extends BaseController {
         if(list != null && !list.isEmpty()){
 
                 for (Field field : list) {
-                    EntityAttrDBAnnotation eaa = field.getAnnotation(EntityAttrDBAnnotation.class);
+                    EntityAttrDBAnnotation dbAnnotation = field.getAnnotation(EntityAttrDBAnnotation.class);
+                    EntityAttrPageAnnotation pageAnnotation = field.getAnnotation(EntityAttrPageAnnotation.class);
+                    EntityAttrDictAnnotation dictAnnotation = field.getAnnotation(EntityAttrDictAnnotation.class);
+                    EntityAttrFkAnnotation fkAnnotation = field.getAnnotation(EntityAttrFkAnnotation.class);
 
                     String name = SpringUtil.getMessage(entity.getClass().getName() + "." + field.getName());
 
@@ -253,42 +201,52 @@ public abstract class BaseBussinessController extends BaseController {
                     boolean isEmpty = StringUtil.isEmpty(val);
 
                     //检查必填
-                    if (eaa.notNull() && isEmpty) {
-                        String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_required.getI18n(), name);
-                        throw new BizException(EnumErrorMsg.check_data_required.getCode(), msg);
+                    if(checkRequired) {
+                        if (isEmpty && annotaionEntityManager.isRequired(dbAnnotation, fkAnnotation, dictAnnotation, pageAnnotation)) {
+                            String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_required.getI18n(), name);
+                            throw new BizException(EnumErrorMsg.check_data_required.getCode(), msg);
+                        }
                     }
 
-                    //检查长度
-                    if(eaa.attrLength() >0 && !isEmpty){
+                    if(checkLength) {
+                        //检查长度
+                        int maxLength = annotaionEntityManager.maxLength(dbAnnotation, fkAnnotation, dictAnnotation, pageAnnotation);
 
-                        String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_too.getI18n(), name);
+                        if (!isEmpty && maxLength > 0) {
 
-                        if(val instanceof String){
-                            if(((String)val).length() > eaa.attrLength() ){
-                                throw new BizException(EnumErrorMsg.check_data_too.getCode(), msg);
+                            String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_too.getI18n(), name);
+
+                            if (val instanceof String) {
+                                if (((String) val).length() > maxLength) {
+                                    throw new BizException(EnumErrorMsg.check_data_too.getCode(), msg);
+                                }
                             }
-                        }
 
-                        if(val instanceof Double || val instanceof BigDecimal){
-                            String str = val.toString();
-                            if((str.length() - 1 ) > eaa.attrLength()){
-                                throw new BizException(EnumErrorMsg.check_data_too.getCode(), msg);
-                            }else {
-                                if(str.indexOf("\\.")<= str.length() - eaa.attrDecimals()){
-                                    msg = SpringUtil.getMessage(EnumErrorMsg.check_decimal_too.getI18n(), name);
-                                    throw new BizException(EnumErrorMsg.check_decimal_too.getCode(), msg);
+                            if (val instanceof Double || val instanceof BigDecimal) {
+                                String str = val.toString();
+                                if ((str.length() - 1) > maxLength) {
+                                    throw new BizException(EnumErrorMsg.check_data_too.getCode(), msg);
+                                } else {
+                                    if (str.indexOf("\\.") <= maxLength - annotaionEntityManager.decimalsLength(dbAnnotation, fkAnnotation)) {
+                                        msg = SpringUtil.getMessage(EnumErrorMsg.check_decimal_too.getI18n(), name);
+                                        throw new BizException(EnumErrorMsg.check_decimal_too.getCode(), msg);
+                                    }
                                 }
                             }
                         }
                     }
 
-                    EntityAttrCheckAnnotation eac = field.getAnnotation(EntityAttrCheckAnnotation.class);
-                    //检查规则
-                    if(eac != null && eac.checkRule() != null && eac.checkRule().length > 0 && val != null){
-                        for(String checkRule : eac.checkRule()) {
-                            if (!Pattern.matches(checkRule, val.toString())) {
-                                String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_format.getI18n(), name);
-                                throw new BizException(EnumErrorMsg.check_data_format.getCode(), msg);
+
+                    if(checkRule) {
+                        //检查规则
+                        EntityAttrCheckAnnotation eac = field.getAnnotation(EntityAttrCheckAnnotation.class);
+
+                        if (eac != null && eac.checkRule() != null && eac.checkRule().length > 0 && val != null) {
+                            for (String cr : eac.checkRule()) {
+                                if (!Pattern.matches(cr, val.toString())) {
+                                    String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_format.getI18n(), name);
+                                    throw new BizException(EnumErrorMsg.check_data_format.getCode(), msg);
+                                }
                             }
                         }
                     }

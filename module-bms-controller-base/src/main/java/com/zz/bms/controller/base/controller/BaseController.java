@@ -6,6 +6,7 @@ import com.zz.bms.controller.base.converteditor.TimestampConvertEditor;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
+import com.zz.bms.core.generics.AnnotaionEntityManager;
 import com.zz.bms.core.ui.Pages;
 import com.zz.bms.shiro.utils.ShiroUtils;
 import com.zz.bms.util.spring.SpringUtil;
@@ -50,6 +51,12 @@ public abstract class BaseController {
 
     @Autowired(required = false)
     private SessionLocaleResolver localeResolver;
+
+
+
+    @Autowired
+    protected AnnotaionEntityManager annotaionEntityManager;
+
     /**
      * 将前台传递过来的日期格式的字符串，自动转化为Date类型
      *

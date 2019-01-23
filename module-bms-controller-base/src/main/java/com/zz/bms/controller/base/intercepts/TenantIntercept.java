@@ -1,18 +1,15 @@
 package com.zz.bms.controller.base.intercepts;
 
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.zz.bms.configs.AppConfig;
-import com.zz.bms.configs.BusinessConfig;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.shiro.utils.ShiroUtils;
+import com.zz.bms.util.configs.BusinessConfig;
 import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.core.annotation.Order;
-import org.springframework.util.ReflectionUtils;
 
 import java.io.Serializable;
 
@@ -45,6 +42,7 @@ public class TenantIntercept {
                     if (arg == null) {
                         continue;
                     } else if (arg instanceof BaseEntity) {
+                        //todo
                         //问题和 Wrapper 的情况一样， 不知道要不要给 tenantId 加上值
                         Serializable tenantId = loginUser.getTenantId();
                         ((BaseEntity) arg).setTenantId(tenantId);

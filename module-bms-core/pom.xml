@@ -36,8 +36,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.zz.bms</groupId>
-            <artifactId>module-bms-config</artifactId>
+            <groupId>com.zz.bms.util</groupId>
+            <artifactId>configs</artifactId>
             <version>1.0.1</version>
         </dependency>
 

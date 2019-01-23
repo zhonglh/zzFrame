@@ -1,6 +1,6 @@
 package com.zz.bms.core.db.entity;
 
-import com.zz.bms.configs.BusinessConfig;
+import com.zz.bms.util.configs.BusinessConfig;
 import com.zz.bms.core.Constant;
 import com.zz.bms.util.base.data.DateKit;
 import com.zz.bms.util.base.java.IdUtils;

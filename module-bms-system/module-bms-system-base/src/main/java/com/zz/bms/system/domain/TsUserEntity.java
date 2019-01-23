@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 
 import java.lang.String;
 
-import com.zz.bms.annotaions.*;
+import com.zz.bms.util.configs.annotaions.*;
 import com.zz.bms.constants.DefaultTypeConstant;
 import com.zz.bms.constants.DictTypeConstant;
 import com.zz.bms.constants.ExcelTypeConstant;

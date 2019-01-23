@@ -1,18 +1,14 @@
 package com.zz.bms.system.domain;
 
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.zz.bms.annotaions.*;
+import com.zz.bms.util.configs.annotaions.EntityAttrDBAnnotation;
+import com.zz.bms.util.configs.annotaions.EntityAttrExcelAnnotation;
+import com.zz.bms.util.configs.annotaions.EntityAttrFkAnnotation;
+import com.zz.bms.util.configs.annotaions.EntityAttrPageAnnotation;
 import com.zz.bms.constants.DefaultTypeConstant;
-import com.zz.bms.constants.DictTypeConstant;
 import com.zz.bms.constants.ExcelTypeConstant;
 import com.zz.bms.constants.PageElementConstant;
-import com.zz.bms.core.Constant;
-import java.sql.Timestamp;
-import java.lang.String;
-import java.lang.Integer;
-import com.zz.bms.system.domain.TsUserEntity;
+
 /**
  * 用户 实体类
  * @author Administrator

@@ -3,7 +3,7 @@ package com.zz.bms.system.bo;
 import com.zz.bms.system.domain.TsMyShortcutEntity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.zz.bms.annotaions.EntityAnnotation;
+import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 
 import java.io.Serializable;
 

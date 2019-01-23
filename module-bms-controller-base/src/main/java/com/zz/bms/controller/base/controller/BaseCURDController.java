@@ -3,7 +3,7 @@ package com.zz.bms.controller.base.controller;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zz.bms.configs.AppConfig;
+import com.zz.bms.util.configs.AppConfig;
 import com.zz.bms.controller.base.PermissionList;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.base.service.BaseService;
@@ -259,14 +259,18 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         this.setInsertInfo(m, sessionUserVO);
         this.setCustomInfoByInsert(m);
         this.processBO(m);
-        checkEntityRequired(m);
+
 
         boolean success = false;
         try{
             insertBefore(m);
+            checkInsertInfo(m);
+            checkEntityLegality(m , true , true , true);
             success = baseService.save(m);
             insertAfter(m);
 
+        }catch(RuntimeException e){
+            throw e;
         }catch(Exception e){
             logger.error(e.getMessage() , e);
             throw DbException.DB_SAVE_SAME;
@@ -312,14 +316,18 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         this.setUpdateInfo(m, sessionUserVO);
         setCustomInfoByUpdate(m);
         this.processBO(m);
-        checkEntityLegality(m);
+
 
         boolean success = false;
         try {
             updateBefore(m);
+            checkEntityLegality(m , false , true , true);
             Assert.notNull(m.getId(),"出现内部错误");
             success = baseService.updateById(m);
             updateAfter(m);
+
+        }catch(RuntimeException e){
+            throw e;
         }catch(Exception e){
             logger.error(e.getMessage() , e);
             throw DbException.DB_SAVE_SAME;

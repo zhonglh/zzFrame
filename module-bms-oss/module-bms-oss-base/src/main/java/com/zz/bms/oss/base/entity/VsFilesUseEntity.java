@@ -2,8 +2,7 @@ package com.zz.bms.oss.base.entity;
 
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.zz.bms.annotaions.EntityAnnotation;
-import com.zz.bms.annotaions.EntityAttrDBAnnotation;
+import com.zz.bms.util.configs.annotaions.*;
 
 import java.lang.String;
 

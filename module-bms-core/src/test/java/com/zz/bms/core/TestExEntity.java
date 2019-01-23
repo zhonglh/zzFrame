@@ -1,9 +1,6 @@
 package com.zz.bms.core;
 
-import com.zz.bms.annotaions.EntityAttrCheckAnnotation;
-import com.zz.bms.annotaions.EntityAttrDBAnnotation;
-import com.zz.bms.annotaions.EntityAttrExcelAnnotation;
-import com.zz.bms.annotaions.EntityAttrPageAnnotation;
+import com.zz.bms.util.configs.annotaions.*;
 
 /**
  * @author Administrator

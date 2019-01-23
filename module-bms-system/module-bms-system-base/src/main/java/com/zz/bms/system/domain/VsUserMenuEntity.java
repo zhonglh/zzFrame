@@ -3,8 +3,8 @@ package com.zz.bms.system.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.zz.bms.annotaions.EntityAnnotation;
-import com.zz.bms.annotaions.EntityAttrDBAnnotation;
+import com.zz.bms.util.configs.annotaions.EntityAnnotation;
+import com.zz.bms.util.configs.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.core.Constant;
 import java.lang.String;
 import java.lang.Integer;
