@@ -101,6 +101,19 @@ public abstract class BaseController<M extends BaseEntity<PK>, PK extends Serial
         return null;
     }
 
+
+
+
+    protected HttpServletRequest getHttpServletRequest(){
+        return ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+    }
+
+
+    protected Locale getLocale(){
+        return getLocale(getHttpServletRequest());
+    }
+
+
     protected Locale getLocale(HttpServletRequest req){
         return RequestContextUtils.getLocale (req);
     }
@@ -112,9 +125,10 @@ public abstract class BaseController<M extends BaseEntity<PK>, PK extends Serial
         localeResolver.setLocale (request, response, locale);
         request.getSession ().setAttribute ("locale", locale);
     }
-    public Locale parseLocale(String slocale){
+
+    public Locale parseLocale(String locale){
         try {
-            Matcher matcher = pattern.matcher (slocale);
+            Matcher matcher = pattern.matcher (locale);
             if (matcher.find ()) {
                 String language = matcher.group (1);
                 String country = matcher.group (2);
@@ -129,10 +143,18 @@ public abstract class BaseController<M extends BaseEntity<PK>, PK extends Serial
     }
 
 
-    protected String getMsg(String key,HttpServletRequest request,Object ... args){
+    protected String getMessage(HttpServletRequest request,String key,Object ... args){
         return SpringUtil.getMessage (getLocale (request) ,key, args );
     }
 
+    protected String getMessage(String key,Object ... args){
+        return SpringUtil.getMessage (getLocale (getHttpServletRequest()) ,key, args );
+    }
+
+
+    protected String getMessage(String key,String defaultVal , Object ... args){
+        return SpringUtil.getMessage (getLocale (getHttpServletRequest()) ,key, defaultVal ,args );
+    }
 
 
 

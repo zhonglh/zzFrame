@@ -4,7 +4,6 @@ package com.zz.bms.controller.base.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zz.bms.controller.base.PermissionList;
 import com.zz.bms.core.Constant;
-import com.zz.bms.core.db.base.service.BaseService;
 import com.zz.bms.core.db.entity.BaseBusinessEntity;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.EntityUtil;
@@ -29,7 +28,6 @@ import com.zz.bms.util.configs.util.AnnotaionEntityUtil;
 import com.zz.bms.util.spring.ReflectionUtil;
 import com.zz.bms.util.spring.SpringUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -276,7 +274,8 @@ public abstract class BusinessController<M extends BaseEntity<PK>, PK extends Se
                 EntityAttrDictAnnotation dictAnnotation = field.getAnnotation(EntityAttrDictAnnotation.class);
                 EntityAttrFkAnnotation fkAnnotation = field.getAnnotation(EntityAttrFkAnnotation.class);
 
-                String name = SpringUtil.getMessage(entity.getClass().getName() + "." + field.getName());
+                String name = this.getMessage(entity.getClass().getName() + "." + field.getName() , pageAnnotation.title());
+
 
                 Object val = ReflectionUtil.getField(field, entity);
                 boolean isEmpty = StringUtil.isEmpty(val);
