@@ -11,7 +11,7 @@ import com.zz.bms.system.domain.VsUserEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
-
+import java.util.Date;
 
 
 /**
@@ -32,7 +32,7 @@ public class VsUserBO extends VsUserEntity implements Serializable {
 
     @TableField(exist = false)
     @EntityAttrDictAnnotation(group = "systemAdmin", groupName = "是否系统管理人员" ,  dbColumnName = "dict_name" , isNameField = true , dictType = DictTypeConstant.YES_NO)
-    @EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_EXPORT)
+    @EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.NONE)
     @EntityAttrPageAnnotation(title = "是否系统管理人员" , sort = 201 , required = true, defaultType = DefaultTypeConstant.CUSTOM , defaultValue = "EnumYESNO.NO.getLabel()")
     private String systemAdminName ;
 
@@ -49,6 +49,51 @@ public class VsUserBO extends VsUserEntity implements Serializable {
     @EntityAttrFkAnnotation(group = "leadUser" , groupName = "直属领导" ,  isFkBusinessKey = true, dbColumnName = "phone" , dbColumnType = "varchar" , dbColumnLength = 20 , dbColumnNotNull = true, fkEntity="com.zz.bms.system.bo.TsUserBO")
     @EntityAttrPageAnnotation(title = "直属领导手机号" , sort = 602 )
     private String leadUserPhone;
+
+
+
+    @TableField(exist = false)
+    @EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_EXPORT)
+    @EntityAttrPageAnnotation(title = "年龄" , sort = 1301  , maxLength=2)
+    private int age =3102 ;
+
+    @TableField(exist = false)
+    @EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_EXPORT)
+    @EntityAttrPageAnnotation(title = "工资" , sort = 1301 , maxLength=8)
+    private double salary = 1210011.83 ;
+
+    @TableField(exist = false)
+    @EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_EXPORT)
+    @EntityAttrPageAnnotation(title = "生日" , sort = 1301  , maxLength=10)
+    private Date bithDay = new Date() ;
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public Date getBithDay() {
+        return bithDay;
+    }
+
+    public void setBithDay(Date bithDay) {
+        this.bithDay = bithDay;
+    }
+
+
+
+
 
 
 
@@ -84,6 +129,9 @@ public class VsUserBO extends VsUserEntity implements Serializable {
     public void setLeadUserPhone(String leadUserPhone) {
         this.leadUserPhone = leadUserPhone;
     }
+
+
+
 
     @Override
     public String toString() {

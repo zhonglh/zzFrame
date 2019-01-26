@@ -23,6 +23,7 @@
         <servlet.version>3.1.0</servlet.version>
         <servlet-api.version>2.4</servlet-api.version>
         <jsp.version>2.0</jsp.version>
+
         <kaptcha-version>2.3</kaptcha-version>
     </properties>
 

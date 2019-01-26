@@ -2,24 +2,18 @@ package com.zz.bms.system.controller;
 
 import com.zz.bms.controller.base.controller.ZzDefaultController;
 import com.zz.bms.core.db.entity.BaseEntity;
-import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.enums.EnumUserStatus;
 import com.zz.bms.shiro.utils.ShiroUtils;
-
-
-
 import com.zz.bms.system.bo.VsUserBO;
-import  com.zz.bms.system.query.impl.VsUserQueryWebImpl;
-
+import com.zz.bms.system.query.impl.VsUserQueryWebImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -83,9 +77,8 @@ public class VsUserController extends ZzDefaultController<VsUserBO, String , VsU
 
 
 	/**
-	 * 修改个人设置
+	 * 修改登录人自己的设置
 	 * @param vsUserBO
-	 * @param id
 	 * @param origPassword
 	 * @param newPassword
 	 * @param model
@@ -93,14 +86,12 @@ public class VsUserController extends ZzDefaultController<VsUserBO, String , VsU
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = "/{id}/updateMyProfile" , method = RequestMethod.POST)
+	@RequestMapping(value = "/updateMyProfile" , method = RequestMethod.POST)
 	@ResponseBody
-	public Object updateMyProfile(VsUserBO vsUserBO ,  @PathVariable("id") String id, String origPassword, String newPassword,
+	public Object updateMyProfile(VsUserBO vsUserBO ,   String origPassword, String newPassword,
 								  ModelMap model, HttpServletRequest request, HttpServletResponse response) {
-		ILoginUserEntity loginUser = this.getSessionUser();
-		if(!loginUser.getId().equals(id)){
-			return AjaxJson.illegalAjax;
-		}
+
+		String id = this.getSessionUser().getId();
 
 		vsUserBO.setId(id);
 		VsUserBO temp = this.baseService.getById(id);
@@ -129,7 +120,7 @@ public class VsUserController extends ZzDefaultController<VsUserBO, String , VsU
 		}
 
 
-		setUpdateInfo(vsUserBO , loginUser);
+		setUpdateInfo(vsUserBO , this.getSessionUser());
 		vsUserBO.setVersionNo(temp.getVersionNo());
 
 		checkEntityLegality(vsUserBO , false , true , true );

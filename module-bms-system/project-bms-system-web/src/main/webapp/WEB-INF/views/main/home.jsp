@@ -265,7 +265,7 @@
 </div>
 
 <div class="hidden">
-    <form id="formProfile" class="form-horizontal" action="${ctx}/system/user/${loginUser.id}/updateMyProfile" method="post">
+    <form id="formProfile" class="form-horizontal" action="${ctx}/system/user/updateMyProfile" method="post">
         <input name="headImg" type="hidden" value="default.png">
         <table width="100%">
             <tr>

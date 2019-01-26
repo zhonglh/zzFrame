@@ -79,7 +79,8 @@ public class PermissionList implements Serializable {
     }
 
     public void assertHasViewPermission() {
-        assertHasPermission(VIEW_PERMISSION, "no.view.permission");
+        //都有查看权限
+        //assertHasPermission(VIEW_PERMISSION, "no.view.permission");
     }
 
     /**

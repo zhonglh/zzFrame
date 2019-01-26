@@ -1,10 +1,15 @@
 package com.zz.bms.controller.base.controller;
 
+
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zz.bms.util.configs.annotaions.*;
-import com.zz.bms.util.configs.BusinessConfig;
+import com.zz.bms.controller.base.PermissionList;
 import com.zz.bms.core.Constant;
-import com.zz.bms.core.db.entity.*;
+import com.zz.bms.core.db.base.service.BaseService;
+import com.zz.bms.core.db.entity.BaseBusinessEntity;
+import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.db.entity.EntityUtil;
+import com.zz.bms.core.db.entity.ILoginUserEntity;
+import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.ui.Pages;
@@ -17,25 +22,100 @@ import com.zz.bms.util.BaseUtil;
 import com.zz.bms.util.base.BankNoValidateUtils;
 import com.zz.bms.util.base.data.SerializableUtil;
 import com.zz.bms.util.base.data.StringUtil;
+import com.zz.bms.util.base.java.GenericsHelper;
+import com.zz.bms.util.configs.BusinessConfig;
+import com.zz.bms.util.configs.annotaions.*;
 import com.zz.bms.util.configs.util.AnnotaionEntityUtil;
 import com.zz.bms.util.spring.ReflectionUtil;
 import com.zz.bms.util.spring.SpringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
-/**
- * @author Administrator
- */
-public abstract class BaseBussinessController extends BaseController {
+public abstract class BusinessController<M extends BaseEntity<PK>, PK extends Serializable, Q extends Query> extends BaseController<M,PK> {
+
+
+    /**
+     * 判断列表是否需要设置一些公共信息
+     */
+    protected boolean listAlsoSetCommonData = true;
+
+    /**
+     * 本功能总的权限列表
+     */
+    protected PermissionList permissionList = null;
+
+    /**
+     * 本功能的资源名称
+     */
+    private String resourceIdentity = null;
+
+
+    /**
+     * 实体类型
+     */
+    protected final Class<M> entityClass;
+
+
+    public BusinessController(){
+        this.entityClass = GenericsHelper.getSuperClassGenricType(getClass(), 0);
+    }
+
+
+
+
+
+    /**
+     * 列表也设置common data
+     */
+    public void setListAlsoSetCommonData(boolean listAlsoSetCommonData) {
+        this.listAlsoSetCommonData = listAlsoSetCommonData;
+    }
+
+
+
+
+
+    /**
+     * 权限前缀：如sys:user
+     * 则生成的新增权限为 sys:user:create
+     */
+    protected void setResourceIdentity(String resourceIdentity) {
+        if (!org.springframework.util.StringUtils.isEmpty(resourceIdentity)) {
+            this.resourceIdentity = resourceIdentity ;
+            permissionList = PermissionList.newPermissionList(resourceIdentity);
+        }
+    }
+
+
+
+    protected M newModel() {
+        try {
+            return entityClass.newInstance();
+        } catch (Exception e) {
+            throw new IllegalStateException("can not instantiated model : " + this.entityClass, e);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -62,7 +142,7 @@ public abstract class BaseBussinessController extends BaseController {
     public void setInit(BaseEntity be){
 
         try {
-            List<Field>  fields = ReflectionUtil.getBusinessFields(be.getClass() , EntityAttrPageAnnotation.class);
+            List<Field> fields = ReflectionUtil.getBusinessFields(be.getClass() , EntityAttrPageAnnotation.class);
             for(Field field : fields){
                 EntityAttrPageAnnotation pageAnnotation = field.getAnnotation(EntityAttrPageAnnotation.class);
                 if(StringUtils.isNotEmpty(pageAnnotation.defaultType())){
@@ -190,76 +270,72 @@ public abstract class BaseBussinessController extends BaseController {
 
         if(list != null && !list.isEmpty()){
 
-                for (Field field : list) {
-                    EntityAttrDBAnnotation dbAnnotation = field.getAnnotation(EntityAttrDBAnnotation.class);
-                    EntityAttrPageAnnotation pageAnnotation = field.getAnnotation(EntityAttrPageAnnotation.class);
-                    EntityAttrDictAnnotation dictAnnotation = field.getAnnotation(EntityAttrDictAnnotation.class);
-                    EntityAttrFkAnnotation fkAnnotation = field.getAnnotation(EntityAttrFkAnnotation.class);
+            for (Field field : list) {
+                EntityAttrDBAnnotation dbAnnotation = field.getAnnotation(EntityAttrDBAnnotation.class);
+                EntityAttrPageAnnotation pageAnnotation = field.getAnnotation(EntityAttrPageAnnotation.class);
+                EntityAttrDictAnnotation dictAnnotation = field.getAnnotation(EntityAttrDictAnnotation.class);
+                EntityAttrFkAnnotation fkAnnotation = field.getAnnotation(EntityAttrFkAnnotation.class);
 
-                    String name = SpringUtil.getMessage(entity.getClass().getName() + "." + field.getName());
+                String name = SpringUtil.getMessage(entity.getClass().getName() + "." + field.getName());
 
-                    Object val = ReflectionUtil.getField(field, entity);
-                    boolean isEmpty = StringUtil.isEmpty(val);
+                Object val = ReflectionUtil.getField(field, entity);
+                boolean isEmpty = StringUtil.isEmpty(val);
 
-                    //检查必填
-                    if(checkRequired) {
-                        if (isEmpty && AnnotaionEntityUtil.isRequired(dbAnnotation, fkAnnotation, dictAnnotation, pageAnnotation)) {
-                            String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_required.getI18n(), name);
-                            throw new BizException(EnumErrorMsg.check_data_required.getCode(), msg);
-                        }
+                //检查必填
+                if(checkRequired) {
+                    if (isEmpty && AnnotaionEntityUtil.isRequired(dbAnnotation, fkAnnotation, dictAnnotation, pageAnnotation)) {
+                        String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_required.getI18n(), name);
+                        throw new BizException(EnumErrorMsg.check_data_required.getCode(), msg);
                     }
-
-                    if(checkLength) {
-                        //检查长度
-                        int maxLength = AnnotaionEntityUtil.maxLength(dbAnnotation, fkAnnotation, dictAnnotation, pageAnnotation);
-
-                        if (!isEmpty && maxLength > 0) {
-
-                            String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_too.getI18n(), name);
-
-                            if (val instanceof String) {
-                                if (((String) val).length() > maxLength) {
-                                    throw new BizException(EnumErrorMsg.check_data_too.getCode(), msg);
-                                }
-                            }
-
-                            if (val instanceof Double || val instanceof BigDecimal) {
-                                String str = val.toString();
-                                if ((str.length() - 1) > maxLength) {
-                                    throw new BizException(EnumErrorMsg.check_data_too.getCode(), msg);
-                                } else {
-                                    if (str.indexOf("\\.") <= maxLength - AnnotaionEntityUtil.decimalsLength(dbAnnotation, fkAnnotation)) {
-                                        msg = SpringUtil.getMessage(EnumErrorMsg.check_decimal_too.getI18n(), name);
-                                        throw new BizException(EnumErrorMsg.check_decimal_too.getCode(), msg);
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-
-                    if(checkRule) {
-                        //检查规则
-                        EntityAttrCheckAnnotation eac = field.getAnnotation(EntityAttrCheckAnnotation.class);
-
-                        if (eac != null && eac.checkRule() != null && eac.checkRule().length > 0 && val != null) {
-                            for (String cr : eac.checkRule()) {
-                                if (!Pattern.matches(cr, val.toString())) {
-                                    String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_format.getI18n(), name);
-                                    throw new BizException(EnumErrorMsg.check_data_format.getCode(), msg);
-                                }
-                            }
-                        }
-                    }
-
                 }
+
+                if(checkLength) {
+                    //检查长度
+                    int maxLength = AnnotaionEntityUtil.maxLength(dbAnnotation, fkAnnotation, dictAnnotation, pageAnnotation);
+
+                    if (!isEmpty && maxLength > 0) {
+
+                        String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_too.getI18n(), name);
+
+                        if (val instanceof String) {
+                            if (((String) val).length() > maxLength) {
+                                throw new BizException(EnumErrorMsg.check_data_too.getCode(), msg);
+                            }
+                        }
+
+                        if (val instanceof Double || val instanceof BigDecimal) {
+                            String str = val.toString();
+                            if ((str.length() - 1) > maxLength) {
+                                throw new BizException(EnumErrorMsg.check_data_too.getCode(), msg);
+                            } else {
+                                if (str.indexOf("\\.") <= maxLength - AnnotaionEntityUtil.decimalsLength(dbAnnotation, fkAnnotation)) {
+                                    msg = SpringUtil.getMessage(EnumErrorMsg.check_decimal_too.getI18n(), name);
+                                    throw new BizException(EnumErrorMsg.check_decimal_too.getCode(), msg);
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+                if(checkRule) {
+                    //检查规则
+                    EntityAttrCheckAnnotation eac = field.getAnnotation(EntityAttrCheckAnnotation.class);
+
+                    if (eac != null && eac.checkRule() != null && eac.checkRule().length > 0 && val != null) {
+                        for (String cr : eac.checkRule()) {
+                            if (!Pattern.matches(cr, val.toString())) {
+                                String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_format.getI18n(), name);
+                                throw new BizException(EnumErrorMsg.check_data_format.getCode(), msg);
+                            }
+                        }
+                    }
+                }
+
+            }
 
         }
 
     }
-
-
-
-
 
 }

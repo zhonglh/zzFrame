@@ -34,7 +34,7 @@ import java.util.List;
  * 处理数据库基础的增加 修改 读取 删除 功能
  * @author Administrator
  */
-public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Serializable  , Q extends Query > extends BaseBussinessController {
+public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Serializable  , Q extends Query > extends BaseExcelController<M,PK,Q> {
 
     public final String defaultEditPageName = "editForm";
     public final String defaultAddPageName = "editForm";
@@ -42,38 +42,11 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     public final String defaultListPageName = "list";
 
 
-    protected BaseService<M, PK> baseService;
-
-    /**
-     * 判断列表是否需要设置一些公共信息
-     */
-    protected boolean listAlsoSetCommonData = true;
-
-    /**
-     * 本功能总的权限列表
-     */
-    protected PermissionList permissionList = null;
-
-    /**
-     * 本功能的资源名称
-     */
-    protected String resourceIdentity = null;
-
-
-
-
-
-
-    /**
-     * 实体类型
-     */
-    protected final Class<M> entityClass;
-
     protected String viewPrefix;
 
 
     protected BaseCURDController() {
-        this.entityClass = GenericsHelper.getSuperClassGenricType(getClass(), 0);
+        super();
         setViewPrefix(defaultViewPrefix());
         setResourceIdentity(this.getViewPrefix().replaceAll("/","\\."));
     }
@@ -446,21 +419,6 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
 
-    /**
-     * 权限前缀：如sys:user
-     * 则生成的新增权限为 sys:user:create
-     */
-    public void setResourceIdentity(String resourceIdentity) {
-        if (!StringUtils.isEmpty(resourceIdentity)) {
-            this.resourceIdentity = resourceIdentity ;
-            permissionList = PermissionList.newPermissionList(resourceIdentity);
-        }
-    }
-
-
-
-
-
 
 
 
@@ -530,13 +488,6 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         return viewPrefix;
     }
 
-    protected M newModel() {
-        try {
-            return entityClass.newInstance();
-        } catch (Exception e) {
-            throw new IllegalStateException("can not instantiated model : " + this.entityClass, e);
-        }
-    }
 
     /**
      * 获取视图名称：即prefixViewName + "/" + suffixName
@@ -580,15 +531,6 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     }
 
 
-    /**
-     * 设置基础service
-     *
-     * @param baseService
-     */
-    @Autowired
-    public void setBaseService(BaseService<M, PK> baseService) {
-        this.baseService = baseService;
-    }
 
 
 
@@ -618,13 +560,6 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
 
-
-    /**
-     * 列表也设置common data
-     */
-    public void setListAlsoSetCommonData(boolean listAlsoSetCommonData) {
-        this.listAlsoSetCommonData = listAlsoSetCommonData;
-    }
 
 
     /**

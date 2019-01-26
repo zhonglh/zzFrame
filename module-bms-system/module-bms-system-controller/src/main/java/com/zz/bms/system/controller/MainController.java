@@ -1,7 +1,7 @@
 package com.zz.bms.system.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.zz.bms.controller.base.controller.BaseBussinessController;
+import com.zz.bms.controller.base.controller.BusinessController;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.shiro.utils.ShiroUtils;
@@ -27,7 +27,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -36,7 +39,7 @@ import java.util.*;
  */
 @RequestMapping("/main")
 @Controller
-public class MainController extends BaseBussinessController {
+public class MainController extends BusinessController {
 
     @Autowired
     private VsUserMenuService vsUserMenuService;

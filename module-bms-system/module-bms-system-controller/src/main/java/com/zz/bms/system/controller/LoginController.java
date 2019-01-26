@@ -2,7 +2,7 @@ package com.zz.bms.system.controller;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
-import com.zz.bms.controller.base.controller.BaseBussinessController;
+import com.zz.bms.controller.base.controller.BusinessController;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.shiro.utils.ShiroUtils;
 import org.apache.shiro.authc.*;
@@ -26,7 +26,7 @@ import java.io.IOException;
  */
 @RequestMapping("/login")
 @Controller
-public class LoginController extends BaseBussinessController {
+public class LoginController extends BusinessController {
 
 
 

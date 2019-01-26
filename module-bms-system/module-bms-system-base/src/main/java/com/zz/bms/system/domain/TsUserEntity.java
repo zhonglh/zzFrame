@@ -48,7 +48,7 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
 
 	@EntityAttrDBAnnotation(attrName="用户状态" ,type = "char" ,  attrLength = 1 , notNull = true )
 	@EntityAttrDictAnnotation(group = "userStatus", groupName = "用户状态" ,  isValueField = true , dictType = DictTypeConstant.USER_STATUS)
-	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_EXPORT)
+	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.NONE)
 	@EntityAttrPageAnnotation(title = "用户状态",sort = 500 , required = true)
 	private String  userStatus ;
 

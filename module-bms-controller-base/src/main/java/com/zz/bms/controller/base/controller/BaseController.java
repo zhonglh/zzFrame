@@ -4,6 +4,7 @@ import com.zz.bms.controller.base.converteditor.BigDecimalConvertEditor;
 import com.zz.bms.controller.base.converteditor.DateConvertEditor;
 import com.zz.bms.controller.base.converteditor.TimestampConvertEditor;
 import com.zz.bms.core.Constant;
+import com.zz.bms.core.db.base.service.BaseService;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.generics.AnnotaionEntityManager;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.URLDecoder;
@@ -39,11 +41,8 @@ import java.util.regex.Pattern;
  * 基础控制器，其他控制器需集成此控制器获得initBinder自动转换的功能
  * 
  */
-public abstract class BaseController {
+public abstract class BaseController<M extends BaseEntity<PK>, PK extends Serializable> {
 
-
-    public final static String REMEMBER = Constant.REMEMBER;
-    public final static String SESSION_USER = Constant.SESSION_USER;
 
 
     public Logger logger = Logger.getLogger(this.getClass());
@@ -70,7 +69,7 @@ public abstract class BaseController {
     }
 
 
-    protected ILoginUserEntity getSessionUser(HttpServletRequest request){
+    protected ILoginUserEntity<PK> getSessionUser(HttpServletRequest request){
 
         ILoginUserEntity loginUser = getSessionUser();
         if(loginUser == null){
@@ -80,7 +79,7 @@ public abstract class BaseController {
     }
 
 
-    protected ILoginUserEntity getSessionUser(){
+    protected ILoginUserEntity<PK> getSessionUser(){
         try {
             ILoginUserEntity loginUser = (ILoginUserEntity) ShiroUtils.getSubject().getPrincipal();
             if (loginUser == null) {
