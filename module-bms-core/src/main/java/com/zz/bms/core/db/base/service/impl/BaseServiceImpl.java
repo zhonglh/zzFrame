@@ -17,6 +17,7 @@ import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.util.base.java.GenericsHelper;
 import org.apache.ibatis.binding.MapperMethod;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.log4j.Logger;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -28,6 +29,10 @@ import java.util.stream.Collectors;
  * @author Administrator
  */
 public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Serializable>  implements BaseService<T , PK> {
+
+
+
+    public Logger logger = Logger.getLogger(this.getClass());
 
     /**
      * 获取查询用到的DAO实体

@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <th>所在部门<font color="red">*</font></th>
+                            <th>所在部门</th>
                             <td>
                                 <div class="input-group">
                                     <input type="text"  id="depName" name="depName" value="${m.depId}" class="form-control input-sm  sysdepInfo "

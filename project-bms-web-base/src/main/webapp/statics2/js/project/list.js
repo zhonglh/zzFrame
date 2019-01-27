@@ -12,8 +12,34 @@ $(function(){
         $('#content-all').layout('panel', 'north').panel('resize',{height:$("#content-sec").height() + 50});
         $('#content-all').layout('resize');
     });
+
+
+    $(".export").click(function() {
+        var $this = $(this);
+        var title = $this.attr("title");
+        var url = $this.attr("href");
+
+        if (title) {
+            confirm(title, function()
+            {
+                _doExport( url );
+            });
+        } else {_doExport( url );}
+
+        event.preventDefault();
+
+    });
+
+
+
     initPage();
 });
+
+
+function _doExport(url){
+    var $form = $("#searchForm");
+    window.location = url+(url.indexOf('?') == -1 ? "?" : "&")+$form.serialize();
+}
 
 
 //设置选中类型 , 分类查询
@@ -213,7 +239,3 @@ function doDel(){
 }
 
 
-// 导出Excel
-function exportExcel(){
-
-}

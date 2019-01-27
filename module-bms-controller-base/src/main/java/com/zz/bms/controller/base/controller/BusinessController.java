@@ -1,13 +1,13 @@
 package com.zz.bms.controller.base.controller;
 
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zz.bms.controller.base.PermissionList;
 import com.zz.bms.core.Constant;
-import com.zz.bms.core.db.entity.BaseBusinessEntity;
-import com.zz.bms.core.db.entity.BaseEntity;
-import com.zz.bms.core.db.entity.EntityUtil;
-import com.zz.bms.core.db.entity.ILoginUserEntity;
+import com.zz.bms.core.db.entity.*;
 import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.BizException;
@@ -101,14 +101,24 @@ public abstract class BusinessController<M extends BaseEntity<PK>, PK extends Se
         }
     }
 
+    public Class<M> getEntityClass() {
+        return entityClass;
+    }
 
-
-
-
-
-
-
-
+    /**
+     * 查询数据转Wrapper
+     * 有些特殊的界面，比如 查询条件之间是 OR 的关系而不是默认的 AND ,  或者关键字查询多个业务字段 查用户时关键字包括姓名 手机号 邮箱
+     * @param query
+     * @param m
+     * @return
+     */
+    protected Wrapper buildWrapper(Q query , M m) {
+        QueryWrapper wrapper =   query.buildWrapper();
+        if(m instanceof BaseBusinessEntity || m instanceof BaseBusinessSimpleEntity){
+            wrapper.orderByDesc(" create_time " );
+        }
+        return wrapper;
+    }
 
 
 
@@ -264,11 +274,18 @@ public abstract class BusinessController<M extends BaseEntity<PK>, PK extends Se
 
 
 
-        List<Field> list = ReflectionUtil.getBusinessFields(entity.getClass(),EntityAttrPageAnnotation.class);
+        List<Field> list = ReflectionUtil.getBusinessFields(entity.getClass(),BaseEntity.class);
 
         if(list != null && !list.isEmpty()){
 
             for (Field field : list) {
+
+                //不存在的列(扩展列)不校验
+                TableField tableField = field.getAnnotation(TableField.class);
+                if(tableField != null && !tableField.exist()){
+                    continue;
+                }
+
                 EntityAttrDBAnnotation dbAnnotation = field.getAnnotation(EntityAttrDBAnnotation.class);
                 EntityAttrPageAnnotation pageAnnotation = field.getAnnotation(EntityAttrPageAnnotation.class);
                 EntityAttrDictAnnotation dictAnnotation = field.getAnnotation(EntityAttrDictAnnotation.class);
@@ -276,25 +293,25 @@ public abstract class BusinessController<M extends BaseEntity<PK>, PK extends Se
 
                 String name = this.getMessage(entity.getClass().getName() + "." + field.getName() , pageAnnotation.title());
 
-
+                ReflectionUtil.makeAccessible(field);
                 Object val = ReflectionUtil.getField(field, entity);
                 boolean isEmpty = StringUtil.isEmpty(val);
 
                 //检查必填
                 if(checkRequired) {
                     if (isEmpty && AnnotaionEntityUtil.isRequired(dbAnnotation, fkAnnotation, dictAnnotation, pageAnnotation)) {
-                        String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_required.getI18n(), name);
+                        String msg = this.getMessage(EnumErrorMsg.check_data_required.getI18n(),name+" 字段为必填项", name);
                         throw new BizException(EnumErrorMsg.check_data_required.getCode(), msg);
                     }
                 }
 
-                if(checkLength) {
+                if(checkLength && !isEmpty) {
                     //检查长度
                     int maxLength = AnnotaionEntityUtil.maxLength(dbAnnotation, fkAnnotation, dictAnnotation, pageAnnotation);
 
-                    if (!isEmpty && maxLength > 0) {
+                    if ( maxLength > 0) {
 
-                        String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_too.getI18n(), name);
+                        String msg = this.getMessage(EnumErrorMsg.check_data_too.getI18n(), name+"字段数据太长", name);
 
                         if (val instanceof String) {
                             if (((String) val).length() > maxLength) {
@@ -308,7 +325,7 @@ public abstract class BusinessController<M extends BaseEntity<PK>, PK extends Se
                                 throw new BizException(EnumErrorMsg.check_data_too.getCode(), msg);
                             } else {
                                 if (str.indexOf("\\.") <= maxLength - AnnotaionEntityUtil.decimalsLength(dbAnnotation, fkAnnotation)) {
-                                    msg = SpringUtil.getMessage(EnumErrorMsg.check_decimal_too.getI18n(), name);
+                                    msg = this.getMessage(EnumErrorMsg.check_decimal_too.getI18n(),name+"字段小数位太长", name);
                                     throw new BizException(EnumErrorMsg.check_decimal_too.getCode(), msg);
                                 }
                             }
@@ -324,7 +341,7 @@ public abstract class BusinessController<M extends BaseEntity<PK>, PK extends Se
                     if (eac != null && eac.checkRule() != null && eac.checkRule().length > 0 && val != null) {
                         for (String cr : eac.checkRule()) {
                             if (!Pattern.matches(cr, val.toString())) {
-                                String msg = SpringUtil.getMessage(EnumErrorMsg.check_data_format.getI18n(), name);
+                                String msg = this.getMessage(EnumErrorMsg.check_data_format.getI18n(), name+"字段格式错误", name);
                                 throw new BizException(EnumErrorMsg.check_data_format.getCode(), msg);
                             }
                         }

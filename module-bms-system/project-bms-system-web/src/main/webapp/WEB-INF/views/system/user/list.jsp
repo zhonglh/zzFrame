@@ -110,14 +110,14 @@
                     <li role="separator" class="divider"></li>
 
                     <li>
-                        <a href="#">
+                        <a href="${ctx}/${currParentUrl}/cvs/export" class="export" >
                             <svg class="icon" aria-hidden="true">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
                             </svg>导出CVS
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="${ctx}/${currParentUrl}/hssf/export" class="export" >
                             <svg class="icon" aria-hidden="true">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
                             </svg>导出Excel2003
@@ -125,7 +125,7 @@
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a href="${ctx}/${currParentUrl}/sxssf/export" class="export" >
                             <svg class="icon" aria-hidden="true">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
                             </svg>导出Excel2007

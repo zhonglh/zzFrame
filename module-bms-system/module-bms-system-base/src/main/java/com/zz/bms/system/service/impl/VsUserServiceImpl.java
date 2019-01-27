@@ -6,17 +6,20 @@ import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 
 import com.zz.bms.enums.EnumDictType;
+import com.zz.bms.system.bo.TsDepBO;
 import com.zz.bms.system.bo.TsDictBO;
 import com.zz.bms.system.bo.VsUserBO;
 import com.zz.bms.system.dao.TsDictDAO;
 import com.zz.bms.system.dao.VsUserDAO;
 import com.zz.bms.system.dao.TsUserDAO;
+import com.zz.bms.system.service.TsDepService;
 import com.zz.bms.system.service.TsDictService;
 import com.zz.bms.system.service.VsUserService;
 
 import com.zz.bms.system.bo.VsUserBO;
 import com.zz.bms.system.dao.VsUserDAO;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +36,10 @@ public class VsUserServiceImpl extends BaseServiceImpl<VsUserBO,String> implemen
 
     @Autowired
     private TsDictService tsDictService;
+
+
+    @Autowired
+    private TsDepService tsDepService ;
 
 
     @Autowired
@@ -57,26 +64,45 @@ public class VsUserServiceImpl extends BaseServiceImpl<VsUserBO,String> implemen
 	@Override
 	public VsUserBO processResult(VsUserBO vsUserBO) {
 
-        vsUserBO.setLoginPassword(null);
-        vsUserBO.setSalt(null);
-
         try {
-            String dictName = tsDictService.getDictName(vsUserBO.getSystemAdmin(), EnumDictType.YES_NO.getVal());
-            vsUserBO.setSystemAdminName(dictName);
+            if(StringUtils.isEmpty(vsUserBO.getSystemAdminName())) {
+                String dictName = tsDictService.getDictName(vsUserBO.getSystemAdmin(), EnumDictType.YES_NO.getVal());
+                vsUserBO.setSystemAdminName(dictName);
+            }
         }catch(Exception e){
             e.printStackTrace();
         }
 
         try {
-            String dictName = tsDictService.getDictName(vsUserBO.getUserStatus(), EnumDictType.USER_STATUS.getVal());
-            vsUserBO.setUserStatusName(dictName);
+            if(StringUtils.isEmpty(vsUserBO.getUserStatusName())) {
+                String dictName = tsDictService.getDictName(vsUserBO.getUserStatus(), EnumDictType.USER_STATUS.getVal());
+                vsUserBO.setUserStatusName(dictName);
+            }
         }catch(Exception e){
-
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
         }
 
 
-		return vsUserBO;
+
+        try {
+            if(StringUtils.isEmpty(vsUserBO.getLeadUserName()) && !StringUtils.isEmpty(vsUserBO.getLeadUserId())) {
+                VsUserBO temp = vsUserDAO.selectById(vsUserBO.getLeadUserId());
+                vsUserBO.setLeadUserName(temp.getUserName());
+            }
+        }catch(Exception e){
+            logger.error(e.getMessage(),e);
+        }
+
+        try {
+            if(StringUtils.isEmpty(vsUserBO.getDepName()) && !StringUtils.isEmpty(vsUserBO.getDepId())) {
+                TsDepBO temp = tsDepService.getById(vsUserBO.getDepId() , true);
+                vsUserBO.setDepName(temp.getDepName());
+            }
+        }catch(Exception e){
+            logger.error(e.getMessage(),e);
+        }
+
+        return vsUserBO;
 
 	}
 

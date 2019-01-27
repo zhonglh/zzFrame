@@ -53,6 +53,24 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
     /**
+     * 处理各种路径
+     * @param model
+     */
+    protected void processPath(ModelMap model) {
+        String prefix =  getViewPrefix();
+        String tableid = prefix.replaceAll("/" , "");
+        model.put(Constant.TABLEID, tableid);
+        model.put(Constant.CURR_PARENT_URL, prefix);
+        //todo 处理面包屑 菜单路径
+        if(AppConfig.USE_CRUMB) {
+            model.put(Constant.BREADCRUMB, "");
+        }
+    }
+
+
+
+
+    /**
      * 到列表界面
      * @param m
      * @param model
@@ -79,21 +97,6 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
             pageName = defaultListPageName;
         }
         return viewName(pageName);
-    }
-
-    /**
-     * 处理各种路径
-     * @param model
-     */
-    protected void processPath(ModelMap model) {
-        String prefix =  getViewPrefix();
-        String tableid = prefix.replaceAll("/" , "");
-        model.put(Constant.TABLEID, tableid);
-        model.put(Constant.CURR_PARENT_URL, prefix);
-        //todo 处理面包屑 菜单路径
-        if(AppConfig.USE_CRUMB) {
-            model.put(Constant.BREADCRUMB, "");
-        }
     }
 
 
@@ -167,7 +170,14 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     }
 
 
-
+    /**
+     * 显示创建页面
+     * @param m
+     * @param model
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String showCreateForm(M m ,ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 
@@ -188,7 +198,14 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     }
 
 
-
+    /**
+     * 显示更新页面
+     * @param model
+     * @param id
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
     public String showUpdateForm(ModelMap model, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
 
@@ -215,7 +232,14 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     }
 
 
-
+    /**
+     * 新增操作
+     * @param m
+     * @param model
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
     public Object create( M m, ModelMap model , HttpServletRequest request, HttpServletResponse response) {
@@ -228,21 +252,27 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
-
+        //设置创建附加信息，如创建时间， 创建人
         this.setInsertInfo(m, sessionUserVO);
+        //创建时定制的数据，如状态 等
         this.setCustomInfoByInsert(m);
+        //处理创建的数据， 如反填状态名称，外键信息等
         this.processBO(m);
 
 
         boolean success = false;
         try{
+            //创建前的一些特殊处理
             insertBefore(m);
+            //检查新增附加信息
             checkInsertInfo(m);
+            //检查字段的合法性
             checkEntityLegality(m , true , true , true);
             success = baseService.save(m);
             insertAfter(m);
 
         }catch(RuntimeException e){
+            logger.error(e.getMessage() , e);
             throw e;
         }catch(Exception e){
             logger.error(e.getMessage() , e);
@@ -286,20 +316,29 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
             BaseBusinessEntity bbe = (BaseBusinessEntity)m;
             bbe.setVersionNo(((BaseBusinessEntity)temp).getVersionNo());
         }
+        //处理更新附加信息，如更新时间  更新人等
         this.setUpdateInfo(m, sessionUserVO);
+
+        //设置更新时的一些属性信息
         setCustomInfoByUpdate(m);
+
+        //处理创建的数据， 如反填状态名称，外键信息等
         this.processBO(m);
 
 
         boolean success = false;
         try {
+            //更新前特殊的处理
             updateBefore(m);
+
+            //检查数据合法性
             checkEntityLegality(m , false , true , true);
             Assert.notNull(m.getId(),"出现内部错误");
             success = baseService.updateById(m);
             updateAfter(m);
 
         }catch(RuntimeException e){
+            logger.error(e.getMessage() , e);
             throw e;
         }catch(Exception e){
             logger.error(e.getMessage() , e);
@@ -345,6 +384,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
             deleteBefore(m);
             success = baseService.deleteById(m);
             deleteAfter(m);
+        }catch(RuntimeException e){
+            logger.error(e.getMessage() , e);
+            throw e;
         }catch(Exception e){
             logger.error(e.getMessage() , e);
             throw DbException.DB_DELETE_RESULT_0;
@@ -401,6 +443,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         boolean success = false;
         try {
             success = baseService.deletesByIds(list) ;
+        }catch(RuntimeException e){
+            logger.error(e.getMessage() , e);
+            throw e;
         }catch(Exception e){
             logger.error(e.getMessage() , e);
             throw DbException.DB_DELETE_RESULT_0;
@@ -587,7 +632,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @param m
      */
     protected void processBO(M m){
-
+        this.baseService.processResult(m);
     }
 
 
@@ -623,23 +668,6 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
 
-
-
-
-    /**
-     * 查询数据转Wrapper
-     * 有些特殊的界面，比如 查询条件之间是 OR 的关系而不是默认的 AND ,  或者关键字查询多个业务字段 查用户时关键字包括姓名 手机号 邮箱
-     * @param query
-     * @param m
-     * @return
-     */
-    protected Wrapper buildWrapper(Q query , M m) {
-        QueryWrapper wrapper =   query.buildWrapper();
-        if(m instanceof BaseBusinessEntity || m instanceof BaseBusinessSimpleEntity){
-            wrapper.orderByDesc(" create_time " );
-        }
-        return wrapper;
-    }
 
 
 

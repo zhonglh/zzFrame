@@ -55,12 +55,12 @@ public class VsUserBO extends VsUserEntity implements Serializable {
     @TableField(exist = false)
     @EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_EXPORT)
     @EntityAttrPageAnnotation(title = "年龄" , sort = 1301  , maxLength=2)
-    private int age =3102 ;
+    private int age =31 ;
 
     @TableField(exist = false)
     @EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_EXPORT)
     @EntityAttrPageAnnotation(title = "工资" , sort = 1301 , maxLength=8)
-    private double salary = 1210011.83 ;
+    private double salary = 12101.83 ;
 
     @TableField(exist = false)
     @EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_EXPORT)

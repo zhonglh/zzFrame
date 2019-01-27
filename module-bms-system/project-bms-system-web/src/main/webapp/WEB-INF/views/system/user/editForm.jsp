@@ -15,7 +15,7 @@
 
 
 
-                <div>
+                <div id="detailForm">
                     <table class="info-table">
                         <tr>
                             <th width="15%">用户名称</th>
@@ -26,7 +26,7 @@
                         </tr>
                         <tr>
                             <th>直属领导</th>
-                            <td></td>
+                            <td class="fd_leadUserName">${m.leadUserName}</td>
                             <th>所在部门</th>
                             <td class="fd_depName">${m.depName}</td>
                         </tr>
@@ -76,16 +76,16 @@
                             <th>直属领导</th>
                             <td>
                                 <div class="input-group">
-                                    <input type="text"  id="leadName" name="leadName" class="form-control input-sm leadName"
-                                           placeholder="请选择直属领导" readonly="readonly">
+                                    <input type="text"  id="leadUserName" name="leadUserName" class="form-control input-sm leadUserName"
+                                           placeholder="请选择直属领导" readonly="readonly" value="${m.leadUserName}">
                                     <input type="hidden" id="leadUserId" name="leadUserId" value="${m.leadUserId}">
                                     <div class="input-group-btn">
-                                        <button type="button"  class="btn btn-primary btn-sm leadName">
+                                        <button type="button"  class="btn btn-primary btn-sm leadUserName">
                                             <svg class="icon" aria-hidden="true">
                                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-sousuo"></use>
                                             </svg>
                                         </button>
-                                        <button type="button"  id="clearLeadName"  class="btn btn-primary btn-sm">
+                                        <button type="button"  id="clearLeadUserId"  class="btn btn-primary btn-sm">
                                             <svg class="icon" aria-hidden="true">
                                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                                             </svg>
@@ -93,10 +93,10 @@
                                     </div>
                                 </div>
                             </td>
-                            <th>所在部门<font color="red">*</font></th>
+                            <th>所在部门</th>
                             <td>
                                 <div class="input-group">
-                                    <input type="text"  id="depName" name="depName" value="${m.depId}" class="form-control input-sm  sysdepInfo "
+                                    <input type="text"  id="depName" name="depName" value="${m.depName}" class="form-control input-sm  sysdepInfo "
                                            placeholder="请选择所在部门" readonly="readonly" >
                                     <input type="hidden" id="depId" name="depId" value="${m.depId}">
                                     <div class="input-group-btn">
@@ -190,6 +190,8 @@
 
 
 
+
+
 <bms:contentJS />
 
 <script src="${staticUrl}/statics2/js/project/form.js"></script>
@@ -227,8 +229,18 @@
     */
 
 
-    //人员选择
-    $(".leadName").OpenSysUserSelectWin({title: "人员",selectType: "t1",callId: "leadId",leadId: "leadName",clearId: "clearSysdepInfo"});
+    $(function() {
+        //人员选择
+        $(".leadUserName").OpenSystemUserSelectWin({
+            title: "直属领导",
+            selectType: "d1",
+            callId: "leadUserId",
+            callName: "leadUserName",
+            clearId: "clearLeadUserId"
+        });
+
+
+    });
 
 
 </script>
