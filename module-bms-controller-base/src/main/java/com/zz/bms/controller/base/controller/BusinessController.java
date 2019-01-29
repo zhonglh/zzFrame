@@ -105,6 +105,72 @@ public abstract class BusinessController<M extends BaseEntity<PK>, PK extends Se
         return entityClass;
     }
 
+
+
+
+
+    /**
+     * 保存前设置一些 业务定制的值
+     * 保存时有特殊的值需要先设置，需要重载 ， 否则无法通过校验
+     * 比如一些状态值， 比如有效状态， 在新增是如果在界面上没有设置，应该默认设置一个状态
+     * @param m
+     */
+    protected void setCustomInfoByInsert(M m){
+
+    }
+
+    /**
+     * 更新前设置一些 业务定制的值
+     * 更新时有特殊的值需要联动或定制，需要重载
+     * @param m
+     */
+    protected void setCustomInfoByUpdate(M m){
+
+    }
+
+    /**
+     * 设置一些旧的值
+     * @param newVal
+     * @param oldVal
+     */
+    protected M setOldValue(M newVal , M oldVal){
+        return newVal;
+    }
+
+
+    /**
+     * 增加之前要处理的
+     * 比如增加前再次校验
+     * 如有， 需要重载
+     * @param m
+     */
+    protected void insertBefore(M m) {
+    }
+
+
+    /**
+     * 插入信息
+     * @param m
+     * @param sessionUserVO
+     */
+    protected abstract void insertInfo(M m, ILoginUserEntity<PK> sessionUserVO)  ;
+
+    /**
+     * 增加之后要处理的
+     * 比如增加后其他功能的数据需要处理
+     * 如有， 需要重载
+     * @param m
+     */
+    protected void insertAfter(M m) {
+    }
+
+    /**
+     * 是否重复
+     * @param m
+     * @return
+     */
+    protected abstract void isExist(M m) ;
+
     /**
      * 查询数据转Wrapper
      * 有些特殊的界面，比如 查询条件之间是 OR 的关系而不是默认的 AND ,  或者关键字查询多个业务字段 查用户时关键字包括姓名 手机号 邮箱

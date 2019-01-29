@@ -1,7 +1,6 @@
 package com.zz.bms.system.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.zz.bms.controller.base.controller.ZzDefaultController;
 
 
 import com.zz.bms.core.db.entity.BaseEntity;

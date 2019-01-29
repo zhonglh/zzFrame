@@ -1,10 +1,7 @@
 package com.zz.bms.system.controller;
 
-import com.zz.bms.controller.base.controller.ZzDefaultController;
-
 
 import com.zz.bms.core.exceptions.DbException;
-import com.zz.bms.system.bo.TsRolePermitBO;
 import com.zz.bms.system.bo.TsUserRoleBO;
 import  com.zz.bms.system.query.impl.TsUserRoleQueryWebImpl;
 

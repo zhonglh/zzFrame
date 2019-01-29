@@ -20,6 +20,9 @@ public abstract class BaseEntity<PK extends Serializable> implements Serializabl
     private List childs;
 
 
+    @TableField(exist = false)
+    private String errorInfo = "";
+
 
 
     /**
@@ -64,8 +67,13 @@ public abstract class BaseEntity<PK extends Serializable> implements Serializabl
     }
 
 
+    public String getErrorInfo() {
+        return errorInfo;
+    }
 
-
+    public void setErrorInfo(String errorInfo) {
+        this.errorInfo = this.errorInfo + errorInfo;
+    }
 
     public int getPageNum() {
         return pageNum;
@@ -82,4 +90,6 @@ public abstract class BaseEntity<PK extends Serializable> implements Serializabl
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
     }
+
+
 }

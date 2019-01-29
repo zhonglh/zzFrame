@@ -1,6 +1,5 @@
 package com.zz.bms.system.controller;
 
-import com.zz.bms.controller.base.controller.ZzDefaultController;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.system.bo.TsMyShortcutBO;

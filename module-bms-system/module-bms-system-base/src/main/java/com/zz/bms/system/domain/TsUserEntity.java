@@ -25,7 +25,7 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
 
 	@EntityAttrDBAnnotation(attrName="用户姓名" ,type = "varchar" ,  attrLength = 50 , notNull = true )
 	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.IMPORT_EXPORT)
-	@EntityAttrPageAnnotation(title = "用户姓名",sort = 100 ,  existEditPage = true  , required = true  , isBusinessName = true)
+	@EntityAttrPageAnnotation(title = "用户姓名",sort = 100 ,  existEditPage = true  , required = true  )
 	private String  userName ;
 
 
@@ -61,7 +61,7 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
 
 	@EntityAttrDBAnnotation(attrName="电话" ,type = "varchar" ,  attrLength = 20 , notNull = true )
 	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.IMPORT_EXPORT)
-	@EntityAttrPageAnnotation(title = "电话",sort = 700 , pageElement= PageElementConstant.phone, existEditPage = true  , required = true , isBusinessKey = true)
+	@EntityAttrPageAnnotation(title = "电话",sort = 700 , pageElement= PageElementConstant.phone, existEditPage = true  , required = true )
 	private String  phone ;
 
 

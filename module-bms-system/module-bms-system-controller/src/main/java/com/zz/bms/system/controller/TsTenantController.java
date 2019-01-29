@@ -1,11 +1,8 @@
 package com.zz.bms.system.controller;
 
-import com.zz.bms.controller.base.controller.ZzDefaultController;
-
 
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.BizException;
-import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.system.bo.TsTenantBO;
 import  com.zz.bms.system.query.impl.TsTenantQueryWebImpl;
 

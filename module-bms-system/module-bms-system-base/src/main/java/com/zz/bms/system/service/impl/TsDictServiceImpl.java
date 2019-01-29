@@ -1,6 +1,7 @@
 package com.zz.bms.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
@@ -14,8 +15,13 @@ import com.zz.bms.system.dao.TsDictTypeDAO;
 import com.zz.bms.system.bo.TsTenantBO;
 import com.zz.bms.system.dao.TsTenantDAO;
 
+import com.zz.bms.util.base.data.SqlKit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
 * 字典信息 ServiceImpl
@@ -84,6 +90,47 @@ public class TsDictServiceImpl extends BaseServiceImpl<TsDictBO,String> implemen
 		}else {
 			return tsDictBO.getDictVal();
 		}
+	}
+
+
+
+	@Override
+	public Map<String , TsDictBO> allDict(String[] dictTypes) {
+
+
+
+		Map<String , TsDictBO> result = new HashMap<String , TsDictBO>();
+		if(dictTypes == null || dictTypes.length == 0){
+			return result;
+		}
+
+		List<TsDictTypeBO> dictTypeBOS = tsDictTypeDAO.selectList(Wrappers.emptyWrapper());
+		if(dictTypeBOS == null || dictTypeBOS.isEmpty()){
+			return result;
+		}
+		Map<String,TsDictTypeBO> dictTypeBOMap = new HashMap<String,TsDictTypeBO>();
+		for(TsDictTypeBO dictTypeBO : dictTypeBOS){
+			dictTypeBOMap.put(dictTypeBO.getId() , dictTypeBO);
+		}
+
+
+		QueryWrapper<TsDictBO> queryWrapper = new QueryWrapper<TsDictBO>();
+		queryWrapper.inSql("dict_type_id" , " select id from ts_dict_type where dict_type_code in ("+ SqlKit.toInContent(dictTypes)+") " );
+		List<TsDictBO> dictBOS = tsDictDAO.selectList(queryWrapper);
+		if(dictBOS == null || dictBOS.isEmpty()){
+			return result;
+		}
+		for(TsDictBO dictBO : dictBOS){
+			TsDictTypeBO dictTypeBO = dictTypeBOMap.get(dictBO.getDictTypeId());
+			if(dictTypeBO != null){
+				dictBO.setDictTypeCode(dictTypeBO.getDictTypeCode());
+			}
+			String key = dictBO.getDictTypeCode()+dictBO.getDictVal();
+			result.put(key ,dictBO);
+		}
+
+		return result;
+
 	}
 
 

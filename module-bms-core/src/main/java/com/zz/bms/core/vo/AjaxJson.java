@@ -23,6 +23,7 @@ public class AjaxJson {
 	// 提示信息
 	private String msg ;
 
+	//ID , 一般在保存成功后返回ID值
 	private Serializable id ;
 
 	//地址

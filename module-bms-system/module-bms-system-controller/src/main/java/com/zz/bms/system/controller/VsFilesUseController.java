@@ -1,7 +1,5 @@
 package com.zz.bms.system.controller;
 
-import com.zz.bms.controller.base.controller.ZzDefaultController;
-
 
 import com.zz.bms.system.bo.VsFilesUseBO;
 import  com.zz.bms.system.query.impl.VsFilesUseQueryWebImpl;

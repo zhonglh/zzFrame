@@ -1,6 +1,7 @@
 package com.zz.bms.system.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.zz.bms.controller.base.controller.BaseController;
 import com.zz.bms.controller.base.controller.BusinessController;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.enums.EnumYesNo;
@@ -39,7 +40,7 @@ import java.util.Map;
  */
 @RequestMapping("/main")
 @Controller
-public class MainController extends BusinessController {
+public class MainController extends BaseController {
 
     @Autowired
     private VsUserMenuService vsUserMenuService;

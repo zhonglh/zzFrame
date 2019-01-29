@@ -18,6 +18,16 @@ import java.io.Serializable;
 @TableName(value="ts_dict" , resultMap = "TsDictResultMap")
 public class TsDictBO extends TsDictEntity implements Serializable {
 
+    /**
+     * 字典类型代码
+     */
+    private String dictTypeCode ;
 
+    public String getDictTypeCode() {
+        return dictTypeCode;
+    }
 
+    public void setDictTypeCode(String dictTypeCode) {
+        this.dictTypeCode = dictTypeCode;
+    }
 }

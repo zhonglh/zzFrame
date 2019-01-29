@@ -1,7 +1,7 @@
 package com.zz.bms.oss.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.zz.bms.controller.base.controller.ZzDefaultController;
+import com.zz.bms.controller.base.controller.BaseCURDController;
 import com.zz.bms.core.db.mybatis.query.QueryImpl;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.InternalException;
@@ -36,7 +36,7 @@ import java.util.List;
  */
 @RequestMapping("oss/files")
 @Controller
-public class TsFilesControllerZz extends ZzDefaultController<TsFilesEntity, String , QueryImpl> {
+public class TsFilesControllerZz extends BaseCURDController<TsFilesEntity, String , QueryImpl> {
 
 
     @Autowired

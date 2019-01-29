@@ -1,7 +1,5 @@
 package com.zz.bms.system.controller;
 
-import com.zz.bms.controller.base.controller.ZzDefaultController;
-
 
 import com.zz.bms.system.bo.TsNotificationBO;
 import  com.zz.bms.system.query.impl.TsNotificationQueryWebImpl;

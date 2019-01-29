@@ -1,7 +1,5 @@
 package com.zz.bms.system.controller;
 
-import com.zz.bms.controller.base.controller.ZzDefaultController;
-
 
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.exceptions.DbException;

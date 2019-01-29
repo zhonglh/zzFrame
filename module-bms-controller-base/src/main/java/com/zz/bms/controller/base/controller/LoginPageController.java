@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @RequestMapping("/toLogin")
 @Controller
-public class LoginPageController extends BusinessController {
+public class LoginPageController extends BaseController {
 
 
     @Autowired
