@@ -54,7 +54,7 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
 
 
 	@EntityAttrDBAnnotation(attrName="上级领导" ,type = "char" ,  attrLength = 32 , notNull = false )
-	@EntityAttrFkAnnotation(group = "leadUser" , groupName = "上级领导" ,  isFkId = true ,   dbColumnNotNull = true, fkEntity="com.zz.bms.system.bo.TsUserBO")
+	@EntityAttrFkAnnotation(group = "leadUser" , groupName = "上级领导" ,  isFkId = true ,   dbColumnNotNull = true, fkClass=com.zz.bms.system.bo.TsUserBO.class)
 	@EntityAttrPageAnnotation(title = "上级领导" , sort = 601 )
 	private String  leadUserId ;
 
@@ -98,7 +98,7 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
 
 
 	@EntityAttrDBAnnotation(attrName="部门" ,type = "char" ,  attrLength = 32 , notNull = false )
-	@EntityAttrFkAnnotation(group = "dep" , groupName = "部门" ,    dbColumnNotNull = true, fkEntity="com.zz.bms.system.bo.TsDepBO")
+	@EntityAttrFkAnnotation(group = "dep" , groupName = "部门" ,    dbColumnNotNull = true, fkClass=com.zz.bms.system.bo.TsDepBO.class)
 	@EntityAttrPageAnnotation(title = "部门" , sort = 1300 , existEditPage = true , hidden = true  )
 	private String  depId ;
 
@@ -106,7 +106,7 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
 
 
 	@EntityAttrDBAnnotation(attrName="机构" ,type = "char" ,  attrLength = 32 , notNull = true )
-	@EntityAttrFkAnnotation(group = "organ" , groupName = "机构" ,    dbColumnNotNull = true, fkEntity="com.zz.bms.system.bo.TsOrganBO")
+	@EntityAttrFkAnnotation(group = "organ" , groupName = "机构" ,    dbColumnNotNull = true, fkClass=com.zz.bms.system.bo.TsOrganBO.class)
 	@EntityAttrPageAnnotation(title = "机构" , sort = 1400 ,  defaultType = DefaultTypeConstant.CURRENT_USER_ORGANID )
 	private String  organId ;
 

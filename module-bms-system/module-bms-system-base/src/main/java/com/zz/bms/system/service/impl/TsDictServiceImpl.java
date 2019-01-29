@@ -127,6 +127,8 @@ public class TsDictServiceImpl extends BaseServiceImpl<TsDictBO,String> implemen
 			}
 			String key = dictBO.getDictTypeCode()+dictBO.getDictVal();
 			result.put(key ,dictBO);
+			key = dictBO.getDictTypeCode()+dictBO.getDictName();
+			result.put(key ,dictBO);
 		}
 
 		return result;

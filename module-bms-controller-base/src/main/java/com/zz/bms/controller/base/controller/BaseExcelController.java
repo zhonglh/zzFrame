@@ -2,6 +2,9 @@ package com.zz.bms.controller.base.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.zz.bms.core.db.base.service.BaseService;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
@@ -9,8 +12,9 @@ import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.vo.AjaxJson;
+import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.configs.AppConfig;
-import com.zz.bms.util.configs.annotaions.EntityAnnotation;
+import com.zz.bms.util.configs.annotaions.*;
 import com.zz.bms.util.file.FileKit;
 import com.zz.bms.util.poi.enums.EnumExcelFileType;
 import com.zz.bms.util.poi.exceptions.ExcelAbsenceException;
@@ -26,7 +30,10 @@ import com.zz.bms.util.poi.util.ColumnUtil;
 import com.zz.bms.util.poi.util.ExcelUtil;
 import com.zz.bms.util.poi.vo.Column;
 import com.zz.bms.util.spring.ReflectionUtil;
+import com.zz.bms.util.spring.SpringUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.regexp.RE;
+import org.jasig.cas.client.util.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -37,6 +44,7 @@ import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.sql.Ref;
 import java.util.*;
 
 /**
@@ -292,6 +300,10 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
 
     }
 
+    /**
+     * 解析数据
+     * @param list
+     */
     protected void analysis(List<M> list) {
 
         List<Field> fs = getAllFields() ;
@@ -300,16 +312,320 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
 
 
         //用到的字典集合
-        Map<String,?> dictMaps = null;
+        Map<String,?> dictInfoMaps = null;
 
         //用到的外键集合, String:外键类名称  String:外键的BusinessKey  ?: 外键对象
-        Map<String,Map<String,?>> fkMaps= new HashMap<String,Map<String,?>>();
+        Map<Class,Map<String,Object>> fkInfoMaps= new HashMap<Class,Map<String,Object>>();
 
+        String[] dictTypeCodes = ColumnUtil.getDictTypeCodes(fs);
+        Map<String , Map<Field,Field>> dictFieldMap = null;
 
+        if(dictTypeCodes != null && dictTypeCodes.length > 0) {
+            dictInfoMaps = getDictMaps(dictTypeCodes);
+            dictFieldMap = ColumnUtil.getDictMap(fs);
+        }
+        Map<String, Map<Field, List<Field>>> fkFieldMap = ColumnUtil.getFkMap(fs);
 
-        dictMaps = getDictMaps(ColumnUtil.getDictTypeCodes(fs));
+        for(Column column : columns){
+            Field f = column.getField();
+            EntityAttrPageAnnotation pageAnnotation = f.getAnnotation(EntityAttrPageAnnotation.class);
+            EntityAttrDBAnnotation dbAnnotation = f.getAnnotation(EntityAttrDBAnnotation.class);
+            EntityAttrDictAnnotation dictAnnotation = f.getAnnotation(EntityAttrDictAnnotation.class);
+            EntityAttrFkAnnotation fkAnnotation = f.getAnnotation(EntityAttrFkAnnotation.class);
+
+            if(dictAnnotation != null){
+                analysisDict(list,column,dictAnnotation,dictInfoMaps,dictFieldMap);
+            }else if(fkAnnotation != null){
+                analysisFk(list,column,fkAnnotation,fkInfoMaps,fkFieldMap);
+            }else {
+                analysisOther(list,column);
+            }
+        }
+
 
     }
+
+
+
+    /**
+     * 分析处理外键属性数据
+     * @param list
+     * @param column
+     * @param fkAnnotation
+     * @param fkInfoMaps
+     */
+    protected void analysisFk(List<M> list,
+                              Column column,
+                              EntityAttrFkAnnotation fkAnnotation,
+                              Map<Class, Map<String, Object>> fkInfoMaps,
+                              Map<String, Map<Field, List<Field>>> fkFieldMap) {
+        Class fkClz = fkAnnotation.fkClass();
+        if(fkClz == null){
+            try{
+                fkClz = Class.forName(fkAnnotation.fkClassName());
+            }catch(Exception e){
+                throw new RuntimeException(fkAnnotation.group()+"设置外键类型错误");
+            }
+        }
+
+        String serviceName = fkClz.getSimpleName().replace("BO","")+"Service";
+        serviceName = serviceName.substring(0,1).toLowerCase()+serviceName.substring(1);
+        IService<M> iService = (IService<M>)SpringUtil.getBean(serviceName);
+
+        EntityAnnotation entityAnnotation = (EntityAnnotation) fkClz.getAnnotation(EntityAnnotation.class);
+        if(entityAnnotation == null){
+            throw new RuntimeException(fkClz.getName()+"类型缺少 EntityAnnotation 注解");
+        }
+        String[] businessKeys = entityAnnotation.businessKey();
+        if(businessKeys == null || businessKeys.length == 0 || StringUtils.isEmpty(businessKeys[0])){
+            throw new RuntimeException(fkClz.getName()+"EntityAnnotation 注解中没有 businessKey");
+        }
+
+        String[] keyFieldNames = businessKeys[0].split(",");
+
+
+        Map<Field, List<Field>> fkMap = fkFieldMap.get(fkAnnotation.group());
+        if(fkMap == null){
+            throw new RuntimeException(fkAnnotation.group()+"外键设置错误");
+        }
+
+        Method setErrorMethod = ExcelUtil.setErrorMethod(this.entityClass);
+
+
+        Field fkIdField = null;
+        List<Field> fkFiedList = null;
+
+        for(Map.Entry<Field , List<Field>> fkFields : fkMap.entrySet()){
+            fkIdField = fkFields.getKey();
+            fkFiedList = fkFields.getValue();
+            break;
+        }
+        ReflectionUtil.makeAccessible(fkIdField);
+        Column fkIdColumn = ColumnUtil.field2Column(fkIdField);
+
+        for(M m : list) {
+            String fkId = (String)ReflectionUtil.getField(fkIdField, m);
+            if(StringUtils.isNotEmpty(fkId)){
+                break;
+            }
+
+            Object[] keyObjs = buildKeyObject(m  , keyFieldNames);
+            String key = buildKey(keyObjs);
+            if(key == null){
+                if(fkIdColumn.isRequired()) {
+                    errorProcess(setErrorMethod, m, fkIdColumn.getName() + "信息填写不全");
+                }
+                continue;
+            }
+
+            Map<String, Object> fkClzMap = fkInfoMaps.get(fkClz);
+            if(fkClzMap == null){
+                fkClzMap = new HashMap<String,Object>();
+                fkInfoMaps.put(fkClz , fkClzMap);
+            }
+
+            Object fkObj = fkClzMap.get(key);
+            if(fkObj == null){
+                QueryWrapper<M> queryWrapper = new QueryWrapper();
+                int index = 0;
+                for(String fieldName : keyFieldNames){
+                    queryWrapper.eq(StringFormatKit.toUnderlineName(fieldName),keyObjs[index]);
+                    index++;
+                }
+                fkObj = iService.getOne(queryWrapper);
+                if(fkObj != null){
+                    fkClzMap.put(key , fkObj);
+                }else {
+                    errorProcess(setErrorMethod, m, fkIdColumn.getName() + "信息填写错误");
+                }
+            }
+
+            if(fkObj != null){
+                //设置值
+                for(Field f : fkFiedList){
+                    ReflectionUtil.makeAccessible(f);
+                    EntityAttrFkAnnotation annotation = f.getAnnotation(EntityAttrFkAnnotation.class);
+                    if(annotation.isFkId()){
+
+                        PK id = null;
+                        if(fkObj instanceof BaseEntity) {
+                            id = (PK)((BaseEntity) fkObj).getId();
+                        }else {
+                            try {
+                                Field idField = fkClz.getField("id");
+                                id = (PK)ReflectionUtil.getField(idField , fkObj);
+                            } catch (NoSuchFieldException e) {
+                                logger.error(e.getMessage(),e);
+                            }
+                        }
+
+                        ReflectionUtil.setField(f, m, id);
+                    }else {
+                        try {
+                            Field field = fkClz.getField(StringFormatKit.toCamelCase(annotation.dbColumnName()));
+                            Object temp = (PK)ReflectionUtil.getField(field , fkObj);
+                            ReflectionUtil.setField(f, m, temp);
+                        } catch (NoSuchFieldException e) {
+                            logger.error(e.getMessage(),e);
+                        }
+                    }
+                }
+            }
+
+
+        }
+
+
+
+    }
+
+
+
+    private Object[] buildKeyObject(M m , String[] keyFieldNames ){
+        Object[] result = new Object[keyFieldNames.length];
+
+        try{
+            int index = 0;
+            for(String keyFieldName : keyFieldNames){
+                Field f = this.entityClass.getField(keyFieldName);
+                ReflectionUtil.makeAccessible(f);
+                Object obj = ReflectionUtil.getField(f , m);
+                result[index] = obj;
+                index ++;
+            }
+        }catch(Exception e){
+            throw new RuntimeException("获取业务KEY信息错误");
+        }
+        return result;
+    }
+
+    private String buildKey(Object[] keyObjs ){
+        if(keyObjs == null || keyObjs.length == 0){
+            return null;
+        }
+
+        StringBuilder sb = new StringBuilder("");
+        try{
+            for(Object obj : keyObjs){
+                if(obj == null){
+                    return null;
+                }
+                sb.append(obj.toString());
+            }
+        }catch(Exception e){
+            throw new RuntimeException("获取业务KEY信息错误");
+        }
+        return sb.toString();
+    }
+
+
+
+
+
+    /**
+     * 分析处理字典类属性
+     * @param list
+     * @param column
+     * @param dictAnnotation
+     * @param dictInfoMaps
+     * @param dictFieldMap
+     */
+    protected void analysisDict(List<M> list,
+                                Column column,
+                                EntityAttrDictAnnotation dictAnnotation,
+                                Map<String, ?> dictInfoMaps,
+                                Map<String, Map<Field, Field>> dictFieldMap) {
+        if(dictAnnotation.isValueField()){
+            throw new RuntimeException(dictAnnotation.group()+" Excel设置错误");
+        }
+        Map<Field, Field>  dictMap = dictFieldMap.get(dictAnnotation.group());
+        if(dictMap == null || dictMap.isEmpty()){
+            throw new RuntimeException(dictAnnotation.group()+" 不是字典类型");
+        }
+
+        Method setErrorMethod = ExcelUtil.setErrorMethod(this.entityClass);
+
+        Field dictValField = null;
+        for(Map.Entry<Field , Field> dictField : dictMap.entrySet()){
+            dictValField = dictField.getKey();
+            break;
+        }
+
+        for(M m : list) {
+            ReflectionUtil.makeAccessible(column.getField());
+            String dictName = (String)ReflectionUtil.getField(column.getField(), m);
+            if(StringUtils.isNotEmpty(dictName)) {
+                Object dict = dictInfoMaps.get(dictAnnotation.dictType() + dictName);
+                String val = this.getDictVal(dict);
+                if(val != null){
+                    ReflectionUtil.makeAccessible(dictValField);
+                    try {
+                        dictValField.set(m, val);
+                    }catch(Exception e){
+                        logger.error(e.getMessage(),e);
+                    }
+                }
+
+
+                checkField(ColumnUtil.field2Column(dictValField), setErrorMethod, m, val);
+            }
+        }
+
+    }
+
+    /**
+     * 分析处理属性数据普通
+     * @param list
+     * @param column
+     */
+    protected void analysisOther(List<M> list,Column column) {
+       Method setErrorMethod = ExcelUtil.setErrorMethod(this.entityClass);
+        ReflectionUtil.makeAccessible(column.getField());
+        for(M m : list){
+            Object obj = ReflectionUtil.getField(column.getField(),m);
+            checkField(column, setErrorMethod, m, obj);
+
+        }
+    }
+
+    private void checkField(Column column, Method setErrorMethod, M m, Object obj) {
+
+        if(column.isRequired()){
+            if(obj == null || StringUtils.isEmpty(obj.toString())){
+                errorProcess(setErrorMethod, m , "请先填写"+column.getName()+";");
+            }
+        }
+
+        if(column.getLength() > 0 && obj != null){
+            if(obj instanceof String && ((String)obj).length() > column.getLength()){
+                errorProcess(setErrorMethod , m , column.getName()+"数据过长;");
+            }else if(obj instanceof Number){
+                if(obj instanceof Integer || obj.getClass() == int.class || obj instanceof Long || obj.getClass() == long.class){
+                    if(obj.toString().length() > column.getLength()){
+                        errorProcess(setErrorMethod , m , column.getName()+"数据过长;");
+                    }
+                }else {
+                    //有小数点，所以要多加一位
+                    if(obj.toString().length() > column.getLength()+1){
+                        errorProcess(setErrorMethod , m , column.getName()+"数据过长;");
+                    }
+                }
+            }
+        }
+    }
+
+    private void errorProcess(Method setErrorMethod, M m , String msg) {
+        if(setErrorMethod != null){
+            try {
+                setErrorMethod.invoke(m , msg);
+            } catch (Exception e) {
+                logger.error(e.getMessage(),e);
+            }
+        }else {
+            throw new RuntimeException(msg);
+        }
+    }
+
 
     /**
      * 获取所有用到的字典信息

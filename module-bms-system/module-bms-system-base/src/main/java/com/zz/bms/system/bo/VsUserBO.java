@@ -19,7 +19,7 @@ import java.util.Date;
 * @author Administrator
 * @date 2018-9-6 23:56:30
 */
-@EntityAnnotation(value="用户" , resource = "system.user")
+@EntityAnnotation(value="用户" , resource = "system.user" , businessName = "userName" , businessKey = "phone")
 @TableName(value="vs_user" , resultMap = "VsUserResultMap")
 public class VsUserBO extends VsUserEntity implements Serializable {
 
@@ -39,14 +39,14 @@ public class VsUserBO extends VsUserEntity implements Serializable {
 
     @TableField(exist = false)
     @EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.IMPORT_EXPORT)
-    @EntityAttrFkAnnotation(group = "leadUser" , groupName = "上级领导" ,  isFkBusinessName = true , dbColumnName = "user_name" , dbColumnType = "varchar" , dbColumnLength = 50 , dbColumnNotNull = true, fkEntity="com.zz.bms.system.bo.TsUserBO")
+    @EntityAttrFkAnnotation(group = "leadUser" , groupName = "上级领导" ,   dbColumnName = "user_name" , dbColumnType = "varchar" , dbColumnLength = 50 , dbColumnNotNull = true, fkClass=com.zz.bms.system.bo.TsUserBO.class)
     @EntityAttrPageAnnotation(title = "上级领导名称" , sort = 601 )
     private String leadUserName;
 
 
     @TableField(exist = false)
     @EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.IMPORT_EXPORT)
-    @EntityAttrFkAnnotation(group = "leadUser" , groupName = "直属领导" ,  isFkBusinessKey = true, dbColumnName = "phone" , dbColumnType = "varchar" , dbColumnLength = 20 , dbColumnNotNull = true, fkEntity="com.zz.bms.system.bo.TsUserBO")
+    @EntityAttrFkAnnotation(group = "leadUser" , groupName = "直属领导" ,   dbColumnName = "phone" , dbColumnType = "varchar" , dbColumnLength = 20 , dbColumnNotNull = true, fkClass=com.zz.bms.system.bo.TsUserBO.class)
     @EntityAttrPageAnnotation(title = "直属领导手机号" , sort = 602 )
     private String leadUserPhone;
 
