@@ -2,10 +2,8 @@ package com.zz.bms.controller.base.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.zz.bms.core.db.base.service.BaseService;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.db.mybatis.query.Query;
@@ -32,10 +30,10 @@ import com.zz.bms.util.poi.vo.Column;
 import com.zz.bms.util.spring.ReflectionUtil;
 import com.zz.bms.util.spring.SpringUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.regexp.RE;
-import org.jasig.cas.client.util.CommonUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,7 +42,6 @@ import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.sql.Ref;
 import java.util.*;
 
 /**
@@ -52,11 +49,9 @@ import java.util.*;
  * 包括导出，导入 支持 Excel2003  Excel2007  CVS 格式
  * @author Administrator
  */
-public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends Serializable, Q extends Query> extends BusinessController<M,PK,Q> {
+public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends Serializable, Q extends Query> extends BaseCURDController<M,PK,Q> {
 
 
-    @Autowired
-    protected BaseService<M, PK> baseService;
 
 
     public BaseExcelController(){
@@ -205,7 +200,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
      * @return
      * @throws Exception
      */
-    @RequestMapping(params = "method=doExcel")
+    @RequestMapping(value = "/doExcel" , method = {RequestMethod.GET , RequestMethod.POST} )
     @ResponseBody
     public AjaxJson doExcel(MultipartFile file, HttpServletResponse res, HttpServletRequest request) throws InvocationTargetException, IllegalAccessException {
 

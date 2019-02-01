@@ -21,3 +21,8 @@
 <script src="${staticUrl}/statics2/js/html5shiv.min.js"></script>
 <script src="${staticUrl}/statics2/js/respond.js"></script>
 <![endif]-->
+
+
+
+<!-- 文件上传组件 baidu WebFE -->
+<script src="${staticUrl}/statics2/js/webuploader/webuploader.css"></script>

@@ -34,6 +34,9 @@
 <script src="${staticUrl}/statics2/jquery/jquery.form.js"></script>
 <script src="${staticUrl}/statics2/jquery/toastr/toastr.min.js"></script>
 
+<!-- 文件上传组件 baidu WebFE -->
+<script src="${staticUrl}/statics2/js/webuploader/webuploader.min.js"></script>
+
 
 <script src="${staticUrl}/statics2/js/project/common.js"></script>
 <script src="${staticUrl}/statics2/js/project/common-tools.js"></script>
@@ -44,4 +47,8 @@
 <script src="${staticUrl}/statics2/js/project/common-tools.js"></script>
 
 
+<!--
 <script src="${staticUrl}/statics2/js/project/common-sys-function.js"></script>
+-->
+
+

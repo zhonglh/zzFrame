@@ -1,35 +1,49 @@
 
+
+// 给含有 webuploader-container 样式的元素绑定上传事件
+$(".webuploader-container").each(function(){
+    if(GetScriptParam("source") == "1"){
+        // 表单来源，不初始化组件
+        return;
+    }
+    // 获取参数
+    var options = $(this).attr("data-options");
+    options = stringToJson(options);
+    var isInit = options.init||true;
+    if(isInit == true){
+        $(this).UploadFile();
+    }
+});
+
+
 /**
  * 文件上传
  * options{
 	 * 		id: 绑定上传事件控件ID
-	 * 		maxFileSize: 单个文件大小限制，默认为10 * 1024 * 1024
+	 * 		maxFileSize: 单个文件大小限制，默认为50 * 1024 * 1024
 	 * 		uploadUrl: 文件上传地址
 	 * 		deleteUrl: 文件删除地址
 	 * 		viewAreaId: 上传完成后，文件显示区域
 	 * 		dataId: 关联数据的ID
-	 * 		fileSource: 数据来源，见cn.forp.cherry.cmm.vo.Attachment枚举定义
 	 * 		maxCount: 最大上传文件数量，如果小于大于0，则没有限制，默认0.
-	 * 		isDirectDel: 是否直接删除， 默认为是0.
+	 * 		isDelServerFile: 是否删除服务器中的文件内容.
 	 * }
  */
 function UploadFile(options)
 {
     var that = this;
     that.id = options.id;
-    // 最大上传文件数量
-    options.isDirectDel = options.isDirectDel || 0;
+    // 是否删除服务器中的文件内容
+    options.isDelServerFile = options.isDelServerFile || true;
     // 最大上传文件数量
     options.maxCount = options.maxCount || 0;
-    // 单个文件大小限制
+    // 关联数据的ID
     options.dataId = options.dataId || "";
     // 单个文件大小限制
-    options.fileSource = options.fileSource || "";
-    // 单个文件大小限制
-    options.maxFileSize = options.maxFileSize || (30 * 1024 * 1024);
-    // 如果上传地址未指定，则为默认地址
-    options.uploadUrl = options.uploadUrl || ($AppContext + "/base/file/upload?dataId=" + options.dataId + "&fileSource=" + options.fileSource);
-    // 如果删除地址未指定，则为默认地址
+    options.maxFileSize = options.maxFileSize || (50 * 1024 * 1024);
+    // 默认上传地址
+    options.uploadUrl = options.uploadUrl || ($AppContext + "/base/file/upload?dataId=" + options.dataId );
+    // 默认删除地址
     options.deleteUrl = options.deleteUrl || $AppContext + "/base/file/delete/";
     // 文件发生变化（新增、删除）
     options.fileChange = options.fileChange || function(){};
@@ -140,7 +154,7 @@ function UploadFile(options)
     });
 
     this.resetFileList = function(){
-        // 加载之前删除已经
+        // 加载之前已删除
         vewArea.find("li").remove();
         initFileList();
     };

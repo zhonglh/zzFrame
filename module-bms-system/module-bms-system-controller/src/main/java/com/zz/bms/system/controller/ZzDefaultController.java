@@ -1,6 +1,7 @@
 package com.zz.bms.system.controller;
 
 import com.zz.bms.controller.base.controller.BaseCURDController;
+import com.zz.bms.controller.base.controller.BaseExcelController;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.system.bo.TsDictBO;
@@ -19,7 +20,9 @@ import java.util.Map;
  * @param <PK>
  * @param <Q>
  */
-public abstract class ZzDefaultController<M extends BaseEntity<PK>, PK extends Serializable , Q extends Query >   extends BaseCURDController<M , PK , Q> {
+public abstract class ZzDefaultController<M extends BaseEntity<PK>, PK extends Serializable , Q extends Query >
+            extends BaseExcelController<M , PK , Q> {
+
 
 
     private TsDictService tsDictService;

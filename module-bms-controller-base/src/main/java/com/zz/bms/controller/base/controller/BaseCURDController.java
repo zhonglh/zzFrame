@@ -34,12 +34,16 @@ import java.util.List;
  * 处理数据库基础的增加 修改 读取 删除 功能
  * @author Administrator
  */
-public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Serializable  , Q extends Query > extends BaseExcelController<M,PK,Q> {
+public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Serializable  , Q extends Query > extends BaseBusinessController<M,PK,Q> {
 
     public final String defaultEditPageName = "editForm";
     public final String defaultAddPageName = "editForm";
     public final String defaultViewPageName = "viewForm";
     public final String defaultListPageName = "list";
+
+
+    @Autowired
+    protected BaseService<M, PK> baseService;
 
 
     protected String viewPrefix;
@@ -296,7 +300,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     }
 
 
-    @RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}/update", method = {RequestMethod.POST , RequestMethod.PUT})
     @ResponseBody
     public Object update(@PathVariable("id") PK id, ModelMap model, M m , HttpServletRequest request, HttpServletResponse response) {
 
@@ -576,28 +580,6 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         return currentViewPrefix;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

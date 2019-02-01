@@ -1,6 +1,6 @@
 
 /**
- * 打开用户选择窗口
+ * 打开部门选择窗口
  * callId	回显数据ID的控件ID
  * callName	回显数据名称的控件ID
  * clearId	清空选项的控件ID
@@ -9,7 +9,7 @@
  */
 function openSystemUserWin(config, callBack)
 {
-    var url = config.url || $AppContext + '/system/user/list';
+    var url = config.url || $AppContext + '/system/dep/list';
     var tableTemple = '<div class="easyui-panel" style="padding:5px; border: 0; width: 605px;height:450px;">'
         + '<table align="center" class="_searchTools" width="100%" border="0" style="background-color: #ffffff;">'
         + '<tr style="height: 40px;">'
@@ -26,7 +26,8 @@ function openSystemUserWin(config, callBack)
         + '</td>'
         + '</tr>'
         + '</table>'
-        + '<table class="_dataContorl_User" style="height: 300px;" pagination="true" border="true"  sortName="orderIndex" sortOrder="asc"></table>'
+        + '     '
+        + '<table class="_dataSearch_Dep" style="height: 300px;" pagination="true" border="true"  sortName="orderIndex" sortOrder="asc"></table>'
         + '</div>';
 
     var options = config || {};
@@ -79,7 +80,7 @@ function openSystemUserWin(config, callBack)
 
 
 
-// 用户选择控件
+// 部门选择控件
 $.fn.OpenSystemUserSelectWin = function(config, callBack){
     var win = openSystemUserWin(config, callBack);
     $(this).unbind("click");

@@ -198,6 +198,7 @@
 
 
 <script src="${staticUrl}/statics2/business-js/system/user.js"></script>
+<script src="${staticUrl}/statics2/business-js/system/dep.js"></script>
 
 
 <script language="JavaScript">

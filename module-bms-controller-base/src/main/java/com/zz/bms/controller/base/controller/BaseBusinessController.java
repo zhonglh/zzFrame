@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public abstract class BusinessController<M extends BaseEntity<PK>, PK extends Serializable, Q extends Query> extends BaseController<M,PK> {
+public abstract class BaseBusinessController<M extends BaseEntity<PK>, PK extends Serializable, Q extends Query> extends BaseController<M,PK> {
 
 
     /**
@@ -61,7 +61,7 @@ public abstract class BusinessController<M extends BaseEntity<PK>, PK extends Se
     protected final Class<M> entityClass;
 
 
-    public BusinessController(){
+    public BaseBusinessController(){
         this.entityClass = GenericsHelper.getSuperClassGenricType(getClass(), 0);
     }
 

@@ -85,7 +85,7 @@
                 <ul class="dropdown-menu">
 
                     <li>
-                        <a href="#">
+                        <a href="#" onclick="return false;" class="webuploader-container">
                             <svg class="icon" aria-hidden="true">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daoru"></use>
                             </svg>导入
@@ -175,7 +175,9 @@
 <bms:contentJS />
 
 <script src="${staticUrl}/statics2/js/project/list.js"></script>
-<script src="${staticUrl}/statics2/js/project/common-sys-function.js"></script>
+<script src="${staticUrl}/statics2/js/project/common-import-excel.js"></script>
+<script src="${staticUrl}/statics2/business-js/system/user.js"></script>
+<script src="${staticUrl}/statics2/business-js/system/dep.js"></script>
 
 <script language="JavaScript">
     /**
