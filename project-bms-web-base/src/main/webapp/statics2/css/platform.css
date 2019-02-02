@@ -441,13 +441,17 @@ select.multiselect+.open>.dropdown-toggle.btn-default{background-color: transpar
 .block-each-another .block-title{background-color: transparent;border-bottom: none;margin-top: 20px;border-top: 1px solid #0896ba;position: relative}
 .block-each-another .block-title div{font-size: 16px;padding-right: 6px;color: #0896ba;position: absolute;left: 0;top: -13px;background-color: #ffffff}
 /* webuploader按钮样式 */
+
+/*
 .webuploader-pick{padding: 6px 10px !important;background-color: #2dc3e8 !important;line-height: 20px !important}
 .webuploader-pick span{vertical-align: middle}
 .webuploader-pick+div label{margin-bottom: 0}
 .webuploader-pick-hover{background: #06a4cb}
 
-/**------------------------------------------------------------------------------------------
  *		公用的webuploader上传列表 (左边是强制不换行限宽的文件名,右侧为删除按钮)
+*/
+
+/**------------------------------------------------------------------------------------------
  *   【投行项目移植过来的,颜色可能需要重新定制】
  *------------------------------------------------------------------------------------------*/
 .files-list li{*zoom: 1;line-height: 30px}

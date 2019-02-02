@@ -241,7 +241,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
         }
         if(!lazy) {
             for (T t : list) {
-                processResult(t);
+                processResult(specialHandler(t));
             }
         }
         return list;
@@ -254,7 +254,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
             return list;
         }
         for(T t : list){
-            processResult(t);
+            processResult(specialHandler(t));
         }
         return list;
     }
@@ -291,7 +291,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
             return list;
         }
         for(T t : list){
-            processResult(t);
+            processResult(specialHandler(t));
         }
         return list;
     }
@@ -301,7 +301,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
         IPage<T> iPage =  getQueryDAO().selectPage(page, queryWrapper);
         if(iPage.getRecords() != null && !iPage.getRecords().isEmpty()){
             for(T t : iPage.getRecords()){
-                processResult(t);
+                processResult(specialHandler(t));
             }
         }
         return iPage;
@@ -331,6 +331,11 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
     @Override
     public T processResult(T t){
+        return t;
+    }
+
+    @Override
+    public T specialHandler(T t){
         return t;
     }
 

@@ -53,44 +53,45 @@
 
         </form>
         <div class="btn-bar" style="margin-left: -10px;">
+
+            <shiro:hasPermission name="system.user:create">
             <button type="button" class="btn btn-primary btn-sm" onclick="toAdd()">
                 <svg class="icon" aria-hidden="true">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
                 </svg>
                 <span>新建 </span>
             </button>
+            </shiro:hasPermission>
+
+
+            <shiro:hasPermission name="system.user:delete">
             <button type="button" class="btn btn-primary btn-sm" url="" onclick="doDel('url')">
                 <svg class="icon" aria-hidden="true">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use>
                 </svg>
                 <span>删除 </span>
             </button>
-<%--
-            <button type="button" class="btn btn-primary btn-sm" onclick="explor();">
+            </shiro:hasPermission>
+
+            <shiro:hasPermission name="system.user:create">
+            <div type="button" id="importExcel" class="btn btn-primary btn-sm" >
                 <svg class="icon" aria-hidden="true">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daoru"></use>
                 </svg>
-                <span>导出</span>
-                <a class="btn no-disabled dropdown-toggle" data-toggle="dropdown">
-                    <i class="icon-laptop"></i>
-                    Excel导入/导出
-                    <i class="caret"></i>
-                </a>
-            </button>--%>
+                <span>Excel导入</span>
+            </div>
+            </shiro:hasPermission>
 
             <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Excel导入/导出 <span class="caret"></span>
+                    <svg class="icon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
+                    </svg>
+                    Excel导出 <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
 
-                    <li>
-                        <a href="#" onclick="return false;" class="webuploader-container">
-                            <svg class="icon" aria-hidden="true">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daoru"></use>
-                            </svg>导入
-                        </a>
-                    </li>
+
 
                     <li>
                         <a href="#">
@@ -133,6 +134,7 @@
                     </li>
                 </ul>
             </div>
+
 
 
 

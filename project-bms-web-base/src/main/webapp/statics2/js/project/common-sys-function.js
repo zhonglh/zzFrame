@@ -1,4 +1,37 @@
 
+$(function(){
+
+var uploadFileList = [];
+$.fn.UploadFile = function(config){
+    var options = $(this).attr("data-options");
+    options = stringToJson(options);
+    options.id =  $(this).attr("id");
+    options = $.extend(options, config || {});
+
+    var uploadFile = null;
+    for(var i=0; i<uploadFileList.length; i++){
+        if(uploadFileList[i].id == options.id){
+            uploadFile = uploadFileList[i];
+        }
+    }
+    if(uploadFile == null){
+        options.html = $(this).html();
+        uploadFile = new UploadFile(options);
+        uploadFileList.push(uploadFile);
+    }
+
+    uploadFile.remove = function(){
+        // 删除附件
+        for(var i=0; i<uploadFileList.length; i++){
+            if(uploadFileList[i].id == this.id){
+                uploadFileList.splice(i, 1);
+                $("#" + this.id).html(this.options.html);
+            }
+        }
+    }
+    return uploadFile;
+};
+
 
 // 给含有 webuploader-container 样式的元素绑定上传事件
 $(".webuploader-container").each(function(){
@@ -14,6 +47,8 @@ $(".webuploader-container").each(function(){
         $(this).UploadFile();
     }
 });
+
+
 
 
 /**
@@ -56,9 +91,9 @@ function UploadFile(options)
     // 创建文件上传
     var uploader = WebUploader.create({
         auto: true,
-        swf: $AppContext + '/js/webuploader/Uploader.swf',
+        swf: $AppContext + '/statics2/js/webuploader/Uploader.swf',
         server: options.uploadUrl,
-        pick: {id: ('#' + options.id)},
+        pick: ".webuploader-container",
         fileNumLimit: (options.maxCount == 1?null:options.maxCount),
         fileSingleSizeLimit: options.maxFileSize, // 验证单个文件大小是否超出限制, 超出则不允许加入队列。
         duplicate: true,//去重， 根据文件名字、文件大小和最后修改时间来生成hash Key.
@@ -493,36 +528,7 @@ $.fn.OpenUserRoleSelectWin = function(config, callBack){
 };
 
 
-var uploadFileList = [];
-$.fn.UploadFile = function(config){
-    var options = $(this).attr("data-options");
-    options = stringToJson(options);
-    options.id =  $(this).attr("id");
-    options = $.extend(options, config || {});
-
-    var uploadFile = null;
-    for(var i=0; i<uploadFileList.length; i++){
-        if(uploadFileList[i].id == options.id){
-            uploadFile = uploadFileList[i];
-        }
-    }
-    if(uploadFile == null){
-        options.html = $(this).html();
-        uploadFile = new UploadFile(options);
-        uploadFileList.push(uploadFile);
-    }
-
-    uploadFile.remove = function(){
-        // 删除附件
-        for(var i=0; i<uploadFileList.length; i++){
-            if(uploadFileList[i].id == this.id){
-                uploadFileList.splice(i, 1);
-                $("#" + this.id).html(this.options.html);
-            }
-        }
-    }
-    return uploadFile;
-};
+});
 
 
 // 格式化时间

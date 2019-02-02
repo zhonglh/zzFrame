@@ -36,13 +36,23 @@ $(function(){
 });
 
 
+/**
+ * 导出Excel
+ * @param url
+ * @private
+ */
 function _doExport(url){
     var $form = $("#searchForm");
     window.location = url+(url.indexOf('?') == -1 ? "?" : "&")+$form.serialize();
 }
 
 
-//设置选中类型 , 分类查询
+/**
+ * 设置选中类型 , 分类查询
+ * @param obj
+ * @param value
+ * @param filed
+ */
 function isChecked(obj, value ,filed){
     /* 谁被选中谁显示蓝色底框 */
     $(obj).siblings().removeClass('active');
@@ -51,6 +61,10 @@ function isChecked(obj, value ,filed){
     search();
 }
 
+
+/**
+ * 初始化 easyUI 列表
+ */
 function initPage() {
     //加载table列表数据
     $('#'+tableid).datagrid({
@@ -87,7 +101,9 @@ function getQueryParams(){
     }
 }
 
-//点击查询按钮查询
+/**
+ * 查询
+ */
 function search(){
     initPage();
 }
@@ -98,7 +114,12 @@ function IframePath(title)
     $("#iframePath").parent().html(title);
 }
 
-//日期格式化
+/**
+ * 日期格式化
+ * @param val
+ * @param row
+ * @returns {*}
+ */
 function dateFmt(val,row){
     if(null==val||""==val){
         return "";
@@ -106,31 +127,43 @@ function dateFmt(val,row){
     return val.substring(0,10);
 }
 
-//标题格式化
+/**
+ * 标题格式化
+ * @param val
+ * @param row
+ * @returns {string}
+ */
 function titleFmt(val, row){
     var html ='<a href="javascript: toUpdate(\'' + row.id + '\')"; title="'+val+'">'+val+'</a>';
     return html;
 }
 
-//金额格式化
+/**
+ * 金额格式化
+ * @param val
+ * @param r
+ * @returns {String}
+ */
 function moneyFmt(val, r){
     return FormatMoney(val,4,true);
 }
 
-//点击日期选择的×号按钮
+/**
+ * 点击日期选择的×号按钮
+ * @param time
+ */
 function clearTime(time){
     $(time).val('');
 }
 
 
-
-
-
-
-
-
-
-//操作
+/**
+ * 操作
+ * @param val
+ * @param r
+ * @param index
+ * @returns {string}
+ */
 function makesFmt (val, r, index)
 {
     // 操作栏为图标
@@ -153,7 +186,10 @@ function makesFmt (val, r, index)
 }
 
 
-//点击删除图标删除
+/**
+ * 点击删除图标删除
+ * @param obj
+ */
 function deleteOne (obj)
 {
     var $Obj = $ (obj);
@@ -182,21 +218,28 @@ function deleteOne (obj)
     });
 }
 
-//新建
+/**
+ * 打开新建界面
+ */
 function toAdd(){
     showIframeWindow('<a>'+breadcrumb+'</a> ＞ <a>新建</a>', ctx+dataUrl+"/create");
 }
 
 
-
-//编辑
+/**
+ * 打开编辑界面
+ * @param id
+ */
 function toUpdate(id){
     var title = '<a id="iframePath">'+breadcrumb+'</a>＞<a>详情</a>';
     showIframeWindow(title,     ctx+dataUrl+"/"+id+"/update");
 }
 
 
-//删除
+/**
+ * 删除
+ * @returns {boolean}
+ */
 function doDel(){
     var idArray = new Array();
     var toDel = true;

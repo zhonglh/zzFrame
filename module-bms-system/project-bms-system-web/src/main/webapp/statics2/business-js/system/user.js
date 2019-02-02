@@ -26,7 +26,7 @@ function openSystemUserWin(config, callBack)
         + '</td>'
         + '</tr>'
         + '</table>'
-        + '<table class="_dataContorl_User" style="height: 300px;" pagination="true" border="true"  sortName="orderIndex" sortOrder="asc"></table>'
+        + '<table class="_dataContorl _w_height" style="height: 300px;" pagination="true" border="true"  sortName="userName" sortOrder="asc"></table>'
         + '</div>';
 
     var options = config || {};

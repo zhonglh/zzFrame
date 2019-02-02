@@ -617,6 +617,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      */
     protected void processBO(M m){
         this.baseService.processResult(m);
+        this.baseService.specialHandler(m);
     }
 
 

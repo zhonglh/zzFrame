@@ -33,20 +33,20 @@ function switchEditDetail() {
 
     if(showMode === "detail"){
         // 转为编辑模式
-        $("#editForm").removeClass("hide");
-        $("#detailForm").addClass("hide");
+        $(".editForm").removeClass("hide");
+        $(".detailForm").addClass("hide");
 
 
-        $("#editForm").clearValidate();
-        $("#editForm").validate();
+        $(".editForm").clearValidate();
+        $(".editForm").validate();
 
-        $("#editForm").tform().showEdit();
+        $(".editForm").tform().showEdit();
 
         showMode = "eidt"
 
     }else {
-        $("#editForm").addClass("hide");
-        $("#detailForm").removeClass("hide");
+        $(".editForm").addClass("hide");
+        $(".detailForm").removeClass("hide");
 
         showMode = "detail"
     }
@@ -209,7 +209,7 @@ function doMultiFormUpdate() {
 function updateSuccess(rsp, status){
     if(rsp.success) {
         switchEditDetail();
-        $("#editForm").tform().showDetail(true);
+        $(".editForm").tform().showDetail(true);
         parent.search();
         info(rsp.msg);
     }else{

@@ -12,6 +12,9 @@
 <link rel="stylesheet" href="${ctx}/statics2/jquery/toastr/toastr.min.css"/>
 <link rel="stylesheet" href="${ctx}/statics2/css/common.css"/>
 
+<!-- 文件上传组件 baidu WebFE -->
+<link rel="stylesheet" href="${ctx}/statics2/js/webuploader/webuploader.css"/>
+
 
 <!--[if IE 7]>
 <link type="text/css" href="${staticUrl}/statics2/font-wesome/font-awesome-ie7.min.css">
@@ -23,6 +26,3 @@
 <![endif]-->
 
 
-
-<!-- 文件上传组件 baidu WebFE -->
-<script src="${staticUrl}/statics2/js/webuploader/webuploader.css"></script>

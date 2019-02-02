@@ -55,10 +55,19 @@ public interface BaseService<T extends BaseEntity, PK extends Serializable> exte
 
     /**
      * 处理返回的对象
-     * 加入状态等内容的处理
+     * 加入状态 外键内容的处理
      * @param t
      * @return
      */
     T processResult(T t);
+
+
+    /**
+     * 特殊处理
+     * 比如查询用户信息， 不能将密码 等关键信息返回到客户端
+     * @param t
+     * @return
+     */
+    T specialHandler(T t);
 
 }

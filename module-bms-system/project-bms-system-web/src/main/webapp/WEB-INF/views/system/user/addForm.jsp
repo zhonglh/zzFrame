@@ -111,12 +111,18 @@
                 </form>
             </div>
             <div style="margin-top:10px;position:absolute;">
+
+
+                <shiro:hasPermission name="system.user:create">
                 <button type="button" class="btn btn-primary btn-sm" onclick="doSave()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
                     </svg>
                     <span>保 存</span>
                 </button>
+                </shiro:hasPermission>
+
+
                 <button type="button" class="btn  btn-warning btn-sm" onclick="closeWindow()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>

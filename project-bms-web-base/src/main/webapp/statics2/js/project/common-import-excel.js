@@ -18,8 +18,8 @@ $.fn.UploadFile = function(config){
 
 
 
-// 给含有 webuploader-container 样式的元素绑定上传事件
-$(".webuploader-container").each(function(){
+// 给含有 importExcel 样式的元素绑定上传事件
+$("#importExcel").each(function(){
     if(GetScriptParam("source") == "1"){
         // 表单来源，不初始化组件
         return;
@@ -46,7 +46,6 @@ $(".webuploader-container").each(function(){
 	 * 		viewAreaId: 上传完成后，文件显示区域
 	 * 		dataId: 关联数据的ID
 	 * 		maxCount: 最大上传文件数量，如果小于大于0，则没有限制，默认0.
-	 * 		isDelServerFile: 是否删除服务器中的文件内容.
 	 * }
  */
 function UploadFile(options)
@@ -70,16 +69,21 @@ function UploadFile(options)
     // 创建文件上传
     var uploader = WebUploader.create({
         auto: true,
-        swf: $AppContext + '/js/webuploader/Uploader.swf',
+        swf: $AppContext + '/statics2/js/webuploader/Uploader.swf',
         server: options.uploadUrl,
-        pick: {id: ('#' + options.id)},
+        pick: "#importExcel",
         fileNumLimit: (options.maxCount == 1?null:options.maxCount),
         // 验证单个文件大小是否超出限制, 超出则不允许加入队列。
         fileSingleSizeLimit: options.maxFileSize,
         //去重， 根据文件名字、文件大小和最后修改时间来生成hash Key.
         duplicate: false,
         //是否禁掉整个页面的拖拽功能，如果不禁用，图片拖进来的时候会默认被浏览器打开。
-        disableGlobalDnd: true
+        disableGlobalDnd: true,
+        accept: {
+            title: 'Excel文件',
+            extensions: 'xls,xlsx,XLS,XLSX',
+            mimeTypes: 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        }
     });
 
 
@@ -112,7 +116,6 @@ function UploadFile(options)
     {
         $Loading.fadeOut(500);
         var data = response.data;
-        var id = "file-" + data.fileId;
         //todo 处理成功后的逻辑
 
 

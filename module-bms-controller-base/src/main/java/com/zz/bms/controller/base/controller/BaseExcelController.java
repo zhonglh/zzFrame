@@ -643,7 +643,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
     protected List<M> getExcelData(MultipartFile file,EnumExcelFileType excelFileType){
 
 
-        List<M> list = null;
+        List<M> list = new ArrayList<M>();
 
         int sheetIndex = 0;
         int rowIndex = 0;

@@ -15,7 +15,7 @@
 
 
 
-                <div id="detailForm">
+                <div id="detailForm" class="detailForm">
                     <table class="info-table">
                         <tr>
                             <th width="15%">用户名称</th>
@@ -47,7 +47,7 @@
                 </div>
 
 
-                <form id="editForm" action="" method="post" class="form-auto-fill hide" viewId="detailForm">
+                <form action="" method="post" class="form-auto-fill hide editForm" viewId="detailForm" formId="editForm">
                     <input type="hidden" id="id" name="id" value="${m.id}">
                     <table class="info-table">
                         <tr>
@@ -124,6 +124,29 @@
                             <td><input type="email" class="form-control input-sm required"  placeholder="请输入邮箱"
                                        value="${m.email}"  id="email" name="email" minlength="4" maxlength='50'/></td>
                         </tr>
+
+
+                        <tr>
+                            <th height="15%">退出文件</th>
+                            <td colspan="3">
+                                <div class="info-detail">
+                                    <div class="uploader-list">
+                                        <ul id="thelist" class="files-list" style="margin: 0 0 10px 0" ></ul>
+                                    </div>
+                                    <div>
+                                        <div id="uploadFile" title='附件' class="webuploader-container" data-options="viewAreaId:'#thelist', fileSource:125, ">
+                                            <svg class="icon" aria-hidden="true">
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-upload"></use>
+                                            </svg>
+                                            <span>上传附件</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+
+
                         <tr>
                             <th >备注</th>
                             <td colspan="3">
@@ -141,12 +164,14 @@
 
 
 
+                <shiro:hasPermission name="system.user:update">
                 <button type="button" class="btn btn-primary btn-sm btn-showEdit" onclick="switchEditDetail()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use>
                     </svg>
                     <span>编 辑</span>
                 </button>
+                </shiro:hasPermission>
 
                 <button type="button" class="btn  btn-warning btn-sm btn-showEdit" onclick="closeWindow()">
                     <svg class="icon" aria-hidden="true">
@@ -156,12 +181,15 @@
                 </button>
 
 
+                <shiro:hasPermission name="system.user:update">
                 <button type="button" class="btn btn-primary btn-sm hide" onclick="doUpdate()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
                     </svg>
                     <span>保 存</span>
                 </button>
+                </shiro:hasPermission>
+
                 <button type="button" class="btn  btn-warning btn-sm hide" onclick="switchEditDetail()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
@@ -194,11 +222,11 @@
 
 <bms:contentJS />
 
+<script src="${staticUrl}/statics2/business-js/system/user.js"></script>
 <script src="${staticUrl}/statics2/js/project/form.js"></script>
 
 
-<script src="${staticUrl}/statics2/business-js/system/user.js"></script>
-<script src="${staticUrl}/statics2/business-js/system/dep.js"></script>
+<script src="${staticUrl}/statics2/js/project/common-sys-function.js"></script>
 
 
 <script language="JavaScript">
