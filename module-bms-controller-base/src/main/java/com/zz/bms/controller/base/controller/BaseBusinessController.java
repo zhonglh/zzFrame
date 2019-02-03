@@ -153,7 +153,9 @@ public abstract class BaseBusinessController<M extends BaseEntity<PK>, PK extend
      * @param m
      * @param sessionUserVO
      */
-    protected abstract void insertInfo(M m, ILoginUserEntity<PK> sessionUserVO)  ;
+    protected void insertInfo(M m, ILoginUserEntity<PK> sessionUserVO)  {
+        throw new RuntimeException("Please overload this method first");
+    }
 
     /**
      * 增加之后要处理的
@@ -169,7 +171,9 @@ public abstract class BaseBusinessController<M extends BaseEntity<PK>, PK extend
      * @param m
      * @return
      */
-    protected abstract void isExist(M m) ;
+    protected void isExist(M m) {
+        throw new RuntimeException("Please overload this method first");
+    }
 
     /**
      * 查询数据转Wrapper

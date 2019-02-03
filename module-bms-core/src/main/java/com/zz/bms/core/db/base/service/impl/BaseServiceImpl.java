@@ -1,6 +1,7 @@
 package com.zz.bms.core.db.base.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.enums.SqlMethod;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -172,6 +173,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
         return SqlHelper.delBool(getRwDAO().delete(wrapper));
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean removeByIds(Collection<? extends Serializable> idList) {
         return SqlHelper.delBool(getRwDAO().deleteBatchIds(idList));
@@ -234,27 +236,56 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
     }
 
     @Override
-    public Collection<T> listByIds(Collection<? extends Serializable> idList , boolean lazy) {
-        Collection<T> list =  getQueryDAO().selectBatchIds(idList);
+    public List<T> listByIds(Collection<? extends Serializable> idList , boolean lazy) {
+        List<T> list =  getQueryDAO().selectBatchIds(idList);
         if(list == null || list.isEmpty()) {
             return list;
         }
         if(!lazy) {
             for (T t : list) {
-                processResult(specialHandler(t));
+                specialHandler(processResult(t));
+            }
+        }else{
+            for (T t : list) {
+                specialHandler((t));
             }
         }
         return list;
     }
 
+
+
     @Override
-    public Collection<T> listByMap(Map<String, Object> columnMap) {
-        Collection<T> list =   getQueryDAO().selectByMap(columnMap);
+    public List<T> listByFkIds(String fkColumnName,Collection<? extends Serializable> fkIdList , boolean lazy){
+        List<T> list =  null;
+        QueryWrapper<T> qw = new QueryWrapper<T>();
+        qw.in(fkColumnName , fkIdList);
+        list = getQueryDAO().selectList(qw);
+        if(list == null || list.isEmpty()) {
+            return list;
+        }
+        if(!lazy) {
+            for (T t : list) {
+                specialHandler(processResult(t));
+            }
+        }else {
+            for (T t : list) {
+                specialHandler((t));
+            }
+        }
+        return list;
+
+    }
+
+
+    @Override
+    public List<T> listByMap(Map<String, Object> columnMap) {
+        List<T> list =   getQueryDAO().selectByMap(columnMap);
         if(list == null || list.isEmpty()) {
             return list;
         }
         for(T t : list){
-            processResult(specialHandler(t));
+            specialHandler(processResult(t));
         }
         return list;
     }
@@ -264,8 +295,10 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
         T result = null;
         if (throwEx) {
             result =  (T)getQueryDAO().selectOne(queryWrapper);
+        }else {
+            result = SqlHelper.getObject((List<T>) getQueryDAO().selectList(queryWrapper));
         }
-        result = SqlHelper.getObject((List<T>)getQueryDAO().selectList(queryWrapper));
+
         if(result != null){
             return processResult(result);
         }else {
@@ -291,7 +324,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
             return list;
         }
         for(T t : list){
-            processResult(specialHandler(t));
+            specialHandler(processResult(t));
         }
         return list;
     }
@@ -301,7 +334,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
         IPage<T> iPage =  getQueryDAO().selectPage(page, queryWrapper);
         if(iPage.getRecords() != null && !iPage.getRecords().isEmpty()){
             for(T t : iPage.getRecords()){
-                processResult(specialHandler(t));
+                specialHandler(processResult(t));
             }
         }
         return iPage;
@@ -335,8 +368,8 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
     }
 
     @Override
-    public T specialHandler(T t){
-        return t;
+    public void specialHandler(T t){
+
     }
 
 

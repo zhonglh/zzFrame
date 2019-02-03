@@ -393,6 +393,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
             throw EnumErrorMsg.no_auth.toException();
         }
 
+        baseService.specialHandler(m);
+
         boolean success = false;
         try {
             deleteBefore(m);
@@ -451,6 +453,10 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         if(list == null && list.isEmpty()){
             throw EnumErrorMsg.no_auth.toException();
+        }
+
+        for(M m : list){
+            baseService.specialHandler(m);
         }
 
 

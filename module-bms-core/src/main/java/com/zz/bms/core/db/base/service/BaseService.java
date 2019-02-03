@@ -50,7 +50,7 @@ public interface BaseService<T extends BaseEntity, PK extends Serializable> exte
      * @param lazy
      * @return
      */
-    Collection<T> listByIds(Collection<? extends Serializable> idList , boolean lazy);
+    List<T> listByIds(Collection<? extends Serializable> idList , boolean lazy);
 
 
     /**
@@ -68,6 +68,17 @@ public interface BaseService<T extends BaseEntity, PK extends Serializable> exte
      * @param t
      * @return
      */
-    T specialHandler(T t);
+    void specialHandler(T t);
+
+
+    /**
+     * 根据外键ID获取数据
+     * @param fkColumnName  外键列名
+     * @param fkIdList      外键ID集合
+     * @param lazy
+     * @return
+     */
+    List<T> listByFkIds(String fkColumnName,Collection<? extends Serializable> fkIdList , boolean lazy);
+
 
 }

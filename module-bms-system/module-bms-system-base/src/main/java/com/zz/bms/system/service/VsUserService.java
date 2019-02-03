@@ -11,4 +11,6 @@ import com.zz.bms.system.bo.VsUserBO;
 */
 public interface VsUserService extends BaseService<VsUserBO , String> {
 
+
+
 }
