@@ -1,10 +1,15 @@
 package com.zz.bms.system.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.core.IUserService;
 import com.zz.bms.core.db.entity.ILoginPermitEntity;
 import com.zz.bms.core.db.entity.ILoginRoleEntity;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.enums.EnumYesNo;
+import com.zz.bms.system.bo.TsPermitBO;
+import com.zz.bms.system.bo.VsUserPermitBO;
+import com.zz.bms.system.domain.TsPermitEntity;
+import com.zz.bms.system.domain.VsUserPermitEntity;
 import com.zz.bms.system.query.TsPermitQuery;
 import com.zz.bms.system.query.TsUserQuery;
 import com.zz.bms.system.query.VsUserPermitQuery;
@@ -68,11 +73,12 @@ public class UserServiceImpl implements IUserService<String> {
             //系统管理人查询所有的许可
             TsPermitQuery query = new TsPermitQueryImpl();
             query.deleteFlag(EnumYesNo.NO.getCode());
-            return tsPermitService.list(query.buildWrapper());
+            QueryWrapper qw = query.buildWrapper();
+            return (List<ILoginPermitEntity>)tsPermitService.list(qw);
         }else {
             VsUserPermitQuery query = new VsUserPermitQueryImpl();
             query.userId(loginUserEntity.getId());
-            return vsUserPermitService.list(query.buildWrapper());
+            return (List<ILoginPermitEntity>)vsUserPermitService.list(query.buildWrapper());
         }
     }
 }

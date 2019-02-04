@@ -3,6 +3,7 @@ package com.zz.bms.system.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.zz.bms.core.db.entity.ILoginPermitEntity;
 import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 import com.zz.bms.util.configs.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.core.Constant;
@@ -22,6 +23,11 @@ public class VsUserPermitEntity extends BaseEntity<String> implements java.io.Se
 	
 	private String  permitCode ;
 
+
+	//许可名称
+
+	private String  permitName ;
+
 	//用户姓名
 	
 	private String  userName ;
@@ -31,7 +37,7 @@ public class VsUserPermitEntity extends BaseEntity<String> implements java.io.Se
 	private String  loginName ;
 
 	//用户
-	
+
 	private String  userId ;
 
 
@@ -73,6 +79,11 @@ public class VsUserPermitEntity extends BaseEntity<String> implements java.io.Se
     	return this.userId;
     }
 
+	public String getPermitName() {
+		return permitName;
+	}
 
-	
+	public void setPermitName(String permitName) {
+		this.permitName = permitName;
+	}
 }

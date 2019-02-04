@@ -1,5 +1,6 @@
 package com.zz.bms.system.bo;
 
+import com.zz.bms.core.db.entity.ILoginPermitEntity;
 import com.zz.bms.system.domain.VsUserPermitEntity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -16,8 +17,16 @@ import java.io.Serializable;
 */
 @EntityAnnotation(value="用户许可视图" , resource = "")
 @TableName(value="vs_user_permit" , resultMap = "VsUserPermitResultMap")
-public class VsUserPermitBO extends VsUserPermitEntity implements Serializable {
+public class VsUserPermitBO extends VsUserPermitEntity implements ILoginPermitEntity,Serializable {
 
 
+    @Override
+    public String getPermissionName() {
+        return this.getPermitName();
+    }
 
+    @Override
+    public String getPermissionCode() {
+        return this.getPermitCode();
+    }
 }

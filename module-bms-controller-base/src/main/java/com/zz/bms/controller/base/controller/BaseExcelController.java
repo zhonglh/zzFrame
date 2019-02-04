@@ -3,6 +3,7 @@ package com.zz.bms.controller.base.controller;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
@@ -19,6 +20,7 @@ import com.zz.bms.util.poi.exceptions.ExcelAbsenceException;
 import com.zz.bms.util.poi.exceptions.ExcelFormatException;
 import com.zz.bms.util.poi.exceptions.ExcelTypeMatchingException;
 import com.zz.bms.util.poi.export.BaseXlsExport;
+import com.zz.bms.util.poi.export.BaseXlsTemplet;
 import com.zz.bms.util.poi.export.ExcelExport;
 import com.zz.bms.util.poi.export.excel.HssfExport;
 import com.zz.bms.util.poi.export.excel.SxssfExport;
@@ -29,6 +31,7 @@ import com.zz.bms.util.poi.util.ExcelUtil;
 import com.zz.bms.util.poi.vo.Column;
 import com.zz.bms.util.spring.ReflectionUtil;
 import com.zz.bms.util.spring.SpringUtil;
+import com.zz.bms.util.web.PaginationContext;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,6 +59,74 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
 
     public BaseExcelController(){
         super();
+    }
+
+    /**
+     * 下载模板
+     * @param excelType
+     * @param m
+     * @param query
+     * @param request
+     * @param response
+     */
+    @RequestMapping(value = "/{excelType}/download", method = RequestMethod.GET)
+    protected void download(@PathVariable("excelType") String excelType, M m , Q query,  HttpServletRequest request, HttpServletResponse response) {
+
+        if(StringUtils.isEmpty(excelType)){
+            throw EnumErrorMsg.code_error.toException();
+        }
+
+        excelType = excelType.toLowerCase();
+        BaseXlsTemplet<M> bxe = new BaseXlsTemplet<M>();
+        bxe.setEntityClz(this.getEntityClass());
+
+        ExcelExport<M> aee = null;
+        switch (excelType) {
+            case "sxssf":
+                aee = new SxssfExport<M>(bxe);
+                break;
+            case "hssf":
+                aee = new HssfExport<M>(bxe);
+                break;
+            case "csv":
+                //aee = new SxssfExport(bxe);
+                break;
+        }
+
+
+
+        Page<M> page = new Page<M>(1, 1);
+        processQuery(query , m);
+        Wrapper wrapper = buildWrapper(query , m);
+        page = (Page<M>)baseService.page(page , wrapper );
+
+        M topDate = null;
+        if(page.getRecords() != null && !page.getRecords().isEmpty()){
+            topDate = page.getRecords().get(0);
+        }else {
+            topDate  = newModel();
+        }
+        int header = 0;
+        String[] headerInfo = getExcelHeaderInfo();
+
+        if(headerInfo != null && headerInfo.length > 0){
+            header = headerInfo.length;
+        }
+
+        //导出标题
+        exportTitles(aee , header , topDate , isAddNumberByExport());
+
+        //导出头信息
+        exportHeader(aee , headerInfo);
+
+        //导出内容
+        List<M> all = new ArrayList<M>();
+        all.add(topDate);
+        exportContent(aee ,all , header+1 , isAddNumberByExport() );
+
+        //下载文件
+        exportXls(aee,response);
+
     }
 
     @RequestMapping(value = "/{excelType}/export", method = RequestMethod.GET)

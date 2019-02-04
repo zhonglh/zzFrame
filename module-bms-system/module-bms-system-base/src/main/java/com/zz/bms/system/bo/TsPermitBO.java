@@ -20,10 +20,6 @@ import java.io.Serializable;
 public class TsPermitBO extends TsPermitEntity implements Serializable,ILoginPermitEntity<String> {
 
 
-    @Override
-    public String getPermissionId() {
-        return this.getId();
-    }
 
     @Override
     public String getPermissionName() {

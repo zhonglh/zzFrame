@@ -94,14 +94,15 @@
 
 
                     <li>
-                        <a href="#">
+                        <a href="${ctx}/${currParentUrl}/hssf/download" class="export">
                             <svg class="icon" aria-hidden="true">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-download"></use>
                             </svg>下载模板(Excel2003)
                         </a>
                     </li>
+
                     <li>
-                        <a href="#">
+                        <a href="${ctx}/${currParentUrl}/sxssf/download" class="export">
                             <svg class="icon" aria-hidden="true">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-download"></use>
                             </svg>下载模板(Excel2007)

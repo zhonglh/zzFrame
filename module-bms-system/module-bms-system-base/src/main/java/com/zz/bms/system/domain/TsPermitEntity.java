@@ -3,6 +3,7 @@ package com.zz.bms.system.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.zz.bms.core.db.entity.ILoginPermitEntity;
 import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 import com.zz.bms.util.configs.annotaions.EntityAttrDBAnnotation;
 import com.zz.bms.core.Constant;
@@ -13,7 +14,7 @@ import com.zz.bms.core.db.entity.BaseEntity;
  * @author Administrator
  * @date 2018-9-7 0:01:37
  */
-public class TsPermitEntity extends BaseEntity<String> implements java.io.Serializable{
+public class TsPermitEntity extends BaseEntity<String> implements  java.io.Serializable{
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
@@ -60,6 +61,4 @@ public class TsPermitEntity extends BaseEntity<String> implements java.io.Serial
     	return this.remark;
     }
 
-
-	
 }

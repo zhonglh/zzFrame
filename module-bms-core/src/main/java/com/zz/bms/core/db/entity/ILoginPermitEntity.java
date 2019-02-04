@@ -10,8 +10,6 @@ public interface ILoginPermitEntity<PK extends Serializable> {
 
     public PK getId();
 
-    public PK getPermissionId();
-
     public String getPermissionName();
 
     public String getPermissionCode();

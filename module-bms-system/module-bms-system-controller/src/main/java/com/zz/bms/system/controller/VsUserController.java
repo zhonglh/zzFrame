@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 * @author Administrator
 * @date 2018-9-6 22:28:16
  */
-@RequestMapping("/system/user")
+@RequestMapping("/system/vsuser")
 @Controller
 public class VsUserController extends ZzDefaultController<VsUserBO, String , VsUserQueryWebImpl> {
 

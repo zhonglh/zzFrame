@@ -19,7 +19,7 @@ import java.util.Date;
 * @author Administrator
 * @date 2018-9-6 23:56:30
 */
-@EntityAnnotation(value="用户" , resource = "system.user" , businessName = "userName" , businessKey = "phone")
+@EntityAnnotation(value="用户" , resource = "system.user" , businessName = "user_name" , businessKey = {"phone","email"})
 @TableName(value="vs_user" , resultMap = "VsUserResultMap")
 public class VsUserBO extends VsUserEntity implements Serializable {
 
@@ -50,46 +50,6 @@ public class VsUserBO extends VsUserEntity implements Serializable {
     @EntityAttrPageAnnotation(title = "直属领导手机号" , sort = 602 )
     private String leadUserPhone;
 
-
-
-    @TableField(exist = false)
-    @EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_EXPORT)
-    @EntityAttrPageAnnotation(title = "年龄" , sort = 1301  , maxLength=2)
-    private int age =31 ;
-
-    @TableField(exist = false)
-    @EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_EXPORT)
-    @EntityAttrPageAnnotation(title = "工资" , sort = 1301 , maxLength=8)
-    private double salary = 12101.83 ;
-
-    @TableField(exist = false)
-    @EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_EXPORT)
-    @EntityAttrPageAnnotation(title = "生日" , sort = 1301  , maxLength=10)
-    private Date bithDay = new Date() ;
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
-    public Date getBithDay() {
-        return bithDay;
-    }
-
-    public void setBithDay(Date bithDay) {
-        this.bithDay = bithDay;
-    }
 
 
 
