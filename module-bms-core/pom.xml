@@ -35,6 +35,9 @@
             <scope>test</scope>
         </dependency>
 
+
+
+
         <dependency>
             <groupId>com.zz.bms.util</groupId>
             <artifactId>configs</artifactId>

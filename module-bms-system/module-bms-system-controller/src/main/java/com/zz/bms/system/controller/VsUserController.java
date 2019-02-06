@@ -7,9 +7,13 @@ import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.enums.EnumUserStatus;
 import com.zz.bms.shiro.utils.ShiroUtils;
+import com.zz.bms.system.bo.TsDictBO;
+import com.zz.bms.system.bo.TsUserBO;
 import com.zz.bms.system.bo.VsUserBO;
 import com.zz.bms.system.query.impl.VsUserQueryWebImpl;
+import com.zz.bms.system.service.TsDictService;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
@@ -19,15 +23,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 用户 控制层
 * @author Administrator
 * @date 2018-9-6 22:28:16
  */
-@RequestMapping("/system/vsuser")
+@RequestMapping("/system/user")
 @Controller
 public class VsUserController extends ZzDefaultController<VsUserBO, String , VsUserQueryWebImpl> {
+
+	@Autowired
+	private TsDictService tsDictService;
 
 
 

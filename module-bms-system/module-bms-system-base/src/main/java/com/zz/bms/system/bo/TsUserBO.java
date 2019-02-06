@@ -1,6 +1,7 @@
 package com.zz.bms.system.bo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.zz.bms.core.db.entity.IBoEntity;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.system.domain.TsUserEntity;
@@ -19,7 +20,7 @@ import java.io.Serializable;
 */
 @EntityAnnotation(value="用户" , resource = "")
 @TableName(value="ts_user" , resultMap = "TsUserResultMap")
-public class TsUserBO extends TsUserEntity implements Serializable , ILoginUserEntity<String> {
+public class TsUserBO extends TsUserEntity implements IBoEntity ,Serializable , ILoginUserEntity<String> {
 
     @TableField(exist = false)
     private String userStatusName ;
@@ -87,5 +88,18 @@ public class TsUserBO extends TsUserEntity implements Serializable , ILoginUserE
     public void setAvatarImageUrl(String avatarImageUrl) {
         this.avatarImageUrl = avatarImageUrl;
     }
+
+    @Override
+    public boolean isTable() {
+        return true;
+    }
+
+
+    @Override
+    public String toString() {
+
+        return this.getUserName();
+    }
+
 
 }

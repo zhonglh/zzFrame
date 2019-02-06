@@ -260,6 +260,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         return result;
     }
 
+
     @Override
     protected void insertInfo(M m, ILoginUserEntity<PK> sessionUserVO) {
         //设置创建附加信息，如创建时间， 创建人
@@ -581,7 +582,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         }
 
         if (StringUtils.isEmpty(currentViewPrefix)) {
-            currentViewPrefix = this.entityClass.getSimpleName();
+            currentViewPrefix = this.getEntityClass().getSimpleName();
         }
 
         return currentViewPrefix;

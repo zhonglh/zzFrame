@@ -9,7 +9,9 @@ import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.generics.AnnotaionEntityManager;
 import com.zz.bms.core.ui.Pages;
+import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.shiro.utils.ShiroUtils;
+import com.zz.bms.util.base.BankNoValidateUtils;
 import com.zz.bms.util.spring.SpringUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +43,7 @@ import java.util.regex.Pattern;
  * 基础控制器，其他控制器需集成此控制器获得initBinder自动转换的功能
  * 
  */
-public abstract class BaseController<M extends BaseEntity<PK>, PK extends Serializable> {
+public abstract class BaseController<PK extends Serializable> {
 
 
 
@@ -55,6 +57,22 @@ public abstract class BaseController<M extends BaseEntity<PK>, PK extends Serial
 
     @Autowired
     protected AnnotaionEntityManager annotaionEntityManager;
+
+
+
+    /**
+     * 检查银行卡是否正确
+     * @param bankNo
+     * @return
+     */
+    public AjaxJson checkBankNo(String bankNo){
+        String result = BankNoValidateUtils.luhmCheck(bankNo);
+        if(result.equals("true")){
+            return AjaxJson.successAjax;
+        }else {
+            return  new AjaxJson(false,result);
+        }
+    }
 
     /**
      * 将前台传递过来的日期格式的字符串，自动转化为Date类型

@@ -3,6 +3,7 @@ package com.zz.bms.system.service;
 import com.zz.bms.core.db.base.service.BaseService;
 import com.zz.bms.system.bo.TsDictBO;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -34,6 +35,13 @@ public interface TsDictService extends BaseService<TsDictBO , String> {
      * 获取所有的字典
      * @return
      */
-    public Map<String , TsDictBO> allDict(String[] dictTypes) ;
+    public Map<String , TsDictBO> allDict(String ... dictTypes) ;
+
+
+    /**
+     * 获取所有的字典
+     * @return
+     */
+    public Map<String , List<TsDictBO>> allDicts(String ... dictTypes) ;
 
 }

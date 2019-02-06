@@ -1,6 +1,7 @@
 package com.zz.bms.system.bo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.zz.bms.core.db.entity.IBoEntity;
 import com.zz.bms.util.configs.annotaions.*;
 import com.zz.bms.constants.DefaultTypeConstant;
 import com.zz.bms.constants.DictTypeConstant;
@@ -21,7 +22,7 @@ import java.util.Date;
 */
 @EntityAnnotation(value="用户" , resource = "system.user" , businessName = "user_name" , businessKey = {"phone","email"})
 @TableName(value="vs_user" , resultMap = "VsUserResultMap")
-public class VsUserBO extends VsUserEntity implements Serializable {
+public class VsUserBO extends VsUserEntity implements IBoEntity,Serializable {
 
 
     @TableField(exist = false)
@@ -91,15 +92,15 @@ public class VsUserBO extends VsUserEntity implements Serializable {
     }
 
 
+    @Override
+    public boolean isTable() {
+        return false;
+    }
 
 
     @Override
     public String toString() {
-        return "VsUserBO:{" +
-                "loginName:'" + this.getLoginName() + '\'' +
-                "userName:'" + this.getUserName() + '\'' +
-                "phone:'" + this.getPhone() + '\'' +
-                "email:'" + this.getEmail() + '\'' +
-                '}';
+        return this.getUserName();
     }
+
 }
