@@ -336,7 +336,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
             }
 
             try {
-                this.insertInfo(m , sessionUserVO);
+                this.insertInfo(m , sessionUserVO , false);
             }catch (BizException e){
                 isAllOK = false;
                 if(setErrorMethod != null) {

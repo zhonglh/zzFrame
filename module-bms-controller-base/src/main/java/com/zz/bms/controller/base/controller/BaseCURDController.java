@@ -263,6 +263,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     @Override
     protected void insertInfo(M m, ILoginUserEntity<PK> sessionUserVO) {
+        insertInfo(m , sessionUserVO , true);
+    }
+    protected void insertInfo(M m, ILoginUserEntity<PK> sessionUserVO , boolean processBO) {
         //设置创建附加信息，如创建时间， 创建人
         this.setInsertInfo(m, sessionUserVO);
 
@@ -270,7 +273,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         this.setCustomInfoByInsert(m);
 
         //处理创建的数据， 如反填状态名称，外键信息等
-        this.processBO(m);
+        if(processBO) {
+            this.processBO(m);
+        }
 
 
         //检查重复数据
@@ -624,7 +629,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      */
     protected void processBO(M m){
         this.baseService.processResult(m);
-        this.baseService.specialHandler(m);
+        //this.baseService.specialHandler(m);
     }
 
 
