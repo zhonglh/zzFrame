@@ -65,7 +65,7 @@
 
 
             <shiro:hasPermission name="system.user:delete">
-            <button type="button" class="btn btn-primary btn-sm" url="" onclick="doDel('url')">
+            <button type="button" class="btn btn-primary btn-sm" url="" onclick="doDelete('url')">
                 <svg class="icon" aria-hidden="true">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use>
                 </svg>
@@ -73,7 +73,7 @@
             </button>
             </shiro:hasPermission>
 
-            <shiro:hasPermission name="system.user:create">
+            <shiro:hasPermission name="system.user:importExcel">
             <div type="button" id="importExcel" class="btn btn-primary btn-sm" >
                 <svg class="icon" aria-hidden="true">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daoru"></use>
@@ -82,6 +82,8 @@
             </div>
             </shiro:hasPermission>
 
+
+            <shiro:hasPermission name="system.user:exportExcel">
             <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <svg class="icon" aria-hidden="true">
@@ -135,11 +137,7 @@
                     </li>
                 </ul>
             </div>
-
-
-
-
-
+            </shiro:hasPermission>
 
         </div>
     </div>
@@ -179,8 +177,8 @@
 
 <script src="${staticUrl}/statics2/js/project/list.js"></script>
 <script src="${staticUrl}/statics2/js/project/common-import-excel.js"></script>
-<script src="${staticUrl}/statics2/business-js/system/user.js"></script>
-<script src="${staticUrl}/statics2/business-js/system/dep.js"></script>
+<script src="${staticUrl}/statics2/business-js/system/user/search.js"></script>
+<script src="${staticUrl}/statics2/business-js/system/dep/search.js"></script>
 
 <script language="JavaScript">
     /**
@@ -208,6 +206,33 @@
 
 
 
+    /**
+     * 操作
+     * @param val
+     * @param r
+     * @param index
+     * @returns {string}
+     */
+    function makesFmt (val, r, index)
+    {
+        // 操作栏为图标
+        var html = '';
+        html += '<div class="grid-column-option">';
+
+
+        //删除按钮，绑定名称和id
+        html += '<a href="javascript:;"'
+            + '" name="'
+            + r.userName
+            + '" id="'
+            + r.id
+            + '" onclick="deleteOne(this);" title="删除">' +
+            '<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use></svg></a>';
+
+
+        html += '</div>';
+        return html;
+    }
 
 
 </script>

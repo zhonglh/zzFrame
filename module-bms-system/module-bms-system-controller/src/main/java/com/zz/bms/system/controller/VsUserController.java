@@ -1,6 +1,7 @@
 package com.zz.bms.system.controller;
 
 import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.exceptions.DbException;
@@ -37,6 +38,9 @@ public class VsUserController extends ZzDefaultController<VsUserBO, String , VsU
 
 	@Autowired
 	private TsDictService tsDictService;
+
+
+
 
 
 
@@ -77,7 +81,7 @@ public class VsUserController extends ZzDefaultController<VsUserBO, String , VsU
 
 
 	@Override
-	public void setCustomInfoByInsert(VsUserBO vsUserBO){
+	public void setCustomInfoByInsert(VsUserBO vsUserBO , ILoginUserEntity sessionUser){
 		vsUserBO.setUserStatus(EnumUserStatus.normal.getVal());
 		vsUserBO.setUserStatusName(EnumUserStatus.normal.getLabel());
 		vsUserBO.setOrganId("11111111111111111111111111111111");

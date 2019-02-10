@@ -157,33 +157,6 @@ function clearTime(time){
 }
 
 
-/**
- * 操作
- * @param val
- * @param r
- * @param index
- * @returns {string}
- */
-function makesFmt (val, r, index)
-{
-    // 操作栏为图标
-    var html = '';
-    html += '<div class="grid-column-option">';
-
-
-    //删除按钮，绑定名称和id
-    html += '<a href="javascript:;"'
-        + '" name="'
-        + r.userName
-        + '" id="'
-        + r.id
-        + '" onclick="deleteOne(this);" title="删除">' +
-        '<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use></svg></a>';
-
-
-    html += '</div>';
-    return html;
-}
 
 
 /**
@@ -240,7 +213,7 @@ function toUpdate(id){
  * 删除
  * @returns {boolean}
  */
-function doDel(){
+function doDelete(){
     var idArray = new Array();
     var toDel = true;
 

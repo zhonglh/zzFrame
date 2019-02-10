@@ -80,7 +80,7 @@ public abstract class BaseBusinessController<M extends BaseEntity<PK>, PK extend
      * 比如一些状态值， 比如有效状态， 在新增是如果在界面上没有设置，应该默认设置一个状态
      * @param m
      */
-    protected void setCustomInfoByInsert(M m){
+    protected void setCustomInfoByInsert(M m , ILoginUserEntity sessionUser){
 
     }
 

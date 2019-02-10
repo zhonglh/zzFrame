@@ -16,6 +16,7 @@ import com.zz.bms.core.ui.easyui.EasyUiDataGrid;
 import com.zz.bms.core.ui.easyui.EasyUiUtil;
 import com.zz.bms.enums.EnumDefaultType;
 import com.zz.bms.util.BaseUtil;
+import com.zz.bms.util.base.BaseValidateUtils;
 import com.zz.bms.util.base.data.SerializableUtil;
 import com.zz.bms.util.base.data.StringUtil;
 import com.zz.bms.util.configs.BusinessConfig;
@@ -92,6 +93,9 @@ public class BaseCommonController<PK extends Serializable> extends BaseControlle
      * @param be
      */
     public void setInit(BaseEntity be){
+        if(be == null){
+            return ;
+        }
 
         try {
             List<Field> fields = ReflectionUtil.getBusinessFields(be.getClass() , EntityAttrPageAnnotation.class);
@@ -99,10 +103,14 @@ public class BaseCommonController<PK extends Serializable> extends BaseControlle
                 EntityAttrPageAnnotation pageAnnotation = field.getAnnotation(EntityAttrPageAnnotation.class);
                 if(StringUtils.isNotEmpty(pageAnnotation.defaultType())){
                     EnumDefaultType defaultType = EnumDefaultType.getEnumByValue(pageAnnotation.defaultType());
-                    if(defaultType != null && defaultType != EnumDefaultType.CUSTOM) {
-                        Object obj = BaseUtil.getDefaultValue(defaultType , this.getSessionUser());
+                    if (defaultType != null && defaultType != EnumDefaultType.CUSTOM) {
                         field.setAccessible(true);
-                        field.set(be, obj);
+                        Object fieldVal = ReflectionUtil.getField(field , be);
+                        if(!BaseValidateUtils.isEmpty(fieldVal)) {
+                            Object obj = BaseUtil.getDefaultValue(defaultType, this.getSessionUser());
+                            field.setAccessible(true);
+                            field.set(be, obj);
+                        }
                     }
                 }
             }
@@ -110,8 +118,6 @@ public class BaseCommonController<PK extends Serializable> extends BaseControlle
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-
-
     }
 
 

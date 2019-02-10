@@ -265,12 +265,16 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     protected void insertInfo(M m, ILoginUserEntity<PK> sessionUserVO) {
         insertInfo(m , sessionUserVO , true);
     }
+
     protected void insertInfo(M m, ILoginUserEntity<PK> sessionUserVO , boolean processBO) {
         //设置创建附加信息，如创建时间， 创建人
         this.setInsertInfo(m, sessionUserVO);
 
+        //初始化默认值
+        setInit(m);
+
         //创建时定制的数据，如状态 等
-        this.setCustomInfoByInsert(m);
+        this.setCustomInfoByInsert(m,sessionUserVO);
 
         //处理创建的数据， 如反填状态名称，外键信息等
         if(processBO) {

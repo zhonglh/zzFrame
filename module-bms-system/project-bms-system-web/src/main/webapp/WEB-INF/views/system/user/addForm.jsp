@@ -149,7 +149,7 @@
 <script src="${staticUrl}/statics2/js/project/form.js"></script>
 
 
-<script src="${staticUrl}/statics2/business-js/system/user.js"></script>
+<script src="${staticUrl}/statics2/business-js/system/user/search.js"></script>
 
 
 <script language="JavaScript">

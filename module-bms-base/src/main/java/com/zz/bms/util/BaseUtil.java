@@ -1,5 +1,6 @@
 package com.zz.bms.util;
 
+import com.zz.bms.constants.DefaultTypeConstant;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.enums.EnumDefaultType;
 
@@ -24,52 +25,52 @@ public class BaseUtil {
 
         Object result = null;
         switch (defaultValue.getVal()){
-            case "CURRENT_YEAR":
+            case DefaultTypeConstant.CURRENT_YEAR:
                 result = date.get(Calendar.YEAR);
                 break;
-            case "CURRENT_MONTH":
+            case DefaultTypeConstant.CURRENT_MONTH:
                 result = date.get(Calendar.MONTH) + 1;
                 break;
-            case "CURRENT_DATE":
+            case DefaultTypeConstant.CURRENT_DATE:
                 result = new Date();
                 break;
-            case "CURRENT_TIME":
+            case DefaultTypeConstant.CURRENT_TIME:
                 result = new Timestamp(System.currentTimeMillis());
                 break;
 
 
-            case "CURRENT_USERID":
+            case DefaultTypeConstant.CURRENT_USERID:
                 result = loginUser.getId();
                 break;
-            case "CURRENT_USERNAME":
+            case DefaultTypeConstant.CURRENT_USERNAME:
                 result = loginUser.getUserName();
                 break;
-            case "CURRENT_USER_LEADID":
+            case DefaultTypeConstant.CURRENT_USER_LEADID:
                 result = loginUser.getLeadId();
                 break;
-            case "CURRENT_USER_LEADNAME":
+            case DefaultTypeConstant.CURRENT_USER_LEADNAME:
                 result = loginUser.getLeadName();
                 break;
 
 
-            case "CURRENT_USER_DEPTID":
+            case DefaultTypeConstant.CURRENT_USER_DEPTID:
                 result = loginUser.getDepId();
                 break;
-            case "CURRENT_USER_DEPTNAME":
+            case DefaultTypeConstant.CURRENT_USER_DEPTNAME:
                 result = loginUser.getDepName();
                 break;
-            case "CURRENT_USER_ORGAID":
+            case DefaultTypeConstant.CURRENT_USER_ORGANID:
                 result = loginUser.getOrganId();
                 break;
-            case "CURRENT_USER_ORGANAME":
+            case DefaultTypeConstant.CURRENT_USER_ORGANNAME:
                 result = loginUser.getOrganName();
                 break;
 
-            case "CURRENT_USER_TENANTID":
+            case DefaultTypeConstant.CURRENT_USER_TENANTID:
                 result = loginUser.getTenantId();
                 break;
 
-            case "CURRENT_USER_TENANTNAME":
+            case DefaultTypeConstant.CURRENT_USER_TENANTNAME:
                 result = loginUser.getTenantName();
                 break;
 
