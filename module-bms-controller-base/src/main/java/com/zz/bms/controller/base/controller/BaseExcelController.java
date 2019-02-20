@@ -336,7 +336,9 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
             }
 
             try {
+                this.customExcelInsert(m , sessionUserVO , index);
                 this.insertInfo(m , sessionUserVO , false);
+                index ++ ;
             }catch (BizException e){
                 isAllOK = false;
                 if(setErrorMethod != null) {
@@ -369,6 +371,17 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
             return AjaxJson.fail("导入的信息中有些问题");
         }
 
+    }
+
+    /**
+     * Excel导入数据的自定义方法
+     * 可以将导入顺序插入的数据库中等
+     * @param m
+     * @param sessionUserVO
+     * @param index
+     */
+    protected void customExcelInsert(M m, ILoginUserEntity<PK> sessionUserVO, int index){
+        //m.setImportOrder(index);
     }
 
     /**
