@@ -62,6 +62,7 @@ public class TbInvestorBO extends TbInvestorEntity implements Serializable , IBo
      * 附件列表
      */
     @TableField(exist = false)
+    @FilesAnnotation
     private List<VsFileUseBO> investorFilesList ;
 
 
@@ -100,6 +101,12 @@ public class TbInvestorBO extends TbInvestorEntity implements Serializable , IBo
 
     @Override
     public boolean isTable() {
+        return true;
+    }
+
+
+    @Override
+    public boolean haveFile() {
         return true;
     }
 

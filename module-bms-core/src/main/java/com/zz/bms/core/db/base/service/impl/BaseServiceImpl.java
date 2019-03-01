@@ -22,6 +22,7 @@ import org.apache.log4j.Logger;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -34,6 +35,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
 
     public Logger logger = Logger.getLogger(this.getClass());
+
 
 
     /**
@@ -72,7 +74,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
     }
 
-
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean save(T entity) {
         boolean result =  retBool(this.getDAO().insert(entity));
@@ -171,12 +173,14 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
         return result;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean removeByMap(Map<String, Object> columnMap) {
         Assert.notEmpty(columnMap, "error: columnMap must not be empty");
         return SqlHelper.delBool(getDAO().deleteByMap(columnMap));
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean remove(Wrapper<T> wrapper) {
         return SqlHelper.delBool(getDAO().delete(wrapper));
@@ -196,12 +200,14 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
 
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void saveBatchRelevance(List<T> list , T t) {
 
     }
 
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean updateById(T entity) {
         boolean result =  retBool(getDAO().updateById(entity));
@@ -209,6 +215,8 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
         return result;
     }
 
+
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean update(T entity, Wrapper<T> updateWrapper) {
         return retBool(getDAO().update(entity, updateWrapper));

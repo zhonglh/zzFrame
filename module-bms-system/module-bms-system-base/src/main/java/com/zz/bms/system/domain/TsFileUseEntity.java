@@ -13,7 +13,7 @@ import com.zz.bms.core.db.entity.BaseBusinessSimpleExEntity;
  * @author Administrator
  * @date 2019-4-10 11:08:51
  */
-public class TsFileUseEntity extends com.zz.bms.core.db.entity.BaseBusinessSimpleExEntity<String> implements java.io.Serializable{
+public class TsFileUseEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity<String> implements java.io.Serializable{
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;

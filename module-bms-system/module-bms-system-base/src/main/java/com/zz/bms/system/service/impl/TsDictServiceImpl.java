@@ -3,21 +3,15 @@ package com.zz.bms.system.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.zz.bms.core.db.base.dao.BaseDAO;
-import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
-
-
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.system.bo.TsDictBO;
-import com.zz.bms.system.dao.TsDictDAO;
-import com.zz.bms.system.service.TsDictService;
-
 import com.zz.bms.system.bo.TsDictTypeBO;
+import com.zz.bms.system.dao.TsDictDAO;
 import com.zz.bms.system.dao.TsDictTypeDAO;
-import com.zz.bms.system.bo.TsTenantBO;
 import com.zz.bms.system.dao.TsTenantDAO;
-
+import com.zz.bms.system.service.TsDictService;
 import com.zz.bms.util.base.data.SqlKit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +27,7 @@ import java.util.Map;
 * @date 2018-9-6 23:56:30
 */
 @Service
-public class TsDictServiceImpl extends BaseServiceImpl<TsDictBO,String> implements TsDictService {
+public class TsDictServiceImpl extends SystemBaseServiceImpl<TsDictBO,String> implements TsDictService {
 
 
 

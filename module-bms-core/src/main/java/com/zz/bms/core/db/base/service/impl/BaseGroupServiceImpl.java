@@ -168,7 +168,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
     }
 
 
-    //@Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean save(T entity) {
 
@@ -275,6 +275,8 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
         }
     }
 
+
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean removeById(Serializable id) {
         T entity = this.getById(id);
@@ -311,6 +313,8 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
 
     }
 
+
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean removeByMap(Map<String, Object> columnMap) {
 
@@ -321,6 +325,8 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
         }
     }
 
+
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean remove(Wrapper<T> wrapper) {
         if(!isGroup()){
@@ -460,6 +466,8 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
         return true;
     }
 
+
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean update(T entity, Wrapper<T> updateWrapper) {
 

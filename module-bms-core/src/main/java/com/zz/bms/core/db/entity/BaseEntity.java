@@ -9,7 +9,7 @@ import java.util.List;
  * @Author 实体基础类
  * @Date 2017-05-19 16:16
  */
-public abstract class BaseEntity<PK extends Serializable> implements Serializable {
+public abstract class BaseEntity<PK extends Serializable> implements Serializable , IBoEntity {
 
     @TableField
     private PK id;
@@ -101,4 +101,15 @@ public abstract class BaseEntity<PK extends Serializable> implements Serializabl
         this.pageSize = pageSize;
     }
 
+
+    @Override
+    public boolean haveFile(){
+        return false;
+    }
+
+
+    @Override
+    public boolean isTable(){
+        return true;
+    }
 }

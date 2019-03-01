@@ -1,7 +1,6 @@
 package com.zz.bms.system.service.impl;
 
 import com.zz.bms.core.db.base.dao.BaseDAO;
-import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 import com.zz.bms.enums.EnumDictType;
 import com.zz.bms.system.bo.TsDictBO;
 import com.zz.bms.system.bo.VsUserBO;
@@ -21,7 +20,7 @@ import java.util.Map;
  * @date 2019-4-10 18:56:22
  */
 @Service
-public class VsUserServiceImpl extends BaseServiceImpl<VsUserBO,String> implements VsUserService {
+public class VsUserServiceImpl extends SystemBaseServiceImpl<VsUserBO,String> implements VsUserService {
 
 
 

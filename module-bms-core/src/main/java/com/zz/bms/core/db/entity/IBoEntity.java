@@ -15,4 +15,11 @@ public interface IBoEntity {
     public boolean isTable();
 
 
+    /**
+     * 是否存在文件类型的字段
+     * @return
+     */
+    public boolean haveFile();
+
+
 }

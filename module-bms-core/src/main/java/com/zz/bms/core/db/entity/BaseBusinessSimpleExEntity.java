@@ -2,6 +2,9 @@ package com.zz.bms.core.db.entity;
 
 import java.io.Serializable;
 
+/**
+ * @author admin
+ */
 public abstract class BaseBusinessSimpleExEntity<PK extends Serializable> extends  BaseBusinessSimpleEntity<PK> implements Serializable {
 
 

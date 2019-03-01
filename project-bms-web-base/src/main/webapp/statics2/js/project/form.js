@@ -89,6 +89,29 @@ function cancelEdit(){
 
 
 
+function computeFileSerialize() {
+    try {
+        var fileSerialize = "";
+        $(".file-list").each(function () {
+
+            var $ul = $(this);
+            //8为 “thelist-” 的长度
+            var fieldName = $ul.attr("id").substring(8) + "List";
+
+            $ul.find("li").each(function (index, li) {
+                $li = $(this);
+                fileSerialize += "&" + fieldName + "[" + index + "].id=" + $li.attr("fileUseId");
+                fileSerialize += "&" + fieldName + "[" + index + "].deleteFlag=" + $li.attr("isDel");
+            });
+        });
+        return fileSerialize;
+    } catch (e) {
+        console.info(e)
+    }
+    return "";
+}
+
+
 
 //保存方法
 function doSave() {
@@ -109,6 +132,7 @@ function doSingleFormSave() {
         return false;
     }
 
+
     try{
         //业务上的逻辑校验
         var validateResult = customValidate();
@@ -120,6 +144,16 @@ function doSingleFormSave() {
     }
 
 
+
+
+
+
+    var fileSerialize = "";
+    try{
+        fileSerialize = computeFileSerialize();
+    }catch(e){}
+
+
     try{
         //业务上的逻辑处理
         customDoHandle();
@@ -127,11 +161,13 @@ function doSingleFormSave() {
 
     }
 
+
+
     //提交表单
     $.ajax({
         url: '',
         type: 'POST',
-        data: $("form").serializeToString() ,
+        data: $("form").serializeToString() + fileSerialize ,
         success: function(rsp, status) {
             saveSuccess(rsp, status);
         }

@@ -49,21 +49,6 @@ $(".webuploader-container").each(function(){
     }
 });
 
-try {
-    var fileHtml = "";
-    $(".file-list").each(function () {
-
-        var $ul = $(this);
-        //8为 “thelist-” 的长度
-        var fieldName = $ul.attr(id).substring(8);
-        var fieldNameList = [];
-        $ul.find("li").each(function (index, li) {
-            fieldNameList.push({id: $(this).attr("fileUseId")});
-        });
-    });
-}catch(e){
-
-}
 
 
 
@@ -262,7 +247,7 @@ function UploadFile(options)
                     }
                 }else{
                     // 已经和数据建立关系，需要最后提交在删除
-                    vewArea.find('#' + id).attr("deleteFlag", 1);
+                    vewArea.find('#' + id).attr("isDel", "1");
                     vewArea.find('#' + id).hide();
                 }
 

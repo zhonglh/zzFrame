@@ -1,32 +1,17 @@
 package com.zz.bms.system.service.impl;
 
-import com.zz.bms.core.enums.EnumErrorMsg;
-import com.zz.bms.enums.*;
-
-import com.zz.bms.core.db.entity.EntityUtil;
-import com.zz.bms.core.exceptions.DbException;
-import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.db.base.dao.BaseDAO;
-import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
-
-import com.zz.bms.system.service.TsDictService;
-
+import com.zz.bms.enums.EnumDictType;
 import com.zz.bms.system.bo.TsDictBO;
 import com.zz.bms.system.bo.VsNodeUserBO;
 import com.zz.bms.system.dao.VsNodeUserDAO;
-import com.zz.bms.system.dao.TsUserDAO;
-import com.zz.bms.system.service.VsNodeUserService;
-
-import com.zz.bms.system.bo.VsUserBO;
 import com.zz.bms.system.dao.VsUserDAO;
-
-
+import com.zz.bms.system.service.TsDictService;
+import com.zz.bms.system.service.VsNodeUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +21,7 @@ import java.util.Map;
  * @date 2019-4-10 18:56:22
  */
 @Service
-public class VsNodeUserServiceImpl extends BaseServiceImpl<VsNodeUserBO,String> implements VsNodeUserService {
+public class VsNodeUserServiceImpl extends SystemBaseServiceImpl<VsNodeUserBO,String> implements VsNodeUserService {
 
 
 

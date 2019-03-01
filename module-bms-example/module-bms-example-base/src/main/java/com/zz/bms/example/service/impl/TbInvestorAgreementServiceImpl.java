@@ -1,37 +1,25 @@
 package com.zz.bms.example.service.impl;
 
-import com.zz.bms.core.enums.EnumErrorMsg;
-import com.zz.bms.enums.*;
-
-import com.zz.bms.core.db.entity.EntityUtil;
-import com.zz.bms.core.exceptions.DbException;
-import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.db.base.dao.BaseDAO;
-import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
-
-import com.zz.bms.system.service.TsDictService;
-
-import com.zz.bms.system.bo.TsDictBO;
-import com.zz.bms.example.bo.TbInvestorAgreementBO;
-import com.zz.bms.example.dao.TbInvestorAgreementDAO;
-import com.zz.bms.example.service.TbInvestorAgreementService;
-
+import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.example.bo.TbFundBO;
-import com.zz.bms.example.dao.TbFundDAO;
+import com.zz.bms.example.bo.TbInvestorAgreementBO;
 import com.zz.bms.example.bo.TbInvestorBO;
+import com.zz.bms.example.dao.TbFundDAO;
+import com.zz.bms.example.dao.TbInvestorAgreementDAO;
 import com.zz.bms.example.dao.TbInvestorDAO;
-import com.zz.bms.system.bo.TsUserBO;
-import com.zz.bms.system.dao.TsUserDAO;
+import com.zz.bms.example.service.TbInvestorAgreementService;
 import com.zz.bms.system.bo.TsDepBO;
+import com.zz.bms.system.bo.TsUserBO;
 import com.zz.bms.system.dao.TsDepDAO;
-
-
+import com.zz.bms.system.dao.TsUserDAO;
+import com.zz.bms.system.service.TsDictService;
+import com.zz.bms.system.service.impl.SystemBaseServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,7 +29,7 @@ import java.util.Map;
 * @date 2019-5-8 13:45:42
 */
 @Service
-public class TbInvestorAgreementServiceImpl extends BaseServiceImpl<TbInvestorAgreementBO,String> implements TbInvestorAgreementService {
+public class TbInvestorAgreementServiceImpl extends SystemBaseServiceImpl<TbInvestorAgreementBO,String> implements TbInvestorAgreementService {
 
 
 
