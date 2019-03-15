@@ -1,6 +1,5 @@
 package com.zz.bms.system.controller;
 
-import com.zz.bms.controller.base.controller.BaseCURDController;
 import com.zz.bms.controller.base.controller.BaseExcelController;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.mybatis.query.Query;

@@ -126,9 +126,7 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
 
         final AtomicInteger ai = new AtomicInteger(0);
 
-        queryWrapper.nested(wrapper->{
-
-
+        queryWrapper.nested((wrapper)->{
 
             if(!isNulls.isEmpty()){
                 for(String fieldName : isNulls) {

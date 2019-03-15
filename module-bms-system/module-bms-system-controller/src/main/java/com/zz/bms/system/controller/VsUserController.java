@@ -8,9 +8,9 @@ import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.enums.EnumUserStatus;
 import com.zz.bms.shiro.utils.ShiroUtils;
-import com.zz.bms.system.bo.TsDictBO;
-import com.zz.bms.system.bo.TsUserBO;
 import com.zz.bms.system.bo.VsUserBO;
+import com.zz.bms.system.query.VsUserQuery;
+import com.zz.bms.system.query.impl.VsUserQueryImpl;
 import com.zz.bms.system.query.impl.VsUserQueryWebImpl;
 import com.zz.bms.system.service.TsDictService;
 import org.apache.commons.lang3.StringUtils;
@@ -24,8 +24,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 用户 控制层
@@ -41,6 +39,14 @@ public class VsUserController extends ZzDefaultController<VsUserBO, String , VsU
 
 
 
+	protected void query(VsUserBO vsUserBO) {
+		VsUserQuery query = new VsUserQueryImpl();
+		query.id("10");
+		query.loginName("12");
+		query.depIdNot("20");
+		this.baseService.getOne(query.buildWrapper());
+
+	}
 
 
 
