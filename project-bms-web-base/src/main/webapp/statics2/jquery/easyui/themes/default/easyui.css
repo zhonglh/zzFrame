@@ -827,7 +827,7 @@
   filter: alpha(opacity=60);
 }
 .layout {
-  position: relative;
+  /*position: relative;*/
   overflow: hidden;
   margin: 0;
   padding: 0;
