@@ -3,6 +3,7 @@ package com.zz.bms.controller.base.controller;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zz.bms.core.ui.TreeModel;
 import com.zz.bms.util.configs.AppConfig;
 import com.zz.bms.controller.base.PermissionList;
 import com.zz.bms.core.Constant;
@@ -139,6 +140,59 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
 
+
+    @RequestMapping(value = "/tree" , method={ RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    public Object tree(M m , Q query, Pages<M> pages , Model model , HttpServletRequest request, HttpServletResponse response) {
+
+        this.permissionList.assertHasViewPermission();
+
+
+        if(pages.getPageNum() == 0) {
+            pages.setPageNum(PaginationContext.getPageNum());
+        }
+
+        if(pages.getPageSize() == 0) {
+            pages.setPageSize(PaginationContext.getPageSize());
+        }
+
+        processPages(pages , request);
+
+        Page<M> page = new Page<M>(pages.getPageNum(), pages.getPageSize());
+
+        processQuery(query , m);
+
+        Wrapper wrapper = buildWrapper(query , m);
+
+
+        page = (Page<M>)baseService.page(page , wrapper );
+
+        processResult(page.getRecords());
+
+        TreeModel treeModel = buildTreeModel();
+
+        List footer = buildFooter(page);
+
+        return toTreeList(page.getRecords() , treeModel , footer);
+
+    }
+
+    /**
+     * 设置树的配置
+     * @return
+     */
+    protected TreeModel buildTreeModel(){
+        return null;
+    }
+
+    /**
+     * 设置树的页脚
+     * @param page
+     * @return
+     */
+    protected List buildFooter(Page<M> page){
+        return null;
+    }
 
 
 

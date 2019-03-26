@@ -19,6 +19,9 @@ public abstract class BaseEntity<PK extends Serializable> implements Serializabl
     @TableField(exist = false)
     private List childs;
 
+    @TableField(exist = false)
+    private PK _parentId;
+
 
     @TableField(exist = false)
     private String errorInfo = "";
@@ -91,5 +94,11 @@ public abstract class BaseEntity<PK extends Serializable> implements Serializabl
         this.pageSize = pageSize;
     }
 
+    public PK getParentId() {
+        return _parentId;
+    }
 
+    public void setParentId(PK _parentId) {
+        this._parentId = _parentId;
+    }
 }

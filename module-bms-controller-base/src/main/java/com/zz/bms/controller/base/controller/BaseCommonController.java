@@ -13,6 +13,7 @@ import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.ui.Pages;
 import com.zz.bms.core.ui.TreeModel;
 import com.zz.bms.core.ui.easyui.EasyUiDataGrid;
+import com.zz.bms.core.ui.easyui.EasyUiTreeGrid;
 import com.zz.bms.core.ui.easyui.EasyUiUtil;
 import com.zz.bms.enums.EnumDefaultType;
 import com.zz.bms.util.BaseUtil;
@@ -147,11 +148,11 @@ public class BaseCommonController<PK extends Serializable> extends BaseControlle
      * @param treeModel
      * @return
      */
-    public List toTree(List list , TreeModel treeModel){
+    public EasyUiTreeGrid toTreeList(List list , TreeModel treeModel){
         if(list == null) {
-            return new ArrayList();
+            return new EasyUiTreeGrid();
         }
-        return EasyUiUtil.toTree(list , treeModel);
+        return toTreeList(list , treeModel , null);
     }
 
 
@@ -162,11 +163,11 @@ public class BaseCommonController<PK extends Serializable> extends BaseControlle
      * @param treeModel
      * @return
      */
-    public List toTreeList(List list , TreeModel treeModel){
+    public EasyUiTreeGrid toTreeList(List list , TreeModel treeModel , List footer){
         if(list == null) {
-            return new ArrayList();
+            return new EasyUiTreeGrid();
         }
-        return EasyUiUtil.toTreeList(list , treeModel);
+        return EasyUiUtil.toTreeList(list , treeModel , footer);
     }
 
     /**

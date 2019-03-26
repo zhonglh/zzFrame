@@ -10,10 +10,21 @@ import java.util.HashMap;
  */
 public class TreeModel extends HashMap {
 
+    public static final String ID = "id";
+    public static final String PID = "pid";
+    public static final String TEXT = "text";
+    public static final String CHECKED = "checked";
+    public static final String CHILDREN = "children";
+    public static final String ATTRIBUTES = "attributes";
+
     public TreeModel(){
 
     }
 
+
+    public TreeModel toTreeModel(String pid , String text){
+        return toTreeModel ("id" , pid,text , null);
+    }
 
     /**
      * 转为easyui tree类型的TreeModel
@@ -24,26 +35,26 @@ public class TreeModel extends HashMap {
      * @return
      */
     public TreeModel toTreeModel(String id , String pid , String text ,  String children  ){
-        this.put("id" , id);
-        this.put("pid" , pid);
-        this.put("text" , text);
+        this.put(ID , id);
+        this.put(PID , pid);
+        this.put(TEXT , text);
         if(children != null && !children.isEmpty()) {
-            this.put("children", children);
+            this.put(CHILDREN, children);
         }
         return this;
     }
     public TreeModel toTreeModel(String id , String pid , String text , String checked , String children , String attributes ){
-        this.put("id" , id);
-        this.put("pid" , pid);
-        this.put("text" , text);
+        this.put(ID , id);
+        this.put(PID , pid);
+        this.put(TEXT , text);
         if(checked != null && !checked.isEmpty()) {
-            this.put("checked" , checked);
+            this.put(CHECKED , checked);
         }
         if(children != null && !children.isEmpty()) {
-            this.put("children", children);
+            this.put(CHILDREN, children);
         }
         if(attributes != null && !attributes.isEmpty()) {
-            this.put("attributes" , attributes);
+            this.put(ATTRIBUTES , attributes);
         }
         return this;
     }
