@@ -199,7 +199,7 @@
             + '" id="'
             + r.id
             + '" onclick="deleteOne(this);" title="删除">' +
-            '<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use></svg></a>';
+            '<i class="fa fa-close"></i></a>';
 
 
         html += '</div>';

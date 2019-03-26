@@ -162,7 +162,7 @@
 
     function markFmt(val, r,index){
         var html =	'<div class="grid-column-option">';
-        html+=	'<a href="javascript: doDelUserRole('+ index + ');" title="删除"><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use></svg></a>';
+        html+=	'<a href="javascript: doDelUserRole('+ index + ');" title="删除"><i class="fa fa-close"></i></a>';
         html+=	'</div>';
         return html;
     }

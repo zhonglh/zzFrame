@@ -46,31 +46,31 @@
 
 
                 <shiro:hasPermission name="system.role:exportExcel">
-                <div class="btn-group">
-                    <button type="button" id="exportExcel" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-download"></i>
-                    导出 <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
+                    <div class="btn-group">
+                        <button type="button" id="exportExcel" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-download"></i>
+                            导出 <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
 
-                        <li>
-                            <a href="${ ctx }/${ currParentUrl }/csv/export" class="export" >
-                                <i class="fa fa-download"></i>导出CSV
-                            </a>
-                        </li>
-                        <li>
-                            <a href="${ ctx }/${ currParentUrl }/hssf/export" class="export" >
-                                <i class="fa fa-download"></i>导出Excel2003
-                            </a>
-                        </li>
+                            <li>
+                                <a href="${ ctx }/${ currParentUrl }/cvs/export" class="export" >
+                                    <i class="fa fa-download"></i>导出CVS
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${ ctx }/${ currParentUrl }/hssf/export" class="export" >
+                                    <i class="fa fa-download"></i>导出Excel2003
+                                </a>
+                            </li>
 
-                        <li>
-                            <a href="${ ctx }/${ currParentUrl }/sxssf/export" class="export" >
-                                <i class="fa fa-download"></i>导出Excel2007
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                            <li>
+                                <a href="${ ctx }/${ currParentUrl }/sxssf/export" class="export" >
+                                    <i class="fa fa-download"></i>导出Excel2007
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </shiro:hasPermission>
 
 

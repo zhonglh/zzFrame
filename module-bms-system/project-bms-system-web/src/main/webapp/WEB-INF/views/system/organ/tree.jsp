@@ -57,31 +57,13 @@
                 <div class="btn-group">
                     <button type="button" id="exportExcel" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-download"></i>
-                    导出 <span class="caret"></span>
+                        导出 <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
 
                         <li>
-                            <a href="${ ctx }/${ currParentUrl }/hssf/download" class="export">
-                                <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-download"></use>
-                                </svg>下载模板(Excel2003)
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="${ ctx }/${ currParentUrl }/sxssf/download" class="export">
-                                <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-download"></use>
-                                </svg>下载模板(Excel2007)
-                            </a>
-                        </li>
-
-                        <li role="separator" class="divider"></li>
-
-                        <li>
-                            <a href="${ ctx }/${ currParentUrl }/csv/export" class="export" >
-                                <i class="fa fa-download"></i>导出CSV
+                            <a href="${ ctx }/${ currParentUrl }/cvs/export" class="export" >
+                                <i class="fa fa-download"></i>导出CVS
                             </a>
                         </li>
                         <li>

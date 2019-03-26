@@ -5,12 +5,8 @@
 
 <div class="panel layout-panel layout-panel-north" style="width: 100%; left: 0px; top: 0px;">
     <div region="north" title="" class="panel-body panel-body-noheader layout-body" style="width: 100%; height: 35px;">
-        <div class="navigation">
-            <svg class="icon" aria-hidden="true">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-yuandian"></use>
-            </svg>
-            <span class="title-text">当前位置：<a>字典设置</a></span>
-        </div>
+        <c:if test="${breadcrumb != ''}"><div class="navigation"><span class="words"><a>${ breadcrumb }</a></span></div></c:if>
+
     </div>
 </div>
 
