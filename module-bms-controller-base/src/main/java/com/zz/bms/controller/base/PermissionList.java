@@ -18,10 +18,12 @@ import java.util.Map;
  */
 public class PermissionList implements Serializable {
 
-    public static final String CREATE_PERMISSION = "create";
+    public static final String CREATE_PERMISSION = "add";
     public static final String UPDATE_PERMISSION = "update";
     public static final String DELETE_PERMISSION = "delete";
-    public static final String VIEW_PERMISSION = "view";
+    public static final String VIEW_PERMISSION = "detail";
+    public static final String IMPORT_PERMISSION = "importExcel";
+    public static final String EXPORT_PERMISSION = "exportExcel";
 
     /**
      * 资源前缀
@@ -51,6 +53,8 @@ public class PermissionList implements Serializable {
         permissionList.resourcePermissions.put(UPDATE_PERMISSION, resourceIdentity + ":" + UPDATE_PERMISSION);
         permissionList.resourcePermissions.put(DELETE_PERMISSION, resourceIdentity + ":" + DELETE_PERMISSION);
         permissionList.resourcePermissions.put(VIEW_PERMISSION, resourceIdentity + ":" + VIEW_PERMISSION);
+        permissionList.resourcePermissions.put(IMPORT_PERMISSION, resourceIdentity + ":" + IMPORT_PERMISSION);
+        permissionList.resourcePermissions.put(EXPORT_PERMISSION, resourceIdentity + ":" + EXPORT_PERMISSION);
 
         return permissionList;
     }
@@ -82,6 +86,16 @@ public class PermissionList implements Serializable {
         //都有查看权限
         //assertHasPermission(VIEW_PERMISSION, "no.view.permission");
     }
+
+
+    public void assertHasImportPermission() {
+        assertHasPermission(IMPORT_PERMISSION, "no.import.permission");
+    }
+
+    public void assertHasExportPermission() {
+        assertHasPermission(EXPORT_PERMISSION, "no.export.permission");
+    }
+
 
     /**
      * 即增删改中的任何一个即可

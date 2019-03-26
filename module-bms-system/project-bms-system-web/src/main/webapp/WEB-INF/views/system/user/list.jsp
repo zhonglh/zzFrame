@@ -54,7 +54,7 @@
         </form>
         <div class="btn-bar" style="margin-left: -10px;">
 
-            <shiro:hasPermission name="system.user:create">
+            <shiro:hasPermission name="system.user:add">
             <button type="button" class="btn btn-primary btn-sm" onclick="toAdd()">
                 <svg class="icon" aria-hidden="true">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
@@ -92,8 +92,6 @@
                     Excel导出 <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-
-
 
                     <li>
                         <a href="${ctx}/${currParentUrl}/hssf/download" class="export">

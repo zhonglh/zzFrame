@@ -73,6 +73,8 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
     @RequestMapping(value = "/{excelType}/download", method = RequestMethod.GET)
     protected void download(@PathVariable("excelType") String excelType, M m , Q query,  HttpServletRequest request, HttpServletResponse response) {
 
+
+
         if(StringUtils.isEmpty(excelType)){
             throw EnumErrorMsg.code_error.toException();
         }
@@ -279,6 +281,10 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
     @RequestMapping(value = "/doExcel" , method = {RequestMethod.GET , RequestMethod.POST} )
     @ResponseBody
     public AjaxJson doExcel(MultipartFile file, HttpServletResponse res, HttpServletRequest request) throws InvocationTargetException, IllegalAccessException {
+
+        this.permissionList.assertHasImportPermission();
+
+
 
         EnumExcelFileType excelFileType = null;
         try{
