@@ -22,7 +22,12 @@ public class TsDepBO extends TsDepEntity implements Serializable {
     @TableField(exist = false)
     private String depStatusName ;
 
+    @TableField(exist = false)
+    private String leadUserName;
 
+
+    @TableField(exist = false)
+    private String pname;
 
     public void setDepStatusName(String depStatusName){
         this.depStatusName = depStatusName;
@@ -32,4 +37,20 @@ public class TsDepBO extends TsDepEntity implements Serializable {
         return this.depStatusName;
     }
 
+
+    public String getLeadUserName() {
+        return leadUserName;
+    }
+
+    public void setLeadUserName(String leadUserName) {
+        this.leadUserName = leadUserName;
+    }
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
 }

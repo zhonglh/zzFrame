@@ -22,7 +22,7 @@ import java.util.Map;
 public abstract class ZzDefaultController<M extends BaseEntity<PK>, PK extends Serializable , Q extends Query >
             extends BaseExcelController<M , PK , Q> {
 
-
+    protected final String organId = "11111111111111111111111111111111";
 
     private TsDictService tsDictService;
 

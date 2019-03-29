@@ -1,10 +1,14 @@
 package com.zz.bms.system.controller;
 
 
+import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.ui.TreeModel;
+import com.zz.bms.enums.EnumDepStatus;
+import com.zz.bms.enums.EnumUserStatus;
 import com.zz.bms.system.bo.TsDepBO;
+import com.zz.bms.system.bo.VsUserBO;
 import  com.zz.bms.system.query.impl.TsDepQueryWebImpl;
 
 import org.springframework.stereotype.Controller;
@@ -46,6 +50,14 @@ public class TsDepController extends ZzDefaultController<TsDepBO, String , TsDep
 			throw new BizException(EnumErrorMsg.business_error.getCode(),"该部门名称已使用");
 		}
 
+	}
+
+
+	@Override
+	public void setCustomInfoByInsert(TsDepBO tsDepBO , ILoginUserEntity sessionUser){
+		tsDepBO.setDepStatus(EnumDepStatus.normal.getVal());
+		tsDepBO.setDepStatusName(EnumDepStatus.normal.getLabel());
+		tsDepBO.setOrganId(organId);
 	}
 
 

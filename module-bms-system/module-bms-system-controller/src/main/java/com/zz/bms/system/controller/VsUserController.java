@@ -39,15 +39,6 @@ public class VsUserController extends ZzDefaultController<VsUserBO, String , VsU
 
 
 
-	protected void query(VsUserBO vsUserBO) {
-		VsUserQuery query = new VsUserQueryImpl();
-		query.id("10");
-		query.loginName("12");
-		query.depIdNot("20");
-		this.baseService.getOne(query.buildWrapper());
-
-	}
-
 
 
 	@Override

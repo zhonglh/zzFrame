@@ -18,11 +18,7 @@ public class EasyUiUtil {
 
 
     public static  EasyUiTreeGrid toTreeList(List list , TreeModel treeModel ,List footer){
-        for(Object obj : list){
-            String pid = getPid(obj , treeModel);
-            BaseEntity be = (BaseEntity)obj;
-            be.setParentId(pid);
-        }
+
         return new EasyUiTreeGrid(list.size() , list , footer );
     }
 

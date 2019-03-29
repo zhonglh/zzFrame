@@ -24,33 +24,22 @@
 
                         <tbody>
                         <tr>
-                            <th>用户名称<font color="red">*</font></th>
-                            <td><input type="text" class="form-control input-sm required"  placeholder="请输入用户名称"
-                                       value="${m.userName}" id="userName" name="userName" minlength="2" maxlength='50'/></td>
+                            <th>部门编号<font color="red">*</font></th>
+                            <td><input type="text" class="form-control input-sm required"  placeholder="请输入部门编号" autocomplete="off"
+                                       value="${m.depCode}" id="depCode" name="depCode" minlength="2" maxlength='20'/></td>
 
-                            <th>用户登录名<font color="red">*</font></th>
-                            <td><input type="text" class="form-control input-sm required"  placeholder="请输入用户登录名"  autocomplete="off"
-                                       value="${m.loginName}" id="loginName" name="loginName" minlength="4" maxlength='20'/></td>
+                            <th>部门名称<font color="red">*</font></th>
+                            <td><input type="text" class="form-control input-sm required"  placeholder="请输入部门名称"  autocomplete="off"
+                                       value="${m.depName}" id="depName" name="depName" minlength="1" maxlength='50'/></td>
                         </tr>
 
-                        <c:if test="${empty m.id}">
-                        <tr>
-                            <th>密码<font color="red">*</font></th>
-                            <td><input type="password" class="form-control input-sm required"  placeholder="请输入用户名称"
-                                       autocomplete="off" id="loginPassword" name="loginPassword" minlength="6" maxlength='10'/></td>
-
-                            <th>确认密码<font color="red">*</font></th>
-                            <td><input type="password" class="form-control input-sm required"  placeholder="请输入用户名称" id="loginPasswordConfirm" name="loginPasswordConfirm"
-                                       autocomplete="off" equalto="#loginPassword" data-msg-equalto="您2次输入的新密码不一致！" minlength="6" maxlength='10'/></td>
-                        </tr>
-                        </c:if>
 
                         <tr>
-                            <th>直属领导</th>
+                            <th>部门负责人</th>
                             <td>
                                 <div class="input-group">
                                     <input type="text"  id="leadUserName" name="leadUserName" class="form-control input-sm leadUserName"
-                                           placeholder="请选择直属领导" readonly="readonly">
+                                           placeholder="请选择部门负责人" readonly="readonly">
                                     <input type="hidden" id="leadUserId" name="leadUserId" value="${m.leadUserId}">
                                     <div class="input-group-btn">
                                         <button type="button"  class="btn btn-primary btn-sm leadUserName">
@@ -66,19 +55,19 @@
                                     </div>
                                 </div>
                             </td>
-                            <th>所在部门</th>
+                            <th>上级部门</th>
                             <td>
                                 <div class="input-group">
-                                    <input type="text"  id="depName" name="depName" value="${m.depId}" class="form-control input-sm  sysdepInfo "
-                                           placeholder="请选择所在部门" readonly="readonly" >
-                                    <input type="hidden" id="depId" name="depId" value="${m.depId}">
+                                    <input type="text"  id="pname" name="pname" value="${m.pname}" class="form-control input-sm  pname "
+                                           placeholder="请选择上级部门" readonly="readonly" >
+                                    <input type="hidden" id="pid" name="pid" value="${m.pid}">
                                     <div class="input-group-btn">
-                                        <button type="button" class="btn btn-primary btn-sm crm-sysdepInfo">
+                                        <button type="button" class="btn btn-primary btn-sm pname">
                                             <svg class="icon" aria-hidden="true">
                                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-sousuo"></use>
                                             </svg>
                                         </button>
-                                        <button type="button" id="clearSysdepInfo" class="btn btn-primary btn-sm">
+                                        <button type="button" id="clearPid" class="btn btn-primary btn-sm">
                                             <svg class="icon" aria-hidden="true">
                                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                                             </svg>
@@ -88,15 +77,6 @@
                             </td>
                         </tr>
 
-                        <tr>
-                            <th>手机号<font color="red">*</font></th>
-                            <td><input type="text" class="form-control input-sm required"  placeholder="请输入手机号"
-                                       value="${m.phone}" id="phone" name="phone" minlength="11" maxlength='11'/></td>
-
-                            <th>邮箱<font color="red">*</font></th>
-                            <td><input type="email" class="form-control input-sm required"  placeholder="请输入邮箱"
-                                       value="${m.email}"  id="email" name="email" minlength="4" maxlength='50'/></td>
-                        </tr>
                         <tr>
                             <th >备注</th>
                             <td colspan="3">
@@ -113,7 +93,7 @@
             <div style="margin-top:10px;position:absolute;">
 
 
-                <shiro:hasPermission name="system.user:create">
+                <shiro:hasPermission name="system.user:add">
                 <button type="button" class="btn btn-primary btn-sm" onclick="doSave()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
@@ -149,13 +129,27 @@
 <script src="${staticUrl}/statics2/js/project/form.js"></script>
 
 
+<script src="${staticUrl}/statics2/business-js/system/dep/search.js"></script>
 <script src="${staticUrl}/statics2/business-js/system/user/search.js"></script>
 
 
 <script language="JavaScript">
 
 
+
+
     $(function() {
+
+
+        //部门选择
+        $(".pname").OpenSystemDepSelectWin({
+            title: "部门",
+            selectType: "t1",
+            callId: "pid",
+            callName: "pname",
+            clearId: "clearPid"
+        });
+
 
         //人员选择
         $(".leadUserName").OpenSystemUserSelectWin({

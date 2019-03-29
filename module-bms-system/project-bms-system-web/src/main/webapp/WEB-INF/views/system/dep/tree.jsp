@@ -16,14 +16,11 @@
         <!-- 筛选条件表单开始 -->
         <form id="searchForm" onsubmit="return false" >
 
-            <div id='toolbar' style='height: 40px;     border-bottom: 2px solid #0896ba; '>
-                <div class="form-inline" role="form">
-
-
-                </div>
-            </div>
 
         </form>
+
+
+        <!-- 工具栏 -->
         <div class="btn-bar" style="margin-left: -10px;">
 
             <shiro:hasPermission name="system.user:add">
@@ -116,7 +113,6 @@
 
 <div region='center' style="padding: 0px 10px 0 10px;">
 
-    <table id='tableData-${tableId}' class="easyui-treegrid" style="width: 100%;" >
 
 
     <table id='tableData-${tableId}' class='easyui-datagrid' method='post' fit='true' pagination='true' fitColumns="true"
@@ -124,8 +120,8 @@
         <thead>
         <tr>
 
-            <th data-options="field:'depName'" width="220" formatter='titleFmt'>部门名称</th>
-            <th data-options="field:'depNo'" width="100" >部门编号</th>
+            <th data-options="field:'depName'" width="220" align="left" formatter='titleFmt'>部门名称</th>
+            <th data-options="field:'depCode'" width="100" >部门编号</th>
             <th data-options="field:'leadUserName'" width="100" >部门负责人</th>
             <th data-options="field:'depStatusName'" width="100" >状态</th>
 
@@ -140,8 +136,8 @@
 
 <script>
     var tableid = "tableData-${tableId}";
-    var treeField = "id";
-    var idField = "depName";
+    var tree_field = "depName";
+    var id_field = "id";
 </script>
 
 

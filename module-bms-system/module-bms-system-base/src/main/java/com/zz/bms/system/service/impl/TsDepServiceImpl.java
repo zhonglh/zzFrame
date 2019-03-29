@@ -17,6 +17,7 @@ import com.zz.bms.system.dao.TsTenantDAO;
 import com.zz.bms.system.bo.TsOrganBO;
 import com.zz.bms.system.dao.TsOrganDAO;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,7 +56,20 @@ public class TsDepServiceImpl extends BaseServiceImpl<TsDepBO,String> implements
 	@Override
 	public TsDepBO processResult(TsDepBO tsDepBO) {
 
-            //todo 处理字典信息
+        if(StringUtils.isNotEmpty(tsDepBO.getLeadUserId())){
+			TsUserBO tsUserBO = tsUserDAO.selectById(tsDepBO.getLeadUserId());
+			if(tsUserBO != null){
+				tsDepBO.setLeadUserName(tsUserBO.getUserName());
+			}
+		}
+
+
+		if(StringUtils.isNotEmpty(tsDepBO.getPid())){
+			TsDepBO parentDep = tsDepDAO.selectById(tsDepBO.getPid());
+			if(parentDep != null){
+				tsDepBO.setPname(parentDep.getDepName());
+			}
+		}
 
 		return tsDepBO;
 

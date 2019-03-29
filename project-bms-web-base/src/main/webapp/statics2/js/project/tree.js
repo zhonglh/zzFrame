@@ -69,8 +69,8 @@ function initPage() {
     //加载table列表数据
     $('#'+tableid).treegrid({
         url : ctx+dataUrl+"/tree",
-        idField:idField,
-        treeField:treeField,
+        idField:id_field,
+        treeField:tree_field,
 
         queryParams: getQueryParams(),
         emptyMsg: '<img style="margin-top:50px;" src="'+staticUrl+'/statics2/image/empty.png">',

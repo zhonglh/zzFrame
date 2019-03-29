@@ -17,10 +17,11 @@ public abstract class BaseEntity<PK extends Serializable> implements Serializabl
 
 
     @TableField(exist = false)
-    private List childs;
-
+    private List children;
     @TableField(exist = false)
-    private PK _parentId;
+    private String state="closed";
+
+
 
 
     @TableField(exist = false)
@@ -61,14 +62,21 @@ public abstract class BaseEntity<PK extends Serializable> implements Serializabl
         this.tenantId = tenantId;
     }
 
-    public List getChilds() {
-        return childs;
+    public List getChildren() {
+        return children;
     }
 
-    public void setChilds(List childs) {
-        this.childs = childs;
+    public void setChildren(List children) {
+        this.children = children;
     }
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 
     public String getErrorInfo() {
         return errorInfo;
@@ -94,11 +102,4 @@ public abstract class BaseEntity<PK extends Serializable> implements Serializabl
         this.pageSize = pageSize;
     }
 
-    public PK getParentId() {
-        return _parentId;
-    }
-
-    public void setParentId(PK _parentId) {
-        this._parentId = _parentId;
-    }
 }

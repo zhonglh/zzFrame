@@ -18,26 +18,19 @@
                 <div id="detailForm" class="detailForm">
                     <table class="info-table">
                         <tr>
-                            <th width="15%">用户名称</th>
-                            <td class="fd_userName">${m.userName}</td>
-
-                            <th width="15%">用户登录名</th>
-                            <td class="fd_loginName">${m.loginName}</td>
-                        </tr>
-                        <tr>
-                            <th>直属领导</th>
-                            <td class="fd_leadUserName">${m.leadUserName}</td>
-                            <th>所在部门</th>
+                            <th width="15%">部门名称</th>
                             <td class="fd_depName">${m.depName}</td>
-                        </tr>
 
+                            <th width="15%">部门编号</th>
+                            <td class="fd_depCode">${m.depCode}</td>
+                        </tr>
                         <tr>
-                            <th width="15%">手机号</th>
-                            <td class="fd_phone">${m.phone}</td>
-
-                            <th width="15%">邮箱</th>
-                            <td class="fd_email">${m.email}</td>
+                            <th>部门负责人</th>
+                            <td class="fd_leadUserName">${m.leadUserName}</td>
+                            <th>上级部门</th>
+                            <td class="fd_pname">${m.pname}</td>
                         </tr>
+
                         <tr>
                             <th >备注</th>
                             <td colspan="3" class="fd_remark">${m.remark}</td>
@@ -50,34 +43,31 @@
                 <form action="" method="post" class="form-auto-fill hide editForm" viewId="detailForm" formId="editForm">
                     <input type="hidden" id="id" name="id" value="${m.id}">
                     <table class="info-table">
-                        <tr>
-                            <th width="15%">用户名称<font color="red">*</font></th>
-                            <td><input type="text" class="form-control input-sm required"  placeholder="请输入用户名称"
-                                       value="${m.userName}" id="userName" name="userName" minlength="2" maxlength='50'/></td>
+                        <colgroup>
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                        </colgroup>
 
-                            <th width="15%">用户登录名<font color="red">*</font></th>
-                            <td><input type="text" class="form-control input-sm required"  placeholder="请输入用户登录名"  autocomplete="off"
-                                       value="${m.loginName}" id="loginName" name="loginName" minlength="4" maxlength='20'/></td>
+                        <tbody>
+                        <tr>
+                            <th>部门编号<font color="red">*</font></th>
+                            <td><input type="text" class="form-control input-sm required"  placeholder="请输入部门编号" autocomplete="off"
+                                       value="${m.depCode}" id="depCode" name="depCode" minlength="2" maxlength='20'/></td>
+
+                            <th>部门名称<font color="red">*</font></th>
+                            <td><input type="text" class="form-control input-sm required"  placeholder="请输入部门名称"  autocomplete="off"
+                                       value="${m.depName}" id="depName" name="depName" minlength="1" maxlength='50'/></td>
                         </tr>
 
-                        <c:if test="${empty m.id}">
-                        <tr>
-                            <th width="15%">密码<font color="red">*</font></th>
-                            <td><input type="password" class="form-control input-sm required"  placeholder="请输入用户名称"
-                                       autocomplete="off" id="loginPassword" name="loginPassword" minlength="6" maxlength='10'/></td>
-
-                            <th width="15%">确认密码<font color="red">*</font></th>
-                            <td><input type="password" class="form-control input-sm required"  placeholder="请输入用户名称" id="loginPasswordConfirm" name="loginPasswordConfirm"
-                                       autocomplete="off" equalto="#loginPassword" data-msg-equalto="您2次输入的新密码不一致！" minlength="6" maxlength='10'/></td>
-                        </tr>
-                        </c:if>
 
                         <tr>
-                            <th>直属领导</th>
+                            <th>部门负责人</th>
                             <td>
                                 <div class="input-group">
                                     <input type="text"  id="leadUserName" name="leadUserName" class="form-control input-sm leadUserName"
-                                           placeholder="请选择直属领导" readonly="readonly" value="${m.leadUserName}">
+                                           placeholder="请选择部门负责人" readonly="readonly">
                                     <input type="hidden" id="leadUserId" name="leadUserId" value="${m.leadUserId}">
                                     <div class="input-group-btn">
                                         <button type="button"  class="btn btn-primary btn-sm leadUserName">
@@ -93,53 +83,23 @@
                                     </div>
                                 </div>
                             </td>
-                            <th>所在部门</th>
+                            <th>上级部门</th>
                             <td>
                                 <div class="input-group">
-                                    <input type="text"  id="depName" name="depName" value="${m.depName}" class="form-control input-sm  sysdepInfo "
-                                           placeholder="请选择所在部门" readonly="readonly" >
-                                    <input type="hidden" id="depId" name="depId" value="${m.depId}">
+                                    <input type="text"  id="pname" name="pname" value="${m.pname}" class="form-control input-sm  pname "
+                                           placeholder="请选择上级部门" readonly="readonly" >
+                                    <input type="hidden" id="pid" name="pid" value="${m.pid}">
                                     <div class="input-group-btn">
-                                        <button type="button" class="btn btn-primary btn-sm crm-sysdepInfo">
+                                        <button type="button" class="btn btn-primary btn-sm crm-pname">
                                             <svg class="icon" aria-hidden="true">
                                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-sousuo"></use>
                                             </svg>
                                         </button>
-                                        <button type="button" id="clearSysdepInfo" class="btn btn-primary btn-sm">
+                                        <button type="button" id="clearPname" class="btn btn-primary btn-sm">
                                             <svg class="icon" aria-hidden="true">
                                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                                             </svg>
                                         </button>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th width="15%">手机号<font color="red">*</font></th>
-                            <td><input type="text" class="form-control input-sm required"  placeholder="请输入手机号"
-                                       value="${m.phone}" id="phone" name="phone" minlength="11" maxlength='11'/></td>
-
-                            <th width="15%">邮箱<font color="red">*</font></th>
-                            <td><input type="email" class="form-control input-sm required"  placeholder="请输入邮箱"
-                                       value="${m.email}"  id="email" name="email" minlength="4" maxlength='50'/></td>
-                        </tr>
-
-
-                        <tr>
-                            <th height="15%">退出文件</th>
-                            <td colspan="3">
-                                <div class="info-detail">
-                                    <div class="uploader-list">
-                                        <ul id="thelist" class="files-list" style="margin: 0 0 10px 0" ></ul>
-                                    </div>
-                                    <div>
-                                        <div id="uploadFile" title='附件' class="webuploader-container" data-options="viewAreaId:'#thelist', fileSource:125, ">
-                                            <svg class="icon" aria-hidden="true">
-                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-upload"></use>
-                                            </svg>
-                                            <span>上传附件</span>
-                                        </div>
                                     </div>
                                 </div>
                             </td>
@@ -156,6 +116,8 @@
                             </td>
                         </tr>
 
+                        </tbody>
+
                     </table>
                 </form>
             </div>
@@ -165,12 +127,12 @@
 
 
                 <shiro:hasPermission name="system.user:update">
-                <button type="button" class="btn btn-primary btn-sm btn-showEdit" onclick="switchEditDetail()">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use>
-                    </svg>
-                    <span>编 辑</span>
-                </button>
+                    <button type="button" class="btn btn-primary btn-sm btn-showEdit" onclick="switchEditDetail()">
+                        <svg class="icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use>
+                        </svg>
+                        <span>编 辑</span>
+                    </button>
                 </shiro:hasPermission>
 
                 <button type="button" class="btn  btn-warning btn-sm btn-showEdit" onclick="closeWindow()">
@@ -182,12 +144,12 @@
 
 
                 <shiro:hasPermission name="system.user:update">
-                <button type="button" class="btn btn-primary btn-sm hide" onclick="doUpdate()">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
-                    </svg>
-                    <span>保 存</span>
-                </button>
+                    <button type="button" class="btn btn-primary btn-sm hide" onclick="doUpdate()">
+                        <svg class="icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
+                        </svg>
+                        <span>保 存</span>
+                    </button>
                 </shiro:hasPermission>
 
                 <button type="button" class="btn  btn-warning btn-sm hide" onclick="switchEditDetail()">
@@ -206,27 +168,23 @@
 
 
 
+
+
 <script>
-
-
     var tableid = "tableData-${tableId}";
 
     //显示模式   明细/编辑
     var showMode = "detail";
-
 </script>
-
-
 
 
 
 <bms:contentJS />
 
-<script src="${staticUrl}/statics2/business-js/system/user/search.js"></script>
 <script src="${staticUrl}/statics2/js/project/form.js"></script>
 
 
-<script src="${staticUrl}/statics2/js/project/common-sys-function.js"></script>
+<script src="${staticUrl}/statics2/business-js/system/user/search.js"></script>
 
 
 <script language="JavaScript">
@@ -259,6 +217,7 @@
 
 
     $(function() {
+
         //人员选择
         $(".leadUserName").OpenSystemUserSelectWin({
             title: "直属领导",
@@ -272,7 +231,10 @@
     });
 
 
+
 </script>
+
+
 
 <bms:contentFooter />
 

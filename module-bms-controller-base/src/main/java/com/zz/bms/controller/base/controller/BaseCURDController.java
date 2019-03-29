@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zz.bms.core.ui.TreeModel;
+import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.configs.AppConfig;
 import com.zz.bms.controller.base.PermissionList;
 import com.zz.bms.core.Constant;
@@ -41,6 +42,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     public final String defaultAddPageName = "editForm";
     public final String defaultViewPageName = "viewForm";
     public final String defaultListPageName = "list";
+    public final String defaultTreePageName = "tree";
 
 
     @Autowired
@@ -129,6 +131,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         Wrapper wrapper = buildWrapper(query , m);
 
 
+
         page = (Page<M>)baseService.page(page , wrapper );
 
         processResult(page.getRecords());
@@ -141,20 +144,38 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
 
+    @RequestMapping(value = "/toTree" , method={ RequestMethod.POST, RequestMethod.GET})
+    public String toTree(M m,  ModelMap model , HttpServletRequest request, HttpServletResponse response) {
+
+        this.permissionList.assertHasViewPermission();
+
+        model.put("entity" ,m);
+
+        if (listAlsoSetCommonData) {
+            setCommonData(m,model);
+        }
+
+
+        processPath(model);
+
+        String pageName = this.getTreePageName();
+        if(StringUtils.isEmpty(pageName)){
+            pageName = defaultTreePageName;
+        }
+        return viewName(pageName);
+
+    }
+
     @RequestMapping(value = "/tree" , method={ RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
     public Object tree(M m , Q query, Pages<M> pages , Model model , HttpServletRequest request, HttpServletResponse response) {
 
         this.permissionList.assertHasViewPermission();
 
+        TreeModel treeModel = buildTreeModel();
 
-        if(pages.getPageNum() == 0) {
-            pages.setPageNum(PaginationContext.getPageNum());
-        }
-
-        if(pages.getPageSize() == 0) {
-            pages.setPageSize(PaginationContext.getPageSize());
-        }
+        pages.setPageNum(1);
+        pages.setPageSize(Integer.MAX_VALUE);
 
         processPages(pages , request);
 
@@ -162,14 +183,30 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         processQuery(query , m);
 
-        Wrapper wrapper = buildWrapper(query , m);
+        PK id = m.getId();
+        m.setId(null);
+
+        QueryWrapper<M> wrapper = (QueryWrapper<M>)buildWrapper(query , m);
+
+
+        if(id == null){
+            //增加查询条件，用括号包住
+            wrapper.nested((qw)->{
+                qw.eq(StringFormatKit.toUnderlineName((String)treeModel.get(TreeModel.PID)) , "" );
+                qw.or();
+                qw.isNull(StringFormatKit.toUnderlineName((String)treeModel.get(TreeModel.PID)));
+                return qw;
+            });
+
+        }else {
+            wrapper.eq(StringFormatKit.toUnderlineName((String)treeModel.get(TreeModel.PID)) , id );
+        }
 
 
         page = (Page<M>)baseService.page(page , wrapper );
 
         processResult(page.getRecords());
 
-        TreeModel treeModel = buildTreeModel();
 
         List footer = buildFooter(page);
 
@@ -829,6 +866,16 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @return
      */
     protected String getListPageName(){
+        return null;
+    }
+
+
+    /**
+     * 返回列表页面指定的Page 名称
+     * 如果没有指定，将会使用默认的名称: listForm  对应编辑页面为 list.jsp
+     * @return
+     */
+    protected String getTreePageName(){
         return null;
     }
 
