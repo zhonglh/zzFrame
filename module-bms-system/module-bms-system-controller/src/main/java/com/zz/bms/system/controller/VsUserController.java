@@ -9,8 +9,6 @@ import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.enums.EnumUserStatus;
 import com.zz.bms.shiro.utils.ShiroUtils;
 import com.zz.bms.system.bo.VsUserBO;
-import com.zz.bms.system.query.VsUserQuery;
-import com.zz.bms.system.query.impl.VsUserQueryImpl;
 import com.zz.bms.system.query.impl.VsUserQueryWebImpl;
 import com.zz.bms.system.service.TsDictService;
 import org.apache.commons.lang3.StringUtils;
@@ -81,7 +79,7 @@ public class VsUserController extends ZzDefaultController<VsUserBO, String , VsU
 	public void setCustomInfoByInsert(VsUserBO vsUserBO , ILoginUserEntity sessionUser){
 		vsUserBO.setUserStatus(EnumUserStatus.normal.getVal());
 		vsUserBO.setUserStatusName(EnumUserStatus.normal.getLabel());
-		vsUserBO.setOrganId("11111111111111111111111111111111");
+		vsUserBO.setOrganId(organId);
 	}
 
 

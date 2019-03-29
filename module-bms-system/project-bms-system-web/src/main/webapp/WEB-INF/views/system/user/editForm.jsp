@@ -47,7 +47,7 @@
                 </div>
 
 
-                <form action="" method="post" class="form-auto-fill hide editForm" viewId="detailForm" formId="editForm">
+                <form action="" method="post" class="form-auto-fill hide editForm" id="editForm" viewId="detailForm" formId="editForm">
                     <input type="hidden" id="id" name="id" value="${m.id}">
                     <table class="info-table">
                         <tr>
@@ -96,16 +96,16 @@
                             <th>所在部门</th>
                             <td>
                                 <div class="input-group">
-                                    <input type="text"  id="depName" name="depName" value="${m.depName}" class="form-control input-sm  sysdepInfo "
+                                    <input type="text"  id="depName" name="depName" value="${m.depName}" class="form-control input-sm  depName "
                                            placeholder="请选择所在部门" readonly="readonly" >
                                     <input type="hidden" id="depId" name="depId" value="${m.depId}">
                                     <div class="input-group-btn">
-                                        <button type="button" class="btn btn-primary btn-sm crm-sysdepInfo">
+                                        <button type="button" class="btn btn-primary btn-sm depName">
                                             <svg class="icon" aria-hidden="true">
                                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-sousuo"></use>
                                             </svg>
                                         </button>
-                                        <button type="button" id="clearSysdepInfo" class="btn btn-primary btn-sm">
+                                        <button type="button" id="clearDepId" class="btn btn-primary btn-sm">
                                             <svg class="icon" aria-hidden="true">
                                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                                             </svg>
@@ -125,20 +125,21 @@
                                        value="${m.email}"  id="email" name="email" minlength="4" maxlength='50'/></td>
                         </tr>
 
-
                         <tr>
-                            <th height="15%">退出文件</th>
-                            <td colspan="3">
-                                <div class="info-detail">
-                                    <div class="uploader-list">
-                                        <ul id="thelist" class="files-list" style="margin: 0 0 10px 0" ></ul>
-                                    </div>
-                                    <div>
-                                        <div id="uploadFile" title='附件' class="webuploader-container" data-options="viewAreaId:'#thelist', fileSource:125, ">
-                                            <svg class="icon" aria-hidden="true">
-                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-upload"></use>
-                                            </svg>
-                                            <span>上传附件</span>
+                            <th width="15%" height="10%">附件</th>
+                            <td width="15%" colspan="3">
+                                <div class="" style="margin-bottom: 0px;">
+                                    <div class="info-detail">
+                                        <div class="uploader-list">
+                                            <ul id="thelist" class="files-list" style="margin: 0 0 10px 0" ></ul>
+                                        </div>
+                                        <div class="btns">
+                                            <div id="uploadFile" title='附件' class="webuploader-container" data-options="viewAreaId:'#thelist', fileSource:100">
+                                                <svg class="icon" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-upload"></use>
+                                                </svg>
+                                                <span>上传附件</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -151,7 +152,7 @@
                             <th >备注</th>
                             <td colspan="3">
                                 <div class="info-detail">
-                                    <textarea class="form-control input-sm" name="remark" placeholder="请输入备注，500字以内" maxlength="500" rows="3">${m.remark}</textarea>
+                                    <textarea class="form-control input-sm" name="remark" placeholder="请输入备注，500字以内" maxlength="500" rows="5">${m.remark}</textarea>
                                 </div>
                             </td>
                         </tr>
@@ -222,6 +223,7 @@
 
 <bms:contentJS />
 
+<script src="${staticUrl}/statics2/business-js/system/dep/search.js"></script>
 <script src="${staticUrl}/statics2/business-js/system/user/search.js"></script>
 <script src="${staticUrl}/statics2/js/project/form.js"></script>
 
@@ -231,34 +233,21 @@
 
 <script language="JavaScript">
 
-    /*
 
-        //绑定区域选择弹窗
-        $('.areaInfo').OpenAreaSelectWin({
-            title: '省市',
-            selectType: 't1',
-            callId: 'areaId',
-            callName: 'areaName',
-            clearId: 'clearAreaInfo',
-            isSelectedLeaf: "true",
-            checkFun: function(id, name, obj){
-                if(obj.parentId <= 1){
-                    warn('请选择市名称');
-                    return false;
-                }
-                return true;
-            }
-        }, function(id, name, obj){
-            $("#areaName").val(obj.parentName + ">" + name);
-        });
-
-        //部门选择
-        $(".sysdepInfo").OpenSysDepSelectWin({title: "部门",selectType: "t1",callId: "deptId",callName: "deptName",clearId: "clearSysdepInfo"});
-
-    */
 
 
     $(function() {
+
+
+        //部门选择
+        $(".depName").OpenSystemDepSelectWin({
+            title: "上级部门",
+            selectType: "t1",
+            callId: "depId",
+            callName: "depName",
+            clearId: "clearDepId"
+        });
+
         //人员选择
         $(".leadUserName").OpenSystemUserSelectWin({
             title: "直属领导",

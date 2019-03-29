@@ -4,7 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zz.bms.core.ui.TreeModel;
+import com.zz.bms.enums.EnumTreeState;
 import com.zz.bms.util.base.data.StringFormatKit;
+import com.zz.bms.util.base.java.ReflectHelper;
+import com.zz.bms.util.base.java.ReflectionSuper;
 import com.zz.bms.util.configs.AppConfig;
 import com.zz.bms.controller.base.PermissionList;
 import com.zz.bms.core.Constant;
@@ -174,6 +177,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         TreeModel treeModel = buildTreeModel();
 
+        PK id = m.getId();
+        ReflectionSuper.setFieldValue(query , "id" , null);
+
         pages.setPageNum(1);
         pages.setPageSize(Integer.MAX_VALUE);
 
@@ -183,8 +189,6 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         processQuery(query , m);
 
-        PK id = m.getId();
-        m.setId(null);
 
         QueryWrapper<M> wrapper = (QueryWrapper<M>)buildWrapper(query , m);
 
@@ -210,7 +214,20 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         List footer = buildFooter(page);
 
-        return toTreeList(page.getRecords() , treeModel , footer);
+        List<M> list =  page.getRecords() ;
+
+        if(list != null && !list.isEmpty()) {
+            for (M temp : list){
+                QueryWrapper<M> queryWrapper = new QueryWrapper<>();
+                queryWrapper.eq(StringFormatKit.toUnderlineName((String)treeModel.get(TreeModel.PID)) , temp.getId());
+                int count = this.baseService.count(queryWrapper);
+                if(count == 0){
+                    temp.setState(EnumTreeState.OPEN.getTheValue());
+                }
+            }
+        }
+
+        return list ;
 
     }
 

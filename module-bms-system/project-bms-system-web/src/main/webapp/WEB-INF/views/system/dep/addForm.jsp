@@ -128,7 +128,6 @@
 
 <script src="${staticUrl}/statics2/js/project/form.js"></script>
 
-
 <script src="${staticUrl}/statics2/business-js/system/dep/search.js"></script>
 <script src="${staticUrl}/statics2/business-js/system/user/search.js"></script>
 
@@ -140,10 +139,9 @@
 
     $(function() {
 
-
         //部门选择
         $(".pname").OpenSystemDepSelectWin({
-            title: "部门",
+            title: "上级部门",
             selectType: "t1",
             callId: "pid",
             callName: "pname",
@@ -153,7 +151,7 @@
 
         //人员选择
         $(".leadUserName").OpenSystemUserSelectWin({
-            title: "直属领导",
+            title: "部门负责人",
             selectType: "d1",
             callId: "leadUserId",
             callName: "leadUserName",

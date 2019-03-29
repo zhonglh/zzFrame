@@ -40,7 +40,7 @@
                 </div>
 
 
-                <form action="" method="post" class="form-auto-fill hide editForm" viewId="detailForm" formId="editForm">
+                <form action="" method="post" class="form-auto-fill hide editForm" id="editForm" viewId="detailForm" formId="editForm">
                     <input type="hidden" id="id" name="id" value="${m.id}">
                     <table class="info-table">
                         <colgroup>
@@ -61,13 +61,12 @@
                                        value="${m.depName}" id="depName" name="depName" minlength="1" maxlength='50'/></td>
                         </tr>
 
-
                         <tr>
                             <th>部门负责人</th>
                             <td>
                                 <div class="input-group">
                                     <input type="text"  id="leadUserName" name="leadUserName" class="form-control input-sm leadUserName"
-                                           placeholder="请选择部门负责人" readonly="readonly">
+                                           placeholder="请选择部门负责人" readonly="readonly" value="${m.leadUserName}">
                                     <input type="hidden" id="leadUserId" name="leadUserId" value="${m.leadUserId}">
                                     <div class="input-group-btn">
                                         <button type="button"  class="btn btn-primary btn-sm leadUserName">
@@ -90,12 +89,12 @@
                                            placeholder="请选择上级部门" readonly="readonly" >
                                     <input type="hidden" id="pid" name="pid" value="${m.pid}">
                                     <div class="input-group-btn">
-                                        <button type="button" class="btn btn-primary btn-sm crm-pname">
+                                        <button type="button" class="btn btn-primary btn-sm pname">
                                             <svg class="icon" aria-hidden="true">
                                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-sousuo"></use>
                                             </svg>
                                         </button>
-                                        <button type="button" id="clearPname" class="btn btn-primary btn-sm">
+                                        <button type="button" id="clearPid" class="btn btn-primary btn-sm">
                                             <svg class="icon" aria-hidden="true">
                                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                                             </svg>
@@ -104,7 +103,6 @@
                                 </div>
                             </td>
                         </tr>
-
 
 
                         <tr>
@@ -182,45 +180,29 @@
 <bms:contentJS />
 
 <script src="${staticUrl}/statics2/js/project/form.js"></script>
-
-
+<script src="${staticUrl}/statics2/business-js/system/dep/search.js"></script>
 <script src="${staticUrl}/statics2/business-js/system/user/search.js"></script>
 
 
 <script language="JavaScript">
 
-    /*
+    $(function() {
 
-        //绑定区域选择弹窗
-        $('.areaInfo').OpenAreaSelectWin({
-            title: '省市',
-            selectType: 't1',
-            callId: 'areaId',
-            callName: 'areaName',
-            clearId: 'clearAreaInfo',
-            isSelectedLeaf: "true",
-            checkFun: function(id, name, obj){
-                if(obj.parentId <= 1){
-                    warn('请选择市名称');
-                    return false;
-                }
-                return true;
-            }
-        }, function(id, name, obj){
-            $("#areaName").val(obj.parentName + ">" + name);
-        });
 
         //部门选择
-        $(".sysdepInfo").OpenSysDepSelectWin({title: "部门",selectType: "t1",callId: "deptId",callName: "deptName",clearId: "clearSysdepInfo"});
+        $(".pname").OpenSystemDepSelectWin({
+            title: "上级部门",
+            selectType: "t1",
+            callId: "pid",
+            callName: "pname",
+            clearId: "clearPid",
+            url : $AppContext + '/system/dep/tree?id_NE='+'${m.id}'
+        });
 
-    */
-
-
-    $(function() {
 
         //人员选择
         $(".leadUserName").OpenSystemUserSelectWin({
-            title: "直属领导",
+            title: "部门负责人",
             selectType: "d1",
             callId: "leadUserId",
             callName: "leadUserName",
@@ -229,7 +211,6 @@
 
 
     });
-
 
 
 </script>

@@ -69,16 +69,16 @@
                             <th>所在部门</th>
                             <td>
                                 <div class="input-group">
-                                    <input type="text"  id="depName" name="depName" value="${m.depId}" class="form-control input-sm  sysdepInfo "
+                                    <input type="text"  id="depName" name="depName" value="${m.depId}" class="form-control input-sm  depName "
                                            placeholder="请选择所在部门" readonly="readonly" >
                                     <input type="hidden" id="depId" name="depId" value="${m.depId}">
                                     <div class="input-group-btn">
-                                        <button type="button" class="btn btn-primary btn-sm crm-sysdepInfo">
+                                        <button type="button" class="btn btn-primary btn-sm depName">
                                             <svg class="icon" aria-hidden="true">
                                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-sousuo"></use>
                                             </svg>
                                         </button>
-                                        <button type="button" id="clearSysdepInfo" class="btn btn-primary btn-sm">
+                                        <button type="button" id="cleaDepId" class="btn btn-primary btn-sm">
                                             <svg class="icon" aria-hidden="true">
                                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                                             </svg>
@@ -113,7 +113,7 @@
             <div style="margin-top:10px;position:absolute;">
 
 
-                <shiro:hasPermission name="system.user:create">
+                <shiro:hasPermission name="system.user:add">
                 <button type="button" class="btn btn-primary btn-sm" onclick="doSave()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
@@ -149,6 +149,7 @@
 <script src="${staticUrl}/statics2/js/project/form.js"></script>
 
 
+<script src="${staticUrl}/statics2/business-js/system/dep/search.js"></script>
 <script src="${staticUrl}/statics2/business-js/system/user/search.js"></script>
 
 
@@ -156,6 +157,17 @@
 
 
     $(function() {
+
+
+        //部门选择
+        $(".depName").OpenSystemDepSelectWin({
+            title: "上级部门",
+            selectType: "t1",
+            callId: "depId",
+            callName: "depName",
+            clearId: "clearDepId"
+        });
+
 
         //人员选择
         $(".leadUserName").OpenSystemUserSelectWin({
