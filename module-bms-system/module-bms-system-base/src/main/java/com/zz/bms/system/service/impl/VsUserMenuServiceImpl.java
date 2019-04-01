@@ -50,7 +50,8 @@ public class VsUserMenuServiceImpl extends BaseServiceImpl<VsUserMenuBO,String> 
     }
 
 
+    @Override
+    public void isExist(VsUserMenuBO vsUserMenuBO) {
 
-
-
+    }
 }

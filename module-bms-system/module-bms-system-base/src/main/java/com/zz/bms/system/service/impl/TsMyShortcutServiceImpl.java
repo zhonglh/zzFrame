@@ -79,6 +79,8 @@ public class TsMyShortcutServiceImpl extends BaseServiceImpl<TsMyShortcutBO,Stri
 	}
 
 
+	@Override
+	public void isExist(TsMyShortcutBO tsMyShortcutBO) {
 
-
+	}
 }

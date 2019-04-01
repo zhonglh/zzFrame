@@ -6,6 +6,9 @@ import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 
+import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.db.entity.EntityUtil;
+import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.system.bo.TsDictBO;
 import com.zz.bms.system.dao.TsDictDAO;
 import com.zz.bms.system.service.TsDictService;
@@ -188,6 +191,21 @@ public class TsDictServiceImpl extends BaseServiceImpl<TsDictBO,String> implemen
 	}
 
 
+	@Override
+	public void isExist(TsDictBO tsDictBO) {
 
+		TsDictBO ckBO ;
+		BaseEntity temp = null ;
 
+		ckBO = new TsDictBO();
+		ckBO.setId( tsDictBO.getId() );
+		ckBO.setDictTypeId(tsDictBO.getDictTypeId());
+		ckBO.setDictVal(tsDictBO.getDictVal());
+		ckBO.setTenantId(tsDictBO.getTenantId());
+		temp = this.selectCheck(ckBO);
+		if (EntityUtil.isEntityExist(temp)) {
+			throw DbException.DB_SAVE_SAME;
+		}
+
+	}
 }

@@ -20,22 +20,6 @@ public class TsMenuPermitController extends ZzDefaultController<TsMenuPermitBO, 
 
 
 
-	@Override
-	protected void isExist(TsMenuPermitBO tsMenuPermitBO) {
-
-		TsMenuPermitBO ckBO ;
-		BaseEntity temp = null ;
-
-		ckBO = new TsMenuPermitBO();
-		ckBO.setId( tsMenuPermitBO.getId() );
-        ckBO.setMenuId(tsMenuPermitBO.getMenuId());
-        ckBO.setPermitId(tsMenuPermitBO.getPermitId());
-        temp = this.baseService.selectCheck(ckBO);
-
-		if (isEntityExist(temp)) {
-			throw DbException.DB_SAVE_SAME;
-		}
-	}
 
 
 

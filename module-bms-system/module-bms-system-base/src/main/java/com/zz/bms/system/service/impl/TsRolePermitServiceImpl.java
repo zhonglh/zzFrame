@@ -4,6 +4,8 @@ import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 
+import com.zz.bms.core.db.entity.EntityUtil;
+import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.system.bo.TsRolePermitBO;
 import com.zz.bms.system.dao.TsRolePermitDAO;
 import com.zz.bms.system.service.TsRolePermitService;
@@ -46,6 +48,19 @@ public class TsRolePermitServiceImpl extends BaseServiceImpl<TsRolePermitBO,Stri
 	}
 
 
+	@Override
+	public void isExist(TsRolePermitBO tsRolePermitBO) {
+		TsRolePermitBO ckBO ;
+		boolean isExist = false;
+		TsRolePermitBO temp = null ;
 
-
+		ckBO = new TsRolePermitBO();
+		ckBO.setId( tsRolePermitBO.getId() );
+		ckBO.setPermitId(tsRolePermitBO.getPermitId());
+		ckBO.setRoleId(tsRolePermitBO.getRoleId());
+		temp = this.selectCheck(ckBO);
+		if (EntityUtil.isEntityExist(temp)) {
+			throw DbException.DB_SAVE_SAME;
+		}
+	}
 }

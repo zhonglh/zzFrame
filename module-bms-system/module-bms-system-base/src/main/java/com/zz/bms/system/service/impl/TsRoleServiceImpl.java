@@ -4,6 +4,9 @@ import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 
+import com.zz.bms.core.db.entity.EntityUtil;
+import com.zz.bms.core.enums.EnumErrorMsg;
+import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.system.bo.TsRoleBO;
 import com.zz.bms.system.dao.TsRoleDAO;
 import com.zz.bms.system.service.TsRoleService;
@@ -49,6 +52,34 @@ public class TsRoleServiceImpl extends BaseServiceImpl<TsRoleBO,String> implemen
 		return tsRoleDAO ;
 	}
 
+
+	@Override
+	public void isExist(TsRoleBO tsRoleBO) {
+
+
+		TsRoleBO ckBO ;
+		boolean isExist = false;
+		TsRoleBO temp = null ;
+
+		ckBO = new TsRoleBO();
+		ckBO.setId( tsRoleBO.getId() );
+		ckBO.setRoleCode(tsRoleBO.getRoleCode());
+		ckBO.setTenantId(tsRoleBO.getTenantId());
+		temp = this.selectCheck(ckBO);
+
+		if (EntityUtil.isEntityExist(temp)) {
+			throw new BizException(EnumErrorMsg.business_error.getCode(),"角色编号已使用");
+		}
+
+		ckBO = new TsRoleBO();
+		ckBO.setId( tsRoleBO.getId() );
+		ckBO.setRoleName(tsRoleBO.getRoleName());
+		ckBO.setTenantId(tsRoleBO.getTenantId());
+		temp = this.selectCheck(ckBO);
+		if (EntityUtil.isEntityExist(temp)) {
+			throw new BizException(EnumErrorMsg.business_error.getCode(),"角色名称已使用");
+		}
+	}
 
 	@Override
 	public TsRoleBO processResult(TsRoleBO tsRoleBO) {

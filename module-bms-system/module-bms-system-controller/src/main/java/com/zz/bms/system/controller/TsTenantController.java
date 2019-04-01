@@ -20,31 +20,6 @@ public class TsTenantController extends ZzDefaultController<TsTenantBO, String ,
 
 
 
-	@Override
-	protected void isExist(TsTenantBO tsTenantBO) {
-
-		TsTenantBO ckBO ;
-		TsTenantBO temp = null ;
-
-		ckBO = new TsTenantBO();
-		ckBO.setId( tsTenantBO.getId() );
-        ckBO.setTenantName(tsTenantBO.getTenantName());
-        temp = this.baseService.selectCheck(ckBO);
-		if (isEntityExist(temp)) {
-			throw new BizException(EnumErrorMsg.business_error.getCode(),"租户名称已使用");
-		}
-		ckBO = new TsTenantBO();
-		ckBO.setId( tsTenantBO.getId() );
-        ckBO.setTenantCode(tsTenantBO.getTenantCode());
-        temp = this.baseService.selectCheck(ckBO);
-
-
-		if (isEntityExist(temp)) {
-			throw new BizException(EnumErrorMsg.business_error.getCode(),"租户编号已使用");
-		}
-	}
-
-
 
 
 }

@@ -16,9 +16,4 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class VsNodeUserController extends ZzDefaultController<VsNodeUserBO, String , VsNodeUserQueryWebImpl> {
 
-
-    @Override
-    protected void isExist(VsNodeUserBO vsNodeUserBO) {
-
-    }
 }

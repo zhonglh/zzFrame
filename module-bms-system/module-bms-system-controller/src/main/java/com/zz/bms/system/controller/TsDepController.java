@@ -26,34 +26,6 @@ public class TsDepController extends ZzDefaultController<TsDepBO, String , TsDep
 
 
 	@Override
-	protected void isExist(TsDepBO tsDepBO) {
-
-		TsDepBO ckBO ;
-		TsDepBO temp = null ;
-
-		ckBO = new TsDepBO();
-		ckBO.setId( tsDepBO.getId() );
-        ckBO.setDepCode(tsDepBO.getDepCode());
-        ckBO.setOrganId(tsDepBO.getOrganId());
-        temp = this.baseService.selectCheck(ckBO);
-
-		if (isEntityExist(temp)) {
-			throw new BizException(EnumErrorMsg.business_error.getCode(),"该部门编号已使用");
-		}
-
-		ckBO = new TsDepBO();
-		ckBO.setId( tsDepBO.getId() );
-        ckBO.setDepName(tsDepBO.getDepName());
-        ckBO.setOrganId(tsDepBO.getOrganId());
-        temp = this.baseService.selectCheck(ckBO);
-		if (isEntityExist(temp)) {
-			throw new BizException(EnumErrorMsg.business_error.getCode(),"该部门名称已使用");
-		}
-
-	}
-
-
-	@Override
 	public void setCustomInfoByInsert(TsDepBO tsDepBO , ILoginUserEntity sessionUser){
 		tsDepBO.setDepStatus(EnumDepStatus.normal.getVal());
 		tsDepBO.setDepStatusName(EnumDepStatus.normal.getLabel());

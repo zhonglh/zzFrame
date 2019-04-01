@@ -15,6 +15,22 @@ import java.util.Date;
 public class EntityUtil {
 
 
+    /**
+     * 判断是否存在对象
+     * 如果数据库中没有查出对象， 表示不存在， 返回false
+     * 如果数据库中有对象    id == entity.id  还表示不存在 ， 返回false,  否则返回 ture;
+     * @param entity        根据条件查询出数据库里对象
+     * @return
+     */
+    public static boolean isEntityExist(BaseEntity entity){
+        if(entity == null) {
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+
     public static void autoSetInsertEntity(BaseEntity be, ILoginUserEntity sessionUserVO) {
         autoSetInsertEntity(be,sessionUserVO,true);
     }

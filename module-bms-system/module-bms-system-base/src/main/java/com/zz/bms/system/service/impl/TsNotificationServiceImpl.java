@@ -59,6 +59,11 @@ public class TsNotificationServiceImpl extends BaseServiceImpl<TsNotificationBO,
 	}
 
 	@Override
+	public void isExist(TsNotificationBO tsNotificationBO) {
+
+	}
+
+	@Override
 	public TsNotificationBO processResult(TsNotificationBO tsNotificationBO) {
 
             //todo 处理字典信息

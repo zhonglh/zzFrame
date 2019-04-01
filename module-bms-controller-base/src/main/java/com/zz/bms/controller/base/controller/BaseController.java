@@ -289,20 +289,6 @@ public abstract class BaseController<PK extends Serializable> {
 
     }
 
-    /**
-     * 判断是否存在对象
-     * 如果数据库中没有查出对象， 表示不存在， 返回false
-     * 如果数据库中有对象    id == entity.id  还表示不存在 ， 返回false,  否则返回 ture;
-     * @param entity        根据条件查询出数据库里对象
-     * @return
-     */
-    public boolean isEntityExist(BaseEntity entity){
-        if(entity == null) {
-            return false;
-        }else{
-            return true;
-        }
-    }
 
 
 

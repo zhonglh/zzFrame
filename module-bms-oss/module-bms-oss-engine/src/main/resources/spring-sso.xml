@@ -15,7 +15,7 @@
     <util:properties id="aliyun" location="classpath:sso-cloud-aliyun.properties"/>
     <util:properties id="qiniuyun"  location="classpath:sso-cloud-qiniuyun.properties"/>
     <util:properties id="tenxunyun" location="classpath:sso-cloud-tenxunyun.properties"/>
-    <util:properties id="filesystem" location="classpath:sso-file.properties"/>
+    <util:properties id="fileystem" location="classpath:sso-file.properties"/>
     <util:properties id="fsnfs" location="classpath:sso-fsnfs.properties"/>
     <util:properties id="mongodb" location="sso-mongodb.properties"/>
 

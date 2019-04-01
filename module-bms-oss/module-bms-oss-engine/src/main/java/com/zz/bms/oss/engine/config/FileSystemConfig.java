@@ -13,11 +13,11 @@ import org.springframework.stereotype.Component;
 public class FileSystemConfig implements OssConfig {
 
 
-    @Value("#{filesystem.root}")
+    @Value("#{fileystem.root}")
     private String root;
 
 
-    @Value("#{filesystem.active}")
+    @Value("#{fileystem.active}")
     private boolean active;
 
     public String getRoot() {

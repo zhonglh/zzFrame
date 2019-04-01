@@ -19,22 +19,6 @@ public class TsUserRoleController extends ZzDefaultController<TsUserRoleBO, Stri
 
 
 
-	@Override
-	protected void isExist(TsUserRoleBO tsUserRoleBO) {
-
-		TsUserRoleBO ckBO ;
-		TsUserRoleBO temp = null ;
-
-		ckBO = new TsUserRoleBO();
-		ckBO.setId( tsUserRoleBO.getId() );
-        ckBO.setRoleId(tsUserRoleBO.getRoleId());
-        ckBO.setUserId(tsUserRoleBO.getUserId());
-        temp = this.baseService.selectCheck(ckBO);
-
-		if (isEntityExist(temp)) {
-			throw DbException.DB_SAVE_SAME;
-		}
-	}
 
 
 

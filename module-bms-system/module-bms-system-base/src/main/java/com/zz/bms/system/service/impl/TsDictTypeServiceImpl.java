@@ -40,6 +40,8 @@ public class TsDictTypeServiceImpl extends BaseServiceImpl<TsDictTypeBO,String> 
 	}
 
 
+	@Override
+	public void isExist(TsDictTypeBO tsDictTypeBO) {
 
-
+	}
 }

@@ -20,24 +20,6 @@ public class TsMsgTempletController extends ZzDefaultController<TsMsgTempletBO, 
 
 
 
-	@Override
-	protected void isExist(TsMsgTempletBO tsMsgTempletBO) {
-
-		TsMsgTempletBO ckBO ;
-		BaseEntity temp = null ;
-
-		ckBO = new TsMsgTempletBO();
-		ckBO.setId( tsMsgTempletBO.getId() );
-        ckBO.setMsgTempletName(tsMsgTempletBO.getMsgTempletName());
-        ckBO.setTenantId(tsMsgTempletBO.getTenantId());
-        temp = this.baseService.selectCheck(ckBO);
-
-		if (isEntityExist(temp)) {
-			throw DbException.DB_SAVE_SAME;
-		}
-	}
-
-
 
 
 }

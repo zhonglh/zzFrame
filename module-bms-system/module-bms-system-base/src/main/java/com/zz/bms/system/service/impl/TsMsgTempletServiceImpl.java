@@ -4,6 +4,9 @@ import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 
+import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.db.entity.EntityUtil;
+import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.system.bo.TsMsgTempletBO;
 import com.zz.bms.system.dao.TsMsgTempletDAO;
 import com.zz.bms.system.service.TsMsgTempletService;
@@ -49,6 +52,23 @@ public class TsMsgTempletServiceImpl extends BaseServiceImpl<TsMsgTempletBO,Stri
 		return tsMsgTempletDAO ;
 	}
 
+
+	@Override
+	public void isExist(TsMsgTempletBO tsMsgTempletBO) {
+
+		TsMsgTempletBO ckBO ;
+		BaseEntity temp = null ;
+
+		ckBO = new TsMsgTempletBO();
+		ckBO.setId( tsMsgTempletBO.getId() );
+		ckBO.setMsgTempletName(tsMsgTempletBO.getMsgTempletName());
+		ckBO.setTenantId(tsMsgTempletBO.getTenantId());
+		temp = this.selectCheck(ckBO);
+
+		if (EntityUtil.isEntityExist(temp)) {
+			throw DbException.DB_SAVE_SAME;
+		}
+	}
 
 	@Override
 	public TsMsgTempletBO processResult(TsMsgTempletBO tsMsgTempletBO) {

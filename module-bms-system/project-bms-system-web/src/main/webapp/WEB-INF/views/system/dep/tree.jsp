@@ -115,7 +115,7 @@
 
 
 
-    <table id='tableData-${tableId}' class='easyui-datagrid' method='post' fit='true' pagination='true' fitColumns="true"
+    <table id='tableData-${tableId}' class='easyui-treegrid' method='post' fit='true' pagination='true' fitColumns="true"
            border='true' sortName="id" sortOrder="desc" style="width: 100%;">
         <thead>
         <tr>

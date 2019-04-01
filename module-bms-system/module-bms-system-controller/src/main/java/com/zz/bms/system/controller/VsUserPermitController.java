@@ -16,9 +16,4 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class VsUserPermitController extends ZzDefaultController<VsUserPermitBO, String , VsUserPermitQueryWebImpl> {
 
-
-    @Override
-    protected void isExist(VsUserPermitBO vsUserPermitBO) {
-
-    }
 }

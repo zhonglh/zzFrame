@@ -36,9 +36,4 @@ public class TsMyShortcutController extends ZzDefaultController<TsMyShortcutBO, 
         return AjaxJson.successAjax;
     }
 
-
-    @Override
-    protected void isExist(TsMyShortcutBO tsMyShortcutBO) {
-
-    }
 }

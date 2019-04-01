@@ -131,7 +131,7 @@
                                 <div class="" style="margin-bottom: 0px;">
                                     <div class="info-detail">
                                         <div class="uploader-list">
-                                            <ul id="thelist" class="files-list" style="margin: 0 0 10px 0" ></ul>
+                                            <ul id="thelist" class="file-list" style="margin: 0 0 10px 0" ></ul>
                                         </div>
                                         <div class="btns">
                                             <div id="uploadFile" title='附件' class="webuploader-container" data-options="viewAreaId:'#thelist', fileSource:100">

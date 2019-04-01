@@ -43,6 +43,11 @@ public class VsNodeUserServiceImpl extends BaseServiceImpl<VsNodeUserBO,String> 
 
 
 	@Override
+	public void isExist(VsNodeUserBO vsNodeUserBO) {
+
+	}
+
+	@Override
 	public VsNodeUserBO processResult(VsNodeUserBO vsNodeUserBO) {
 
             //todo 处理字典信息

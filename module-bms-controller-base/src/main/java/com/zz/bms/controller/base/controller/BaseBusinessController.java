@@ -131,14 +131,7 @@ public abstract class BaseBusinessController<M extends BaseEntity<PK>, PK extend
     protected void insertAfter(M m) {
     }
 
-    /**
-     * 是否重复
-     * @param m
-     * @return
-     */
-    protected void isExist(M m) {
-        throw new RuntimeException("Please overload this method first");
-    }
+
 
     /**
      * 查询数据转Wrapper

@@ -17,8 +17,4 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TsNotificationController extends ZzDefaultController<TsNotificationBO, String , TsNotificationQueryWebImpl> {
 
 
-    @Override
-    protected void isExist(TsNotificationBO tsNotificationBO) {
-
-    }
 }

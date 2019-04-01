@@ -5,6 +5,10 @@ import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 
+import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.db.entity.EntityUtil;
+import com.zz.bms.core.enums.EnumErrorMsg;
+import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.enums.EnumDictType;
 import com.zz.bms.system.bo.TsDepBO;
 import com.zz.bms.system.bo.TsDictBO;
@@ -60,8 +64,40 @@ public class VsUserServiceImpl extends BaseServiceImpl<VsUserBO,String> implemen
     }
 
 
+    @Override
+    public void isExist(VsUserBO vsUserBO) {
 
-	@Override
+        VsUserBO ckBO ;
+        BaseEntity temp = null ;
+
+        ckBO = new VsUserBO();
+        ckBO.setId( vsUserBO.getId() );
+        ckBO.setLoginName(vsUserBO.getLoginName());
+        temp = this.selectCheck(ckBO);
+        if (EntityUtil.isEntityExist(temp)) {
+            throw new BizException(EnumErrorMsg.business_error.getCode(),"该登录名已使用");
+        }
+
+
+        ckBO = new VsUserBO();
+        ckBO.setId( vsUserBO.getId() );
+        ckBO.setPhone(vsUserBO.getPhone());
+        temp = this.selectCheck(ckBO);
+        if (EntityUtil.isEntityExist(temp)) {
+            throw new BizException(EnumErrorMsg.business_error.getCode(),"该手机号已使用");
+        }
+
+
+        ckBO = new VsUserBO();
+        ckBO.setId( vsUserBO.getId() );
+        ckBO.setEmail(vsUserBO.getEmail());
+        temp = this.selectCheck(ckBO);
+        if (EntityUtil.isEntityExist(temp)) {
+            throw new BizException(EnumErrorMsg.business_error.getCode(),"该邮箱已使用");
+        }
+    }
+
+    @Override
 	public VsUserBO processResult(VsUserBO vsUserBO) {
 
         try {

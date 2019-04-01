@@ -21,32 +21,5 @@ public class TsOrganController extends ZzDefaultController<TsOrganBO, String , T
 
 
 
-	@Override
-	protected void isExist(TsOrganBO tsOrganBO) {
-
-		TsOrganBO ckBO ;
-		BaseEntity temp = null ;
-
-		ckBO = new TsOrganBO();
-		ckBO.setId( tsOrganBO.getId() );
-        ckBO.setOrganCode(tsOrganBO.getOrganCode());
-        ckBO.setTenantId(tsOrganBO.getTenantId());
-        temp = this.baseService.selectCheck(ckBO);
-        if (isEntityExist(temp)) {
-			throw new BizException(EnumErrorMsg.business_error.getCode(),"该机构编号已使用");
-		}
-		ckBO = new TsOrganBO();
-		ckBO.setId( tsOrganBO.getId() );
-        ckBO.setOrganName(tsOrganBO.getOrganName());
-        ckBO.setTenantId(tsOrganBO.getTenantId());
-        temp = this.baseService.selectCheck(ckBO);
-		if (isEntityExist(temp)) {
-			throw new BizException(EnumErrorMsg.business_error.getCode(),"该机构名称已使用");
-		}
-
-	}
-
-
-
 
 }

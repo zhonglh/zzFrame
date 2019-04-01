@@ -19,25 +19,6 @@ public class TsRolePermitController extends ZzDefaultController<TsRolePermitBO, 
 
 
 
-	@Override
-	protected void isExist(TsRolePermitBO tsRolePermitBO) {
-
-		TsRolePermitBO ckBO ;
-		boolean isExist = false;
-		TsRolePermitBO temp = null ;
-
-		ckBO = new TsRolePermitBO();
-		ckBO.setId( tsRolePermitBO.getId() );
-        ckBO.setPermitId(tsRolePermitBO.getPermitId());
-        ckBO.setRoleId(tsRolePermitBO.getRoleId());
-        temp = this.baseService.selectCheck(ckBO);
-		if (isEntityExist(temp)) {
-			throw DbException.DB_SAVE_SAME;
-		}
-
-	}
-
-
 
 
 }

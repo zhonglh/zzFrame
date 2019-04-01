@@ -42,6 +42,8 @@ public class VsUserPermitServiceImpl extends BaseServiceImpl<VsUserPermitBO,Stri
 	}
 
 
+	@Override
+	public void isExist(VsUserPermitBO vsUserPermitBO) {
 
-
+	}
 }

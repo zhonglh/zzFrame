@@ -1135,10 +1135,10 @@ $(function(){
                 // 附件列表
                 cell.find("a").remove();
                 cell.find("br").remove();
-                var files = data;
-                if(files != null){
-                    for(var i=0; i<files.length; i++){
-                        var file = files[i];
+                var file = data;
+                if(file != null){
+                    for(var i=0; i<file.length; i++){
+                        var file = file[i];
                         // 临时处理，项目文档地址
                         if($("#" + key).attr("data-options").indexOf("document/upload") > 0)
                         {
@@ -1204,14 +1204,14 @@ $(function(){
             options = stringToJson(options);
 
             var key = $(this).attr("id");
-            var files = that.data[key];
+            var file = that.data[key];
 
             var viewArea = $(options.viewAreaId + "_dataItems");
             viewArea.find("span").remove();
 
-            if(files != null){
-                for(var i=0; i<files.length; i++){
-                    var file = files[i];
+            if(file != null){
+                for(var i=0; i<file.length; i++){
+                    var file = file[i];
                     viewArea.append('<span id="' + file.fileId + '" size="' + file.fileSize + '" docId="' + file.docId + '">' + file.fileName + '</span>');
                 }
             }
@@ -1238,7 +1238,7 @@ $(function(){
                     // 单选选中
                     var text = $(this).parent().find("span").text();
                     data[key] = val;
-                    data[key + "_Name"] = text;
+                    data[key + "Name"] = text;
                 }
             }else if(this.type != null && this.type.toLowerCase() == 'checkbox'){
                 if(this.checked){
@@ -1247,11 +1247,11 @@ $(function(){
                     if(data.hasOwnProperty(key)){
                         // 追加选中的值
                         data[key] = data[key] + "," + val;
-                        data[key + "_Name"] = data[key + "_Name"] + "," + text;
+                        data[key + "Name"] = data[key + "Name"] + "," + text;
                     }else{
                         // 第一个复选框值
                         data[key] = val;
-                        data[key + "_Name"] = text;
+                        data[key + "Name"] = text;
                     }
                 }
             }else if($(this).hasClass("fd-decimal") || $(this).hasClass("fd-decimal2") || $(this).hasClass("fd-decimal4")){
@@ -1292,7 +1292,7 @@ $(function(){
                 text = "";
             }
             data[key] = val;
-            data[key + "_Name"] = text;
+            data[key + "Name"] = text;
         });
 
         // 收集附件数据
@@ -1301,7 +1301,7 @@ $(function(){
             options = stringToJson(options);
 
             var key = $(this).attr("id");
-            var files = [];
+            var file = [];
             $(options.viewAreaId).find("li").each(function(){
                 var fileId = $(this).attr("fileId");
                 var fileSize = $(this).attr("fileSize");
@@ -1309,22 +1309,22 @@ $(function(){
                 var docId = $(this).attr("docId");
                 var isDel = $(this).attr("isDel");
                 if(isDel != "1"){
-                    files.push({fileId:fileId, fileSize:fileSize, fileName:fileName, docId:docId, isDel: 0});
+                    file.push({fileId:fileId, fileSize:fileSize, fileName:fileName, docId:docId, isDel: 0});
                 }
             });
 
             if(flag == true){
-                files = [];
+                file = [];
                 $(options.viewAreaId + "_dataItems").find("span").each(function(){
                     var fileId = $(this).attr("id");
                     var fileSize = $(this).attr("size");
                     var docId = $(this).attr("docId");
                     var fileName = $(this).text();
-                    files.push({fileId:fileId, fileSize:fileSize, fileName:fileName, docId:docId, isDel: 0});
+                    file.push({fileId:fileId, fileSize:fileSize, fileName:fileName, docId:docId, isDel: 0});
                 });
             }
 
-            data[key] = files;
+            data[key] = file;
         });
         return data;
     };

@@ -20,22 +20,6 @@ public class TsMenuController extends ZzDefaultController<TsMenuBO, String , TsM
 
 
 
-	@Override
-	protected void isExist(TsMenuBO tsMenuBO) {
-
-		TsMenuBO ckBO ;
-		BaseEntity temp = null ;
-
-		ckBO = new TsMenuBO();
-		ckBO.setId( tsMenuBO.getId() );
-        ckBO.setMenuCode(tsMenuBO.getMenuCode());
-        temp = this.baseService.selectCheck(ckBO);
-		if (isEntityExist(temp)) {
-			throw DbException.DB_SAVE_SAME;
-		}
-	}
-
-
 
 
 }

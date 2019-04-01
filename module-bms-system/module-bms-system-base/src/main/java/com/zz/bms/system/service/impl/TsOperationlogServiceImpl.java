@@ -55,6 +55,11 @@ public class TsOperationlogServiceImpl extends BaseServiceImpl<TsOperationlogBO,
 
 
 	@Override
+	public void isExist(TsOperationlogBO tsOperationlogBO) {
+
+	}
+
+	@Override
 	public TsOperationlogBO processResult(TsOperationlogBO tsOperationlogBO) {
 
             //todo 处理字典信息

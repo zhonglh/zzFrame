@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.zz.bms.system.dao.TsFilesUseDAO">
+<mapper namespace="com.zz.bms.system.dao.TsFileUseDAO">
  	<!-- 映射配置 -->
-	<resultMap id="TsFilesUseResultMap" type="com.zz.bms.system.bo.TsFilesUseBO" >
+	<resultMap id="TsFileUseResultMap" type="com.zz.bms.system.bo.TsFileUseBO" >
          	<result column="id" property="id"/>
 
          	<result column="file_id" property="fileId"/>
@@ -40,7 +40,7 @@
 
 
     <!-- 校验条件配置 -->
-    <sql id="TsFilesUse4CheckQueryFilter">
+    <sql id="TsFileUse4CheckQueryFilter">
         <where>
 
                     <if test="id != null and id != ''"> AND T.id != #{id} </if>
@@ -63,9 +63,9 @@
         </where>
     </sql>
 
-    <select id="selectCheck" parameterType="com.zz.bms.system.bo.TsFilesUseBO" resultMap="TsFilesUseResultMap">
-        SELECT T.* FROM ts_files_use T
-        <include refid="TsFilesUse4CheckQueryFilter"/>  limit 1
+    <select id="selectCheck" parameterType="com.zz.bms.system.bo.TsFileUseBO" resultMap="TsFileUseResultMap">
+        SELECT T.* FROM ts_file_use T
+        <include refid="TsFileUse4CheckQueryFilter"/>  limit 1
     </select>
 
 

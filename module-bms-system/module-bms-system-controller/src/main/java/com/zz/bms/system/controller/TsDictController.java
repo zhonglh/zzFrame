@@ -47,24 +47,6 @@ public class TsDictController extends ZzDefaultController<TsDictBO, String , TsD
 	}
 
 
-	@Override
-	protected void isExist(TsDictBO tsDictBO) {
-
-		TsDictBO ckBO ;
-		BaseEntity temp = null ;
-
-		ckBO = new TsDictBO();
-		ckBO.setId( tsDictBO.getId() );
-        ckBO.setDictTypeId(tsDictBO.getDictTypeId());
-        ckBO.setDictVal(tsDictBO.getDictVal());
-        ckBO.setTenantId(tsDictBO.getTenantId());
-        temp = this.baseService.selectCheck(ckBO);
-        if (isEntityExist(temp)) {
-			throw DbException.DB_SAVE_SAME;
-		}
-
-	}
-
 
 
 

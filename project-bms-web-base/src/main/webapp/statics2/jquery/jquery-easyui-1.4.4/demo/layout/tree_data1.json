@@ -17,7 +17,7 @@
 		}]
 	},{
 		"id":12,
-		"text":"Program Files",
+		"text":"Program File",
 		"children":[{
 			"id":121,
 			"text":"Intel"

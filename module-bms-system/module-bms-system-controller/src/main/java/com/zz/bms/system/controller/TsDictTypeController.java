@@ -20,12 +20,6 @@ public class TsDictTypeController extends ZzDefaultController<TsDictTypeBO, Stri
 
 
 
-	@Override
-	protected void isExist(TsDictTypeBO tsDictTypeBO) {
-
-	}
-
-
 
 
 }

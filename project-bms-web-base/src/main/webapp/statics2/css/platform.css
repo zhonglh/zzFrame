@@ -406,9 +406,9 @@ select.multiselect+.open>.dropdown-toggle.btn-default{background-color: transpar
 .knowledge .status-bar div:first-child{padding-left: 0}
 .knowledge .status-bar div svg{fill: #999999}
 .knowledge .introduction{margin-top: 8px;word-break: break-all}
-.knowledge .attachment-files{padding: 15px 10px;margin-top: 8px;border-radius: 5px;background-color: #eff7fb;border: 1px solid #cbdce4}
-.knowledge .attachment-files h3{color: #0896ba;margin-top: 0;font-weight: normal;font-size: 18px}
-.knowledge .attachment-files ul li{word-break: break-all;margin-top: 5px}
+.knowledge .attachment-file{padding: 15px 10px;margin-top: 8px;border-radius: 5px;background-color: #eff7fb;border: 1px solid #cbdce4}
+.knowledge .attachment-file h3{color: #0896ba;margin-top: 0;font-weight: normal;font-size: 18px}
+.knowledge .attachment-file ul li{word-break: break-all;margin-top: 5px}
 /* 文档详情头像部分 */
 .doc-author{padding: 10px}
 .doc-author .avatar{margin: 0 auto;width: 140px;height: 140px;border-radius: 50%;overflow: hidden;border: 1px solid #dddddd}
@@ -454,17 +454,17 @@ select.multiselect+.open>.dropdown-toggle.btn-default{background-color: transpar
 /**------------------------------------------------------------------------------------------
  *   【投行项目移植过来的,颜色可能需要重新定制】
  *------------------------------------------------------------------------------------------*/
-.files-list li{*zoom: 1;line-height: 30px}
-.files-list li:before,.files-list li:after{content: "";display: table}
-.files-list li:after{clear: both}
-.files-list li a{color: #3c7bc0}
-.files-list li a:hover{color: #0896ba}
-.files-list .file-operate{float: right}
-.files-list .file-operate:focus{outline: none}
-.files-list .file-operate svg{fill: #f35958}
-.files-list .file-text{display: block;margin-left: 0;margin-right: 50px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis}
-.files-list .file-text:hover{text-decoration: none}
-.files-list li p{color: #999999;word-break: break-all}
+.file-list li{*zoom: 1;line-height: 30px}
+.file-list li:before,.file-list li:after{content: "";display: table}
+.file-list li:after{clear: both}
+.file-list li a{color: #3c7bc0}
+.file-list li a:hover{color: #0896ba}
+.file-list .file-operate{float: right}
+.file-list .file-operate:focus{outline: none}
+.file-list .file-operate svg{fill: #f35958}
+.file-list .file-text{display: block;margin-left: 0;margin-right: 50px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis}
+.file-list .file-text:hover{text-decoration: none}
+.file-list li p{color: #999999;word-break: break-all}
 
 /**------------------------------------------------------------------------------------------
  *		列表页过滤筛选条件

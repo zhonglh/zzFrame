@@ -189,7 +189,7 @@ a:hover {
 	text-decoration: underline
 }
 
-.files-list li a {
+.file-list li a {
 	color: #0896ba;
 }
 /*.panel-header, .panel-body {
@@ -1298,14 +1298,14 @@ textarea {
 }
 
 /* 工作底稿列表 */
-.files-list2 li a {
+.file-list2 li a {
 	display: block;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
 
-.files-list2 li p {
+.file-list2 li p {
 	color: #999999;
 	word-break: break-all;
 	margin: 10px 0 0;

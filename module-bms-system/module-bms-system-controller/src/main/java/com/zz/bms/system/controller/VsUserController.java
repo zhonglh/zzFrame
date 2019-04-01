@@ -39,39 +39,6 @@ public class VsUserController extends ZzDefaultController<VsUserBO, String , VsU
 
 
 
-	@Override
-	protected void isExist(VsUserBO vsUserBO) {
-
-		VsUserBO ckBO ;
-		BaseEntity temp = null ;
-
-		ckBO = new VsUserBO();
-		ckBO.setId( vsUserBO.getId() );
-        ckBO.setLoginName(vsUserBO.getLoginName());
-        temp = this.baseService.selectCheck(ckBO);
-        if (isEntityExist(temp)) {
-        	throw new BizException(EnumErrorMsg.business_error.getCode(),"该登录名已使用");
-		}
-
-
-		ckBO = new VsUserBO();
-		ckBO.setId( vsUserBO.getId() );
-		ckBO.setPhone(vsUserBO.getPhone());
-		temp = this.baseService.selectCheck(ckBO);
-		if (isEntityExist(temp)) {
-			throw new BizException(EnumErrorMsg.business_error.getCode(),"该手机号已使用");
-		}
-
-
-		ckBO = new VsUserBO();
-		ckBO.setId( vsUserBO.getId() );
-		ckBO.setEmail(vsUserBO.getEmail());
-		temp = this.baseService.selectCheck(ckBO);
-		if (isEntityExist(temp)) {
-			throw new BizException(EnumErrorMsg.business_error.getCode(),"该邮箱已使用");
-		}
-
-	}
 
 
 

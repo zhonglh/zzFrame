@@ -391,7 +391,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
         //检查重复数据
-        isExist(m);
+        this.baseService.isExist(m);
 
         boolean success = false;
         try{
@@ -455,7 +455,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
         //检查重复数据
-        isExist(m);
+        this.baseService.isExist(m);
 
 
         boolean success = false;
@@ -618,7 +618,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     @ResponseBody
     public Object checkUnique(M m) {
         M temp = baseService.selectCheck(m);
-        if (isEntityExist(temp)) {
+        if (EntityUtil.isEntityExist(temp)) {
             throw DbException.DB_SAVE_SAME;
         }
         else {
@@ -634,7 +634,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     @RequestMapping(value = "/checkAllUnique"  ,method = RequestMethod.GET)
     @ResponseBody
     public AjaxJson checkAllUnique(M m) {
-        this.isExist(m);
+        this.baseService.isExist(m);
         return AjaxJson.successAjax;
     }
 

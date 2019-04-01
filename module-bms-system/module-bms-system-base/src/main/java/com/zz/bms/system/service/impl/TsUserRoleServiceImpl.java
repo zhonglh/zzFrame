@@ -4,6 +4,8 @@ import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 
+import com.zz.bms.core.db.entity.EntityUtil;
+import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.system.bo.TsUserRoleBO;
 import com.zz.bms.system.dao.TsUserRoleDAO;
 import com.zz.bms.system.service.TsUserRoleService;
@@ -46,6 +48,20 @@ public class TsUserRoleServiceImpl extends BaseServiceImpl<TsUserRoleBO,String> 
 	}
 
 
+	@Override
+	public void isExist(TsUserRoleBO tsUserRoleBO) {
 
+		TsUserRoleBO ckBO ;
+		TsUserRoleBO temp = null ;
 
+		ckBO = new TsUserRoleBO();
+		ckBO.setId( tsUserRoleBO.getId() );
+		ckBO.setRoleId(tsUserRoleBO.getRoleId());
+		ckBO.setUserId(tsUserRoleBO.getUserId());
+		temp = this.selectCheck(ckBO);
+
+		if (EntityUtil.isEntityExist(temp)) {
+			throw DbException.DB_SAVE_SAME;
+		}
+	}
 }

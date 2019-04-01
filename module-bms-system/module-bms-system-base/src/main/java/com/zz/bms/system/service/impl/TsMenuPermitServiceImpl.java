@@ -4,6 +4,9 @@ import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 
+import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.db.entity.EntityUtil;
+import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.system.bo.TsMenuPermitBO;
 import com.zz.bms.system.dao.TsMenuPermitDAO;
 import com.zz.bms.system.service.TsMenuPermitService;
@@ -46,6 +49,19 @@ public class TsMenuPermitServiceImpl extends BaseServiceImpl<TsMenuPermitBO,Stri
 	}
 
 
+	@Override
+	public void isExist(TsMenuPermitBO tsMenuPermitBO) {
+		TsMenuPermitBO ckBO ;
+		BaseEntity temp = null ;
 
+		ckBO = new TsMenuPermitBO();
+		ckBO.setId( tsMenuPermitBO.getId() );
+		ckBO.setMenuId(tsMenuPermitBO.getMenuId());
+		ckBO.setPermitId(tsMenuPermitBO.getPermitId());
+		temp = this.selectCheck(ckBO);
 
+		if (EntityUtil.isEntityExist(temp)) {
+			throw DbException.DB_SAVE_SAME;
+		}
+	}
 }

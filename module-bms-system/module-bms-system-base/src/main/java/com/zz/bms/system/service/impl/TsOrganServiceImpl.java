@@ -4,6 +4,10 @@ import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
 
+import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.db.entity.EntityUtil;
+import com.zz.bms.core.enums.EnumErrorMsg;
+import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.system.bo.TsOrganBO;
 import com.zz.bms.system.dao.TsOrganDAO;
 import com.zz.bms.system.service.TsOrganService;
@@ -47,6 +51,31 @@ public class TsOrganServiceImpl extends BaseServiceImpl<TsOrganBO,String> implem
 		return tsOrganDAO ;
 	}
 
+
+	@Override
+	public void isExist(TsOrganBO tsOrganBO) {
+
+
+		TsOrganBO ckBO ;
+		BaseEntity temp = null ;
+
+		ckBO = new TsOrganBO();
+		ckBO.setId( tsOrganBO.getId() );
+		ckBO.setOrganCode(tsOrganBO.getOrganCode());
+		ckBO.setTenantId(tsOrganBO.getTenantId());
+		temp = this.selectCheck(ckBO);
+		if (EntityUtil.isEntityExist(temp)) {
+			throw new BizException(EnumErrorMsg.business_error.getCode(),"该机构编号已使用");
+		}
+		ckBO = new TsOrganBO();
+		ckBO.setId( tsOrganBO.getId() );
+		ckBO.setOrganName(tsOrganBO.getOrganName());
+		ckBO.setTenantId(tsOrganBO.getTenantId());
+		temp = this.selectCheck(ckBO);
+		if (EntityUtil.isEntityExist(temp)) {
+			throw new BizException(EnumErrorMsg.business_error.getCode(),"该机构名称已使用");
+		}
+	}
 
 	@Override
 	public TsOrganBO processResult(TsOrganBO tsOrganBO) {

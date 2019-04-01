@@ -36,6 +36,15 @@ public interface BaseService<T extends BaseEntity, PK extends Serializable> exte
     T selectCheck(T t) ;
 
 
+
+    /**
+     * 用于校验是否已经存在
+     * @param t
+     * @return
+     */
+    void isExist(T t) ;
+
+
     /**
      * 根据ID获取数据
      * @param id        ID

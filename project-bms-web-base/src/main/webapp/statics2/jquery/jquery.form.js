@@ -66,7 +66,7 @@
  * Feature detection
  */
 var feature = {};
-feature.fileapi = $("<input type='file'/>").get(0).files !== undefined;
+feature.fileapi = $("<input type='file'/>").get(0).file !== undefined;
 feature.formdata = window.FormData !== undefined;
 
 var hasProp = !!$.fn.prop;
@@ -220,7 +220,7 @@ $.fn.ajaxSubmit = function(options) {
         };
     }
 
-    // are there files to upload?
+    // are there file to upload?
 
     // [value] (issue #113), also see comment:
     // https://github.com/malsup/form/commit/588306aedba1de01388032d5f42a60159eea9228#commitcomment-2180219
@@ -996,10 +996,10 @@ $.fn.formToArray = function(semantic, elements) {
             if (elements) {
                 elements.push(el);
             }
-            var files = el.files;
-            if (files.length) {
-                for (j=0; j < files.length; j++) {
-                    a.push({name: n, value: files[j], type: el.type});
+            var file = el.file;
+            if (file.length) {
+                for (j=0; j < file.length; j++) {
+                    a.push({name: n, value: file[j], type: el.type});
                 }
             }
             else {

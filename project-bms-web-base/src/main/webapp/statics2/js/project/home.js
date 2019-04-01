@@ -40,16 +40,16 @@ $(function ()
     {
         $inputImage.change(function()
         {
-            var files = this.files;
+            var file = this.file;
             var file;
             if (!$image.data('cropper'))
             {
                 return;
             }
 
-            if (files && files.length)
+            if (file && file.length)
             {
-                file = files[0];
+                file = file[0];
                 if (/^image\/\w+$/.test(file.type))
                 {
                     blobURL = URL.createObjectURL(file);
