@@ -9,10 +9,10 @@ import java.lang.String;
 import java.lang.Integer;
 
 /**
- * 菜单 查询抽象类
+ * VIEW 查询抽象类
  *
  * @author Administrator
- * @date 2018-9-6 23:56:31
+ * @date 2019-4-1 13:52:05
  */
 public interface VsUserMenuQuery<PK extends Serializable> extends Query<VsUserMenuEntity,PK> {
 
@@ -101,6 +101,17 @@ public interface VsUserMenuQuery<PK extends Serializable> extends Query<VsUserMe
 
 
 
+        public VsUserMenuQuery shortcut(String shortcut);
+        public VsUserMenuQuery shortcutNot(String shortcutNot);
+        public VsUserMenuQuery shortcutIn(String shortcutIn);
+        public VsUserMenuQuery shortcutNotIn(String shortcutNotIn);
+        public VsUserMenuQuery shortcutIsNull();
+        public VsUserMenuQuery shortcutIsNotNull();
+
+
+
+
+
         public VsUserMenuQuery name(String name);
         public VsUserMenuQuery nameNot(String nameNot);
         public VsUserMenuQuery nameIn(String nameIn);
@@ -109,6 +120,28 @@ public interface VsUserMenuQuery<PK extends Serializable> extends Query<VsUserMe
         public VsUserMenuQuery nameNotLike(String nameNotLike);
         public VsUserMenuQuery nameIsNull();
         public VsUserMenuQuery nameIsNotNull();
+
+
+
+
+
+        public VsUserMenuQuery level(Integer level);
+        public VsUserMenuQuery levelNot(Integer levelNot);
+        public VsUserMenuQuery levelGreaterThan(Integer levelGreaterThan);
+        public VsUserMenuQuery levelGreaterEqual(Integer levelGreaterEqual);
+        public VsUserMenuQuery levelLessThan(Integer levelLessThan);
+        public VsUserMenuQuery levelLessEqual(Integer levelLessEqual);
+
+
+
+
+
+        public VsUserMenuQuery leaf(String leaf);
+        public VsUserMenuQuery leafNot(String leafNot);
+        public VsUserMenuQuery leafIn(String leafIn);
+        public VsUserMenuQuery leafNotIn(String leafNotIn);
+        public VsUserMenuQuery leafIsNull();
+        public VsUserMenuQuery leafIsNotNull();
 
 
 

@@ -1,6 +1,9 @@
 package com.zz.bms.core.ui.easyui;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,12 +12,29 @@ import java.util.Map;
  * @author Administrator
  */
 public class EasyUiTree implements Serializable {
+
+
+    public static final String TREE_TYPE = "treeType";
+
     private String id;
+    private String pid;
     private String text;
     private String state;
     private boolean checked;
     private List<EasyUiTree> children;
     private Map attributes;
+
+
+    public static EasyUiTree processData(List<EasyUiTree> list){
+        return processData(list, "全部");
+    }
+    public static EasyUiTree processData(List<EasyUiTree> list , String rootNodeName){
+        if(list == null || list.isEmpty()){
+            return null;
+        }
+
+       return  TreeUtil.buildToTree(list , rootNodeName);
+    }
 
 
     public String getId() {
@@ -23,6 +43,14 @@ public class EasyUiTree implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
     }
 
     public String getText() {

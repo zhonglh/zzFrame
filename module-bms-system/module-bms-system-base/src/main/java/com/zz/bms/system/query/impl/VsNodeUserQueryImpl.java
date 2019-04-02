@@ -14,10 +14,10 @@ import java.lang.String;
 import java.lang.Integer;
 
 /**
-* 有效用户 查询实现类
+* VIEW 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-1 13:52:04
 */
 public class VsNodeUserQueryImpl<PK extends Serializable> extends VsNodeUserAbstractQueryImpl<PK> implements VsNodeUserQuery<PK>, Serializable  {
 
@@ -49,8 +49,8 @@ public class VsNodeUserQueryImpl<PK extends Serializable> extends VsNodeUserAbst
         private List<String> email_IN;
         private List<String> email_NOTIN;
 
-        private List<String> avatarUrl_IN;
-        private List<String> avatarUrl_NOTIN;
+        private List<String> avatarImage_IN;
+        private List<String> avatarImage_NOTIN;
 
         private List<String> openId_IN;
         private List<String> openId_NOTIN;
@@ -652,68 +652,68 @@ public class VsNodeUserQueryImpl<PK extends Serializable> extends VsNodeUserAbst
 
 
         @Override
-        public VsNodeUserQuery avatarUrl(String avatarUrl) {
-            if(!IdUtils.isEmpty(avatarUrl)){
-                this.avatarUrl = avatarUrl;
+        public VsNodeUserQuery avatarImage(String avatarImage) {
+            if(!IdUtils.isEmpty(avatarImage)){
+                this.avatarImage = avatarImage;
             }
             return this;
         }
 
         @Override
-        public VsNodeUserQuery avatarUrlNot(String avatarUrlNot) {
-            if(!IdUtils.isEmpty(avatarUrlNot)){
-                this.avatarUrl_NE = avatarUrlNot;
+        public VsNodeUserQuery avatarImageNot(String avatarImageNot) {
+            if(!IdUtils.isEmpty(avatarImageNot)){
+                this.avatarImage_NE = avatarImageNot;
             }
             return this;
         }
 
         @Override
-        public VsNodeUserQuery avatarUrlLike(String avatarUrlLike) {
-            if(!IdUtils.isEmpty(avatarUrlLike)){
-                this.avatarUrl_LIKE = avatarUrlLike;
+        public VsNodeUserQuery avatarImageLike(String avatarImageLike) {
+            if(!IdUtils.isEmpty(avatarImageLike)){
+                this.avatarImage_LIKE = avatarImageLike;
             }
             return this;
         }
 
         @Override
-        public VsNodeUserQuery avatarUrlNotLike(String avatarUrlNotLike) {
-            if(!IdUtils.isEmpty(avatarUrlNotLike)){
-                this.avatarUrl_NOTLIKE = avatarUrlNotLike;
+        public VsNodeUserQuery avatarImageNotLike(String avatarImageNotLike) {
+            if(!IdUtils.isEmpty(avatarImageNotLike)){
+                this.avatarImage_NOTLIKE = avatarImageNotLike;
             }
             return this;
         }
 
         @Override
-        public VsNodeUserQuery avatarUrlIn(String avatarUrlIn) {
-            if(!IdUtils.isEmpty(avatarUrlIn)){
-                if(this.avatarUrl_IN == null){
-                    this.avatarUrl_IN = new ArrayList<String>();
+        public VsNodeUserQuery avatarImageIn(String avatarImageIn) {
+            if(!IdUtils.isEmpty(avatarImageIn)){
+                if(this.avatarImage_IN == null){
+                    this.avatarImage_IN = new ArrayList<String>();
                 }
-                this.avatarUrl_IN.add( avatarUrlIn );
+                this.avatarImage_IN.add( avatarImageIn );
             }
             return this;
         }
 
         @Override
-        public VsNodeUserQuery avatarUrlNotIn(String avatarUrlNotIn) {
-            if(!IdUtils.isEmpty(avatarUrlNotIn)){
-                if(this.avatarUrl_NOTIN == null){
-                    this.avatarUrl_NOTIN = new ArrayList<String>();
+        public VsNodeUserQuery avatarImageNotIn(String avatarImageNotIn) {
+            if(!IdUtils.isEmpty(avatarImageNotIn)){
+                if(this.avatarImage_NOTIN == null){
+                    this.avatarImage_NOTIN = new ArrayList<String>();
                 }
-                this.avatarUrl_NOTIN.add( avatarUrlNotIn );
+                this.avatarImage_NOTIN.add( avatarImageNotIn );
             }
             return this;
         }
 
         @Override
-        public VsNodeUserQuery avatarUrlIsNull() {
-            this.isNulls.add("avatarUrl");
+        public VsNodeUserQuery avatarImageIsNull() {
+            this.isNulls.add("avatarImage");
             return this;
         }
 
         @Override
-        public VsNodeUserQuery avatarUrlIsNotNull() {
-            this.isNotNulls.add("avatarUrl");
+        public VsNodeUserQuery avatarImageIsNotNull() {
+            this.isNotNulls.add("avatarImage");
             return this;
         }
 
@@ -1040,6 +1040,54 @@ public class VsNodeUserQueryImpl<PK extends Serializable> extends VsNodeUserAbst
             return this;
         }
 
+
+        @Override
+        public VsNodeUserQuery pageLimit(Integer pageLimit) {
+            if(!IdUtils.isEmpty(pageLimit)){
+                this.pageLimit = pageLimit;
+            }
+            return this;
+        }
+
+        @Override
+        public VsNodeUserQuery pageLimitNot(Integer pageLimitNot) {
+            if(!IdUtils.isEmpty(pageLimitNot)){
+                this.pageLimit_NE = pageLimitNot;
+            }
+            return this;
+        }
+
+        @Override
+        public VsNodeUserQuery pageLimitGreaterThan(Integer pageLimitGreaterThan){
+            if(pageLimitGreaterThan != null){
+                this.pageLimit_GT = pageLimitGreaterThan;
+            }
+            return this;
+        }
+
+        @Override
+        public VsNodeUserQuery pageLimitGreaterEqual(Integer pageLimitGreaterEqual){
+            if(pageLimitGreaterEqual != null){
+                this.pageLimit_GE = pageLimitGreaterEqual;
+            }
+            return this;
+        }
+
+        @Override
+        public VsNodeUserQuery pageLimitLessThan(Integer pageLimitLessThan){
+            if(pageLimitLessThan != null){
+                this.pageLimit_LT = pageLimitLessThan;
+            }
+            return this;
+        }
+
+        @Override
+        public VsNodeUserQuery pageLimitLessEqual(Integer pageLimitLessEqual){
+            if(pageLimitLessEqual != null){
+                this.pageLimit_LE = pageLimitLessEqual;
+            }
+            return this;
+        }
 
 
         @Override

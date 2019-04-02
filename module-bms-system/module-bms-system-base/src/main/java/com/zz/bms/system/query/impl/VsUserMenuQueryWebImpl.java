@@ -7,10 +7,10 @@ import java.lang.String;
 import java.lang.Integer;
 
 /**
-* 菜单 用于装载用户在查询时提交的数据
+* VIEW 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-1 13:52:05
 */
 public class VsUserMenuQueryWebImpl<PK extends Serializable> extends VsUserMenuAbstractQueryImpl<PK> implements Serializable {
 
@@ -49,9 +49,23 @@ public class VsUserMenuQueryWebImpl<PK extends Serializable> extends VsUserMenuA
             private String path_NOTIN;
 
 
+            private String shortcut_IN;
+            private String shortcut_NOTIN;
+
+
+
 
             private String name_IN;
             private String name_NOTIN;
+
+
+
+
+        //todo INT level;
+
+            private String leaf_IN;
+            private String leaf_NOTIN;
+
 
 
 
@@ -383,6 +397,39 @@ public class VsUserMenuQueryWebImpl<PK extends Serializable> extends VsUserMenuA
                 this.path_NOTLIKE = path_NOTLIKE;
             }
 
+            public String getShortcut() {
+                return shortcut;
+            }
+
+            public void setShortcut(String shortcut) {
+                this.shortcut = shortcut;
+            }
+
+            public String getShortcut_NE() {
+                return shortcut_NE;
+            }
+
+            public void setShortcut_NE(String shortcut_NE) {
+                this.shortcut_NE = shortcut_NE;
+            }
+
+            public String getShortcut_IN() {
+                return shortcut_IN;
+            }
+
+            public void setShortcut_IN(String shortcut_IN) {
+                this.shortcut_IN = shortcut_IN;
+            }
+
+            public String getShortcut_NOTIN() {
+                return shortcut_NOTIN;
+            }
+
+            public void setShortcut_NOTIN(String shortcut_NOTIN) {
+                this.shortcut_NOTIN = shortcut_NOTIN;
+            }
+
+
 
             public String getName() {
                 return name;
@@ -431,6 +478,88 @@ public class VsUserMenuQueryWebImpl<PK extends Serializable> extends VsUserMenuA
             public void setName_NOTLIKE(String name_NOTLIKE) {
                 this.name_NOTLIKE = name_NOTLIKE;
             }
+
+            public Integer getLevel() {
+                return level;
+            }
+
+            public void setLevel(Integer level) {
+                this.level = level;
+            }
+
+            public Integer getLevel_NE() {
+                return level_NE;
+            }
+
+            public void setLevel_NE(Integer level_NE) {
+                this.level_NE = level_NE;
+            }
+
+            public Integer getLevel_GT() {
+                return level_GT;
+            }
+
+            public void setLevel_GT(Integer level_GT) {
+                this.level_GT = level_GT;
+            }
+
+            public Integer getLevel_GE() {
+                return level_GE;
+            }
+
+            public void setLevel_GE(Integer level_GE) {
+                this.level_GE = level_GE;
+            }
+
+            public Integer getLevel_LT() {
+                return level_LT;
+            }
+
+            public void setLevel_LT(Integer level_LT) {
+                this.level_LT = level_LT;
+            }
+
+            public Integer getLevel_LE() {
+                return level_LE;
+            }
+
+            public void setLevel_LE(Integer level_LE) {
+                this.level_LE = level_LE;
+            }
+
+
+            public String getLeaf() {
+                return leaf;
+            }
+
+            public void setLeaf(String leaf) {
+                this.leaf = leaf;
+            }
+
+            public String getLeaf_NE() {
+                return leaf_NE;
+            }
+
+            public void setLeaf_NE(String leaf_NE) {
+                this.leaf_NE = leaf_NE;
+            }
+
+            public String getLeaf_IN() {
+                return leaf_IN;
+            }
+
+            public void setLeaf_IN(String leaf_IN) {
+                this.leaf_IN = leaf_IN;
+            }
+
+            public String getLeaf_NOTIN() {
+                return leaf_NOTIN;
+            }
+
+            public void setLeaf_NOTIN(String leaf_NOTIN) {
+                this.leaf_NOTIN = leaf_NOTIN;
+            }
+
 
 
             public String getUserName() {

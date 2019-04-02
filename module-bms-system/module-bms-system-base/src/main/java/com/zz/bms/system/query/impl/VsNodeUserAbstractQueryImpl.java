@@ -1,7 +1,7 @@
 package com.zz.bms.system.query.impl;
 
 
-import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
+import com.zz.bms.core.db.mybatis.query.QueryImpl;
 import com.zz.bms.system.domain.VsNodeUserEntity;
 
 import java.io.Serializable;
@@ -10,12 +10,12 @@ import java.lang.String;
 import java.lang.Integer;
 
 /**
- * 有效用户 查询抽象类
+ * VIEW 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-9-6 23:56:31
+ * @date 2019-4-1 13:52:04
  */
-public abstract class VsNodeUserAbstractQueryImpl<PK extends Serializable> extends CommonQueryImpl<VsNodeUserEntity,PK> {
+public abstract class VsNodeUserAbstractQueryImpl<PK extends Serializable> extends QueryImpl<VsNodeUserEntity,PK> {
 
             protected PK id;
             protected PK id_NE;
@@ -56,10 +56,10 @@ public abstract class VsNodeUserAbstractQueryImpl<PK extends Serializable> exten
             protected String email_LIKE;
             protected String email_NOTLIKE;
 
-            protected String avatarUrl;
-            protected String avatarUrl_NE;
-            protected String avatarUrl_LIKE;
-            protected String avatarUrl_NOTLIKE;
+            protected String avatarImage;
+            protected String avatarImage_NE;
+            protected String avatarImage_LIKE;
+            protected String avatarImage_NOTLIKE;
 
             protected String openId;
             protected String openId_NE;
@@ -83,6 +83,13 @@ public abstract class VsNodeUserAbstractQueryImpl<PK extends Serializable> exten
             protected String organId_NE;
             protected String organId_LIKE;
             protected String organId_NOTLIKE;
+
+        protected Integer pageLimit;
+        protected Integer pageLimit_NE;
+        protected Integer pageLimit_GT;
+        protected Integer pageLimit_GE;
+        protected Integer pageLimit_LT;
+        protected Integer pageLimit_LE;
 
             protected String remark;
             protected String remark_NE;

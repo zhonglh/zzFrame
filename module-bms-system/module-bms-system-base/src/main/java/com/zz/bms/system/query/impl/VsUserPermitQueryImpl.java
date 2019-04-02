@@ -12,10 +12,10 @@ import java.io.Serializable;
 import java.lang.String;
 
 /**
-* 用户许可视图 查询实现类
+* VIEW 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-1 13:52:05
 */
 public class VsUserPermitQueryImpl<PK extends Serializable> extends VsUserPermitAbstractQueryImpl<PK> implements VsUserPermitQuery<PK>, Serializable  {
 
@@ -25,6 +25,9 @@ public class VsUserPermitQueryImpl<PK extends Serializable> extends VsUserPermit
 
         private List<String> permitCode_IN;
         private List<String> permitCode_NOTIN;
+
+        private List<String> permitName_IN;
+        private List<String> permitName_NOTIN;
 
         private List<String> userName_IN;
         private List<String> userName_NOTIN;
@@ -151,6 +154,74 @@ public class VsUserPermitQueryImpl<PK extends Serializable> extends VsUserPermit
         @Override
         public VsUserPermitQuery permitCodeIsNotNull() {
             this.isNotNulls.add("permitCode");
+            return this;
+        }
+
+
+
+        @Override
+        public VsUserPermitQuery permitName(String permitName) {
+            if(!IdUtils.isEmpty(permitName)){
+                this.permitName = permitName;
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserPermitQuery permitNameNot(String permitNameNot) {
+            if(!IdUtils.isEmpty(permitNameNot)){
+                this.permitName_NE = permitNameNot;
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserPermitQuery permitNameLike(String permitNameLike) {
+            if(!IdUtils.isEmpty(permitNameLike)){
+                this.permitName_LIKE = permitNameLike;
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserPermitQuery permitNameNotLike(String permitNameNotLike) {
+            if(!IdUtils.isEmpty(permitNameNotLike)){
+                this.permitName_NOTLIKE = permitNameNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserPermitQuery permitNameIn(String permitNameIn) {
+            if(!IdUtils.isEmpty(permitNameIn)){
+                if(this.permitName_IN == null){
+                    this.permitName_IN = new ArrayList<String>();
+                }
+                this.permitName_IN.add( permitNameIn );
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserPermitQuery permitNameNotIn(String permitNameNotIn) {
+            if(!IdUtils.isEmpty(permitNameNotIn)){
+                if(this.permitName_NOTIN == null){
+                    this.permitName_NOTIN = new ArrayList<String>();
+                }
+                this.permitName_NOTIN.add( permitNameNotIn );
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserPermitQuery permitNameIsNull() {
+            this.isNulls.add("permitName");
+            return this;
+        }
+
+        @Override
+        public VsUserPermitQuery permitNameIsNotNull() {
+            this.isNotNulls.add("permitName");
             return this;
         }
 

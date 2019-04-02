@@ -8,10 +8,10 @@ import java.lang.String;
 import java.lang.Integer;
 
 /**
-* 有效用户 用于装载用户在查询时提交的数据
+* VIEW 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-1 13:52:04
 */
 public class VsNodeUserQueryWebImpl<PK extends Serializable> extends VsNodeUserAbstractQueryImpl<PK> implements Serializable {
 
@@ -62,8 +62,8 @@ public class VsNodeUserQueryWebImpl<PK extends Serializable> extends VsNodeUserA
 
 
 
-            private String avatarUrl_IN;
-            private String avatarUrl_NOTIN;
+            private String avatarImage_IN;
+            private String avatarImage_NOTIN;
 
 
 
@@ -90,6 +90,10 @@ public class VsNodeUserQueryWebImpl<PK extends Serializable> extends VsNodeUserA
             private String organId_IN;
             private String organId_NOTIN;
 
+
+
+
+        //todo INT pageLimit;
 
 
             private String remark_IN;
@@ -535,52 +539,52 @@ public class VsNodeUserQueryWebImpl<PK extends Serializable> extends VsNodeUserA
             }
 
 
-            public String getAvatarUrl() {
-                return avatarUrl;
+            public String getAvatarImage() {
+                return avatarImage;
             }
 
-            public void setAvatarUrl(String avatarUrl) {
-                this.avatarUrl = avatarUrl;
+            public void setAvatarImage(String avatarImage) {
+                this.avatarImage = avatarImage;
             }
 
-            public String getAvatarUrl_NE() {
-                return avatarUrl_NE;
+            public String getAvatarImage_NE() {
+                return avatarImage_NE;
             }
 
-            public void setAvatarUrl_NE(String avatarUrl_NE) {
-                this.avatarUrl_NE = avatarUrl_NE;
+            public void setAvatarImage_NE(String avatarImage_NE) {
+                this.avatarImage_NE = avatarImage_NE;
             }
 
-            public String getAvatarUrl_IN() {
-                return avatarUrl_IN;
+            public String getAvatarImage_IN() {
+                return avatarImage_IN;
             }
 
-            public void setAvatarUrl_IN(String avatarUrl_IN) {
-                this.avatarUrl_IN = avatarUrl_IN;
+            public void setAvatarImage_IN(String avatarImage_IN) {
+                this.avatarImage_IN = avatarImage_IN;
             }
 
-            public String getAvatarUrl_NOTIN() {
-                return avatarUrl_NOTIN;
+            public String getAvatarImage_NOTIN() {
+                return avatarImage_NOTIN;
             }
 
-            public void setAvatarUrl_NOTIN(String avatarUrl_NOTIN) {
-                this.avatarUrl_NOTIN = avatarUrl_NOTIN;
+            public void setAvatarImage_NOTIN(String avatarImage_NOTIN) {
+                this.avatarImage_NOTIN = avatarImage_NOTIN;
             }
 
-            public String getAvatarUrl_LIKE() {
-                return avatarUrl_LIKE;
+            public String getAvatarImage_LIKE() {
+                return avatarImage_LIKE;
             }
 
-            public void setAvatarUrl_LIKE(String avatarUrl_LIKE) {
-                this.avatarUrl_LIKE = avatarUrl_LIKE;
+            public void setAvatarImage_LIKE(String avatarImage_LIKE) {
+                this.avatarImage_LIKE = avatarImage_LIKE;
             }
 
-            public String getAvatarUrl_NOTLIKE() {
-                return avatarUrl_NOTLIKE;
+            public String getAvatarImage_NOTLIKE() {
+                return avatarImage_NOTLIKE;
             }
 
-            public void setAvatarUrl_NOTLIKE(String avatarUrl_NOTLIKE) {
-                this.avatarUrl_NOTLIKE = avatarUrl_NOTLIKE;
+            public void setAvatarImage_NOTLIKE(String avatarImage_NOTLIKE) {
+                this.avatarImage_NOTLIKE = avatarImage_NOTLIKE;
             }
 
 
@@ -811,6 +815,55 @@ public class VsNodeUserQueryWebImpl<PK extends Serializable> extends VsNodeUserA
             public void setOrganId_NOTLIKE(String organId_NOTLIKE) {
                 this.organId_NOTLIKE = organId_NOTLIKE;
             }
+
+            public Integer getPageLimit() {
+                return pageLimit;
+            }
+
+            public void setPageLimit(Integer pageLimit) {
+                this.pageLimit = pageLimit;
+            }
+
+            public Integer getPageLimit_NE() {
+                return pageLimit_NE;
+            }
+
+            public void setPageLimit_NE(Integer pageLimit_NE) {
+                this.pageLimit_NE = pageLimit_NE;
+            }
+
+            public Integer getPageLimit_GT() {
+                return pageLimit_GT;
+            }
+
+            public void setPageLimit_GT(Integer pageLimit_GT) {
+                this.pageLimit_GT = pageLimit_GT;
+            }
+
+            public Integer getPageLimit_GE() {
+                return pageLimit_GE;
+            }
+
+            public void setPageLimit_GE(Integer pageLimit_GE) {
+                this.pageLimit_GE = pageLimit_GE;
+            }
+
+            public Integer getPageLimit_LT() {
+                return pageLimit_LT;
+            }
+
+            public void setPageLimit_LT(Integer pageLimit_LT) {
+                this.pageLimit_LT = pageLimit_LT;
+            }
+
+            public Integer getPageLimit_LE() {
+                return pageLimit_LE;
+            }
+
+            public void setPageLimit_LE(Integer pageLimit_LE) {
+                this.pageLimit_LE = pageLimit_LE;
+            }
+
 
 
             public String getRemark() {

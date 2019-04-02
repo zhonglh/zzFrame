@@ -1,21 +1,16 @@
 package com.zz.bms.system.domain;
 
-
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.zz.bms.util.configs.annotaions.EntityAnnotation;
-import com.zz.bms.util.configs.annotaions.EntityAttrDBAnnotation;
+import com.zz.bms.util.configs.annotaions.*;
+
 import com.zz.bms.core.Constant;
 import java.lang.String;
 import java.lang.Integer;
-
 import com.zz.bms.core.db.entity.BaseEntity;
-import com.zz.bms.system.domain.TsMenuEntity;
 /**
- * 菜单 实体类
- *
+ * VIEW 实体类
  * @author Administrator
- * @date 2018-9-7 0:01:37
+ * @date 2019-4-1 13:52:05
  */
 public class VsUserMenuEntity extends BaseEntity<String> implements java.io.Serializable{
 
@@ -23,63 +18,137 @@ public class VsUserMenuEntity extends BaseEntity<String> implements java.io.Seri
     private static final long serialVersionUID = 1L;
 
 
-	//上级菜单
 
+    @EntityAttrFkAnnotation(group = "pid",  groupName = "PID" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.VsUserMenuBO.class)
+    @EntityAttrDBAnnotation(attrName="PID" ,type = "CHAR"      ,  attrLength = 32 , notNull = false )
+    @EntityAttrPageAnnotation(title = "PID",sort = 200  , pageElement = "text"            , maxLength = 32        ,required=false )
+	
+    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+    
 	private String  pid ;
 
-	//菜单编号
+
+
+    @EntityAttrDBAnnotation(attrName="TITLE" ,type = "VARCHAR"      ,  attrLength = 30 , notNull = true )
+    @EntityAttrPageAnnotation(title = "TITLE",sort = 300  , pageElement = "text"            , maxLength = 30        ,required=true )
 	
+    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+    
 	private String  title ;
 
-	//菜单图标
+
+
+    @EntityAttrDBAnnotation(attrName="ICON" ,type = "VARCHAR"      ,  attrLength = 20 , notNull = false )
+    @EntityAttrPageAnnotation(title = "ICON",sort = 400  , pageElement = "text"            , maxLength = 20        ,required=false )
 	
+    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+    
 	private String  icon ;
 
-	//菜单提示信息
+
+
+    @EntityAttrDBAnnotation(attrName="COMPONENT" ,type = "VARCHAR"      ,  attrLength = 50 , notNull = false )
+    @EntityAttrPageAnnotation(title = "COMPONENT",sort = 500  , pageElement = "text"            , maxLength = 50        ,required=false )
 	
+    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+    
 	private String  component ;
 
-	//菜单顺序
+
+
+    @EntityAttrDBAnnotation(attrName="SORTNO" ,type = "INT"      ,  attrLength = 10 , notNull = true )
+    @EntityAttrPageAnnotation(title = "SORTNO",sort = 600  , pageElement = "text"            , maxLength = 10        ,required=true )
 	
+    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+    
 	private Integer  sortno ;
 
-	//菜单地址
+
+
+    @EntityAttrDBAnnotation(attrName="PATH" ,type = "VARCHAR"      ,  attrLength = 200 , notNull = false )
+    @EntityAttrPageAnnotation(title = "PATH",sort = 700  , pageElement = "text"            , maxLength = 200        ,required=false )
 	
+    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+    
 	private String  path ;
 
-	//是否为快捷菜单
 
-	private String shortcut;
 
-	//用户姓名
+    @EntityAttrDictAnnotation(group = "shortcut", groupName = "SHORTCUT" ,  dbColumnName = "dict_val" , dbColumnLength = 2 , isValueField = true , dictType = "shortcut")
+    @EntityAttrDBAnnotation(attrName="SHORTCUT" ,type = "CHAR"      ,  attrLength = 1 , notNull = true )
+    @EntityAttrPageAnnotation(title = "SHORTCUT",sort = 800  , pageElement = "select"            , maxLength = 1        ,required=true )
 	
+    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+    
+	private String  shortcut ;
+
+
+
+    @EntityAttrDBAnnotation(attrName="NAME" ,type = "VARCHAR"      ,  attrLength = 50 , notNull = true )
+    @EntityAttrPageAnnotation(title = "NAME",sort = 900  , pageElement = "text"            , maxLength = 50        ,required=true )
+	
+    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+    
 	private String  name ;
 
 
-	//是否叶节点
 
-	private String leaf ;
-
-
-	//层级
-	private int level ;
-
-
-
-	//用户姓名
+    @EntityAttrDBAnnotation(attrName="LEVEL" ,type = "INT"      ,  attrLength = 10 , notNull = true )
+    @EntityAttrPageAnnotation(title = "LEVEL",sort = 1000  , pageElement = "text"            , maxLength = 10        ,required=true )
 	
+    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+    
+	private Integer  level ;
+
+
+
+    @EntityAttrDictAnnotation(group = "leaf", groupName = "LEAF" ,  dbColumnName = "dict_val" , dbColumnLength = 2 , isValueField = true , dictType = "leaf")
+    @EntityAttrDBAnnotation(attrName="LEAF" ,type = "CHAR"      ,  attrLength = 1 , notNull = true )
+    @EntityAttrPageAnnotation(title = "LEAF",sort = 1100  , pageElement = "select"            , maxLength = 1        ,required=true )
+	
+    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+    
+	private String  leaf ;
+
+
+
+    @EntityAttrDBAnnotation(attrName="USER_NAME" ,type = "VARCHAR"      ,  attrLength = 50 , notNull = true )
+    @EntityAttrPageAnnotation(title = "USER_NAME",sort = 1200  , pageElement = "text"            , maxLength = 50        ,required=true )
+	
+    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+    
 	private String  userName ;
 
-	//登录名
+
+
+    @EntityAttrDBAnnotation(attrName="LOGIN_NAME" ,type = "VARCHAR"      ,  attrLength = 20 , notNull = true )
+    @EntityAttrPageAnnotation(title = "LOGIN_NAME",sort = 1300  , pageElement = "text"            , maxLength = 20        ,required=true )
 	
+    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+    
 	private String  loginName ;
 
-	//ID
+
+
+    @EntityAttrFkAnnotation(group = "userId",  groupName = "USER_ID" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.VsUserBO.class)
+    @EntityAttrDBAnnotation(attrName="USER_ID" ,type = "CHAR"      ,  attrLength = 32 , notNull = true )
+    @EntityAttrPageAnnotation(title = "USER_ID",sort = 1400  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
+    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+    
 	private String  userId ;
 
 
 
+
+
+	public void setPid(String pid){
+		this.pid = pid;
+	}
+
+    public String getPid(){
+    	return this.pid;
+    }
 
 
 	public void setTitle(String title){
@@ -127,12 +196,39 @@ public class VsUserMenuEntity extends BaseEntity<String> implements java.io.Seri
     }
 
 
+	public void setShortcut(String shortcut){
+		this.shortcut = shortcut;
+	}
+
+    public String getShortcut(){
+    	return this.shortcut;
+    }
+
+
 	public void setName(String name){
 		this.name = name;
 	}
 
     public String getName(){
     	return this.name;
+    }
+
+
+	public void setLevel(Integer level){
+		this.level = level;
+	}
+
+    public Integer getLevel(){
+    	return this.level;
+    }
+
+
+	public void setLeaf(String leaf){
+		this.leaf = leaf;
+	}
+
+    public String getLeaf(){
+    	return this.leaf;
     }
 
 
@@ -163,35 +259,5 @@ public class VsUserMenuEntity extends BaseEntity<String> implements java.io.Seri
     }
 
 
-	public String getShortcut() {
-		return shortcut;
-	}
-
-	public void setShortcut(String shortcut) {
-		this.shortcut = shortcut;
-	}
-
-	public String getPid() {
-		return pid;
-	}
-
-	public void setPid(String pid) {
-		this.pid = pid;
-	}
-
-	public String getLeaf() {
-		return leaf;
-	}
-
-	public void setLeaf(String leaf) {
-		this.leaf = leaf;
-	}
-
-	public int getLevel() {
-		return level;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
-	}
+	
 }

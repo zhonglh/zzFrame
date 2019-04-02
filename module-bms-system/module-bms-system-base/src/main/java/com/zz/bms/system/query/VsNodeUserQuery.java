@@ -10,10 +10,10 @@ import java.lang.String;
 import java.lang.Integer;
 
 /**
- * 有效用户 查询抽象类
+ * VIEW 查询抽象类
  *
  * @author Administrator
- * @date 2018-9-6 23:56:31
+ * @date 2019-4-1 13:52:04
  */
 public interface VsNodeUserQuery<PK extends Serializable> extends Query<VsNodeUserEntity,PK> {
 
@@ -128,14 +128,14 @@ public interface VsNodeUserQuery<PK extends Serializable> extends Query<VsNodeUs
 
 
 
-        public VsNodeUserQuery avatarUrl(String avatarUrl);
-        public VsNodeUserQuery avatarUrlNot(String avatarUrlNot);
-        public VsNodeUserQuery avatarUrlIn(String avatarUrlIn);
-        public VsNodeUserQuery avatarUrlNotIn(String avatarUrlNotIn);
-        public VsNodeUserQuery avatarUrlLike(String avatarUrlLike);
-        public VsNodeUserQuery avatarUrlNotLike(String avatarUrlNotLike);
-        public VsNodeUserQuery avatarUrlIsNull();
-        public VsNodeUserQuery avatarUrlIsNotNull();
+        public VsNodeUserQuery avatarImage(String avatarImage);
+        public VsNodeUserQuery avatarImageNot(String avatarImageNot);
+        public VsNodeUserQuery avatarImageIn(String avatarImageIn);
+        public VsNodeUserQuery avatarImageNotIn(String avatarImageNotIn);
+        public VsNodeUserQuery avatarImageLike(String avatarImageLike);
+        public VsNodeUserQuery avatarImageNotLike(String avatarImageNotLike);
+        public VsNodeUserQuery avatarImageIsNull();
+        public VsNodeUserQuery avatarImageIsNotNull();
 
 
 
@@ -199,6 +199,17 @@ public interface VsNodeUserQuery<PK extends Serializable> extends Query<VsNodeUs
         public VsNodeUserQuery organIdNotLike(String organIdNotLike);
         public VsNodeUserQuery organIdIsNull();
         public VsNodeUserQuery organIdIsNotNull();
+
+
+
+
+
+        public VsNodeUserQuery pageLimit(Integer pageLimit);
+        public VsNodeUserQuery pageLimitNot(Integer pageLimitNot);
+        public VsNodeUserQuery pageLimitGreaterThan(Integer pageLimitGreaterThan);
+        public VsNodeUserQuery pageLimitGreaterEqual(Integer pageLimitGreaterEqual);
+        public VsNodeUserQuery pageLimitLessThan(Integer pageLimitLessThan);
+        public VsNodeUserQuery pageLimitLessEqual(Integer pageLimitLessEqual);
 
 
 

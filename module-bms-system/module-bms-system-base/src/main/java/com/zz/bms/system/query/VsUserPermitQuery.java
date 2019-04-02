@@ -8,10 +8,10 @@ import java.io.Serializable;
 import java.lang.String;
 
 /**
- * 用户许可视图 查询抽象类
+ * VIEW 查询抽象类
  *
  * @author Administrator
- * @date 2018-9-6 23:56:31
+ * @date 2019-4-1 13:52:05
  */
 public interface VsUserPermitQuery<PK extends Serializable> extends Query<VsUserPermitEntity,PK> {
 
@@ -34,6 +34,19 @@ public interface VsUserPermitQuery<PK extends Serializable> extends Query<VsUser
         public VsUserPermitQuery permitCodeNotLike(String permitCodeNotLike);
         public VsUserPermitQuery permitCodeIsNull();
         public VsUserPermitQuery permitCodeIsNotNull();
+
+
+
+
+
+        public VsUserPermitQuery permitName(String permitName);
+        public VsUserPermitQuery permitNameNot(String permitNameNot);
+        public VsUserPermitQuery permitNameIn(String permitNameIn);
+        public VsUserPermitQuery permitNameNotIn(String permitNameNotIn);
+        public VsUserPermitQuery permitNameLike(String permitNameLike);
+        public VsUserPermitQuery permitNameNotLike(String permitNameNotLike);
+        public VsUserPermitQuery permitNameIsNull();
+        public VsUserPermitQuery permitNameIsNotNull();
 
 
 

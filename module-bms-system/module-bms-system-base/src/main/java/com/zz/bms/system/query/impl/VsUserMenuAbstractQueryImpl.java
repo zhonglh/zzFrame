@@ -1,7 +1,7 @@
 package com.zz.bms.system.query.impl;
 
 
-import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
+import com.zz.bms.core.db.mybatis.query.QueryImpl;
 import com.zz.bms.system.domain.VsUserMenuEntity;
 
 import java.io.Serializable;
@@ -9,12 +9,12 @@ import java.lang.String;
 import java.lang.Integer;
 
 /**
- * 菜单 查询抽象类
+ * VIEW 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-9-6 23:56:31
+ * @date 2019-4-1 13:52:05
  */
-public abstract class VsUserMenuAbstractQueryImpl<PK extends Serializable> extends CommonQueryImpl<VsUserMenuEntity,PK> {
+public abstract class VsUserMenuAbstractQueryImpl<PK extends Serializable> extends QueryImpl<VsUserMenuEntity,PK> {
 
             protected PK id;
             protected PK id_NE;
@@ -49,10 +49,23 @@ public abstract class VsUserMenuAbstractQueryImpl<PK extends Serializable> exten
             protected String path_LIKE;
             protected String path_NOTLIKE;
 
+            protected String shortcut;
+            protected String shortcut_NE;
+
             protected String name;
             protected String name_NE;
             protected String name_LIKE;
             protected String name_NOTLIKE;
+
+        protected Integer level;
+        protected Integer level_NE;
+        protected Integer level_GT;
+        protected Integer level_GE;
+        protected Integer level_LT;
+        protected Integer level_LE;
+
+            protected String leaf;
+            protected String leaf_NE;
 
             protected String userName;
             protected String userName_NE;

@@ -13,10 +13,10 @@ import java.lang.String;
 import java.lang.Integer;
 
 /**
-* 菜单 查询实现类
+* VIEW 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-1 13:52:05
 */
 public class VsUserMenuQueryImpl<PK extends Serializable> extends VsUserMenuAbstractQueryImpl<PK> implements VsUserMenuQuery<PK>, Serializable  {
 
@@ -38,9 +38,15 @@ public class VsUserMenuQueryImpl<PK extends Serializable> extends VsUserMenuAbst
 
         private List<String> path_IN;
         private List<String> path_NOTIN;
+        private List<String> shortcut_IN;
+        private List<String> shortcut_NOTIN;
+
 
         private List<String> name_IN;
         private List<String> name_NOTIN;
+        private List<String> leaf_IN;
+        private List<String> leaf_NOTIN;
+
 
         private List<String> userName_IN;
         private List<String> userName_NOTIN;
@@ -474,6 +480,57 @@ public class VsUserMenuQueryImpl<PK extends Serializable> extends VsUserMenuAbst
         }
 
 
+        @Override
+        public VsUserMenuQuery shortcut(String shortcut) {
+            if(!IdUtils.isEmpty(shortcut)){
+                this.shortcut = shortcut;
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery shortcutNot(String shortcutNot) {
+            if(!IdUtils.isEmpty(shortcutNot)){
+                this.shortcut_NE = shortcutNot;
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery shortcutIn(String shortcutIn) {
+            if(!IdUtils.isEmpty(shortcutIn)){
+                if(this.shortcut_IN == null){
+                    this.shortcut_IN = new ArrayList<String>();
+                }
+                this.shortcut_IN.add( shortcutIn );
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery shortcutNotIn(String shortcutNotIn) {
+            if(!IdUtils.isEmpty(shortcutNotIn)){
+                if(this.shortcut_NOTIN == null){
+                    this.shortcut_NOTIN = new ArrayList<String>();
+                }
+                this.shortcut_NOTIN.add( shortcutNotIn );
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery shortcutIsNull() {
+            this.isNulls.add("shortcut");
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery shortcutIsNotNull() {
+            this.isNotNulls.add("shortcut");
+            return this;
+        }
+
+
 
         @Override
         public VsUserMenuQuery name(String name) {
@@ -538,6 +595,105 @@ public class VsUserMenuQueryImpl<PK extends Serializable> extends VsUserMenuAbst
         @Override
         public VsUserMenuQuery nameIsNotNull() {
             this.isNotNulls.add("name");
+            return this;
+        }
+
+
+        @Override
+        public VsUserMenuQuery level(Integer level) {
+            if(!IdUtils.isEmpty(level)){
+                this.level = level;
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery levelNot(Integer levelNot) {
+            if(!IdUtils.isEmpty(levelNot)){
+                this.level_NE = levelNot;
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery levelGreaterThan(Integer levelGreaterThan){
+            if(levelGreaterThan != null){
+                this.level_GT = levelGreaterThan;
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery levelGreaterEqual(Integer levelGreaterEqual){
+            if(levelGreaterEqual != null){
+                this.level_GE = levelGreaterEqual;
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery levelLessThan(Integer levelLessThan){
+            if(levelLessThan != null){
+                this.level_LT = levelLessThan;
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery levelLessEqual(Integer levelLessEqual){
+            if(levelLessEqual != null){
+                this.level_LE = levelLessEqual;
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery leaf(String leaf) {
+            if(!IdUtils.isEmpty(leaf)){
+                this.leaf = leaf;
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery leafNot(String leafNot) {
+            if(!IdUtils.isEmpty(leafNot)){
+                this.leaf_NE = leafNot;
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery leafIn(String leafIn) {
+            if(!IdUtils.isEmpty(leafIn)){
+                if(this.leaf_IN == null){
+                    this.leaf_IN = new ArrayList<String>();
+                }
+                this.leaf_IN.add( leafIn );
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery leafNotIn(String leafNotIn) {
+            if(!IdUtils.isEmpty(leafNotIn)){
+                if(this.leaf_NOTIN == null){
+                    this.leaf_NOTIN = new ArrayList<String>();
+                }
+                this.leaf_NOTIN.add( leafNotIn );
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery leafIsNull() {
+            this.isNulls.add("leaf");
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery leafIsNotNull() {
+            this.isNotNulls.add("leaf");
             return this;
         }
 

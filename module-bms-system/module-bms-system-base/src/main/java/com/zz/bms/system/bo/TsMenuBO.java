@@ -1,12 +1,15 @@
 package com.zz.bms.system.bo;
 
+import com.zz.bms.core.ui.easyui.EasyUiTree;
 import com.zz.bms.system.domain.TsMenuEntity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.zz.bms.util.configs.annotaions.EntityAnnotation;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
-
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -19,5 +22,16 @@ import java.io.Serializable;
 public class TsMenuBO extends TsMenuEntity implements Serializable {
 
 
+
+    public EasyUiTree toEasyUiTree(){
+        EasyUiTree tree = new EasyUiTree();
+        tree.setId(this.getId());
+        tree.setPid(StringUtils.isEmpty(this.getPid())? null : this.getPid());
+        tree.setText(this.getMenuName());
+        Map<String,String> attributes = new HashMap<String,String>();
+        attributes.put( EasyUiTree.TREE_TYPE , "menu");
+        tree.setAttributes(attributes);
+        return tree;
+    }
 
 }

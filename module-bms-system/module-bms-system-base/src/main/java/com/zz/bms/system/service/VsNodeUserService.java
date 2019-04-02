@@ -5,9 +5,9 @@ import com.zz.bms.system.bo.VsNodeUserBO;
 
 
 /**
-* 有效用户 Service
+* VIEW Service
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-1 13:52:04
 */
 public interface VsNodeUserService extends BaseService<VsNodeUserBO , String> {
 

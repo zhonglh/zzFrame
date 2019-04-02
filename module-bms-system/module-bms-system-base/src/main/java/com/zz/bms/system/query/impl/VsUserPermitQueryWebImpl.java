@@ -6,10 +6,10 @@ import java.io.Serializable;
 import java.lang.String;
 
 /**
-* 用户许可视图 用于装载用户在查询时提交的数据
+* VIEW 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-1 13:52:05
 */
 public class VsUserPermitQueryWebImpl<PK extends Serializable> extends VsUserPermitAbstractQueryImpl<PK> implements Serializable {
 
@@ -22,6 +22,11 @@ public class VsUserPermitQueryWebImpl<PK extends Serializable> extends VsUserPer
 
             private String permitCode_IN;
             private String permitCode_NOTIN;
+
+
+
+            private String permitName_IN;
+            private String permitName_NOTIN;
 
 
 
@@ -122,6 +127,55 @@ public class VsUserPermitQueryWebImpl<PK extends Serializable> extends VsUserPer
 
             public void setPermitCode_NOTLIKE(String permitCode_NOTLIKE) {
                 this.permitCode_NOTLIKE = permitCode_NOTLIKE;
+            }
+
+
+            public String getPermitName() {
+                return permitName;
+            }
+
+            public void setPermitName(String permitName) {
+                this.permitName = permitName;
+            }
+
+            public String getPermitName_NE() {
+                return permitName_NE;
+            }
+
+            public void setPermitName_NE(String permitName_NE) {
+                this.permitName_NE = permitName_NE;
+            }
+
+            public String getPermitName_IN() {
+                return permitName_IN;
+            }
+
+            public void setPermitName_IN(String permitName_IN) {
+                this.permitName_IN = permitName_IN;
+            }
+
+            public String getPermitName_NOTIN() {
+                return permitName_NOTIN;
+            }
+
+            public void setPermitName_NOTIN(String permitName_NOTIN) {
+                this.permitName_NOTIN = permitName_NOTIN;
+            }
+
+            public String getPermitName_LIKE() {
+                return permitName_LIKE;
+            }
+
+            public void setPermitName_LIKE(String permitName_LIKE) {
+                this.permitName_LIKE = permitName_LIKE;
+            }
+
+            public String getPermitName_NOTLIKE() {
+                return permitName_NOTLIKE;
+            }
+
+            public void setPermitName_NOTLIKE(String permitName_NOTLIKE) {
+                this.permitName_NOTLIKE = permitName_NOTLIKE;
             }
 
 

@@ -1,32 +1,43 @@
 package com.zz.bms.system.bo;
 
-import com.zz.bms.core.db.entity.ILoginPermitEntity;
 import com.zz.bms.system.domain.VsUserPermitEntity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+
+import com.zz.bms.core.db.entity.IBoEntity;
+import com.zz.bms.util.configs.annotaions.*;
+import com.zz.bms.constants.DefaultTypeConstant;
+import com.zz.bms.constants.DictTypeConstant;
+import com.zz.bms.constants.ExcelTypeConstant;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 
 import java.io.Serializable;
 
 
 
 /**
-* 用户许可视图 BO , 扩展 VsUserPermitEntity 对象
+* VIEW BO , 扩展 VsUserPermitEntity 对象
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-1 13:52:05
 */
-@EntityAnnotation(value="用户许可视图" , resource = "")
+@EntityAnnotation(value="VIEW" , resource = "system.userpermit"      )
 @TableName(value="vs_user_permit" , resultMap = "VsUserPermitResultMap")
-public class VsUserPermitBO extends VsUserPermitEntity implements ILoginPermitEntity,Serializable {
+public class VsUserPermitBO extends VsUserPermitEntity implements Serializable , IBoEntity {
+
+
+
 
 
     @Override
-    public String getPermissionName() {
-        return this.getPermitName();
+    public boolean isTable() {
+        return false;
     }
 
+
     @Override
-    public String getPermissionCode() {
-        return this.getPermitCode();
+    public String toString() {
+
+        return super.toString();
+
     }
 }
