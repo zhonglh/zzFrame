@@ -8,6 +8,8 @@
 
          	<result column="permit_code" property="permitCode"/>
 
+         	<result column="permit_name" property="permitName"/>
+
          	<result column="user_name" property="userName"/>
 
          	<result column="login_name" property="loginName"/>
@@ -23,6 +25,7 @@
 
                     <if test="id != null and id != ''"> AND T.id != #{id} </if>
 					<if test="permitCode != null and permitCode != ''"> AND T.permit_code = #{permitCode} </if>
+					<if test="permitName != null and permitName != ''"> AND T.permit_name = #{permitName} </if>
 					<if test="userName != null and userName != ''"> AND T.user_name = #{userName} </if>
 					<if test="loginName != null and loginName != ''"> AND T.login_name = #{loginName} </if>
 					<if test="userId != null and userId != ''"> AND T.user_id = #{userId} </if>

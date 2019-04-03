@@ -1,5 +1,6 @@
 package com.zz.bms.system.bo;
 
+import com.zz.bms.core.db.entity.ILoginPermitEntity;
 import com.zz.bms.system.domain.VsUserPermitEntity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -22,11 +23,19 @@ import java.io.Serializable;
 */
 @EntityAnnotation(value="VIEW" , resource = "system.userpermit"      )
 @TableName(value="vs_user_permit" , resultMap = "VsUserPermitResultMap")
-public class VsUserPermitBO extends VsUserPermitEntity implements Serializable , IBoEntity {
+public class VsUserPermitBO extends VsUserPermitEntity implements Serializable , ILoginPermitEntity , IBoEntity {
 
 
 
+    @Override
+    public String getPermissionName() {
+        return this.getPermitName();
+    }
 
+    @Override
+    public String getPermissionCode() {
+        return this.getPermitCode();
+    }
 
     @Override
     public boolean isTable() {

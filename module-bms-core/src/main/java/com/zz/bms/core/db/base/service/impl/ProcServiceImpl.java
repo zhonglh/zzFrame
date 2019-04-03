@@ -7,6 +7,7 @@ import com.zz.bms.core.db.entity.BaseEntity;
 import java.util.List;
 
 /**
+ * 存储过程
  * @author Administrator
  */
 //@Service

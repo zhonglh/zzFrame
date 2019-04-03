@@ -3,22 +3,22 @@ package com.zz.bms.controller.base.controller;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zz.bms.core.ui.TreeModel;
-import com.zz.bms.enums.EnumTreeState;
-import com.zz.bms.util.base.data.StringFormatKit;
-import com.zz.bms.util.base.java.ReflectHelper;
-import com.zz.bms.util.base.java.ReflectionSuper;
-import com.zz.bms.util.configs.AppConfig;
-import com.zz.bms.controller.base.PermissionList;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.base.service.BaseService;
-import com.zz.bms.core.db.entity.*;
+import com.zz.bms.core.db.entity.BaseBusinessEntity;
+import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.db.entity.EntityUtil;
+import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.ui.Pages;
+import com.zz.bms.core.ui.TreeModel;
 import com.zz.bms.core.vo.AjaxJson;
-import com.zz.bms.util.base.java.GenericsHelper;
+import com.zz.bms.enums.EnumTreeState;
+import com.zz.bms.util.base.data.StringFormatKit;
+import com.zz.bms.util.base.java.ReflectionSuper;
+import com.zz.bms.util.configs.AppConfig;
 import com.zz.bms.util.web.PaginationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AnnotationUtils;
@@ -26,9 +26,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,21 +34,33 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 处理数据库基础的增加 修改 读取 删除 功能
- * @author Administrator
+ * 基于多表组合的业务(主表+附表+子表等)
+ * @author zhonglh
  */
-public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Serializable  , Q extends Query > extends BaseBusinessController<M,M,PK,Q,Q> {
+public abstract class BaseGroupCURDController<
+        RwModel extends BaseEntity<PK>,
+        QueryModel extends RwModel,
+        PK extends Serializable,
+        RwQuery extends Query,
+        OnlyQuery extends RwQuery
+        >
+        extends BaseBusinessController<RwModel,QueryModel,PK,RwQuery,OnlyQuery>  {
+
+
 
 
 
     @Autowired
-    protected BaseService<M, PK> baseService;
+    protected BaseService<QueryModel, PK> baseQueryService;
+
+    @Autowired
+    protected BaseService<RwModel, PK> baseRwService;
 
 
     protected String viewPrefix;
 
 
-    protected BaseCURDController() {
+    protected BaseGroupCURDController() {
         super();
         setViewPrefix(defaultViewPrefix());
         setResourceIdentity(this.getViewPrefix().replaceAll("/","\\."));
@@ -84,7 +94,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @return
      */
     @RequestMapping(value = "/toList" , method = RequestMethod.GET )
-    public String toList(M m,  ModelMap model , HttpServletRequest request, HttpServletResponse response) {
+    public String toList(QueryModel m, ModelMap model , HttpServletRequest request, HttpServletResponse response) {
 
         this.permissionList.assertHasViewPermission();
 
@@ -93,7 +103,6 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         if (listAlsoSetCommonData) {
             setCommonData(m,model);
         }
-
 
         processPath(model);
 
@@ -107,7 +116,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     @RequestMapping(value = "/list" , method={ RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
-    public Object list(M m , Q query, Pages<M> pages , Model model , HttpServletRequest request, HttpServletResponse response) {
+    public Object list(QueryModel m , OnlyQuery query, Pages<QueryModel> pages , Model model , HttpServletRequest request, HttpServletResponse response) {
 
         this.permissionList.assertHasViewPermission();
 
@@ -122,15 +131,13 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         processPages(pages , request);
 
-        Page<M> page = new Page<M>(pages.getPageNum(), pages.getPageSize());
+        Page<QueryModel> page = new Page<QueryModel>(pages.getPageNum(), pages.getPageSize());
 
         processQuery(query , m);
 
         Wrapper wrapper = buildQueryWrapper(query , m);
 
-
-
-        page = (Page<M>)baseService.page(page , wrapper );
+        page = (Page<QueryModel>)baseQueryService.page(page , wrapper );
 
         processResult(page.getRecords());
 
@@ -143,7 +150,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
     @RequestMapping(value = "/toTree" , method={ RequestMethod.POST, RequestMethod.GET})
-    public String toTree(M m,  ModelMap model , HttpServletRequest request, HttpServletResponse response) {
+    public String toTree(QueryModel m,  ModelMap model , HttpServletRequest request, HttpServletResponse response) {
 
         this.permissionList.assertHasViewPermission();
 
@@ -166,7 +173,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     @RequestMapping(value = "/tree" , method={ RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
-    public Object tree(M m , Q query, Pages<M> pages , Model model , HttpServletRequest request, HttpServletResponse response) {
+    public Object tree(QueryModel m , OnlyQuery query, Pages<QueryModel> pages , Model model , HttpServletRequest request, HttpServletResponse response) {
 
         this.permissionList.assertHasViewPermission();
 
@@ -180,12 +187,12 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         processPages(pages , request);
 
-        Page<M> page = new Page<M>(pages.getPageNum(), pages.getPageSize());
+        Page<QueryModel> page = new Page<QueryModel>(pages.getPageNum(), pages.getPageSize());
 
         processQuery(query , m);
 
 
-        QueryWrapper<M> wrapper = (QueryWrapper<M>)buildRwWrapper(query , m);
+        QueryWrapper<QueryModel> wrapper = (QueryWrapper<QueryModel>)buildQueryWrapper(query , m);
 
 
         if(id == null){
@@ -202,20 +209,20 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         }
 
 
-        page = (Page<M>)baseService.page(page , wrapper );
+        page = (Page<QueryModel>)baseQueryService.page(page , wrapper );
 
         processResult(page.getRecords());
 
 
         List footer = buildFooter(page);
 
-        List<M> list =  page.getRecords() ;
+        List<QueryModel> list =  page.getRecords() ;
 
         if(list != null && !list.isEmpty()) {
-            for (M temp : list){
-                QueryWrapper<M> queryWrapper = new QueryWrapper<>();
+            for (QueryModel temp : list){
+                QueryWrapper<QueryModel> queryWrapper = new QueryWrapper<QueryModel>();
                 queryWrapper.eq(StringFormatKit.toUnderlineName((String)treeModel.get(TreeModel.PID)) , temp.getId());
-                int count = this.baseService.count(queryWrapper);
+                int count = this.baseQueryService.count(queryWrapper);
                 if(count == 0){
                     temp.setState(EnumTreeState.OPEN.getTheValue());
                 }
@@ -239,7 +246,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @param page
      * @return
      */
-    protected List buildFooter(Page<M> page){
+    protected List buildFooter(Page<QueryModel> page){
         return null;
     }
 
@@ -257,9 +264,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         this.permissionList.assertHasViewPermission();
 
 
-        QueryWrapper<M> wrapper = new QueryWrapper<M>();
+        QueryWrapper<QueryModel> wrapper = new QueryWrapper<QueryModel>();
         wrapper.eq("id" , id);
-        M m = baseService.getOne(wrapper);
+        QueryModel m = baseQueryService.getOne(wrapper);
         if(m == null){
             throw EnumErrorMsg.no_auth.toException();
         }
@@ -286,7 +293,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @return
      */
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String showCreateForm(M m ,ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+    public String showCreateForm(RwModel m ,ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 
         this.permissionList.assertHasCreatePermission();
 
@@ -319,9 +326,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         this.permissionList.assertHasUpdatePermission();
 
 
-        QueryWrapper<M> wrapper = new QueryWrapper<>();
+        QueryWrapper<RwModel> wrapper = new QueryWrapper<>();
         wrapper.eq("id" , id);
-        M m = baseService.getOne(wrapper);
+        RwModel m = baseRwService.getOne(wrapper);
         if(m == null){
             throw EnumErrorMsg.no_auth.toException();
         }
@@ -349,7 +356,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public Object create( M m, ModelMap model , HttpServletRequest request, HttpServletResponse response) {
+    public Object create( RwModel m, ModelMap model , HttpServletRequest request, HttpServletResponse response) {
 
         this.permissionList.assertHasCreatePermission();
 
@@ -365,11 +372,11 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
     @Override
-    protected void insertInfo(M m, ILoginUserEntity<PK> sessionUserVO) {
+    protected void insertInfo(RwModel m, ILoginUserEntity<PK> sessionUserVO) {
         insertInfo(m , sessionUserVO , true);
     }
 
-    protected void insertInfo(M m, ILoginUserEntity<PK> sessionUserVO , boolean processBO) {
+    protected void insertInfo(RwModel m, ILoginUserEntity<PK> sessionUserVO , boolean processBO) {
         //设置创建附加信息，如创建时间， 创建人
         this.setInsertInfo(m, sessionUserVO);
 
@@ -386,7 +393,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
         //检查重复数据
-        this.baseService.isExist(m);
+        this.baseRwService.isExist(m);
 
         boolean success = false;
         try{
@@ -396,7 +403,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
             checkInsertInfo(m);
             //检查字段的合法性
             checkEntityLegality(m , true , true , true);
-            success = baseService.save(m);
+            success = baseRwService.save(m);
             insertAfter(m);
 
         }catch(RuntimeException e){
@@ -415,7 +422,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     @RequestMapping(value = "/{id}/update", method = {RequestMethod.POST , RequestMethod.PUT})
     @ResponseBody
-    public Object update(@PathVariable("id") PK id, ModelMap model, M m , HttpServletRequest request, HttpServletResponse response) {
+    public Object update(@PathVariable("id") PK id, ModelMap model, RwModel m , HttpServletRequest request, HttpServletResponse response) {
 
         this.permissionList.assertHasUpdatePermission();
 
@@ -423,9 +430,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
 
-        QueryWrapper<M> wrapper = new QueryWrapper<>();
+        QueryWrapper<RwModel> wrapper = new QueryWrapper<RwModel>();
         wrapper.eq("id" , id);
-        M temp = baseService.getOne(wrapper);
+        RwModel temp = baseRwService.getOne(wrapper);
         if(temp == null){
             throw EnumErrorMsg.no_auth.toException();
         }
@@ -450,7 +457,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
         //检查重复数据
-        this.baseService.isExist(m);
+        this.baseRwService.isExist(m);
 
 
         boolean success = false;
@@ -461,7 +468,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
             //检查数据合法性
             checkEntityLegality(m , false , true , true);
             Assert.notNull(m.getId(),"出现内部错误");
-            success = baseService.updateById(m);
+            success = baseRwService.updateById(m);
             updateAfter(m);
 
         }catch(RuntimeException e){
@@ -498,20 +505,20 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         this.permissionList.assertHasDeletePermission();
 
-        QueryWrapper<M> wrapper = new QueryWrapper<>();
+        QueryWrapper<RwModel> wrapper = new QueryWrapper<RwModel>();
         wrapper.eq("id" , id);
         setCustomInfoByDelete(wrapper);
-        M m = baseService.getOne(wrapper);
+        RwModel m = baseRwService.getOne(wrapper);
         if(m == null){
             throw EnumErrorMsg.no_auth.toException();
         }
 
-        baseService.specialHandler(m);
+        baseRwService.specialHandler(m);
 
         boolean success = false;
         try {
             deleteBefore(m);
-            success = baseService.deleteById(m);
+            success = baseRwService.deleteById(m);
             deleteAfter(m);
         }catch(RuntimeException e){
             logger.error(e.getMessage() , e);
@@ -549,7 +556,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
 
-        QueryWrapper<M> wrapper = new QueryWrapper<>();
+        QueryWrapper<RwModel> wrapper = new QueryWrapper<>();
         String idList[] = ids.split(",");
         int index = 0;
         for(String id : idList) {
@@ -562,20 +569,20 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         setCustomInfoByDelete(wrapper);
 
-        List<M> list = baseService.list(wrapper);
+        List<RwModel> list = baseRwService.list(wrapper);
 
         if(list == null && list.isEmpty()){
             throw EnumErrorMsg.no_auth.toException();
         }
 
-        for(M m : list){
-            baseService.specialHandler(m);
+        for(RwModel m : list){
+            baseRwService.specialHandler(m);
         }
 
 
         boolean success = false;
         try {
-            success = baseService.deletesByIds(list) ;
+            success = baseRwService.deletesByIds(list) ;
         }catch(RuntimeException e){
             logger.error(e.getMessage() , e);
             throw e;
@@ -611,8 +618,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      */
     @RequestMapping(value="/checkUnique"  ,method = RequestMethod.GET)
     @ResponseBody
-    public Object checkUnique(M m) {
-        M temp = baseService.selectCheck(m);
+    public Object checkUnique(RwModel m) {
+        RwModel temp = baseRwService.selectCheck(m);
         if (EntityUtil.isEntityExist(temp)) {
             throw DbException.DB_SAVE_SAME;
         }
@@ -628,8 +635,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      */
     @RequestMapping(value = "/checkAllUnique"  ,method = RequestMethod.GET)
     @ResponseBody
-    public AjaxJson checkAllUnique(M m) {
-        this.baseService.isExist(m);
+    public AjaxJson checkAllUnique(RwModel m) {
+        this.baseRwService.isExist(m);
         return AjaxJson.successAjax;
     }
 
@@ -706,16 +713,12 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
 
-
-
-
-
     /**
      * 处理查询参数
      * 查询参数如果需要特殊处理， 需要重载
      * @param query
      */
-    protected void processQuery(Q query , M m){
+    protected void processQuery(OnlyQuery query , QueryModel m){
 
     }
 
@@ -724,22 +727,20 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * 查询结果数据需要特殊处理， 需要重载
      * @param records
      */
-    protected void processResult(List<M> records){
+    protected void processResult(List records){
 
     }
-
 
     /**
      * 保存或修改之前， 处理BO中属性的值
      * 如反填 状态名称的值
      * @param m
      */
-    protected void processBO(M m){
-        this.baseService.processResult(m);
+    protected void processBO(RwModel m){
+        //todo
+        //this.baseService.processResult(m);
         //this.baseService.specialHandler(m);
     }
-
-
 
     /**
      * 对删除的数据再次过滤
@@ -747,17 +748,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * 如有， 需要重载
      * @param wrapper
      */
-    protected void setCustomInfoByDelete(Wrapper<M> wrapper) {
+    protected void setCustomInfoByDelete(Wrapper<RwModel> wrapper) {
 
     }
-
-
-
-
-
-
-
-
 
     /**
      * 查看界面一些定制的操作
@@ -765,7 +758,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @param m
      * @param model
      */
-    protected void customInfoByViewForm(M m, ModelMap model) {
+    protected void customInfoByViewForm(RwModel m, ModelMap model) {
     }
 
     /**
@@ -773,9 +766,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * 如有， 需要重载
      * @param model
      */
-    protected void customInfoByCreateForm(M m, ModelMap model) {
-    }
+    protected void customInfoByCreateForm(RwModel m, ModelMap model) {
 
+    }
 
     /**
      * 修改界面一些定制的操作
@@ -783,10 +776,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @param m
      * @param model
      */
-    protected void customInfoByUpdateForm(M m, ModelMap model) {
+    protected void customInfoByUpdateForm(RwModel m, ModelMap model) {
+
     }
-
-
 
     /**
      * 设置通用数据
@@ -795,9 +787,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * @param m
      * @param model
      */
-    protected void setCommonData(M m ,ModelMap model) {
-    }
+    protected void setCommonData(RwModel m ,ModelMap model) {
 
+    }
 
     /**
      * 修改之前要处理的
@@ -805,7 +797,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * 如有， 需要重载
      * @param m
      */
-    protected void updateBefore(M m) {
+    protected void updateBefore(RwModel m) {
 
     }
 
@@ -815,12 +807,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * 如有， 需要重载
      * @param m
      */
-    protected void updateAfter(M m) {
+    protected void updateAfter(RwModel m) {
+
     }
-
-
-
-
 
     /**
      * 删除之前要处理的
@@ -828,19 +817,19 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * 如有， 需要重载
      * @param m
      */
-    protected void deleteBefore(M m) {
+    protected void deleteBefore(RwModel m) {
+
     }
+
     /**
      * 删除之后要处理的
      * 比如删除后其他功能的数据需要删除或者修改
      * 如有， 需要重载
      * @param m
      */
-    protected void deleteAfter(M m) {
+    protected void deleteAfter(RwModel m) {
+
     }
-
-
-
 
     /**
      * 返回新增页面指定的Page 名称
@@ -871,7 +860,6 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         return null;
     }
 
-
     /**
      * 返回列表页面指定的Page 名称
      * 如果没有指定，将会使用默认的名称: listForm  对应编辑页面为 list.jsp
@@ -881,7 +869,6 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         return null;
     }
 
-
     /**
      * 返回列表页面指定的Page 名称
      * 如果没有指定，将会使用默认的名称: listForm  对应编辑页面为 list.jsp
@@ -890,5 +877,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     protected String getTreePageName(){
         return null;
     }
+
+
+
+
 
 }

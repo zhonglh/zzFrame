@@ -97,7 +97,6 @@ public class TsUserBO extends TsUserEntity implements IBoEntity ,Serializable , 
 
     @Override
     public String toString() {
-
         return this.getUserName();
     }
 

@@ -1,6 +1,6 @@
 package com.zz.bms.system.service.impl;
 
-import.com.zz.bms.core.db.entity.EntityUtil;
+import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
@@ -35,7 +35,7 @@ public class VsFileUseServiceImpl extends BaseServiceImpl<VsFileUseBO,String> im
 
 
 	@Override
-	protected void isExist(VsFileUseBO vsFileUseBO) {
+	public void isExist(VsFileUseBO vsFileUseBO) {
 	}
 
 

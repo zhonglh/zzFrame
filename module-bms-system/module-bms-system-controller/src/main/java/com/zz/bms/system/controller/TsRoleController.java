@@ -1,20 +1,19 @@
 package com.zz.bms.system.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.zz.bms.core.enums.EnumErrorMsg;
+import com.zz.bms.controller.base.controller.BaseGroupCURDController;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.ui.easyui.EasyUiTree;
 import com.zz.bms.core.ui.easyui.TreeUtil;
 import com.zz.bms.system.bo.*;
+import com.zz.bms.system.dto.TsRoleDTO;
 import  com.zz.bms.system.query.impl.TsRoleQueryWebImpl;
 
 import com.zz.bms.system.service.TsMenuService;
 import com.zz.bms.system.service.TsRolePermitService;
 import com.zz.bms.system.service.VsMenuPermitService;
 import com.zz.bms.util.base.data.MyBeanUtils;
-import org.apache.commons.configuration.tree.TreeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +31,7 @@ import java.util.List;
  */
 @RequestMapping("/system/role")
 @Controller
-public class TsRoleController extends ZzDefaultController<TsRoleBO, String , TsRoleQueryWebImpl> {
+public class TsRoleController extends BaseGroupCURDController<TsRoleDTO, TsRoleDTO , String , TsRoleQueryWebImpl,TsRoleQueryWebImpl> {
 
 	@Autowired
 	private TsMenuService menuService;

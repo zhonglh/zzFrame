@@ -1,6 +1,6 @@
 package com.zz.bms.system.service.impl;
 
-import.com.zz.bms.core.db.entity.EntityUtil;
+import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
@@ -35,7 +35,7 @@ public class VsMenuPermitServiceImpl extends BaseServiceImpl<VsMenuPermitBO,Stri
 
 
 	@Override
-	protected void isExist(VsMenuPermitBO vsMenuPermitBO) {
+	public void isExist(VsMenuPermitBO vsMenuPermitBO) {
 	}
 
 

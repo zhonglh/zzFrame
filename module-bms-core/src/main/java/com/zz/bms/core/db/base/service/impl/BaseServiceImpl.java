@@ -55,7 +55,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
     }
 
     protected Class<T> currentModelClass() {
-        return GenericsHelper.getSuperClassGenricType(this.getClass(), 1);
+        return GenericsHelper.getSuperClassGenricType(this.getClass(), 0);
     }
 
     protected SqlSession sqlSessionBatch() {
@@ -379,7 +379,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
     }
 
     @Override
-    public boolean deletesByIds(List<T> ts) {
+    public boolean deletesByIds(Collection<T> ts) {
         List<PK> ids = new ArrayList<PK>();
         for(T t : ts){
             ids.add(t.getId());

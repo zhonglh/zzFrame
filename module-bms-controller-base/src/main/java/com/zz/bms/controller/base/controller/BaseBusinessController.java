@@ -39,19 +39,34 @@ import java.util.regex.Pattern;
 /**
  * @author Administrator
  */
-public abstract class BaseBusinessController<M extends BaseEntity<PK>, PK extends Serializable, Q extends Query> extends BaseCommonController<PK> {
+public abstract class BaseBusinessController<
+        RwModel extends BaseEntity<PK>,
+        QueryModel extends RwModel,
+        PK extends Serializable,
+        RwQuery extends Query,
+        OnlyQuery extends RwQuery
+        > extends BaseCommonController<PK> {
 
 
+    public final String defaultEditPageName = "editForm";
+    public final String defaultAddPageName = "editForm";
+    public final String defaultViewPageName = "viewForm";
+    public final String defaultListPageName = "list";
+    public final String defaultTreePageName = "tree";
 
 
     /**
      * 实体类型
      */
-    private final Class<M> entityClass;
+    private final Class<QueryModel> queryEntityClass;
+
+
+    private final Class<RwModel> rwEntityClass;
 
 
     public BaseBusinessController(){
-        this.entityClass = GenericsHelper.getSuperClassGenricType(getClass(), 0);
+        this.queryEntityClass = GenericsHelper.getSuperClassGenricType(getClass(), 0);
+        this.rwEntityClass = GenericsHelper.getSuperClassGenricType(getClass(), 1);
     }
 
 
@@ -59,16 +74,30 @@ public abstract class BaseBusinessController<M extends BaseEntity<PK>, PK extend
 
 
 
-    protected M newModel() {
+    protected QueryModel newQueryModel() {
         try {
-            return entityClass.newInstance();
+            return queryEntityClass.newInstance();
         } catch (Exception e) {
-            throw new IllegalStateException("can not instantiated model : " + this.entityClass, e);
+            throw new IllegalStateException("can not instantiated model : " + this.queryEntityClass, e);
         }
     }
 
-    public Class<M> getEntityClass() {
-        return entityClass;
+    public Class<QueryModel> getQueryEntityClass() {
+        return queryEntityClass;
+    }
+
+
+
+    protected RwModel newRwModel() {
+        try {
+            return rwEntityClass.newInstance();
+        } catch (Exception e) {
+            throw new IllegalStateException("can not instantiated model : " + this.queryEntityClass, e);
+        }
+    }
+
+    public Class<RwModel> getRwEntityClass() {
+        return rwEntityClass;
     }
 
 
@@ -80,7 +109,7 @@ public abstract class BaseBusinessController<M extends BaseEntity<PK>, PK extend
      * 比如一些状态值， 比如有效状态， 在新增是如果在界面上没有设置，应该默认设置一个状态
      * @param m
      */
-    protected void setCustomInfoByInsert(M m , ILoginUserEntity sessionUser){
+    protected void setCustomInfoByInsert(RwModel m , ILoginUserEntity sessionUser){
 
     }
 
@@ -89,7 +118,7 @@ public abstract class BaseBusinessController<M extends BaseEntity<PK>, PK extend
      * 更新时有特殊的值需要联动或定制，需要重载
      * @param m
      */
-    protected void setCustomInfoByUpdate(M m){
+    protected void setCustomInfoByUpdate(RwModel m){
 
     }
 
@@ -98,7 +127,7 @@ public abstract class BaseBusinessController<M extends BaseEntity<PK>, PK extend
      * @param newVal
      * @param oldVal
      */
-    protected M setOldValue(M newVal , M oldVal){
+    protected RwModel setOldValue(RwModel newVal ,RwModel oldVal){
         return newVal;
     }
 
@@ -109,7 +138,7 @@ public abstract class BaseBusinessController<M extends BaseEntity<PK>, PK extend
      * 如有， 需要重载
      * @param m
      */
-    protected void insertBefore(M m) {
+    protected void insertBefore(RwModel m) {
     }
 
 
@@ -118,7 +147,7 @@ public abstract class BaseBusinessController<M extends BaseEntity<PK>, PK extend
      * @param m
      * @param sessionUserVO
      */
-    protected void insertInfo(M m, ILoginUserEntity<PK> sessionUserVO)  {
+    protected void insertInfo(RwModel m, ILoginUserEntity<PK> sessionUserVO)  {
         throw new RuntimeException("Please overload this method first");
     }
 
@@ -128,23 +157,37 @@ public abstract class BaseBusinessController<M extends BaseEntity<PK>, PK extend
      * 如有， 需要重载
      * @param m
      */
-    protected void insertAfter(M m) {
+    protected void insertAfter(RwModel m) {
     }
 
 
 
     /**
      * 查询数据转Wrapper
+     * 基于查询组织Wrapper
      * 有些特殊的界面，比如 查询条件之间是 OR 的关系而不是默认的 AND ,  或者关键字查询多个业务字段 查用户时关键字包括姓名 手机号 邮箱
      * @param query
      * @param m
      * @return
      */
-    protected Wrapper buildWrapper(Q query , M m) {
+    protected Wrapper buildQueryWrapper(OnlyQuery query , QueryModel m) {
         QueryWrapper wrapper =   query.buildWrapper();
         if(m instanceof BaseBusinessEntity || m instanceof BaseBusinessSimpleEntity){
             wrapper.orderByDesc(" create_time " );
         }
+        return wrapper;
+    }
+
+    /**
+     * 查询数据转Wrapper
+     * 基于读写组织Wrapper
+     * 有些特殊的界面，比如 查询条件之间是 OR 的关系而不是默认的 AND ,  或者关键字查询多个业务字段 查用户时关键字包括姓名 手机号 邮箱
+     * @param query
+     * @param m
+     * @return
+     */
+    protected Wrapper buildRwWrapper(RwQuery query , RwModel m) {
+        QueryWrapper wrapper =   query.buildWrapper();
         return wrapper;
     }
 

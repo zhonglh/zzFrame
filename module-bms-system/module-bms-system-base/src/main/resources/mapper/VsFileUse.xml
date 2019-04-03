@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.system.dao.VsFileUseDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="VsFileUseResultMap" type="com.zz.bms.system.bo.VsFileUseBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="file_id" property="fileId"/>
+
+         	<result column="show_name" property="showName"/>
+
+         	<result column="business_type" property="businessType"/>
+
+         	<result column="business_tmp_id" property="businessTmpId"/>
+
+         	<result column="business_id" property="businessId"/>
+
+         	<result column="file_order" property="fileOrder"/>
+
+         	<result column="remark" property="remark"/>
+
+         	<result column="create_user_id" property="createUserId"/>
+
+         	<result column="create_user_name" property="createUserName"/>
+
+         	<result column="create_time" property="createTime"/>
+
+         	<result column="update_user_id" property="updateUserId"/>
+
+         	<result column="update_user_name" property="updateUserName"/>
+
+         	<result column="update_time" property="updateTime"/>
+
+         	<result column="version_no" property="versionNo"/>
+
+         	<result column="tenant_id" property="tenantId"/>
+
+         	<result column="access_url" property="accessUrl"/>
+
+         	<result column="content_type" property="contentType"/>
+
+         	<result column="file_engine" property="fileEngine"/>
+
+         	<result column="file_host" property="fileHost"/>
+
+         	<result column="file_pull_name" property="filePullName"/>
+
+         	<result column="file_size" property="fileSize"/>
+
+         	<result column="use_frequency" property="useFrequency"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="VsFileUse4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="fileId != null and fileId != ''"> AND T.file_id = #{fileId} </if>
+					<if test="showName != null and showName != ''"> AND T.show_name = #{showName} </if>
+					<if test="businessType != null and businessType != ''"> AND T.business_type = #{businessType} </if>
+					<if test="businessTmpId != null and businessTmpId != ''"> AND T.business_tmp_id = #{businessTmpId} </if>
+					<if test="businessId != null and businessId != ''"> AND T.business_id = #{businessId} </if>
+					<if test="fileOrder != null"> AND T.file_order = #{fileOrder} </if>
+					<if test="remark != null and remark != ''"> AND T.remark = #{remark} </if>
+					<if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+					<if test="createUserName != null and createUserName != ''"> AND T.create_user_name = #{createUserName} </if>
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+					<if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+					<if test="updateUserName != null and updateUserName != ''"> AND T.update_user_name = #{updateUserName} </if>
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+					<if test="tenantId != null and tenantId != ''"> AND T.tenant_id = #{tenantId} </if>
+					<if test="accessUrl != null"> AND T.access_url = #{accessUrl} </if>
+					<if test="contentType != null and contentType != ''"> AND T.content_type = #{contentType} </if>
+					<if test="fileEngine != null and fileEngine != ''"> AND T.file_engine = #{fileEngine} </if>
+					<if test="fileHost != null and fileHost != ''"> AND T.file_host = #{fileHost} </if>
+					<if test="filePullName != null"> AND T.file_pull_name = #{filePullName} </if>
+					<if test="fileSize != null"> AND T.file_size = #{fileSize} </if>
+					<if test="useFrequency != null"> AND T.use_frequency = #{useFrequency} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.system.bo.VsFileUseBO" resultMap="VsFileUseResultMap">
+        SELECT T.* FROM vs_file_use T
+        <include refid="VsFileUse4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

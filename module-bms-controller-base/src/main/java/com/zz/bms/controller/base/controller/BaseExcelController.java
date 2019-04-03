@@ -81,7 +81,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
 
         excelType = excelType.toLowerCase();
         BaseXlsTemplet<M> bxe = new BaseXlsTemplet<M>();
-        bxe.setEntityClz(this.getEntityClass());
+        bxe.setEntityClz(this.getRwEntityClass());
 
         ExcelExport<M> aee = null;
         switch (excelType) {
@@ -101,14 +101,14 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
 
         Page<M> page = new Page<M>(1, 1);
         processQuery(query , m);
-        Wrapper wrapper = buildWrapper(query , m);
+        Wrapper wrapper = buildRwWrapper(query , m);
         page = (Page<M>)baseService.page(page , wrapper );
 
         M topDate = null;
         if(page.getRecords() != null && !page.getRecords().isEmpty()){
             topDate = page.getRecords().get(0);
         }else {
-            topDate  = newModel();
+            topDate  = newRwModel();
         }
 
 
@@ -144,7 +144,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
 
         excelType = excelType.toLowerCase();
         BaseXlsExport<M> bxe = new BaseXlsExport<M>();
-        bxe.setEntityClz(this.getEntityClass());
+        bxe.setEntityClz(this.getRwEntityClass());
 
         ExcelExport<M> aee = null;
         switch (excelType) {
@@ -162,14 +162,14 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
 
 
         this.permissionList.assertHasViewPermission();
-        Wrapper<M> wrapper = buildWrapper(query , m);
+        Wrapper<M> wrapper = buildRwWrapper(query , m);
         List<M> all =  baseService.list(wrapper);
 
         M topDate = null;
         if(all != null && !all.isEmpty()){
             topDate = all.get(0);
         }else {
-            topDate  = (M)newModel();
+            topDate  = (M)newRwModel();
         }
         int header = 0;
         String[] headerInfo = getExcelHeaderInfo();
@@ -234,7 +234,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
      */
     protected String[] getExcelHeaderInfo(){
         if(AppConfig.EXCEL_EXPORT_HEADER) {
-            EntityAnnotation ea = this.getEntityClass().getAnnotation(EntityAnnotation.class);
+            EntityAnnotation ea = this.getRwEntityClass().getAnnotation(EntityAnnotation.class);
             if (ea != null) {
                 return new String[]{ea.value()};
             } else {
@@ -325,8 +325,8 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
-        Method setErrorMethod = ExcelUtil.setErrorMethod(this.getEntityClass());
-        Method getErrorMethod = ExcelUtil.getErrorMethod(this.getEntityClass());
+        Method setErrorMethod = ExcelUtil.setErrorMethod(this.getRwEntityClass());
+        Method getErrorMethod = ExcelUtil.getErrorMethod(this.getRwEntityClass());
 
 
 
@@ -373,7 +373,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
         if(isAllOK) {
             return AjaxJson.ok();
         }else {
-            request.getSession().setAttribute(this.getEntityClass().getName(), list);
+            request.getSession().setAttribute(this.getRwEntityClass().getName(), list);
             return AjaxJson.fail("导入的信息中有些问题");
         }
 
@@ -479,7 +479,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
             throw new RuntimeException(fkAnnotation.group()+"外键设置错误");
         }
 
-        Method setErrorMethod = ExcelUtil.setErrorMethod(this.getEntityClass());
+        Method setErrorMethod = ExcelUtil.setErrorMethod(this.getRwEntityClass());
 
 
         Field fkIdField = null;
@@ -577,7 +577,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
         try{
             int index = 0;
             for(String keyFieldName : keyFieldNames){
-                Field f = this.getEntityClass().getField(keyFieldName);
+                Field f = this.getRwEntityClass().getField(keyFieldName);
                 ReflectionUtil.makeAccessible(f);
                 Object obj = ReflectionUtil.getField(f , m);
                 result[index] = obj;
@@ -633,7 +633,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
             throw new RuntimeException(dictAnnotation.group()+" 不是字典类型");
         }
 
-        Method setErrorMethod = ExcelUtil.setErrorMethod(this.getEntityClass());
+        Method setErrorMethod = ExcelUtil.setErrorMethod(this.getRwEntityClass());
 
         Field dictValField = null;
         for(Map.Entry<Field , Field> dictField : dictMap.entrySet()){
@@ -669,7 +669,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
      * @param column
      */
     protected void analysisOther(List<M> list,Column column) {
-       Method setErrorMethod = ExcelUtil.setErrorMethod(this.getEntityClass());
+       Method setErrorMethod = ExcelUtil.setErrorMethod(this.getRwEntityClass());
         ReflectionUtil.makeAccessible(column.getField());
         for(M m : list){
             Object obj = ReflectionUtil.getField(column.getField(),m);
@@ -764,7 +764,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
                 rowIndex = 0;
                 for(Object[] rowData : sheetData) {
                     if(rowData != null && rowData.length > 0) {
-                        M m = this.newModel();
+                        M m = this.newRwModel();
                         ExcelUtil.row2Object(rowData, columns, m);
                         list.add(m);
                     }
@@ -841,7 +841,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
 
 
     protected List<Column> getImportColumns(){
-        return ColumnUtil.getExcelColumn(this.getEntityClass(), true);
+        return ColumnUtil.getExcelColumn(this.getRwEntityClass(), true);
     }
 
 
@@ -850,7 +850,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
      * @return
      */
     protected List<Field> getImportAllFields(){
-        return ColumnUtil.getBusinessAllFields(this.getEntityClass(),BaseEntity.class);
+        return ColumnUtil.getBusinessAllFields(this.getRwEntityClass(),BaseEntity.class);
     }
 
 

@@ -22,7 +22,7 @@
 
          	<result column="email" property="email"/>
 
-         	<result column="avatar_url" property="avatarUrl"/>
+         	<result column="avatar_image" property="avatarImage"/>
 
          	<result column="open_id" property="openId"/>
 
@@ -33,6 +33,8 @@
          	<result column="dep_id" property="depId"/>
 
          	<result column="organ_id" property="organId"/>
+
+         	<result column="page_limit" property="pageLimit"/>
 
          	<result column="remark" property="remark"/>
 
@@ -70,12 +72,13 @@
 					<if test="leadUserId != null and leadUserId != ''"> AND T.lead_user_id = #{leadUserId} </if>
 					<if test="phone != null and phone != ''"> AND T.phone = #{phone} </if>
 					<if test="email != null and email != ''"> AND T.email = #{email} </if>
-					<if test="avatarUrl != null and avatarUrl != ''"> AND T.avatar_url = #{avatarUrl} </if>
+					<if test="avatarImage != null and avatarImage != ''"> AND T.avatar_image = #{avatarImage} </if>
 					<if test="openId != null and openId != ''"> AND T.open_id = #{openId} </if>
 					<if test="unionId != null and unionId != ''"> AND T.union_id = #{unionId} </if>
 					<if test="systemAdmin != null and systemAdmin != ''"> AND T.system_admin = #{systemAdmin} </if>
 					<if test="depId != null and depId != ''"> AND T.dep_id = #{depId} </if>
 					<if test="organId != null and organId != ''"> AND T.organ_id = #{organId} </if>
+					<if test="pageLimit != null"> AND T.page_limit = #{pageLimit} </if>
 					<if test="remark != null and remark != ''"> AND T.remark = #{remark} </if>
 					<if test="deleteFlag != null and deleteFlag != ''"> AND T.delete_flag = #{deleteFlag} </if>
 					<if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>

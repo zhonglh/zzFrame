@@ -124,6 +124,11 @@ public enum EnumErrorMsg {
     }
 
 
+    public BizException toException(String msg){
+        return new BizException(this.getCode() , msg );
+    }
+
+
     public AjaxJson toAjaxJson(){
         return new AjaxJson(this.getCode() , this.getMsg());
     }

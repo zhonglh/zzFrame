@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.system.dao.VsMenuPermitDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="VsMenuPermitResultMap" type="com.zz.bms.system.bo.VsMenuPermitBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="menu_id" property="menuId"/>
+
+         	<result column="permit_id" property="permitId"/>
+
+         	<result column="permit_code" property="permitCode"/>
+
+         	<result column="permit_name" property="permitName"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="VsMenuPermit4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="menuId != null and menuId != ''"> AND T.menu_id = #{menuId} </if>
+					<if test="permitId != null and permitId != ''"> AND T.permit_id = #{permitId} </if>
+					<if test="permitCode != null and permitCode != ''"> AND T.permit_code = #{permitCode} </if>
+					<if test="permitName != null and permitName != ''"> AND T.permit_name = #{permitName} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.system.bo.VsMenuPermitBO" resultMap="VsMenuPermitResultMap">
+        SELECT T.* FROM vs_menu_permit T
+        <include refid="VsMenuPermit4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>
