@@ -42,13 +42,9 @@ public class TsMsgTempletServiceImpl extends BaseServiceImpl<TsMsgTempletBO,Stri
 	@Autowired
 	private TsMsgTempletDAO tsMsgTempletDAO ;
 
-	@Override
-	public BaseDAO getQueryDAO() {
-		return tsMsgTempletDAO ;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 		return tsMsgTempletDAO ;
 	}
 

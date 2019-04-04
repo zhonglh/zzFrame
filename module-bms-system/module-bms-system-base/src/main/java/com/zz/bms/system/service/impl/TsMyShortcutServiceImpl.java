@@ -43,13 +43,9 @@ public class TsMyShortcutServiceImpl extends BaseServiceImpl<TsMyShortcutBO,Stri
 	@Autowired
 	private TsMyShortcutDAO tsMyShortcutDAO ;
 
-	@Override
-	public BaseDAO getQueryDAO() {
-		return tsMyShortcutDAO ;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 		return tsMyShortcutDAO ;
 	}
 

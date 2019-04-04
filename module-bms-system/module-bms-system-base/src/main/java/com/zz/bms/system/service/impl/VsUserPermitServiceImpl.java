@@ -47,14 +47,10 @@ public class VsUserPermitServiceImpl extends BaseServiceImpl<VsUserPermitBO,Stri
 	private VsUserPermitDAO vsUserPermitDAO ;
 
 	@Override
-	public BaseDAO getQueryDAO() {
+	public BaseDAO getDAO() {
 		return vsUserPermitDAO ;
 	}
 
-	@Override
-	public BaseDAO getRwDAO() {
-		return vsUserPermitDAO ;
-	}
 
 
 

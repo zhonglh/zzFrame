@@ -37,13 +37,9 @@ public class TsUserRoleServiceImpl extends BaseServiceImpl<TsUserRoleBO,String> 
 	@Autowired
 	private TsUserRoleDAO tsUserRoleDAO ;
 
-	@Override
-	public BaseDAO getQueryDAO() {
-		return tsUserRoleDAO ;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 		return tsUserRoleDAO ;
 	}
 

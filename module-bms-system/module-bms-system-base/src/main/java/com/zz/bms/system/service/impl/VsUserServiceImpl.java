@@ -54,14 +54,10 @@ public class VsUserServiceImpl extends BaseServiceImpl<VsUserBO,String> implemen
 
 
     @Override
-    public BaseDAO getQueryDAO() {
+    public BaseDAO getDAO() {
     	return vsUserDAO ;
     }
 
-    @Override
-    public BaseDAO getRwDAO() {
-		return tsUserDAO ;
-    }
 
 
     @Override

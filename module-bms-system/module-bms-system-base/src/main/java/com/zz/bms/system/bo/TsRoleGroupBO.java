@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * 角色数据传输对象，对应界面中的所有元素
+ * 注意： 对象属性需要和 TsRoleGroupServiceImpl.getServices 对应
  * @author zhonglh
  */
 public class TsRoleGroupBO extends TsRoleBO implements Serializable {

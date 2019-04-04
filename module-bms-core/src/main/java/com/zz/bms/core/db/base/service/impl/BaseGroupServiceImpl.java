@@ -159,6 +159,10 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
 
 
     @Override
+    public void saveAfter(T t){
+    }
+
+    @Override
     public boolean save(T entity) {
 
 
@@ -333,6 +337,12 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
         }
     }
 
+
+
+
+    @Override
+    public void updateAfter(T t){
+    }
 
     /**
      * 先从库里查出对应的主表信息， 附表信息 ， 子表信息
@@ -705,6 +715,20 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
 
     }
 
+
+
+
+
+
+    @Override
+    public void deleteByIdAfter(T t){
+
+    }
+
+    @Override
+    public void deletesByIdsAfter(Collection<T> ts){
+
+    }
 
     @Override
     public boolean deleteById(T t) {

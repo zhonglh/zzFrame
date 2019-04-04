@@ -46,14 +46,10 @@ public class TsDepServiceImpl extends BaseServiceImpl<TsDepBO,String> implements
 	private TsDepDAO tsDepDAO ;
 
 	@Override
-	public BaseDAO getQueryDAO() {
+	public BaseDAO getDAO() {
 		return tsDepDAO ;
 	}
 
-	@Override
-	public BaseDAO getRwDAO() {
-		return tsDepDAO ;
-	}
 
 
 	@Override

@@ -37,13 +37,9 @@ public class TsRolePermitServiceImpl extends BaseServiceImpl<TsRolePermitBO,Stri
 	@Autowired
 	private TsRolePermitDAO tsRolePermitDAO ;
 
-	@Override
-	public BaseDAO getQueryDAO() {
-		return tsRolePermitDAO ;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 		return tsRolePermitDAO ;
 	}
 

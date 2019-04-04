@@ -41,13 +41,9 @@ public class TsOrganServiceImpl extends BaseServiceImpl<TsOrganBO,String> implem
 	@Autowired
 	private TsOrganDAO tsOrganDAO ;
 
-	@Override
-	public BaseDAO getQueryDAO() {
-		return tsOrganDAO ;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 		return tsOrganDAO ;
 	}
 

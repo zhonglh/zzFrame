@@ -26,13 +26,9 @@ public class TsFileUseServiceImpl extends BaseServiceImpl<TsFileUseBO,String> im
 	@Autowired
 	private TsFileUseDAO tsFileUseDAO ;
 
-	@Override
-	public BaseDAO getQueryDAO() {
-		return tsFileUseDAO ;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 		return tsFileUseDAO ;
 	}
 

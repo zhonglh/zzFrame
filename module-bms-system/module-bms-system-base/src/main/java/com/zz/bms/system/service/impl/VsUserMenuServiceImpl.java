@@ -49,14 +49,10 @@ public class VsUserMenuServiceImpl extends BaseServiceImpl<VsUserMenuBO,String> 
 	private VsUserMenuDAO vsUserMenuDAO ;
 
 	@Override
-	public BaseDAO getQueryDAO() {
+	public BaseDAO getDAO() {
 		return vsUserMenuDAO ;
 	}
 
-	@Override
-	public BaseDAO getRwDAO() {
-		return vsUserMenuDAO ;
-	}
 
 
 	@Override

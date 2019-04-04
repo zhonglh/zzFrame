@@ -38,13 +38,9 @@ public class TsNotificationServiceImpl extends BaseServiceImpl<TsNotificationBO,
 	@Autowired
 	private TsNotificationDAO tsNotificationDAO ;
 
-	@Override
-	public BaseDAO getQueryDAO() {
-		return tsNotificationDAO ;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 		return tsNotificationDAO ;
 	}
 

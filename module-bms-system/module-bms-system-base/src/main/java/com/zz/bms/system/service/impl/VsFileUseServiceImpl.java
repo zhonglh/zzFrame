@@ -44,18 +44,11 @@ public class VsFileUseServiceImpl extends BaseServiceImpl<VsFileUseBO,String> im
     @Autowired
     private VsFileUseDAO vsFileUseDAO ;
 
-    @Autowired
-    private TsFileUseDAO tsFileUseDAO ;
 
 
     @Override
-    public BaseDAO getQueryDAO() {
-    	return vsFileUseDAO ;
-    }
-
-    @Override
-    public BaseDAO getRwDAO() {
-		return tsFileUseDAO ;
+    public BaseDAO getDAO() {
+		return vsFileUseDAO ;
     }
 
 

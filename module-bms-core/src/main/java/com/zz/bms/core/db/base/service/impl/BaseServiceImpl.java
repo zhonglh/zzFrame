@@ -35,17 +35,12 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
     public Logger logger = Logger.getLogger(this.getClass());
 
-    /**
-     * 获取查询用到的DAO实体
-     * @return BaseDAO
-     */
-    public abstract BaseDAO getQueryDAO() ;
 
     /**
      * 获取读写用到的DAO实体
      * @return BaseDAO
      */
-    public abstract BaseDAO getRwDAO();
+    public abstract BaseDAO getDAO();
 
     public BaseServiceImpl() {
     }
@@ -73,8 +68,16 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
 
     @Override
+    public void saveAfter(T t){
+
+    }
+
+
+    @Override
     public boolean save(T entity) {
-        return retBool(this.getRwDAO().insert(entity));
+        boolean result =  retBool(this.getDAO().insert(entity));
+        saveAfter(entity);
+        return result;
     }
 
     /**
@@ -92,6 +95,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
             int i = 0;
             for (T anEntityList : entityList) {
                 batchSqlSession.insert(sqlStatement, anEntityList);
+                saveAfter(anEntityList);
                 if (i >= 1 && i % batchSize == 0) {
                     batchSqlSession.flushStatements();
                 }
@@ -140,10 +144,12 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
                 Object idVal = ReflectionKit.getMethodValue(cls, entity, keyProperty);
                 if (StringUtils.checkValNull(idVal) || Objects.isNull(getById((Serializable) idVal))) {
                     batchSqlSession.insert(sqlStatement(SqlMethod.INSERT_ONE), entity);
+                    saveAfter(entity);
                 } else {
                     MapperMethod.ParamMap<T> param = new MapperMethod.ParamMap<>();
                     param.put(Constants.ENTITY, entity);
                     batchSqlSession.update(sqlStatement(SqlMethod.UPDATE_BY_ID), param);
+                    updateAfter(entity);
                 }
 
 
@@ -157,36 +163,48 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
         return true;
     }
 
+
+
     @Override
     public boolean removeById(Serializable id) {
-        return SqlHelper.delBool(getRwDAO().deleteById(id));
+        boolean result = SqlHelper.delBool(getDAO().deleteById(id));
+        return result;
     }
 
     @Override
     public boolean removeByMap(Map<String, Object> columnMap) {
         Assert.notEmpty(columnMap, "error: columnMap must not be empty");
-        return SqlHelper.delBool(getRwDAO().deleteByMap(columnMap));
+        return SqlHelper.delBool(getDAO().deleteByMap(columnMap));
     }
 
     @Override
     public boolean remove(Wrapper<T> wrapper) {
-        return SqlHelper.delBool(getRwDAO().delete(wrapper));
+        return SqlHelper.delBool(getDAO().delete(wrapper));
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean removeByIds(Collection<? extends Serializable> idList) {
-        return SqlHelper.delBool(getRwDAO().deleteBatchIds(idList));
+        return SqlHelper.delBool(getDAO().deleteBatchIds(idList));
     }
+
+
+    @Override
+    public void updateAfter(T t){
+
+    }
+
 
     @Override
     public boolean updateById(T entity) {
-        return retBool(getRwDAO().updateById(entity));
+        boolean result =  retBool(getDAO().updateById(entity));
+        this.updateAfter(entity);
+        return result;
     }
 
     @Override
     public boolean update(T entity, Wrapper<T> updateWrapper) {
-        return retBool(getRwDAO().update(entity, updateWrapper));
+        return retBool(getDAO().update(entity, updateWrapper));
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -200,6 +218,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
                 MapperMethod.ParamMap<T> param = new MapperMethod.ParamMap<>();
                 param.put(Constants.ENTITY, anEntityList);
                 batchSqlSession.update(sqlStatement, param);
+                this.updateAfter(anEntityList);
                 if (i >= 1 && i % batchSize == 0) {
                     batchSqlSession.flushStatements();
                 }
@@ -212,7 +231,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
     @Override
     public T getById(Serializable id) {
-        T result =  (T)getQueryDAO().selectById(id);
+        T result =  (T)getDAO().selectById(id);
         return processResult(result);
     }
 
@@ -223,7 +242,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
         if(!lazy){
             return getById(id);
         }else {
-            return (T)getQueryDAO().selectById(id);
+            return (T)getDAO().selectById(id);
         }
     }
 
@@ -237,7 +256,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
     @Override
     public List<T> listByIds(Collection<? extends Serializable> idList , boolean lazy) {
-        List<T> list =  getQueryDAO().selectBatchIds(idList);
+        List<T> list =  getDAO().selectBatchIds(idList);
         if(list == null || list.isEmpty()) {
             return list;
         }
@@ -260,7 +279,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
         List<T> list =  null;
         QueryWrapper<T> qw = new QueryWrapper<T>();
         qw.in(fkColumnName , fkIdList);
-        list = getQueryDAO().selectList(qw);
+        list = getDAO().selectList(qw);
         if(list == null || list.isEmpty()) {
             return list;
         }
@@ -280,7 +299,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
     @Override
     public List<T> listByMap(Map<String, Object> columnMap) {
-        List<T> list =   getQueryDAO().selectByMap(columnMap);
+        List<T> list =   getDAO().selectByMap(columnMap);
         if(list == null || list.isEmpty()) {
             return list;
         }
@@ -294,9 +313,9 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
     public T getOne(Wrapper<T> queryWrapper, boolean throwEx) {
         T result = null;
         if (throwEx) {
-            result =  (T)getQueryDAO().selectOne(queryWrapper);
+            result =  (T)getDAO().selectOne(queryWrapper);
         }else {
-            result = SqlHelper.getObject((List<T>) getQueryDAO().selectList(queryWrapper));
+            result = SqlHelper.getObject((List<T>) getDAO().selectList(queryWrapper));
         }
 
         if(result != null){
@@ -308,17 +327,17 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
     @Override
     public Map<String, Object> getMap(Wrapper<T> queryWrapper) {
-        return SqlHelper.getObject((List<Map<String, Object>>)getQueryDAO().selectMaps(queryWrapper));
+        return SqlHelper.getObject((List<Map<String, Object>>)getDAO().selectMaps(queryWrapper));
     }
 
     @Override
     public int count(Wrapper<T> queryWrapper) {
-        return SqlHelper.retCount(getQueryDAO().selectCount(queryWrapper));
+        return SqlHelper.retCount(getDAO().selectCount(queryWrapper));
     }
 
     @Override
     public List<T> list(Wrapper<T> queryWrapper) {
-        List<T> list =  getQueryDAO().selectList(queryWrapper);
+        List<T> list =  getDAO().selectList(queryWrapper);
 
         if(list == null || list.isEmpty()) {
             return list;
@@ -331,7 +350,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
     @Override
     public IPage<T> page(IPage<T> page, Wrapper<T> queryWrapper) {
-        IPage<T> iPage =  getQueryDAO().selectPage(page, queryWrapper);
+        IPage<T> iPage =  getDAO().selectPage(page, queryWrapper);
         if(iPage.getRecords() != null && !iPage.getRecords().isEmpty()){
             for(T t : iPage.getRecords()){
                 specialHandler(processResult(t));
@@ -342,24 +361,24 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
     @Override
     public List<Map<String, Object>> listMaps(Wrapper<T> queryWrapper) {
-        return getQueryDAO().selectMaps(queryWrapper);
+        return getDAO().selectMaps(queryWrapper);
     }
 
     @Override
     public <V> List<V> listObjs(Wrapper<T> queryWrapper, Function<? super Object, V> mapper) {
-        return (List<V>)getQueryDAO().selectObjs(queryWrapper).stream().filter(Objects::nonNull).map(mapper).collect(Collectors.toList());
+        return (List<V>)getDAO().selectObjs(queryWrapper).stream().filter(Objects::nonNull).map(mapper).collect(Collectors.toList());
     }
 
     @Override
     public IPage<Map<String, Object>> pageMaps(IPage<T> page, Wrapper<T> queryWrapper) {
-        return getQueryDAO().selectMapsPage(page, queryWrapper);
+        return getDAO().selectMapsPage(page, queryWrapper);
     }
 
 
 
     @Override
     public T selectCheck(T t){
-        return (T)this.getRwDAO().selectCheck(t);
+        return (T)this.getDAO().selectCheck(t);
     }
 
     @Override
@@ -372,10 +391,22 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
     }
 
+    @Override
+    public void deleteByIdAfter(T t){
+
+    }
+
+
+    @Override
+    public void deletesByIdsAfter(Collection<T> ts){
+
+    }
 
     @Override
     public boolean deleteById(T t) {
-        return removeById(t.getId());
+        boolean b =  removeById(t.getId());
+        deleteByIdAfter(t);
+        return b;
     }
 
     @Override
@@ -384,7 +415,9 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
         for(T t : ts){
             ids.add(t.getId());
         }
-        return removeByIds(ids);
+        boolean b =  removeByIds(ids);
+        deletesByIdsAfter(ts);
+        return b;
     }
 
 
@@ -483,7 +516,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
      */
     @Override
     public QueryChainWrapper<T> query() {
-        return new QueryChainWrapper<>(getQueryDAO());
+        return new QueryChainWrapper<>(getDAO());
     }
 
     /**
@@ -493,7 +526,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
      */
     @Override
     public LambdaQueryChainWrapper<T> lambdaQuery() {
-        return new LambdaQueryChainWrapper<>(getQueryDAO());
+        return new LambdaQueryChainWrapper<>(getDAO());
     }
 
     /**
@@ -503,7 +536,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
      */
     @Override
     public UpdateChainWrapper<T> update() {
-        return new UpdateChainWrapper<>(getRwDAO());
+        return new UpdateChainWrapper<>(getDAO());
     }
 
     /**
@@ -513,6 +546,6 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
      */
     @Override
     public LambdaUpdateChainWrapper<T> lambdaUpdate() {
-        return new LambdaUpdateChainWrapper<>(getRwDAO());
+        return new LambdaUpdateChainWrapper<>(getDAO());
     }
 }

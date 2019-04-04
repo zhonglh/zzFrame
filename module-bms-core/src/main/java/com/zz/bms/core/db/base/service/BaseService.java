@@ -90,4 +90,38 @@ public interface BaseService<T extends BaseEntity, PK extends Serializable> exte
     List<T> listByFkIds(String fkColumnName,Collection<? extends Serializable> fkIdList , boolean lazy);
 
 
+    /**
+     * 删除之后要做的处理
+     * @param t
+     * @return
+     */
+    void deleteByIdAfter(T t);
+
+
+    /**
+     * 批量删除之后要做的处理
+     * @param ts
+     * @return
+     */
+    void deletesByIdsAfter(Collection<T> ts);
+
+
+
+    /**
+     * 新增之后做的操作
+     * @param t
+     * @return
+     */
+    void saveAfter(T t);
+
+
+
+    /**
+     * 修改之后做的操作
+     * @param t
+     * @return
+     */
+    void updateAfter(T t);
+
+
 }

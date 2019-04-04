@@ -38,13 +38,9 @@ public class TsMenuPermitServiceImpl extends BaseServiceImpl<TsMenuPermitBO,Stri
 	@Autowired
 	private TsMenuPermitDAO tsMenuPermitDAO ;
 
-	@Override
-	public BaseDAO getQueryDAO() {
-		return tsMenuPermitDAO ;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 		return tsMenuPermitDAO ;
 	}
 

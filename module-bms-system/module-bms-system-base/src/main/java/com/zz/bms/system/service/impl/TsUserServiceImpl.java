@@ -49,13 +49,9 @@ public class TsUserServiceImpl extends BaseServiceImpl<TsUserBO,String> implemen
 	@Autowired
 	private TsUserDAO tsUserDAO ;
 
-	@Override
-	public BaseDAO getQueryDAO() {
-		return tsUserDAO ;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 		return tsUserDAO ;
 	}
 

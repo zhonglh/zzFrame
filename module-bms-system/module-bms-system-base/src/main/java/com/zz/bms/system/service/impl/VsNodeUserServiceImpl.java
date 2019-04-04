@@ -47,14 +47,10 @@ public class VsNodeUserServiceImpl extends BaseServiceImpl<VsNodeUserBO,String> 
 	private VsNodeUserDAO vsNodeUserDAO ;
 
 	@Override
-	public BaseDAO getQueryDAO() {
+	public BaseDAO getDAO() {
 		return vsNodeUserDAO ;
 	}
 
-	@Override
-	public BaseDAO getRwDAO() {
-		return vsNodeUserDAO ;
-	}
 
 
 	@Override

@@ -30,13 +30,9 @@ public class TsFileServiceImpl extends BaseServiceImpl<TsFileBO,String> implemen
 	@Autowired
 	private TsFileDAO tsFileDAO ;
 
-	@Override
-	public BaseDAO getQueryDAO() {
-		return tsFileDAO ;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 		return tsFileDAO ;
 	}
 

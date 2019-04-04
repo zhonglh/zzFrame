@@ -43,13 +43,9 @@ public class TsOperationlogServiceImpl extends BaseServiceImpl<TsOperationlogBO,
 	@Autowired
 	private TsOperationlogDAO tsOperationlogDAO ;
 
-	@Override
-	public BaseDAO getQueryDAO() {
-		return tsOperationlogDAO ;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 		return tsOperationlogDAO ;
 	}
 

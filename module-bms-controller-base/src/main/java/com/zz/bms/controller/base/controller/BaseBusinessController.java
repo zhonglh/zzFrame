@@ -118,7 +118,7 @@ public abstract class BaseBusinessController<
      * 更新时有特殊的值需要联动或定制，需要重载
      * @param m
      */
-    protected void setCustomInfoByUpdate(RwModel m){
+    protected void setCustomInfoByUpdate(RwModel m, ILoginUserEntity sessionUser){
 
     }
 
@@ -132,15 +132,6 @@ public abstract class BaseBusinessController<
     }
 
 
-    /**
-     * 增加之前要处理的
-     * 比如增加前再次校验
-     * 如有， 需要重载
-     * @param m
-     */
-    protected void insertBefore(RwModel m) {
-    }
-
 
     /**
      * 插入信息
@@ -151,14 +142,6 @@ public abstract class BaseBusinessController<
         throw new RuntimeException("Please overload this method first");
     }
 
-    /**
-     * 增加之后要处理的
-     * 比如增加后其他功能的数据需要处理
-     * 如有， 需要重载
-     * @param m
-     */
-    protected void insertAfter(RwModel m) {
-    }
 
 
 
@@ -191,4 +174,36 @@ public abstract class BaseBusinessController<
         return wrapper;
     }
 
+    /**
+     * 检查是否可以新增
+     * @param m
+     * @param sessionUserVO
+     */
+    protected  void checkCanInsert(RwModel m, ILoginUserEntity<PK> sessionUserVO){
+        //如果有问题，直接 throw BizException
+        //比如上级或者其它数据已经锁定， 不能修改
+    }
+
+    /**
+     * 检查是否可以修改
+     * @param m
+     * @param sessionUserVO
+     */
+    protected void checkCanUpdate(RwModel m, ILoginUserEntity<PK> sessionUserVO){
+        //如果有问题，直接 throw BizException
+        //比如已经归档 ，或者正在审批， 不能修改
+        //比如上级或者其它数据已经锁定， 不能修改
+    }
+
+
+    /**
+     * 检查是否可以删除
+     * @param m
+     * @param sessionUserVO
+     */
+    protected void checkCanDelete(RwModel m, ILoginUserEntity<PK> sessionUserVO){
+        //如果有问题，直接 throw BizException
+        //比如已经归档 ，或者正在审批， 不能删除
+        //比如上级或者其它数据已经锁定， 不能删除
+    }
 }

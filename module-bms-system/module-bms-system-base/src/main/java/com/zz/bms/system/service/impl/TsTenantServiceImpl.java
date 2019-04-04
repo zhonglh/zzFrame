@@ -30,13 +30,9 @@ public class TsTenantServiceImpl extends BaseServiceImpl<TsTenantBO,String> impl
 	@Autowired
 	private TsTenantDAO tsTenantDAO ;
 
-	@Override
-	public BaseDAO getQueryDAO() {
-		return tsTenantDAO ;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 		return tsTenantDAO ;
 	}
 

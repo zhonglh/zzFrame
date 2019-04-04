@@ -33,6 +33,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -385,19 +386,21 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         }
 
 
-        //检查重复数据
-        this.baseService.isExist(m);
 
         boolean success = false;
         try{
-            //创建前的一些特殊处理
-            insertBefore(m);
             //检查新增附加信息
             checkInsertInfo(m);
             //检查字段的合法性
             checkEntityLegality(m , true , true , true);
+
+            //检查业务上是否允许增加
+            this.checkCanInsert(m,sessionUserVO);
+
+            //检查重复数据
+            this.baseService.isExist(m);
+
             success = baseService.save(m);
-            insertAfter(m);
 
         }catch(RuntimeException e){
             logger.error(e.getMessage() , e);
@@ -417,6 +420,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     @ResponseBody
     public Object update(@PathVariable("id") PK id, ModelMap model, M m , HttpServletRequest request, HttpServletResponse response) {
 
+        //检查功能权限
         this.permissionList.assertHasUpdatePermission();
 
 
@@ -442,27 +446,30 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         this.setUpdateInfo(m, sessionUserVO);
 
         //设置更新时的一些属性信息
-        setCustomInfoByUpdate(m);
+        setCustomInfoByUpdate(m , sessionUserVO);
 
 
         //处理创建的数据， 如反填状态名称，外键信息等
         this.processBO(m);
 
 
-        //检查重复数据
-        this.baseService.isExist(m);
 
 
         boolean success = false;
         try {
-            //更新前特殊的处理
-            updateBefore(m);
 
             //检查数据合法性
             checkEntityLegality(m , false , true , true);
             Assert.notNull(m.getId(),"出现内部错误");
+
+
+            //检查重复数据
+            this.baseService.isExist(m);
+
+            //检查业务上是否允许修改
+            this.checkCanUpdate(m,sessionUserVO);
+
             success = baseService.updateById(m);
-            updateAfter(m);
 
         }catch(RuntimeException e){
             logger.error(e.getMessage() , e);
@@ -498,9 +505,12 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         this.permissionList.assertHasDeletePermission();
 
+
+        ILoginUserEntity<PK> sessionUserVO = getSessionUser();
+
         QueryWrapper<M> wrapper = new QueryWrapper<>();
         wrapper.eq("id" , id);
-        setCustomInfoByDelete(wrapper);
+        setCustomInfoByDelete(wrapper , sessionUserVO);
         M m = baseService.getOne(wrapper);
         if(m == null){
             throw EnumErrorMsg.no_auth.toException();
@@ -510,9 +520,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         boolean success = false;
         try {
-            deleteBefore(m);
+            checkCanDelete(m, sessionUserVO);
             success = baseService.deleteById(m);
-            deleteAfter(m);
         }catch(RuntimeException e){
             logger.error(e.getMessage() , e);
             throw e;
@@ -540,27 +549,30 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     @ResponseBody
     public Object deleteInBatch(@RequestParam(value = "ids", required = false) String ids, HttpServletRequest request, HttpServletResponse response) {
 
-
         this.permissionList.assertHasDeletePermission();
 
         if(ids == null || ids.isEmpty()){
             throw EnumErrorMsg.not_select_todelete.toException();
         }
 
+        ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
 
         QueryWrapper<M> wrapper = new QueryWrapper<>();
         String idList[] = ids.split(",");
-        int index = 0;
-        for(String id : idList) {
-            if(index > 0){
-                wrapper.or();
+        wrapper.nested((qw)-> {
+            int index = 0;
+            for (String id : idList) {
+                if (index > 0) {
+                    qw.or();
+                }
+                qw.eq("id", id);
+                index++;
             }
-            wrapper.eq("id", id);
-            index ++;
-        }
+            return qw;
+        });
 
-        setCustomInfoByDelete(wrapper);
+        setCustomInfoByDelete(wrapper , sessionUserVO);
 
         List<M> list = baseService.list(wrapper);
 
@@ -568,14 +580,28 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
             throw EnumErrorMsg.no_auth.toException();
         }
 
+
+        List<M> deleteList = new ArrayList<M>();
+
         for(M m : list){
+            try{
+                this.checkCanDelete(m , sessionUserVO);
+                deleteList.add(m);
+            }catch(Exception e){
+
+            }
+        }
+
+        for(M m : deleteList){
             baseService.specialHandler(m);
         }
 
 
         boolean success = false;
         try {
-            success = baseService.deletesByIds(list) ;
+            if(deleteList != null && !deleteList.isEmpty()) {
+                success = baseService.deletesByIds(deleteList);
+            }
         }catch(RuntimeException e){
             logger.error(e.getMessage() , e);
             throw e;
@@ -736,7 +762,6 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      */
     protected void processBO(M m){
         this.baseService.processResult(m);
-        //this.baseService.specialHandler(m);
     }
 
 
@@ -747,7 +772,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
      * 如有， 需要重载
      * @param wrapper
      */
-    protected void setCustomInfoByDelete(Wrapper<M> wrapper) {
+    protected void setCustomInfoByDelete(Wrapper<M> wrapper , ILoginUserEntity<PK> sessionUserVO) {
 
     }
 
@@ -798,46 +823,6 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     protected void setCommonData(M m ,ModelMap model) {
     }
 
-
-    /**
-     * 修改之前要处理的
-     * 比如修改前再次校验
-     * 如有， 需要重载
-     * @param m
-     */
-    protected void updateBefore(M m) {
-
-    }
-
-    /**
-     * 修改之后要处理的
-     * 比如修改后其他功能的数据需要处理
-     * 如有， 需要重载
-     * @param m
-     */
-    protected void updateAfter(M m) {
-    }
-
-
-
-
-
-    /**
-     * 删除之前要处理的
-     * 比如删除前再次校验
-     * 如有， 需要重载
-     * @param m
-     */
-    protected void deleteBefore(M m) {
-    }
-    /**
-     * 删除之后要处理的
-     * 比如删除后其他功能的数据需要删除或者修改
-     * 如有， 需要重载
-     * @param m
-     */
-    protected void deleteAfter(M m) {
-    }
 
 
 

@@ -29,13 +29,9 @@ public class TsDictTypeServiceImpl extends BaseServiceImpl<TsDictTypeBO,String> 
 	@Autowired
 	private TsDictTypeDAO tsDictTypeDAO ;
 
-	@Override
-	public BaseDAO getQueryDAO() {
-		return tsDictTypeDAO ;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 		return tsDictTypeDAO ;
 	}
 

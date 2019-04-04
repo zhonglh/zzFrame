@@ -31,13 +31,14 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 基于多表组合的业务(主表+附表+子表等)
  * @author zhonglh
  */
-public abstract class BaseGroupCURDController<
+public abstract class   BaseGroupCURDController<
         RwModel extends BaseEntity<PK>,
         QueryModel extends RwModel,
         PK extends Serializable,
@@ -392,19 +393,21 @@ public abstract class BaseGroupCURDController<
         }
 
 
-        //检查重复数据
-        this.baseRwService.isExist(m);
 
         boolean success = false;
         try{
-            //创建前的一些特殊处理
-            insertBefore(m);
             //检查新增附加信息
             checkInsertInfo(m);
             //检查字段的合法性
             checkEntityLegality(m , true , true , true);
+
+            //检查业务上是否允许增加
+            this.checkCanInsert(m,sessionUserVO);
+
+            //检查重复数据
+            this.baseRwService.isExist(m);
+
             success = baseRwService.save(m);
-            insertAfter(m);
 
         }catch(RuntimeException e){
             logger.error(e.getMessage() , e);
@@ -449,27 +452,29 @@ public abstract class BaseGroupCURDController<
         this.setUpdateInfo(m, sessionUserVO);
 
         //设置更新时的一些属性信息
-        setCustomInfoByUpdate(m);
+        setCustomInfoByUpdate(m , sessionUserVO);
 
 
         //处理创建的数据， 如反填状态名称，外键信息等
         this.processBO(m);
 
 
-        //检查重复数据
-        this.baseRwService.isExist(m);
 
 
         boolean success = false;
         try {
-            //更新前特殊的处理
-            updateBefore(m);
 
             //检查数据合法性
             checkEntityLegality(m , false , true , true);
             Assert.notNull(m.getId(),"出现内部错误");
+
+            this.checkCanUpdate(m , sessionUserVO);
+
+            //检查重复数据
+            this.baseRwService.isExist(m);
+
+
             success = baseRwService.updateById(m);
-            updateAfter(m);
 
         }catch(RuntimeException e){
             logger.error(e.getMessage() , e);
@@ -505,9 +510,12 @@ public abstract class BaseGroupCURDController<
 
         this.permissionList.assertHasDeletePermission();
 
+
+        ILoginUserEntity<PK> sessionUserVO = getSessionUser();
+
         QueryWrapper<RwModel> wrapper = new QueryWrapper<RwModel>();
         wrapper.eq("id" , id);
-        setCustomInfoByDelete(wrapper);
+        setCustomInfoByDelete(wrapper , sessionUserVO);
         RwModel m = baseRwService.getOne(wrapper);
         if(m == null){
             throw EnumErrorMsg.no_auth.toException();
@@ -517,9 +525,8 @@ public abstract class BaseGroupCURDController<
 
         boolean success = false;
         try {
-            deleteBefore(m);
+            checkCanDelete(m, sessionUserVO);
             success = baseRwService.deleteById(m);
-            deleteAfter(m);
         }catch(RuntimeException e){
             logger.error(e.getMessage() , e);
             throw e;
@@ -554,20 +561,23 @@ public abstract class BaseGroupCURDController<
             throw EnumErrorMsg.not_select_todelete.toException();
         }
 
+        ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
 
         QueryWrapper<RwModel> wrapper = new QueryWrapper<>();
         String idList[] = ids.split(",");
-        int index = 0;
-        for(String id : idList) {
-            if(index > 0){
-                wrapper.or();
+        wrapper.nested((qw)-> {
+            int index = 0;
+            for (String id : idList) {
+                if (index > 0) {
+                    qw.or();
+                }
+                qw.eq("id", id);
+                index++;
             }
-            wrapper.eq("id", id);
-            index ++;
-        }
-
-        setCustomInfoByDelete(wrapper);
+            return qw;
+        });
+        setCustomInfoByDelete(wrapper , sessionUserVO);
 
         List<RwModel> list = baseRwService.list(wrapper);
 
@@ -575,14 +585,27 @@ public abstract class BaseGroupCURDController<
             throw EnumErrorMsg.no_auth.toException();
         }
 
+        List<RwModel> deleteList = new ArrayList<RwModel>();
+
         for(RwModel m : list){
+            try{
+                this.checkCanDelete(m , sessionUserVO);
+                deleteList.add(m);
+            }catch(Exception e){
+
+            }
+        }
+
+        for(RwModel m : deleteList){
             baseRwService.specialHandler(m);
         }
 
 
         boolean success = false;
         try {
-            success = baseRwService.deletesByIds(list) ;
+            if(deleteList != null && !deleteList.isEmpty()) {
+                success = baseRwService.deletesByIds(list);
+            }
         }catch(RuntimeException e){
             logger.error(e.getMessage() , e);
             throw e;
@@ -748,7 +771,7 @@ public abstract class BaseGroupCURDController<
      * 如有， 需要重载
      * @param wrapper
      */
-    protected void setCustomInfoByDelete(Wrapper<RwModel> wrapper) {
+    protected void setCustomInfoByDelete(Wrapper<RwModel> wrapper ,ILoginUserEntity<PK> sessionUserVO  ) {
 
     }
 
@@ -791,45 +814,8 @@ public abstract class BaseGroupCURDController<
 
     }
 
-    /**
-     * 修改之前要处理的
-     * 比如修改前再次校验
-     * 如有， 需要重载
-     * @param m
-     */
-    protected void updateBefore(RwModel m) {
 
-    }
 
-    /**
-     * 修改之后要处理的
-     * 比如修改后其他功能的数据需要处理
-     * 如有， 需要重载
-     * @param m
-     */
-    protected void updateAfter(RwModel m) {
-
-    }
-
-    /**
-     * 删除之前要处理的
-     * 比如删除前再次校验
-     * 如有， 需要重载
-     * @param m
-     */
-    protected void deleteBefore(RwModel m) {
-
-    }
-
-    /**
-     * 删除之后要处理的
-     * 比如删除后其他功能的数据需要删除或者修改
-     * 如有， 需要重载
-     * @param m
-     */
-    protected void deleteAfter(RwModel m) {
-
-    }
 
     /**
      * 返回新增页面指定的Page 名称

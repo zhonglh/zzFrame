@@ -251,7 +251,7 @@ public class BaseCommonController<PK extends Serializable> extends BaseControlle
                 //检查必填
                 if(checkRequired) {
                     if (isEmpty && AnnotaionEntityUtil.isRequired(dbAnnotation, fkAnnotation, dictAnnotation, pageAnnotation)) {
-                        String msg = this.getMessage(EnumErrorMsg.check_data_required.getI18n(),name+" 字段为必填项", name);
+                        String msg = this.getMessage(EnumErrorMsg.check_data_required.getI18n(),name+" 为必填项", name);
                         throw new BizException(EnumErrorMsg.check_data_required.getCode(), msg);
                     }
                 }
@@ -262,7 +262,7 @@ public class BaseCommonController<PK extends Serializable> extends BaseControlle
 
                     if ( maxLength > 0) {
 
-                        String msg = this.getMessage(EnumErrorMsg.check_data_too.getI18n(), name+"字段数据太长", name);
+                        String msg = this.getMessage(EnumErrorMsg.check_data_too.getI18n(), name+" 数据太长", name);
 
                         if (val instanceof String) {
                             if (((String) val).length() > maxLength) {
@@ -276,7 +276,7 @@ public class BaseCommonController<PK extends Serializable> extends BaseControlle
                                 throw new BizException(EnumErrorMsg.check_data_too.getCode(), msg);
                             } else {
                                 if (str.indexOf("\\.") <= maxLength - AnnotaionEntityUtil.decimalsLength(dbAnnotation, fkAnnotation)) {
-                                    msg = this.getMessage(EnumErrorMsg.check_decimal_too.getI18n(),name+"字段小数位太长", name);
+                                    msg = this.getMessage(EnumErrorMsg.check_decimal_too.getI18n(),name+" 小数位太长", name);
                                     throw new BizException(EnumErrorMsg.check_decimal_too.getCode(), msg);
                                 }
                             }
@@ -292,7 +292,7 @@ public class BaseCommonController<PK extends Serializable> extends BaseControlle
                     if (eac != null && eac.checkRule() != null && eac.checkRule().length > 0 && val != null) {
                         for (String cr : eac.checkRule()) {
                             if (!Pattern.matches(cr, val.toString())) {
-                                String msg = this.getMessage(EnumErrorMsg.check_data_format.getI18n(), name+"字段格式错误", name);
+                                String msg = this.getMessage(EnumErrorMsg.check_data_format.getI18n(), name+" 格式错误", name);
                                 throw new BizException(EnumErrorMsg.check_data_format.getCode(), msg);
                             }
                         }

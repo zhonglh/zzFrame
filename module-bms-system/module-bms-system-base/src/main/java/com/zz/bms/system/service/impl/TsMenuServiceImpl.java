@@ -30,13 +30,9 @@ public class TsMenuServiceImpl extends BaseServiceImpl<TsMenuBO,String> implemen
 	@Autowired
 	private TsMenuDAO tsMenuDAO ;
 
-	@Override
-	public BaseDAO getQueryDAO() {
-		return tsMenuDAO ;
-	}
 
 	@Override
-	public BaseDAO getRwDAO() {
+	public BaseDAO getDAO() {
 		return tsMenuDAO ;
 	}
 
