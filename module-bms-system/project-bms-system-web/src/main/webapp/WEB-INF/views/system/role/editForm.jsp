@@ -16,88 +16,53 @@
                 </div>
 
 
-                <div id="detailForm">
+                <div id="detailForm" class="detailForm">
                     <table class="info-table">
-                                <tr>
 
-                                    <th width="15%">角色名称<font color="red">*</font></th>
+                        <colgroup>
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                        </colgroup>
+                        
+                        <tbody>
+                        <tr>
 
-                                    <td>
-                                            ${ m.roleName }
+                            <th>角色名称<font color="red">*</font></th>
 
+                            <td>${ m.roleName }</td>
 
-                                    </td>
+                            <th>角色编号<font color="red">*</font></th>
 
-                                    <th width="15%">角色编号<font color="red">*</font></th>
-
-                                    <td>
-                                            ${ m.roleCode }
-                                    </td>
-
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <th width="15%">角色类型<font color="red">*</font></th>
-
-                                    <td>
-                                            ${ m.roleTypeName }
+                            <td>${ m.roleCode }</td>
 
 
-                                    </td>
-
-                                    <th width="15%">部门<font color="red">*</font></th>
-
-                                    <td>
-                                            ${ m.depName }
-                                    </td>
+                        </tr>
 
 
-                                </tr>
+                        <tr>
+                            <th>备注</th>
+                            <td colspan="3"><c:out value="${m.remark}" escapeXml="true"/></td>
+                        </tr>
 
 
-                                <tr>
+                        <tr>
+                            <th>许可设置</th>
 
-                                    <th width="15%">机构<font color="red">*</font></th>
+                            <td colspan="3">
 
-                                    <td>
-                                            ${ m.organId }
+                                <div class="easyui-panel" style="padding:5px">
+                                    <ul id="permitSelectedTree" class="easyui-tree" idField="id" treeField="text"></ul>
+                                </div>
 
-
-                                    </td>
-
-                                    <th width="15%">角色状态<font color="red">*</font></th>
-
-                                    <td>
-                                            ${ m.roleStatusName }
-                                    </td>
+                            </td>
 
 
-                                </tr>
 
+                        </tr>
 
-                                <tr>
-
-                                    <th width="15%">备注</th>
-
-                                    <td>
-                                            ${ m.remark }
-
-
-                                    </td>
-
-                                    <th width="15%">租户<font color="red">*</font></th>
-
-                                    <td>
-                                            ${ m.tenantId }
-                                    </td>
-
-
-                                </tr>
-
-
+                        </tbody>
 
 
                     </table>
@@ -106,6 +71,11 @@
 
                 <form action="" method="post" class="form-auto-fill hide editForm" id="editForm" viewId="detailForm" formId="editForm">
                     <input type="hidden" id="id" name="id" value="${ m.id }">
+
+
+
+                    <input type="hidden" id="permitIds" name="permitIds">
+
                     <table class="info-table">
                         <colgroup>
                             <col style="width: 15%" />
@@ -116,190 +86,70 @@
 
                         <tbody>
 
-                                <tr>
+                        <tr>
 
-                                    <th width="15%">角色名称<font color="red">*</font></th>
+                            <th>角色名称<font color="red">*</font></th>
 
-                                    <td>
+                            <td>
+                                <input type="text" required="required" class="form-control input-sm required"
+                                       placeholder="请输入角色名称" autocomplete="off"
+                                       value="${ m.roleName }" id="roleName" name="roleName"    maxlength="50"  />
+                            </td>
 
 
-                                                <input type="text" required="required" class="form-control input-sm required"
-                                                       placeholder="请输入角色名称" autocomplete="off"
-                                                       value="${ m.roleName }" id="roleName" name="roleName"
-                                                           maxlength="50"  />
 
+                            <th>角色编号<font color="red">*</font></th>
 
+                            <td>
+                                <input type="text" required="required" class="form-control input-sm required"
+                                       placeholder="请输入角色编号" autocomplete="off"
+                                       value="${ m.roleCode }" id="roleCode" name="roleCode"    maxlength="20"  />
+                            </td>
+                        </tr>
 
-                                    </td>
 
 
+                        <tr>
+                            <th>备注</th>
 
-                                        <th width="15%">角色编号<font color="red">*</font></th>
+                            <td colspan="3">
 
-                                        <td>
+                                        <textarea class="form-control input-sm" name="remark " id="remark"
+                                                  placeholder="请输入备注，200字以内" maxlength="200" rows="4">${ m.remark }</textarea>
+                            </td>
 
 
 
+                        </tr>
 
 
-                                                    <input type="text" required="required" class="form-control input-sm required"
-                                                           placeholder="请输入角色编号" autocomplete="off"
-                                                           value="${ m.roleCode }" id="roleCode" name="roleCode"
-                                                               maxlength="20"  />
 
 
+                        <tr>
+                            <th>许可设置</th>
 
+                            <td colspan="3">
 
-                                        </td>
+                                <div class="easyui-panel" style="padding:5px">
+                                    <ul id="rolePermitTree" class="easyui-tree" idField="id" treeField="text"></ul>
+                                </div>
 
+                            </td>
 
-                                </tr>
 
 
-                                <tr>
+                        </tr>
 
-                                    <th width="15%">角色类型<font color="red">*</font></th>
 
-                                    <td>
 
 
-                                                <select id="roleType"  name="roleType" required="required" >
-                                                    <option value="" ></option>
-                                                    <c:forEach items="${ role_type }" var="dict">
-                                                        <option value="${ dict.value }">${ dict.name}  }</option>
-                                                    </c:forEach>
-                                                </select>
-
-
-                                    </td>
-
-
-
-                                        <th width="15%">部门<font color="red">*</font></th>
-
-                                        <td>
-
-
-
-
-
-
-                                                    <div class="input-group">
-                                                        <input type="hidden" name="depId" id="depId" value="${ m.depId }" >
-                                                        <input type="text" name="depName" id="depName" value="${ m.depName }" required="required" class="form-control input-sm depName " placeholder="请选择部门" style="width: 150px; cursor: pointer;" readonly="readonly">
-
-                                                        <div class="input-group-btn">
-                                                            <button type="button"  class="btn btn-primary btn-sm depName">
-                                                                <svg class="icon" aria-hidden="true">
-                                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                         xlink:href="#icon-sousuo">
-                                                                    </use>
-                                                                </svg>
-                                                            </button>
-                                                            <button type="button" id="clearDepId"   class="btn btn-primary btn-sm">
-                                                                <svg class="icon" aria-hidden="true">
-                                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                         xlink:href="#icon-close">
-                                                                    </use>
-                                                                </svg>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-
-
-
-                                        </td>
-
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <th width="15%">机构<font color="red">*</font></th>
-
-                                    <td>
-
-
-                                                <input type="text" required="required" class="form-control input-sm required"
-                                                       placeholder="请输入机构" autocomplete="off"
-                                                       value="${ m.organId }" id="organId" name="organId"
-                                                           maxlength="32"  />
-
-
-
-                                    </td>
-
-
-
-                                        <th width="15%">角色状态<font color="red">*</font></th>
-
-                                        <td>
-
-
-
-
-
-                                                    <select id="roleStatus"  name="roleStatus" required="required" >
-                                                        <option value="" ></option>
-                                                        <c:forEach items="${ role_status }" var="dict">
-                                                            <option value="${ dict.value }">${  dict.name }</option>
-                                                        </c:forEach>
-                                                    </select>
-
-
-
-                                        </td>
-
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <th width="15%">备注</th>
-
-                                    <td>
-
-
-                                                <input type="text"  class="form-control input-sm "
-                                                       placeholder="请输入备注" autocomplete="off"
-                                                       value="${ m.remark }" id="remark" name="remark"
-                                                           maxlength="200"  />
-
-
-
-                                    </td>
-
-
-
-                                        <th width="15%">租户<font color="red">*</font></th>
-
-                                        <td>
-
-
-
-
-
-                                                    <input type="text" required="required" class="form-control input-sm required"
-                                                           placeholder="请输入租户" autocomplete="off"
-                                                           value="${ m.tenantId }" id="tenantId" name="tenantId"
-                                                               maxlength="32"  />
-
-
-
-
-                                        </td>
-
-
-                                </tr>
-
-
-
+                        </tbody>
 
 
 
                     </table>
+                    
+                    
                 </form>
             </div>
 
@@ -352,7 +202,6 @@
 <script>
 
 
-    var tableid = "tableData-${ tableId }";
 
     //显示模式   明细/编辑
     var showMode = "detail";
@@ -378,16 +227,66 @@
 
     $(function() {
 
-        //选择部门
-        $(".depName").OpenSystemDepSelectWin({
-            title: "部门",
-            selectType: "t1",
-            callId: "depId",
-            callName: "depName",
-            clearId: "clearDepId"
+        //,
+        //onlyLeafCheck:true
+
+        $("#rolePermitTree").tree({
+            url:'${ctx}/system/role/permitTree/${m.id}',
+            animate:true,
+            checkbox : true
+        });
+
+        $("#permitSelectedTree").tree({
+            url:'${ctx}/system/role/permitSelectedTree/${m.id}',
+            animate:true
+        });
+
+        $(function() {
+
+            //选择部门
+            $(".depName").OpenSystemDepSelectWin({
+                title: "部门",
+                selectType: "t1",
+                callId: "depId",
+                callName: "depName",
+                clearId: "clearDepId"
+            });
+
         });
 
     });
+
+    /**
+     * 获取选中的许可ID
+     * @returns {string}
+     */
+    function getTreeCheckedNode(){
+        var nodes = $("#rolePermitTree").tree('getChecked');
+        if(nodes && nodes.length > 0){
+            var ids = new Array();
+            $.each(nodes,function(index,node){
+                if(node.attributes.treeType === "permit") {
+                    ids.push(node.id);
+                }
+            });
+            return  ids.join(',');
+        }
+        return "";
+    }
+
+    /**
+     * 将选择的许可放到隐藏域中
+     */
+    function customDoHandle(){
+        var permitIds = getTreeCheckedNode();
+        var permit = $("#permitIds");
+        if(permit){
+            permit.val(permitIds);
+        }else {
+            var html = "<input type='hidden' name='permitIds' value='"+permitIds+"'>";
+            $("#editForm").append($(html));
+        }
+    }
 
 
 </script>

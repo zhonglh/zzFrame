@@ -195,7 +195,8 @@ function deleteOne (obj)
  * 打开新建界面
  */
 function toAdd(){
-    showIframeWindow('<a>'+breadcrumb+'</a> ＞ <a>新建</a>', ctx+dataUrl+"/create");
+    //showIframeWindow('<a>'+breadcrumb+'</a> ＞ <a>新建</a>', ctx+dataUrl+"/create");
+    slideIframeWindow('<a>'+breadcrumb+'</a> ＞ <a>新建</a>', ctx+dataUrl+"/create" ,100);
 }
 
 

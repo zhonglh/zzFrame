@@ -702,7 +702,12 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
 
     @Override
     public T selectCheck(T t){
-        throw EnumErrorMsg.code_error.toException();
+
+        if(!isGroup(currentModelClass())){
+            return (T)this.getServices()[0].selectCheck( t );
+        }else {
+            throw EnumErrorMsg.code_error.toException();
+        }
     }
 
     @Override

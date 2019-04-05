@@ -3,17 +3,23 @@ package com.zz.bms.controller.base.controller;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.zz.bms.core.db.entity.BaseBusinessEntity;
-import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
-import com.zz.bms.core.db.entity.BaseEntity;
-import com.zz.bms.core.db.entity.ILoginUserEntity;
+import com.zz.bms.core.db.base.service.BaseService;
+import com.zz.bms.core.db.entity.*;
 import com.zz.bms.core.db.mybatis.query.Query;
+import com.zz.bms.core.exceptions.DbException;
+import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.util.base.java.GenericsHelper;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Administrator
@@ -32,6 +38,14 @@ public abstract class BaseBusinessController<
     public final String defaultViewPageName = "viewForm";
     public final String defaultListPageName = "list";
     public final String defaultTreePageName = "tree";
+
+
+
+    @Autowired
+    protected BaseService<QueryModel, PK> baseQueryService;
+
+    @Autowired
+    protected BaseService<RwModel, PK> baseRwService;
 
 
     /**
@@ -210,5 +224,181 @@ public abstract class BaseBusinessController<
         //如果有问题，直接 throw BizException
         //比如已经归档 ，或者正在审批， 不能删除
         //比如上级或者其它数据已经锁定， 不能删除
+    }
+
+
+
+
+
+    /**
+     * 新增或者修改时，检验数据是否唯一(单条件) , 界面上校验， 比如注册时校验用户名唯一
+     *
+     * @param m
+     */
+    @RequestMapping(value="/checkUnique"  ,method = RequestMethod.GET)
+    @ResponseBody
+    public Object checkUnique(RwModel m) {
+        RwModel temp = baseRwService.selectCheck(m);
+        if (EntityUtil.isEntityExist(temp)) {
+            throw DbException.DB_SAVE_SAME;
+        }
+        else {
+            return AjaxJson.successAjax;
+        }
+    }
+
+    /**
+     * 新增或者修改时，检验数据是否唯一(多条件)
+     *
+     * @param m
+     */
+    @RequestMapping(value = "/checkAllUnique"  ,method = RequestMethod.GET)
+    @ResponseBody
+    public AjaxJson checkAllUnique(RwModel m, ModelMap model , HttpServletRequest request, HttpServletResponse response) {
+
+        ILoginUserEntity<PK> sessionUserVO = getSessionUser();
+
+        if(EntityUtil.isEmpty(m.getId())){
+            this.gatherCreateInformation(m , model , sessionUserVO , request, response);
+        }else {
+            this.gatherUpdateInformation(m , model , sessionUserVO , request, response);
+        }
+        this.baseRwService.isExist(m);
+        return AjaxJson.successAjax;
+    }
+
+
+
+
+
+
+
+    /**
+     * 处理查询参数
+     * 查询参数如果需要特殊处理， 需要重载
+     * @param query
+     */
+    protected void processQuery(OnlyQuery query , QueryModel m  , ILoginUserEntity<PK> sessionUserVO){
+
+    }
+
+    /**
+     * 处理查询结果
+     * 查询结果数据需要特殊处理， 需要重载
+     * @param records
+     */
+    protected void processResult(List records){
+
+    }
+
+    /**
+     * 保存或修改之前， 处理BO中属性的值
+     * 如反填 状态名称的值
+     * @param m
+     */
+    protected void processBO(RwModel m){
+        //todo
+        //this.baseService.processResult(m);
+        //this.baseService.specialHandler(m);
+    }
+
+    /**
+     * 对删除的数据再次过滤
+     * 比如规定不能删除admin的用户,不能删除正在审批的数据等 ,
+     * 如有， 需要重载
+     * @param wrapper
+     */
+    protected void setCustomInfoByDelete(Wrapper<RwModel> wrapper ,ILoginUserEntity<PK> sessionUserVO  ) {
+
+    }
+
+    /**
+     * 查看界面一些定制的操作
+     * 如有， 需要重载
+     * @param m
+     * @param model
+     */
+    protected void customInfoByViewForm(RwModel m, ModelMap model) {
+    }
+
+    /**
+     * 增加界面一些定制的操作
+     * 如有， 需要重载
+     * @param model
+     */
+    protected void customInfoByCreateForm(RwModel m, ModelMap model) {
+
+    }
+
+    /**
+     * 修改界面一些定制的操作
+     * 如有， 需要重载
+     * @param m
+     * @param model
+     */
+    protected void customInfoByUpdateForm(RwModel m, ModelMap model) {
+
+    }
+
+    /**
+     * 设置通用数据
+     * 在新增  修改 列表 等界面 ，  提供下拉数据或者其他数据等
+     * 如有， 需要重载
+     * @param m
+     * @param model
+     */
+    protected void setCommonData(RwModel m ,ModelMap model) {
+
+    }
+
+
+
+    /**
+     * 返回新增页面指定的Page 名称
+     * 如果没有指定，将会使用默认的名称: editForm  对应新增页面为 editForm.jsp
+     * @return
+     */
+    protected String getAddPageName(){
+        return null;
+    }
+
+
+    /**
+     * 返回编辑页面指定的Page 名称
+     * 如果没有指定，将会使用默认的名称: editForm  对应编辑页面为 editForm.jsp
+     * @return
+     */
+    protected String getEditPageName(){
+        return null;
+    }
+
+
+    /**
+     * 返回查看页面指定的Page 名称
+     * 如果没有指定，将会使用默认的名称: viewForm  对应编辑页面为 viewForm.jsp
+     * @return
+     */
+    protected String getViewPageName(){
+        return null;
+    }
+
+
+    /**
+     * 返回列表页面指定的Page 名称
+     * 如果没有指定，将会使用默认的名称: listForm  对应编辑页面为 list.jsp
+     * @return
+     */
+    protected String getListPageName(){
+        return null;
+    }
+
+
+    /**
+     * 返回列表页面指定的Page 名称
+     * 如果没有指定，将会使用默认的名称: listForm  对应编辑页面为 list.jsp
+     * @return
+     */
+    protected String getTreePageName(){
+        return null;
     }
 }

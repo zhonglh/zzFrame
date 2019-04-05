@@ -97,11 +97,9 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
                 break;
         }
 
-
-
-
         Page<M> page = new Page<M>(1, 1);
-        processQuery(query , m);
+        ILoginUserEntity<PK> sessionUserVO = getSessionUser();
+        processQuery(query , m , sessionUserVO);
         Wrapper wrapper = buildRwWrapper(query , m);
         page = (Page<M>)baseService.page(page , wrapper );
 

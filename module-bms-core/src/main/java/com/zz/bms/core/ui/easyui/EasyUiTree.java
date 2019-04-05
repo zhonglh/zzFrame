@@ -1,9 +1,6 @@
 package com.zz.bms.core.ui.easyui;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +30,7 @@ public class EasyUiTree implements Serializable {
             return null;
         }
 
-       return  TreeUtil.buildToTree(list , rootNodeName);
+       return  EasyUiTreeUtil.buildToTree(list , rootNodeName);
     }
 
 

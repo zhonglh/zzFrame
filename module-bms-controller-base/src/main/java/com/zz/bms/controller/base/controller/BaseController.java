@@ -88,15 +88,9 @@ public abstract class BaseController<PK extends Serializable> {
     }
 
 
-    protected ILoginUserEntity<PK> getSessionUser(HttpServletRequest request){
-
-        ILoginUserEntity loginUser = getSessionUser();
-        if(loginUser == null){
-            return (ILoginUserEntity)request.getSession().getAttribute(Constant.SESSION_USER);
-        }
-        return loginUser;
+    protected ILoginUserEntity<PK> getSessionUser(HttpServletRequest request ){
+        return getSessionUser();
     }
-
 
     protected ILoginUserEntity<PK> getSessionUser(){
         try {

@@ -126,7 +126,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         Page<M> page = new Page<M>(pages.getPageNum(), pages.getPageSize());
 
-        processQuery(query , m);
+        ILoginUserEntity<PK> sessionUserVO = getSessionUser();
+        processQuery(query , m , sessionUserVO);
 
         Wrapper wrapper = buildQueryWrapper(query , m);
 
@@ -184,7 +185,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         Page<M> page = new Page<M>(pages.getPageNum(), pages.getPageSize());
 
-        processQuery(query , m);
+        ILoginUserEntity<PK> sessionUserVO = getSessionUser();
+        processQuery(query , m , sessionUserVO);
 
 
         QueryWrapper<M> wrapper = (QueryWrapper<M>)buildRwWrapper(query , m);
@@ -638,36 +640,6 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
 
-    /**
-     * 新增或者修改时，检验数据是否唯一(单条件) , 界面上校验， 比如注册时校验用户名唯一
-     *
-     * @param m
-     */
-    @RequestMapping(value="/checkUnique"  ,method = RequestMethod.GET)
-    @ResponseBody
-    public Object checkUnique(M m) {
-        M temp = baseService.selectCheck(m);
-        if (EntityUtil.isEntityExist(temp)) {
-            throw DbException.DB_SAVE_SAME;
-        }
-        else {
-            return AjaxJson.successAjax;
-        }
-    }
-
-    /**
-     * 新增或者修改时，检验数据是否唯一(多条件)
-     *
-     * @param m
-     */
-    @RequestMapping(value = "/checkAllUnique"  ,method = RequestMethod.GET)
-    @ResponseBody
-    public AjaxJson checkAllUnique(M m) {
-        this.baseService.isExist(m);
-        return AjaxJson.successAjax;
-    }
-
-
 
 
 
@@ -744,144 +716,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
 
-    /**
-     * 处理查询参数
-     * 查询参数如果需要特殊处理， 需要重载
-     * @param query
-     */
-    protected void processQuery(Q query , M m){
-
-    }
-
-    /**
-     * 处理查询结果
-     * 查询结果数据需要特殊处理， 需要重载
-     * @param records
-     */
-    protected void processResult(List<M> records){
-
-    }
-
-
-    /**
-     * 保存或修改之前， 处理BO中属性的值
-     * 如反填 状态名称的值
-     * @param m
-     */
-    protected void processBO(M m){
-        this.baseService.processResult(m);
-    }
-
-
-
-    /**
-     * 对删除的数据再次过滤
-     * 比如规定不能删除admin的用户,不能删除正在审批的数据等 ,
-     * 如有， 需要重载
-     * @param wrapper
-     */
-    protected void setCustomInfoByDelete(Wrapper<M> wrapper , ILoginUserEntity<PK> sessionUserVO) {
-
-    }
 
 
 
 
-
-
-
-
-
-    /**
-     * 查看界面一些定制的操作
-     * 如有， 需要重载
-     * @param m
-     * @param model
-     */
-    protected void customInfoByViewForm(M m, ModelMap model) {
-    }
-
-    /**
-     * 增加界面一些定制的操作
-     * 如有， 需要重载
-     * @param model
-     */
-    protected void customInfoByCreateForm(M m, ModelMap model) {
-    }
-
-
-    /**
-     * 修改界面一些定制的操作
-     * 如有， 需要重载
-     * @param m
-     * @param model
-     */
-    protected void customInfoByUpdateForm(M m, ModelMap model) {
-    }
-
-
-
-    /**
-     * 设置通用数据
-     * 在新增  修改 列表 等界面 ，  提供下拉数据或者其他数据等
-     * 如有， 需要重载
-     * @param m
-     * @param model
-     */
-    protected void setCommonData(M m ,ModelMap model) {
-    }
-
-
-
-
-
-    /**
-     * 返回新增页面指定的Page 名称
-     * 如果没有指定，将会使用默认的名称: editForm  对应新增页面为 editForm.jsp
-     * @return
-     */
-    protected String getAddPageName(){
-        return null;
-    }
-
-
-    /**
-     * 返回编辑页面指定的Page 名称
-     * 如果没有指定，将会使用默认的名称: editForm  对应编辑页面为 editForm.jsp
-     * @return
-     */
-    protected String getEditPageName(){
-        return null;
-    }
-
-
-    /**
-     * 返回查看页面指定的Page 名称
-     * 如果没有指定，将会使用默认的名称: viewForm  对应编辑页面为 viewForm.jsp
-     * @return
-     */
-    protected String getViewPageName(){
-        return null;
-    }
-
-
-    /**
-     * 返回列表页面指定的Page 名称
-     * 如果没有指定，将会使用默认的名称: listForm  对应编辑页面为 list.jsp
-     * @return
-     */
-    protected String getListPageName(){
-        return null;
-    }
-
-
-    /**
-     * 返回列表页面指定的Page 名称
-     * 如果没有指定，将会使用默认的名称: listForm  对应编辑页面为 list.jsp
-     * @return
-     */
-    protected String getTreePageName(){
-        return null;
-    }
 
 }

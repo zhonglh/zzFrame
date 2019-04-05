@@ -17,6 +17,9 @@
 
 
                 <form id="editForm" action="" method="post">
+
+                    <input type="hidden" id="permitIds" name="permitIds">
+
                     <table class="info-table">
                         <colgroup>
                             <col style="width: 15%" />
@@ -72,7 +75,7 @@
                                     <td colspan="3">
 
                                         <div class="easyui-panel" style="padding:5px">
-                                            <ul id="tt" class="easyui-tree" idField="id" treeField="text"></ul>
+                                            <ul id="rolePermitTree" class="easyui-tree" idField="id" treeField="text"></ul>
                                         </div>
 
                                     </td>
@@ -176,6 +179,40 @@
         });
 
     });
+
+    /**
+     * 获取选中的许可ID
+     * @returns {string}
+     */
+    function getTreeCheckedNode(){
+        var nodes = $("#rolePermitTree").tree('getChecked');
+        if(nodes && nodes.length > 0){
+            var ids = new Array();
+            $.each(nodes,function(index,node){
+                if(node.attributes.treeType === "permit") {
+                    ids.push(node.id);
+                }
+            });
+            return  ids.join(',');
+        }
+        return "";
+    }
+
+    /**
+     * 将选择的许可放到隐藏域中
+     */
+    function customDoHandle(){
+        var permitIds = getTreeCheckedNode();
+        var permit = $("#permitIds");
+        if(permit){
+            permit.val(permitIds);
+        }else {
+            var html = "<input type='hidden' name='permitIds' value='"+permitIds+"'>";
+            $("#editForm").append($(html));
+        }
+    }
+
+
 
 
 </script>

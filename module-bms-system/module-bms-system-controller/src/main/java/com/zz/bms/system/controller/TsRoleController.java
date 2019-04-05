@@ -2,18 +2,17 @@ package com.zz.bms.system.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.zz.bms.controller.base.controller.BaseGroupCURDController;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.enums.EnumSymbol;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.ui.easyui.EasyUiTree;
-import com.zz.bms.core.ui.easyui.TreeUtil;
+import com.zz.bms.core.ui.easyui.EasyUiTreeUtil;
 import com.zz.bms.enums.EnumRoleStatus;
 import com.zz.bms.enums.EnumRoleType;
 import com.zz.bms.system.bo.*;
-import com.zz.bms.system.dto.TsRoleDTO;
 import  com.zz.bms.system.query.impl.TsRoleQueryWebImpl;
 
+import com.zz.bms.system.service.TsDepService;
 import com.zz.bms.system.service.TsMenuService;
 import com.zz.bms.system.service.TsRolePermitService;
 import com.zz.bms.system.service.VsMenuPermitService;
@@ -51,6 +50,8 @@ public class TsRoleController extends ZzGroupDefaultController<TsRoleGroupBO, Ts
 	@Autowired
 	private VsMenuPermitService menuPermitService;
 
+    @Autowired
+    private TsDepService depService;
 
 
 	private static List<EasyUiTree> allPermit = null;
@@ -68,7 +69,7 @@ public class TsRoleController extends ZzGroupDefaultController<TsRoleGroupBO, Ts
     @Override
     protected void gatherCreateInformation(TsRoleGroupBO m, ModelMap model , ILoginUserEntity<String> sessionUserVO, HttpServletRequest request, HttpServletResponse response){
         String permitIds = request.getParameter("permitIds");
-        if(StringUtils.isNotEmpty(permitIds)){
+        if(StringUtils.isNotEmpty(permitIds) && (  m.getRolePermitBOList() == null || m.getRolePermitBOList().isEmpty()  ) ){
             String[] permitIdArray = permitIds.split( EnumSymbol.COMMA.getCode() );
             List<TsRolePermitBO> rolePermitBOList = new ArrayList<TsRolePermitBO>();
             for(String permitId : permitIdArray){
@@ -93,6 +94,17 @@ public class TsRoleController extends ZzGroupDefaultController<TsRoleGroupBO, Ts
         m.setRoleStatusName(EnumRoleStatus.normal.getLabel());
         m.setRoleType(EnumRoleType.USER_ROLE.getVal());
         m.setRoleTypeName(EnumRoleType.USER_ROLE.getLabel());
+
+        if(StringUtils.isEmpty(m.getOrganId())){
+            if(StringUtils.isEmpty(m.getDepId())){
+                m.setOrganId((String)sessionUser.getOrganId());
+            }else {
+                TsDepBO depBO = depService.getById(m.getDepId());
+                if(depBO != null){
+                    m.setOrganId(depBO.getOrganId());
+                }
+            }
+        }
 
         if(m.getRolePermitBOList() != null && !m.getRolePermitBOList().isEmpty()){
             for(TsRolePermitBO rolePermitBO : m.getRolePermitBOList()){
@@ -143,11 +155,12 @@ public class TsRoleController extends ZzGroupDefaultController<TsRoleGroupBO, Ts
 
 
 
-	@RequestMapping(value = "/permitTree/{roleId}" , method={ RequestMethod.POST, RequestMethod.GET})
-	@ResponseBody
-	public List<EasyUiTree> permitTree(@PathVariable("roleId") String roleId){
+    @RequestMapping(value = "/permitSelectedTree/{roleId}" , method={ RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    public List<EasyUiTree> permitSelectedTree(@PathVariable("roleId") String roleId){
 
-        List<EasyUiTree> easyUiTree = getAllPermitTree();
+
+        List<EasyUiTree> easyUiTrees = getAllPermitTree();
         List<String> rolePermitIds = null;
 
         if(StringUtils.isNotEmpty(roleId) && !"0".equals(roleId)){
@@ -163,7 +176,34 @@ public class TsRoleController extends ZzGroupDefaultController<TsRoleGroupBO, Ts
             }
         }
 
-        List<EasyUiTree> rootTree = TreeUtil.buildToTree(easyUiTree, "所有许可" , rolePermitIds);
+        List<EasyUiTree> rootTree = EasyUiTreeUtil.buildToOnlySelectedTree(easyUiTrees, "所有许可" , rolePermitIds);
+
+
+        return rootTree;
+
+    }
+
+	@RequestMapping(value = "/permitTree/{roleId}" , method={ RequestMethod.POST, RequestMethod.GET})
+	@ResponseBody
+	public List<EasyUiTree> permitTree(@PathVariable("roleId") String roleId){
+
+        List<EasyUiTree> easyUiTrees = getAllPermitTree();
+        List<String> rolePermitIds = null;
+
+        if(StringUtils.isNotEmpty(roleId) && !"0".equals(roleId)){
+            QueryWrapper<TsRolePermitBO> queryWrapper = new QueryWrapper<TsRolePermitBO>();
+            queryWrapper.lambda().eq(TsRolePermitBO::getRoleId,roleId);
+            List<TsRolePermitBO> rolePermitBOs = rolePermitService.list(queryWrapper);
+            if(rolePermitBOs != null && !rolePermitBOs.isEmpty()){
+
+                rolePermitIds = new ArrayList<String>();
+                for(TsRolePermitBO rolePermitBO : rolePermitBOs){
+                    rolePermitIds.add(rolePermitBO.getPermitId());
+                }
+            }
+        }
+
+        List<EasyUiTree> rootTree = EasyUiTreeUtil.buildToTree(easyUiTrees, "所有许可" , rolePermitIds);
 
 
         return rootTree;

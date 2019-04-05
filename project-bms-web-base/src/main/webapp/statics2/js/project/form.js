@@ -81,6 +81,24 @@ function doSingleFormSave() {
         return false;
     }
 
+    try{
+        //业务上的逻辑校验
+        var validateResult = customValidate();
+        if(!validateResult){
+            return false;
+        }
+    }catch(e){
+
+    }
+
+
+    try{
+        //业务上的逻辑处理
+        customDoHandle();
+    }catch(e){
+
+    }
+
     //提交表单
     $.ajax({
         url: '',
@@ -109,6 +127,25 @@ function doMultiFormSave() {
         return false;
     }
 
+
+    try{
+        //业务上的逻辑校验
+        var validateResult = customValidate();
+        if(!validateResult){
+            return false;
+        }
+    }catch(e){
+
+    }
+
+
+    try{
+        //业务上的逻辑处理
+        customDoHandle();
+    }catch(e){
+
+    }
+
     //提交表单
     $.ajax({
         url: '',
@@ -129,7 +166,7 @@ function saveSuccess(rsp, status){
     if(rsp.success) {
         info(rsp.msg);
         parent.search();
-        parent.toUpdate(rsp.id);
+        //parent.toUpdate(rsp.id);
         closeWindow();
     }else{
         warn(rsp.msg);
@@ -160,6 +197,25 @@ function doSingleFormUpdate() {
         return false;
     }
 
+
+    try{
+        //业务上的逻辑校验
+        var validateResult = customValidate();
+        if(!validateResult){
+            return false;
+        }
+    }catch(e){
+
+    }
+
+
+    try{
+        //业务上的逻辑处理
+        customDoHandle();
+    }catch(e){
+
+    }
+
     //提交表单
     $.ajax({
         url: '',
@@ -188,6 +244,26 @@ function doMultiFormUpdate() {
         return false;
     }
 
+
+
+    try{
+        //业务上的逻辑校验
+        var validateResult = customValidate();
+        if(!validateResult){
+            return false;
+        }
+    }catch(e){
+
+    }
+
+
+    try{
+        //业务上的逻辑处理
+        customDoHandle();
+    }catch(e){
+
+    }
+
     //提交表单
     $.ajax({
         url: '',
@@ -208,10 +284,12 @@ function doMultiFormUpdate() {
  */
 function updateSuccess(rsp, status){
     if(rsp.success) {
-        switchEditDetail();
-        $(".editForm").tform().showDetail(true);
-        parent.search();
+        //切换到显示界面
+        //switchEditDetail();
+        //$(".editForm").tform().showDetail(true);
         info(rsp.msg);
+        parent.search();
+        closeWindow();
     }else{
         warn(rsp.msg);
     }
