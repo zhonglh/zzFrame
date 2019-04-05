@@ -3,9 +3,13 @@ package com.zz.bms.system.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.controller.base.controller.BaseGroupCURDController;
+import com.zz.bms.core.db.entity.ILoginUserEntity;
+import com.zz.bms.core.enums.EnumSymbol;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.ui.easyui.EasyUiTree;
 import com.zz.bms.core.ui.easyui.TreeUtil;
+import com.zz.bms.enums.EnumRoleStatus;
+import com.zz.bms.enums.EnumRoleType;
 import com.zz.bms.system.bo.*;
 import com.zz.bms.system.dto.TsRoleDTO;
 import  com.zz.bms.system.query.impl.TsRoleQueryWebImpl;
@@ -14,13 +18,18 @@ import com.zz.bms.system.service.TsMenuService;
 import com.zz.bms.system.service.TsRolePermitService;
 import com.zz.bms.system.service.VsMenuPermitService;
 import com.zz.bms.util.base.data.MyBeanUtils;
+import com.zz.bms.util.base.java.IdUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +40,7 @@ import java.util.List;
  */
 @RequestMapping("/system/role")
 @Controller
-public class TsRoleController extends BaseGroupCURDController<TsRoleDTO, TsRoleDTO , String , TsRoleQueryWebImpl,TsRoleQueryWebImpl> {
+public class TsRoleController extends ZzGroupDefaultController<TsRoleGroupBO, TsRoleGroupBO , String , TsRoleQueryWebImpl,TsRoleQueryWebImpl> {
 
 	@Autowired
 	private TsMenuService menuService;
@@ -45,6 +54,53 @@ public class TsRoleController extends BaseGroupCURDController<TsRoleDTO, TsRoleD
 
 
 	private static List<EasyUiTree> allPermit = null;
+
+
+    /**
+     * 收集信息 ，补齐 TsRoleGroupBO 的内容
+     * 将分配给角色的许可ID放入到 对象中
+     * @param m
+     * @param model
+     * @param sessionUserVO
+     * @param request
+     * @param response
+     */
+    @Override
+    protected void gatherCreateInformation(TsRoleGroupBO m, ModelMap model , ILoginUserEntity<String> sessionUserVO, HttpServletRequest request, HttpServletResponse response){
+        String permitIds = request.getParameter("permitIds");
+        if(StringUtils.isNotEmpty(permitIds)){
+            String[] permitIdArray = permitIds.split( EnumSymbol.COMMA.getCode() );
+            List<TsRolePermitBO> rolePermitBOList = new ArrayList<TsRolePermitBO>();
+            for(String permitId : permitIdArray){
+                TsRolePermitBO rolePermitBO = new TsRolePermitBO();
+                rolePermitBO.setPermitId(permitId);
+                rolePermitBOList.add(rolePermitBO);
+            }
+            m.setRolePermitBOList(rolePermitBOList);
+        }
+    }
+
+
+
+    /**
+     * 保存前设置一些 业务定制的值
+     * @param m
+     */
+    @Override
+    protected void setCustomInfoByInsert(TsRoleGroupBO m , ILoginUserEntity sessionUser){
+
+        m.setRoleStatus(EnumRoleStatus.normal.getVal());
+        m.setRoleStatusName(EnumRoleStatus.normal.getLabel());
+        m.setRoleType(EnumRoleType.USER_ROLE.getVal());
+        m.setRoleTypeName(EnumRoleType.USER_ROLE.getLabel());
+
+        if(m.getRolePermitBOList() != null && !m.getRolePermitBOList().isEmpty()){
+            for(TsRolePermitBO rolePermitBO : m.getRolePermitBOList()){
+                rolePermitBO.setId(IdUtils.getId());
+                rolePermitBO.setRoleId(m.getId());
+            }
+        }
+    }
 
 
 
@@ -87,14 +143,14 @@ public class TsRoleController extends BaseGroupCURDController<TsRoleDTO, TsRoleD
 
 
 
-	@RequestMapping(value = "/permitTree" , method={ RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value = "/permitTree/{roleId}" , method={ RequestMethod.POST, RequestMethod.GET})
 	@ResponseBody
-	public EasyUiTree permitTree(String roleId){
+	public List<EasyUiTree> permitTree(@PathVariable("roleId") String roleId){
 
         List<EasyUiTree> easyUiTree = getAllPermitTree();
         List<String> rolePermitIds = null;
 
-        if(StringUtils.isNotEmpty(roleId)){
+        if(StringUtils.isNotEmpty(roleId) && !"0".equals(roleId)){
             QueryWrapper<TsRolePermitBO> queryWrapper = new QueryWrapper<TsRolePermitBO>();
             queryWrapper.lambda().eq(TsRolePermitBO::getRoleId,roleId);
             List<TsRolePermitBO> rolePermitBOs = rolePermitService.list(queryWrapper);
@@ -107,7 +163,7 @@ public class TsRoleController extends BaseGroupCURDController<TsRoleDTO, TsRoleD
             }
         }
 
-        EasyUiTree rootTree = TreeUtil.buildToTree(easyUiTree, "所有许可" , rolePermitIds);
+        List<EasyUiTree> rootTree = TreeUtil.buildToTree(easyUiTree, "所有许可" , rolePermitIds);
 
 
         return rootTree;

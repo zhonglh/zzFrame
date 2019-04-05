@@ -3,6 +3,7 @@ package com.zz.bms.controller.base.controller;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zz.bms.core.enums.EnumSymbol;
 import com.zz.bms.core.ui.TreeModel;
 import com.zz.bms.enums.EnumTreeState;
 import com.zz.bms.util.base.data.StringFormatKit;
@@ -356,6 +357,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
+
+        this.gatherCreateInformation( m,  model , sessionUserVO, request,  response);
+
         //插入信息
         insertInfo(m, sessionUserVO);
 
@@ -363,6 +367,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         result.setId(m.getId());
         return result;
     }
+
 
 
     @Override
@@ -426,6 +431,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
+        this.gatherUpdateInformation( m,  model , sessionUserVO, request,  response);
 
         QueryWrapper<M> wrapper = new QueryWrapper<>();
         wrapper.eq("id" , id);
@@ -488,6 +494,8 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
             return result;
         }
     }
+
+
 
 
 
@@ -559,7 +567,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
         QueryWrapper<M> wrapper = new QueryWrapper<>();
-        String idList[] = ids.split(",");
+        String idList[] = ids.split( EnumSymbol.COMMA.getCode() );
         wrapper.nested((qw)-> {
             int index = 0;
             for (String id : idList) {

@@ -3,6 +3,7 @@ package com.zz.bms.core.db.mybatis.query;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.core.enums.EnumSearchOperator;
+import com.zz.bms.core.enums.EnumSymbol;
 import com.zz.bms.core.exceptions.InternalException;
 import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.base.java.ReflectionSuper;
@@ -260,14 +261,14 @@ public abstract class QueryImpl<M,PK extends Serializable> implements Query<M,PK
                 break;
             case in:
                 if(fieldValue instanceof String){
-                    wrapper.in(columnName, ((String) fieldValue).split(","));
+                    wrapper.in(columnName, ((String) fieldValue).split(EnumSymbol.COMMA.getCode()));
                 }else {
                     wrapper.in(columnName, (Collection) fieldValue);
                 }
                 break;
             case notIn:
                 if(fieldValue instanceof String){
-                    wrapper.notIn(columnName , ((String) fieldValue).split(","));
+                    wrapper.notIn(columnName , ((String) fieldValue).split(EnumSymbol.COMMA.getCode()));
                 }else {
                     wrapper.notIn(columnName , (Collection) fieldValue);
                 }

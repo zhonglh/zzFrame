@@ -26,6 +26,10 @@ public class TsRoleBO extends TsRoleEntity implements Serializable {
     private String roleStatusName ;
 
 
+    @TableField(exist = false)
+    private String depName ;
+
+
 
     public void setRoleTypeName(String roleTypeName){
         this.roleTypeName = roleTypeName;
@@ -43,4 +47,12 @@ public class TsRoleBO extends TsRoleEntity implements Serializable {
         return this.roleStatusName;
     }
 
+
+    public String getDepName() {
+        return depName;
+    }
+
+    public void setDepName(String depName) {
+        this.depName = depName;
+    }
 }

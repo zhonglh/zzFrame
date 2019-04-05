@@ -1548,13 +1548,13 @@ textarea {
 }
 
 /* tree-title */
-.tree-title {
+/*.tree-title {
 	display: inline;
 }
 
 .tree-checkbox {
 	vertical-align: middle !important;
-}
+}*/
 /* 断点续传的容器 */
 .fixed-upload-container {
 	position: fixed;

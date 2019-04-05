@@ -144,7 +144,7 @@ legend{padding: 0px 3px; margin: 0px; border: 0; width: auto; font-size: 13px; c
 .panel-body {overflow: visible}
 /* 默认字体大小 */
 .tabs-title {font-size: 14px}
-.tree-title {font-size: 13px; display: inline; vertical-align: middle;}
+/*.tree-title {font-size: 13px; display: inline; vertical-align: middle;}*/
 .tree-icon-none {display: none;}
 /* 树行间距 */
 .tree li {padding: 2px}

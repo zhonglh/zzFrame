@@ -9,7 +9,7 @@ import java.util.Map;
  * @author Administrator
  */
 
-public enum EnumMessageType {
+public enum EnumMessageType  {
 
     LOGIN("1" , "登录信息") ,
 

@@ -48,7 +48,8 @@ public abstract class BaseController<PK extends Serializable> {
 
 
     public Logger logger = Logger.getLogger(this.getClass());
-    final  Pattern pattern= Pattern.compile ("^([a-z]{2})_([A-Z]{2})$");
+    protected final  Pattern pattern= Pattern.compile ("^([a-z]{2})_([A-Z]{2})$");
+    protected final String organId = "11111111111111111111111111111111";
 
     @Autowired(required = false)
     private SessionLocaleResolver localeResolver;

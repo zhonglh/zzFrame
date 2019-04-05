@@ -25,10 +25,10 @@ public class EasyUiTree implements Serializable {
     private Map attributes;
 
 
-    public static EasyUiTree processData(List<EasyUiTree> list){
+    public static List<EasyUiTree> processData(List<EasyUiTree> list){
         return processData(list, "全部");
     }
-    public static EasyUiTree processData(List<EasyUiTree> list , String rootNodeName){
+    public static List<EasyUiTree> processData(List<EasyUiTree> list , String rootNodeName){
         if(list == null || list.isEmpty()){
             return null;
         }

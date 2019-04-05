@@ -13,17 +13,17 @@ import java.util.Map;
 public class TreeUtil {
 
 
-    public static EasyUiTree buildToTree(List<EasyUiTree> nodes,String rootNodeName) {
+    public static List<EasyUiTree> buildToTree(List<EasyUiTree> nodes,String rootNodeName) {
         return buildToTree(nodes , rootNodeName ,  null );
     }
 
 
-    public static EasyUiTree buildToTree(List<EasyUiTree> nodes,List<String> selectIds) {
+    public static List<EasyUiTree> buildToTree(List<EasyUiTree> nodes,List<String> selectIds) {
         return buildToTree(nodes , "所有" ,  selectIds );
     }
 
 
-    public static EasyUiTree buildToTree(List<EasyUiTree> nodes,String rootNodeName ,List<String> selectIds) {
+    public static List<EasyUiTree> buildToTree(List<EasyUiTree> nodes,String rootNodeName ,List<String> selectIds) {
 
         //如果节点的List为null，就返回null
         if (nodes == null) {
@@ -73,7 +73,7 @@ public class TreeUtil {
         }
 
         //把根节点返回，如果父节点不只一个，我们给这些节点创建一个根节点
-        EasyUiTree root = new EasyUiTree();
+       /* EasyUiTree root = new EasyUiTree();
         if (topNodes.size() == 1) {
             root = topNodes.get(0);
         } else {
@@ -82,6 +82,9 @@ public class TreeUtil {
             root.setChildren(topNodes);
             root.setText(rootNodeName);
         }
-        return root;
+        return root;*/
+
+        return topNodes;
+
     }
 }

@@ -1,40 +1,19 @@
 package com.zz.bms.controller.base.controller;
 
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zz.bms.controller.base.PermissionList;
-import com.zz.bms.core.Constant;
-import com.zz.bms.core.db.entity.*;
+import com.zz.bms.core.db.entity.BaseBusinessEntity;
+import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
+import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.db.mybatis.query.Query;
-import com.zz.bms.core.enums.EnumErrorMsg;
-import com.zz.bms.core.exceptions.BizException;
-import com.zz.bms.core.ui.Pages;
-import com.zz.bms.core.ui.TreeModel;
-import com.zz.bms.core.ui.easyui.EasyUiDataGrid;
-import com.zz.bms.core.ui.easyui.EasyUiUtil;
-import com.zz.bms.core.vo.AjaxJson;
-import com.zz.bms.enums.EnumDefaultType;
-import com.zz.bms.util.BaseUtil;
-import com.zz.bms.util.base.BankNoValidateUtils;
-import com.zz.bms.util.base.data.SerializableUtil;
-import com.zz.bms.util.base.data.StringUtil;
 import com.zz.bms.util.base.java.GenericsHelper;
-import com.zz.bms.util.configs.BusinessConfig;
-import com.zz.bms.util.configs.annotaions.*;
-import com.zz.bms.util.configs.util.AnnotaionEntityUtil;
-import com.zz.bms.util.spring.ReflectionUtil;
-import com.zz.bms.util.spring.SpringUtil;
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.ui.ModelMap;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
-import java.lang.reflect.Field;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * @author Administrator
@@ -102,6 +81,17 @@ public abstract class BaseBusinessController<
 
 
 
+    /**
+     * 收集信息
+     * 如果spring mvc 无法自动将请求的一部分信息放入到对象中 ， 通过此方法来实现
+     * @param m
+     * @param model
+     * @param request
+     * @param response
+     */
+    protected void gatherCreateInformation(RwModel m, ModelMap model , ILoginUserEntity<PK> sessionUserVO, HttpServletRequest request, HttpServletResponse response){
+
+    }
 
     /**
      * 保存前设置一些 业务定制的值
@@ -110,6 +100,21 @@ public abstract class BaseBusinessController<
      * @param m
      */
     protected void setCustomInfoByInsert(RwModel m , ILoginUserEntity sessionUser){
+
+    }
+
+
+
+
+    /**
+     * 收集信息
+     * 如果spring mvc 无法自动将请求的一部分信息放入到对象中 ， 通过此方法来实现
+     * @param m
+     * @param model
+     * @param request
+     * @param response
+     */
+    protected void gatherUpdateInformation(RwModel m, ModelMap model , ILoginUserEntity<PK> sessionUserVO, HttpServletRequest request, HttpServletResponse response){
 
     }
 

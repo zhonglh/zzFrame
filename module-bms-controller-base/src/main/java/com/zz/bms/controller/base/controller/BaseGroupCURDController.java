@@ -11,6 +11,7 @@ import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.core.enums.EnumErrorMsg;
+import com.zz.bms.core.enums.EnumSymbol;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.ui.Pages;
 import com.zz.bms.core.ui.TreeModel;
@@ -363,6 +364,8 @@ public abstract class   BaseGroupCURDController<
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
+        this.gatherCreateInformation( m,  model , sessionUserVO, request,  response);
+
         //插入信息
         insertInfo(m, sessionUserVO);
 
@@ -370,6 +373,7 @@ public abstract class   BaseGroupCURDController<
         result.setId(m.getId());
         return result;
     }
+
 
 
     @Override
@@ -432,6 +436,7 @@ public abstract class   BaseGroupCURDController<
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
+        this.gatherUpdateInformation( m,  model , sessionUserVO, request,  response);
 
         QueryWrapper<RwModel> wrapper = new QueryWrapper<RwModel>();
         wrapper.eq("id" , id);
@@ -565,7 +570,7 @@ public abstract class   BaseGroupCURDController<
 
 
         QueryWrapper<RwModel> wrapper = new QueryWrapper<>();
-        String idList[] = ids.split(",");
+        String idList[] = ids.split( EnumSymbol.COMMA.getCode() );
         wrapper.nested((qw)-> {
             int index = 0;
             for (String id : idList) {

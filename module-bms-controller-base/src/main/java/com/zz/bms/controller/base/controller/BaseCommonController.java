@@ -31,6 +31,7 @@ import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
@@ -53,6 +54,22 @@ public class BaseCommonController<PK extends Serializable> extends BaseControlle
      * 本功能的资源名称
      */
     private String resourceIdentity = null;
+
+
+    /**
+     * 获取所有用到的字典信息
+     * @param dictTypes
+     * @return
+     */
+    protected Map<String,?> getDictMaps(String ... dictTypes) {
+        throw EnumErrorMsg.code_error.toException();
+    }
+    protected String getDictVal (Object dict) {
+        throw EnumErrorMsg.code_error.toException();
+    }
+    protected String getDictName (Object dict) {
+        throw EnumErrorMsg.code_error.toException();
+    }
 
 
 

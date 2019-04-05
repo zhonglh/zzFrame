@@ -9,6 +9,7 @@ import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.core.enums.EnumErrorMsg;
+import com.zz.bms.core.enums.EnumSymbol;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.util.base.data.StringFormatKit;
@@ -471,7 +472,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
             throw new RuntimeException(fkClz.getName()+"EntityAnnotation 注解中没有 businessKey");
         }
 
-        String[] keyFieldNames = businessKeys[0].split(",");
+        String[] keyFieldNames = businessKeys[0].split(EnumSymbol.COMMA.getCode());
 
 
         Map<Field, List<Field>> fkMap = fkFieldMap.get(fkAnnotation.group());
@@ -717,20 +718,6 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
     }
 
 
-    /**
-     * 获取所有用到的字典信息
-     * @param dictTypes
-     * @return
-     */
-    protected Map<String,?> getDictMaps(String ... dictTypes) {
-        throw EnumErrorMsg.code_error.toException();
-    }
-    protected String getDictVal (Object dict) {
-        throw EnumErrorMsg.code_error.toException();
-    }
-    protected String getDictName (Object dict) {
-        throw EnumErrorMsg.code_error.toException();
-    }
 
 
 

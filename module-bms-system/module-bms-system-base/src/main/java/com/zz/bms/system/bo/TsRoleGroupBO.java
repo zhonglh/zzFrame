@@ -10,17 +10,16 @@ import java.util.List;
  */
 public class TsRoleGroupBO extends TsRoleBO implements Serializable {
 
-    List<TsRolePermitBO> rps;
+    List<TsRolePermitBO> rolePermitBOList;
 
-    public List<TsRolePermitBO> getRps() {
-        return rps;
+
+    public List<TsRolePermitBO> getRolePermitBOList() {
+        return rolePermitBOList;
     }
 
-    public void setRps(List<TsRolePermitBO> rps) {
-        this.rps = rps;
+    public void setRolePermitBOList(List<TsRolePermitBO> rolePermitBOList) {
+        this.rolePermitBOList = rolePermitBOList;
     }
-
-
 
     @Override
     public String toString() {

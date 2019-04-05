@@ -1,6 +1,7 @@
 package com.zz.bms.system.controller;
 
 import com.zz.bms.core.db.entity.ILoginUserEntity;
+import com.zz.bms.core.enums.EnumSymbol;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.system.bo.TsMyShortcutBO;
 import com.zz.bms.system.query.impl.TsMyShortcutQueryWebImpl;
@@ -31,7 +32,7 @@ public class TsMyShortcutController extends ZzDefaultController<TsMyShortcutBO, 
 
         ILoginUserEntity loginUser = getSessionUser();
 
-        tsMyShortcutService.saveAll(menuIds.split(",") , (String)loginUser.getId());
+        tsMyShortcutService.saveAll(menuIds.split( EnumSymbol.COMMA.getCode() ) , (String)loginUser.getId());
 
         return AjaxJson.successAjax;
     }
