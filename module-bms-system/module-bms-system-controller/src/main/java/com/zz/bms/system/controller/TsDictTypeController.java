@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @RequestMapping("/system/dicttype")
 @Controller
-public class TsDictTypeController extends ZzDefaultController<TsDictTypeBO, String , TsDictTypeQueryWebImpl> {
+public class TsDictTypeController extends ZzDefaultSimpleController<TsDictTypeBO, String , TsDictTypeQueryWebImpl> {
 
 
 

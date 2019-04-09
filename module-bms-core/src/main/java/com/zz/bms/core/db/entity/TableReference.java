@@ -10,6 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 表的引用参照设置
  * @author zhonglh
  */
+@Deprecated
 public class TableReference implements Serializable {
 
     private static final Map<String , TableReference> map = new ConcurrentHashMap<String , TableReference>();

@@ -26,3 +26,5 @@
 <![endif]-->
 
 
+
+<link rel="stylesheet" href="${ctx}/statics2/css/all.css"/>

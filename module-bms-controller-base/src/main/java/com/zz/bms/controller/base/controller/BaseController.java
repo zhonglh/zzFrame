@@ -15,6 +15,7 @@ import com.zz.bms.util.base.BankNoValidateUtils;
 import com.zz.bms.util.spring.SpringUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.context.request.RequestAttributes;
@@ -272,6 +273,15 @@ public abstract class BaseController<PK extends Serializable> {
         } catch (UnsupportedEncodingException e) {
             return null;
         }
+    }
+
+
+
+    protected void processQueryString(ModelMap modelMap, HttpServletRequest request) {
+        String queryString = request.getQueryString();
+        modelMap.addAttribute("queryString", queryString);
+        String[] queryArr = queryString.split("&");
+        modelMap.addAttribute("queryArr", queryArr);
     }
 
 

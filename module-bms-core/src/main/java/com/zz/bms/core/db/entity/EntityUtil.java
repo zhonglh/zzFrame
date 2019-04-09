@@ -70,6 +70,7 @@ public class EntityUtil {
         if(newList == null || newList.isEmpty()){
             deleteList = oldList ;
         }else if(oldList == null || oldList.isEmpty()){
+            addList = new ArrayList();
             for(Object obj : newList){
                 BaseEntity be = (BaseEntity)obj ;
                 if(be.getId() == null || isEmpty(be.getId())) {
@@ -80,6 +81,7 @@ public class EntityUtil {
 
             updateList = new ArrayList();
             deleteList = new ArrayList();
+            addList = new ArrayList();
 
             Map map = new HashMap();
             for(Object obj : oldList){

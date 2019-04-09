@@ -10,6 +10,9 @@ import com.zz.bms.core.ui.easyui.EasyUiTreeUtil;
 import com.zz.bms.enums.EnumRoleStatus;
 import com.zz.bms.enums.EnumRoleType;
 import com.zz.bms.system.bo.*;
+import com.zz.bms.system.domain.TsRolePermitEntity;
+import com.zz.bms.system.query.TsRolePermitQuery;
+import com.zz.bms.system.query.impl.TsRolePermitQueryImpl;
 import  com.zz.bms.system.query.impl.TsRoleQueryWebImpl;
 
 import com.zz.bms.system.service.TsDepService;
@@ -30,7 +33,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 角色 控制层
@@ -82,6 +87,50 @@ public class TsRoleController extends ZzGroupDefaultController<TsRoleGroupBO, Ts
     }
 
 
+    /**
+     * 收集信息 ，补齐 TsRoleGroupBO 的内容
+     * 将分配给角色的许可ID放入到 对象中
+     * @param m
+     * @param model
+     * @param sessionUserVO
+     * @param request
+     * @param response
+     */
+    @Override
+    protected void gatherUpdateInformation(TsRoleGroupBO m, ModelMap model , ILoginUserEntity<String> sessionUserVO, HttpServletRequest request, HttpServletResponse response){
+        String permitIds = request.getParameter("permitIds");
+        if(StringUtils.isNotEmpty(permitIds) && (  m.getRolePermitBOList() == null || m.getRolePermitBOList().isEmpty()  ) ){
+            String[] permitIdArray = permitIds.split( EnumSymbol.COMMA.getCode() );
+
+            TsRolePermitQuery<String> rolePermitQuery = new TsRolePermitQueryImpl<String>();
+            rolePermitQuery.roleId(m.getId());
+            rolePermitQuery.permitIdIn(permitIds);
+
+            QueryWrapper rolePermitQueryWrapper = rolePermitQuery.buildWrapper();
+            List<TsRolePermitBO> list = rolePermitService.list(rolePermitQueryWrapper);
+            Map<String,TsRolePermitBO> map = new HashMap<String,TsRolePermitBO>();
+            if(list != null && list.isEmpty()){
+                for(TsRolePermitBO temp : list){
+                    map.put(temp.getPermitId() , temp );
+                }
+            }
+
+
+            List<TsRolePermitBO> rolePermitBOList = new ArrayList<TsRolePermitBO>();
+            for(String permitId : permitIdArray){
+                TsRolePermitBO rolePermitBO = map.get(permitId);
+                if(rolePermitBO == null) {
+                    rolePermitBO = new TsRolePermitBO();
+                    rolePermitBO.setPermitId(permitId);
+                    rolePermitBO.setRoleId(m.getId());
+                    rolePermitBOList.add(rolePermitBO);
+                }
+
+                rolePermitBOList.add(rolePermitBO);
+            }
+            m.setRolePermitBOList(rolePermitBOList);
+        }
+    }
 
     /**
      * 保存前设置一些 业务定制的值

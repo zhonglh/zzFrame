@@ -20,7 +20,7 @@ import java.io.Serializable;
 * @author Administrator
 * @date 2019-4-1 13:52:05
 */
-@EntityAnnotation(value="VIEW" , resource = "system.usermenu"      )
+@EntityAnnotation(value="VIEW" , resource = "system.usermenu" )
 @TableName(value="vs_user_menu" , resultMap = "VsUserMenuResultMap")
 public class VsUserMenuBO extends VsUserMenuEntity implements Serializable , IBoEntity {
 

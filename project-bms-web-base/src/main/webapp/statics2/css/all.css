@@ -1,0 +1,40 @@
+body {
+    overflow-y: auto !important
+}
+
+@media ( min-width : 992px) {
+    .col-md-5 .block-con {
+        margin-left: 10px
+    }
+}
+
+#wrapper {
+    overflow-x: hidden;
+    background-color: #ffffff
+}
+
+#wrapper #scroller {
+    min-width: 100%;
+    position: relative
+}
+
+#wrapper2 {
+    overflow-x: hidden;
+    background-color: #ffffff
+}
+
+#wrapper2 #scroller2 {
+    min-width: 100%;
+    position: relative
+}
+
+.without-line .node {
+    border: none
+}
+
+.without-line .node .line {
+    width: 100px;
+    left: -50px;
+    bottom: 94px;
+    color: #bbbbbb !important
+}

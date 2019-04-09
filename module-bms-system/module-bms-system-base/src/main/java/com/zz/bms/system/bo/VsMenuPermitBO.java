@@ -25,20 +25,10 @@ import java.util.Map;
 */
 @EntityAnnotation(value="菜单许可关联" , resource = "system.menupermit"  ,businessName = "permit_name"    ,businessKey = { "permit_code" }  )
 @TableName(value="vs_menu_permit" , resultMap = "VsMenuPermitResultMap")
-public class VsMenuPermitBO extends VsMenuPermitEntity implements Serializable , IBoEntity {
+public class VsMenuPermitBO extends TsMenuPermitBO implements Serializable , IBoEntity {
 
 
 
-    public EasyUiTree toEasyUiTree(){
-        EasyUiTree tree = new EasyUiTree();
-        tree.setId(this.getPermitId());
-        tree.setPid(this.getMenuId());
-        tree.setText(this.getPermitName());
-        Map<String,String> attributes = new HashMap<String,String>();
-        attributes.put( EasyUiTree.TREE_TYPE , "permit");
-        tree.setAttributes(attributes);
-        return tree;
-    }
 
 
     @Override
@@ -50,7 +40,7 @@ public class VsMenuPermitBO extends VsMenuPermitEntity implements Serializable ,
     @Override
     public String toString() {
 
-            return this.getPermitName();
+            return super.toString();
         
     }
 }

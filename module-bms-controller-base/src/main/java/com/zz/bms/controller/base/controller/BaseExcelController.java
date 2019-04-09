@@ -52,7 +52,15 @@ import java.util.*;
  * 包括导出，导入 支持 Excel2003  Excel2007  CVS 格式
  * @author Administrator
  */
-public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends Serializable, Q extends Query> extends BaseCURDController<M,PK,Q> {
+public abstract class BaseExcelController<
+
+        RwModel extends BaseEntity<PK>,
+        QueryModel extends RwModel,
+        PK extends Serializable,
+        RwQuery extends Query,
+        OnlyQuery extends RwQuery
+        >
+        extends BaseCURDController<RwModel,QueryModel,PK,RwQuery,OnlyQuery> {
 
 
 
@@ -72,7 +80,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
      * @param response
      */
     @RequestMapping(value = "/{excelType}/download", method = RequestMethod.GET)
-    protected void download(@PathVariable("excelType") String excelType, M m , Q query,  HttpServletRequest request, HttpServletResponse response) {
+    protected void download(@PathVariable("excelType") String excelType, QueryModel m , RwQuery query,  HttpServletRequest request, HttpServletResponse response) {
 
 
 
@@ -81,33 +89,33 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
         }
 
         excelType = excelType.toLowerCase();
-        BaseXlsTemplet<M> bxe = new BaseXlsTemplet<M>();
-        bxe.setEntityClz(this.getRwEntityClass());
+        BaseXlsTemplet<QueryModel> bxe = new BaseXlsTemplet<QueryModel>();
+        bxe.setEntityClz(this.getQueryEntityClass());
 
-        ExcelExport<M> aee = null;
+        ExcelExport<QueryModel> aee = null;
         switch (excelType) {
             case "sxssf":
-                aee = new SxssfExport<M>(bxe);
+                aee = new SxssfExport<QueryModel>(bxe);
                 break;
             case "hssf":
-                aee = new HssfExport<M>(bxe);
+                aee = new HssfExport<QueryModel>(bxe);
                 break;
             case "csv":
                 //aee = new SxssfExport(bxe);
                 break;
         }
 
-        Page<M> page = new Page<M>(1, 1);
+        Page<QueryModel> page = new Page<QueryModel>(1, 1);
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
-        processQuery(query , m , sessionUserVO);
+        processRwQuery(query , m , sessionUserVO);
         Wrapper wrapper = buildRwWrapper(query , m);
-        page = (Page<M>)baseService.page(page , wrapper );
+        page = (Page<QueryModel>)baseQueryService.page(page , wrapper );
 
-        M topDate = null;
+        QueryModel topDate = null;
         if(page.getRecords() != null && !page.getRecords().isEmpty()){
             topDate = page.getRecords().get(0);
         }else {
-            topDate  = newRwModel();
+            topDate  = newQueryModel();
         }
 
 
@@ -125,7 +133,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
         exportHeader(aee , headerInfo);
 
         //导出内容
-        List<M> all = new ArrayList<M>();
+        List<QueryModel> all = new ArrayList<QueryModel>();
         all.add(topDate);
         exportContent(aee ,all , header+1 , isAddNumberByExport() );
 
@@ -135,23 +143,23 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
     }
 
     @RequestMapping(value = "/{excelType}/export", method = RequestMethod.GET)
-    protected void export(@PathVariable("excelType") String excelType, M m , Q query, HttpServletRequest request, HttpServletResponse response) {
+    protected void export(@PathVariable("excelType") String excelType, QueryModel m , OnlyQuery query, HttpServletRequest request, HttpServletResponse response) {
 
         if(StringUtils.isEmpty(excelType)){
             throw EnumErrorMsg.code_error.toException();
         }
 
         excelType = excelType.toLowerCase();
-        BaseXlsExport<M> bxe = new BaseXlsExport<M>();
-        bxe.setEntityClz(this.getRwEntityClass());
+        BaseXlsExport<QueryModel> bxe = new BaseXlsExport<QueryModel>();
+        bxe.setEntityClz(this.getQueryEntityClass());
 
-        ExcelExport<M> aee = null;
+        ExcelExport<QueryModel> aee = null;
         switch (excelType) {
             case "sxssf":
-                aee = new SxssfExport<M>(bxe);
+                aee = new SxssfExport<QueryModel>(bxe);
                 break;
             case "hssf":
-                aee = new HssfExport<M>(bxe);
+                aee = new HssfExport<QueryModel>(bxe);
                 break;
             case "csv":
                 //aee = new SxssfExport(bxe);
@@ -161,14 +169,14 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
 
 
         this.permissionList.assertHasViewPermission();
-        Wrapper<M> wrapper = buildRwWrapper(query , m);
-        List<M> all =  baseService.list(wrapper);
+        Wrapper<QueryModel> wrapper = buildRwWrapper(query , m);
+        List<QueryModel> all =  baseQueryService.list(wrapper);
 
-        M topDate = null;
+        QueryModel topDate = null;
         if(all != null && !all.isEmpty()){
             topDate = all.get(0);
         }else {
-            topDate  = (M)newRwModel();
+            topDate  = (QueryModel)newQueryModel();
         }
         int header = 0;
         String[] headerInfo = getExcelHeaderInfo();
@@ -184,7 +192,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
         exportHeader(aee , headerInfo);
 
         //导出内容
-        List<M> allData = (List<M>)all;
+        List<QueryModel> allData = (List<QueryModel>)all;
         exportContent(aee ,allData , header+1 , isAddNumberByExport() );
 
         //下载文件
@@ -200,7 +208,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
      * @param m
      * @param isAddNumber
      */
-    protected void exportTitles(ExcelExport<M> aee , int header, M m, boolean isAddNumber){
+    protected void exportTitles(ExcelExport<QueryModel> aee , int header, QueryModel m, boolean isAddNumber){
         aee.exportTitles(header ,  m  , isAddNumber );
     }
 
@@ -208,7 +216,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
      * 导出头信息
      * @param aee
      */
-    protected void exportHeader(ExcelExport<M> aee , String[] headerInfo ){
+    protected void exportHeader(ExcelExport<QueryModel> aee , String[] headerInfo ){
         if(headerInfo != null && headerInfo.length > 0) {
             aee.exportHeaders(Arrays.asList(headerInfo), getHeaderCellLength());
         }
@@ -222,7 +230,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
      * @param rowIndex
      * @param isAddNumber
      */
-    protected void exportContent(ExcelExport<M> aee ,List<M> contents, int rowIndex, boolean isAddNumber){
+    protected void exportContent(ExcelExport<QueryModel> aee ,List<QueryModel> contents, int rowIndex, boolean isAddNumber){
         aee.exportContent(contents ,  rowIndex  , isAddNumber );
     }
 
@@ -255,7 +263,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
      * @param response
      * @throws RuntimeException
      */
-    protected void exportXls(ExcelExport<M> aee ,HttpServletResponse response) throws RuntimeException {
+    protected void exportXls(ExcelExport<QueryModel> aee ,HttpServletResponse response) throws RuntimeException {
         aee.exportXls(response);
     }
 
@@ -300,7 +308,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
 
 
 
-        List<M> list  = null;
+        List<QueryModel> list  = null;
 
         try {
             list  =this.getExcelData(file , excelFileType);
@@ -331,7 +339,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
 
         boolean isAllOK = true;
         int index = 0;
-        for(M m : list){
+        for(QueryModel m : list){
             if(getErrorMethod != null){
                 String errorMsg = (String)getErrorMethod.invoke(m);
                 if(StringUtils.isNotEmpty(errorMsg)){
@@ -385,7 +393,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
      * @param sessionUserVO
      * @param index
      */
-    protected void customExcelInsert(M m, ILoginUserEntity<PK> sessionUserVO, int index){
+    protected void customExcelInsert(QueryModel m, ILoginUserEntity<PK> sessionUserVO, int index){
         //m.setImportOrder(index);
     }
 
@@ -393,7 +401,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
      * 解析数据
      * @param list
      */
-    protected void analysis(List<M> list) {
+    protected void analysis(List<QueryModel> list) {
 
         List<Field> fs = getImportAllFields() ;
 
@@ -443,7 +451,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
      * @param fkAnnotation
      * @param fkInfoMaps
      */
-    protected void analysisFk(List<M> list,
+    protected void analysisFk(List<QueryModel> list,
                               Column column,
                               EntityAttrFkAnnotation fkAnnotation,
                               Map<Class, Map<String, Object>> fkInfoMaps,
@@ -459,7 +467,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
 
         String serviceName = fkClz.getSimpleName().replace("BO","")+"Service";
         serviceName = serviceName.substring(0,1).toLowerCase()+serviceName.substring(1);
-        IService<M> iService = (IService<M>)SpringUtil.getBean(serviceName);
+        IService<QueryModel> iService = (IService<QueryModel>)SpringUtil.getBean(serviceName);
 
         EntityAnnotation entityAnnotation = (EntityAnnotation) fkClz.getAnnotation(EntityAnnotation.class);
         if(entityAnnotation == null){
@@ -492,7 +500,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
         ReflectionUtil.makeAccessible(fkIdField);
         Column fkIdColumn = ColumnUtil.field2Column(fkIdField);
 
-        for(M m : list) {
+        for(QueryModel m : list) {
             String fkId = (String)ReflectionUtil.getField(fkIdField, m);
             if(StringUtils.isNotEmpty(fkId)){
                 break;
@@ -515,7 +523,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
 
             Object fkObj = fkClzMap.get(key);
             if(fkObj == null){
-                QueryWrapper<M> queryWrapper = new QueryWrapper();
+                QueryWrapper<QueryModel> queryWrapper = new QueryWrapper();
                 int index = 0;
                 for(String fieldName : keyFieldNames){
                     queryWrapper.eq(StringFormatKit.toUnderlineName(fieldName),keyObjs[index]);
@@ -570,7 +578,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
 
 
 
-    private Object[] buildKeyObject(M m , String[] keyFieldNames ){
+    private Object[] buildKeyObject(QueryModel m , String[] keyFieldNames ){
         Object[] result = new Object[keyFieldNames.length];
 
         try{
@@ -619,7 +627,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
      * @param dictInfoMaps
      * @param dictFieldMap
      */
-    protected void analysisDict(List<M> list,
+    protected void analysisDict(List<QueryModel> list,
                                 Column column,
                                 EntityAttrDictAnnotation dictAnnotation,
                                 Map<String, ?> dictInfoMaps,
@@ -640,7 +648,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
             break;
         }
 
-        for(M m : list) {
+        for(QueryModel m : list) {
             ReflectionUtil.makeAccessible(column.getField());
             String dictName = (String)ReflectionUtil.getField(column.getField(), m);
             if(StringUtils.isNotEmpty(dictName)) {
@@ -667,17 +675,17 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
      * @param list
      * @param column
      */
-    protected void analysisOther(List<M> list,Column column) {
+    protected void analysisOther(List<QueryModel> list,Column column) {
        Method setErrorMethod = ExcelUtil.setErrorMethod(this.getRwEntityClass());
         ReflectionUtil.makeAccessible(column.getField());
-        for(M m : list){
+        for(QueryModel m : list){
             Object obj = ReflectionUtil.getField(column.getField(),m);
             checkField(column, setErrorMethod, m, obj);
 
         }
     }
 
-    private void checkField(Column column, Method setErrorMethod, M m, Object obj) {
+    private void checkField(Column column, Method setErrorMethod, QueryModel m, Object obj) {
 
         if(column.isRequired()){
             if(obj == null || StringUtils.isEmpty(obj.toString())){
@@ -703,7 +711,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
         }
     }
 
-    private void errorProcess(Method setErrorMethod, M m , String msg) {
+    private void errorProcess(Method setErrorMethod, QueryModel m , String msg) {
         if(setErrorMethod != null){
             try {
                 setErrorMethod.invoke(m , msg);
@@ -719,10 +727,10 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
 
 
 
-    protected List<M> getExcelData(MultipartFile file,EnumExcelFileType excelFileType){
+    protected List<QueryModel> getExcelData(MultipartFile file,EnumExcelFileType excelFileType){
 
 
-        List<M> list = new ArrayList<M>();
+        List<QueryModel> list = new ArrayList<QueryModel>();
 
         int sheetIndex = 0;
         int rowIndex = 0;
@@ -749,7 +757,7 @@ public abstract class BaseExcelController<M extends BaseEntity<PK>, PK extends S
                 rowIndex = 0;
                 for(Object[] rowData : sheetData) {
                     if(rowData != null && rowData.length > 0) {
-                        M m = this.newRwModel();
+                        QueryModel m = this.newQueryModel();
                         ExcelUtil.row2Object(rowData, columns, m);
                         list.add(m);
                     }

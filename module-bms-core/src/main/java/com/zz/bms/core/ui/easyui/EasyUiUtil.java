@@ -22,9 +22,6 @@ public class EasyUiUtil {
         return new EasyUiTreeGrid(list.size() , list , footer );
     }
 
-    private static String getPid(Object obj, TreeModel treeModel) {
-        return (String)ReflectionSuper.getFieldValue(obj,(String)treeModel.get(TreeModel.PID));
-    }
 
     public static EasyUiDataGrid toDataGrid(Pages pages){
         return new EasyUiDataGrid(pages.getTotal() , pages.getResults());

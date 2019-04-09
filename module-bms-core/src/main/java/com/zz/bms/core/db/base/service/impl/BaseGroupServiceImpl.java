@@ -22,6 +22,7 @@ import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.util.base.java.GenericsHelper;
 import com.zz.bms.util.base.java.ReflectionSuper;
+import com.zz.bms.util.configs.annotaions.GroupFieldAnnotation;
 import com.zz.bms.util.spring.ReflectionUtil;
 import org.apache.ibatis.binding.MapperMethod;
 import org.apache.ibatis.javassist.tools.reflect.Reflection;
@@ -52,19 +53,6 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
     public BaseGroupServiceImpl() {
     }
 
-    /**
-     * 是否组合表 , 主表+(子表，附表)
-     * @param clz
-     * @return
-     */
-    public boolean isGroup(Class clz){
-
-        if(clz.isAnnotationPresent(TableName.class)){
-            return false;
-        }else {
-            return true;
-        }
-    }
 
 
     /**
@@ -99,15 +87,34 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
     }
 
     protected Class<T> currentModelClass() {
-        return GenericsHelper.getSuperClassGenricType(this.getClass(), 0).getSuperclass();
+        return GenericsHelper.getSuperClassGenricType(this.getClass(), 0);
     }
 
     protected SqlSession sqlSessionBatch() {
-        return SqlHelper.sqlSessionBatch(this.currentModelClass());
+        return SqlHelper.sqlSessionBatch(this.currentModelClass().getSuperclass());
     }
 
     protected String sqlStatement(SqlMethod sqlMethod) {
-        return SqlHelper.table(this.currentModelClass()).getSqlStatement(sqlMethod.getMethod());
+        return SqlHelper.table(this.currentModelClass().getSuperclass()).getSqlStatement(sqlMethod.getMethod());
+    }
+
+    public boolean isGroup(){
+        return isGroup(GenericsHelper.getSuperClassGenricType(this.getClass(), 0));
+    }
+
+
+    /**
+     * 是否组合表 , 主表+(子表，附表)
+     * @param clz
+     * @return
+     */
+    public boolean isGroup(Class clz){
+
+        if(clz.isAnnotationPresent(TableName.class)){
+            return false;
+        }else {
+            return true;
+        }
     }
 
 
@@ -125,7 +132,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
 
 
         //组合表情况
-        if(isGroup(t.getClass())) {
+        if(isGroup()) {
             long startTime = System.currentTimeMillis();
             Field[] fs = ReflectionSuper.getFields(t);
             long endTime = System.currentTimeMillis();
@@ -172,7 +179,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
         boolean result = this.getServices()[0].save(entity);
 
 
-        if(isGroup(entity.getClass())) {
+        if(isGroup()) {
             Field[] fs = ReflectionSuper.getFields(entity);
             int index = 1;
             for (Field f : fs){
@@ -216,7 +223,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
             return false;
         }
 
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return this.getServices()[0].saveBatch(entityList,batchSize);
         }else {
 
@@ -257,7 +264,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
             return false;
         }
 
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return this.getServices()[0].saveOrUpdateBatch(entityList,batchSize);
         }else {
             for (T t : entityList) {
@@ -274,7 +281,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
 
         boolean result = this.getServices()[0].deleteById(entity);
 
-        if(isGroup(entity.getClass())) {
+        if(isGroup()) {
             Field[] fs = ReflectionSuper.getFields(entity);
             int index = 1;
             for (Field f : fs){
@@ -307,7 +314,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
     @Override
     public boolean removeByMap(Map<String, Object> columnMap) {
 
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return this.getServices()[0].removeByMap(columnMap);
         }else {
             throw EnumErrorMsg.code_error.toException();
@@ -316,7 +323,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
 
     @Override
     public boolean remove(Wrapper<T> wrapper) {
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return this.getServices()[0].remove(wrapper);
         }else {
             throw EnumErrorMsg.code_error.toException();
@@ -327,7 +334,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
     @Override
     public boolean removeByIds(Collection<? extends Serializable> idList) {
 
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return this.getServices()[0].removeByIds(idList);
         }else {
             for (Serializable pk : idList) {
@@ -361,7 +368,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
         this.getServices()[0].updateById(entity);
 
 
-        if(isGroup(entity.getClass())) {
+        if(isGroup()) {
             Field[] fs = ReflectionSuper.getFields(entity);
             int index = 1;
             for (Field f : fs){
@@ -421,7 +428,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
     @Override
     public boolean update(T entity, Wrapper<T> updateWrapper) {
 
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return this.getServices()[0].update(entity , updateWrapper);
         }else {
             throw EnumErrorMsg.code_error.toException();
@@ -435,7 +442,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
             return false;
         }
 
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return this.getServices()[0].updateBatchById(entityList , batchSize);
         }else {
             for (T entity : entityList) {
@@ -459,11 +466,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
             return null;
         }
 
-
-
-
-        if(isGroup(entity.getClass())) {
-
+        if(isGroup()) {
             try {
                 T t = currentModelClass().newInstance();
                 BeanUtils.copyProperties(entity , t);
@@ -477,53 +480,64 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
 
 
 
-                Field[] fs = ReflectionSuper.getFields(entity);
+                Field[] fs = ReflectionSuper.getFields(t);
                 int index = 1;
                 for (Field f : fs){
-                    f.setAccessible(true);
-                    Object val = ReflectionUtils.getField(f,entity);
-                    if(val != null) {
-                        if (val instanceof Collection || val.getClass().isArray()){
-                            //一对多的子表
-                            TableName childTableAnno = f.getType().getAnnotation(TableName.class);
-                            if(childTableAnno == null){
-                                throw EnumErrorMsg.code_error.toException();
-                            }
-                            String childTableName = childTableAnno.value();
-                            String childTableColumnName = TableReference.getChildTableColumnName(parentTableName , childTableName);
 
-                            QueryWrapper qw = new QueryWrapper();
-                            qw.setEntity(f.getType().newInstance());
-                            qw.eq(childTableColumnName , id);
-                            List list = this.getServices()[index].list(qw);
+                    GroupFieldAnnotation gfa = f.getAnnotation(GroupFieldAnnotation.class);
+                    if(gfa == null || StringUtils.isEmpty(gfa.childTableColumnName())){
+                        throw EnumErrorMsg.code_error.toException();
+                    }
 
-                            f.setAccessible(true);
-                            if(f.getType().isArray()) {
-                                f.set(t, list.toArray());
-                            }else {
-                                f.set(t, list);
-                            }
+                    if (f.getType().isArray() || Collection.class.isAssignableFrom(f.getType()) ){
+                        //一对多的子表
 
-
+                        Class realClass = null;
+                        if(f.getType().isArray()){
+                            realClass = f.getType().getClass().getComponentType();
                         }else {
-                            //一对一的子表或者附表
-                            TableName childTableAnno = f.getType().getAnnotation(TableName.class);
-                            if(childTableAnno == null){
-                                throw EnumErrorMsg.code_error.toException();
-                            }
-                            String childTableName = childTableAnno.value();
-                            String childTableColumnName = TableReference.getChildTableColumnName(parentTableName , childTableName);
+                            realClass = GenericsHelper.getFieldGenericType(f);
+                        }
 
-                            QueryWrapper qw = new QueryWrapper();
-                            qw.setEntity(f.getType().newInstance());
-                            qw.eq(childTableColumnName , id);
-                            List list = this.getServices()[index].list(qw);
-                            if(list != null && !list.isEmpty()){
-                                f.setAccessible(true);
-                                f.set(t , list.get(0));
-                            }
+                        TableName childTableAnno = (TableName)realClass.getAnnotation(TableName.class);
+                        if(childTableAnno == null){
+                            throw EnumErrorMsg.code_error.toException();
+                        }
+                        String childTableName = childTableAnno.value();
+                        String childTableColumnName = gfa.childTableColumnName();
+
+                        QueryWrapper qw = new QueryWrapper();
+                        qw.setEntity(f.getType().newInstance());
+                        qw.eq(childTableColumnName , id);
+                        List list = this.getServices()[index].list(qw);
+
+                        f.setAccessible(true);
+                        if(f.getType().isArray()) {
+                            f.set(t, list.toArray());
+                        }else {
+                            f.set(t, list);
+                        }
+
+
+                    }else {
+                        //一对一的子表或者附表
+                        TableName childTableAnno = f.getType().getAnnotation(TableName.class);
+                        if(childTableAnno == null){
+                            throw EnumErrorMsg.code_error.toException();
+                        }
+                        String childTableName = childTableAnno.value();
+                        String childTableColumnName = gfa.childTableColumnName();
+
+                        QueryWrapper qw = new QueryWrapper();
+                        qw.setEntity(f.getType().newInstance());
+                        qw.eq(childTableColumnName , id);
+                        List list = this.getServices()[index].list(qw);
+                        if(list != null && !list.isEmpty()){
+                            f.setAccessible(true);
+                            f.set(t , list.get(0));
                         }
                     }
+
                     index ++ ;
                 }
 
@@ -546,7 +560,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
     @Override
     public Collection<T> listByIds(Collection<? extends Serializable> idList) {
 
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return this.getServices()[0].listByIds(idList);
         }else {
             return listByIds(idList, false);
@@ -561,7 +575,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
             return null;
         }
 
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return this.getServices()[0].listByIds(idList , lazy);
         }else {
             List<T> list = new ArrayList<T>();
@@ -582,7 +596,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
             return null;
         }
 
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return this.getServices()[0].listByFkIds(fkColumnName , fkIdList , lazy);
         }else {
 
@@ -602,7 +616,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
             return null;
         }
 
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return (List<T> )this.getServices()[0].listByMap(columnMap);
         }else {
 
@@ -618,7 +632,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
     public T getOne(Wrapper<T> queryWrapper, boolean throwEx) {
 
 
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return (T)this.getServices()[0].getOne(queryWrapper , throwEx);
         }else {
 
@@ -631,7 +645,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
 
     @Override
     public Map<String, Object> getMap(Wrapper<T> queryWrapper) {
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return this.getServices()[0].getMap(queryWrapper);
         }else {
             Map<String , Object> map = this.getServices()[0].getMap(queryWrapper);
@@ -647,7 +661,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
     @Override
     public List<T> list(Wrapper<T> queryWrapper) {
 
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return (List<T>)this.getServices()[0].list(queryWrapper );
         }else {
             List list = this.getServices()[0].list(queryWrapper );
@@ -659,7 +673,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
     @Override
     public IPage<T> page(IPage<T> page, Wrapper<T> queryWrapper) {
 
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return (IPage<T>)this.getServices()[0].page(page,queryWrapper );
         }else {
 
@@ -676,7 +690,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
     @Override
     public List<Map<String, Object>> listMaps(Wrapper<T> queryWrapper) {
 
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return this.getServices()[0].listMaps(queryWrapper );
         }else {
             return this.getServices()[0].list(queryWrapper );
@@ -691,7 +705,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
     @Override
     public IPage<Map<String, Object>> pageMaps(IPage<T> page, Wrapper<T> queryWrapper) {
 
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return this.getServices()[0].pageMaps(page,queryWrapper );
         }else {
             return this.getServices()[0].pageMaps(page,queryWrapper );
@@ -703,7 +717,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
     @Override
     public T selectCheck(T t){
 
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return (T)this.getServices()[0].selectCheck( t );
         }else {
             throw EnumErrorMsg.code_error.toException();
@@ -845,7 +859,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
      */
     @Override
     public QueryChainWrapper<T> query() {
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return this.getServices()[0].query( );
         }else {
             throw EnumErrorMsg.code_error.toException();
@@ -860,7 +874,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
     @Override
     public LambdaQueryChainWrapper<T> lambdaQuery() {
 
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return this.getServices()[0].lambdaQuery( );
         }else {
             throw EnumErrorMsg.code_error.toException();
@@ -877,7 +891,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
 
 
 
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return this.getServices()[0].update( );
         }else {
             throw EnumErrorMsg.code_error.toException();
@@ -893,7 +907,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
     public LambdaUpdateChainWrapper<T> lambdaUpdate() {
 
 
-        if(!isGroup(currentModelClass())){
+        if(!isGroup()){
             return this.getServices()[0].lambdaUpdate( );
         }else {
             throw EnumErrorMsg.code_error.toException();

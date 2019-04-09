@@ -2,13 +2,8 @@ package com.zz.bms.system.controller;
 
 
 import com.zz.bms.core.db.entity.ILoginUserEntity;
-import com.zz.bms.core.enums.EnumErrorMsg;
-import com.zz.bms.core.exceptions.BizException;
-import com.zz.bms.core.ui.TreeModel;
 import com.zz.bms.enums.EnumDepStatus;
-import com.zz.bms.enums.EnumUserStatus;
 import com.zz.bms.system.bo.TsDepBO;
-import com.zz.bms.system.bo.VsUserBO;
 import  com.zz.bms.system.query.impl.TsDepQueryWebImpl;
 
 import org.apache.commons.lang3.StringUtils;
@@ -22,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @RequestMapping("/system/dep")
 @Controller
-public class TsDepController extends ZzDefaultController<TsDepBO, String , TsDepQueryWebImpl> {
+public class TsDepController extends ZzDefaultSimpleController<TsDepBO, String , TsDepQueryWebImpl> {
 
 
 
@@ -36,11 +31,6 @@ public class TsDepController extends ZzDefaultController<TsDepBO, String , TsDep
 		}
 	}
 
-
-	@Override
-	protected TreeModel buildTreeModel(){
-		return new TreeModel().toTreeModel("pid" , "depName");
-	}
 
 
 

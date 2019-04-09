@@ -324,4 +324,49 @@ public class BaseCommonController<PK extends Serializable> extends BaseControlle
 
 
 
+
+
+    public void assertHasCreatePermission() {
+        permissionList.assertHasCreatePermission();
+    }
+
+    public void assertHasUpdatePermission() {
+        permissionList.assertHasUpdatePermission();
+    }
+
+    public void assertHasDeletePermission() {
+        permissionList.assertHasDeletePermission();
+    }
+
+    public void assertHasViewPermission() {
+        permissionList.assertHasViewPermission();
+    }
+
+
+    public void assertHasImportPermission() {
+        permissionList.assertHasImportPermission();
+    }
+
+    public void assertHasExportPermission() {
+        permissionList.assertHasExportPermission();
+    }
+
+
+    /**
+     * 即增删改中的任何一个即可
+     */
+    public void assertHasEditPermission() {
+        permissionList.assertHasEditPermission();
+    }
+
+    public void assertHasPermission(String permission) {
+        permissionList.assertHasPermission(permission);
+    }
+
+    public void assertHasPermission(String permission, String errorCode) {
+        permissionList.assertHasPermission(permission,errorCode);
+    }
+
+
+
 }

@@ -35,6 +35,7 @@ public abstract class BaseBusinessController<
 
     public final String defaultEditPageName = "editForm";
     public final String defaultAddPageName = "editForm";
+    public final String defaultAllPageName = "allPage";
     public final String defaultViewPageName = "viewForm";
     public final String defaultListPageName = "list";
     public final String defaultTreePageName = "tree";
@@ -273,12 +274,16 @@ public abstract class BaseBusinessController<
 
 
 
+    protected void processRwQuery(RwQuery query , RwModel m  , ILoginUserEntity<PK> sessionUserVO){
+
+    }
+
     /**
      * 处理查询参数
      * 查询参数如果需要特殊处理， 需要重载
      * @param query
      */
-    protected void processQuery(OnlyQuery query , QueryModel m  , ILoginUserEntity<PK> sessionUserVO){
+    protected void processOnlyQuery(OnlyQuery query , QueryModel m  , ILoginUserEntity<PK> sessionUserVO){
 
     }
 
@@ -330,6 +335,16 @@ public abstract class BaseBusinessController<
 
     }
 
+
+    /**
+     * 所有界面一些定制的操作
+     * 如有， 需要重载
+     * @param model
+     */
+    protected void customInfoByAllPage(RwModel m, ModelMap model) {
+
+    }
+
     /**
      * 修改界面一些定制的操作
      * 如有， 需要重载
@@ -359,6 +374,15 @@ public abstract class BaseBusinessController<
      * @return
      */
     protected String getAddPageName(){
+        return null;
+    }
+
+    /**
+     * 所有的界面
+     * 包括主表， 附表 + 子表
+     * @return
+     */
+    protected String getAllPageName(){
         return null;
     }
 

@@ -18,6 +18,7 @@ import com.zz.bms.enums.EnumTreeState;
 import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.base.java.ReflectionSuper;
 import com.zz.bms.util.configs.AppConfig;
+import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 import com.zz.bms.util.web.PaginationContext;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.ui.Model;
@@ -62,16 +63,16 @@ public abstract class   BaseGroupCURDController<
 
     /**
      * 处理各种路径
-     * @param model
+     * @param modelMap
      */
-    protected void processPath(ModelMap model) {
+    protected void processPath(ModelMap modelMap) {
         String prefix =  getViewPrefix();
         String tableid = prefix.replaceAll("/" , "");
-        model.put(Constant.TABLEID, tableid);
-        model.put(Constant.CURR_PARENT_URL, prefix);
+        modelMap.put(Constant.TABLEID, tableid);
+        modelMap.put(Constant.CURR_PARENT_URL, prefix);
         //todo 处理面包屑 菜单路径
         if(AppConfig.USE_CRUMB) {
-            model.put(Constant.BREADCRUMB, "");
+            modelMap.put(Constant.BREADCRUMB, "");
         }
     }
 
@@ -81,23 +82,26 @@ public abstract class   BaseGroupCURDController<
     /**
      * 到列表界面
      * @param m
-     * @param model
+     * @param modelMap
      * @param request
      * @param response
      * @return
      */
     @RequestMapping(value = "/toList" , method = RequestMethod.GET )
-    public String toList(QueryModel m, ModelMap model , HttpServletRequest request, HttpServletResponse response) {
+    public String toList(QueryModel m, ModelMap modelMap , HttpServletRequest request, HttpServletResponse response) {
 
-        this.permissionList.assertHasViewPermission();
+        this.assertHasViewPermission();
 
-        model.put("entity" ,m);
+        modelMap.put("entity" ,m);
 
         if (listAlsoSetCommonData) {
-            setCommonData(m,model);
+            setCommonData(m,modelMap);
         }
 
-        processPath(model);
+
+        processQueryString(modelMap, request);
+        
+        processPath(modelMap);
 
         String pageName = this.getListPageName();
         if(StringUtils.isEmpty(pageName)){
@@ -109,9 +113,9 @@ public abstract class   BaseGroupCURDController<
 
     @RequestMapping(value = "/list" , method={ RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
-    public Object list(QueryModel m , OnlyQuery query, Pages<QueryModel> pages , Model model , HttpServletRequest request, HttpServletResponse response) {
+    public Object list(QueryModel m , OnlyQuery query, Pages<QueryModel> pages , Model modelMap , HttpServletRequest request, HttpServletResponse response) {
 
-        this.permissionList.assertHasViewPermission();
+        this.assertHasViewPermission();
 
 
         if(pages.getPageNum() == 0) {
@@ -129,7 +133,7 @@ public abstract class   BaseGroupCURDController<
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
-        processQuery(query , m , sessionUserVO);
+        processOnlyQuery(query , m , sessionUserVO);
 
         Wrapper wrapper = buildQueryWrapper(query , m);
 
@@ -146,18 +150,20 @@ public abstract class   BaseGroupCURDController<
 
 
     @RequestMapping(value = "/toTree" , method={ RequestMethod.POST, RequestMethod.GET})
-    public String toTree(QueryModel m,  ModelMap model , HttpServletRequest request, HttpServletResponse response) {
+    public String toTree(QueryModel m,  ModelMap modelMap , HttpServletRequest request, HttpServletResponse response) {
 
-        this.permissionList.assertHasViewPermission();
+        this.assertHasViewPermission();
 
-        model.put("entity" ,m);
+        modelMap.put("entity" ,m);
 
         if (listAlsoSetCommonData) {
-            setCommonData(m,model);
+            setCommonData(m,modelMap);
         }
 
 
-        processPath(model);
+        processQueryString(modelMap, request);
+
+        processPath(modelMap);
 
         String pageName = this.getTreePageName();
         if(StringUtils.isEmpty(pageName)){
@@ -169,11 +175,9 @@ public abstract class   BaseGroupCURDController<
 
     @RequestMapping(value = "/tree" , method={ RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
-    public Object tree(QueryModel m , OnlyQuery query, Pages<QueryModel> pages , Model model , HttpServletRequest request, HttpServletResponse response) {
+    public Object tree(QueryModel m , OnlyQuery query, Pages<QueryModel> pages , Model modelMap , HttpServletRequest request, HttpServletResponse response) {
 
-        this.permissionList.assertHasViewPermission();
-
-        TreeModel treeModel = buildTreeModel();
+        this.assertHasViewPermission();
 
         PK id = m.getId();
         ReflectionSuper.setFieldValue(query , "id" , null);
@@ -188,23 +192,27 @@ public abstract class   BaseGroupCURDController<
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
-        processQuery(query , m , sessionUserVO);
+        processOnlyQuery(query , m , sessionUserVO);
 
 
         QueryWrapper<QueryModel> wrapper = (QueryWrapper<QueryModel>)buildQueryWrapper(query , m);
+        EntityAnnotation ea = m.getClass().getSuperclass().getAnnotation(EntityAnnotation.class);
+        if(ea == null || StringUtils.isEmpty(ea.parentColumnName())){
+            throw EnumErrorMsg.code_error.toException();
+        }
 
 
         if(id == null){
             //增加查询条件，用括号包住
             wrapper.nested((qw)->{
-                qw.eq(StringFormatKit.toUnderlineName((String)treeModel.get(TreeModel.PID)) , "" );
+                qw.eq( ea.parentColumnName() , "" );
                 qw.or();
-                qw.isNull(StringFormatKit.toUnderlineName((String)treeModel.get(TreeModel.PID)));
+                qw.isNull(ea.parentColumnName());
                 return qw;
             });
 
         }else {
-            wrapper.eq(StringFormatKit.toUnderlineName((String)treeModel.get(TreeModel.PID)) , id );
+            wrapper.eq(ea.parentColumnName() , id );
         }
 
 
@@ -220,7 +228,7 @@ public abstract class   BaseGroupCURDController<
         if(list != null && !list.isEmpty()) {
             for (QueryModel temp : list){
                 QueryWrapper<QueryModel> queryWrapper = new QueryWrapper<QueryModel>();
-                queryWrapper.eq(StringFormatKit.toUnderlineName((String)treeModel.get(TreeModel.PID)) , temp.getId());
+                queryWrapper.eq(ea.parentColumnName() , temp.getId());
                 int count = this.baseQueryService.count(queryWrapper);
                 if(count == 0){
                     temp.setState(EnumTreeState.OPEN.getTheValue());
@@ -253,14 +261,14 @@ public abstract class   BaseGroupCURDController<
 
     /**
      * 查看界面
-     * @param model
+     * @param modelMap
      * @param id
      * @return
      */
     @RequestMapping(value = "/{id}/view", method = RequestMethod.GET)
-    public String showViewForm(ModelMap model, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
+    public String showViewForm(ModelMap modelMap, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
 
-        this.permissionList.assertHasViewPermission();
+        this.assertHasViewPermission();
 
 
         QueryWrapper<QueryModel> wrapper = new QueryWrapper<QueryModel>();
@@ -270,10 +278,10 @@ public abstract class   BaseGroupCURDController<
             throw EnumErrorMsg.no_auth.toException();
         }
 
-        setCommonData(m,model);
-        customInfoByViewForm(m , model);
-        model.addAttribute("m", m);
-        model.addAttribute("entity", m);
+        setCommonData(m,modelMap);
+        customInfoByViewForm(m , modelMap);
+        modelMap.addAttribute("m", m);
+        modelMap.addAttribute("entity", m);
 
         String pageName = this.getViewPageName();
         if(StringUtils.isEmpty(pageName)){
@@ -286,22 +294,22 @@ public abstract class   BaseGroupCURDController<
     /**
      * 显示创建页面
      * @param m
-     * @param model
+     * @param modelMap
      * @param request
      * @param response
      * @return
      */
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String showCreateForm(RwModel m ,ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+    public String showCreateForm(RwModel m ,ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
 
-        this.permissionList.assertHasCreatePermission();
+        this.assertHasCreatePermission();
 
-        setCommonData(m,model);
+        setCommonData(m,modelMap);
 
         setInit(m);
-        customInfoByCreateForm(m , model);
-        model.addAttribute("m",  m);
-        model.addAttribute("entity", m);
+        customInfoByCreateForm(m , modelMap);
+        modelMap.addAttribute("m",  m);
+        modelMap.addAttribute("entity", m);
 
         String pageName = this.getAddPageName();
         if(StringUtils.isEmpty(pageName)){
@@ -313,16 +321,16 @@ public abstract class   BaseGroupCURDController<
 
     /**
      * 显示更新页面
-     * @param model
+     * @param modelMap
      * @param id
      * @param request
      * @param response
      * @return
      */
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
-    public String showUpdateForm(ModelMap model, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
+    public String showUpdateForm(ModelMap modelMap, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
 
-        this.permissionList.assertHasUpdatePermission();
+        this.assertHasUpdatePermission();
 
 
         QueryWrapper<RwModel> wrapper = new QueryWrapper<>();
@@ -332,10 +340,10 @@ public abstract class   BaseGroupCURDController<
             throw EnumErrorMsg.no_auth.toException();
         }
 
-        setCommonData(m,model);
-        customInfoByUpdateForm(m , model);
-        model.addAttribute("m", m);
-        model.addAttribute("entity", m);
+        setCommonData(m,modelMap);
+        customInfoByUpdateForm(m , modelMap);
+        modelMap.addAttribute("m", m);
+        modelMap.addAttribute("entity", m);
 
         String pageName = this.getEditPageName();
         if(StringUtils.isEmpty(pageName)){
@@ -345,23 +353,103 @@ public abstract class   BaseGroupCURDController<
     }
 
 
+
+    /**
+     * 显示更新或者新增页面
+     * @param modelMap
+     * @param m
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/addOrUpdate", method = RequestMethod.GET)
+    public String showAddOrUpdateForm(ModelMap modelMap,RwModel m, RwQuery q, HttpServletRequest request, HttpServletResponse response) {
+
+        this.assertHasEditPermission();
+
+
+        QueryWrapper<RwModel> wrapper = q.buildWrapper();
+        this.buildRwWrapper(q, m) ;
+        List<RwModel> list = baseRwService.list(wrapper);
+        if(list != null && list.size() > 1){
+            throw EnumErrorMsg.code_error.toException();
+        }
+
+        boolean isInsert = true;
+        RwModel entity = m;
+        if(list != null && list.size() == 1){
+            entity = list.get(0);
+            isInsert = false;
+        }
+
+        setCommonData(entity,modelMap);
+
+        if(isInsert) {
+            customInfoByCreateForm(entity, modelMap);
+        }else{
+            customInfoByUpdateForm(entity, modelMap);
+        }
+
+        entity = this.baseRwService.processResult(entity);
+
+        modelMap.addAttribute("m", entity);
+        modelMap.addAttribute("entity", entity);
+
+        processQueryString(modelMap, request);
+
+        String pageName = null;
+        if(isInsert) {
+            pageName = this.getAddPageName();
+            if (StringUtils.isEmpty(pageName)) {
+                pageName = defaultAddPageName;
+            }
+        }else {
+            pageName = this.getEditPageName();
+            if (StringUtils.isEmpty(pageName)) {
+                pageName = defaultEditPageName;
+            }
+        }
+        return viewName(pageName);
+    }
+
+
+
+    @RequestMapping(value = "/{id}/all", method = RequestMethod.GET)
+    public String showAllPage(ModelMap modelMap, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
+        RwModel m = baseRwService.getById(id);
+
+
+        customInfoByAllPage(m , modelMap);
+
+        modelMap.addAttribute("m",  m);
+        modelMap.addAttribute("entity", m);
+
+        String pageName = this.getAllPageName();
+        if(StringUtils.isEmpty(pageName)){
+            pageName = defaultAllPageName;
+        }
+        return viewName(pageName);
+    }
+
+
+
     /**
      * 新增操作
      * @param m
-     * @param model
+     * @param modelMap
      * @param request
      * @param response
      * @return
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public Object create( RwModel m, ModelMap model , HttpServletRequest request, HttpServletResponse response) {
+    public Object create( RwModel m, ModelMap modelMap , HttpServletRequest request, HttpServletResponse response) {
 
-        this.permissionList.assertHasCreatePermission();
+        this.assertHasCreatePermission();
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
-        this.gatherCreateInformation( m,  model , sessionUserVO, request,  response);
+        this.gatherCreateInformation( m,  modelMap , sessionUserVO, request,  response);
 
         //插入信息
         insertInfo(m, sessionUserVO);
@@ -426,14 +514,14 @@ public abstract class   BaseGroupCURDController<
 
     @RequestMapping(value = "/{id}/update", method = {RequestMethod.POST , RequestMethod.PUT})
     @ResponseBody
-    public Object update(@PathVariable("id") PK id, ModelMap model, RwModel m , HttpServletRequest request, HttpServletResponse response) {
+    public Object update(@PathVariable("id") PK id, ModelMap modelMap, RwModel m , HttpServletRequest request, HttpServletResponse response) {
 
-        this.permissionList.assertHasUpdatePermission();
+        this.assertHasUpdatePermission();
 
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
-        this.gatherUpdateInformation( m,  model , sessionUserVO, request,  response);
+        this.gatherUpdateInformation( m,  modelMap , sessionUserVO, request,  response);
 
         QueryWrapper<RwModel> wrapper = new QueryWrapper<RwModel>();
         wrapper.eq("id" , id);
@@ -510,7 +598,7 @@ public abstract class   BaseGroupCURDController<
     public Object delete(         @PathVariable("id") PK id , HttpServletRequest request, HttpServletResponse response) {
 
 
-        this.permissionList.assertHasDeletePermission();
+        this.assertHasDeletePermission();
 
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
@@ -557,7 +645,7 @@ public abstract class   BaseGroupCURDController<
     public Object deleteInBatch(@RequestParam(value = "ids", required = false) String ids, HttpServletRequest request, HttpServletResponse response) {
 
 
-        this.permissionList.assertHasDeletePermission();
+        this.assertHasDeletePermission();
 
         if(ids == null || ids.isEmpty()){
             throw EnumErrorMsg.not_select_todelete.toException();

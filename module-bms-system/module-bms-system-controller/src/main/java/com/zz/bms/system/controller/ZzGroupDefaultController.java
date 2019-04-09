@@ -17,8 +17,6 @@ import java.util.Map;
  * 其它项目可以按照需求， 重新设计一个base controller
  */
 public abstract class ZzGroupDefaultController<
-
-
         RwModel extends BaseEntity<PK>,
         QueryModel extends RwModel,
         PK extends Serializable,

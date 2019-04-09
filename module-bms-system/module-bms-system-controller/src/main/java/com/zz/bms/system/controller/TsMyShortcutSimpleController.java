@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RequestMapping("/system/myshortcut")
 @Controller
-public class TsMyShortcutController extends ZzDefaultController<TsMyShortcutBO, String , TsMyShortcutQueryWebImpl> {
+public class TsMyShortcutSimpleController extends ZzDefaultSimpleController<TsMyShortcutBO, String , TsMyShortcutQueryWebImpl> {
 
     @Autowired
     private TsMyShortcutService tsMyShortcutService;

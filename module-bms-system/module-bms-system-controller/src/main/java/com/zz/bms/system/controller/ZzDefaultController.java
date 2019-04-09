@@ -10,18 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.io.Serializable;
 import java.util.Map;
 
-
-/**
- * zz 专用 base controller
- * 其它项目可以按照需求， 重新设计一个base controller
- *
- *
- * @param <M>
- * @param <PK>
- * @param <Q>
- */
-public abstract class ZzDefaultController<M extends BaseEntity<PK>, PK extends Serializable , Q extends Query >
-            extends BaseExcelController<M , PK , Q> {
+public abstract class ZzDefaultController<
+        RwModel extends BaseEntity<PK>,
+        QueryModel extends RwModel,
+        PK extends Serializable,
+        RwQuery extends Query,
+        OnlyQuery extends RwQuery
+        >
+        extends BaseExcelController<RwModel,QueryModel,PK,RwQuery,OnlyQuery> {
 
 
     @Autowired

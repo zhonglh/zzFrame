@@ -1,15 +1,19 @@
 package com.zz.bms.system.bo;
 
+import com.zz.bms.util.configs.annotaions.GroupFieldAnnotation;
+
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * 角色数据传输对象，对应界面中的所有元素
- * 注意： 对象属性需要和 TsRoleGroupServiceImpl.getServices 对应
+     * 角色数据传输对象，对应界面中的所有元素
+     * 注意： 对象属性需要和 TsRoleGroupServiceImpl.getServices 对应
  * @author zhonglh
  */
 public class TsRoleGroupBO extends TsRoleBO implements Serializable {
 
+
+    @GroupFieldAnnotation(childTableColumnName = "role_id" , filedName = "许可")
     List<TsRolePermitBO> rolePermitBOList;
 
 

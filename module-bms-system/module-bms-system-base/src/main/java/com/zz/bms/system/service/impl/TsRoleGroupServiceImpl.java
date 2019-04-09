@@ -1,11 +1,8 @@
 package com.zz.bms.system.service.impl;
 
-import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.BaseService;
 import com.zz.bms.core.db.base.service.impl.BaseGroupServiceImpl;
-import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 import com.zz.bms.system.bo.TsRoleGroupBO;
-import com.zz.bms.system.bo.TsRolePermitBO;
 import com.zz.bms.system.service.TsRoleGroupService;
 import com.zz.bms.system.service.TsRolePermitService;
 import com.zz.bms.system.service.TsRoleService;

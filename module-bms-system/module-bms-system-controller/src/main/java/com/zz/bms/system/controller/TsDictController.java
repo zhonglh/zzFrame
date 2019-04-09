@@ -3,9 +3,7 @@ package com.zz.bms.system.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 
-import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.enums.EnumYesNo;
-import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.system.bo.TsDictBO;
 import com.zz.bms.system.bo.TsDictTypeBO;
 import  com.zz.bms.system.query.impl.TsDictQueryWebImpl;
@@ -29,7 +27,7 @@ import java.util.List;
  */
 @RequestMapping("/system/dict")
 @Controller
-public class TsDictController extends ZzDefaultController<TsDictBO, String , TsDictQueryWebImpl> {
+public class TsDictController extends ZzDefaultSimpleController<TsDictBO, String , TsDictQueryWebImpl> {
 
 	@Autowired
 	private TsDictTypeService tsDictTypeService;

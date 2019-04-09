@@ -20,10 +20,11 @@ import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.ui.Pages;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.util.base.java.GenericsHelper;
+import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 import com.zz.bms.util.web.PaginationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AnnotationUtils;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
@@ -41,12 +42,19 @@ import java.util.List;
  * 处理数据库基础的增加 修改 读取 删除 功能
  * @author Administrator
  */
-public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Serializable  , Q extends Query > extends BaseBusinessController<M,M,PK,Q,Q> {
+public abstract class BaseCURDController<
+        RwModel extends BaseEntity<PK>,
+        QueryModel extends RwModel,
+        PK extends Serializable,
+        RwQuery extends Query,
+        OnlyQuery extends RwQuery
+        >
+        extends BaseBusinessController<RwModel,QueryModel,PK,RwQuery,OnlyQuery>
+
+{
 
 
 
-    @Autowired
-    protected BaseService<M, PK> baseService;
 
 
     protected String viewPrefix;
@@ -61,16 +69,16 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     /**
      * 处理各种路径
-     * @param model
+     * @param modelMap
      */
-    protected void processPath(ModelMap model) {
+    protected void processPath(ModelMap modelMap) {
         String prefix =  getViewPrefix();
         String tableid = prefix.replaceAll("/" , "");
-        model.put(Constant.TABLEID, tableid);
-        model.put(Constant.CURR_PARENT_URL, prefix);
+        modelMap.put(Constant.TABLEID, tableid);
+        modelMap.put(Constant.CURR_PARENT_URL, prefix);
         //todo 处理面包屑 菜单路径
         if(AppConfig.USE_CRUMB) {
-            model.put(Constant.BREADCRUMB, "");
+            modelMap.put(Constant.BREADCRUMB, "");
         }
     }
 
@@ -80,24 +88,26 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     /**
      * 到列表界面
      * @param m
-     * @param model
+     * @param modelMap
      * @param request
      * @param response
      * @return
      */
     @RequestMapping(value = "/toList" , method = RequestMethod.GET )
-    public String toList(M m,  ModelMap model , HttpServletRequest request, HttpServletResponse response) {
+    public String toList(QueryModel m,  ModelMap modelMap , HttpServletRequest request, HttpServletResponse response) {
 
-        this.permissionList.assertHasViewPermission();
+        this.assertHasViewPermission();
 
-        model.put("entity" ,m);
+        modelMap.put("entity" ,m);
 
         if (listAlsoSetCommonData) {
-            setCommonData(m,model);
+            setCommonData(m,modelMap);
         }
 
+        processQueryString(modelMap,request);
 
-        processPath(model);
+
+        processPath(modelMap);
 
         String pageName = this.getListPageName();
         if(StringUtils.isEmpty(pageName)){
@@ -109,9 +119,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     @RequestMapping(value = "/list" , method={ RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
-    public Object list(M m , Q query, Pages<M> pages , Model model , HttpServletRequest request, HttpServletResponse response) {
+    public Object list(QueryModel m , OnlyQuery query, Pages<QueryModel> pages , ModelMap modelMap , HttpServletRequest request, HttpServletResponse response) {
 
-        this.permissionList.assertHasViewPermission();
+        this.assertHasViewPermission();
 
 
         if(pages.getPageNum() == 0) {
@@ -124,16 +134,16 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         processPages(pages , request);
 
-        Page<M> page = new Page<M>(pages.getPageNum(), pages.getPageSize());
+        Page<QueryModel> page = new Page<QueryModel>(pages.getPageNum(), pages.getPageSize());
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
-        processQuery(query , m , sessionUserVO);
+        processOnlyQuery(query , m , sessionUserVO);
 
         Wrapper wrapper = buildQueryWrapper(query , m);
 
 
 
-        page = (Page<M>)baseService.page(page , wrapper );
+        page = (Page<QueryModel>)baseQueryService.page(page , wrapper );
 
         processResult(page.getRecords());
 
@@ -146,18 +156,21 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
     @RequestMapping(value = "/toTree" , method={ RequestMethod.POST, RequestMethod.GET})
-    public String toTree(M m,  ModelMap model , HttpServletRequest request, HttpServletResponse response) {
+    public String toTree(QueryModel m,  ModelMap modelMap , HttpServletRequest request, HttpServletResponse response) {
 
-        this.permissionList.assertHasViewPermission();
+        this.assertHasViewPermission();
 
-        model.put("entity" ,m);
+        modelMap.put("entity" ,m);
 
         if (listAlsoSetCommonData) {
-            setCommonData(m,model);
+            setCommonData(m,modelMap);
         }
 
 
-        processPath(model);
+        processQueryString(modelMap,request);
+
+
+        processPath(modelMap);
 
         String pageName = this.getTreePageName();
         if(StringUtils.isEmpty(pageName)){
@@ -169,11 +182,10 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     @RequestMapping(value = "/tree" , method={ RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
-    public Object tree(M m , Q query, Pages<M> pages , Model model , HttpServletRequest request, HttpServletResponse response) {
+    public Object tree(QueryModel m , OnlyQuery query, Pages<QueryModel> pages , ModelMap modelMap , HttpServletRequest request, HttpServletResponse response) {
 
-        this.permissionList.assertHasViewPermission();
+        this.assertHasViewPermission();
 
-        TreeModel treeModel = buildTreeModel();
 
         PK id = m.getId();
         ReflectionSuper.setFieldValue(query , "id" , null);
@@ -183,43 +195,48 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         processPages(pages , request);
 
-        Page<M> page = new Page<M>(pages.getPageNum(), pages.getPageSize());
+        Page<QueryModel> page = new Page<QueryModel>(pages.getPageNum(), pages.getPageSize());
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
-        processQuery(query , m , sessionUserVO);
+        processOnlyQuery(query , m , sessionUserVO);
 
 
-        QueryWrapper<M> wrapper = (QueryWrapper<M>)buildRwWrapper(query , m);
+        QueryWrapper<QueryModel> wrapper = (QueryWrapper<QueryModel>)buildRwWrapper(query , m);
+
+        EntityAnnotation ea = m.getClass().getAnnotation(EntityAnnotation.class);
+        if(ea == null || StringUtils.isEmpty(ea.parentColumnName())){
+            throw EnumErrorMsg.code_error.toException();
+        }
 
 
         if(id == null){
             //增加查询条件，用括号包住
             wrapper.nested((qw)->{
-                qw.eq(StringFormatKit.toUnderlineName((String)treeModel.get(TreeModel.PID)) , "" );
+                qw.eq(ea.parentColumnName() , "" );
                 qw.or();
-                qw.isNull(StringFormatKit.toUnderlineName((String)treeModel.get(TreeModel.PID)));
+                qw.isNull(ea.parentColumnName());
                 return qw;
             });
 
         }else {
-            wrapper.eq(StringFormatKit.toUnderlineName((String)treeModel.get(TreeModel.PID)) , id );
+            wrapper.eq(ea.parentColumnName() , id );
         }
 
 
-        page = (Page<M>)baseService.page(page , wrapper );
+        page = (Page<QueryModel>)baseQueryService.page(page , wrapper );
 
         processResult(page.getRecords());
 
 
         List footer = buildFooter(page);
 
-        List<M> list =  page.getRecords() ;
+        List<QueryModel> list =  page.getRecords() ;
 
         if(list != null && !list.isEmpty()) {
-            for (M temp : list){
-                QueryWrapper<M> queryWrapper = new QueryWrapper<>();
-                queryWrapper.eq(StringFormatKit.toUnderlineName((String)treeModel.get(TreeModel.PID)) , temp.getId());
-                int count = this.baseService.count(queryWrapper);
+            for (QueryModel temp : list){
+                QueryWrapper<QueryModel> queryWrapper = new QueryWrapper<QueryModel>();
+                queryWrapper.eq( ea.parentColumnName()  , temp.getId());
+                int count = this.baseQueryService.count(queryWrapper);
                 if(count == 0){
                     temp.setState(EnumTreeState.OPEN.getTheValue());
                 }
@@ -230,20 +247,14 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     }
 
-    /**
-     * 设置树的配置
-     * @return
-     */
-    protected TreeModel buildTreeModel(){
-        return null;
-    }
+
 
     /**
      * 设置树的页脚
      * @param page
      * @return
      */
-    protected List buildFooter(Page<M> page){
+    protected List buildFooter(Page<QueryModel> page){
         return null;
     }
 
@@ -251,27 +262,27 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     /**
      * 查看界面
-     * @param model
+     * @param modelMap
      * @param id
      * @return
      */
     @RequestMapping(value = "/{id}/view", method = RequestMethod.GET)
-    public String showViewForm(ModelMap model, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
+    public String showViewForm(ModelMap modelMap, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
 
-        this.permissionList.assertHasViewPermission();
+        this.assertHasViewPermission();
 
 
-        QueryWrapper<M> wrapper = new QueryWrapper<M>();
+        QueryWrapper<RwModel> wrapper = new QueryWrapper<RwModel>();
         wrapper.eq("id" , id);
-        M m = baseService.getOne(wrapper);
+        RwModel m = baseRwService.getOne(wrapper);
         if(m == null){
             throw EnumErrorMsg.no_auth.toException();
         }
 
-        setCommonData(m,model);
-        customInfoByViewForm(m , model);
-        model.addAttribute("m", m);
-        model.addAttribute("entity", m);
+        setCommonData(m,modelMap);
+        customInfoByViewForm(m , modelMap);
+        modelMap.addAttribute("m", m);
+        modelMap.addAttribute("entity", m);
 
         String pageName = this.getViewPageName();
         if(StringUtils.isEmpty(pageName)){
@@ -284,22 +295,22 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     /**
      * 显示创建页面
      * @param m
-     * @param model
+     * @param modelMap
      * @param request
      * @param response
      * @return
      */
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String showCreateForm(M m ,ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+    public String showCreateForm(RwModel m ,ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
 
-        this.permissionList.assertHasCreatePermission();
+        this.assertHasCreatePermission();
 
-        setCommonData(m,model);
+        setCommonData(m,modelMap);
 
         setInit(m);
-        customInfoByCreateForm(m , model);
-        model.addAttribute("m",  m);
-        model.addAttribute("entity", m);
+        customInfoByCreateForm(m , modelMap);
+        modelMap.addAttribute("m",  m);
+        modelMap.addAttribute("entity", m);
 
         String pageName = this.getAddPageName();
         if(StringUtils.isEmpty(pageName)){
@@ -311,29 +322,29 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     /**
      * 显示更新页面
-     * @param model
+     * @param modelMap
      * @param id
      * @param request
      * @param response
      * @return
      */
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
-    public String showUpdateForm(ModelMap model, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
+    public String showUpdateForm(ModelMap modelMap, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
 
-        this.permissionList.assertHasUpdatePermission();
+        this.assertHasUpdatePermission();
 
 
-        QueryWrapper<M> wrapper = new QueryWrapper<>();
+        QueryWrapper<RwModel> wrapper = new QueryWrapper<RwModel>();
         wrapper.eq("id" , id);
-        M m = baseService.getOne(wrapper);
+        RwModel m = baseRwService.getOne(wrapper);
         if(m == null){
             throw EnumErrorMsg.no_auth.toException();
         }
 
-        setCommonData(m,model);
-        customInfoByUpdateForm(m , model);
-        model.addAttribute("m", m);
-        model.addAttribute("entity", m);
+        setCommonData(m,modelMap);
+        customInfoByUpdateForm(m , modelMap);
+        modelMap.addAttribute("m", m);
+        modelMap.addAttribute("entity", m);
 
         String pageName = this.getEditPageName();
         if(StringUtils.isEmpty(pageName)){
@@ -344,23 +355,101 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
     /**
+     * 显示更新或者新增页面
+     * @param modelMap
+     * @param m
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/addOrUpdate", method = RequestMethod.GET)
+    public String showAddOrUpdateForm(ModelMap modelMap,RwModel m, RwQuery q, HttpServletRequest request, HttpServletResponse response) {
+
+        this.assertHasEditPermission();
+
+
+        QueryWrapper<RwModel> wrapper = q.buildWrapper();
+        this.buildRwWrapper(q, m) ;
+        List<RwModel> list = baseRwService.list(wrapper);
+        if(list != null && list.size() > 1){
+            throw EnumErrorMsg.code_error.toException();
+        }
+
+        boolean isInsert = true;
+        RwModel entity = m;
+        if(list != null && list.size() == 1){
+            entity = list.get(0);
+            isInsert = false;
+        }
+
+        setCommonData(entity,modelMap);
+
+        if(isInsert) {
+            customInfoByCreateForm(entity, modelMap);
+        }else{
+            customInfoByUpdateForm(entity, modelMap);
+        }
+
+        entity = this.baseRwService.processResult(entity);
+
+        modelMap.addAttribute("m", entity);
+        modelMap.addAttribute("entity", entity);
+
+        processQueryString(modelMap, request);
+
+        String pageName = null;
+        if(isInsert) {
+            pageName = this.getAddPageName();
+            if (StringUtils.isEmpty(pageName)) {
+                pageName = defaultAddPageName;
+            }
+        }else {
+            pageName = this.getEditPageName();
+            if (StringUtils.isEmpty(pageName)) {
+                pageName = defaultEditPageName;
+            }
+        }
+        return viewName(pageName);
+    }
+
+
+
+    @RequestMapping(value = "/{id}/all", method = RequestMethod.GET)
+    public String showAllPage(ModelMap modelMap, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
+        RwModel m = baseRwService.getById(id , false);
+
+
+        customInfoByAllPage(m , modelMap);
+
+        modelMap.addAttribute("m",  m);
+        modelMap.addAttribute("entity", m);
+
+        String pageName = this.getAllPageName();
+        if(StringUtils.isEmpty(pageName)){
+            pageName = defaultAllPageName;
+        }
+        return viewName(pageName);
+    }
+
+
+    /**
      * 新增操作
      * @param m
-     * @param model
+     * @param modelMap
      * @param request
      * @param response
      * @return
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public Object create( M m, ModelMap model , HttpServletRequest request, HttpServletResponse response) {
+    public Object create( RwModel m, ModelMap modelMap , HttpServletRequest request, HttpServletResponse response) {
 
-        this.permissionList.assertHasCreatePermission();
+        this.assertHasCreatePermission();
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
 
-        this.gatherCreateInformation( m,  model , sessionUserVO, request,  response);
+        this.gatherCreateInformation( m,  modelMap , sessionUserVO, request,  response);
 
         //插入信息
         insertInfo(m, sessionUserVO);
@@ -373,11 +462,11 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
     @Override
-    protected void insertInfo(M m, ILoginUserEntity<PK> sessionUserVO) {
+    protected void insertInfo(RwModel m, ILoginUserEntity<PK> sessionUserVO) {
         insertInfo(m , sessionUserVO , true);
     }
 
-    protected void insertInfo(M m, ILoginUserEntity<PK> sessionUserVO , boolean processBO) {
+    protected void insertInfo(RwModel m, ILoginUserEntity<PK> sessionUserVO , boolean processBO) {
         //设置创建附加信息，如创建时间， 创建人
         this.setInsertInfo(m, sessionUserVO);
 
@@ -405,9 +494,9 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
             this.checkCanInsert(m,sessionUserVO);
 
             //检查重复数据
-            this.baseService.isExist(m);
+            this.baseRwService.isExist(m);
 
-            success = baseService.save(m);
+            success = baseRwService.save(m);
 
         }catch(RuntimeException e){
             logger.error(e.getMessage() , e);
@@ -425,19 +514,19 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
     @RequestMapping(value = "/{id}/update", method = {RequestMethod.POST , RequestMethod.PUT})
     @ResponseBody
-    public Object update(@PathVariable("id") PK id, ModelMap model, M m , HttpServletRequest request, HttpServletResponse response) {
+    public Object update(@PathVariable("id") PK id, ModelMap modelMap, RwModel m , HttpServletRequest request, HttpServletResponse response) {
 
         //检查功能权限
-        this.permissionList.assertHasUpdatePermission();
+        this.assertHasUpdatePermission();
 
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
-        this.gatherUpdateInformation( m,  model , sessionUserVO, request,  response);
+        this.gatherUpdateInformation( m,  modelMap , sessionUserVO, request,  response);
 
-        QueryWrapper<M> wrapper = new QueryWrapper<>();
+        QueryWrapper<RwModel> wrapper = new QueryWrapper<>();
         wrapper.eq("id" , id);
-        M temp = baseService.getOne(wrapper);
+        RwModel temp = baseRwService.getOne(wrapper);
         if(temp == null){
             throw EnumErrorMsg.no_auth.toException();
         }
@@ -472,12 +561,12 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
 
             //检查重复数据
-            this.baseService.isExist(m);
+            this.baseRwService.isExist(m);
 
             //检查业务上是否允许修改
             this.checkCanUpdate(m,sessionUserVO);
 
-            success = baseService.updateById(m);
+            success = baseRwService.updateById(m);
 
         }catch(RuntimeException e){
             logger.error(e.getMessage() , e);
@@ -498,6 +587,64 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     }
 
 
+    /**
+     * 显示更新或者新增页面
+     * @param modelMap
+     * @param m
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/addOrUpdate", method = {RequestMethod.POST , RequestMethod.PUT})
+    public String addOrUpdate(ModelMap modelMap,RwModel m, RwQuery q, HttpServletRequest request, HttpServletResponse response) {
+
+        this.assertHasEditPermission();
+
+
+        QueryWrapper<RwModel> wrapper = q.buildWrapper();
+        this.buildRwWrapper(q, m) ;
+        List<RwModel> list = baseRwService.list(wrapper);
+        if(list != null && list.size() > 1){
+            throw EnumErrorMsg.code_error.toException();
+        }
+
+        boolean isInsert = true;
+        RwModel entity = m;
+        if(list != null && list.size() == 1){
+            entity = list.get(0);
+            isInsert = false;
+        }
+
+        setCommonData(entity,modelMap);
+
+        if(isInsert) {
+            customInfoByCreateForm(entity, modelMap);
+        }else{
+            customInfoByUpdateForm(entity, modelMap);
+        }
+
+        entity = this.baseRwService.processResult(entity);
+
+        modelMap.addAttribute("m", entity);
+        modelMap.addAttribute("entity", entity);
+
+        processQueryString(modelMap, request);
+
+        String pageName = null;
+        if(isInsert) {
+            pageName = this.getAddPageName();
+            if (StringUtils.isEmpty(pageName)) {
+                pageName = defaultAddPageName;
+            }
+        }else {
+            pageName = this.getEditPageName();
+            if (StringUtils.isEmpty(pageName)) {
+                pageName = defaultEditPageName;
+            }
+        }
+        return viewName(pageName);
+    }
+
 
 
 
@@ -513,25 +660,25 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     public Object delete(         @PathVariable("id") PK id , HttpServletRequest request, HttpServletResponse response) {
 
 
-        this.permissionList.assertHasDeletePermission();
+        this.assertHasDeletePermission();
 
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
-        QueryWrapper<M> wrapper = new QueryWrapper<>();
+        QueryWrapper<RwModel> wrapper = new QueryWrapper<>();
         wrapper.eq("id" , id);
         setCustomInfoByDelete(wrapper , sessionUserVO);
-        M m = baseService.getOne(wrapper);
+        RwModel m = baseRwService.getOne(wrapper);
         if(m == null){
             throw EnumErrorMsg.no_auth.toException();
         }
 
-        baseService.specialHandler(m);
+        baseRwService.specialHandler(m);
 
         boolean success = false;
         try {
             checkCanDelete(m, sessionUserVO);
-            success = baseService.deleteById(m);
+            success = baseRwService.deleteById(m);
         }catch(RuntimeException e){
             logger.error(e.getMessage() , e);
             throw e;
@@ -559,7 +706,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
     @ResponseBody
     public Object deleteInBatch(@RequestParam(value = "ids", required = false) String ids, HttpServletRequest request, HttpServletResponse response) {
 
-        this.permissionList.assertHasDeletePermission();
+        this.assertHasDeletePermission();
 
         if(ids == null || ids.isEmpty()){
             throw EnumErrorMsg.not_select_todelete.toException();
@@ -568,7 +715,7 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
 
-        QueryWrapper<M> wrapper = new QueryWrapper<>();
+        QueryWrapper<RwModel> wrapper = new QueryWrapper<>();
         String idList[] = ids.split( EnumSymbol.COMMA.getCode() );
         wrapper.nested((qw)-> {
             int index = 0;
@@ -584,16 +731,16 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
 
         setCustomInfoByDelete(wrapper , sessionUserVO);
 
-        List<M> list = baseService.list(wrapper);
+        List<RwModel> list = baseRwService.list(wrapper);
 
         if(list == null && list.isEmpty()){
             throw EnumErrorMsg.no_auth.toException();
         }
 
 
-        List<M> deleteList = new ArrayList<M>();
+        List<RwModel> deleteList = new ArrayList<RwModel>();
 
-        for(M m : list){
+        for(RwModel m : list){
             try{
                 this.checkCanDelete(m , sessionUserVO);
                 deleteList.add(m);
@@ -602,15 +749,15 @@ public abstract class BaseCURDController<M extends BaseEntity<PK>, PK extends Se
             }
         }
 
-        for(M m : deleteList){
-            baseService.specialHandler(m);
+        for(RwModel m : deleteList){
+            baseRwService.specialHandler(m);
         }
 
 
         boolean success = false;
         try {
             if(deleteList != null && !deleteList.isEmpty()) {
-                success = baseService.deletesByIds(deleteList);
+                success = baseRwService.deletesByIds(deleteList);
             }
         }catch(RuntimeException e){
             logger.error(e.getMessage() , e);
