@@ -14,6 +14,10 @@
 
          	<result column="permit_name" property="permitName"/>
 
+         	<result column="menu_name" property="menuName"/>
+
+         	<result column="menu_code" property="menuCode"/>
+
 	</resultMap>
 
 
@@ -26,6 +30,8 @@
 					<if test="permitId != null and permitId != ''"> AND T.permit_id = #{permitId} </if>
 					<if test="permitCode != null and permitCode != ''"> AND T.permit_code = #{permitCode} </if>
 					<if test="permitName != null and permitName != ''"> AND T.permit_name = #{permitName} </if>
+					<if test="menuName != null and menuName != ''"> AND T.menu_name = #{menuName} </if>
+					<if test="menuCode != null and menuCode != ''"> AND T.menu_code = #{menuCode} </if>
 
         </where>
     </sql>

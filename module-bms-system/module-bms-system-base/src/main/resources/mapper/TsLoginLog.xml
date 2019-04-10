@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.zz.bms.system.dao.TsOperationlogDAO">
+<mapper namespace="com.zz.bms.system.dao.TsLoginLogDAO">
  	<!-- 映射配置 -->
-	<resultMap id="TsOperationlogResultMap" type="com.zz.bms.system.bo.TsOperationlogBO" >
+	<resultMap id="TsLoginLogResultMap" type="com.zz.bms.system.bo.TsLoginLogBO" >
          	<result column="id" property="id"/>
 
          	<result column="operation_type" property="operationType"/>
-
-         	<result column="entity_type" property="entityType"/>
 
          	<result column="operationlog_name" property="operationlogName"/>
 
@@ -30,12 +28,11 @@
 
 
     <!-- 校验条件配置 -->
-    <sql id="TsOperationlog4CheckQueryFilter">
+    <sql id="TsLoginLog4CheckQueryFilter">
         <where>
 
                     <if test="id != null and id != ''"> AND T.id != #{id} </if>
 					<if test="operationType != null and operationType != ''"> AND T.operation_type = #{operationType} </if>
-					<if test="entityType != null and entityType != ''"> AND T.entity_type = #{entityType} </if>
 					<if test="operationlogName != null and operationlogName != ''"> AND T.operationlog_name = #{operationlogName} </if>
 					<if test="depId != null and depId != ''"> AND T.dep_id = #{depId} </if>
 					<if test="organId != null and organId != ''"> AND T.organ_id = #{organId} </if>
@@ -48,9 +45,9 @@
         </where>
     </sql>
 
-    <select id="selectCheck" parameterType="com.zz.bms.system.bo.TsOperationlogBO" resultMap="TsOperationlogResultMap">
-        SELECT T.* FROM ts_operationlog T
-        <include refid="TsOperationlog4CheckQueryFilter"/>  limit 1
+    <select id="selectCheck" parameterType="com.zz.bms.system.bo.TsLoginLogBO" resultMap="TsLoginLogResultMap">
+        SELECT T.* FROM ts_login_log T
+        <include refid="TsLoginLog4CheckQueryFilter"/>  limit 1
     </select>
 
 

@@ -22,9 +22,11 @@
 
          	<result column="menu_redirect" property="menuRedirect"/>
 
-			<result column="leaf" property="leaf"/>
+         	<result column="shortcut" property="shortcut"/>
 
-			<result column="level" property="level"/>
+         	<result column="level" property="level"/>
+
+         	<result column="leaf" property="leaf"/>
 
          	<result column="remark" property="remark"/>
 
@@ -60,6 +62,9 @@
 					<if test="menuMsg != null and menuMsg != ''"> AND T.menu_msg = #{menuMsg} </if>
 					<if test="menuIcon != null and menuIcon != ''"> AND T.menu_icon = #{menuIcon} </if>
 					<if test="menuRedirect != null and menuRedirect != ''"> AND T.menu_redirect = #{menuRedirect} </if>
+					<if test="shortcut != null and shortcut != ''"> AND T.shortcut = #{shortcut} </if>
+					<if test="level != null"> AND T.level = #{level} </if>
+					<if test="leaf != null and leaf != ''"> AND T.leaf = #{leaf} </if>
 					<if test="remark != null and remark != ''"> AND T.remark = #{remark} </if>
 					<if test="deleteFlag != null and deleteFlag != ''"> AND T.delete_flag = #{deleteFlag} </if>
 					<if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>

@@ -12,9 +12,11 @@
 
          	<result column="business_type" property="businessType"/>
 
-         	<result column="business_tmp_id" property="businessTmpId"/>
-
          	<result column="business_id" property="businessId"/>
+
+         	<result column="business_file_type" property="businessFileType"/>
+
+         	<result column="business_temp_id" property="businessTempId"/>
 
          	<result column="file_order" property="fileOrder"/>
 
@@ -61,8 +63,9 @@
 					<if test="fileId != null and fileId != ''"> AND T.file_id = #{fileId} </if>
 					<if test="showName != null and showName != ''"> AND T.show_name = #{showName} </if>
 					<if test="businessType != null and businessType != ''"> AND T.business_type = #{businessType} </if>
-					<if test="businessTmpId != null and businessTmpId != ''"> AND T.business_tmp_id = #{businessTmpId} </if>
 					<if test="businessId != null and businessId != ''"> AND T.business_id = #{businessId} </if>
+					<if test="businessFileType != null and businessFileType != ''"> AND T.business_file_type = #{businessFileType} </if>
+					<if test="businessTempId != null and businessTempId != ''"> AND T.business_temp_id = #{businessTempId} </if>
 					<if test="fileOrder != null"> AND T.file_order = #{fileOrder} </if>
 					<if test="remark != null and remark != ''"> AND T.remark = #{remark} </if>
 					<if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>

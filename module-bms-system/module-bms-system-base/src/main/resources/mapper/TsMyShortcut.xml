@@ -10,8 +10,7 @@
 
          	<result column="user_id" property="userId"/>
 
-            <result column="orderby" property="orderby"/>
-
+         	<result column="orderby" property="orderby"/>
 
 	</resultMap>
 
@@ -23,6 +22,7 @@
                     <if test="id != null and id != ''"> AND T.id != #{id} </if>
 					<if test="menuId != null and menuId != ''"> AND T.menu_id = #{menuId} </if>
 					<if test="userId != null and userId != ''"> AND T.user_id = #{userId} </if>
+					<if test="orderby != null"> AND T.orderby = #{orderby} </if>
 
         </where>
     </sql>

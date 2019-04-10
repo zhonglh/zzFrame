@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.system.dao.TsNotificationReceiveDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TsNotificationReceiveResultMap" type="com.zz.bms.system.bo.TsNotificationReceiveBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="notify_id" property="notifyId"/>
+
+         	<result column="receive_user_id" property="receiveUserId"/>
+
+         	<result column="is_read" property="isRead"/>
+
+         	<result column="read_time" property="readTime"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TsNotificationReceive4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="notifyId != null and notifyId != ''"> AND T.notify_id = #{notifyId} </if>
+					<if test="receiveUserId != null and receiveUserId != ''"> AND T.receive_user_id = #{receiveUserId} </if>
+					<if test="isRead != null and isRead != ''"> AND T.is_read = #{isRead} </if>
+					<if test="readTime != null"> AND T.read_time = #{readTime} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.system.bo.TsNotificationReceiveBO" resultMap="TsNotificationReceiveResultMap">
+        SELECT T.* FROM ts_notification_receive T
+        <include refid="TsNotificationReceive4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

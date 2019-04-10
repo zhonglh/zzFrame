@@ -34,8 +34,7 @@
 
          	<result column="organ_id" property="organId"/>
 
-
-			<result column="page_limit" property="pageLimit"/>
+         	<result column="page_limit" property="pageLimit"/>
 
          	<result column="remark" property="remark"/>
 
@@ -79,6 +78,7 @@
 					<if test="systemAdmin != null and systemAdmin != ''"> AND T.system_admin = #{systemAdmin} </if>
 					<if test="depId != null and depId != ''"> AND T.dep_id = #{depId} </if>
 					<if test="organId != null and organId != ''"> AND T.organ_id = #{organId} </if>
+					<if test="pageLimit != null"> AND T.page_limit = #{pageLimit} </if>
 					<if test="remark != null and remark != ''"> AND T.remark = #{remark} </if>
 					<if test="deleteFlag != null and deleteFlag != ''"> AND T.delete_flag = #{deleteFlag} </if>
 					<if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
