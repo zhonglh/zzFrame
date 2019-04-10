@@ -10,7 +10,7 @@ import java.util.Map;
 /**
 * 字典信息 Service
 * @author Administrator
-* @date 2018-9-6 23:56:30
+* @date 2019-4-10 11:08:53
 */
 public interface TsDictService extends BaseService<TsDictBO , String> {
 
@@ -21,6 +21,7 @@ public interface TsDictService extends BaseService<TsDictBO , String> {
      * @return
      */
     public String getDictName(String value , String dictType) ;
+
 
 
     /**
@@ -43,5 +44,4 @@ public interface TsDictService extends BaseService<TsDictBO , String> {
      * @return
      */
     public Map<String , List<TsDictBO>> allDicts(String ... dictTypes) ;
-
 }

@@ -9,8 +9,20 @@ import com.zz.bms.core.enums.EnumBase;
 public enum EnumDictType implements EnumBase<String> {
 
 
+    USER_STATUS("user_status"),
+    OPERATION_TYPE("operation_type"),
+    ROLE_TYPE("role_type"),
+    ORGAN_TYPE("organ_type"),
     YES_NO("yes_no"),
-    USER_STATUS("user_status")
+    LEAF("leaf"),
+    DEP_STATUS("dep_status"),
+    SHORTCUT("shortcut"),
+    MSG_LANGUAGE("msg_language"),
+    ORGAN_STATUS("organ_status"),
+    FILE_ENGINE("file_engine"),
+    ROLE_STATUS("role_status"),
+    DICT_VAL("dict_val"),
+    MSG_TEMPLET_TYPE("msg_templet_type"),
 
     ;
 

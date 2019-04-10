@@ -93,6 +93,8 @@ public class TsDictServiceImpl extends BaseServiceImpl<TsDictBO,String> implemen
 	}
 
 
+
+
 	/**
 	 * 根据字典类型获取字典信息
 	 * @param dictTypes
@@ -124,12 +126,10 @@ public class TsDictServiceImpl extends BaseServiceImpl<TsDictBO,String> implemen
 		}
 		for(TsDictBO dictBO : dictBOS){
 			TsDictTypeBO dictTypeBO = dictTypeBOMap.get(dictBO.getDictTypeId());
-			if(dictTypeBO != null){
-				dictBO.setDictTypeCode(dictTypeBO.getDictTypeCode());
-			}
-			String key = dictBO.getDictTypeCode()+dictBO.getDictVal();
+
+			String key = dictTypeBO.getDictTypeCode()+dictBO.getDictVal();
 			result.put(key ,dictBO);
-			key = dictBO.getDictTypeCode()+dictBO.getDictName();
+			key = dictTypeBO.getDictTypeCode()+dictBO.getDictName();
 			result.put(key ,dictBO);
 		}
 
@@ -167,13 +167,12 @@ public class TsDictServiceImpl extends BaseServiceImpl<TsDictBO,String> implemen
 		}
 		for(TsDictBO dictBO : dictBOS){
 			TsDictTypeBO dictTypeBO = dictTypeBOMap.get(dictBO.getDictTypeId());
-			if(dictTypeBO != null){
-				dictBO.setDictTypeCode(dictTypeBO.getDictTypeCode());
-			}else {
+			if(dictTypeBO == null){
+
 				continue;
 			}
 
-			List<TsDictBO> list = result.get(dictBO.getDictTypeCode());
+			List<TsDictBO> list = result.get(dictTypeBO.getDictTypeCode());
 			if(list == null){
 				list = new ArrayList<TsDictBO>();
 				list.add(dictBO);

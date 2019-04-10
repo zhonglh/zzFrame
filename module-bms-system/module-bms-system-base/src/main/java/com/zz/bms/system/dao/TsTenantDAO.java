@@ -5,9 +5,9 @@ import com.zz.bms.system.bo.TsTenantBO;
 import org.springframework.stereotype.Repository;
 
 /**
-* 租户 操作DAO
+* 企业 操作DAO
 * @author Administrator
-* @date 2018-9-6 23:56:30
+* @date 2019-4-10 11:08:53
 */
 @Repository
 public interface TsTenantDAO extends BaseDAO<TsTenantBO , String> {

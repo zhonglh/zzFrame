@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 /**
 * 机构 操作DAO
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-10 11:08:52
 */
 @Repository
 public interface TsOrganDAO extends BaseDAO<TsOrganBO , String> {

@@ -8,20 +8,19 @@ import java.lang.Long;
 import java.lang.String;
 import java.lang.Integer;
 import com.zz.bms.core.db.entity.BaseEntity;
-
 /**
  * 文件 实体类
  * @author Administrator
- * @date 2019-3-29 23:20:12
+ * @date 2019-4-10 11:08:53
  */
-public class TsFileEntity extends BaseEntity<String> implements java.io.Serializable{
+public class TsFileEntity extends com.zz.bms.core.db.entity.BaseEntity<String> implements java.io.Serializable{
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
 
 
 
-    @EntityAttrDBAnnotation(attrName="访问路径前缀" ,type = "VARCHAR"      ,  attrLength = 50 , notNull = false )
+    @EntityAttrDBAnnotation(attrName="访问路径前缀" ,attrColumn="access_url_prefix"  , type = "VARCHAR"      ,  attrLength = 50 , notNull = false )
     @EntityAttrPageAnnotation(title = "访问路径前缀",sort = 200  , pageElement = "text"            , maxLength = 50        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
@@ -30,7 +29,7 @@ public class TsFileEntity extends BaseEntity<String> implements java.io.Serializ
 
 
 
-    @EntityAttrDBAnnotation(attrName="访问路径" ,type = "VARCHAR"      ,  attrLength = 200 , notNull = true )
+    @EntityAttrDBAnnotation(attrName="访问路径" ,attrColumn="access_url"  , type = "VARCHAR"      ,  attrLength = 200 , notNull = true )
     @EntityAttrPageAnnotation(title = "访问路径",sort = 300  , pageElement = "text"            , maxLength = 200        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
@@ -39,7 +38,7 @@ public class TsFileEntity extends BaseEntity<String> implements java.io.Serializ
 
 
 
-    @EntityAttrDBAnnotation(attrName="文件所在主机" ,type = "VARCHAR"      ,  attrLength = 27 , notNull = false )
+    @EntityAttrDBAnnotation(attrName="文件所在主机" ,attrColumn="file_host"  , type = "VARCHAR"      ,  attrLength = 27 , notNull = false )
     @EntityAttrPageAnnotation(title = "文件所在主机",sort = 400  , pageElement = "text"            , maxLength = 27        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
@@ -48,7 +47,7 @@ public class TsFileEntity extends BaseEntity<String> implements java.io.Serializ
 
 
 
-    @EntityAttrDBAnnotation(attrName="FILE_BASE_PATH" ,type = "VARCHAR"      ,  attrLength = 100 , notNull = false )
+    @EntityAttrDBAnnotation(attrName="FILE_BASE_PATH" ,attrColumn="file_base_path"  , type = "VARCHAR"      ,  attrLength = 100 , notNull = false )
     @EntityAttrPageAnnotation(title = "FILE_BASE_PATH",sort = 500  , pageElement = "text"            , maxLength = 100        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
@@ -57,7 +56,7 @@ public class TsFileEntity extends BaseEntity<String> implements java.io.Serializ
 
 
 
-    @EntityAttrDBAnnotation(attrName="文件路径" ,type = "VARCHAR"      ,  attrLength = 200 , notNull = false )
+    @EntityAttrDBAnnotation(attrName="文件路径" ,attrColumn="file_path"  , type = "VARCHAR"      ,  attrLength = 200 , notNull = false )
     @EntityAttrPageAnnotation(title = "文件路径",sort = 600  , pageElement = "text"            , maxLength = 200        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
@@ -66,7 +65,7 @@ public class TsFileEntity extends BaseEntity<String> implements java.io.Serializ
 
 
 
-    @EntityAttrDBAnnotation(attrName="文件名" ,type = "VARCHAR"      ,  attrLength = 100 , notNull = true )
+    @EntityAttrDBAnnotation(attrName="文件名" ,attrColumn="file_name"  , type = "VARCHAR"      ,  attrLength = 100 , notNull = true )
     @EntityAttrPageAnnotation(title = "文件名",sort = 700  , pageElement = "text"            , maxLength = 100        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
@@ -75,7 +74,7 @@ public class TsFileEntity extends BaseEntity<String> implements java.io.Serializ
 
 
 
-    @EntityAttrDBAnnotation(attrName="文件大小" ,type = "BIGINT"      ,  attrLength = 19 , notNull = true )
+    @EntityAttrDBAnnotation(attrName="文件大小" ,attrColumn="file_size"  , type = "BIGINT"      ,  attrLength = 19 , notNull = true )
     @EntityAttrPageAnnotation(title = "文件大小",sort = 800  , pageElement = "text"            , maxLength = 19        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
@@ -84,7 +83,7 @@ public class TsFileEntity extends BaseEntity<String> implements java.io.Serializ
 
 
 
-    @EntityAttrDBAnnotation(attrName="文件后缀" ,type = "VARCHAR"      ,  attrLength = 30 , notNull = false )
+    @EntityAttrDBAnnotation(attrName="文件后缀" ,attrColumn="file_suffix"  , type = "VARCHAR"      ,  attrLength = 30 , notNull = false )
     @EntityAttrPageAnnotation(title = "文件后缀",sort = 900  , pageElement = "text"            , maxLength = 30        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
@@ -94,7 +93,7 @@ public class TsFileEntity extends BaseEntity<String> implements java.io.Serializ
 
 
     @EntityAttrDictAnnotation(group = "fileEngine", groupName = "文件引擎" ,  dbColumnName = "dict_val" , dbColumnLength = 2 , isValueField = true , dictType = "file_engine")
-    @EntityAttrDBAnnotation(attrName="文件引擎" ,type = "CHAR"      ,  attrLength = 1 , notNull = true )
+    @EntityAttrDBAnnotation(attrName="文件引擎" ,attrColumn="file_engine"  , type = "CHAR"      ,  attrLength = 1 , notNull = true )
     @EntityAttrPageAnnotation(title = "文件引擎",sort = 1000  , pageElement = "select"            , maxLength = 1        ,required=true )
 	
     
@@ -103,7 +102,7 @@ public class TsFileEntity extends BaseEntity<String> implements java.io.Serializ
 
 
 
-    @EntityAttrDBAnnotation(attrName="MD5码" ,type = "VARCHAR"      ,  attrLength = 128 , notNull = false )
+    @EntityAttrDBAnnotation(attrName="MD5码" ,attrColumn="md5"  , type = "VARCHAR"      ,  attrLength = 128 , notNull = false )
     @EntityAttrPageAnnotation(title = "MD5码",sort = 1100  , pageElement = "text"            , maxLength = 128        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
@@ -112,7 +111,7 @@ public class TsFileEntity extends BaseEntity<String> implements java.io.Serializ
 
 
 
-    @EntityAttrDBAnnotation(attrName="文件类型" ,type = "VARCHAR"      ,  attrLength = 60 , notNull = false )
+    @EntityAttrDBAnnotation(attrName="文件类型" ,attrColumn="content_type"  , type = "VARCHAR"      ,  attrLength = 60 , notNull = false )
     @EntityAttrPageAnnotation(title = "文件类型",sort = 1200  , pageElement = "text"            , maxLength = 60        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
@@ -121,7 +120,7 @@ public class TsFileEntity extends BaseEntity<String> implements java.io.Serializ
 
 
 
-    @EntityAttrDBAnnotation(attrName="使用次数" ,type = "INT"      ,  attrLength = 10 , notNull = false )
+    @EntityAttrDBAnnotation(attrName="使用次数" ,attrColumn="use_frequency"  , type = "INT"      ,  attrLength = 10 , notNull = false )
     @EntityAttrPageAnnotation(title = "使用次数",sort = 1300  , pageElement = "text"            , maxLength = 10        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     

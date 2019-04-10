@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 /**
 * 许可 操作DAO
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-10 11:08:50
 */
 @Repository
 public interface TsPermitDAO extends BaseDAO<TsPermitBO , String> {

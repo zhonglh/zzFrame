@@ -1,34 +1,50 @@
 package com.zz.bms.system.domain;
 
-
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.zz.bms.util.configs.annotaions.EntityAnnotation;
-import com.zz.bms.util.configs.annotaions.EntityAttrDBAnnotation;
+import com.zz.bms.util.configs.annotaions.*;
+
 import com.zz.bms.core.Constant;
 import java.lang.String;
+import java.lang.Integer;
 import com.zz.bms.core.db.entity.BaseEntity;
 /**
  * 置顶快捷菜单 实体类
  * @author Administrator
- * @date 2018-9-8 12:42:41
+ * @date 2019-4-10 11:08:51
  */
-public class TsMyShortcutEntity extends BaseEntity<String> implements java.io.Serializable{
+public class TsMyShortcutEntity extends com.zz.bms.core.db.entity.BaseEntity<String> implements java.io.Serializable{
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
 
-	//菜单
+
+
+    @EntityAttrFkAnnotation(group = "menuId",  groupName = "菜单" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsMenuBO.class)
+    @EntityAttrDBAnnotation(attrName="菜单" ,attrColumn="menu_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
+    @EntityAttrPageAnnotation(title = "菜单",sort = 200  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
+    
+    
 	private String  menuId ;
 
-	//用户
+
+
+    @EntityAttrFkAnnotation(group = "userId",  groupName = "用户" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
+    @EntityAttrDBAnnotation(attrName="用户" ,attrColumn="user_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
+    @EntityAttrPageAnnotation(title = "用户",sort = 300  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
+    
+    
 	private String  userId ;
 
-	//顺序
 
-	private int orderby;
+
+    @EntityAttrDBAnnotation(attrName="顺序" ,attrColumn="orderby"  , type = "INT"      ,  attrLength = 10 , notNull = true )
+    @EntityAttrPageAnnotation(title = "顺序",sort = 400  , pageElement = "text"            , maxLength = 10        ,required=true )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    
+    
+	private Integer  orderby ;
 
 
 
@@ -51,11 +67,15 @@ public class TsMyShortcutEntity extends BaseEntity<String> implements java.io.Se
     	return this.userId;
     }
 
-	public int getOrderby() {
-		return orderby;
-	}
 
-	public void setOrderby(int orderby) {
+	public void setOrderby(Integer orderby){
 		this.orderby = orderby;
 	}
+
+    public Integer getOrderby(){
+    	return this.orderby;
+    }
+
+
+	
 }

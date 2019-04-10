@@ -7,7 +7,7 @@ import com.zz.bms.system.bo.TsUserRoleBO;
 /**
 * 用户角色关联 Service
 * @author Administrator
-* @date 2018-9-6 23:56:30
+* @date 2019-4-10 11:08:54
 */
 public interface TsUserRoleService extends BaseService<TsUserRoleBO , String> {
 

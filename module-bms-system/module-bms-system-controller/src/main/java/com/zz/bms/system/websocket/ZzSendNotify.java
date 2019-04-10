@@ -34,20 +34,23 @@ public class ZzSendNotify {
         if(loginUser == null || StringUtils.isEmpty((String)loginUser.getId())){
             return ;
         }
-        if(StringUtils.isEmpty(notify.getToUserId())){
-            throw new InternalException();
-        }
 
-        if(StringUtils.isNotEmpty(notify.getContent())) {
+        //todo
+        //if(StringUtils.isEmpty(notify.getToUserId())){
+        //    throw new InternalException();
+        //}
+
+        /*if(StringUtils.isNotEmpty(notify.getContent())) {
             EntityUtil.autoSetInsertEntity(notify, loginUser);
             notify.setIsRead(EnumYesNo.NO.getCode());
             notify.setIsReadName(EnumYesNo.NO.getName());
             notify.setNotifyTime(DateKit.getCurrentDate());
             tsNotificationService.save(notify);
-        }
+        }*/
 
         TsNotificationQuery query = new TsNotificationQueryImpl();
-        query.toUserId(notify.getToUserId());
+        //tod
+        //query.toUserId(notify.getToUserId());
         query.isRead(EnumYesNo.NO.getCode());
         int count = tsNotificationService.count(query.buildWrapper());
         WebSocketHelp.sendMessage(notify, count);
@@ -63,6 +66,9 @@ public class ZzSendNotify {
         if(loginUser == null || StringUtils.isEmpty((String)loginUser.getId())){
             return ;
         }
+
+        //todo
+        /*
         List<TsNotificationBO> addNotifyList = new ArrayList<TsNotificationBO>();
         Set<String> toUserIdSet = new HashSet<String>();
         for(TsNotificationBO notify: notifys){
@@ -78,10 +84,14 @@ public class ZzSendNotify {
                 addNotifyList.add(notify);
             }
             toUserIdSet.add(notify.getToUserId());
-        }
-        //只保存有内容的通知
-        tsNotificationService.saveBatch(addNotifyList , 1000);
+        }*/
 
+        //只保存有内容的通知
+        //tod
+        //tsNotificationService.saveBatch(addNotifyList , 1000);
+
+        //tod
+        /**
         if(toUserIdSet.size() ==1) {
             TsNotificationQuery query = new TsNotificationQueryImpl();
                 query.toUserId((String)toUserIdSet.toArray()[0]);
@@ -113,6 +123,7 @@ public class ZzSendNotify {
                 }
             }
         }
+         */
 
     }
 

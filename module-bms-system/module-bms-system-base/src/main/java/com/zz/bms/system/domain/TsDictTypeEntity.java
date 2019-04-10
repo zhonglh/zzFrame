@@ -1,10 +1,8 @@
 package com.zz.bms.system.domain;
 
-
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.zz.bms.util.configs.annotaions.EntityAnnotation;
-import com.zz.bms.util.configs.annotaions.EntityAttrDBAnnotation;
+import com.zz.bms.util.configs.annotaions.*;
+
 import com.zz.bms.core.Constant;
 import java.lang.String;
 import java.lang.Integer;
@@ -12,43 +10,88 @@ import com.zz.bms.core.db.entity.BaseEntity;
 /**
  * 字典类型 实体类
  * @author Administrator
- * @date 2018-9-7 0:01:36
+ * @date 2019-4-10 11:08:54
  */
-public class TsDictTypeEntity extends BaseEntity<String> implements java.io.Serializable{
+public class TsDictTypeEntity extends com.zz.bms.core.db.entity.BaseEntity<String> implements java.io.Serializable{
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
 
-	//上级类型
+
+
+    @EntityAttrFkAnnotation(group = "pid",  groupName = "上级类型" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsDictTypeBO.class)
+    @EntityAttrDBAnnotation(attrName="上级类型" ,attrColumn="pid"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
+    @EntityAttrPageAnnotation(title = "上级类型",sort = 200  , pageElement = "text"            , maxLength = 32        ,required=false )
 	
+    
+    
 	private String  pid ;
 
-	//类型代码
-	
+
+
+    @EntityAttrDBAnnotation(attrName="类型代码" ,attrColumn="dict_type_code"  , type = "VARCHAR"      ,  attrLength = 60 , notNull = true )
+    @EntityAttrPageAnnotation(title = "类型代码",sort = 300  , pageElement = "text"            , maxLength = 60        ,required=true )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    
+    
 	private String  dictTypeCode ;
 
-	//类型名称
-	
+
+
+    @EntityAttrDBAnnotation(attrName="类型名称" ,attrColumn="dict_type_name"  , type = "VARCHAR"      ,  attrLength = 60 , notNull = true )
+    @EntityAttrPageAnnotation(title = "类型名称",sort = 400  , pageElement = "text"            , maxLength = 60        ,required=true )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    
+    
 	private String  dictTypeName ;
 
-	//类型是否显示
+
+
+    @EntityAttrDictAnnotation(group = "dictTypeShowable", groupName = "类型是否显示" ,  dbColumnName = "dict_val" , dbColumnLength = 2 , isValueField = true , dictType = "yes_no")
+    @EntityAttrDBAnnotation(attrName="类型是否显示" ,attrColumn="dict_type_showable"  , type = "CHAR"      ,  attrLength = 1 , notNull = true )
+    @EntityAttrPageAnnotation(title = "类型是否显示",sort = 500  , pageElement = "select"            , maxLength = 1        ,required=true )
 	
+    
+    //yes_no        
 	private String  dictTypeShowable ;
 
-	//字典是否可以增加
+
+
+    @EntityAttrDictAnnotation(group = "dictAddable", groupName = "字典是否可以增加" ,  dbColumnName = "dict_val" , dbColumnLength = 2 , isValueField = true , dictType = "yes_no")
+    @EntityAttrDBAnnotation(attrName="字典是否可以增加" ,attrColumn="dict_addable"  , type = "CHAR"      ,  attrLength = 1 , notNull = true )
+    @EntityAttrPageAnnotation(title = "字典是否可以增加",sort = 600  , pageElement = "select"            , maxLength = 1        ,required=true )
 	
+    
+    //yes_no        
 	private String  dictAddable ;
 
-	//字典是否可以修改
+
+
+    @EntityAttrDictAnnotation(group = "dictUpdate", groupName = "字典是否可以修改" ,  dbColumnName = "dict_val" , dbColumnLength = 2 , isValueField = true , dictType = "yes_no")
+    @EntityAttrDBAnnotation(attrName="字典是否可以修改" ,attrColumn="dict_update"  , type = "CHAR"      ,  attrLength = 1 , notNull = true )
+    @EntityAttrPageAnnotation(title = "字典是否可以修改",sort = 700  , pageElement = "select"            , maxLength = 1        ,required=true )
 	
+    
+    //yes_no        
 	private String  dictUpdate ;
 
-	//字典是否可以删除
+
+
+    @EntityAttrDictAnnotation(group = "dictDelete", groupName = "字典是否可以删除" ,  dbColumnName = "dict_val" , dbColumnLength = 2 , isValueField = true , dictType = "yes_no")
+    @EntityAttrDBAnnotation(attrName="字典是否可以删除" ,attrColumn="dict_delete"  , type = "CHAR"      ,  attrLength = 1 , notNull = true )
+    @EntityAttrPageAnnotation(title = "字典是否可以删除",sort = 800  , pageElement = "select"            , maxLength = 1        ,required=true )
 	
+    
+    //yes_no        
 	private String  dictDelete ;
 
-	//顺序
-	
+
+
+    @EntityAttrDBAnnotation(attrName="顺序" ,attrColumn="orderby"  , type = "INT"      ,  attrLength = 10 , notNull = true )
+    @EntityAttrPageAnnotation(title = "顺序",sort = 900  , pageElement = "text"            , maxLength = 10        ,required=true )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    
+    
 	private Integer  orderby ;
 
 

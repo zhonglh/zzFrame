@@ -7,7 +7,7 @@ import com.zz.bms.system.bo.TsPermitBO;
 /**
 * 许可 Service
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-10 11:08:51
 */
 public interface TsPermitService extends BaseService<TsPermitBO , String> {
 

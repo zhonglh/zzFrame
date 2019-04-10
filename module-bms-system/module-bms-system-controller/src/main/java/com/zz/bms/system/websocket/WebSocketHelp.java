@@ -33,7 +33,9 @@ public class WebSocketHelp {
      * @param notification
      */
     public static void sendMessage(TsNotificationBO notification , int noReadCount){
+        //todo
 
+        /**
         if(userConnectionMap.containsKey(notification.getToUserId())) {
 
             WsMessage message = new WsMessage();
@@ -42,13 +44,15 @@ public class WebSocketHelp {
             message.setTitle(notification.getTitle());
             message.setContent(notification.getContent());
             message.setNotifyModule(notification.getNotifyModule());
-            message.setToUserId(new String[]{notification.getToUserId()});
+            //todo
+            //message.setToUserId(new String[]{notification.getToUserId()});
             message.setNotifyTime(notification.getCreateTime());
             message.setNoReadCount(noReadCount);
 
             AbstractNotifyWebSocket.broadcastToSpecia(message);
 
         }
+         */
 
     }
 

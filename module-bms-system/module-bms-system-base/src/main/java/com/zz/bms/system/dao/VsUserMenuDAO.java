@@ -5,9 +5,9 @@ import com.zz.bms.system.bo.VsUserMenuBO;
 import org.springframework.stereotype.Repository;
 
 /**
-* VIEW 操作DAO
+* 菜单 操作DAO
 * @author Administrator
-* @date 2019-4-1 13:52:05
+* @date 2019-4-10 11:08:55
 */
 @Repository
 public interface VsUserMenuDAO extends BaseDAO<VsUserMenuBO , String> {

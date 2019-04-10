@@ -1,123 +1,171 @@
 package com.zz.bms.system.domain;
 
-
 import com.baomidou.mybatisplus.annotation.TableField;
-
-import java.lang.String;
-
 import com.zz.bms.util.configs.annotaions.*;
-import com.zz.bms.constants.DefaultTypeConstant;
-import com.zz.bms.constants.DictTypeConstant;
-import com.zz.bms.constants.ExcelTypeConstant;
-import com.zz.bms.constants.PageElementConstant;
-import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 
+import com.zz.bms.core.Constant;
+import java.sql.Timestamp;
+import java.lang.String;
+import java.lang.Integer;
+import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 /**
  * 用户 实体类
  * @author Administrator
- * @date 2018-9-7 0:01:37
+ * @date 2019-4-10 11:08:55
  */
-public class TsUserEntity extends BaseBusinessExEntity<String> implements java.io.Serializable{
+public class TsUserEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity<String> implements java.io.Serializable{
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
 
 
-	@EntityAttrDBAnnotation(attrName="用户姓名" ,type = "varchar" ,  attrLength = 50 , notNull = true )
-	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.IMPORT_EXPORT)
-	@EntityAttrPageAnnotation(title = "用户姓名",sort = 100 ,  existEditPage = true  , required = true  )
+
+    @EntityAttrDBAnnotation(attrName="用户姓名" ,attrColumn="user_name"  , type = "VARCHAR"      ,  attrLength = 50 , notNull = true )
+    @EntityAttrPageAnnotation(title = "用户姓名",sort = 200  , pageElement = "text"            , maxLength = 50        ,required=true )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    
+    
 	private String  userName ;
 
 
-	@EntityAttrDBAnnotation(attrName="登录名" ,type = "varchar" ,  attrLength = 20 , notNull = true )
-	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.IMPORT_EXPORT)
-	@EntityAttrPageAnnotation(title = "登录名",sort = 200 , existEditPage = true  , required = true)
+
+    @EntityAttrDBAnnotation(attrName="登录名" ,attrColumn="login_name"  , type = "VARCHAR"      ,  attrLength = 20 , notNull = true )
+    @EntityAttrPageAnnotation(title = "登录名",sort = 300  , pageElement = "text"            , maxLength = 20        ,required=true )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    
+    
 	private String  loginName ;
 
 
-	@EntityAttrDBAnnotation(attrName="登录密码" ,type = "varchar" ,  attrLength = 128 , notNull = true )
-	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_IMPORT)
-	@EntityAttrPageAnnotation(title = "登录密码",sort = 300 , pageElement= PageElementConstant.password, existEditPage = true  , maxLength = 20 , minLength = 6 ,required = true)
+
+    @EntityAttrDBAnnotation(attrName="登录密码" ,attrColumn="login_password"  , type = "VARCHAR"      ,  attrLength = 128 , notNull = false )
+    @EntityAttrPageAnnotation(title = "登录密码",sort = 400  , pageElement = "text"            , maxLength = 128        ,required=false )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    
+    
 	private String  loginPassword ;
 
 
-	@EntityAttrDBAnnotation(attrName="加密盐" ,type = "varchar" ,  attrLength = 64 , notNull = false )
-	@EntityAttrPageAnnotation(title = "加密盐",sort = 400 )
+
+    @EntityAttrDBAnnotation(attrName="加密盐" ,attrColumn="salt"  , type = "VARCHAR"      ,  attrLength = 64 , notNull = false )
+    @EntityAttrPageAnnotation(title = "加密盐",sort = 500  , pageElement = "text"            , maxLength = 64        ,required=false )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    
+    
 	private String  salt ;
 
 
-	@EntityAttrDBAnnotation(attrName="用户状态" ,type = "char" ,  attrLength = 1 , notNull = true )
-	@EntityAttrDictAnnotation(group = "userStatus", groupName = "用户状态" ,  isValueField = true , dictType = DictTypeConstant.USER_STATUS)
-	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.NONE)
-	@EntityAttrPageAnnotation(title = "用户状态",sort = 500 , required = true)
+
+    @EntityAttrDictAnnotation(group = "userStatus", groupName = "状态" ,  dbColumnName = "dict_val" , dbColumnLength = 2 , isValueField = true , dictType = "user_status")
+    @EntityAttrDBAnnotation(attrName="状态" ,attrColumn="user_status"  , type = "CHAR"      ,  attrLength = 1 , notNull = true )
+    @EntityAttrPageAnnotation(title = "状态",sort = 600  , pageElement = "select"            , maxLength = 1        ,required=true )
+	
+    
+    //字典类型: user_status        
 	private String  userStatus ;
 
 
-	@EntityAttrDBAnnotation(attrName="上级领导" ,type = "char" ,  attrLength = 32 , notNull = false )
-	@EntityAttrFkAnnotation(group = "leadUser" , groupName = "上级领导" ,  isFkId = true ,   dbColumnNotNull = true, fkClass=com.zz.bms.system.bo.TsUserBO.class)
-	@EntityAttrPageAnnotation(title = "上级领导" , sort = 601 )
+
+    @EntityAttrFkAnnotation(group = "leadUserId",  groupName = "上级领导" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
+    @EntityAttrDBAnnotation(attrName="上级领导" ,attrColumn="lead_user_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
+    @EntityAttrPageAnnotation(title = "上级领导",sort = 700  , pageElement = "text"            , maxLength = 32        ,required=false )
+	
+    
+    
 	private String  leadUserId ;
 
 
-	@EntityAttrDBAnnotation(attrName="电话" ,type = "varchar" ,  attrLength = 20 , notNull = true )
-	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.IMPORT_EXPORT)
-	@EntityAttrPageAnnotation(title = "电话",sort = 700 , pageElement= PageElementConstant.phone, existEditPage = true  , required = true )
+
+    @EntityAttrDBAnnotation(attrName="电话" ,attrColumn="phone"  , type = "VARCHAR"      ,  attrLength = 20 , notNull = true )
+    @EntityAttrPageAnnotation(title = "电话",sort = 800  , pageElement = "text"            , maxLength = 20        ,required=true )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    
+    
 	private String  phone ;
 
 
-	@EntityAttrDBAnnotation(attrName="邮箱" ,type = "varchar" ,  attrLength = 60 , notNull = true )
-	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.IMPORT_EXPORT)
-	@EntityAttrPageAnnotation(title = "邮箱",sort = 800 , pageElement= PageElementConstant.email, existEditPage = true  , required = true )
+
+    @EntityAttrDBAnnotation(attrName="邮箱" ,attrColumn="email"  , type = "VARCHAR"      ,  attrLength = 60 , notNull = true )
+    @EntityAttrPageAnnotation(title = "邮箱",sort = 900  , pageElement = "text"            , maxLength = 60        ,required=true )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    
+    
 	private String  email ;
 
 
 
-
-	@EntityAttrDBAnnotation(attrName="头像" ,type = "char" ,  attrLength = 32  )
-	@EntityAttrPageAnnotation(title = "头像",sort = 900 )
+    @EntityAttrDBAnnotation(attrName="头像" ,attrColumn="avatar_image"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
+    @EntityAttrPageAnnotation(title = "头像",sort = 1000  , pageElement = "singleimage"            , maxLength = 32        ,required=false )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    
+    
 	private String  avatarImage ;
 
 
 
-
-	@EntityAttrDBAnnotation(attrName="微信ID" ,type = "varchar" ,  attrLength = 64  )
-	@EntityAttrPageAnnotation(title = "微信ID",sort = 1000 )
+    @EntityAttrDBAnnotation(attrName="微信ID" ,attrColumn="open_id"  , type = "VARCHAR"      ,  attrLength = 64 , notNull = false )
+    @EntityAttrPageAnnotation(title = "微信ID",sort = 1100  , pageElement = "text"            , maxLength = 64        ,required=false )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    
+    
 	private String  openId ;
 
 
-	@EntityAttrDBAnnotation(attrName="微信唯一ID" ,type = "varchar" ,  attrLength = 64  )
-	@EntityAttrPageAnnotation(title = "微信唯一ID",sort = 1100 )
+
+    @EntityAttrDBAnnotation(attrName="微信唯一ID" ,attrColumn="union_id"  , type = "VARCHAR"      ,  attrLength = 64 , notNull = false )
+    @EntityAttrPageAnnotation(title = "微信唯一ID",sort = 1200  , pageElement = "text"            , maxLength = 64        ,required=false )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    
+    
 	private String  unionId ;
 
 
-	@EntityAttrDBAnnotation(attrName="是否系统管理人员" ,type = "char" ,  attrLength = 1  )
-	@EntityAttrDictAnnotation(group = "systemAdmin", groupName = "是否系统管理人员" ,  isValueField = true , dictType = DictTypeConstant.YES_NO)
-	@EntityAttrPageAnnotation(title = "是否系统管理人员" , sort = 1200 , required = true, defaultType = DefaultTypeConstant.CUSTOM , defaultValue = "EnumYESNO.NO.getVal()")
+
+    @EntityAttrDictAnnotation(group = "systemAdmin", groupName = "系统管理人员" ,  dbColumnName = "dict_val" , dbColumnLength = 2 , isValueField = true , dictType = "yes_no")
+    @EntityAttrDBAnnotation(attrName="系统管理人员" ,attrColumn="system_admin"  , type = "CHAR"      ,  attrLength = 1 , notNull = true )
+    @EntityAttrPageAnnotation(title = "系统管理人员",sort = 1300  , pageElement = "select"            , maxLength = 1        ,required=true )
+	
+    
+    //yes_no        
 	private String  systemAdmin ;
 
 
 
-	@EntityAttrDBAnnotation(attrName="部门" ,type = "char" ,  attrLength = 32 , notNull = false )
-	@EntityAttrFkAnnotation(group = "dep" , groupName = "部门" ,    dbColumnNotNull = true, fkClass=com.zz.bms.system.bo.TsDepBO.class)
-	@EntityAttrPageAnnotation(title = "部门" , sort = 1300 , existEditPage = true , hidden = true  )
+    @EntityAttrFkAnnotation(group = "depId",  groupName = "部门" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsDepBO.class)
+    @EntityAttrDBAnnotation(attrName="部门" ,attrColumn="dep_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
+    @EntityAttrPageAnnotation(title = "部门",sort = 1400  , pageElement = "text"            , maxLength = 32        ,required=false )
+	
+    
+    
 	private String  depId ;
 
 
 
-
-	@EntityAttrDBAnnotation(attrName="机构" ,type = "char" ,  attrLength = 32 , notNull = true )
-	@EntityAttrFkAnnotation(group = "organ" , groupName = "机构" ,    dbColumnNotNull = true, fkClass=com.zz.bms.system.bo.TsOrganBO.class)
-	@EntityAttrPageAnnotation(title = "机构" , sort = 1400 ,  defaultType = DefaultTypeConstant.CURRENT_USER_ORGANID )
+    @EntityAttrDBAnnotation(attrName="机构" ,attrColumn="organ_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
+    @EntityAttrPageAnnotation(title = "机构",sort = 1500  , pageElement = "text"            , maxLength = 32        ,required=true )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    
+    
 	private String  organId ;
 
 
-	@EntityAttrDBAnnotation(attrName="页记录数" ,type = "int" ,  attrLength = 11 , notNull = true )
-	@EntityAttrPageAnnotation(title = "页记录数" , sort = 1500 ,  pageElement = PageElementConstant.digits)
-	private int pageLimit;
 
-	@EntityAttrDBAnnotation(attrName="备注" ,type = "varchar" ,  attrLength = 500 )
-	@EntityAttrPageAnnotation(title = "备注" , sort = 1600 ,  pageElement = PageElementConstant.textarea)
+    @EntityAttrDBAnnotation(attrName="每页记录数" ,attrColumn="page_limit"  , type = "INT"      ,  attrLength = 10 , notNull = true )
+    @EntityAttrPageAnnotation(title = "每页记录数",sort = 1600  , pageElement = "text"            , maxLength = 10        ,required=true )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    
+    
+	private Integer  pageLimit ;
+
+
+
+    @EntityAttrDBAnnotation(attrName="备注" ,attrColumn="remark"  , type = "VARCHAR"      ,  attrLength = 500 , notNull = false )
+    @EntityAttrPageAnnotation(title = "备注",sort = 1700  , pageElement = "textarea"            , maxLength = 500        ,required=false )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    
+    
 	private String  remark ;
+
 
 
 
@@ -193,13 +241,15 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
     	return this.email;
     }
 
-	public String getAvatarImage() {
-		return avatarImage;
-	}
 
-	public void setAvatarImage(String avatarImage) {
+	public void setAvatarImage(String avatarImage){
 		this.avatarImage = avatarImage;
 	}
+
+    public String getAvatarImage(){
+    	return this.avatarImage;
+    }
+
 
 	public void setOpenId(String openId){
 		this.openId = openId;
@@ -246,6 +296,15 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
     }
 
 
+	public void setPageLimit(Integer pageLimit){
+		this.pageLimit = pageLimit;
+	}
+
+    public Integer getPageLimit(){
+    	return this.pageLimit;
+    }
+
+
 	public void setRemark(String remark){
 		this.remark = remark;
 	}
@@ -254,11 +313,6 @@ public class TsUserEntity extends BaseBusinessExEntity<String> implements java.i
     	return this.remark;
     }
 
-	public int getPageLimit() {
-		return pageLimit;
-	}
 
-	public void setPageLimit(int pageLimit) {
-		this.pageLimit = pageLimit;
-	}
+	
 }

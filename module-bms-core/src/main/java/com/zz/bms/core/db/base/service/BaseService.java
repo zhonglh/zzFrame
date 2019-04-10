@@ -72,6 +72,15 @@ public interface BaseService<T extends BaseEntity, PK extends Serializable> exte
 
 
     /**
+     * 批量处理返回的对象
+     * 加入状态 外键内容的处理
+     * @param ts
+     * @return
+     */
+    List<T> processResult(List<T> ts);
+
+
+    /**
      * 特殊处理
      * 比如查询用户信息， 不能将密码 等关键信息返回到客户端
      * @param t

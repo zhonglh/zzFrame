@@ -5,9 +5,9 @@ import com.zz.bms.system.bo.VsUserPermitBO;
 import org.springframework.stereotype.Repository;
 
 /**
-* VIEW 操作DAO
+* 用户许可 操作DAO
 * @author Administrator
-* @date 2019-4-1 13:52:05
+* @date 2019-4-10 11:08:55
 */
 @Repository
 public interface VsUserPermitDAO extends BaseDAO<VsUserPermitBO , String> {

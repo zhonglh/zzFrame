@@ -5,9 +5,9 @@ import com.zz.bms.system.bo.VsNodeUserBO;
 import org.springframework.stereotype.Repository;
 
 /**
-* VIEW 操作DAO
+* 用户 操作DAO
 * @author Administrator
-* @date 2019-4-1 13:52:04
+* @date 2019-4-10 11:08:53
 */
 @Repository
 public interface VsNodeUserDAO extends BaseDAO<VsNodeUserBO , String> {

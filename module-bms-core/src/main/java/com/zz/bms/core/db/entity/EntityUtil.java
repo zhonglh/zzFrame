@@ -36,6 +36,19 @@ public class EntityUtil {
         return false;
     }
 
+    public static <PK extends Serializable,T extends BaseEntity<PK>> Map<PK,T> list2Map(List<T> list){
+        Map<PK,T> map  = new HashMap<PK,T>();
+        if(list == null || list.isEmpty()){
+            return map;
+        }
+        for(T t  : list){
+            BaseEntity be = (BaseEntity)t;
+            PK id = (PK)be.getId();
+            map.put(id , t);
+        }
+        return map;
+    }
+
 
     /**
      * 判断是否存在对象

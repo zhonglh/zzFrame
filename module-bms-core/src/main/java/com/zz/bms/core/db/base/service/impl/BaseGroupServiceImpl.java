@@ -729,6 +729,13 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
         return t;
     }
 
+
+
+    @Override
+    public List<T> processResult(List<T> ts) {
+        return ts;
+    }
+
     @Override
     public void specialHandler(T t){
 

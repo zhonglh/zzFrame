@@ -386,6 +386,12 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
         return t;
     }
 
+
+    @Override
+    public List<T> processResult(List<T> ts){
+        return ts;
+    }
+
     @Override
     public void specialHandler(T t){
 

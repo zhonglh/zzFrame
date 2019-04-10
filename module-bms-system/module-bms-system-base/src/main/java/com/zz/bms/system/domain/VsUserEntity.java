@@ -1,44 +1,49 @@
 package com.zz.bms.system.domain;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.zz.bms.util.configs.annotaions.*;
 
-import com.zz.bms.util.configs.annotaions.EntityAttrDBAnnotation;
-import com.zz.bms.util.configs.annotaions.EntityAttrExcelAnnotation;
-import com.zz.bms.util.configs.annotaions.EntityAttrFkAnnotation;
-import com.zz.bms.util.configs.annotaions.EntityAttrPageAnnotation;
-import com.zz.bms.constants.DefaultTypeConstant;
-import com.zz.bms.constants.ExcelTypeConstant;
-import com.zz.bms.constants.PageElementConstant;
-
+import com.zz.bms.core.Constant;
+import java.sql.Timestamp;
+import java.lang.String;
+import java.lang.Integer;
+import com.zz.bms.system.domain.TsUserEntity;
 /**
  * 用户 实体类
  * @author Administrator
- * @date 2018-9-6 23:56:30
+ * @date 2019-4-10 11:08:52
  */
 public class VsUserEntity extends TsUserEntity implements java.io.Serializable{
 
+    @TableField(exist=false)
+    private static final long serialVersionUID = 1L;
 
 
-	@EntityAttrDBAnnotation(attrName="部门名称" ,type = "varchar" ,  attrLength = 100 , notNull = true )
-	@EntityAttrFkAnnotation(group = "dep" , groupName = "部门" ,   dbColumnName = "dep_name" , dbColumnType = "varchar" , dbColumnLength = 100 , dbColumnNotNull = true, fkClass=com.zz.bms.system.bo.TsDepBO.class)
-	@EntityAttrExcelAnnotation()
-	@EntityAttrPageAnnotation(title = "部门名称",sort = 401  , pageElement = PageElementConstant.openwin )
+
+    @EntityAttrDBAnnotation(attrName="部门名称" ,attrColumn="dep_name"  , type = "VARCHAR"      ,  attrLength = 100 , notNull = false )
+    @EntityAttrPageAnnotation(title = "部门名称",sort = 2700  , pageElement = "text"            , maxLength = 100        ,required=false )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+    
 	private String  depName ;
 
 
-	@EntityAttrDBAnnotation(attrName="机构名称" ,type = "varchar" ,  attrLength = 100 , notNull = true )
-	@EntityAttrFkAnnotation(group = "organ" , groupName = "机构" ,   dbColumnName = "organ_name" , dbColumnType = "varchar" , dbColumnLength = 100 , dbColumnNotNull = true, fkClass=com.zz.bms.system.bo.TsOrganBO.class)
-	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_EXPORT)
-	@EntityAttrPageAnnotation(title = "机构名称",sort = 501 ,  defaultType = DefaultTypeConstant.CURRENT_USER_DEPTID)
+
+    @EntityAttrDBAnnotation(attrName="机构名称" ,attrColumn="organ_name"  , type = "VARCHAR"      ,  attrLength = 100 , notNull = true )
+    @EntityAttrPageAnnotation(title = "机构名称",sort = 2800  , pageElement = "text"            , maxLength = 100        ,required=true )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+    
 	private String  organName ;
 
 
-	@EntityAttrDBAnnotation(attrName="企业名称" ,type = "varchar" ,  attrLength = 150 , notNull = true )
-	@EntityAttrFkAnnotation(group = "tenant" , groupName = "企业" ,   dbColumnName = "tenant_name" , dbColumnType = "varchar" , dbColumnLength = 150 , dbColumnNotNull = true, fkClass=com.zz.bms.system.bo.TsTenantBO.class)
-	@EntityAttrExcelAnnotation(excelProcess= ExcelTypeConstant.ONLY_EXPORT)
-	@EntityAttrPageAnnotation(title = "企业名称",sort = 501 ,  defaultType = DefaultTypeConstant.CURRENT_USER_ORGANNAME)
+
+    @EntityAttrDBAnnotation(attrName="企业名称" ,attrColumn="tenant_name"  , type = "VARCHAR"      ,  attrLength = 150 , notNull = true )
+    @EntityAttrPageAnnotation(title = "企业名称",sort = 2900  , pageElement = "text"            , maxLength = 150        ,required=true )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+    
 	private String  tenantName ;
-
-
 
 
 
@@ -70,4 +75,6 @@ public class VsUserEntity extends TsUserEntity implements java.io.Serializable{
     	return this.tenantName;
     }
 
+
+	
 }

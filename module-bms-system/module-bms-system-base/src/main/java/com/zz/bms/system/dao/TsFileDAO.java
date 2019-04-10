@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 /**
 * 文件 操作DAO
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-10 11:08:53
 */
 @Repository
 public interface TsFileDAO extends BaseDAO<TsFileBO , String> {

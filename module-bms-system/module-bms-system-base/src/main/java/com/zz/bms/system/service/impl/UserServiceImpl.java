@@ -7,6 +7,7 @@ import com.zz.bms.core.db.entity.ILoginRoleEntity;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.system.bo.TsPermitBO;
+import com.zz.bms.system.bo.TsUserBO;
 import com.zz.bms.system.bo.VsUserPermitBO;
 import com.zz.bms.system.domain.TsPermitEntity;
 import com.zz.bms.system.domain.VsUserPermitEntity;

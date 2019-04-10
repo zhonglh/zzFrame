@@ -10,15 +10,17 @@ import java.util.Map;
 /**
 * 系统通知 操作DAO
 * @author Administrator
-* @date 2018-9-6 23:56:30
+* @date 2019-4-10 11:08:51
 */
 @Repository
 public interface TsNotificationDAO extends BaseDAO<TsNotificationBO , String> {
-
+	
+	
     /**
      *
      * @param userIds
      * @return
      */
     public List<Map<String,Object>> getUserNotReadCount(String[] userIds);
+
 }

@@ -1,45 +1,58 @@
 package com.zz.bms.system.service.impl;
 
+import com.zz.bms.core.enums.EnumErrorMsg;
+import com.zz.bms.enums.*;
+
+import com.zz.bms.core.db.entity.EntityUtil;
+import com.zz.bms.core.exceptions.DbException;
+import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
+import com.zz.bms.system.service.TsDictService;
 
-import com.zz.bms.core.db.entity.BaseEntity;
-import com.zz.bms.core.db.entity.EntityUtil;
-import com.zz.bms.core.enums.EnumErrorMsg;
-import com.zz.bms.core.exceptions.BizException;
+import com.zz.bms.system.bo.TsDictBO;
 import com.zz.bms.system.bo.TsOrganBO;
 import com.zz.bms.system.dao.TsOrganDAO;
 import com.zz.bms.system.service.TsOrganService;
 
 import com.zz.bms.system.bo.TsOrganBO;
 import com.zz.bms.system.dao.TsOrganDAO;
-import com.zz.bms.system.bo.TsTenantBO;
-import com.zz.bms.system.dao.TsTenantDAO;
 import com.zz.bms.system.bo.TsUserBO;
 import com.zz.bms.system.dao.TsUserDAO;
 
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
-* 机构 ServiceImpl
-* @author Administrator
-* @date 2018-9-6 23:56:31
-*/
+ * 机构 ServiceImpl
+ * @author Administrator
+ * @date 2019-4-10 18:25:12
+ */
 @Service
 public class TsOrganServiceImpl extends BaseServiceImpl<TsOrganBO,String> implements TsOrganService {
 
 
 
-    @Autowired
-    private TsTenantDAO tsTenantDAO;
-    @Autowired
-    private TsUserDAO tsUserDAO;
+	@Autowired
+	private TsDictService tsDictService;
+
+
+
+	@Autowired
+	private TsUserDAO tsUserDAO;
 
 
 	@Autowired
 	private TsOrganDAO tsOrganDAO ;
+
 
 
 	@Override
@@ -48,12 +61,102 @@ public class TsOrganServiceImpl extends BaseServiceImpl<TsOrganBO,String> implem
 	}
 
 
+
+	@Override
+	public TsOrganBO processResult(TsOrganBO tsOrganBO) {
+
+		try {
+			if(StringUtils.isEmpty(tsOrganBO.getOrganTypeName()) && StringUtils.isNotEmpty(tsOrganBO.getOrganType()) ) {
+				String dictName = tsDictService.getDictName(tsOrganBO.getOrganType(),EnumDictType.ORGAN_TYPE.getVal());
+				tsOrganBO.setOrganTypeName(dictName);
+			}
+		}catch(Exception e){
+
+		}
+
+		if(StringUtils.isNotEmpty( tsOrganBO.getLeadUserId())){
+			TsUserBO temp = tsUserDAO.selectById( tsOrganBO.getLeadUserId() );
+			if(temp != null){
+				tsOrganBO.setLeadUserName(temp.getUserName());
+			}
+		}
+
+		return tsOrganBO;
+
+	}
+
+
+
+
+
+	@Override
+	public List<TsOrganBO> processResult(List<TsOrganBO> tsOrganBOs) {
+		if(tsOrganBOs == null || tsOrganBOs.isEmpty()){
+			return tsOrganBOs;
+		}
+
+		List<String> leadUserIdList = new ArrayList<String>();
+
+		for(TsOrganBO bo : tsOrganBOs)		{
+
+			if(StringUtils.isNotEmpty( bo.getLeadUserId())){
+				leadUserIdList.add(bo.getLeadUserId());
+			}
+		}
+
+
+		if(!leadUserIdList.isEmpty()){
+			List<TsUserBO> list =  tsUserDAO.selectBatchIds(leadUserIdList);
+			Map<String,TsUserBO> map = EntityUtil.list2Map(list);
+
+			tsOrganBOs.forEach(tsOrganBO -> {
+				if(StringUtils.isNotEmpty( tsOrganBO.getLeadUserId())){
+					TsUserBO temp = map.get( tsOrganBO.getLeadUserId() );
+					if(temp != null){
+						tsOrganBO.setLeadUserName(temp.getUserName());
+					}
+				}
+			});
+		}
+
+
+
+
+
+		String[] dictTypes = new String[]{EnumDictType.ORGAN_TYPE.getVal()};
+		Map<String , TsDictBO> dictMap = tsDictService.allDict(dictTypes);
+
+		tsOrganBOs.forEach(tsOrganBO -> {
+			if(StringUtils.isEmpty(tsOrganBO.getOrganTypeName()) && StringUtils.isNotEmpty(tsOrganBO.getOrganType()) ) {
+				TsDictBO dict = dictMap.get(EnumDictType.ORGAN_TYPE.getVal() + tsOrganBO.getOrganType());
+				if(dict != null) {
+					tsOrganBO.setOrganTypeName(dict.getDictName());
+				}
+			}
+		});
+
+
+
+		return tsOrganBOs;
+	}
+
+
+
+
 	@Override
 	public void isExist(TsOrganBO tsOrganBO) {
 
-
 		TsOrganBO ckBO ;
-		BaseEntity temp = null ;
+		TsOrganBO temp = null ;
+
+		ckBO = new TsOrganBO();
+		ckBO.setId( tsOrganBO.getId() );
+		ckBO.setOrganName(tsOrganBO.getOrganName());
+		ckBO.setTenantId(tsOrganBO.getTenantId());
+		temp = this.selectCheck(ckBO);
+		if (EntityUtil.isEntityExist(temp)) {
+			throw new BizException(EnumErrorMsg.business_error.getCode(),"机构名称已使用");
+		}
 
 		ckBO = new TsOrganBO();
 		ckBO.setId( tsOrganBO.getId() );
@@ -61,25 +164,9 @@ public class TsOrganServiceImpl extends BaseServiceImpl<TsOrganBO,String> implem
 		ckBO.setTenantId(tsOrganBO.getTenantId());
 		temp = this.selectCheck(ckBO);
 		if (EntityUtil.isEntityExist(temp)) {
-			throw new BizException(EnumErrorMsg.business_error.getCode(),"该机构编号已使用");
+			throw new BizException(EnumErrorMsg.business_error.getCode(),"机构编号已使用");
 		}
-		ckBO = new TsOrganBO();
-		ckBO.setId( tsOrganBO.getId() );
-		ckBO.setOrganName(tsOrganBO.getOrganName());
-		ckBO.setTenantId(tsOrganBO.getTenantId());
-		temp = this.selectCheck(ckBO);
-		if (EntityUtil.isEntityExist(temp)) {
-			throw new BizException(EnumErrorMsg.business_error.getCode(),"该机构名称已使用");
-		}
-	}
 
-	@Override
-	public TsOrganBO processResult(TsOrganBO tsOrganBO) {
-
-            //todo 处理字典信息
-            //todo 处理字典信息
-
-		return tsOrganBO;
 
 	}
 

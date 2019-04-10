@@ -10,7 +10,7 @@ import java.util.Map;
 /**
 * 系统通知 Service
 * @author Administrator
-* @date 2018-9-6 23:56:30
+* @date 2019-4-10 11:08:51
 */
 public interface TsNotificationService extends BaseService<TsNotificationBO , String> {
 
@@ -20,5 +20,4 @@ public interface TsNotificationService extends BaseService<TsNotificationBO , St
      * @return
      */
     List<Map<String,Object>> getUserNotReadCount(String[] userIds);
-
 }

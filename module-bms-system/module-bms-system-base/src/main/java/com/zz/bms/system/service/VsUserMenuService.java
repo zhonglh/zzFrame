@@ -5,9 +5,9 @@ import com.zz.bms.system.bo.VsUserMenuBO;
 
 
 /**
-* VIEW Service
+* 菜单 Service
 * @author Administrator
-* @date 2019-4-1 13:52:05
+* @date 2019-4-10 11:08:55
 */
 public interface VsUserMenuService extends BaseService<VsUserMenuBO , String> {
 

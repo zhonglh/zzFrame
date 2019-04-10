@@ -13,7 +13,7 @@ import com.zz.bms.system.domain.TsFileUseEntity;
 /**
  * 文件使用 实体类
  * @author Administrator
- * @date 2019-4-1 13:52:03
+ * @date 2019-4-10 11:08:55
  */
 public class VsFileUseEntity extends TsFileUseEntity implements java.io.Serializable{
 
@@ -22,8 +22,8 @@ public class VsFileUseEntity extends TsFileUseEntity implements java.io.Serializ
 
 
 
-    @EntityAttrDBAnnotation(attrName="ACCESS_URL" ,type = "DOUBLE"      ,  attrLength = 23 , notNull = false )
-    @EntityAttrPageAnnotation(title = "ACCESS_URL",sort = 1700  , pageElement = "text"            , maxLength = 23        ,required=false )
+    @EntityAttrDBAnnotation(attrName="ACCESS_URL" ,attrColumn="access_url"  , type = "DOUBLE"      ,  attrLength = 23 , notNull = false )
+    @EntityAttrPageAnnotation(title = "ACCESS_URL",sort = 1800  , pageElement = "text"            , maxLength = 23        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
     
@@ -31,8 +31,8 @@ public class VsFileUseEntity extends TsFileUseEntity implements java.io.Serializ
 
 
 
-    @EntityAttrDBAnnotation(attrName="文件类型" ,type = "VARCHAR"      ,  attrLength = 60 , notNull = false )
-    @EntityAttrPageAnnotation(title = "文件类型",sort = 1800  , pageElement = "text"            , maxLength = 60        ,required=false )
+    @EntityAttrDBAnnotation(attrName="文件类型" ,attrColumn="content_type"  , type = "VARCHAR"      ,  attrLength = 60 , notNull = false )
+    @EntityAttrPageAnnotation(title = "文件类型",sort = 1900  , pageElement = "text"            , maxLength = 60        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
     
@@ -41,8 +41,8 @@ public class VsFileUseEntity extends TsFileUseEntity implements java.io.Serializ
 
 
     @EntityAttrDictAnnotation(group = "fileEngine", groupName = "文件引擎" ,  dbColumnName = "dict_val" , dbColumnLength = 2 , isValueField = true , dictType = "file_engine")
-    @EntityAttrDBAnnotation(attrName="文件引擎" ,type = "CHAR"      ,  attrLength = 1 , notNull = true )
-    @EntityAttrPageAnnotation(title = "文件引擎",sort = 1900  , pageElement = "select"            , maxLength = 1        ,required=true )
+    @EntityAttrDBAnnotation(attrName="文件引擎" ,attrColumn="file_engine"  , type = "CHAR"      ,  attrLength = 1 , notNull = true )
+    @EntityAttrPageAnnotation(title = "文件引擎",sort = 2000  , pageElement = "select"            , maxLength = 1        ,required=true )
 	
     //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
     //文件系统 七牛  阿里云  腾讯 FastNFS MongoDB        
@@ -50,8 +50,8 @@ public class VsFileUseEntity extends TsFileUseEntity implements java.io.Serializ
 
 
 
-    @EntityAttrDBAnnotation(attrName="文件所在主机" ,type = "VARCHAR"      ,  attrLength = 27 , notNull = false )
-    @EntityAttrPageAnnotation(title = "文件所在主机",sort = 2000  , pageElement = "text"            , maxLength = 27        ,required=false )
+    @EntityAttrDBAnnotation(attrName="文件所在主机" ,attrColumn="file_host"  , type = "VARCHAR"      ,  attrLength = 27 , notNull = false )
+    @EntityAttrPageAnnotation(title = "文件所在主机",sort = 2100  , pageElement = "text"            , maxLength = 27        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
     
@@ -59,8 +59,8 @@ public class VsFileUseEntity extends TsFileUseEntity implements java.io.Serializ
 
 
 
-    @EntityAttrDBAnnotation(attrName="FILE_PULL_NAME" ,type = "DOUBLE"      ,  attrLength = 23 , notNull = false )
-    @EntityAttrPageAnnotation(title = "FILE_PULL_NAME",sort = 2100  , pageElement = "text"            , maxLength = 23        ,required=false )
+    @EntityAttrDBAnnotation(attrName="FILE_PULL_NAME" ,attrColumn="file_pull_name"  , type = "DOUBLE"      ,  attrLength = 23 , notNull = false )
+    @EntityAttrPageAnnotation(title = "FILE_PULL_NAME",sort = 2200  , pageElement = "text"            , maxLength = 23        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
     
@@ -68,8 +68,8 @@ public class VsFileUseEntity extends TsFileUseEntity implements java.io.Serializ
 
 
 
-    @EntityAttrDBAnnotation(attrName="文件大小" ,type = "BIGINT"      ,  attrLength = 19 , notNull = true )
-    @EntityAttrPageAnnotation(title = "文件大小",sort = 2200  , pageElement = "text"            , maxLength = 19        ,required=true )
+    @EntityAttrDBAnnotation(attrName="文件大小" ,attrColumn="file_size"  , type = "BIGINT"      ,  attrLength = 19 , notNull = true )
+    @EntityAttrPageAnnotation(title = "文件大小",sort = 2300  , pageElement = "text"            , maxLength = 19        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
     
@@ -77,8 +77,8 @@ public class VsFileUseEntity extends TsFileUseEntity implements java.io.Serializ
 
 
 
-    @EntityAttrDBAnnotation(attrName="使用次数" ,type = "INT"      ,  attrLength = 10 , notNull = false )
-    @EntityAttrPageAnnotation(title = "使用次数",sort = 2300  , pageElement = "text"            , maxLength = 10        ,required=false )
+    @EntityAttrDBAnnotation(attrName="使用次数" ,attrColumn="use_frequency"  , type = "INT"      ,  attrLength = 10 , notNull = false )
+    @EntityAttrPageAnnotation(title = "使用次数",sort = 2400  , pageElement = "text"            , maxLength = 10        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
     

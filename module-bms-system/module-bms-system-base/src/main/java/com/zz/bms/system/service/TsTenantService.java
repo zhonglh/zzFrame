@@ -5,9 +5,9 @@ import com.zz.bms.system.bo.TsTenantBO;
 
 
 /**
-* 租户 Service
+* 企业 Service
 * @author Administrator
-* @date 2018-9-6 23:56:30
+* @date 2019-4-10 11:08:53
 */
 public interface TsTenantService extends BaseService<TsTenantBO , String> {
 

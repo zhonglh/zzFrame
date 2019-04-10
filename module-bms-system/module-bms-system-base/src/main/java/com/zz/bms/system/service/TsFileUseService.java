@@ -7,7 +7,7 @@ import com.zz.bms.system.bo.TsFileUseBO;
 /**
 * 文件使用 Service
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-10 11:08:52
 */
 public interface TsFileUseService extends BaseService<TsFileUseBO , String> {
 

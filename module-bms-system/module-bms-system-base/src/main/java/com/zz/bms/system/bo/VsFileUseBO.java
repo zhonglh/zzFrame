@@ -4,6 +4,8 @@ import com.zz.bms.system.domain.VsFileUseEntity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 
+
+
 import com.zz.bms.core.db.entity.IBoEntity;
 import com.zz.bms.util.configs.annotaions.*;
 import com.zz.bms.constants.DefaultTypeConstant;
@@ -11,75 +13,36 @@ import com.zz.bms.constants.DictTypeConstant;
 import com.zz.bms.constants.ExcelTypeConstant;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import com.zz.bms.system.bo.TsFileUseBO;
+
 import java.io.Serializable;
 
 
 
 /**
-* 文件使用 BO , 扩展 VsFileUseEntity 对象
+* 文件使用 BO , 扩展 TsFileUseBO 对象
 * @author Administrator
-* @date 2019-4-1 13:52:03
+* @date 2019-4-10 11:08:55
 */
-@EntityAnnotation(value="文件使用" , resource = "system.fileuse"  ,businessName = "show_name"    ,businessKey = { "show_name" }  )
+@EntityAnnotation(value="文件使用" , resource = "system.fileuse"  ,businessName = "show_name"    ,businessKey = { "" }    )
 @TableName(value="vs_file_use" , resultMap = "VsFileUseResultMap")
-public class VsFileUseBO extends VsFileUseEntity implements Serializable , IBoEntity {
-
-
-
-    @TableField(exist = false)
-    @EntityAttrDictAnnotation(group = "businessType", groupName = "业务类型" ,  dbColumnName = "dict_name" , dbColumnLength = 50 , isNameField = true , dictType = "business_type")
-    
-    @EntityAttrPageAnnotation(title = "业务类型",sort = 401                      ,required=true )
-    private String businessTypeName ;
-
-
-
-
-
-
-
-
-    @TableField(exist = false)
-    @EntityAttrDictAnnotation(group = "fileEngine", groupName = "文件引擎" ,  dbColumnName = "dict_name" , dbColumnLength = 50 , isNameField = true , dictType = "file_engine")
-    
-    @EntityAttrPageAnnotation(title = "文件引擎",sort = 1901                      ,required=true )
-    private String fileEngineName ;
-
-
-
-
-
-
-
-
-    public void setBusinessTypeName(String businessTypeName){
-        this.businessTypeName = businessTypeName;
-    }
-
-    public String getBusinessTypeName(){
-        return this.businessTypeName;
-    }
-
-    public void setFileEngineName(String fileEngineName){
-        this.fileEngineName = fileEngineName;
-    }
-
-    public String getFileEngineName(){
-        return this.fileEngineName;
-    }
+public class VsFileUseBO extends TsFileUseBO implements Serializable , IBoEntity {
 
 
 
     @Override
     public boolean isTable() {
-        return false;
+
+
+        return super.isTable();
+
     }
 
 
     @Override
     public String toString() {
 
-            return this.getShowName();
-        
+        return super.toString();
+
     }
 }
