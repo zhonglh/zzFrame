@@ -77,16 +77,17 @@ public class MainController extends BaseController {
         model.put("loginUser", loginUser);
         model.put("userSessoinId",ShiroUtils.getSession().getId());
 
-        //处理菜单
-        VsUserMenuQuery query = new VsUserMenuQueryImpl();
-        query.userId(loginUser.getId());
-        List<VsUserMenuBO> menus = vsUserMenuService.list(query.buildWrapper());
-        if (menus == null) {
-            menus = new ArrayList<VsUserMenuBO>();
-        }
-        //menus = MenuLogic.sortMenu(menus);
-        menus.sort((o1,o2)-> (o1.getLevel() * 100000 + o1.getMenuSort()) - (o2.getLevel() * 100000 + o2.getMenuSort()));
-        model.put("menus", menus);
+        try {
+            //处理菜单
+            VsUserMenuQuery query = new VsUserMenuQueryImpl();
+            query.userId(loginUser.getId());
+            List<VsUserMenuBO> menus = vsUserMenuService.list(query.buildWrapper());
+            if (menus == null) {
+                menus = new ArrayList<VsUserMenuBO>();
+            }
+            //menus = MenuLogic.sortMenu(menus);
+            menus.sort((o1, o2) -> (o1.getLevel() * 100000 + o1.getSortno()) - (o2.getLevel() * 100000 + o2.getSortno()));
+            model.put("menus", menus);
 
         //处理快捷菜单
         List<VsUserMenuBO> shortcutMenus = new ArrayList<VsUserMenuBO>();
@@ -118,6 +119,11 @@ public class MainController extends BaseController {
         model.put("topShortcutMenus", topShortcutMenus);
         model.put("moreShortcutMenus", moreShortcutMenus);
 
+
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
 
         //处理未读通知数
         TsNotificationQuery notifyQuery = new TsNotificationQueryImpl();

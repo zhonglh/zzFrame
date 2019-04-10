@@ -11,7 +11,7 @@ import com.zz.bms.system.domain.TsUserEntity;
 /**
  * 用户 实体类
  * @author Administrator
- * @date 2019-4-10 11:08:53
+ * @date 2019-4-10 20:58:03
  */
 public class VsNodeUserEntity extends TsUserEntity implements java.io.Serializable{
 
@@ -21,6 +21,4 @@ public class VsNodeUserEntity extends TsUserEntity implements java.io.Serializab
 
 
 
-
-	
 }

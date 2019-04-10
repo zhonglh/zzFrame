@@ -58,7 +58,7 @@ public abstract class BaseExcelController<
         QueryModel extends RwModel,
         PK extends Serializable,
         RwQuery extends Query,
-        OnlyQuery extends RwQuery
+        OnlyQuery extends Query
         >
         extends BaseCURDController<RwModel,QueryModel,PK,RwQuery,OnlyQuery> {
 
@@ -169,7 +169,7 @@ public abstract class BaseExcelController<
 
 
         this.permissionList.assertHasViewPermission();
-        Wrapper<QueryModel> wrapper = buildRwWrapper(query , m);
+        Wrapper<QueryModel> wrapper = buildQueryWrapper(query , m);
         List<QueryModel> all =  baseQueryService.list(wrapper);
 
         QueryModel topDate = null;

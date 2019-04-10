@@ -13,6 +13,7 @@ import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.shiro.utils.ShiroUtils;
 import com.zz.bms.util.base.BankNoValidateUtils;
 import com.zz.bms.util.spring.SpringUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -279,9 +280,11 @@ public abstract class BaseController<PK extends Serializable> {
 
     protected void processQueryString(ModelMap modelMap, HttpServletRequest request) {
         String queryString = request.getQueryString();
-        modelMap.addAttribute("queryString", queryString);
-        String[] queryArr = queryString.split("&");
-        modelMap.addAttribute("queryArr", queryArr);
+        if(StringUtils.isNotEmpty(queryString)) {
+            modelMap.addAttribute("queryString", queryString);
+            String[] queryArr = queryString.split("&");
+            modelMap.addAttribute("queryArr", queryArr);
+        }
     }
 
 

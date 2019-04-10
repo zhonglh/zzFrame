@@ -9,12 +9,16 @@ import com.zz.bms.core.db.entity.BaseEntity;
 /**
  * 用户许可 实体类
  * @author Administrator
- * @date 2019-4-10 11:08:55
+ * @date 2019-4-10 20:58:06
  */
-public class VsUserPermitEntity extends com.zz.bms.core.db.entity.BaseEntity<String> implements java.io.Serializable{
+public class VsUserPermitEntity extends BaseEntity<String> implements java.io.Serializable{
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
+
+
+
+
 
 
 
@@ -111,5 +115,5 @@ public class VsUserPermitEntity extends com.zz.bms.core.db.entity.BaseEntity<Str
     }
 
 
-	
+
 }

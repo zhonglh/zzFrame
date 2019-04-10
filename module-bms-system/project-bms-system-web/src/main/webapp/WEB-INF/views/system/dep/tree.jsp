@@ -138,11 +138,16 @@
     var tableid = "tableData-${tableId}";
     var tree_field = "depName";
     var id_field = "id";
+
+    var queryString = "${ queryString }";
+    var treeUrl = "";
 </script>
 
 
 
 <bms:contentJS />
+
+<script src="${staticUrl}/statics2/js/project/listCommon.js"></script>
 
 <script src="${staticUrl}/statics2/js/project/tree.js"></script>
 <script src="${staticUrl}/statics2/js/project/common-import-excel.js"></script>

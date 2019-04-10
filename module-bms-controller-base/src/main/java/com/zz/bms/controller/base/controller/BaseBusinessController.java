@@ -29,7 +29,7 @@ public abstract class BaseBusinessController<
         QueryModel extends RwModel,
         PK extends Serializable,
         RwQuery extends Query,
-        OnlyQuery extends RwQuery
+        OnlyQuery extends Query
         > extends BaseCommonController<PK> {
 
 

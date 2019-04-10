@@ -3,34 +3,26 @@ package com.zz.bms.controller.base.controller;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zz.bms.core.enums.EnumSymbol;
-import com.zz.bms.core.ui.TreeModel;
-import com.zz.bms.enums.EnumTreeState;
-import com.zz.bms.util.base.data.StringFormatKit;
-import com.zz.bms.util.base.java.ReflectHelper;
-import com.zz.bms.util.base.java.ReflectionSuper;
-import com.zz.bms.util.configs.AppConfig;
-import com.zz.bms.controller.base.PermissionList;
 import com.zz.bms.core.Constant;
-import com.zz.bms.core.db.base.service.BaseService;
-import com.zz.bms.core.db.entity.*;
+import com.zz.bms.core.db.entity.BaseBusinessEntity;
+import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.core.enums.EnumErrorMsg;
+import com.zz.bms.core.enums.EnumSymbol;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.ui.Pages;
 import com.zz.bms.core.vo.AjaxJson;
-import com.zz.bms.util.base.java.GenericsHelper;
+import com.zz.bms.enums.EnumTreeState;
+import com.zz.bms.util.base.java.ReflectionSuper;
+import com.zz.bms.util.configs.AppConfig;
 import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 import com.zz.bms.util.web.PaginationContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AnnotationUtils;
-import org.springframework.ui.ModelMap;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,7 +39,7 @@ public abstract class BaseCURDController<
         QueryModel extends RwModel,
         PK extends Serializable,
         RwQuery extends Query,
-        OnlyQuery extends RwQuery
+        OnlyQuery extends Query
         >
         extends BaseBusinessController<RwModel,QueryModel,PK,RwQuery,OnlyQuery>
 
@@ -201,7 +193,7 @@ public abstract class BaseCURDController<
         processOnlyQuery(query , m , sessionUserVO);
 
 
-        QueryWrapper<QueryModel> wrapper = (QueryWrapper<QueryModel>)buildRwWrapper(query , m);
+        QueryWrapper<QueryModel> wrapper = (QueryWrapper<QueryModel>)buildQueryWrapper(query , m);
 
         EntityAnnotation ea = m.getClass().getAnnotation(EntityAnnotation.class);
         if(ea == null || StringUtils.isEmpty(ea.parentColumnName())){

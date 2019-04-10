@@ -6,7 +6,9 @@ import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.enums.EnumUserStatus;
 import com.zz.bms.shiro.utils.ShiroUtils;
+import com.zz.bms.system.bo.TsUserBO;
 import com.zz.bms.system.bo.VsUserBO;
+import com.zz.bms.system.query.impl.TsUserQueryWebImpl;
 import com.zz.bms.system.query.impl.VsUserQueryWebImpl;
 import com.zz.bms.system.service.TsDictService;
 import org.apache.commons.lang3.StringUtils;
@@ -28,17 +30,18 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RequestMapping("/system/user")
 @Controller
-public class TsUserController extends ZzDefaultSimpleController<VsUserBO, String , VsUserQueryWebImpl> {
+public class TsUserController extends ZzDefaultController<TsUserBO,VsUserBO, String , TsUserQueryWebImpl, VsUserQueryWebImpl> {
 
 	@Autowired
 	private TsDictService tsDictService;
 
 
 	@Override
-	public void setCustomInfoByInsert(VsUserBO vsUserBO , ILoginUserEntity sessionUser){
-		vsUserBO.setUserStatus(EnumUserStatus.normal.getVal());
-		vsUserBO.setUserStatusName(EnumUserStatus.normal.getLabel());
-		vsUserBO.setOrganId(organId);
+	public void setCustomInfoByInsert(TsUserBO tsUserBO , ILoginUserEntity sessionUser){
+		tsUserBO.setUserStatus(EnumUserStatus.normal.getVal());
+		tsUserBO.setUserStatusName(EnumUserStatus.normal.getLabel());
+		tsUserBO.setOrganId(organId);
+		tsUserBO.setPageLimit(100);
 	}
 
 
@@ -60,7 +63,7 @@ public class TsUserController extends ZzDefaultSimpleController<VsUserBO, String
 		String id = this.getSessionUser().getId();
 
 		vsUserBO.setId(id);
-		VsUserBO temp = this.baseRwService.getById(id);
+		TsUserBO temp = this.baseRwService.getById(id);
 		if(temp == null){
 			throw EnumErrorMsg.no_auth.toException();
 		}

@@ -15,14 +15,18 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import com.zz.bms.system.bo.TsFileUseBO;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 
 
 /**
 * 文件使用 BO , 扩展 TsFileUseBO 对象
 * @author Administrator
-* @date 2019-4-10 11:08:55
+* @date 2019-4-10 20:58:06
 */
 @EntityAnnotation(value="文件使用" , resource = "system.fileuse"  ,businessName = "show_name"    ,businessKey = { "" }    )
 @TableName(value="vs_file_use" , resultMap = "VsFileUseResultMap")
@@ -34,7 +38,7 @@ public class VsFileUseBO extends TsFileUseBO implements Serializable , IBoEntity
     public boolean isTable() {
 
 
-        return super.isTable();
+        return false;
 
     }
 

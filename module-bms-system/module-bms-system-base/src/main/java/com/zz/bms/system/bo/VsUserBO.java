@@ -15,26 +15,51 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import com.zz.bms.system.bo.TsUserBO;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 
 
 /**
 * 用户 BO , 扩展 TsUserBO 对象
 * @author Administrator
-* @date 2019-4-10 11:08:52
+* @date 2019-4-10 20:58:03
 */
 @EntityAnnotation(value="用户" , resource = "system.user"  ,businessName = "user_name"    ,businessKey = { "" }    )
 @TableName(value="vs_user" , resultMap = "VsUserResultMap")
 public class VsUserBO extends TsUserBO implements Serializable , IBoEntity {
 
 
+    private String organName;
+
+    private String tenantName;
+
+    @Override
+    public String getOrganName() {
+        return organName;
+    }
+
+    public void setOrganName(String organName) {
+        this.organName = organName;
+    }
+
+    @Override
+    public String getTenantName() {
+        return tenantName;
+    }
+
+    public void setTenantName(String tenantName) {
+        this.tenantName = tenantName;
+    }
 
     @Override
     public boolean isTable() {
 
 
-        return super.isTable();
+        return false;
 
     }
 

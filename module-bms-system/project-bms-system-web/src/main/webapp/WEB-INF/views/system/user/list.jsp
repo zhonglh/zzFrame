@@ -170,12 +170,17 @@
 
 <script>
     var tableid = "tableData-${tableId}";
+    var queryString = "${ queryString }";
+
+    var listUrl = "";
 </script>
 
 
 
 <bms:contentJS />
 
+
+<script src="${staticUrl}/statics2/js/project/listCommon.js"></script>
 <script src="${staticUrl}/statics2/js/project/list.js"></script>
 <script src="${staticUrl}/statics2/js/project/common-import-excel.js"></script>
 <script src="${staticUrl}/statics2/business-js/system/user/search.js"></script>

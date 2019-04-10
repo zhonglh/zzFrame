@@ -1,5 +1,6 @@
 package com.zz.bms.system.bo;
 
+import com.zz.bms.core.ui.easyui.EasyUiTree;
 import com.zz.bms.system.domain.VsMenuPermitEntity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -13,20 +14,40 @@ import com.zz.bms.constants.DictTypeConstant;
 import com.zz.bms.constants.ExcelTypeConstant;
 import com.baomidou.mybatisplus.annotation.TableName;
 
-import com.zz.bms.system.bo.TsMenuPermitBO;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 
 
 /**
-* 菜单许可关联 BO , 扩展 TsMenuPermitBO 对象
+* 菜单许可关联 BO , 扩展 VsMenuPermitEntity 对象
 * @author Administrator
-* @date 2019-4-10 11:08:56
+* @date 2019-4-10 20:58:07
 */
-@EntityAnnotation(value="菜单许可关联" , resource = "system.menupermit"  ,businessName = "permit_name"    ,businessKey = { "" }    )
+@EntityAnnotation(value="菜单许可关联" , resource = "system.menupermit"  ,businessName = ""    ,businessKey = { "" }    )
 @TableName(value="vs_menu_permit" , resultMap = "VsMenuPermitResultMap")
-public class VsMenuPermitBO extends TsMenuPermitBO implements Serializable , IBoEntity {
+public class VsMenuPermitBO extends VsMenuPermitEntity implements Serializable , IBoEntity {
+
+
+
+
+
+    public EasyUiTree toEasyUiTree(){
+        EasyUiTree tree = new EasyUiTree();
+        tree.setId(this.getPermitId());
+        tree.setPid(this.getMenuId());
+        tree.setText(this.getPermitName());
+        Map<String,String> attributes = new HashMap<String,String>();
+        attributes.put( EasyUiTree.TREE_TYPE , "permit");
+        tree.setAttributes(attributes);
+        return tree;
+    }
+
+
 
 
 
@@ -34,13 +55,14 @@ public class VsMenuPermitBO extends TsMenuPermitBO implements Serializable , IBo
     public boolean isTable() {
 
 
-        return super.isTable();
+        return false;
 
     }
 
 
     @Override
     public String toString() {
+
 
         return super.toString();
 

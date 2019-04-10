@@ -46,7 +46,7 @@ public class MenuLogic {
 
         List<VsUserMenuBO> newMenus =  menus.stream().filter(x -> x.getLevel() > 0).collect(Collectors.toList());
         int levenWeight = 1000000;
-        newMenus.sort((o1 , o2) -> (o1.getLevel()*levenWeight+o1.getMenuSort()) - (o2.getLevel()*levenWeight+o2.getMenuSort()));
+        newMenus.sort((o1 , o2) -> (o1.getLevel()*levenWeight+o1.getSortno()) - (o2.getLevel()*levenWeight+o2.getSortno()));
         return newMenus;
 
     }
@@ -80,7 +80,7 @@ public class MenuLogic {
         List<VsUserMenuBO> ums = new ArrayList<VsUserMenuBO>();
         VsUserMenuBO bo = new VsUserMenuBO();
         bo.setId("1");
-        bo.setMenuSort(5);
+        bo.setSortno(5);
         ums.add(bo);
 
 
@@ -88,37 +88,37 @@ public class MenuLogic {
         bo = new VsUserMenuBO();
         bo.setId("30");
         bo.setPid("11");
-        bo.setMenuSort(15);
+        bo.setSortno(15);
         ums.add(bo);
 
         bo = new VsUserMenuBO();
         bo.setId("4");
         bo.setPid("2");
-        bo.setMenuSort(9);
+        bo.setSortno(9);
         ums.add(bo);
 
         bo = new VsUserMenuBO();
         bo.setId("6");
         bo.setPid("3");
-        bo.setMenuSort(12);
+        bo.setSortno(12);
         ums.add(bo);
 
         bo = new VsUserMenuBO();
         bo.setId("7");
         bo.setPid("6");
-        bo.setMenuSort(4);
+        bo.setSortno(4);
         ums.add(bo);
 
         bo = new VsUserMenuBO();
         bo.setId("2");
         bo.setPid("1");
-        bo.setMenuSort(2);
+        bo.setSortno(2);
         ums.add(bo);
 
         bo = new VsUserMenuBO();
         bo.setId("3");
         bo.setPid("1");
-        bo.setMenuSort(1);
+        bo.setSortno(1);
         ums.add(bo);
 
 
@@ -126,7 +126,7 @@ public class MenuLogic {
         bo = new VsUserMenuBO();
         bo.setId("9");
         bo.setPid("4");
-        bo.setMenuSort(18);
+        bo.setSortno(18);
         ums.add(bo);
 
         List<VsUserMenuBO> list = sortMenu(ums);
