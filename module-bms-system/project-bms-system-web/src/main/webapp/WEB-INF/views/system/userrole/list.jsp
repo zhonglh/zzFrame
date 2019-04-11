@@ -77,8 +77,6 @@
             <th field='userName' align="left" width="1" sortable='false' formatter='titleFmt' >用户</th>
             <th field='roleName' align="left" width="1" sortable='false'  >角色</th>
 
-
-
         </tr>
         </thead>
     </table>

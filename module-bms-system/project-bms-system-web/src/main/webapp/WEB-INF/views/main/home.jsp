@@ -98,7 +98,7 @@
 
                     <c:forEach items="${topShortcutMenus}" var="shortcut">
 
-                        <li menuId='${shortcut.id}' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('${ctx}${shortcut.menuUrl}')"><c:if test="${not empty shortcut.menuIcon}"><i class="fa ${shortcut.menuIcon}"></i></c:if><span>${shortcut.menuName}</span></a></li>
+                        <li menuId='${shortcut.id}' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('${ctx}${shortcut.path}')"><c:if test="${not empty shortcut.icon}"><i class="fa ${shortcut.icon}"></i></c:if><span>${shortcut.title}</span></a></li>
 
                     </c:forEach>
 
@@ -121,7 +121,7 @@
 
                             <c:forEach items="${moreShortcutMenus}" var="shortcut">
 
-                                <li menuId='${topShortcutMenus.id}' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('${ctx}${topShortcut.url}')"><c:if test="${not empty topShortcutMenus.menuIcon}"><i class="fa ${topShortcutMenus.menuIcon}"></i></c:if><span>${topShortcutMenus.menuName}</span></a></li>
+                                <li menuId='${shortcut.id}' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('${ctx}${shortcut.path}')"><c:if test="${not empty shortcut.icon}"><i class="fa ${shortcut.icon}"></i></c:if><span>${shortcut.title}</span></a></li>
 
                             </c:forEach>
 

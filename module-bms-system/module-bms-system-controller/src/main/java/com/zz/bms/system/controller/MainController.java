@@ -9,6 +9,7 @@ import com.zz.bms.system.bo.TsMyShortcutBO;
 import com.zz.bms.system.bo.TsNotificationBO;
 import com.zz.bms.system.bo.VsUserMenuBO;
 import com.zz.bms.system.domain.TsUserEntity;
+import com.zz.bms.system.logic.MenuLogic;
 import com.zz.bms.system.query.TsMyShortcutQuery;
 import com.zz.bms.system.query.TsNotificationQuery;
 import com.zz.bms.system.query.VsUserMenuQuery;
@@ -85,7 +86,7 @@ public class MainController extends BaseController {
             if (menus == null) {
                 menus = new ArrayList<VsUserMenuBO>();
             }
-            //menus = MenuLogic.sortMenu(menus);
+            menus = MenuLogic.sortMenu(menus);
             menus.sort((o1, o2) -> (o1.getLevel() * 100000 + o1.getSortno()) - (o2.getLevel() * 100000 + o2.getSortno()));
             model.put("menus", menus);
 

@@ -151,8 +151,6 @@
             <th field='depName' align="left" width="1" sortable='false'  >部门</th>
             <th field='organId' align="left" width="1" sortable='false'  >机构</th>
 
-
-
         </tr>
         </thead>
     </table>
