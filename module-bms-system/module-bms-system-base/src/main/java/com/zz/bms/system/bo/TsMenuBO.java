@@ -42,6 +42,9 @@ public class TsMenuBO extends TsMenuEntity implements Serializable , IBoEntity {
 
 
 
+
+
+
     public void setShortcutName(String shortcutName){
         this.shortcutName = shortcutName;
     }
@@ -49,8 +52,6 @@ public class TsMenuBO extends TsMenuEntity implements Serializable , IBoEntity {
     public String getShortcutName(){
         return this.shortcutName;
     }
-
-
 
 
     public EasyUiTree toEasyUiTree(){

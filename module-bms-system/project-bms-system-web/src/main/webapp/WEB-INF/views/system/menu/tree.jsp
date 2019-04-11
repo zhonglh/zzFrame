@@ -3,7 +3,6 @@
 <bms:contentHeader title="zz1" />
 
 
-
 <div region='north'>
     <div class="navigation">
 
@@ -41,19 +40,12 @@
            border='true' sortName="id" sortOrder="desc" style="width: 100%;">
         <thead>
         <tr>
-            <th field='menuName' align="left" width="1" sortable='false' formatter='titleAllFmt' >菜单名称</th>
+            <th field='menuName' align="left" width="1" sortable='false' formatter='titleFmt' >菜单名称</th>
             <th field='menuCode' align="left" width="1" sortable='false'  >菜单编号</th>
             <th field='menuSort' align="right" width="1" sortable='true'  >菜单顺序</th>
             <th field='menuUrl' align="left" width="1" sortable='false'  >菜单地址</th>
-            <th field='menuMsg' align="left" width="1" sortable='false'  >菜单提示信息</th>
             <th field='menuIcon' align="left" width="1" sortable='false'  >菜单图标</th>
             <th field='menuRedirect' align="left" width="1" sortable='false'  >跳转目标</th>
-            <th field='shortcutName' align="left" width="1" sortable='false'  >快捷菜单</th>
-            <th field='level' align="right" width="1" sortable='true'  >层级</th>
-            <th field='remark' align="left" width="1" sortable='false'  >备注</th>
-
-
-
         </tr>
         </thead>
     </table>
@@ -69,7 +61,7 @@
 
 
     var queryString = "${ queryString }";
-    var listUrl = "";
+    var treeUrl = "";
 
 </script>
 

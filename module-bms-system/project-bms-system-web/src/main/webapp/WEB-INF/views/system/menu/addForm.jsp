@@ -206,30 +206,6 @@
 
 
 
-                                    <th width="15%">是否叶节点<font color="red">*</font></th>
-
-                                    <td>
-
-
-
-
-
-                                            <select id="leaf"  name="leaf" required="required" >
-                                                <option value="" ></option>
-                                                <c:forEach items="${ yes_no }" var="dict">
-                                                    <option value="${ dict.value }">${ dict.name }</option>
-                                                </c:forEach>
-                                            </select>
-
-
-
-                                    </td>
-
-
-                                </tr>
-
-
-                                <tr>
 
                                     <th>备注</th>
 
