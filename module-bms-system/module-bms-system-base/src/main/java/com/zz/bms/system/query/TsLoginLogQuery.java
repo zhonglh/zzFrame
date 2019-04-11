@@ -38,17 +38,6 @@ public interface TsLoginLogQuery<PK extends Serializable> extends Query<TsLoginL
 
 
 
-        public TsLoginLogQuery operationlogName(String operationlogName);
-        public TsLoginLogQuery operationlogNameNot(String operationlogNameNot);
-        public TsLoginLogQuery operationlogNameIn(String operationlogNameIn);
-        public TsLoginLogQuery operationlogNameNotIn(String operationlogNameNotIn);
-        public TsLoginLogQuery operationlogNameLike(String operationlogNameLike);
-        public TsLoginLogQuery operationlogNameNotLike(String operationlogNameNotLike);
-        public TsLoginLogQuery operationlogNameIsNull();
-        public TsLoginLogQuery operationlogNameIsNotNull();
-
-
-
 
 
         public TsLoginLogQuery depId(PK depId);

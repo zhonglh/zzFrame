@@ -1,5 +1,7 @@
 package com.zz.bms.system.controller;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.enums.*;
 
 import com.zz.bms.system.service.TsDictService;
@@ -35,6 +37,14 @@ public class TsLoginLogController extends ZzDefaultSimpleController<TsLoginLogBO
 	@Override
 	public void setCustomInfoByInsert(TsLoginLogBO bo , ILoginUserEntity sessionUser){
 	}
+
+	@Override
+	protected Wrapper buildQueryWrapper(TsLoginLogQueryWebImpl query , TsLoginLogBO m) {
+		QueryWrapper wrapper =   query.buildWrapper();
+		wrapper.orderByDesc(" operation_time " );
+		return wrapper;
+	}
+
 
 
 	@Override

@@ -46,9 +46,10 @@ public class LoginEventListener implements ApplicationListener<LoginLogEvent> {
         loginLogBO.setDepId((String)loginUser.getDepId());
         loginLogBO.setDepName(loginUser.getDepName());
         loginLogBO.setOperationUserId((String)loginUser.getId());
-        loginLogBO.setOperationlogName(loginUser.getUserName());
+        loginLogBO.setOperationUserName(loginUser.getUserName());
         loginLogBO.setOperationIp(ip);
         loginLogBO.setOrganId((String)loginUser.getOrganId());
+        loginLogBO.setTenantId(loginUser.getTenantId());
         loginLogBO.setOperationTime(DateKit.getCurrentDate());
         loginLogService.save(loginLogBO);
 

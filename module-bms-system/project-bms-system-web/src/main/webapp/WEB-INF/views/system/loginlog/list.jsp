@@ -62,12 +62,10 @@
         <tr>
             <th field="ck" checkbox="true"></th>
 
-            <th field='operationTypeName' align="left" width="1" sortable='false' formatter='titleFmt' >操作类型</th>
-            <th field='operationlogName' align="left" width="1" sortable='false'  >操作说明</th>
+            <th field='operationUserName' align="left" width="1" sortable='false'  >操作人名称</th>
+            <th field='operationTypeName' align="left" width="1" sortable='false' >操作类型</th>
             <th field='depName' align="left" width="1" sortable='false'  >部门</th>
-            <th field='organId' align="left" width="1" sortable='false'  >机构</th>
             <th field='operationIp' align="left" width="1" sortable='false'  >操作人IP</th>
-            <th field='operationUserName' align="left" width="1" sortable='false' formatter='titleFmt' >操作人名称</th>
             <th field='operationTime' align="center" width="1" sortable='true' formatter='dateFmt' >操作时间</th>
 
 

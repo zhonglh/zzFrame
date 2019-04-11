@@ -8,7 +8,7 @@
 
          	<result column="operation_type" property="operationType"/>
 
-         	<result column="operationlog_name" property="operationlogName"/>
+         	<result column="operation_remark" property="operationRemark"/>
 
          	<result column="dep_id" property="depId"/>
 
@@ -33,7 +33,6 @@
 
                     <if test="id != null and id != ''"> AND T.id != #{id} </if>
 					<if test="operationType != null and operationType != ''"> AND T.operation_type = #{operationType} </if>
-					<if test="operationlogName != null and operationlogName != ''"> AND T.operationlog_name = #{operationlogName} </if>
 					<if test="depId != null and depId != ''"> AND T.dep_id = #{depId} </if>
 					<if test="organId != null and organId != ''"> AND T.organ_id = #{organId} </if>
 					<if test="operationUserId != null and operationUserId != ''"> AND T.operation_user_id = #{operationUserId} </if>

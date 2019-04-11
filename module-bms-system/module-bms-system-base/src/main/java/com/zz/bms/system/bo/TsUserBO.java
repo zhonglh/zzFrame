@@ -1,6 +1,7 @@
 package com.zz.bms.system.bo;
 
 import com.zz.bms.core.db.entity.ILoginUserEntity;
+import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.system.domain.TsUserEntity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -103,22 +104,22 @@ public class TsUserBO extends TsUserEntity implements Serializable , IBoEntity ,
 
     @Override
     public String getTenantName() {
-        return null;
+        return this.getTenantName();
     }
 
     @Override
     public boolean isSystemUser() {
-        return false;
+        return EnumYesNo.YES.getCode().equals(super.getSystemAdmin());
     }
 
     @Override
     public String getLeadId() {
-        return null;
+        return super.getLeadUserId();
     }
 
     @Override
     public String getLeadName() {
-        return null;
+        return  this.getLeadUserName();
     }
 
 

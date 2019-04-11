@@ -34,7 +34,7 @@ public class TsLoginLogEntity extends com.zz.bms.core.db.entity.BaseEntity<Strin
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
     //1: 登陆   2:退出  3:强制退出  4:踢出        
-	private String  operationlogName ;
+	private String  operationRemark ;
 
 
 
@@ -103,15 +103,13 @@ public class TsLoginLogEntity extends com.zz.bms.core.db.entity.BaseEntity<Strin
     	return this.operationType;
     }
 
-
-	public void setOperationlogName(String operationlogName){
-		this.operationlogName = operationlogName;
+	public String getOperationRemark() {
+		return operationRemark;
 	}
 
-    public String getOperationlogName(){
-    	return this.operationlogName;
-    }
-
+	public void setOperationRemark(String operationRemark) {
+		this.operationRemark = operationRemark;
+	}
 
 	public void setDepId(String depId){
 		this.depId = depId;

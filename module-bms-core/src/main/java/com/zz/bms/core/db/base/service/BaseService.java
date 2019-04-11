@@ -90,6 +90,15 @@ public interface BaseService<T extends BaseEntity, PK extends Serializable> exte
 
 
     /**
+     * 特殊处理
+     * 比如查询用户信息， 不能将密码 等关键信息返回到客户端
+     * @param ts
+     * @return
+     */
+    public void specialHandler(List<T> ts) ;
+
+
+    /**
      * 根据外键ID获取数据
      * @param fkColumnName  外键列名
      * @param fkIdList      外键ID集合
