@@ -45,6 +45,7 @@
 <script src="${staticUrl}/statics2/js/project/common-data.js"></script>
 <script src="${staticUrl}/statics2/js/project/common-validate.js"></script>
 <script src="${staticUrl}/statics2/js/project/common-tools.js"></script>
+<script src="${staticUrl}/statics2/js/project/common-zz.js"></script>
 
 
 <!--

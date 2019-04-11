@@ -15,7 +15,9 @@ function clearTime(time) {
 
 //关闭窗口
 function closeWindow() {
-    closeIframeWindow();
+    if(!isInAllPage()) {
+        closeIframeWindow();
+    }
 }
 
 
@@ -56,7 +58,6 @@ function switchEditDetail() {
 
 
 }
-
 
 
 
@@ -165,9 +166,14 @@ function doMultiFormSave() {
 function saveSuccess(rsp, status){
     if(rsp.success) {
         info(rsp.msg);
-        parent.search();
-        //parent.toUpdate(rsp.id);
-        closeWindow();
+        if(isInAllPage()){
+            //parent.toUpdate(rsp.id);
+            //this.
+        }else {
+            parent.search();
+            closeWindow();
+        }
+
     }else{
         warn(rsp.msg);
     }
@@ -284,12 +290,16 @@ function doMultiFormUpdate() {
  */
 function updateSuccess(rsp, status){
     if(rsp.success) {
-        //切换到显示界面
-        //switchEditDetail();
-        //$(".editForm").tform().showDetail(true);
         info(rsp.msg);
-        parent.search();
-        closeWindow();
+
+        if(isInAllPage()){
+            //切换到显示界面
+            switchEditDetail();
+            $("form").tform().showDetail(true);
+        }else {
+            parent.search();
+            closeWindow();
+        }
     }else{
         warn(rsp.msg);
     }

@@ -104,12 +104,12 @@ public class TsRoleController extends ZzGroupDefaultController<TsRoleGroupBO, Ts
 
             TsRolePermitQuery<String> rolePermitQuery = new TsRolePermitQueryImpl<String>();
             rolePermitQuery.roleId(m.getId());
-            rolePermitQuery.permitIdIn(permitIds);
+            //rolePermitQuery.permitIdIn(permitIds);
 
             QueryWrapper rolePermitQueryWrapper = rolePermitQuery.buildWrapper();
             List<TsRolePermitBO> list = rolePermitService.list(rolePermitQueryWrapper);
             Map<String,TsRolePermitBO> map = new HashMap<String,TsRolePermitBO>();
-            if(list != null && list.isEmpty()){
+            if(list != null && !list.isEmpty()){
                 for(TsRolePermitBO temp : list){
                     map.put(temp.getPermitId() , temp );
                 }

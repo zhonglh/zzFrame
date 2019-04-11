@@ -1,6 +1,7 @@
 package com.zz.bms.system.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.zz.bms.util.configs.annotaions.*;
 
 import com.zz.bms.core.Constant;
@@ -44,6 +45,17 @@ public class TsPermitEntity extends com.zz.bms.core.db.entity.BaseEntity<String>
 	private String  remark ;
 
 
+	/**
+	 * 删除标志
+	 * 1: 已删除    0：正常
+	 */
+	@TableLogic
+	@TableField(value = "delete_flag")
+	private String deleteFlag ;
+
+
+
+
 
 
 
@@ -73,6 +85,11 @@ public class TsPermitEntity extends com.zz.bms.core.db.entity.BaseEntity<String>
     	return this.remark;
     }
 
+	public String getDeleteFlag() {
+		return deleteFlag;
+	}
 
-	
+	public void setDeleteFlag(String deleteFlag) {
+		this.deleteFlag = deleteFlag;
+	}
 }

@@ -99,18 +99,6 @@ function IframePath(title)
     $("#iframePath").parent().html(title);
 }
 
-/**
- * 日期格式化
- * @param val
- * @param row
- * @returns {*}
- */
-function dateFmt(val,row){
-    if(null==val||""==val){
-        return "";
-    }
-    return val.substring(0,10);
-}
 
 /**
  * 标题格式化
@@ -128,16 +116,6 @@ function titleAllFmt(val, row){
     return html;
 }
 
-
-/**
- * 金额格式化
- * @param val
- * @param r
- * @returns {String}
- */
-function moneyFmt(val, r){
-    return FormatMoney(val,4,true);
-}
 
 /**
  * 点击日期选择的×号按钮

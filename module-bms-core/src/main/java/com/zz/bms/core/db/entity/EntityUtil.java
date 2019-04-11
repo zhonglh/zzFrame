@@ -105,6 +105,7 @@ public class EntityUtil {
             for(Object obj : newList){
                 BaseEntity be = (BaseEntity)obj ;
                 if(be.getId() == null || isEmpty(be.getId())) {
+                    be.setId(IdUtils.getId());
                     addList.add(obj);
                 }else {
                     Object temp = map.remove(be.getId());
@@ -121,8 +122,8 @@ public class EntityUtil {
         Collection array[] = new Collection[3];
 
         array[0] = addList;
-        array[0] = updateList;
-        array[0] = deleteList;
+        array[1] = updateList;
+        array[2] = deleteList;
 
         return array;
     }

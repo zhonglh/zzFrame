@@ -151,7 +151,7 @@
         <thead>
         <tr>
             <th field="ck" checkbox="true"></th>
-            <th field='userName' align="left" width="2" sortable='false' formatter='titleFmt'>用户名称</th>
+            <th field='userName' align="left" width="2" sortable='false' formatter='titleAllFmt'>用户名称</th>
             <th field='loginName' align="left" width="2" sortable='false' >用户登录名</th>
             <th field='userStatusName' align="left" width="1" sortable='false'>状态</th>
             <th field='phone' align="left" width="2" sortable='false'>手机</th>

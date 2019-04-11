@@ -5,6 +5,7 @@ import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.enums.EnumUserStatus;
+import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.shiro.utils.ShiroUtils;
 import com.zz.bms.system.bo.TsUserBO;
 import com.zz.bms.system.bo.VsUserBO;
@@ -42,6 +43,8 @@ public class TsUserController extends ZzDefaultController<TsUserBO,VsUserBO, Str
 		tsUserBO.setUserStatusName(EnumUserStatus.normal.getLabel());
 		tsUserBO.setOrganId(organId);
 		tsUserBO.setPageLimit(100);
+		tsUserBO.setSystemAdmin(EnumYesNo.NO.getCode());
+		tsUserBO.setSystemAdminName(EnumYesNo.NO.getCode());
 	}
 
 

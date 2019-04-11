@@ -76,7 +76,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
                 throw new RuntimeException(e);
             }
         } else {
-            return null;
+            return new ArrayList(list);
         }
     }
 
@@ -397,13 +397,13 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
 
                         Collection[] array = EntityUtil.computeAddUpdateDelete(cs , oldCs);
                         if(array != null){
-                            if(array[0] != null) {
+                            if(array[0] != null && !array[0].isEmpty()) {
                                 this.getServices()[index].saveBatch(array[0] , array[0].size());
                             }
-                            if(array[1] != null) {
+                            if(array[1] != null && !array[1].isEmpty()) {
                                 this.getServices()[index].updateBatchById(array[1] , array[1].size());
                             }
-                            if(array[2] != null) {
+                            if(array[2] != null && !array[2].isEmpty()) {
                                 this.getServices()[index].deletesByIds(array[2]);
                             }
                         }
@@ -507,7 +507,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
                         String childTableColumnName = gfa.childTableColumnName();
 
                         QueryWrapper qw = new QueryWrapper();
-                        qw.setEntity(f.getType().newInstance());
+                        qw.setEntity(realClass.newInstance());
                         qw.eq(childTableColumnName , id);
                         List list = this.getServices()[index].list(qw);
 

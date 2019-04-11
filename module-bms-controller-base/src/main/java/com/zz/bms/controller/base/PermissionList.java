@@ -83,8 +83,7 @@ public class PermissionList implements Serializable {
     }
 
     public void assertHasViewPermission() {
-        //都有查看权限
-        //assertHasPermission(VIEW_PERMISSION, "no.view.permission");
+        assertHasAnyPermission("no.any.permission");
     }
 
 
@@ -121,7 +120,7 @@ public class PermissionList implements Serializable {
             resourcePermission = this.resourceIdentity + ":" + permission;
         }
 
-        checkPermission(resourcePermission);
+        checkPermission(resourcePermission , errorCode);
 
     }
 
@@ -130,11 +129,10 @@ public class PermissionList implements Serializable {
      * 如果没有使用Shiro 来管理权限， 可以重载该方法
      * @param resourcePermission
      */
-    public void checkPermission(String resourcePermission){
-        //todo 先注释  等权限弄好后再打开
-        /*if (!SecurityUtils.getSubject().isPermitted(resourcePermission)) {
+    public void checkPermission(String resourcePermission ,String errorCode){
+        if (!SecurityUtils.getSubject().isPermitted(resourcePermission)) {
             throw new UnauthorizedException(MessageUtils.message(errorCode, resourcePermission));
-        }*/
+        }
     }
 
     public void assertHasAllPermission(String[] permissions) {
@@ -168,6 +166,10 @@ public class PermissionList implements Serializable {
         assertHasAnyPermission(permissions, null);
     }
 
+
+
+
+
     public void assertHasAnyPermission(String[] permissions, String errorCode) {
         if (StringUtils.isEmpty(errorCode)) {
             errorCode = getDefaultErrorCode();
@@ -190,6 +192,31 @@ public class PermissionList implements Serializable {
 
         throw new UnauthorizedException(MessageUtils.message(errorCode, resourceIdentity + ":" + Arrays.toString(permissions)));
     }
+
+
+
+
+    public void assertHasAnyPermission(String errorCode) {
+        if(StringUtils.isEmpty(errorCode)) {
+            errorCode = getDefaultErrorCode();
+        }
+
+        Subject subject = SecurityUtils.getSubject();
+
+        for (String resourcePermission : resourcePermissions.values()) {
+            if (subject.isPermitted(resourcePermission)) {
+                return;
+            }
+        }
+
+        throw new UnauthorizedException(MessageUtils.message(errorCode));
+    }
+
+
+
+
+
+
 
     private String getDefaultErrorCode() {
         return "no.permission";

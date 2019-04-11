@@ -126,13 +126,14 @@ public class MainController extends BaseController {
         }
 
         //处理未读通知数
-        TsNotificationQuery notifyQuery = new TsNotificationQueryImpl();
+        //todo
+        /*TsNotificationQuery notifyQuery = new TsNotificationQueryImpl();
         notifyQuery.toUserId(loginUser.getId());
         notifyQuery.isRead(EnumYesNo.NO.getCode());
 
         int count = tsNotificationService.count(notifyQuery.buildWrapper());
-        model.put("notReadNotifyCount", count);
-
+        model.put("notReadNotifyCount", count);*/
+        model.put("notReadNotifyCount", 0);
         //todo 测试使用 , 后期需要删除
         //testNotify(loginUser);
 
