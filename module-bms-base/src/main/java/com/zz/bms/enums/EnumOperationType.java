@@ -9,6 +9,14 @@ import com.zz.bms.core.enums.EnumBase;
  */
 public enum EnumOperationType implements EnumBase<String> {
 
+
+
+    LOGIN("1","登陆"),
+    LOGOUT("2","退出"),
+    LOGOUT_TIMEOUT("3","超时退出"),
+    LOGOUT_FORCE("4","强制退出"),
+    SHOT_OFF("5","踢出"),
+
     //增加
     //修改
     //删除

@@ -3,11 +3,20 @@ package com.zz.bms.system.controller;
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 import com.zz.bms.controller.base.controller.BaseController;
+import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.vo.AjaxJson;
+import com.zz.bms.enums.EnumOperationType;
+import com.zz.bms.events.LoginLogEvent;
 import com.zz.bms.shiro.utils.ShiroUtils;
+import com.zz.bms.system.bo.TsLoginLogBO;
+import com.zz.bms.system.service.TsLoginLogService;
+import com.zz.bms.util.base.data.DateKit;
+import com.zz.bms.util.base.java.IdUtils;
+import com.zz.bms.util.web.IpUtil;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,9 +24,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Date;
 
 
 /**
@@ -28,8 +39,8 @@ import java.io.IOException;
 @Controller
 public class LoginController extends BaseController {
 
-
-
+    @Autowired
+    ApplicationContext applicationContext;
 
     @Autowired
     private Producer producer;
@@ -57,11 +68,26 @@ public class LoginController extends BaseController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public Object login(String loginName, String loginPassword) {
+    public Object login(String loginName, String loginPassword , HttpServletRequest request) {
         try{
             Subject subject = ShiroUtils.getSubject();
             UsernamePasswordToken token = new UsernamePasswordToken(loginName, loginPassword);
             subject.login(token);
+
+
+            try {
+                ILoginUserEntity loginUser = (ILoginUserEntity)subject.getPrincipal();
+                if (loginUser != null) {
+                    LoginLogEvent le = new LoginLogEvent(new Date());
+                    le.setIp(IpUtil.getIpAddrByRequest(request));
+                    le.setLoginType(EnumOperationType.LOGIN.getVal());
+                    le.setUserId(loginUser.getId());
+                    applicationContext.publishEvent(le);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
             return AjaxJson.successAjax;
         }catch (UnknownAccountException e) {
             return AjaxJson.fail(e.getMessage());
@@ -79,9 +105,24 @@ public class LoginController extends BaseController {
 
 
     @RequestMapping("/logout")
-    public String logout() {
+    public String logout(HttpServletRequest request) {
         try{
             Subject subject = ShiroUtils.getSubject();
+
+            try {
+                ILoginUserEntity loginUser = (ILoginUserEntity)subject.getPrincipal();
+                if (loginUser != null) {
+                    LoginLogEvent le = new LoginLogEvent(new Date());
+                    le.setIp(IpUtil.getIpAddrByRequest(request));
+                    le.setLoginType(EnumOperationType.LOGOUT.getVal());
+                    le.setUserId(loginUser.getId());
+                    applicationContext.publishEvent(le);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+
             subject.logout();
         }catch (Exception e) {
 

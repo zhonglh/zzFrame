@@ -1,10 +1,20 @@
 package com.zz.bms.shiro.redisSession;
 
+import com.zz.bms.core.db.entity.ILoginUserEntity;
+import com.zz.bms.enums.EnumOperationType;
+import com.zz.bms.events.LoginLogEvent;
+import com.zz.bms.shiro.utils.ShiroUtils;
+import com.zz.bms.util.base.data.DateKit;
+import com.zz.bms.util.base.java.IdUtils;
+import com.zz.bms.util.web.IpUtil;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.SessionListenerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+
+import java.util.Date;
 
 /**
  * 类ShiroSessionListener的功能描述:
@@ -13,6 +23,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ShiroSessionListener extends SessionListenerAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(ShiroSessionListener.class);
+
+
+    @Autowired
+    ApplicationContext applicationContext;
 
     @Autowired
     private CachingShiroSessionDao sessionDao;
@@ -25,6 +39,20 @@ public class ShiroSessionListener extends SessionListenerAdapter {
 
     @Override
     public void onStop(Session session) {
+
+        try {
+            ILoginUserEntity loginUser = (ILoginUserEntity) ShiroUtils.getSubject().getPrincipal();
+            if (loginUser != null) {
+                LoginLogEvent le = new LoginLogEvent(new Date());
+                le.setIp(null);
+                le.setLoginType(EnumOperationType.LOGOUT_TIMEOUT.getVal());
+                le.setUserId(loginUser.getId());
+                applicationContext.publishEvent(le);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         sessionDao.delete(session);
         // 会话被停止时触发
         logger.info("ShiroSessionListener session {} 被销毁", session.getId());
