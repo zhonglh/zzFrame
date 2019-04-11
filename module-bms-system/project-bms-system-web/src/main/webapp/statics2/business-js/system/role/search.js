@@ -1,16 +1,16 @@
 
 /**
-* 打开用户选择窗口
+* 打开角色选择窗口
 * callId	回显数据ID的控件ID
 * callName	回显数据名称的控件ID
 * clearId	清空选项的控件ID
 * callBack 选择后的回调函数
 * @returns
 */
-function openSystemUserWin(config, callBack)
+function openSystemRoleWin(config, callBack)
 {
 
-    var url = config.url || $AppContext + '/system/user/list';
+    var url = config.url || $AppContext + '/system/role/list';
     var tableTemple = '<div class="easyui-panel" style="padding:5px; border: 0; width: 605px;height:450px;">'
     + '<table align="center" class="_searchTools" width="100%" border="0" style="background-color: #ffffff;">'
         + '<tr style="height: 40px;">'
@@ -25,33 +25,26 @@ function openSystemUserWin(config, callBack)
         + '</td>'
     + '</tr>'
     + '</table>'
-    + '<table class="_dataContorl _w_height" style="height: 300px;" pagination="true" border="true"  sortName="userName" sortOrder="asc"></table>'
+    + '<table class="_dataContorl _w_height" style="height: 300px;" pagination="true" border="true"  sortName="roleName" sortOrder="asc"></table>'
     + '</div>';
 
     var options = config || {};
-    options.id = "_SystemUserListPanel" + config.callId;
+    options.id = "_SystemRoleListPanel" + config.callId;
     options.width = 616;
     options.height = 550;
     options.callBack = callBack;
     options.url = url;
     options.columns = [[
     {field:"id", checkbox: true, width: 40},
-        {field:"userName", title:"用户姓名", width: 150, align:"left" ,},
-        {field:"loginName", title:"登录名", width: 150, align:"left" ,},
-        {field:"loginPassword", title:"登录密码", width: 150, align:"left" ,},
-        {field:"salt", title:"加密盐", width: 150, align:"left" ,},
-        {field:"userStatusName", title:"状态", width: 150, align:"left" ,},
-        {field:"leadUserName", title:"上级领导", width: 150, align:"left" ,},
-        {field:"phone", title:"电话", width: 150, align:"left" ,},
-        {field:"email", title:"邮箱", width: 150, align:"left" ,},
-        {field:"openId", title:"微信ID", width: 150, align:"left" ,},
-        {field:"unionId", title:"微信唯一ID", width: 150, align:"left" ,},
-        {field:"systemAdminName", title:"系统管理人员", width: 150, align:"left" ,},
+        {field:"roleName", title:"角色名称", width: 150, align:"left" ,},
+        {field:"roleCode", title:"角色编号", width: 150, align:"left" ,},
+        {field:"roleTypeName", title:"角色类型", width: 150, align:"left" ,},
         {field:"depName", title:"部门", width: 150, align:"left" ,},
         {field:"organId", title:"机构", width: 150, align:"left" ,},
-        {field:"pageLimit", title:"每页记录数", width: 150, align:"right" ,}
+        {field:"roleStatusName", title:"角色状态", width: 150, align:"left" ,},
+        {field:"remark", title:"备注", width: 150, align:"left" ,}
     ]];
-    options.sampleData = {id: "id", name: "userName"};
+    options.sampleData = {id: "id", name: "roleName"};
     options.htmlTemple = tableTemple;
     options.compiledSuccess = function(){
         // 查询按钮事件
@@ -92,9 +85,9 @@ function openSystemUserWin(config, callBack)
 
 
 
-//用户选择控件
-$.fn.OpenSystemUserSelectWin = function(config, callBack){
-    var win = openSystemUserWin(config, callBack);
+//角色选择控件
+$.fn.OpenSystemRoleSelectWin = function(config, callBack){
+    var win = openSystemRoleWin(config, callBack);
     $(this).unbind("click");
     $(this).bind("click", function(){
         win.show();

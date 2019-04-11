@@ -33,15 +33,6 @@
 
 
 
-                <shiro:hasPermission name="system.tenant:detail">
-                    <button type="button" class="btn btn-primary btn-sm" onclick="toDetail()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href=""></use>
-                        </svg>
-                        <span>查看 </span>
-                    </button>
-                </shiro:hasPermission>
-
 
 
         </div>
