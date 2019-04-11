@@ -151,10 +151,10 @@
 
 
 
-                                                    <select id="msgTempletType"  name="msgTempletType" required="required" >
+                                                    <select id="msgTempletType"  name="msgTempletType" required="required" style="windth:98%">
                                                         <option value="" ></option>
-                                                        <c:forEach items="${ msg_templet_type }" var="dict">
-                                                            <option value="${ dict.value }">${  dict.name }</option>
+                                                        <c:forEach items="${ msg_templet_type_dicts }" var="dict">
+                                                            <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.msgTempletType }">selected</c:if>>${  dict.dictName }</option>
                                                         </c:forEach>
                                                     </select>
 
@@ -216,10 +216,10 @@
                                     <td>
 
 
-                                                <select id="msgLanguage"  name="msgLanguage"  >
+                                                <select id="msgLanguage"  name="msgLanguage"  style="windth:98%" >
                                                     <option value="" ></option>
-                                                    <c:forEach items="${ msg_language }" var="dict">
-                                                        <option value="${ dict.value }">${ dict.name}  }</option>
+                                                    <c:forEach items="${ msg_language_dicts }" var="dict">
+                                                        <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.msgLanguage }">selected</c:if>>${ dict.dictName}  }</option>
                                                     </c:forEach>
                                                 </select>
 
@@ -236,10 +236,10 @@
 
 
 
-                                                    <select id="templetEffective"  name="templetEffective" required="required" >
+                                                    <select id="templetEffective"  name="templetEffective" required="required" style="windth:98%">
                                                         <option value="" ></option>
-                                                        <c:forEach items="${ yes_no }" var="dict">
-                                                            <option value="${ dict.value }">${  dict.name }</option>
+                                                        <c:forEach items="${ yes_no_dicts }" var="dict">
+                                                            <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.templetEffective }">selected</c:if>>${  dict.dictName }</option>
                                                         </c:forEach>
                                                     </select>
 

@@ -40,7 +40,7 @@ public class ShiroSessionListener extends SessionListenerAdapter {
     @Override
     public void onStop(Session session) {
 
-        try {
+        /*try {
             ILoginUserEntity loginUser = (ILoginUserEntity) ShiroUtils.getSubject().getPrincipal();
             if (loginUser != null) {
                 LoginLogEvent le = new LoginLogEvent(new Date());
@@ -51,7 +51,7 @@ public class ShiroSessionListener extends SessionListenerAdapter {
             }
         }catch (Exception e){
             e.printStackTrace();
-        }
+        }*/
 
         sessionDao.delete(session);
         // 会话被停止时触发

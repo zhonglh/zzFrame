@@ -42,6 +42,9 @@ public class TsMsgTempletController extends ZzDefaultSimpleController<TsMsgTempl
 
 	@Override
 	public void setCustomInfoByInsert(TsMsgTempletBO bo , ILoginUserEntity sessionUser){
+		bo.setDepId((String)sessionUser.getDepId());
+		bo.setDepName(sessionUser.getDepName());
+		bo.setOrganId((String)sessionUser.getOrganId());
 	}
 
 

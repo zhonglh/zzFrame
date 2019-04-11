@@ -27,199 +27,89 @@
 
                         <tbody>
 
-                                <tr>
+                            <tr>
 
-                                    <th>消息模板名称<font color="red">*</font></th>
+                                <th>消息模板名称<font color="red">*</font></th>
 
-                                    <td>
+                                <td>
+                                    <input type="text" required="required" class="form-control input-sm required"
+                                           placeholder="请输入消息模板名称" autocomplete="off" maxlength="50"
+                                           value="${ m.msgTempletName }" id="msgTempletName" name="msgTempletName"  />
+                                </td>
 
 
-                                                <input type="text" required="required" class="form-control input-sm required"
-                                                       placeholder="请输入消息模板名称" autocomplete="off"
-                                                       value="${ m.msgTempletName }" id="msgTempletName" name="msgTempletName"
-                                                          maxlength="50"  />
 
+                                <th width="15%">消息模板类型<font color="red">*</font></th>
 
+                                <td>
+                                    <select id="msgTempletType"  name="msgTempletType" required="required" style="windth:98%">
+                                        <option value="" ></option>
+                                        <c:forEach items="${ msg_templet_type_dicts }" var="dict">
+                                            <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.msgTempletType }">selected</c:if>>${ dict.dictName }</option>
+                                        </c:forEach>
+                                    </select>
+                                </td>
 
-                                    </td>
+                            </tr>
 
 
 
-                                    <th width="15%">消息模板类型<font color="red">*</font></th>
+                            <tr>
 
-                                    <td>
+                                <th>语言</th>
 
+                                <td>
+                                    <select id="msgLanguage"  name="msgLanguage" style="windth:98%" >
+                                    <option value="" ></option>
+                                    <c:forEach items="${ msg_language_dicts }" var="dict">
+                                        <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.msgLanguage }">selected</c:if>>${ dict.dictName}  }</option>
+                                    </c:forEach>
+                                    </select>
 
+                                </td>
 
 
 
-                                            <select id="msgTempletType"  name="msgTempletType" required="required" >
-                                                <option value="" ></option>
-                                                <c:forEach items="${ msg_templet_type }" var="dict">
-                                                    <option value="${ dict.value }">${ dict.name }</option>
-                                                </c:forEach>
-                                            </select>
+                                <th>模板是否有效<font color="red">*</font></th>
 
+                                <td>
+                                    <select id="templetEffective"  name="templetEffective" required="required" style="windth:98%">
+                                        <option value="" ></option>
+                                        <c:forEach items="${ yes_no_dicts }" var="dict">
+                                            <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.templetEffective }">selected</c:if>>${ dict.dictName }</option>
+                                        </c:forEach>
+                                    </select>
+                                </td>
 
+                            </tr>
 
-                                    </td>
 
 
-                                </tr>
 
+                            <tr>
 
-                                <tr>
+                                <th>消息标题</th>
+                                <td colspan="3">
+                                    <input type="text"  class="form-control input-sm "
+                                           placeholder="请输入消息标题" autocomplete="off"  maxlength="200"
+                                           value="${ m.msgTitle }" id="msgTitle" name="msgTitle"   />
+                                </td>
+                            </tr>
 
-                                    <th>消息标题</th>
 
-                                    <td>
 
+                            <tr>
 
-                                                <input type="text"  class="form-control input-sm "
-                                                       placeholder="请输入消息标题" autocomplete="off"
-                                                       value="${ m.msgTitle }" id="msgTitle" name="msgTitle"
-                                                          maxlength="200"  />
+                                <th>消息内容<font color="red">*</font></th>
+                                <td colspan="3">
+                                    <div class="info-detail">
+                                            <textarea required="required" class="form-control input-sm required " maxlength="5000" rows="6"
+                                               name="msgContent" placeholder="请输入消息内容，5000字以内" ><c:out value="${m.msgContent}" escapeXml="true"/></textarea>
+                                    </div>
+                                </td>
 
 
-
-                                    </td>
-
-
-
-                                    <th width="15%">消息内容<font color="red">*</font></th>
-
-                                    <td>
-
-
-
-
-
-
-                                            <div class="info-detail">
-                                                <textarea required="required" class="form-control input-sm required "
-                                                          name="msgContent" placeholder="请输入消息内容，5000字以内" maxlength="5000" rows="4">${ m.msgContent }</textarea>
-                                            </div>
-
-
-
-
-
-
-                                    </td>
-
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <th>语言</th>
-
-                                    <td>
-
-
-                                                <select id="msgLanguage"  name="msgLanguage"  >
-                                                <option value="" ></option>
-                                                <c:forEach items="${ msg_language }" var="dict">
-                                                    <option value="${ dict.value }">${ dict.name}  }</option>
-                                                </c:forEach>
-                                                </select>
-
-
-                                    </td>
-
-
-
-                                    <th width="15%">模板是否有效<font color="red">*</font></th>
-
-                                    <td>
-
-
-
-
-
-                                            <select id="templetEffective"  name="templetEffective" required="required" >
-                                                <option value="" ></option>
-                                                <c:forEach items="${ yes_no }" var="dict">
-                                                    <option value="${ dict.value }">${ dict.name }</option>
-                                                </c:forEach>
-                                            </select>
-
-
-
-                                    </td>
-
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <th>部门<font color="red">*</font></th>
-
-                                    <td>
-
-
-
-                                            <div class="input-group">
-                                                <c:if test="${ fn.indexOf(queryString,'depId') }">
-                                                    <input type="text" class="form-control input-sm" name="depName" id="depName" value="${ m.depName }" readonly>
-                                                </c:if>
-
-                                                <c:if test="${ !fn.indexOf(queryString,'depId') }">
-
-
-                                                <input type="hidden" name="depId" id="depId" value="${ m.depId }">
-                                                <input type="text" name="depName" id="depName" value="${ m.depName }" required="required" class="form-control input-sm depName " placeholder="请选择部门" style="width: 150px; cursor: pointer;" readonly="readonly">
-
-                                                <div class="input-group-btn">
-                                                    <button type="button"
-                                                            class="btn btn-primary btn-sm depName">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-sousuo">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
-                                                    <button type="button" id="clearDepId"
-                                                            class="btn btn-primary btn-sm">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-close">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                                </c:if>
-                                            </div>
-
-
-                                    </td>
-
-
-
-                                    <th width="15%">机构<font color="red">*</font></th>
-
-                                    <td>
-
-
-
-
-
-                                            <input type="text" required="required" class="form-control input-sm required"
-                                                   placeholder="请输入机构" autocomplete="off"
-                                                   value="${ m.organId }" id="organId" name="organId"
-                                                       maxlength="32"  />
-
-
-
-
-                                    </td>
-
-
-                                </tr>
-
-
+                            </tr>
 
 
                         </tbody>
