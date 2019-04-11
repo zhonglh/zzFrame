@@ -61,7 +61,6 @@
                     <th field="dictVal" align="left" width="1" sortable="false" >字典值</th>
                     <th field="dictReg"  align="left" width="2" sortable="false">字典规则</th>
                     <th field="orderby" align="right" width="1" sortable="false">排序</th>
-                    <th field='makes' align="center" formatter='makesFmt'>操作</th>
                 </tr>
                 </thead>
             </table>
@@ -85,12 +84,16 @@
 <script language="JavaScript">
 
     var searchData = {};
+    var listUrl = "";
+
+    var queryString = null;
 
     //字典类型选中事件
     $("#dicttypeList li").click(function(){
         $(this).addClass("lf-act");
         $(this).siblings().removeClass("lf-act");
-        searchData = {"dictTypeId" : $(this).attr("data-typeid")};
+
+        queryString = "dictTypeId="+ $(this).attr("data-typeid");
         initPage();
     });
 

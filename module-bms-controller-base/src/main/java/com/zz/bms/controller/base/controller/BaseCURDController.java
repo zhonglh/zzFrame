@@ -270,7 +270,7 @@ public abstract class BaseCURDController<
         if(m == null){
             throw EnumErrorMsg.no_auth.toException();
         }
-
+        processQueryString(modelMap,request);
         setCommonData(m,modelMap);
         customInfoByViewForm(m , modelMap);
         modelMap.addAttribute("m", m);
@@ -296,7 +296,7 @@ public abstract class BaseCURDController<
     public String showCreateForm(RwModel m ,ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
 
         this.assertHasCreatePermission();
-
+        processQueryString(modelMap,request);
         setCommonData(m,modelMap);
 
         setInit(m);
@@ -332,7 +332,7 @@ public abstract class BaseCURDController<
         if(m == null){
             throw EnumErrorMsg.no_auth.toException();
         }
-
+        processQueryString(modelMap,request);
         setCommonData(m,modelMap);
         customInfoByUpdateForm(m , modelMap);
         modelMap.addAttribute("m", m);
@@ -373,7 +373,7 @@ public abstract class BaseCURDController<
             entity = list.get(0);
             isInsert = false;
         }
-
+        processQueryString(modelMap,request);
         setCommonData(entity,modelMap);
 
         if(isInsert) {
@@ -387,7 +387,6 @@ public abstract class BaseCURDController<
         modelMap.addAttribute("m", entity);
         modelMap.addAttribute("entity", entity);
 
-        processQueryString(modelMap, request);
 
         String pageName = null;
         if(isInsert) {

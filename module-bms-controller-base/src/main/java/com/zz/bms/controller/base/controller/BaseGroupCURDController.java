@@ -277,7 +277,7 @@ public abstract class   BaseGroupCURDController<
         if(m == null){
             throw EnumErrorMsg.no_auth.toException();
         }
-
+        processQueryString(modelMap,request);
         setCommonData(m,modelMap);
         customInfoByViewForm(m , modelMap);
         modelMap.addAttribute("m", m);
@@ -303,7 +303,7 @@ public abstract class   BaseGroupCURDController<
     public String showCreateForm(RwModel m ,ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
 
         this.assertHasCreatePermission();
-
+        processQueryString(modelMap,request);
         setCommonData(m,modelMap);
 
         setInit(m);
@@ -339,7 +339,7 @@ public abstract class   BaseGroupCURDController<
         if(m == null){
             throw EnumErrorMsg.no_auth.toException();
         }
-
+        processQueryString(modelMap,request);
         setCommonData(m,modelMap);
         customInfoByUpdateForm(m , modelMap);
         modelMap.addAttribute("m", m);
@@ -381,7 +381,7 @@ public abstract class   BaseGroupCURDController<
             entity = list.get(0);
             isInsert = false;
         }
-
+        processQueryString(modelMap,request);
         setCommonData(entity,modelMap);
 
         if(isInsert) {
@@ -420,7 +420,7 @@ public abstract class   BaseGroupCURDController<
 
 
         customInfoByAllPage(m , modelMap);
-
+        processQueryString(modelMap,request);
         modelMap.addAttribute("m",  m);
         modelMap.addAttribute("entity", m);
 

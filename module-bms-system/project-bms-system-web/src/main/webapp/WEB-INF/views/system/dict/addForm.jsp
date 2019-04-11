@@ -29,66 +29,28 @@
 
                                 <tr>
 
-                                    <th>字典类型<font color="red">*</font></th>
+
+                                    <th>字典名<font color="red">*</font></th>
 
                                     <td>
 
 
+                                        <input type="text" required="required" class="form-control input-sm required"
+                                               placeholder="请输入字典名" autocomplete="off"
+                                               value="${ m.dictName }" id="dictName" name="dictName"
+                                               maxlength="50"  />
 
-                                            <div class="input-group">
-                                                <c:if test="${ fn.indexOf(queryString,'dictTypeId') }">
-                                                    <input type="text" class="form-control input-sm" name="dictTypeName" id="dictTypeName" value="${ m.dictTypeName }" readonly>
-                                                </c:if>
-
-                                                <c:if test="${ !fn.indexOf(queryString,'dictTypeId') }">
-
-
-                                                <input type="hidden" name="dictTypeId" id="dictTypeId" value="${ m.dictTypeId }">
-                                                <input type="text" name="dictTypeName" id="dictTypeName" value="${ m.dictTypeName }" required="required" class="form-control input-sm dictTypeName " placeholder="请选择字典类型" style="width: 150px; cursor: pointer;" readonly="readonly">
-
-                                                <div class="input-group-btn">
-                                                    <button type="button"
-                                                            class="btn btn-primary btn-sm dictTypeName">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-sousuo">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
-                                                    <button type="button" id="clearDictTypeId"
-                                                            class="btn btn-primary btn-sm">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-close">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                                </c:if>
-                                            </div>
 
 
                                     </td>
 
 
-
                                     <th width="15%">字典值<font color="red">*</font></th>
 
                                     <td>
-
-
-
-
-
-                                            <select id="dictVal"  name="dictVal" required="required" >
-                                                <option value="" ></option>
-                                                <c:forEach items=${ dict_val } var="dict">
-                                                    <option value="${ dict.value }">${ dict.name }</option>
-                                                </c:forEach>
-                                            </select>
-
-
-
+                                        <input type="text" id="dictVal" name="dictVal" maxlength="2"
+                                               required="required" class="form-control input-sm required"
+                                               placeholder="请输入字典值" autocomplete="off">
                                     </td>
 
 
@@ -97,19 +59,7 @@
 
                                 <tr>
 
-                                    <th>字典名<font color="red">*</font></th>
 
-                                    <td>
-
-
-                                                <input type="text" required="required" class="form-control input-sm required"
-                                                       placeholder="请输入字典名" autocomplete="off"
-                                                       value="${ m.dictName }" id="dictName" name="dictName"
-                                                          maxlength="50"  />
-
-
-
-                                    </td>
 
 
 
@@ -132,24 +82,27 @@
                                     </td>
 
 
-                                </tr>
-
-
-                                <tr>
-
                                     <th>字典限制正则</th>
 
                                     <td>
 
 
-                                                <input type="text"  class="form-control input-sm "
-                                                       placeholder="请输入字典限制正则" autocomplete="off"
-                                                       value="${ m.dictReg }" id="dictReg" name="dictReg"
-                                                          maxlength="100"  />
+                                        <input type="text"  class="form-control input-sm "
+                                               placeholder="请输入字典限制正则" autocomplete="off"
+                                               value="${ m.dictReg }" id="dictReg" name="dictReg"
+                                               maxlength="100"  />
 
 
 
                                     </td>
+
+
+                                </tr>
+
+
+                                <tr>
+
+
 
 
 
@@ -226,8 +179,6 @@
 
 
 <script>
-
-
     var queryString = "${ queryString }";
 </script>
 
@@ -237,25 +188,8 @@
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
 
 
-    <script src="${ staticUrl }/statics2/business-js/system/dicttype/search.js"></script>
-
-
 
 <script language="JavaScript">
-
-
-    $(function() {
-
-        //选择字典类型
-        $(".dictTypeName").OpenSystemDicttypeSelectWin({
-            title: "字典类型",
-            selectType: "t1",
-            callId: "dictTypeId",
-            callName: "dictTypeName",
-            clearId: "clearDictTypeId"
-        });
-
-    });
 
 
 

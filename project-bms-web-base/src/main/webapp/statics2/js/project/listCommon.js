@@ -78,7 +78,9 @@ function getQueryParams(){
             sData = searchForm.serializeJson();
             return sData;
         }else {
-            sData = searchData;
+            try {
+                sData = searchData;
+            }catch(e){}
             return sData;
         }
     }catch(e) {
@@ -164,7 +166,15 @@ function deleteOne (obj)
  * 打开新建界面
  */
 function toAdd(){
-    slideIframeWindow('<a>'+breadcrumb+'</a> ＞ <a>新建</a>', ctx+dataUrl+"/create" ,100);
+    var addUrl = ctx+dataUrl+"/create";
+    try{
+        if(queryString != undefined && queryString != ""){
+            addUrl = addUrl+ "?" + queryString;
+        }
+    }catch(e){
+
+    }
+    slideIframeWindow('<a>'+breadcrumb+'</a> ＞ <a>新建</a>', addUrl ,100);
 }
 
 
@@ -173,8 +183,16 @@ function toAdd(){
  * @param id
  */
 function toUpdate(id){
+    var updateUrl = ctx+dataUrl+"/"+id+"/update";
+    try{
+        if(queryString != undefined && queryString != ""){
+            addUrl = addUrl+ "?" + queryString;
+        }
+    }catch(e){
+
+    }
     var title = '<a id="iframePath">'+breadcrumb+'</a>＞<a>详情</a>';
-    showIframeWindow(title,     ctx+dataUrl+"/"+id+"/update");
+    showIframeWindow(title,    updateUrl );
 }
 
 
@@ -183,8 +201,18 @@ function toUpdate(id){
  * @param id
  */
 function toAll(id){
+
+    var allUrl = ctx+dataUrl+"/"+id+"/all"
+    try{
+        if(queryString != undefined && queryString != ""){
+            addUrl = addUrl+ "?" + queryString;
+        }
+    }catch(e){
+
+    }
+
     var title = '<a id="iframePath">'+breadcrumb+'</a>＞<a>详情</a>';
-    showIframeWindow(title,     ctx+dataUrl+"/"+id+"/all");
+    showIframeWindow(title,   allUrl  );
 }
 
 
