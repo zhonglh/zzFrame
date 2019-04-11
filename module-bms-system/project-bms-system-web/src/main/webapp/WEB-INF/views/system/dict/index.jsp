@@ -74,10 +74,12 @@
 
 <script language="JavaScript">
     var tableid = "tableData-${tableId}";
+    var queryString = '${queryString}';
 </script>
 
 
 <bms:contentJS />
+<script src="${staticUrl}/statics2/js/project/listCommon.js"></script>
 <script src="${staticUrl}/statics2/js/project/list.js"></script>
 
 <script language="JavaScript">

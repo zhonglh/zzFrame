@@ -87,6 +87,7 @@ public class EntityUtil {
             for(Object obj : newList){
                 BaseEntity be = (BaseEntity)obj ;
                 if(be.getId() == null || isEmpty(be.getId())) {
+                    be.setId(IdUtils.getId());
                     addList.add(obj);
                 }
             }
