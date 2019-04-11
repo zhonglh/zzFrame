@@ -45,7 +45,7 @@
 
 
 
-                                    <th width="15%">机构代码<font color="red">*</font></th>
+                                    <th>机构代码<font color="red">*</font></th>
 
                                     <td>
 
@@ -74,10 +74,10 @@
                                     <td>
 
 
-                                                <select id="organType"  name="organType"  >
+                                                <select id="organType"  name="organType"  style="width:98%">
                                                 <option value="" ></option>
-                                                <c:forEach items="${ organ_type }" var="dict">
-                                                    <option value="${ dict.value }">${ dict.name}  }</option>
+                                                <c:forEach items="${ organ_type_dicts }" var="dict">
+                                                    <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.organType }">selected</c:if>>${ dict.dictName}  }</option>
                                                 </c:forEach>
                                                 </select>
 
@@ -86,7 +86,7 @@
 
 
 
-                                    <th width="15%">机构地址</th>
+                                    <th>机构地址</th>
 
                                     <td>
 
@@ -115,10 +115,10 @@
                                     <td>
 
 
-                                                <select id="organStatus"  name="organStatus" required="required" >
+                                                <select id="organStatus"  name="organStatus" required="required" style="width:98%">
                                                 <option value="" ></option>
-                                                <c:forEach items="${ organ_status }" var="dict">
-                                                    <option value="${ dict.value }">${ dict.name}  }</option>
+                                                <c:forEach items="${ organ_status_dicts }" var="dict">
+                                                    <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.organStatus }">selected</c:if>>${ dict.dictName}  }</option>
                                                 </c:forEach>
                                                 </select>
 
@@ -127,7 +127,7 @@
 
 
 
-                                    <th width="15%">负责人<font color="red">*</font></th>
+                                    <th>负责人<font color="red">*</font></th>
 
                                     <td>
 

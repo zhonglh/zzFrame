@@ -151,7 +151,7 @@
 
 
 
-                                                    <select id="msgTempletType"  name="msgTempletType" required="required" style="windth:98%">
+                                                    <select id="msgTempletType"  name="msgTempletType" required="required" style="width:98%">
                                                         <option value="" ></option>
                                                         <c:forEach items="${ msg_templet_type_dicts }" var="dict">
                                                             <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.msgTempletType }">selected</c:if>>${  dict.dictName }</option>
@@ -216,7 +216,7 @@
                                     <td>
 
 
-                                                <select id="msgLanguage"  name="msgLanguage"  style="windth:98%" >
+                                                <select id="msgLanguage"  name="msgLanguage"  style="width:98%" >
                                                     <option value="" ></option>
                                                     <c:forEach items="${ msg_language_dicts }" var="dict">
                                                         <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.msgLanguage }">selected</c:if>>${ dict.dictName}  }</option>
@@ -236,7 +236,7 @@
 
 
 
-                                                    <select id="templetEffective"  name="templetEffective" required="required" style="windth:98%">
+                                                    <select id="templetEffective"  name="templetEffective" required="required" style="width:98%">
                                                         <option value="" ></option>
                                                         <c:forEach items="${ yes_no_dicts }" var="dict">
                                                             <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.templetEffective }">selected</c:if>>${  dict.dictName }</option>

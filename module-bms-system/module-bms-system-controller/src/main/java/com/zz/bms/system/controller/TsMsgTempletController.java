@@ -45,6 +45,8 @@ public class TsMsgTempletController extends ZzDefaultSimpleController<TsMsgTempl
 		bo.setDepId((String)sessionUser.getDepId());
 		bo.setDepName(sessionUser.getDepName());
 		bo.setOrganId((String)sessionUser.getOrganId());
+		bo.setTempletEffective(EnumYesNo.YES.getCode());
+        bo.setTempletEffectiveName(EnumYesNo.YES.getName());
 	}
 
 

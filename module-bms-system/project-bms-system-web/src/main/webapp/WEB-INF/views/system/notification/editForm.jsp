@@ -149,7 +149,7 @@
 
                                                 <div class="info-detail">
                                                     <textarea required="required" class="form-control input-sm required "
-                                                              name="content " placeholder="请输入通知内容，65535字以内" maxlength="65535" rows="4">${ m.content $}</textarea>
+                                                              name="content " placeholder="请输入通知内容，65535字以内" maxlength="65535" rows="6"><c:out value="${ m.content $}" escapeXml="true"/></textarea>
                                                 </div>
 
 

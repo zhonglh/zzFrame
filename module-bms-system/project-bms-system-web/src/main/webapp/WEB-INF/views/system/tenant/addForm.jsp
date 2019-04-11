@@ -45,7 +45,7 @@
 
 
 
-                                    <th width="15%">企业编号<font color="red">*</font></th>
+                                    <th>企业编号<font color="red">*</font></th>
 
                                     <td>
 
@@ -85,7 +85,7 @@
 
 
 
-                                    <th width="15%">联系电话</th>
+                                    <th>联系电话</th>
 
                                     <td>
 
@@ -125,7 +125,7 @@
 
 
 
-                                    <th width="15%">LOGO</th>
+                                    <th>LOGO</th>
 
                                     <td>
 
@@ -160,7 +160,7 @@
 
 
 
-                                    <th width="15%">说明</th>
+                                    <th>说明</th>
 
                                     <td>
 

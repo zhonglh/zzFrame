@@ -158,7 +158,7 @@
 
 
     var queryString = "${ queryString }";
-    var listUrl = "";
+    var treeUrl = "";
 
 </script>
 

@@ -166,10 +166,10 @@
                                     <td>
 
 
-                                                <select id="organType"  name="organType"  >
+                                                <select id="organType"  name="organType"  style="width:98%">
                                                     <option value="" ></option>
-                                                    <c:forEach items="${ organ_type }" var="dict">
-                                                        <option value="${ dict.value }">${ dict.name}  }</option>
+                                                    <c:forEach items="${ organ_type_dicts }" var="dict">
+                                                        <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.organType }">selected</c:if>>${ dict.dictName}  }</option>
                                                     </c:forEach>
                                                 </select>
 
@@ -207,10 +207,10 @@
                                     <td>
 
 
-                                                <select id="organStatus"  name="organStatus" required="required" >
+                                                <select id="organStatus"  name="organStatus" required="required" style="width:98%">
                                                     <option value="" ></option>
-                                                    <c:forEach items="${ organ_status }" var="dict">
-                                                        <option value="${ dict.value }">${ dict.name}  }</option>
+                                                    <c:forEach items="${ organ_status_dicts }" var="dict">
+                                                        <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.organStatus }">selected</c:if>>${ dict.dictName}  }</option>
                                                     </c:forEach>
                                                 </select>
 

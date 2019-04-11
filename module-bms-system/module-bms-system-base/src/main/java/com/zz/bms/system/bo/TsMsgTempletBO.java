@@ -48,7 +48,6 @@ public class TsMsgTempletBO extends TsMsgTempletEntity implements Serializable ,
 
     @TableField(exist = false)
     @EntityAttrDictAnnotation(group = "templetEffective", groupName = "模板是否有效" ,  dbColumnName = "dict_name" , dbColumnLength = 50 , isNameField = true , dictType = "yes_no")
-    @EntityAttrExcelAnnotation(excelProcess= "3")
     @EntityAttrPageAnnotation(title = "模板是否有效",sort = 701                      ,required=true )
     private String templetEffectiveName ;
 
@@ -56,7 +55,6 @@ public class TsMsgTempletBO extends TsMsgTempletEntity implements Serializable ,
 
     @TableField(exist = false)
     @EntityAttrFkAnnotation(group = "depId",  groupName = "部门" ,   dbColumnName = "dep_name" , dbColumnType = "VARCHAR" , dbColumnLength = 100   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsDepBO.class)
-    @EntityAttrExcelAnnotation(excelProcess= "3")
     @EntityAttrPageAnnotation(title = "部门",sort = 801                      ,required=true )
     private String depName ;
 
