@@ -33,39 +33,10 @@
 
 <div class="panel layout-panel layout-panel-center" style="width: 980px; left: 149px; top: 34px;">
     <div region="center" style="padding: 5px 10px 0px; width: 100%; height: 538px;"
-         title="" class="panel-body panel-body-noheader layout-body panel-noscroll">
+         title="" class="panel-body panel-body-noheader layout-body panel-noscroll" id="dictList">
 
-        <c:if test="${list != null && fn:length(list) > 0}">
 
-        <div class="btn-bar" style="margin-left: -10px;">
-            <button type="button" class="btn btn-primary btn-sm" onclick="toAdd()">
-                <svg class="icon" aria-hidden="true">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
-                </svg>
-                <span>新建 </span>
-            </button>
-            <button type="button" class="btn btn-primary btn-sm" url="" onclick="doDel('url')">
-                <svg class="icon" aria-hidden="true">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use>
-                </svg>
-                <span>删除 </span>
-            </button>
-        </div>
 
-        <div style="height: 482px">
-            <table id='tableData-${tableId}' class='easyui-datagrid'  method='post' fit='true' pagination='true' fitColumns="true"  border='true' sortName="id" sortOrder="desc" style="width: 100%;height: 100%">
-                <thead>
-                <tr>
-                    <th field="ck" checkbox="true"></th>
-                    <th field="dictName" align="left" width="1" sortable="false"  formatter="titleFmt">字典名称</th>
-                    <th field="dictVal" align="left" width="1" sortable="false" >字典值</th>
-                    <th field="dictReg"  align="left" width="2" sortable="false">字典规则</th>
-                    <th field="orderby" align="right" width="1" sortable="false">排序</th>
-                </tr>
-                </thead>
-            </table>
-        </div>
-        </c:if>
 
     </div>
 </div>
@@ -86,7 +57,7 @@
     var searchData = {};
     var listUrl = "";
 
-    var queryString = null;
+    var queryString = "dictTypeId=${fistTypeId}";
 
     //字典类型选中事件
     $("#dicttypeList li").click(function(){
@@ -94,7 +65,17 @@
         $(this).siblings().removeClass("lf-act");
 
         queryString = "dictTypeId="+ $(this).attr("data-typeid");
-        initPage();
+
+
+        var url = location.href.replaceAll("index","toList")+"?dictTypeId="+ $(this).attr("data-typeid");
+
+        $("#dictList").panel(
+            {
+                title :'',
+                href:url
+            }
+        );
+
     });
 
 </script>

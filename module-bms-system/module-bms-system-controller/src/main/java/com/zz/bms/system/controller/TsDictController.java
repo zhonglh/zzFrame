@@ -40,6 +40,7 @@ public class TsDictController extends ZzDefaultSimpleController<TsDictBO, String
 		QueryWrapper<TsDictTypeBO> queryWrapper = tsDictTypeQuery.buildWrapper();
 		List<TsDictTypeBO> list = this.tsDictTypeService.list(queryWrapper);
 		model.addAttribute("list" , list);
+		model.addAttribute("fistTypeId" , list.get(0).getId());
 		return this.viewName("index");
 
 	}

@@ -9,9 +9,9 @@
     remark,
     delete_flag
     ) values (
-    '0c33b27f8eef453680958b8057aa1dae',
-    '删除角色',
-    'systemrole:del',
+    '07a6873c197241a092ea39115ae4f233',
+    '导入角色',
+    'system.role:importExcel',
     null,
     '0'
     ) ;
@@ -24,39 +24,69 @@
     remark,
     delete_flag
     ) values (
-    '33d1c37c7dfb4ac9a9192749fdbc21de',
-    '新增角色',
-    'systemrole:add',
-    null,
-    '0'
-    ) ;
-
-
-    insert into ts_permit(
-    id,
-    permit_name,
-    permit_code,
-    remark,
-    delete_flag
-    ) values (
-    '92bbb9ae308343599ca26a2fb4d0f181',
-    '查看角色',
-    'systemrole:detail',
-    null,
-    '0'
-    ) ;
-
-
-    insert into ts_permit(
-    id,
-    permit_name,
-    permit_code,
-    remark,
-    delete_flag
-    ) values (
-    'ad013ada7f4e4a2f976baa0726e1416a',
+    '68230d75af3042d288ea2442be180647',
     '修改角色',
-    'systemrole:update',
+    'system.role:update',
+    null,
+    '0'
+    ) ;
+
+
+    insert into ts_permit(
+    id,
+    permit_name,
+    permit_code,
+    remark,
+    delete_flag
+    ) values (
+    '7ffac469f26b420abc36e183bd482ddf',
+    '导出角色',
+    'system.role:exportExcel',
+    null,
+    '0'
+    ) ;
+
+
+    insert into ts_permit(
+    id,
+    permit_name,
+    permit_code,
+    remark,
+    delete_flag
+    ) values (
+    '8066ae188336444396f6436ff7a736d3',
+    '新增角色',
+    'system.role:add',
+    null,
+    '0'
+    ) ;
+
+
+    insert into ts_permit(
+    id,
+    permit_name,
+    permit_code,
+    remark,
+    delete_flag
+    ) values (
+    'bd301aa4412741db93f5272d96c445a7',
+    '查看角色',
+    'system.role:detail',
+    null,
+    '0'
+    ) ;
+
+
+    insert into ts_permit(
+    id,
+    permit_name,
+    permit_code,
+    remark,
+    delete_flag
+    ) values (
+    'f9e9409ce21041bc981ff0f592a9c105',
+    '删除角色',
+    'system.role:delete',
     null,
     '0'
     ) ;
@@ -64,10 +94,14 @@
 
 
     insert into ts_menu_permit(id ,menu_id , permit_id)
-    values (REPLACE(uuid() , "-" , ""),'3d666fbe5f3543369f9edcf6fa6d730a','0c33b27f8eef453680958b8057aa1dae') ;
+    values (REPLACE(uuid() , "-" , ""),'a8a8503f0cfa47e6927ae779c3130943','07a6873c197241a092ea39115ae4f233') ;
     insert into ts_menu_permit(id ,menu_id , permit_id)
-    values (REPLACE(uuid() , "-" , ""),'3d666fbe5f3543369f9edcf6fa6d730a','33d1c37c7dfb4ac9a9192749fdbc21de') ;
+    values (REPLACE(uuid() , "-" , ""),'a8a8503f0cfa47e6927ae779c3130943','68230d75af3042d288ea2442be180647') ;
     insert into ts_menu_permit(id ,menu_id , permit_id)
-    values (REPLACE(uuid() , "-" , ""),'3d666fbe5f3543369f9edcf6fa6d730a','92bbb9ae308343599ca26a2fb4d0f181') ;
+    values (REPLACE(uuid() , "-" , ""),'a8a8503f0cfa47e6927ae779c3130943','7ffac469f26b420abc36e183bd482ddf') ;
     insert into ts_menu_permit(id ,menu_id , permit_id)
-    values (REPLACE(uuid() , "-" , ""),'3d666fbe5f3543369f9edcf6fa6d730a','ad013ada7f4e4a2f976baa0726e1416a') ;
+    values (REPLACE(uuid() , "-" , ""),'a8a8503f0cfa47e6927ae779c3130943','8066ae188336444396f6436ff7a736d3') ;
+    insert into ts_menu_permit(id ,menu_id , permit_id)
+    values (REPLACE(uuid() , "-" , ""),'a8a8503f0cfa47e6927ae779c3130943','bd301aa4412741db93f5272d96c445a7') ;
+    insert into ts_menu_permit(id ,menu_id , permit_id)
+    values (REPLACE(uuid() , "-" , ""),'a8a8503f0cfa47e6927ae779c3130943','f9e9409ce21041bc981ff0f592a9c105') ;

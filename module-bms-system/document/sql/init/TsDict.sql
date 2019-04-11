@@ -9,24 +9,9 @@
     remark,
     delete_flag
     ) values (
-    '3938cbdb5d5b42efba632902127bf30c',
-    '删除字典信息',
-    'systemdict:del',
-    null,
-    '0'
-    ) ;
-
-
-    insert into ts_permit(
-    id,
-    permit_name,
-    permit_code,
-    remark,
-    delete_flag
-    ) values (
-    '5f50896944f742b0bf000a22ecf10693',
+    '449bda211fe0435087ca8efad45558ee',
     '查看字典信息',
-    'systemdict:detail',
+    'system.dict:detail',
     null,
     '0'
     ) ;
@@ -39,24 +24,39 @@
     remark,
     delete_flag
     ) values (
-    '8b093dde78b7474d9e94d2d261c93b68',
-    '修改字典信息',
-    'systemdict:update',
-    null,
-    '0'
-    ) ;
-
-
-    insert into ts_permit(
-    id,
-    permit_name,
-    permit_code,
-    remark,
-    delete_flag
-    ) values (
-    'af34e7fe9df546ecb73deba9415c69b3',
+    '8e88c74c5ec94e7fb9be3961c7bdc267',
     '新增字典信息',
-    'systemdict:add',
+    'system.dict:add',
+    null,
+    '0'
+    ) ;
+
+
+    insert into ts_permit(
+    id,
+    permit_name,
+    permit_code,
+    remark,
+    delete_flag
+    ) values (
+    'b2df7aef8f4142729c56ec220f17e2bb',
+    '删除字典信息',
+    'system.dict:delete',
+    null,
+    '0'
+    ) ;
+
+
+    insert into ts_permit(
+    id,
+    permit_name,
+    permit_code,
+    remark,
+    delete_flag
+    ) values (
+    'd4162b4b5b5c4de79d6388c50b36e573',
+    '修改字典信息',
+    'system.dict:update',
     null,
     '0'
     ) ;
@@ -64,10 +64,10 @@
 
 
     insert into ts_menu_permit(id ,menu_id , permit_id)
-    values (REPLACE(uuid() , "-" , ""),'5f209ff018d6497090bc56b6a1363f5e','3938cbdb5d5b42efba632902127bf30c') ;
+    values (REPLACE(uuid() , "-" , ""),'3775e716b9104d4190315a8af9825350','449bda211fe0435087ca8efad45558ee') ;
     insert into ts_menu_permit(id ,menu_id , permit_id)
-    values (REPLACE(uuid() , "-" , ""),'5f209ff018d6497090bc56b6a1363f5e','5f50896944f742b0bf000a22ecf10693') ;
+    values (REPLACE(uuid() , "-" , ""),'3775e716b9104d4190315a8af9825350','8e88c74c5ec94e7fb9be3961c7bdc267') ;
     insert into ts_menu_permit(id ,menu_id , permit_id)
-    values (REPLACE(uuid() , "-" , ""),'5f209ff018d6497090bc56b6a1363f5e','8b093dde78b7474d9e94d2d261c93b68') ;
+    values (REPLACE(uuid() , "-" , ""),'3775e716b9104d4190315a8af9825350','b2df7aef8f4142729c56ec220f17e2bb') ;
     insert into ts_menu_permit(id ,menu_id , permit_id)
-    values (REPLACE(uuid() , "-" , ""),'5f209ff018d6497090bc56b6a1363f5e','af34e7fe9df546ecb73deba9415c69b3') ;
+    values (REPLACE(uuid() , "-" , ""),'3775e716b9104d4190315a8af9825350','d4162b4b5b5c4de79d6388c50b36e573') ;

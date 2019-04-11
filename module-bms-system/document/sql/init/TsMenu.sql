@@ -9,39 +9,9 @@
     remark,
     delete_flag
     ) values (
-    '29e924c729b84784ab50df7dd4daa59e',
-    '删除菜单',
-    'systemmenu:del',
-    null,
-    '0'
-    ) ;
-
-
-    insert into ts_permit(
-    id,
-    permit_name,
-    permit_code,
-    remark,
-    delete_flag
-    ) values (
-    '5a77e8c7a80e46cc839d5aea4162d9d5',
-    '查看菜单',
-    'systemmenu:detail',
-    null,
-    '0'
-    ) ;
-
-
-    insert into ts_permit(
-    id,
-    permit_name,
-    permit_code,
-    remark,
-    delete_flag
-    ) values (
-    'e4bb46dc6483427b863f8d75b95c6242',
+    'bd80405188fc44e588f64b02c30a1962',
     '修改菜单',
-    'systemmenu:update',
+    'system.menu:update',
     null,
     '0'
     ) ;
@@ -54,9 +24,9 @@
     remark,
     delete_flag
     ) values (
-    'f2d0808303484f7eb0a968a6108d1b49',
-    '新增菜单',
-    'systemmenu:add',
+    'f1c3d7d053c94397b54ceda699435531',
+    '查看菜单',
+    'system.menu:detail',
     null,
     '0'
     ) ;
@@ -64,10 +34,6 @@
 
 
     insert into ts_menu_permit(id ,menu_id , permit_id)
-    values (REPLACE(uuid() , "-" , ""),'08b97f4f429d45d990cf88d5e4142826','29e924c729b84784ab50df7dd4daa59e') ;
+    values (REPLACE(uuid() , "-" , ""),'f1f60743eb834ad3b651ef3ab0e464a0','bd80405188fc44e588f64b02c30a1962') ;
     insert into ts_menu_permit(id ,menu_id , permit_id)
-    values (REPLACE(uuid() , "-" , ""),'08b97f4f429d45d990cf88d5e4142826','5a77e8c7a80e46cc839d5aea4162d9d5') ;
-    insert into ts_menu_permit(id ,menu_id , permit_id)
-    values (REPLACE(uuid() , "-" , ""),'08b97f4f429d45d990cf88d5e4142826','e4bb46dc6483427b863f8d75b95c6242') ;
-    insert into ts_menu_permit(id ,menu_id , permit_id)
-    values (REPLACE(uuid() , "-" , ""),'08b97f4f429d45d990cf88d5e4142826','f2d0808303484f7eb0a968a6108d1b49') ;
+    values (REPLACE(uuid() , "-" , ""),'f1f60743eb834ad3b651ef3ab0e464a0','f1c3d7d053c94397b54ceda699435531') ;

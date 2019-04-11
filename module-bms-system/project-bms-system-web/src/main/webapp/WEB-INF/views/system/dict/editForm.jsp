@@ -16,68 +16,58 @@
                 </div>
 
 
-                <div id="detailForm">
+                <div id="detailForm" class="detailForm">
                     <table class="info-table">
-                                <tr>
 
-                                    <th width="15%">字典类型<font color="red">*</font></th>
+                        <colgroup>
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                        </colgroup>
 
-                                    <td>
-                                            ${ m.dictTypeName }
+                        <tbody>
+                            <tr>
+                                <th>字典名<font color="red">*</font></th>
 
+                                <td class="fd_dictName">
+                                    ${ m.dictName }
+                                </td>
 
-                                    </td>
+                                <th>字典值<font color="red">*</font></th>
 
-                                    <th width="15%">字典值<font color="red">*</font></th>
-
-                                    <td>
-                                            ${ m.dictValName }
-                                    </td>
-
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <th width="15%">字典名<font color="red">*</font></th>
-
-                                    <td>
-                                            ${ m.dictName }
+                                <td class="fd_dictVal">
+                                        ${ m.dictVal }
+                                </td>
 
 
-                                    </td>
-
-                                    <th width="15%">名称国际化</th>
-
-                                    <td>
-                                            ${ m.dictI18n }
-                                    </td>
+                            </tr>
 
 
-                                </tr>
+                            <tr>
+                                <th>名称国际化</th>
+
+                                <td class="fd_dictI18n">
+                                        ${ m.dictI18n }
+                                </td>
+                                <th>字典限制正则</th>
+
+                                <td class="fd_dictReg">
+                                    ${ m.dictReg }
+                                </td>
+
+                            </tr>
 
 
-                                <tr>
+                            <tr>
+                                <th>顺序<font color="red">*</font></th>
+                                <td class="fd_orderby">
+                                        ${ m.orderby }
+                                </td>
 
-                                    <th width="15%">字典限制正则</th>
+                            </tr>
 
-                                    <td>
-                                            ${ m.dictReg }
-
-
-                                    </td>
-
-                                    <th width="15%">顺序<font color="red">*</font></th>
-
-                                    <td>
-                                            ${ m.orderby }
-                                    </td>
-
-
-                                </tr>
-
-
+                        </tbody>
 
 
                     </table>
@@ -97,148 +87,49 @@
                         <tbody>
 
                                 <tr>
-
-                                    <th width="15%">字典类型<font color="red">*</font></th>
-
+                                    <th>字典名<font color="red">*</font></th>
                                     <td>
-
-
-
-                                            <div class="input-group">
-
-                                                <c:if test="${ fn.indexOf(queryString,'dictTypeId') }">
-                                                    <input type="text" class="form-control input-sm" name="dictTypeName" id="dictTypeName" value="${ m.dictTypeName }" readonly>
-                                                </c:if>
-
-                                                <c:if test="${ !fn.indexOf(queryString,'dictTypeId') }">
-                                                <input type="hidden" name="dictTypeId" id="dictTypeId" value="${ m.dictTypeId }">
-                                                <input type="text" name="dictTypeName" id="dictTypeName" value="${ m.dictTypeName }" required="required" class="form-control input-sm dictTypeName " placeholder="请选择字典类型" style="width: 150px; cursor: pointer;" readonly="readonly">
-
-                                                <div class="input-group-btn">
-                                                    <button type="button"
-                                                            class="btn btn-primary btn-sm dictTypeName">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-sousuo">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
-                                                    <button type="button" id="clearDictTypeId"
-                                                            class="btn btn-primary btn-sm">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-close">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                                </c:if>
-                                            </div>
-
-
-
+                                        <input type="text" required="required" class="form-control input-sm required"
+                                               placeholder="请输入字典名" autocomplete="off"
+                                               value="${ m.dictName }" id="dictName" name="dictName"
+                                               maxlength="50"  />
                                     </td>
-
-
-
-                                        <th width="15%">字典值<font color="red">*</font></th>
-
-                                        <td>
-
-
-
-
-
-                                                    <select id="dictVal"  name="dictVal" required="required" >
-                                                        <option value="" ></option>
-                                                        <c:forEach items="${ dict_val }" var="dict">
-                                                            <option value="${ dict.value }">${  dict.name }</option>
-                                                        </c:forEach>
-                                                    </select>
-
-
-
-                                        </td>
-
+                                    <th>字典值<font color="red">*</font></th>
+                                    <td>
+                                        <input type="text" id="dictVal" name="dictVal" maxlength="2" value="${m.dictVal}"
+                                               required="required" class="form-control input-sm required"
+                                               placeholder="请输入字典值" autocomplete="off">
+                                    </td>
 
                                 </tr>
 
 
                                 <tr>
-
-                                    <th width="15%">字典名<font color="red">*</font></th>
-
+                                    <th>名称国际化</th>
                                     <td>
-
-
-                                                <input type="text" required="required" class="form-control input-sm required"
-                                                       placeholder="请输入字典名" autocomplete="off"
-                                                       value="${ m.dictName }" id="dictName" name="dictName"
-                                                           maxlength="50"  />
-
-
-
-                                    </td>
-
-
-
-                                        <th width="15%">名称国际化</th>
-
-                                        <td>
-
-
-
-
-
-                                                    <input type="text"  class="form-control input-sm "
-                                                           placeholder="请输入名称国际化" autocomplete="off"
-                                                           value="${ m.dictI18n }" id="dictI18n" name="dictI18n"
-                                                               maxlength="100"  />
-
-
-
-
-                                        </td>
-
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <th width="15%">字典限制正则</th>
-
-                                    <td>
-
-
                                                 <input type="text"  class="form-control input-sm "
-                                                       placeholder="请输入字典限制正则" autocomplete="off"
-                                                       value="${ m.dictReg }" id="dictReg" name="dictReg"
+                                                       placeholder="请输入名称国际化" autocomplete="off"
+                                                       value="${ m.dictI18n }" id="dictI18n" name="dictI18n"
                                                            maxlength="100"  />
-
-
-
                                     </td>
+                                    <th>字典限制正则</th>
+                                    <td>
+                                        <input type="text"  class="form-control input-sm "
+                                               placeholder="请输入字典限制正则" autocomplete="off"
+                                               value="${ m.dictReg }" id="dictReg" name="dictReg"
+                                               maxlength="100"  />
+                                    </td>
+                                </tr>
 
 
-
-                                        <th width="15%">顺序<font color="red">*</font></th>
-
-                                        <td>
-
-
-
-
-
-                                                    <input type="text" required="required" class="form-control input-sm required"
-                                                           placeholder="请输入顺序" autocomplete="off"
-                                                           value="${ m.orderby }" id="orderby" name="orderby"
-                                                               maxlength="10"  />
-
-
-
-
-                                        </td>
+                                <tr>
+                                    <th>顺序<font color="red">*</font></th>
+                                    <td>
+                                                <input type="text" required="required" class="form-control input-sm required"
+                                                       placeholder="请输入顺序" autocomplete="off"
+                                                       value="${ m.orderby }" id="orderby" name="orderby"
+                                                           maxlength="10"  />
+                                    </td>
 
 
                                 </tr>
@@ -323,19 +214,6 @@
 
 <script language="JavaScript">
 
-
-    $(function() {
-
-        //选择字典类型
-        $(".dictTypeName").OpenSystemDicttypeSelectWin({
-            title: "字典类型",
-            selectType: "t1",
-            callId: "dictTypeId",
-            callName: "dictTypeName",
-            clearId: "clearDictTypeId"
-        });
-
-    });
 
 
 </script>

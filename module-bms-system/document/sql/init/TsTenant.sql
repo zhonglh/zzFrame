@@ -9,9 +9,9 @@
     remark,
     delete_flag
     ) values (
-    '76db9aae7b02455bad25f4afffac5648',
-    '修改租户',
-    'systemtenant:update',
+    'f61954c68c794d07b7e975078e9f5c90',
+    '修改企业',
+    'system.tenant:update',
     null,
     '0'
     ) ;
@@ -24,39 +24,9 @@
     remark,
     delete_flag
     ) values (
-    '793b8f2d4d67433689f3e26167c5fefe',
-    '查看租户',
-    'systemtenant:detail',
-    null,
-    '0'
-    ) ;
-
-
-    insert into ts_permit(
-    id,
-    permit_name,
-    permit_code,
-    remark,
-    delete_flag
-    ) values (
-    'd843fe57969a4ec8b5d2e6bc9dfaca32',
-    '删除租户',
-    'systemtenant:del',
-    null,
-    '0'
-    ) ;
-
-
-    insert into ts_permit(
-    id,
-    permit_name,
-    permit_code,
-    remark,
-    delete_flag
-    ) values (
-    'fbc35c4216404889a998effb5f4743bc',
-    '新增租户',
-    'systemtenant:add',
+    'fbbce8d703854a899790a1f051b47e1c',
+    '查看企业',
+    'system.tenant:detail',
     null,
     '0'
     ) ;
@@ -64,10 +34,6 @@
 
 
     insert into ts_menu_permit(id ,menu_id , permit_id)
-    values (REPLACE(uuid() , "-" , ""),'7c2a2085887d4cff9a0e9936fb335a8f','76db9aae7b02455bad25f4afffac5648') ;
+    values (REPLACE(uuid() , "-" , ""),'0981e6809d684b0fac078b6b6431a66b','f61954c68c794d07b7e975078e9f5c90') ;
     insert into ts_menu_permit(id ,menu_id , permit_id)
-    values (REPLACE(uuid() , "-" , ""),'7c2a2085887d4cff9a0e9936fb335a8f','793b8f2d4d67433689f3e26167c5fefe') ;
-    insert into ts_menu_permit(id ,menu_id , permit_id)
-    values (REPLACE(uuid() , "-" , ""),'7c2a2085887d4cff9a0e9936fb335a8f','d843fe57969a4ec8b5d2e6bc9dfaca32') ;
-    insert into ts_menu_permit(id ,menu_id , permit_id)
-    values (REPLACE(uuid() , "-" , ""),'7c2a2085887d4cff9a0e9936fb335a8f','fbc35c4216404889a998effb5f4743bc') ;
+    values (REPLACE(uuid() , "-" , ""),'0981e6809d684b0fac078b6b6431a66b','fbbce8d703854a899790a1f051b47e1c') ;
