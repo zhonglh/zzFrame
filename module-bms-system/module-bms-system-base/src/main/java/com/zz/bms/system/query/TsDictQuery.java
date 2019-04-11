@@ -13,7 +13,7 @@ import java.lang.Integer;
  * 字典信息 查询抽象类
  *
  * @author Administrator
- * @date 2018-9-6 23:56:30
+ * @date 2019-4-11 14:06:15
  */
 public interface TsDictQuery<PK extends Serializable> extends Query<TsDictEntity,PK> {
 
@@ -43,8 +43,6 @@ public interface TsDictQuery<PK extends Serializable> extends Query<TsDictEntity
         public TsDictQuery dictValNot(String dictValNot);
         public TsDictQuery dictValIn(String dictValIn);
         public TsDictQuery dictValNotIn(String dictValNotIn);
-        public TsDictQuery dictValLike(String dictValLike);
-        public TsDictQuery dictValNotLike(String dictValNotLike);
         public TsDictQuery dictValIsNull();
         public TsDictQuery dictValIsNotNull();
 
@@ -200,10 +198,12 @@ public interface TsDictQuery<PK extends Serializable> extends Query<TsDictEntity
 
 
 
-        public TsDictQuery tenantId(PK tenantId);
-        public TsDictQuery tenantIdNot(PK tenantIdNot);
-        public TsDictQuery tenantIdIn(PK tenantIdIn);
-        public TsDictQuery tenantIdNotIn(PK tenantIdNotIn);
+        public TsDictQuery tenantId(String tenantId);
+        public TsDictQuery tenantIdNot(String tenantIdNot);
+        public TsDictQuery tenantIdIn(String tenantIdIn);
+        public TsDictQuery tenantIdNotIn(String tenantIdNotIn);
+        public TsDictQuery tenantIdLike(String tenantIdLike);
+        public TsDictQuery tenantIdNotLike(String tenantIdNotLike);
         public TsDictQuery tenantIdIsNull();
         public TsDictQuery tenantIdIsNotNull();
 

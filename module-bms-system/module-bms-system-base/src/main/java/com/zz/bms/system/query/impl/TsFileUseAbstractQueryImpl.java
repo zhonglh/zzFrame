@@ -1,7 +1,7 @@
 package com.zz.bms.system.query.impl;
 
 
-import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
+import com.zz.bms.core.db.mybatis.query.QueryImpl;
 import com.zz.bms.system.domain.TsFileUseEntity;
 
 import java.io.Serializable;
@@ -13,17 +13,15 @@ import java.lang.Integer;
  * 文件使用 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-9-6 23:56:31
+ * @date 2019-4-11 14:06:14
  */
-public abstract class TsFileUseAbstractQueryImpl<PK extends Serializable> extends CommonQueryImpl<TsFileUseEntity,PK> {
+public abstract class TsFileUseAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TsFileUseEntity,PK> {
 
             protected PK id;
             protected PK id_NE;
 
-            protected String fileId;
-            protected String fileId_NE;
-            protected String fileId_LIKE;
-            protected String fileId_NOTLIKE;
+            protected PK fileId;
+            protected PK fileId_NE;
 
             protected String showName;
             protected String showName_NE;
@@ -32,16 +30,23 @@ public abstract class TsFileUseAbstractQueryImpl<PK extends Serializable> extend
 
             protected String businessType;
             protected String businessType_NE;
-
-            protected String businessTmpId;
-            protected String businessTmpId_NE;
-            protected String businessTmpId_LIKE;
-            protected String businessTmpId_NOTLIKE;
+            protected String businessType_LIKE;
+            protected String businessType_NOTLIKE;
 
             protected String businessId;
             protected String businessId_NE;
             protected String businessId_LIKE;
             protected String businessId_NOTLIKE;
+
+            protected String businessFileType;
+            protected String businessFileType_NE;
+            protected String businessFileType_LIKE;
+            protected String businessFileType_NOTLIKE;
+
+            protected String businessTempId;
+            protected String businessTempId_NE;
+            protected String businessTempId_LIKE;
+            protected String businessTempId_NOTLIKE;
 
         protected Integer fileOrder;
         protected Integer fileOrder_NE;
@@ -96,8 +101,10 @@ public abstract class TsFileUseAbstractQueryImpl<PK extends Serializable> extend
         protected Integer versionNo_LT;
         protected Integer versionNo_LE;
 
-            protected PK tenantId;
-            protected PK tenantId_NE;
+            protected String tenantId;
+            protected String tenantId_NE;
+            protected String tenantId_LIKE;
+            protected String tenantId_NOTLIKE;
 
 
 	

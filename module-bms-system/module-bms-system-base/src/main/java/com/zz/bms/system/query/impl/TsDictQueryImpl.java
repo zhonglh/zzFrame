@@ -17,7 +17,7 @@ import java.lang.Integer;
 * 字典信息 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:30
+* @date 2019-4-11 14:06:15
 */
 public class TsDictQueryImpl<PK extends Serializable> extends TsDictAbstractQueryImpl<PK> implements TsDictQuery<PK>, Serializable  {
 
@@ -27,9 +27,9 @@ public class TsDictQueryImpl<PK extends Serializable> extends TsDictAbstractQuer
         private List<PK> dictTypeId_IN;
         private List<PK> dictTypeId_NOTIN;
 
-
         private List<String> dictVal_IN;
         private List<String> dictVal_NOTIN;
+
 
         private List<String> dictName_IN;
         private List<String> dictName_NOTIN;
@@ -54,9 +54,9 @@ public class TsDictQueryImpl<PK extends Serializable> extends TsDictAbstractQuer
 
         private List<String> deleteFlag_IN;
         private List<String> deleteFlag_NOTIN;
-        private List<PK> tenantId_IN;
-        private List<PK> tenantId_NOTIN;
 
+        private List<String> tenantId_IN;
+        private List<String> tenantId_NOTIN;
 
 
         @Override
@@ -161,7 +161,6 @@ public class TsDictQueryImpl<PK extends Serializable> extends TsDictAbstractQuer
         }
 
 
-
         @Override
         public TsDictQuery dictVal(String dictVal) {
             if(!IdUtils.isEmpty(dictVal)){
@@ -174,22 +173,6 @@ public class TsDictQueryImpl<PK extends Serializable> extends TsDictAbstractQuer
         public TsDictQuery dictValNot(String dictValNot) {
             if(!IdUtils.isEmpty(dictValNot)){
                 this.dictVal_NE = dictValNot;
-            }
-            return this;
-        }
-
-        @Override
-        public TsDictQuery dictValLike(String dictValLike) {
-            if(!IdUtils.isEmpty(dictValLike)){
-                this.dictVal_LIKE = dictValLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TsDictQuery dictValNotLike(String dictValNotLike) {
-            if(!IdUtils.isEmpty(dictValNotLike)){
-                this.dictVal_NOTLIKE = dictValNotLike;
             }
             return this;
         }
@@ -967,8 +950,9 @@ public class TsDictQueryImpl<PK extends Serializable> extends TsDictAbstractQuer
         }
 
 
+
         @Override
-        public TsDictQuery tenantId(PK tenantId) {
+        public TsDictQuery tenantId(String tenantId) {
             if(!IdUtils.isEmpty(tenantId)){
                 this.tenantId = tenantId;
             }
@@ -976,7 +960,7 @@ public class TsDictQueryImpl<PK extends Serializable> extends TsDictAbstractQuer
         }
 
         @Override
-        public TsDictQuery tenantIdNot(PK tenantIdNot) {
+        public TsDictQuery tenantIdNot(String tenantIdNot) {
             if(!IdUtils.isEmpty(tenantIdNot)){
                 this.tenantId_NE = tenantIdNot;
             }
@@ -984,10 +968,26 @@ public class TsDictQueryImpl<PK extends Serializable> extends TsDictAbstractQuer
         }
 
         @Override
-        public TsDictQuery tenantIdIn(PK tenantIdIn) {
+        public TsDictQuery tenantIdLike(String tenantIdLike) {
+            if(!IdUtils.isEmpty(tenantIdLike)){
+                this.tenantId_LIKE = tenantIdLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsDictQuery tenantIdNotLike(String tenantIdNotLike) {
+            if(!IdUtils.isEmpty(tenantIdNotLike)){
+                this.tenantId_NOTLIKE = tenantIdNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsDictQuery tenantIdIn(String tenantIdIn) {
             if(!IdUtils.isEmpty(tenantIdIn)){
                 if(this.tenantId_IN == null){
-                    this.tenantId_IN = new ArrayList<PK>();
+                    this.tenantId_IN = new ArrayList<String>();
                 }
                 this.tenantId_IN.add( tenantIdIn );
             }
@@ -995,10 +995,10 @@ public class TsDictQueryImpl<PK extends Serializable> extends TsDictAbstractQuer
         }
 
         @Override
-        public TsDictQuery tenantIdNotIn(PK tenantIdNotIn) {
+        public TsDictQuery tenantIdNotIn(String tenantIdNotIn) {
             if(!IdUtils.isEmpty(tenantIdNotIn)){
                 if(this.tenantId_NOTIN == null){
-                    this.tenantId_NOTIN = new ArrayList<PK>();
+                    this.tenantId_NOTIN = new ArrayList<String>();
                 }
                 this.tenantId_NOTIN.add( tenantIdNotIn );
             }

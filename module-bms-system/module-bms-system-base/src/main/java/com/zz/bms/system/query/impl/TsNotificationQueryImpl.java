@@ -9,7 +9,6 @@ import com.zz.bms.system.query.TsNotificationQuery;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
-import java.util.Date;
 import java.sql.Timestamp;
 import java.lang.String;
 import java.lang.Integer;
@@ -18,15 +17,12 @@ import java.lang.Integer;
 * 系统通知 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:30
+* @date 2019-4-11 14:06:14
 */
 public class TsNotificationQueryImpl<PK extends Serializable> extends TsNotificationAbstractQueryImpl<PK> implements TsNotificationQuery<PK>, Serializable  {
 
         private List<PK> id_IN;
         private List<PK> id_NOTIN;
-
-        private List<PK> toUserId_IN;
-        private List<PK> toUserId_NOTIN;
 
 
         private List<String> notifyModule_IN;
@@ -35,11 +31,10 @@ public class TsNotificationQueryImpl<PK extends Serializable> extends TsNotifica
         private List<String> title_IN;
         private List<String> title_NOTIN;
 
-        private List<String> content_IN;
-        private List<String> content_NOTIN;
-        private List<String> isRead_IN;
-        private List<String> isRead_NOTIN;
+        //todo TEXT content;
 
+        private List<String> notifyFiles_IN;
+        private List<String> notifyFiles_NOTIN;
 
         private List<String> createUserId_IN;
         private List<String> createUserId_NOTIN;
@@ -52,9 +47,9 @@ public class TsNotificationQueryImpl<PK extends Serializable> extends TsNotifica
 
         private List<String> updateUserName_IN;
         private List<String> updateUserName_NOTIN;
-        private List<PK> tenantId_IN;
-        private List<PK> tenantId_NOTIN;
 
+        private List<String> tenantId_IN;
+        private List<String> tenantId_NOTIN;
 
 
         @Override
@@ -104,57 +99,6 @@ public class TsNotificationQueryImpl<PK extends Serializable> extends TsNotifica
         @Override
         public TsNotificationQuery idIsNotNull() {
             this.isNotNulls.add("id");
-            return this;
-        }
-
-
-        @Override
-        public TsNotificationQuery toUserId(PK toUserId) {
-            if(!IdUtils.isEmpty(toUserId)){
-                this.toUserId = toUserId;
-            }
-            return this;
-        }
-
-        @Override
-        public TsNotificationQuery toUserIdNot(PK toUserIdNot) {
-            if(!IdUtils.isEmpty(toUserIdNot)){
-                this.toUserId_NE = toUserIdNot;
-            }
-            return this;
-        }
-
-        @Override
-        public TsNotificationQuery toUserIdIn(PK toUserIdIn) {
-            if(!IdUtils.isEmpty(toUserIdIn)){
-                if(this.toUserId_IN == null){
-                    this.toUserId_IN = new ArrayList<PK>();
-                }
-                this.toUserId_IN.add( toUserIdIn );
-            }
-            return this;
-        }
-
-        @Override
-        public TsNotificationQuery toUserIdNotIn(PK toUserIdNotIn) {
-            if(!IdUtils.isEmpty(toUserIdNotIn)){
-                if(this.toUserId_NOTIN == null){
-                    this.toUserId_NOTIN = new ArrayList<PK>();
-                }
-                this.toUserId_NOTIN.add( toUserIdNotIn );
-            }
-            return this;
-        }
-
-        @Override
-        public TsNotificationQuery toUserIdIsNull() {
-            this.isNulls.add("toUserId");
-            return this;
-        }
-
-        @Override
-        public TsNotificationQuery toUserIdIsNotNull() {
-            this.isNotNulls.add("toUserId");
             return this;
         }
 
@@ -296,75 +240,9 @@ public class TsNotificationQueryImpl<PK extends Serializable> extends TsNotifica
 
 
 
+        //todo TEXT content;
         @Override
-        public TsNotificationQuery content(String content) {
-            if(!IdUtils.isEmpty(content)){
-                this.content = content;
-            }
-            return this;
-        }
-
-        @Override
-        public TsNotificationQuery contentNot(String contentNot) {
-            if(!IdUtils.isEmpty(contentNot)){
-                this.content_NE = contentNot;
-            }
-            return this;
-        }
-
-        @Override
-        public TsNotificationQuery contentLike(String contentLike) {
-            if(!IdUtils.isEmpty(contentLike)){
-                this.content_LIKE = contentLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TsNotificationQuery contentNotLike(String contentNotLike) {
-            if(!IdUtils.isEmpty(contentNotLike)){
-                this.content_NOTLIKE = contentNotLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TsNotificationQuery contentIn(String contentIn) {
-            if(!IdUtils.isEmpty(contentIn)){
-                if(this.content_IN == null){
-                    this.content_IN = new ArrayList<String>();
-                }
-                this.content_IN.add( contentIn );
-            }
-            return this;
-        }
-
-        @Override
-        public TsNotificationQuery contentNotIn(String contentNotIn) {
-            if(!IdUtils.isEmpty(contentNotIn)){
-                if(this.content_NOTIN == null){
-                    this.content_NOTIN = new ArrayList<String>();
-                }
-                this.content_NOTIN.add( contentNotIn );
-            }
-            return this;
-        }
-
-        @Override
-        public TsNotificationQuery contentIsNull() {
-            this.isNulls.add("content");
-            return this;
-        }
-
-        @Override
-        public TsNotificationQuery contentIsNotNull() {
-            this.isNotNulls.add("content");
-            return this;
-        }
-
-
-        @Override
-        public TsNotificationQuery notifyTime(Date notifyTime) {
+        public TsNotificationQuery notifyTime(Timestamp notifyTime) {
             if(!IdUtils.isEmpty(notifyTime)){
                 this.notifyTime = notifyTime;
             }
@@ -372,7 +250,7 @@ public class TsNotificationQueryImpl<PK extends Serializable> extends TsNotifica
         }
 
         @Override
-        public TsNotificationQuery notifyTimeNot(Date notifyTimeNot) {
+        public TsNotificationQuery notifyTimeNot(Timestamp notifyTimeNot) {
             if(!IdUtils.isEmpty(notifyTimeNot)){
                 this.notifyTime_NE = notifyTimeNot;
             }
@@ -380,7 +258,7 @@ public class TsNotificationQueryImpl<PK extends Serializable> extends TsNotifica
         }
 
         @Override
-        public TsNotificationQuery notifyTimeGreaterThan(Date notifyTimeGreaterThan){
+        public TsNotificationQuery notifyTimeGreaterThan(Timestamp notifyTimeGreaterThan){
             if(notifyTimeGreaterThan != null){
                 this.notifyTime_GT = notifyTimeGreaterThan;
             }
@@ -389,7 +267,7 @@ public class TsNotificationQueryImpl<PK extends Serializable> extends TsNotifica
 
 
         @Override
-        public TsNotificationQuery notifyTimeGreaterEqual(Date notifyTimeGreaterEqual){
+        public TsNotificationQuery notifyTimeGreaterEqual(Timestamp notifyTimeGreaterEqual){
             if(notifyTimeGreaterEqual != null){
                 this.notifyTime_GE = notifyTimeGreaterEqual;
             }
@@ -397,7 +275,7 @@ public class TsNotificationQueryImpl<PK extends Serializable> extends TsNotifica
         }
 
         @Override
-        public TsNotificationQuery notifyTimeLessThan(Date notifyTimeLessThan){
+        public TsNotificationQuery notifyTimeLessThan(Timestamp notifyTimeLessThan){
             if(notifyTimeLessThan != null){
                 this.notifyTime_LT = notifyTimeLessThan;
             }
@@ -405,60 +283,77 @@ public class TsNotificationQueryImpl<PK extends Serializable> extends TsNotifica
         }
 
         @Override
-        public TsNotificationQuery notifyTimeLessEqual(Date notifyTimeLessEqual){
+        public TsNotificationQuery notifyTimeLessEqual(Timestamp notifyTimeLessEqual){
             if(notifyTimeLessEqual != null){
                 this.notifyTime_LE = notifyTimeLessEqual;
             }
             return this;
         }
 
+
         @Override
-        public TsNotificationQuery isRead(String isRead) {
-            if(!IdUtils.isEmpty(isRead)){
-                this.isRead = isRead;
+        public TsNotificationQuery notifyFiles(String notifyFiles) {
+            if(!IdUtils.isEmpty(notifyFiles)){
+                this.notifyFiles = notifyFiles;
             }
             return this;
         }
 
         @Override
-        public TsNotificationQuery isReadNot(String isReadNot) {
-            if(!IdUtils.isEmpty(isReadNot)){
-                this.isRead_NE = isReadNot;
+        public TsNotificationQuery notifyFilesNot(String notifyFilesNot) {
+            if(!IdUtils.isEmpty(notifyFilesNot)){
+                this.notifyFiles_NE = notifyFilesNot;
             }
             return this;
         }
 
         @Override
-        public TsNotificationQuery isReadIn(String isReadIn) {
-            if(!IdUtils.isEmpty(isReadIn)){
-                if(this.isRead_IN == null){
-                    this.isRead_IN = new ArrayList<String>();
+        public TsNotificationQuery notifyFilesLike(String notifyFilesLike) {
+            if(!IdUtils.isEmpty(notifyFilesLike)){
+                this.notifyFiles_LIKE = notifyFilesLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsNotificationQuery notifyFilesNotLike(String notifyFilesNotLike) {
+            if(!IdUtils.isEmpty(notifyFilesNotLike)){
+                this.notifyFiles_NOTLIKE = notifyFilesNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsNotificationQuery notifyFilesIn(String notifyFilesIn) {
+            if(!IdUtils.isEmpty(notifyFilesIn)){
+                if(this.notifyFiles_IN == null){
+                    this.notifyFiles_IN = new ArrayList<String>();
                 }
-                this.isRead_IN.add( isReadIn );
+                this.notifyFiles_IN.add( notifyFilesIn );
             }
             return this;
         }
 
         @Override
-        public TsNotificationQuery isReadNotIn(String isReadNotIn) {
-            if(!IdUtils.isEmpty(isReadNotIn)){
-                if(this.isRead_NOTIN == null){
-                    this.isRead_NOTIN = new ArrayList<String>();
+        public TsNotificationQuery notifyFilesNotIn(String notifyFilesNotIn) {
+            if(!IdUtils.isEmpty(notifyFilesNotIn)){
+                if(this.notifyFiles_NOTIN == null){
+                    this.notifyFiles_NOTIN = new ArrayList<String>();
                 }
-                this.isRead_NOTIN.add( isReadNotIn );
+                this.notifyFiles_NOTIN.add( notifyFilesNotIn );
             }
             return this;
         }
 
         @Override
-        public TsNotificationQuery isReadIsNull() {
-            this.isNulls.add("isRead");
+        public TsNotificationQuery notifyFilesIsNull() {
+            this.isNulls.add("notifyFiles");
             return this;
         }
 
         @Override
-        public TsNotificationQuery isReadIsNotNull() {
-            this.isNotNulls.add("isRead");
+        public TsNotificationQuery notifyFilesIsNotNull() {
+            this.isNotNulls.add("notifyFiles");
             return this;
         }
 
@@ -881,8 +776,9 @@ public class TsNotificationQueryImpl<PK extends Serializable> extends TsNotifica
             return this;
         }
 
+
         @Override
-        public TsNotificationQuery tenantId(PK tenantId) {
+        public TsNotificationQuery tenantId(String tenantId) {
             if(!IdUtils.isEmpty(tenantId)){
                 this.tenantId = tenantId;
             }
@@ -890,7 +786,7 @@ public class TsNotificationQueryImpl<PK extends Serializable> extends TsNotifica
         }
 
         @Override
-        public TsNotificationQuery tenantIdNot(PK tenantIdNot) {
+        public TsNotificationQuery tenantIdNot(String tenantIdNot) {
             if(!IdUtils.isEmpty(tenantIdNot)){
                 this.tenantId_NE = tenantIdNot;
             }
@@ -898,10 +794,26 @@ public class TsNotificationQueryImpl<PK extends Serializable> extends TsNotifica
         }
 
         @Override
-        public TsNotificationQuery tenantIdIn(PK tenantIdIn) {
+        public TsNotificationQuery tenantIdLike(String tenantIdLike) {
+            if(!IdUtils.isEmpty(tenantIdLike)){
+                this.tenantId_LIKE = tenantIdLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsNotificationQuery tenantIdNotLike(String tenantIdNotLike) {
+            if(!IdUtils.isEmpty(tenantIdNotLike)){
+                this.tenantId_NOTLIKE = tenantIdNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsNotificationQuery tenantIdIn(String tenantIdIn) {
             if(!IdUtils.isEmpty(tenantIdIn)){
                 if(this.tenantId_IN == null){
-                    this.tenantId_IN = new ArrayList<PK>();
+                    this.tenantId_IN = new ArrayList<String>();
                 }
                 this.tenantId_IN.add( tenantIdIn );
             }
@@ -909,10 +821,10 @@ public class TsNotificationQueryImpl<PK extends Serializable> extends TsNotifica
         }
 
         @Override
-        public TsNotificationQuery tenantIdNotIn(PK tenantIdNotIn) {
+        public TsNotificationQuery tenantIdNotIn(String tenantIdNotIn) {
             if(!IdUtils.isEmpty(tenantIdNotIn)){
                 if(this.tenantId_NOTIN == null){
-                    this.tenantId_NOTIN = new ArrayList<PK>();
+                    this.tenantId_NOTIN = new ArrayList<String>();
                 }
                 this.tenantId_NOTIN.add( tenantIdNotIn );
             }

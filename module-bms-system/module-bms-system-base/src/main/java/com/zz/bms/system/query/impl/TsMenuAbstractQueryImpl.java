@@ -1,7 +1,7 @@
 package com.zz.bms.system.query.impl;
 
 
-import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
+import com.zz.bms.core.db.mybatis.query.QueryImpl;
 import com.zz.bms.system.domain.TsMenuEntity;
 
 import java.io.Serializable;
@@ -13,9 +13,9 @@ import java.lang.Integer;
  * 菜单 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-9-6 23:56:30
+ * @date 2019-4-11 14:06:18
  */
-public abstract class TsMenuAbstractQueryImpl<PK extends Serializable> extends CommonQueryImpl<TsMenuEntity,PK> {
+public abstract class TsMenuAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TsMenuEntity,PK> {
 
             protected PK id;
             protected PK id_NE;
@@ -59,6 +59,19 @@ public abstract class TsMenuAbstractQueryImpl<PK extends Serializable> extends C
             protected String menuRedirect_NE;
             protected String menuRedirect_LIKE;
             protected String menuRedirect_NOTLIKE;
+
+            protected String shortcut;
+            protected String shortcut_NE;
+
+        protected Integer level;
+        protected Integer level_NE;
+        protected Integer level_GT;
+        protected Integer level_GE;
+        protected Integer level_LT;
+        protected Integer level_LE;
+
+            protected String leaf;
+            protected String leaf_NE;
 
             protected String remark;
             protected String remark_NE;

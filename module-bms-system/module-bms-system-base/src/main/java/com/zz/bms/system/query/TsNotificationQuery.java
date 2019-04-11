@@ -5,7 +5,6 @@ import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.system.domain.TsNotificationEntity;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.sql.Timestamp;
 import java.lang.String;
 import java.lang.Integer;
@@ -14,7 +13,7 @@ import java.lang.Integer;
  * 系统通知 查询抽象类
  *
  * @author Administrator
- * @date 2018-9-6 23:56:30
+ * @date 2019-4-11 14:06:13
  */
 public interface TsNotificationQuery<PK extends Serializable> extends Query<TsNotificationEntity,PK> {
 
@@ -24,17 +23,6 @@ public interface TsNotificationQuery<PK extends Serializable> extends Query<TsNo
         public TsNotificationQuery idNotIn(PK idNotIn);
         public TsNotificationQuery idIsNull();
         public TsNotificationQuery idIsNotNull();
-
-
-
-
-
-        public TsNotificationQuery toUserId(PK toUserId);
-        public TsNotificationQuery toUserIdNot(PK toUserIdNot);
-        public TsNotificationQuery toUserIdIn(PK toUserIdIn);
-        public TsNotificationQuery toUserIdNotIn(PK toUserIdNotIn);
-        public TsNotificationQuery toUserIdIsNull();
-        public TsNotificationQuery toUserIdIsNotNull();
 
 
 
@@ -66,36 +54,31 @@ public interface TsNotificationQuery<PK extends Serializable> extends Query<TsNo
 
 
 
-        public TsNotificationQuery content(String content);
-        public TsNotificationQuery contentNot(String contentNot);
-        public TsNotificationQuery contentIn(String contentIn);
-        public TsNotificationQuery contentNotIn(String contentNotIn);
-        public TsNotificationQuery contentLike(String contentLike);
-        public TsNotificationQuery contentNotLike(String contentNotLike);
-        public TsNotificationQuery contentIsNull();
-        public TsNotificationQuery contentIsNotNull();
+
+        //todo TEXT content;
+
+
+
+
+        public TsNotificationQuery notifyTime(Timestamp notifyTime);
+        public TsNotificationQuery notifyTimeNot(Timestamp notifyTimeNot);
+        public TsNotificationQuery notifyTimeGreaterThan(Timestamp notifyTimeGreaterThan);
+        public TsNotificationQuery notifyTimeGreaterEqual(Timestamp notifyTimeGreaterEqual);
+        public TsNotificationQuery notifyTimeLessThan(Timestamp notifyTimeLessThan);
+        public TsNotificationQuery notifyTimeLessEqual(Timestamp notifyTimeLessEqual);
 
 
 
 
 
-        public TsNotificationQuery notifyTime(Date notifyTime);
-        public TsNotificationQuery notifyTimeNot(Date notifyTimeNot);
-        public TsNotificationQuery notifyTimeGreaterThan(Date notifyTimeGreaterThan);
-        public TsNotificationQuery notifyTimeGreaterEqual(Date notifyTimeGreaterEqual);
-        public TsNotificationQuery notifyTimeLessThan(Date notifyTimeLessThan);
-        public TsNotificationQuery notifyTimeLessEqual(Date notifyTimeLessEqual);
-
-
-
-
-
-        public TsNotificationQuery isRead(String isRead);
-        public TsNotificationQuery isReadNot(String isReadNot);
-        public TsNotificationQuery isReadIn(String isReadIn);
-        public TsNotificationQuery isReadNotIn(String isReadNotIn);
-        public TsNotificationQuery isReadIsNull();
-        public TsNotificationQuery isReadIsNotNull();
+        public TsNotificationQuery notifyFiles(String notifyFiles);
+        public TsNotificationQuery notifyFilesNot(String notifyFilesNot);
+        public TsNotificationQuery notifyFilesIn(String notifyFilesIn);
+        public TsNotificationQuery notifyFilesNotIn(String notifyFilesNotIn);
+        public TsNotificationQuery notifyFilesLike(String notifyFilesLike);
+        public TsNotificationQuery notifyFilesNotLike(String notifyFilesNotLike);
+        public TsNotificationQuery notifyFilesIsNull();
+        public TsNotificationQuery notifyFilesIsNotNull();
 
 
 
@@ -186,10 +169,12 @@ public interface TsNotificationQuery<PK extends Serializable> extends Query<TsNo
 
 
 
-        public TsNotificationQuery tenantId(PK tenantId);
-        public TsNotificationQuery tenantIdNot(PK tenantIdNot);
-        public TsNotificationQuery tenantIdIn(PK tenantIdIn);
-        public TsNotificationQuery tenantIdNotIn(PK tenantIdNotIn);
+        public TsNotificationQuery tenantId(String tenantId);
+        public TsNotificationQuery tenantIdNot(String tenantIdNot);
+        public TsNotificationQuery tenantIdIn(String tenantIdIn);
+        public TsNotificationQuery tenantIdNotIn(String tenantIdNotIn);
+        public TsNotificationQuery tenantIdLike(String tenantIdLike);
+        public TsNotificationQuery tenantIdNotLike(String tenantIdNotLike);
         public TsNotificationQuery tenantIdIsNull();
         public TsNotificationQuery tenantIdIsNotNull();
 

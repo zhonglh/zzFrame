@@ -10,10 +10,10 @@ import java.lang.String;
 import java.lang.Integer;
 
 /**
- * 租户 查询抽象类
+ * 企业 查询抽象类
  *
  * @author Administrator
- * @date 2018-9-6 23:56:30
+ * @date 2019-4-11 14:06:16
  */
 public interface TsTenantQuery<PK extends Serializable> extends Query<TsTenantEntity,PK> {
 

@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/views/common/taglibs.jspf" %>
-<bms:contentHeader title="zz1" />
 
 
 
@@ -48,42 +47,4 @@
 
 
 
-<script>
-    var tableid = "tableData-${ tableId }";
-
-
-    var queryString = "${ queryString }";
-
-    var listUrl = "";
-
-</script>
-
-
-
-<bms:contentJS />
-
-<script src="${ staticUrl }/statics2/js/project/listCommon.js"></script>
-<script src="${ staticUrl }/statics2/js/project/list.js"></script>
-
-<shiro:hasPermission name="system.dict:importExcel">
-<script src="${ staticUrl }/statics2/js/project/common-import-excel.js"></script>
-</shiro:hasPermission>
-
-<script src="${ staticUrl }/statics2/business-js/system/dicttype/search.js"></script>
-
-<script language="JavaScript">
-
-
-    $(function() {
-
-
-    });
-
-
-
-
-
-</script>
-
-<bms:contentFooter />
 

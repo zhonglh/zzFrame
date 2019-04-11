@@ -1,7 +1,7 @@
 package com.zz.bms.system.query.impl;
 
 
-import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
+import com.zz.bms.core.db.mybatis.query.QueryImpl;
 import com.zz.bms.system.domain.TsTenantEntity;
 
 import java.io.Serializable;
@@ -10,12 +10,12 @@ import java.lang.String;
 import java.lang.Integer;
 
 /**
- * 租户 查询抽象类
+ * 企业 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-9-6 23:56:30
+ * @date 2019-4-11 14:06:16
  */
-public abstract class TsTenantAbstractQueryImpl<PK extends Serializable> extends CommonQueryImpl<TsTenantEntity,PK> {
+public abstract class TsTenantAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TsTenantEntity,PK> {
 
             protected PK id;
             protected PK id_NE;

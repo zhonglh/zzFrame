@@ -8,10 +8,10 @@ import java.lang.String;
 import java.lang.Integer;
 
 /**
-* VIEW 用于装载用户在查询时提交的数据
+* 用户 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2019-4-1 13:52:04
+* @date 2019-4-11 14:06:19
 */
 public class VsNodeUserQueryWebImpl<PK extends Serializable> extends VsNodeUserAbstractQueryImpl<PK> implements Serializable {
 

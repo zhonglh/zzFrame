@@ -13,7 +13,7 @@ import java.lang.Integer;
  * 部门 查询抽象类
  *
  * @author Administrator
- * @date 2018-9-6 23:56:31
+ * @date 2019-4-11 14:06:18
  */
 public interface TsDepQuery<PK extends Serializable> extends Query<TsDepEntity,PK> {
 
@@ -100,10 +100,12 @@ public interface TsDepQuery<PK extends Serializable> extends Query<TsDepEntity,P
 
 
 
-        public TsDepQuery organId(PK organId);
-        public TsDepQuery organIdNot(PK organIdNot);
-        public TsDepQuery organIdIn(PK organIdIn);
-        public TsDepQuery organIdNotIn(PK organIdNotIn);
+        public TsDepQuery organId(String organId);
+        public TsDepQuery organIdNot(String organIdNot);
+        public TsDepQuery organIdIn(String organIdIn);
+        public TsDepQuery organIdNotIn(String organIdNotIn);
+        public TsDepQuery organIdLike(String organIdLike);
+        public TsDepQuery organIdNotLike(String organIdNotLike);
         public TsDepQuery organIdIsNull();
         public TsDepQuery organIdIsNotNull();
 
@@ -222,10 +224,12 @@ public interface TsDepQuery<PK extends Serializable> extends Query<TsDepEntity,P
 
 
 
-        public TsDepQuery tenantId(PK tenantId);
-        public TsDepQuery tenantIdNot(PK tenantIdNot);
-        public TsDepQuery tenantIdIn(PK tenantIdIn);
-        public TsDepQuery tenantIdNotIn(PK tenantIdNotIn);
+        public TsDepQuery tenantId(String tenantId);
+        public TsDepQuery tenantIdNot(String tenantIdNot);
+        public TsDepQuery tenantIdIn(String tenantIdIn);
+        public TsDepQuery tenantIdNotIn(String tenantIdNotIn);
+        public TsDepQuery tenantIdLike(String tenantIdLike);
+        public TsDepQuery tenantIdNotLike(String tenantIdNotLike);
         public TsDepQuery tenantIdIsNull();
         public TsDepQuery tenantIdIsNotNull();
 

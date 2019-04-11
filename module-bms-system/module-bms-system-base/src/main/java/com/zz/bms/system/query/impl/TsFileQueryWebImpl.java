@@ -4,7 +4,6 @@ package com.zz.bms.system.query.impl;
 import java.io.Serializable;
 
 import java.lang.Long;
-import java.sql.Timestamp;
 import java.lang.String;
 import java.lang.Integer;
 
@@ -12,7 +11,7 @@ import java.lang.Integer;
 * 文件 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-11 14:06:16
 */
 public class TsFileQueryWebImpl<PK extends Serializable> extends TsFileAbstractQueryImpl<PK> implements Serializable {
 
@@ -35,6 +34,11 @@ public class TsFileQueryWebImpl<PK extends Serializable> extends TsFileAbstractQ
 
             private String fileHost_IN;
             private String fileHost_NOTIN;
+
+
+
+            private String fileBasePath_IN;
+            private String fileBasePath_NOTIN;
 
 
 
@@ -74,39 +78,6 @@ public class TsFileQueryWebImpl<PK extends Serializable> extends TsFileAbstractQ
 
 
         //todo INT useFrequency;
-
-
-            private String deleteFlag_IN;
-            private String deleteFlag_NOTIN;
-
-
-
-            private String createUserId_IN;
-            private String createUserId_NOTIN;
-
-
-
-            private String createUserName_IN;
-            private String createUserName_NOTIN;
-
-
-
-
-        //todo TIMESTAMP createTime;
-
-
-            private String updateUserId_IN;
-            private String updateUserId_NOTIN;
-
-
-
-            private String updateUserName_IN;
-            private String updateUserName_NOTIN;
-
-
-
-
-        //todo TIMESTAMP updateTime;
 
 
 
@@ -293,6 +264,55 @@ public class TsFileQueryWebImpl<PK extends Serializable> extends TsFileAbstractQ
 
             public void setFileHost_NOTLIKE(String fileHost_NOTLIKE) {
                 this.fileHost_NOTLIKE = fileHost_NOTLIKE;
+            }
+
+
+            public String getFileBasePath() {
+                return fileBasePath;
+            }
+
+            public void setFileBasePath(String fileBasePath) {
+                this.fileBasePath = fileBasePath;
+            }
+
+            public String getFileBasePath_NE() {
+                return fileBasePath_NE;
+            }
+
+            public void setFileBasePath_NE(String fileBasePath_NE) {
+                this.fileBasePath_NE = fileBasePath_NE;
+            }
+
+            public String getFileBasePath_IN() {
+                return fileBasePath_IN;
+            }
+
+            public void setFileBasePath_IN(String fileBasePath_IN) {
+                this.fileBasePath_IN = fileBasePath_IN;
+            }
+
+            public String getFileBasePath_NOTIN() {
+                return fileBasePath_NOTIN;
+            }
+
+            public void setFileBasePath_NOTIN(String fileBasePath_NOTIN) {
+                this.fileBasePath_NOTIN = fileBasePath_NOTIN;
+            }
+
+            public String getFileBasePath_LIKE() {
+                return fileBasePath_LIKE;
+            }
+
+            public void setFileBasePath_LIKE(String fileBasePath_LIKE) {
+                this.fileBasePath_LIKE = fileBasePath_LIKE;
+            }
+
+            public String getFileBasePath_NOTLIKE() {
+                return fileBasePath_NOTLIKE;
+            }
+
+            public void setFileBasePath_NOTLIKE(String fileBasePath_NOTLIKE) {
+                this.fileBasePath_NOTLIKE = fileBasePath_NOTLIKE;
             }
 
 
@@ -670,347 +690,6 @@ public class TsFileQueryWebImpl<PK extends Serializable> extends TsFileAbstractQ
                 this.useFrequency_LE = useFrequency_LE;
             }
 
-
-
-            public String getDeleteFlag() {
-                return deleteFlag;
-            }
-
-            public void setDeleteFlag(String deleteFlag) {
-                this.deleteFlag = deleteFlag;
-            }
-
-            public String getDeleteFlag_NE() {
-                return deleteFlag_NE;
-            }
-
-            public void setDeleteFlag_NE(String deleteFlag_NE) {
-                this.deleteFlag_NE = deleteFlag_NE;
-            }
-
-            public String getDeleteFlag_IN() {
-                return deleteFlag_IN;
-            }
-
-            public void setDeleteFlag_IN(String deleteFlag_IN) {
-                this.deleteFlag_IN = deleteFlag_IN;
-            }
-
-            public String getDeleteFlag_NOTIN() {
-                return deleteFlag_NOTIN;
-            }
-
-            public void setDeleteFlag_NOTIN(String deleteFlag_NOTIN) {
-                this.deleteFlag_NOTIN = deleteFlag_NOTIN;
-            }
-
-            public String getDeleteFlag_LIKE() {
-                return deleteFlag_LIKE;
-            }
-
-            public void setDeleteFlag_LIKE(String deleteFlag_LIKE) {
-                this.deleteFlag_LIKE = deleteFlag_LIKE;
-            }
-
-            public String getDeleteFlag_NOTLIKE() {
-                return deleteFlag_NOTLIKE;
-            }
-
-            public void setDeleteFlag_NOTLIKE(String deleteFlag_NOTLIKE) {
-                this.deleteFlag_NOTLIKE = deleteFlag_NOTLIKE;
-            }
-
-
-            public String getCreateUserId() {
-                return createUserId;
-            }
-
-            public void setCreateUserId(String createUserId) {
-                this.createUserId = createUserId;
-            }
-
-            public String getCreateUserId_NE() {
-                return createUserId_NE;
-            }
-
-            public void setCreateUserId_NE(String createUserId_NE) {
-                this.createUserId_NE = createUserId_NE;
-            }
-
-            public String getCreateUserId_IN() {
-                return createUserId_IN;
-            }
-
-            public void setCreateUserId_IN(String createUserId_IN) {
-                this.createUserId_IN = createUserId_IN;
-            }
-
-            public String getCreateUserId_NOTIN() {
-                return createUserId_NOTIN;
-            }
-
-            public void setCreateUserId_NOTIN(String createUserId_NOTIN) {
-                this.createUserId_NOTIN = createUserId_NOTIN;
-            }
-
-            public String getCreateUserId_LIKE() {
-                return createUserId_LIKE;
-            }
-
-            public void setCreateUserId_LIKE(String createUserId_LIKE) {
-                this.createUserId_LIKE = createUserId_LIKE;
-            }
-
-            public String getCreateUserId_NOTLIKE() {
-                return createUserId_NOTLIKE;
-            }
-
-            public void setCreateUserId_NOTLIKE(String createUserId_NOTLIKE) {
-                this.createUserId_NOTLIKE = createUserId_NOTLIKE;
-            }
-
-
-            public String getCreateUserName() {
-                return createUserName;
-            }
-
-            public void setCreateUserName(String createUserName) {
-                this.createUserName = createUserName;
-            }
-
-            public String getCreateUserName_NE() {
-                return createUserName_NE;
-            }
-
-            public void setCreateUserName_NE(String createUserName_NE) {
-                this.createUserName_NE = createUserName_NE;
-            }
-
-            public String getCreateUserName_IN() {
-                return createUserName_IN;
-            }
-
-            public void setCreateUserName_IN(String createUserName_IN) {
-                this.createUserName_IN = createUserName_IN;
-            }
-
-            public String getCreateUserName_NOTIN() {
-                return createUserName_NOTIN;
-            }
-
-            public void setCreateUserName_NOTIN(String createUserName_NOTIN) {
-                this.createUserName_NOTIN = createUserName_NOTIN;
-            }
-
-            public String getCreateUserName_LIKE() {
-                return createUserName_LIKE;
-            }
-
-            public void setCreateUserName_LIKE(String createUserName_LIKE) {
-                this.createUserName_LIKE = createUserName_LIKE;
-            }
-
-            public String getCreateUserName_NOTLIKE() {
-                return createUserName_NOTLIKE;
-            }
-
-            public void setCreateUserName_NOTLIKE(String createUserName_NOTLIKE) {
-                this.createUserName_NOTLIKE = createUserName_NOTLIKE;
-            }
-
-            public Timestamp getCreateTime() {
-                return createTime;
-            }
-
-            public void setCreateTime(Timestamp createTime) {
-                this.createTime = createTime;
-            }
-
-            public Timestamp getCreateTime_NE() {
-                return createTime_NE;
-            }
-
-            public void setCreateTime_NE(Timestamp createTime_NE) {
-                this.createTime_NE = createTime_NE;
-            }
-
-            public Timestamp getCreateTime_GT() {
-                return createTime_GT;
-            }
-
-            public void setCreateTime_GT(Timestamp createTime_GT) {
-                this.createTime_GT = createTime_GT;
-            }
-
-            public Timestamp getCreateTime_GE() {
-                return createTime_GE;
-            }
-
-            public void setCreateTime_GE(Timestamp createTime_GE) {
-                this.createTime_GE = createTime_GE;
-            }
-
-            public Timestamp getCreateTime_LT() {
-                return createTime_LT;
-            }
-
-            public void setCreateTime_LT(Timestamp createTime_LT) {
-                this.createTime_LT = createTime_LT;
-            }
-
-            public Timestamp getCreateTime_LE() {
-                return createTime_LE;
-            }
-
-            public void setCreateTime_LE(Timestamp createTime_LE) {
-                this.createTime_LE = createTime_LE;
-            }
-
-
-            public String getUpdateUserId() {
-                return updateUserId;
-            }
-
-            public void setUpdateUserId(String updateUserId) {
-                this.updateUserId = updateUserId;
-            }
-
-            public String getUpdateUserId_NE() {
-                return updateUserId_NE;
-            }
-
-            public void setUpdateUserId_NE(String updateUserId_NE) {
-                this.updateUserId_NE = updateUserId_NE;
-            }
-
-            public String getUpdateUserId_IN() {
-                return updateUserId_IN;
-            }
-
-            public void setUpdateUserId_IN(String updateUserId_IN) {
-                this.updateUserId_IN = updateUserId_IN;
-            }
-
-            public String getUpdateUserId_NOTIN() {
-                return updateUserId_NOTIN;
-            }
-
-            public void setUpdateUserId_NOTIN(String updateUserId_NOTIN) {
-                this.updateUserId_NOTIN = updateUserId_NOTIN;
-            }
-
-            public String getUpdateUserId_LIKE() {
-                return updateUserId_LIKE;
-            }
-
-            public void setUpdateUserId_LIKE(String updateUserId_LIKE) {
-                this.updateUserId_LIKE = updateUserId_LIKE;
-            }
-
-            public String getUpdateUserId_NOTLIKE() {
-                return updateUserId_NOTLIKE;
-            }
-
-            public void setUpdateUserId_NOTLIKE(String updateUserId_NOTLIKE) {
-                this.updateUserId_NOTLIKE = updateUserId_NOTLIKE;
-            }
-
-
-            public String getUpdateUserName() {
-                return updateUserName;
-            }
-
-            public void setUpdateUserName(String updateUserName) {
-                this.updateUserName = updateUserName;
-            }
-
-            public String getUpdateUserName_NE() {
-                return updateUserName_NE;
-            }
-
-            public void setUpdateUserName_NE(String updateUserName_NE) {
-                this.updateUserName_NE = updateUserName_NE;
-            }
-
-            public String getUpdateUserName_IN() {
-                return updateUserName_IN;
-            }
-
-            public void setUpdateUserName_IN(String updateUserName_IN) {
-                this.updateUserName_IN = updateUserName_IN;
-            }
-
-            public String getUpdateUserName_NOTIN() {
-                return updateUserName_NOTIN;
-            }
-
-            public void setUpdateUserName_NOTIN(String updateUserName_NOTIN) {
-                this.updateUserName_NOTIN = updateUserName_NOTIN;
-            }
-
-            public String getUpdateUserName_LIKE() {
-                return updateUserName_LIKE;
-            }
-
-            public void setUpdateUserName_LIKE(String updateUserName_LIKE) {
-                this.updateUserName_LIKE = updateUserName_LIKE;
-            }
-
-            public String getUpdateUserName_NOTLIKE() {
-                return updateUserName_NOTLIKE;
-            }
-
-            public void setUpdateUserName_NOTLIKE(String updateUserName_NOTLIKE) {
-                this.updateUserName_NOTLIKE = updateUserName_NOTLIKE;
-            }
-
-            public Timestamp getUpdateTime() {
-                return updateTime;
-            }
-
-            public void setUpdateTime(Timestamp updateTime) {
-                this.updateTime = updateTime;
-            }
-
-            public Timestamp getUpdateTime_NE() {
-                return updateTime_NE;
-            }
-
-            public void setUpdateTime_NE(Timestamp updateTime_NE) {
-                this.updateTime_NE = updateTime_NE;
-            }
-
-            public Timestamp getUpdateTime_GT() {
-                return updateTime_GT;
-            }
-
-            public void setUpdateTime_GT(Timestamp updateTime_GT) {
-                this.updateTime_GT = updateTime_GT;
-            }
-
-            public Timestamp getUpdateTime_GE() {
-                return updateTime_GE;
-            }
-
-            public void setUpdateTime_GE(Timestamp updateTime_GE) {
-                this.updateTime_GE = updateTime_GE;
-            }
-
-            public Timestamp getUpdateTime_LT() {
-                return updateTime_LT;
-            }
-
-            public void setUpdateTime_LT(Timestamp updateTime_LT) {
-                this.updateTime_LT = updateTime_LT;
-            }
-
-            public Timestamp getUpdateTime_LE() {
-                return updateTime_LE;
-            }
-
-            public void setUpdateTime_LE(Timestamp updateTime_LE) {
-                this.updateTime_LE = updateTime_LE;
-            }
 
             public Integer getVersionNo() {
                 return versionNo;

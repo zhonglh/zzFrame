@@ -19,7 +19,7 @@ import java.lang.Integer;
 * 文件使用 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2019-4-1 13:52:03
+* @date 2019-4-11 14:06:19
 */
 public class VsFileUseQueryImpl<PK extends Serializable> extends VsFileUseAbstractQueryImpl<PK> implements VsFileUseQuery<PK>, Serializable  {
 
@@ -32,15 +32,18 @@ public class VsFileUseQueryImpl<PK extends Serializable> extends VsFileUseAbstra
 
         private List<String> showName_IN;
         private List<String> showName_NOTIN;
+
         private List<String> businessType_IN;
         private List<String> businessType_NOTIN;
 
-
-        private List<String> businessTmpId_IN;
-        private List<String> businessTmpId_NOTIN;
-
         private List<String> businessId_IN;
         private List<String> businessId_NOTIN;
+
+        private List<String> businessFileType_IN;
+        private List<String> businessFileType_NOTIN;
+
+        private List<String> businessTempId_IN;
+        private List<String> businessTempId_NOTIN;
 
         private List<String> remark_IN;
         private List<String> remark_NOTIN;
@@ -257,6 +260,7 @@ public class VsFileUseQueryImpl<PK extends Serializable> extends VsFileUseAbstra
         }
 
 
+
         @Override
         public VsFileUseQuery businessType(String businessType) {
             if(!IdUtils.isEmpty(businessType)){
@@ -269,6 +273,22 @@ public class VsFileUseQueryImpl<PK extends Serializable> extends VsFileUseAbstra
         public VsFileUseQuery businessTypeNot(String businessTypeNot) {
             if(!IdUtils.isEmpty(businessTypeNot)){
                 this.businessType_NE = businessTypeNot;
+            }
+            return this;
+        }
+
+        @Override
+        public VsFileUseQuery businessTypeLike(String businessTypeLike) {
+            if(!IdUtils.isEmpty(businessTypeLike)){
+                this.businessType_LIKE = businessTypeLike;
+            }
+            return this;
+        }
+
+        @Override
+        public VsFileUseQuery businessTypeNotLike(String businessTypeNotLike) {
+            if(!IdUtils.isEmpty(businessTypeNotLike)){
+                this.businessType_NOTLIKE = businessTypeNotLike;
             }
             return this;
         }
@@ -304,74 +324,6 @@ public class VsFileUseQueryImpl<PK extends Serializable> extends VsFileUseAbstra
         @Override
         public VsFileUseQuery businessTypeIsNotNull() {
             this.isNotNulls.add("businessType");
-            return this;
-        }
-
-
-
-        @Override
-        public VsFileUseQuery businessTmpId(String businessTmpId) {
-            if(!IdUtils.isEmpty(businessTmpId)){
-                this.businessTmpId = businessTmpId;
-            }
-            return this;
-        }
-
-        @Override
-        public VsFileUseQuery businessTmpIdNot(String businessTmpIdNot) {
-            if(!IdUtils.isEmpty(businessTmpIdNot)){
-                this.businessTmpId_NE = businessTmpIdNot;
-            }
-            return this;
-        }
-
-        @Override
-        public VsFileUseQuery businessTmpIdLike(String businessTmpIdLike) {
-            if(!IdUtils.isEmpty(businessTmpIdLike)){
-                this.businessTmpId_LIKE = businessTmpIdLike;
-            }
-            return this;
-        }
-
-        @Override
-        public VsFileUseQuery businessTmpIdNotLike(String businessTmpIdNotLike) {
-            if(!IdUtils.isEmpty(businessTmpIdNotLike)){
-                this.businessTmpId_NOTLIKE = businessTmpIdNotLike;
-            }
-            return this;
-        }
-
-        @Override
-        public VsFileUseQuery businessTmpIdIn(String businessTmpIdIn) {
-            if(!IdUtils.isEmpty(businessTmpIdIn)){
-                if(this.businessTmpId_IN == null){
-                    this.businessTmpId_IN = new ArrayList<String>();
-                }
-                this.businessTmpId_IN.add( businessTmpIdIn );
-            }
-            return this;
-        }
-
-        @Override
-        public VsFileUseQuery businessTmpIdNotIn(String businessTmpIdNotIn) {
-            if(!IdUtils.isEmpty(businessTmpIdNotIn)){
-                if(this.businessTmpId_NOTIN == null){
-                    this.businessTmpId_NOTIN = new ArrayList<String>();
-                }
-                this.businessTmpId_NOTIN.add( businessTmpIdNotIn );
-            }
-            return this;
-        }
-
-        @Override
-        public VsFileUseQuery businessTmpIdIsNull() {
-            this.isNulls.add("businessTmpId");
-            return this;
-        }
-
-        @Override
-        public VsFileUseQuery businessTmpIdIsNotNull() {
-            this.isNotNulls.add("businessTmpId");
             return this;
         }
 
@@ -440,6 +392,142 @@ public class VsFileUseQueryImpl<PK extends Serializable> extends VsFileUseAbstra
         @Override
         public VsFileUseQuery businessIdIsNotNull() {
             this.isNotNulls.add("businessId");
+            return this;
+        }
+
+
+
+        @Override
+        public VsFileUseQuery businessFileType(String businessFileType) {
+            if(!IdUtils.isEmpty(businessFileType)){
+                this.businessFileType = businessFileType;
+            }
+            return this;
+        }
+
+        @Override
+        public VsFileUseQuery businessFileTypeNot(String businessFileTypeNot) {
+            if(!IdUtils.isEmpty(businessFileTypeNot)){
+                this.businessFileType_NE = businessFileTypeNot;
+            }
+            return this;
+        }
+
+        @Override
+        public VsFileUseQuery businessFileTypeLike(String businessFileTypeLike) {
+            if(!IdUtils.isEmpty(businessFileTypeLike)){
+                this.businessFileType_LIKE = businessFileTypeLike;
+            }
+            return this;
+        }
+
+        @Override
+        public VsFileUseQuery businessFileTypeNotLike(String businessFileTypeNotLike) {
+            if(!IdUtils.isEmpty(businessFileTypeNotLike)){
+                this.businessFileType_NOTLIKE = businessFileTypeNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public VsFileUseQuery businessFileTypeIn(String businessFileTypeIn) {
+            if(!IdUtils.isEmpty(businessFileTypeIn)){
+                if(this.businessFileType_IN == null){
+                    this.businessFileType_IN = new ArrayList<String>();
+                }
+                this.businessFileType_IN.add( businessFileTypeIn );
+            }
+            return this;
+        }
+
+        @Override
+        public VsFileUseQuery businessFileTypeNotIn(String businessFileTypeNotIn) {
+            if(!IdUtils.isEmpty(businessFileTypeNotIn)){
+                if(this.businessFileType_NOTIN == null){
+                    this.businessFileType_NOTIN = new ArrayList<String>();
+                }
+                this.businessFileType_NOTIN.add( businessFileTypeNotIn );
+            }
+            return this;
+        }
+
+        @Override
+        public VsFileUseQuery businessFileTypeIsNull() {
+            this.isNulls.add("businessFileType");
+            return this;
+        }
+
+        @Override
+        public VsFileUseQuery businessFileTypeIsNotNull() {
+            this.isNotNulls.add("businessFileType");
+            return this;
+        }
+
+
+
+        @Override
+        public VsFileUseQuery businessTempId(String businessTempId) {
+            if(!IdUtils.isEmpty(businessTempId)){
+                this.businessTempId = businessTempId;
+            }
+            return this;
+        }
+
+        @Override
+        public VsFileUseQuery businessTempIdNot(String businessTempIdNot) {
+            if(!IdUtils.isEmpty(businessTempIdNot)){
+                this.businessTempId_NE = businessTempIdNot;
+            }
+            return this;
+        }
+
+        @Override
+        public VsFileUseQuery businessTempIdLike(String businessTempIdLike) {
+            if(!IdUtils.isEmpty(businessTempIdLike)){
+                this.businessTempId_LIKE = businessTempIdLike;
+            }
+            return this;
+        }
+
+        @Override
+        public VsFileUseQuery businessTempIdNotLike(String businessTempIdNotLike) {
+            if(!IdUtils.isEmpty(businessTempIdNotLike)){
+                this.businessTempId_NOTLIKE = businessTempIdNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public VsFileUseQuery businessTempIdIn(String businessTempIdIn) {
+            if(!IdUtils.isEmpty(businessTempIdIn)){
+                if(this.businessTempId_IN == null){
+                    this.businessTempId_IN = new ArrayList<String>();
+                }
+                this.businessTempId_IN.add( businessTempIdIn );
+            }
+            return this;
+        }
+
+        @Override
+        public VsFileUseQuery businessTempIdNotIn(String businessTempIdNotIn) {
+            if(!IdUtils.isEmpty(businessTempIdNotIn)){
+                if(this.businessTempId_NOTIN == null){
+                    this.businessTempId_NOTIN = new ArrayList<String>();
+                }
+                this.businessTempId_NOTIN.add( businessTempIdNotIn );
+            }
+            return this;
+        }
+
+        @Override
+        public VsFileUseQuery businessTempIdIsNull() {
+            this.isNulls.add("businessTempId");
+            return this;
+        }
+
+        @Override
+        public VsFileUseQuery businessTempIdIsNotNull() {
+            this.isNotNulls.add("businessTempId");
             return this;
         }
 

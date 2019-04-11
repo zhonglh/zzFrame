@@ -15,7 +15,7 @@ import java.lang.Integer;
  * 文件使用 查询抽象类
  *
  * @author Administrator
- * @date 2019-4-1 13:52:03
+ * @date 2019-4-11 14:06:19
  */
 public interface VsFileUseQuery<PK extends Serializable> extends Query<VsFileUseEntity,PK> {
 
@@ -60,21 +60,10 @@ public interface VsFileUseQuery<PK extends Serializable> extends Query<VsFileUse
         public VsFileUseQuery businessTypeNot(String businessTypeNot);
         public VsFileUseQuery businessTypeIn(String businessTypeIn);
         public VsFileUseQuery businessTypeNotIn(String businessTypeNotIn);
+        public VsFileUseQuery businessTypeLike(String businessTypeLike);
+        public VsFileUseQuery businessTypeNotLike(String businessTypeNotLike);
         public VsFileUseQuery businessTypeIsNull();
         public VsFileUseQuery businessTypeIsNotNull();
-
-
-
-
-
-        public VsFileUseQuery businessTmpId(String businessTmpId);
-        public VsFileUseQuery businessTmpIdNot(String businessTmpIdNot);
-        public VsFileUseQuery businessTmpIdIn(String businessTmpIdIn);
-        public VsFileUseQuery businessTmpIdNotIn(String businessTmpIdNotIn);
-        public VsFileUseQuery businessTmpIdLike(String businessTmpIdLike);
-        public VsFileUseQuery businessTmpIdNotLike(String businessTmpIdNotLike);
-        public VsFileUseQuery businessTmpIdIsNull();
-        public VsFileUseQuery businessTmpIdIsNotNull();
 
 
 
@@ -88,6 +77,32 @@ public interface VsFileUseQuery<PK extends Serializable> extends Query<VsFileUse
         public VsFileUseQuery businessIdNotLike(String businessIdNotLike);
         public VsFileUseQuery businessIdIsNull();
         public VsFileUseQuery businessIdIsNotNull();
+
+
+
+
+
+        public VsFileUseQuery businessFileType(String businessFileType);
+        public VsFileUseQuery businessFileTypeNot(String businessFileTypeNot);
+        public VsFileUseQuery businessFileTypeIn(String businessFileTypeIn);
+        public VsFileUseQuery businessFileTypeNotIn(String businessFileTypeNotIn);
+        public VsFileUseQuery businessFileTypeLike(String businessFileTypeLike);
+        public VsFileUseQuery businessFileTypeNotLike(String businessFileTypeNotLike);
+        public VsFileUseQuery businessFileTypeIsNull();
+        public VsFileUseQuery businessFileTypeIsNotNull();
+
+
+
+
+
+        public VsFileUseQuery businessTempId(String businessTempId);
+        public VsFileUseQuery businessTempIdNot(String businessTempIdNot);
+        public VsFileUseQuery businessTempIdIn(String businessTempIdIn);
+        public VsFileUseQuery businessTempIdNotIn(String businessTempIdNotIn);
+        public VsFileUseQuery businessTempIdLike(String businessTempIdLike);
+        public VsFileUseQuery businessTempIdNotLike(String businessTempIdNotLike);
+        public VsFileUseQuery businessTempIdIsNull();
+        public VsFileUseQuery businessTempIdIsNotNull();
 
 
 

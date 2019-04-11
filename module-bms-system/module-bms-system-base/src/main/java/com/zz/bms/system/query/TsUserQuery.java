@@ -13,7 +13,7 @@ import java.lang.Integer;
  * 用户 查询抽象类
  *
  * @author Administrator
- * @date 2018-9-6 23:56:30
+ * @date 2019-4-11 14:06:19
  */
 public interface TsUserQuery<PK extends Serializable> extends Query<TsUserEntity,PK> {
 
@@ -128,14 +128,14 @@ public interface TsUserQuery<PK extends Serializable> extends Query<TsUserEntity
 
 
 
-        public TsUserQuery avatarUrl(String avatarUrl);
-        public TsUserQuery avatarUrlNot(String avatarUrlNot);
-        public TsUserQuery avatarUrlIn(String avatarUrlIn);
-        public TsUserQuery avatarUrlNotIn(String avatarUrlNotIn);
-        public TsUserQuery avatarUrlLike(String avatarUrlLike);
-        public TsUserQuery avatarUrlNotLike(String avatarUrlNotLike);
-        public TsUserQuery avatarUrlIsNull();
-        public TsUserQuery avatarUrlIsNotNull();
+        public TsUserQuery avatarImage(String avatarImage);
+        public TsUserQuery avatarImageNot(String avatarImageNot);
+        public TsUserQuery avatarImageIn(String avatarImageIn);
+        public TsUserQuery avatarImageNotIn(String avatarImageNotIn);
+        public TsUserQuery avatarImageLike(String avatarImageLike);
+        public TsUserQuery avatarImageNotLike(String avatarImageNotLike);
+        public TsUserQuery avatarImageIsNull();
+        public TsUserQuery avatarImageIsNotNull();
 
 
 
@@ -189,12 +189,25 @@ public interface TsUserQuery<PK extends Serializable> extends Query<TsUserEntity
 
 
 
-        public TsUserQuery organId(PK organId);
-        public TsUserQuery organIdNot(PK organIdNot);
-        public TsUserQuery organIdIn(PK organIdIn);
-        public TsUserQuery organIdNotIn(PK organIdNotIn);
+        public TsUserQuery organId(String organId);
+        public TsUserQuery organIdNot(String organIdNot);
+        public TsUserQuery organIdIn(String organIdIn);
+        public TsUserQuery organIdNotIn(String organIdNotIn);
+        public TsUserQuery organIdLike(String organIdLike);
+        public TsUserQuery organIdNotLike(String organIdNotLike);
         public TsUserQuery organIdIsNull();
         public TsUserQuery organIdIsNotNull();
+
+
+
+
+
+        public TsUserQuery pageLimit(Integer pageLimit);
+        public TsUserQuery pageLimitNot(Integer pageLimitNot);
+        public TsUserQuery pageLimitGreaterThan(Integer pageLimitGreaterThan);
+        public TsUserQuery pageLimitGreaterEqual(Integer pageLimitGreaterEqual);
+        public TsUserQuery pageLimitLessThan(Integer pageLimitLessThan);
+        public TsUserQuery pageLimitLessEqual(Integer pageLimitLessEqual);
 
 
 
@@ -311,10 +324,12 @@ public interface TsUserQuery<PK extends Serializable> extends Query<TsUserEntity
 
 
 
-        public TsUserQuery tenantId(PK tenantId);
-        public TsUserQuery tenantIdNot(PK tenantIdNot);
-        public TsUserQuery tenantIdIn(PK tenantIdIn);
-        public TsUserQuery tenantIdNotIn(PK tenantIdNotIn);
+        public TsUserQuery tenantId(String tenantId);
+        public TsUserQuery tenantIdNot(String tenantIdNot);
+        public TsUserQuery tenantIdIn(String tenantIdIn);
+        public TsUserQuery tenantIdNotIn(String tenantIdNotIn);
+        public TsUserQuery tenantIdLike(String tenantIdLike);
+        public TsUserQuery tenantIdNotLike(String tenantIdNotLike);
         public TsUserQuery tenantIdIsNull();
         public TsUserQuery tenantIdIsNotNull();
 

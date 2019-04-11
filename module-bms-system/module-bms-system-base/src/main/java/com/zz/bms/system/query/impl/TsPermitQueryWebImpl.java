@@ -9,7 +9,7 @@ import java.lang.String;
 * 许可 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-11 14:06:12
 */
 public class TsPermitQueryWebImpl<PK extends Serializable> extends TsPermitAbstractQueryImpl<PK> implements Serializable {
 

@@ -1,7 +1,7 @@
 package com.zz.bms.system.query.impl;
 
 
-import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
+import com.zz.bms.core.db.mybatis.query.QueryImpl;
 import com.zz.bms.system.domain.TsDictEntity;
 
 import java.io.Serializable;
@@ -13,9 +13,9 @@ import java.lang.Integer;
  * 字典信息 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-9-6 23:56:30
+ * @date 2019-4-11 14:06:15
  */
-public abstract class TsDictAbstractQueryImpl<PK extends Serializable> extends CommonQueryImpl<TsDictEntity,PK> {
+public abstract class TsDictAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TsDictEntity,PK> {
 
             protected PK id;
             protected PK id_NE;
@@ -25,8 +25,6 @@ public abstract class TsDictAbstractQueryImpl<PK extends Serializable> extends C
 
             protected String dictVal;
             protected String dictVal_NE;
-            protected String dictVal_LIKE;
-            protected String dictVal_NOTLIKE;
 
             protected String dictName;
             protected String dictName_NE;
@@ -96,8 +94,10 @@ public abstract class TsDictAbstractQueryImpl<PK extends Serializable> extends C
             protected String deleteFlag_LIKE;
             protected String deleteFlag_NOTLIKE;
 
-            protected PK tenantId;
-            protected PK tenantId_NE;
+            protected String tenantId;
+            protected String tenantId_NE;
+            protected String tenantId_LIKE;
+            protected String tenantId_NOTLIKE;
 
 
 	

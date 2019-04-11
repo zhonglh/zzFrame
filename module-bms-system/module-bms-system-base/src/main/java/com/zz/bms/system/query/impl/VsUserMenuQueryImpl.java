@@ -13,10 +13,10 @@ import java.lang.String;
 import java.lang.Integer;
 
 /**
-* VIEW 查询实现类
+* 用户菜单信息 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2019-4-1 13:52:05
+* @date 2019-4-11 14:06:18
 */
 public class VsUserMenuQueryImpl<PK extends Serializable> extends VsUserMenuAbstractQueryImpl<PK> implements VsUserMenuQuery<PK>, Serializable  {
 
@@ -47,6 +47,9 @@ public class VsUserMenuQueryImpl<PK extends Serializable> extends VsUserMenuAbst
         private List<String> leaf_IN;
         private List<String> leaf_NOTIN;
 
+
+        private List<String> deleteFlag_IN;
+        private List<String> deleteFlag_NOTIN;
 
         private List<String> userName_IN;
         private List<String> userName_NOTIN;
@@ -694,6 +697,74 @@ public class VsUserMenuQueryImpl<PK extends Serializable> extends VsUserMenuAbst
         @Override
         public VsUserMenuQuery leafIsNotNull() {
             this.isNotNulls.add("leaf");
+            return this;
+        }
+
+
+
+        @Override
+        public VsUserMenuQuery deleteFlag(String deleteFlag) {
+            if(!IdUtils.isEmpty(deleteFlag)){
+                this.deleteFlag = deleteFlag;
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery deleteFlagNot(String deleteFlagNot) {
+            if(!IdUtils.isEmpty(deleteFlagNot)){
+                this.deleteFlag_NE = deleteFlagNot;
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery deleteFlagLike(String deleteFlagLike) {
+            if(!IdUtils.isEmpty(deleteFlagLike)){
+                this.deleteFlag_LIKE = deleteFlagLike;
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery deleteFlagNotLike(String deleteFlagNotLike) {
+            if(!IdUtils.isEmpty(deleteFlagNotLike)){
+                this.deleteFlag_NOTLIKE = deleteFlagNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery deleteFlagIn(String deleteFlagIn) {
+            if(!IdUtils.isEmpty(deleteFlagIn)){
+                if(this.deleteFlag_IN == null){
+                    this.deleteFlag_IN = new ArrayList<String>();
+                }
+                this.deleteFlag_IN.add( deleteFlagIn );
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery deleteFlagNotIn(String deleteFlagNotIn) {
+            if(!IdUtils.isEmpty(deleteFlagNotIn)){
+                if(this.deleteFlag_NOTIN == null){
+                    this.deleteFlag_NOTIN = new ArrayList<String>();
+                }
+                this.deleteFlag_NOTIN.add( deleteFlagNotIn );
+            }
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery deleteFlagIsNull() {
+            this.isNulls.add("deleteFlag");
+            return this;
+        }
+
+        @Override
+        public VsUserMenuQuery deleteFlagIsNotNull() {
+            this.isNotNulls.add("deleteFlag");
             return this;
         }
 

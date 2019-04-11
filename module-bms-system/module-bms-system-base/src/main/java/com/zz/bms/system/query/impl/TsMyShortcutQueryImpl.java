@@ -10,12 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
 import java.lang.String;
+import java.lang.Integer;
 
 /**
 * 置顶快捷菜单 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-8 12:42:41
+* @date 2019-4-11 14:06:13
 */
 public class TsMyShortcutQueryImpl<PK extends Serializable> extends TsMyShortcutAbstractQueryImpl<PK> implements TsMyShortcutQuery<PK>, Serializable  {
 
@@ -182,6 +183,54 @@ public class TsMyShortcutQueryImpl<PK extends Serializable> extends TsMyShortcut
             return this;
         }
 
+
+        @Override
+        public TsMyShortcutQuery orderby(Integer orderby) {
+            if(!IdUtils.isEmpty(orderby)){
+                this.orderby = orderby;
+            }
+            return this;
+        }
+
+        @Override
+        public TsMyShortcutQuery orderbyNot(Integer orderbyNot) {
+            if(!IdUtils.isEmpty(orderbyNot)){
+                this.orderby_NE = orderbyNot;
+            }
+            return this;
+        }
+
+        @Override
+        public TsMyShortcutQuery orderbyGreaterThan(Integer orderbyGreaterThan){
+            if(orderbyGreaterThan != null){
+                this.orderby_GT = orderbyGreaterThan;
+            }
+            return this;
+        }
+
+        @Override
+        public TsMyShortcutQuery orderbyGreaterEqual(Integer orderbyGreaterEqual){
+            if(orderbyGreaterEqual != null){
+                this.orderby_GE = orderbyGreaterEqual;
+            }
+            return this;
+        }
+
+        @Override
+        public TsMyShortcutQuery orderbyLessThan(Integer orderbyLessThan){
+            if(orderbyLessThan != null){
+                this.orderby_LT = orderbyLessThan;
+            }
+            return this;
+        }
+
+        @Override
+        public TsMyShortcutQuery orderbyLessEqual(Integer orderbyLessEqual){
+            if(orderbyLessEqual != null){
+                this.orderby_LE = orderbyLessEqual;
+            }
+            return this;
+        }
 
 
 	

@@ -15,7 +15,7 @@ import java.lang.Integer;
  * 文件使用 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2019-4-1 13:52:03
+ * @date 2019-4-11 14:06:19
  */
 public abstract class VsFileUseAbstractQueryImpl<PK extends Serializable> extends QueryImpl<VsFileUseEntity,PK> {
 
@@ -34,16 +34,23 @@ public abstract class VsFileUseAbstractQueryImpl<PK extends Serializable> extend
 
             protected String businessType;
             protected String businessType_NE;
-
-            protected String businessTmpId;
-            protected String businessTmpId_NE;
-            protected String businessTmpId_LIKE;
-            protected String businessTmpId_NOTLIKE;
+            protected String businessType_LIKE;
+            protected String businessType_NOTLIKE;
 
             protected String businessId;
             protected String businessId_NE;
             protected String businessId_LIKE;
             protected String businessId_NOTLIKE;
+
+            protected String businessFileType;
+            protected String businessFileType_NE;
+            protected String businessFileType_LIKE;
+            protected String businessFileType_NOTLIKE;
+
+            protected String businessTempId;
+            protected String businessTempId_NE;
+            protected String businessTempId_LIKE;
+            protected String businessTempId_NOTLIKE;
 
         protected Integer fileOrder;
         protected Integer fileOrder_NE;

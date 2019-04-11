@@ -1,11 +1,10 @@
 package com.zz.bms.system.query.impl;
 
 
-import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
+import com.zz.bms.core.db.mybatis.query.QueryImpl;
 import com.zz.bms.system.domain.TsNotificationEntity;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.sql.Timestamp;
 import java.lang.String;
 import java.lang.Integer;
@@ -14,15 +13,12 @@ import java.lang.Integer;
  * 系统通知 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-9-6 23:56:30
+ * @date 2019-4-11 14:06:13
  */
-public abstract class TsNotificationAbstractQueryImpl<PK extends Serializable> extends CommonQueryImpl<TsNotificationEntity,PK> {
+public abstract class TsNotificationAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TsNotificationEntity,PK> {
 
             protected PK id;
             protected PK id_NE;
-
-            protected PK toUserId;
-            protected PK toUserId_NE;
 
             protected String notifyModule;
             protected String notifyModule_NE;
@@ -34,20 +30,19 @@ public abstract class TsNotificationAbstractQueryImpl<PK extends Serializable> e
             protected String title_LIKE;
             protected String title_NOTLIKE;
 
-            protected String content;
-            protected String content_NE;
-            protected String content_LIKE;
-            protected String content_NOTLIKE;
 
-        protected Date notifyTime;
-        protected Date notifyTime_NE;
-        protected Date notifyTime_GT;
-        protected Date notifyTime_GE;
-        protected Date notifyTime_LT;
-        protected Date notifyTime_LE;
+        //todo TEXT content;
+        protected Timestamp notifyTime;
+        protected Timestamp notifyTime_NE;
+        protected Timestamp notifyTime_GT;
+        protected Timestamp notifyTime_GE;
+        protected Timestamp notifyTime_LT;
+        protected Timestamp notifyTime_LE;
 
-            protected String isRead;
-            protected String isRead_NE;
+            protected String notifyFiles;
+            protected String notifyFiles_NE;
+            protected String notifyFiles_LIKE;
+            protected String notifyFiles_NOTLIKE;
 
             protected String createUserId;
             protected String createUserId_NE;
@@ -90,8 +85,10 @@ public abstract class TsNotificationAbstractQueryImpl<PK extends Serializable> e
         protected Integer versionNo_LT;
         protected Integer versionNo_LE;
 
-            protected PK tenantId;
-            protected PK tenantId_NE;
+            protected String tenantId;
+            protected String tenantId_NE;
+            protected String tenantId_LIKE;
+            protected String tenantId_NOTLIKE;
 
 
 	

@@ -11,7 +11,7 @@ import java.lang.Integer;
 * 消息模板 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-11 14:06:18
 */
 public class TsMsgTempletQueryWebImpl<PK extends Serializable> extends TsMsgTempletAbstractQueryImpl<PK> implements Serializable {
 
@@ -56,9 +56,9 @@ public class TsMsgTempletQueryWebImpl<PK extends Serializable> extends TsMsgTemp
 
 
 
-            private PK organId_IN;
-            private PK organId_NOTIN;
 
+            private String organId_IN;
+            private String organId_NOTIN;
 
 
 
@@ -93,9 +93,9 @@ public class TsMsgTempletQueryWebImpl<PK extends Serializable> extends TsMsgTemp
 
         //todo INT versionNo;
 
-            private PK tenantId_IN;
-            private PK tenantId_NOTIN;
 
+            private String tenantId_IN;
+            private String tenantId_NOTIN;
 
 
 
@@ -413,38 +413,54 @@ public class TsMsgTempletQueryWebImpl<PK extends Serializable> extends TsMsgTemp
             }
 
 
-            public PK getOrganId() {
+
+            public String getOrganId() {
                 return organId;
             }
 
-            public void setOrganId(PK organId) {
+            public void setOrganId(String organId) {
                 this.organId = organId;
             }
 
-            public PK getOrganId_NE() {
+            public String getOrganId_NE() {
                 return organId_NE;
             }
 
-            public void setOrganId_NE(PK organId_NE) {
+            public void setOrganId_NE(String organId_NE) {
                 this.organId_NE = organId_NE;
             }
 
-            public PK getOrganId_IN() {
+            public String getOrganId_IN() {
                 return organId_IN;
             }
 
-            public void setOrganId_IN(PK organId_IN) {
+            public void setOrganId_IN(String organId_IN) {
                 this.organId_IN = organId_IN;
             }
 
-            public PK getOrganId_NOTIN() {
+            public String getOrganId_NOTIN() {
                 return organId_NOTIN;
             }
 
-            public void setOrganId_NOTIN(PK organId_NOTIN) {
+            public void setOrganId_NOTIN(String organId_NOTIN) {
                 this.organId_NOTIN = organId_NOTIN;
             }
 
+            public String getOrganId_LIKE() {
+                return organId_LIKE;
+            }
+
+            public void setOrganId_LIKE(String organId_LIKE) {
+                this.organId_LIKE = organId_LIKE;
+            }
+
+            public String getOrganId_NOTLIKE() {
+                return organId_NOTLIKE;
+            }
+
+            public void setOrganId_NOTLIKE(String organId_NOTLIKE) {
+                this.organId_NOTLIKE = organId_NOTLIKE;
+            }
 
 
             public String getCreateUserId() {
@@ -787,36 +803,52 @@ public class TsMsgTempletQueryWebImpl<PK extends Serializable> extends TsMsgTemp
             }
 
 
-            public PK getTenantId() {
+
+            public String getTenantId() {
                 return tenantId;
             }
 
-            public void setTenantId(PK tenantId) {
+            public void setTenantId(String tenantId) {
                 this.tenantId = tenantId;
             }
 
-            public PK getTenantId_NE() {
+            public String getTenantId_NE() {
                 return tenantId_NE;
             }
 
-            public void setTenantId_NE(PK tenantId_NE) {
+            public void setTenantId_NE(String tenantId_NE) {
                 this.tenantId_NE = tenantId_NE;
             }
 
-            public PK getTenantId_IN() {
+            public String getTenantId_IN() {
                 return tenantId_IN;
             }
 
-            public void setTenantId_IN(PK tenantId_IN) {
+            public void setTenantId_IN(String tenantId_IN) {
                 this.tenantId_IN = tenantId_IN;
             }
 
-            public PK getTenantId_NOTIN() {
+            public String getTenantId_NOTIN() {
                 return tenantId_NOTIN;
             }
 
-            public void setTenantId_NOTIN(PK tenantId_NOTIN) {
+            public void setTenantId_NOTIN(String tenantId_NOTIN) {
                 this.tenantId_NOTIN = tenantId_NOTIN;
             }
 
+            public String getTenantId_LIKE() {
+                return tenantId_LIKE;
+            }
+
+            public void setTenantId_LIKE(String tenantId_LIKE) {
+                this.tenantId_LIKE = tenantId_LIKE;
+            }
+
+            public String getTenantId_NOTLIKE() {
+                return tenantId_NOTLIKE;
+            }
+
+            public void setTenantId_NOTLIKE(String tenantId_NOTLIKE) {
+                this.tenantId_NOTLIKE = tenantId_NOTLIKE;
+            }
 }

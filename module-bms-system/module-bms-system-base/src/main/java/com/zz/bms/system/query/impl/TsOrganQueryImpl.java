@@ -17,7 +17,7 @@ import java.lang.Integer;
 * 机构 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-11 14:06:15
 */
 public class TsOrganQueryImpl<PK extends Serializable> extends TsOrganAbstractQueryImpl<PK> implements TsOrganQuery<PK>, Serializable  {
 
@@ -63,9 +63,9 @@ public class TsOrganQueryImpl<PK extends Serializable> extends TsOrganAbstractQu
 
         private List<String> updateUserName_IN;
         private List<String> updateUserName_NOTIN;
-        private List<PK> tenantId_IN;
-        private List<PK> tenantId_NOTIN;
 
+        private List<String> tenantId_IN;
+        private List<String> tenantId_NOTIN;
 
 
         @Override
@@ -1081,8 +1081,9 @@ public class TsOrganQueryImpl<PK extends Serializable> extends TsOrganAbstractQu
             return this;
         }
 
+
         @Override
-        public TsOrganQuery tenantId(PK tenantId) {
+        public TsOrganQuery tenantId(String tenantId) {
             if(!IdUtils.isEmpty(tenantId)){
                 this.tenantId = tenantId;
             }
@@ -1090,7 +1091,7 @@ public class TsOrganQueryImpl<PK extends Serializable> extends TsOrganAbstractQu
         }
 
         @Override
-        public TsOrganQuery tenantIdNot(PK tenantIdNot) {
+        public TsOrganQuery tenantIdNot(String tenantIdNot) {
             if(!IdUtils.isEmpty(tenantIdNot)){
                 this.tenantId_NE = tenantIdNot;
             }
@@ -1098,10 +1099,26 @@ public class TsOrganQueryImpl<PK extends Serializable> extends TsOrganAbstractQu
         }
 
         @Override
-        public TsOrganQuery tenantIdIn(PK tenantIdIn) {
+        public TsOrganQuery tenantIdLike(String tenantIdLike) {
+            if(!IdUtils.isEmpty(tenantIdLike)){
+                this.tenantId_LIKE = tenantIdLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsOrganQuery tenantIdNotLike(String tenantIdNotLike) {
+            if(!IdUtils.isEmpty(tenantIdNotLike)){
+                this.tenantId_NOTLIKE = tenantIdNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsOrganQuery tenantIdIn(String tenantIdIn) {
             if(!IdUtils.isEmpty(tenantIdIn)){
                 if(this.tenantId_IN == null){
-                    this.tenantId_IN = new ArrayList<PK>();
+                    this.tenantId_IN = new ArrayList<String>();
                 }
                 this.tenantId_IN.add( tenantIdIn );
             }
@@ -1109,10 +1126,10 @@ public class TsOrganQueryImpl<PK extends Serializable> extends TsOrganAbstractQu
         }
 
         @Override
-        public TsOrganQuery tenantIdNotIn(PK tenantIdNotIn) {
+        public TsOrganQuery tenantIdNotIn(String tenantIdNotIn) {
             if(!IdUtils.isEmpty(tenantIdNotIn)){
                 if(this.tenantId_NOTIN == null){
-                    this.tenantId_NOTIN = new ArrayList<PK>();
+                    this.tenantId_NOTIN = new ArrayList<String>();
                 }
                 this.tenantId_NOTIN.add( tenantIdNotIn );
             }

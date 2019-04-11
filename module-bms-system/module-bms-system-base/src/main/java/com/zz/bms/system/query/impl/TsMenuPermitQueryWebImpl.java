@@ -9,7 +9,7 @@ import java.lang.String;
 * 菜单许可关联 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:30
+* @date 2019-4-11 14:06:15
 */
 public class TsMenuPermitQueryWebImpl<PK extends Serializable> extends TsMenuPermitAbstractQueryImpl<PK> implements Serializable {
 

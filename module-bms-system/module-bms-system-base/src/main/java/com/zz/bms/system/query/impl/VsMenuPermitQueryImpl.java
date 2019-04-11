@@ -15,7 +15,7 @@ import java.lang.String;
 * 菜单许可关联 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2019-4-1 13:52:04
+* @date 2019-4-11 14:06:15
 */
 public class VsMenuPermitQueryImpl<PK extends Serializable> extends VsMenuPermitAbstractQueryImpl<PK> implements VsMenuPermitQuery<PK>, Serializable  {
 
@@ -34,6 +34,12 @@ public class VsMenuPermitQueryImpl<PK extends Serializable> extends VsMenuPermit
 
         private List<String> permitName_IN;
         private List<String> permitName_NOTIN;
+
+        private List<String> menuName_IN;
+        private List<String> menuName_NOTIN;
+
+        private List<String> menuCode_IN;
+        private List<String> menuCode_NOTIN;
 
 
         @Override
@@ -355,6 +361,142 @@ public class VsMenuPermitQueryImpl<PK extends Serializable> extends VsMenuPermit
         @Override
         public VsMenuPermitQuery permitNameIsNotNull() {
             this.isNotNulls.add("permitName");
+            return this;
+        }
+
+
+
+        @Override
+        public VsMenuPermitQuery menuName(String menuName) {
+            if(!IdUtils.isEmpty(menuName)){
+                this.menuName = menuName;
+            }
+            return this;
+        }
+
+        @Override
+        public VsMenuPermitQuery menuNameNot(String menuNameNot) {
+            if(!IdUtils.isEmpty(menuNameNot)){
+                this.menuName_NE = menuNameNot;
+            }
+            return this;
+        }
+
+        @Override
+        public VsMenuPermitQuery menuNameLike(String menuNameLike) {
+            if(!IdUtils.isEmpty(menuNameLike)){
+                this.menuName_LIKE = menuNameLike;
+            }
+            return this;
+        }
+
+        @Override
+        public VsMenuPermitQuery menuNameNotLike(String menuNameNotLike) {
+            if(!IdUtils.isEmpty(menuNameNotLike)){
+                this.menuName_NOTLIKE = menuNameNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public VsMenuPermitQuery menuNameIn(String menuNameIn) {
+            if(!IdUtils.isEmpty(menuNameIn)){
+                if(this.menuName_IN == null){
+                    this.menuName_IN = new ArrayList<String>();
+                }
+                this.menuName_IN.add( menuNameIn );
+            }
+            return this;
+        }
+
+        @Override
+        public VsMenuPermitQuery menuNameNotIn(String menuNameNotIn) {
+            if(!IdUtils.isEmpty(menuNameNotIn)){
+                if(this.menuName_NOTIN == null){
+                    this.menuName_NOTIN = new ArrayList<String>();
+                }
+                this.menuName_NOTIN.add( menuNameNotIn );
+            }
+            return this;
+        }
+
+        @Override
+        public VsMenuPermitQuery menuNameIsNull() {
+            this.isNulls.add("menuName");
+            return this;
+        }
+
+        @Override
+        public VsMenuPermitQuery menuNameIsNotNull() {
+            this.isNotNulls.add("menuName");
+            return this;
+        }
+
+
+
+        @Override
+        public VsMenuPermitQuery menuCode(String menuCode) {
+            if(!IdUtils.isEmpty(menuCode)){
+                this.menuCode = menuCode;
+            }
+            return this;
+        }
+
+        @Override
+        public VsMenuPermitQuery menuCodeNot(String menuCodeNot) {
+            if(!IdUtils.isEmpty(menuCodeNot)){
+                this.menuCode_NE = menuCodeNot;
+            }
+            return this;
+        }
+
+        @Override
+        public VsMenuPermitQuery menuCodeLike(String menuCodeLike) {
+            if(!IdUtils.isEmpty(menuCodeLike)){
+                this.menuCode_LIKE = menuCodeLike;
+            }
+            return this;
+        }
+
+        @Override
+        public VsMenuPermitQuery menuCodeNotLike(String menuCodeNotLike) {
+            if(!IdUtils.isEmpty(menuCodeNotLike)){
+                this.menuCode_NOTLIKE = menuCodeNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public VsMenuPermitQuery menuCodeIn(String menuCodeIn) {
+            if(!IdUtils.isEmpty(menuCodeIn)){
+                if(this.menuCode_IN == null){
+                    this.menuCode_IN = new ArrayList<String>();
+                }
+                this.menuCode_IN.add( menuCodeIn );
+            }
+            return this;
+        }
+
+        @Override
+        public VsMenuPermitQuery menuCodeNotIn(String menuCodeNotIn) {
+            if(!IdUtils.isEmpty(menuCodeNotIn)){
+                if(this.menuCode_NOTIN == null){
+                    this.menuCode_NOTIN = new ArrayList<String>();
+                }
+                this.menuCode_NOTIN.add( menuCodeNotIn );
+            }
+            return this;
+        }
+
+        @Override
+        public VsMenuPermitQuery menuCodeIsNull() {
+            this.isNulls.add("menuCode");
+            return this;
+        }
+
+        @Override
+        public VsMenuPermitQuery menuCodeIsNotNull() {
+            this.isNotNulls.add("menuCode");
             return this;
         }
 

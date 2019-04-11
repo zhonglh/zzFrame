@@ -1,7 +1,7 @@
 package com.zz.bms.system.query.impl;
 
 
-import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
+import com.zz.bms.core.db.mybatis.query.QueryImpl;
 import com.zz.bms.system.domain.TsRoleEntity;
 
 import java.io.Serializable;
@@ -13,9 +13,9 @@ import java.lang.Integer;
  * 角色 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-9-6 23:56:31
+ * @date 2019-4-11 14:06:16
  */
-public abstract class TsRoleAbstractQueryImpl<PK extends Serializable> extends CommonQueryImpl<TsRoleEntity,PK> {
+public abstract class TsRoleAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TsRoleEntity,PK> {
 
             protected PK id;
             protected PK id_NE;
@@ -36,8 +36,10 @@ public abstract class TsRoleAbstractQueryImpl<PK extends Serializable> extends C
             protected PK depId;
             protected PK depId_NE;
 
-            protected PK organId;
-            protected PK organId_NE;
+            protected String organId;
+            protected String organId_NE;
+            protected String organId_LIKE;
+            protected String organId_NOTLIKE;
 
             protected String roleStatus;
             protected String roleStatus_NE;
@@ -46,11 +48,6 @@ public abstract class TsRoleAbstractQueryImpl<PK extends Serializable> extends C
             protected String remark_NE;
             protected String remark_LIKE;
             protected String remark_NOTLIKE;
-
-            protected String deleteFlag;
-            protected String deleteFlag_NE;
-            protected String deleteFlag_LIKE;
-            protected String deleteFlag_NOTLIKE;
 
             protected String createUserId;
             protected String createUserId_NE;
@@ -93,8 +90,10 @@ public abstract class TsRoleAbstractQueryImpl<PK extends Serializable> extends C
         protected Integer versionNo_LT;
         protected Integer versionNo_LE;
 
-            protected PK tenantId;
-            protected PK tenantId_NE;
+            protected String tenantId;
+            protected String tenantId_NE;
+            protected String tenantId_LIKE;
+            protected String tenantId_NOTLIKE;
 
 
 	

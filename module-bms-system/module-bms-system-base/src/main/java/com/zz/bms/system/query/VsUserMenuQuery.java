@@ -9,10 +9,10 @@ import java.lang.String;
 import java.lang.Integer;
 
 /**
- * VIEW 查询抽象类
+ * 用户菜单信息 查询抽象类
  *
  * @author Administrator
- * @date 2019-4-1 13:52:05
+ * @date 2019-4-11 14:06:18
  */
 public interface VsUserMenuQuery<PK extends Serializable> extends Query<VsUserMenuEntity,PK> {
 
@@ -142,6 +142,19 @@ public interface VsUserMenuQuery<PK extends Serializable> extends Query<VsUserMe
         public VsUserMenuQuery leafNotIn(String leafNotIn);
         public VsUserMenuQuery leafIsNull();
         public VsUserMenuQuery leafIsNotNull();
+
+
+
+
+
+        public VsUserMenuQuery deleteFlag(String deleteFlag);
+        public VsUserMenuQuery deleteFlagNot(String deleteFlagNot);
+        public VsUserMenuQuery deleteFlagIn(String deleteFlagIn);
+        public VsUserMenuQuery deleteFlagNotIn(String deleteFlagNotIn);
+        public VsUserMenuQuery deleteFlagLike(String deleteFlagLike);
+        public VsUserMenuQuery deleteFlagNotLike(String deleteFlagNotLike);
+        public VsUserMenuQuery deleteFlagIsNull();
+        public VsUserMenuQuery deleteFlagIsNotNull();
 
 
 

@@ -6,12 +6,13 @@ import com.zz.bms.system.domain.TsMyShortcutEntity;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.lang.Integer;
 
 /**
  * 置顶快捷菜单 查询抽象类
  *
  * @author Administrator
- * @date 2018-9-8 12:42:41
+ * @date 2019-4-11 14:06:13
  */
 public interface TsMyShortcutQuery<PK extends Serializable> extends Query<TsMyShortcutEntity,PK> {
 
@@ -43,6 +44,17 @@ public interface TsMyShortcutQuery<PK extends Serializable> extends Query<TsMySh
         public TsMyShortcutQuery userIdNotIn(PK userIdNotIn);
         public TsMyShortcutQuery userIdIsNull();
         public TsMyShortcutQuery userIdIsNotNull();
+
+
+
+
+
+        public TsMyShortcutQuery orderby(Integer orderby);
+        public TsMyShortcutQuery orderbyNot(Integer orderbyNot);
+        public TsMyShortcutQuery orderbyGreaterThan(Integer orderbyGreaterThan);
+        public TsMyShortcutQuery orderbyGreaterEqual(Integer orderbyGreaterEqual);
+        public TsMyShortcutQuery orderbyLessThan(Integer orderbyLessThan);
+        public TsMyShortcutQuery orderbyLessEqual(Integer orderbyLessEqual);
 
 
 

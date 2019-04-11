@@ -1,7 +1,7 @@
 package com.zz.bms.system.query.impl;
 
 
-import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
+import com.zz.bms.core.db.mybatis.query.QueryImpl;
 import com.zz.bms.system.domain.TsUserEntity;
 
 import java.io.Serializable;
@@ -13,9 +13,9 @@ import java.lang.Integer;
  * 用户 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-9-6 23:56:30
+ * @date 2019-4-11 14:06:19
  */
-public abstract class TsUserAbstractQueryImpl<PK extends Serializable> extends CommonQueryImpl<TsUserEntity,PK> {
+public abstract class TsUserAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TsUserEntity,PK> {
 
             protected PK id;
             protected PK id_NE;
@@ -56,10 +56,10 @@ public abstract class TsUserAbstractQueryImpl<PK extends Serializable> extends C
             protected String email_LIKE;
             protected String email_NOTLIKE;
 
-            protected String avatarUrl;
-            protected String avatarUrl_NE;
-            protected String avatarUrl_LIKE;
-            protected String avatarUrl_NOTLIKE;
+            protected String avatarImage;
+            protected String avatarImage_NE;
+            protected String avatarImage_LIKE;
+            protected String avatarImage_NOTLIKE;
 
             protected String openId;
             protected String openId_NE;
@@ -77,8 +77,17 @@ public abstract class TsUserAbstractQueryImpl<PK extends Serializable> extends C
             protected PK depId;
             protected PK depId_NE;
 
-            protected PK organId;
-            protected PK organId_NE;
+            protected String organId;
+            protected String organId_NE;
+            protected String organId_LIKE;
+            protected String organId_NOTLIKE;
+
+        protected Integer pageLimit;
+        protected Integer pageLimit_NE;
+        protected Integer pageLimit_GT;
+        protected Integer pageLimit_GE;
+        protected Integer pageLimit_LT;
+        protected Integer pageLimit_LE;
 
             protected String remark;
             protected String remark_NE;
@@ -131,8 +140,10 @@ public abstract class TsUserAbstractQueryImpl<PK extends Serializable> extends C
         protected Integer versionNo_LT;
         protected Integer versionNo_LE;
 
-            protected PK tenantId;
-            protected PK tenantId_NE;
+            protected String tenantId;
+            protected String tenantId_NE;
+            protected String tenantId_LIKE;
+            protected String tenantId_NOTLIKE;
 
 
 	

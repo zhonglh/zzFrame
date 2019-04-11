@@ -13,7 +13,7 @@ import java.lang.Integer;
  * 角色 查询抽象类
  *
  * @author Administrator
- * @date 2018-9-6 23:56:31
+ * @date 2019-4-11 14:06:16
  */
 public interface TsRoleQuery<PK extends Serializable> extends Query<TsRoleEntity,PK> {
 
@@ -76,10 +76,12 @@ public interface TsRoleQuery<PK extends Serializable> extends Query<TsRoleEntity
 
 
 
-        public TsRoleQuery organId(PK organId);
-        public TsRoleQuery organIdNot(PK organIdNot);
-        public TsRoleQuery organIdIn(PK organIdIn);
-        public TsRoleQuery organIdNotIn(PK organIdNotIn);
+        public TsRoleQuery organId(String organId);
+        public TsRoleQuery organIdNot(String organIdNot);
+        public TsRoleQuery organIdIn(String organIdIn);
+        public TsRoleQuery organIdNotIn(String organIdNotIn);
+        public TsRoleQuery organIdLike(String organIdLike);
+        public TsRoleQuery organIdNotLike(String organIdNotLike);
         public TsRoleQuery organIdIsNull();
         public TsRoleQuery organIdIsNotNull();
 
@@ -106,19 +108,6 @@ public interface TsRoleQuery<PK extends Serializable> extends Query<TsRoleEntity
         public TsRoleQuery remarkNotLike(String remarkNotLike);
         public TsRoleQuery remarkIsNull();
         public TsRoleQuery remarkIsNotNull();
-
-
-
-
-
-        public TsRoleQuery deleteFlag(String deleteFlag);
-        public TsRoleQuery deleteFlagNot(String deleteFlagNot);
-        public TsRoleQuery deleteFlagIn(String deleteFlagIn);
-        public TsRoleQuery deleteFlagNotIn(String deleteFlagNotIn);
-        public TsRoleQuery deleteFlagLike(String deleteFlagLike);
-        public TsRoleQuery deleteFlagNotLike(String deleteFlagNotLike);
-        public TsRoleQuery deleteFlagIsNull();
-        public TsRoleQuery deleteFlagIsNotNull();
 
 
 
@@ -209,10 +198,12 @@ public interface TsRoleQuery<PK extends Serializable> extends Query<TsRoleEntity
 
 
 
-        public TsRoleQuery tenantId(PK tenantId);
-        public TsRoleQuery tenantIdNot(PK tenantIdNot);
-        public TsRoleQuery tenantIdIn(PK tenantIdIn);
-        public TsRoleQuery tenantIdNotIn(PK tenantIdNotIn);
+        public TsRoleQuery tenantId(String tenantId);
+        public TsRoleQuery tenantIdNot(String tenantIdNot);
+        public TsRoleQuery tenantIdIn(String tenantIdIn);
+        public TsRoleQuery tenantIdNotIn(String tenantIdNotIn);
+        public TsRoleQuery tenantIdLike(String tenantIdLike);
+        public TsRoleQuery tenantIdNotLike(String tenantIdNotLike);
         public TsRoleQuery tenantIdIsNull();
         public TsRoleQuery tenantIdIsNotNull();
 

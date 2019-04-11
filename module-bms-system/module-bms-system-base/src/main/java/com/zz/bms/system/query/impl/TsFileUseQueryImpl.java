@@ -17,28 +17,31 @@ import java.lang.Integer;
 * 文件使用 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-11 14:06:14
 */
 public class TsFileUseQueryImpl<PK extends Serializable> extends TsFileUseAbstractQueryImpl<PK> implements TsFileUseQuery<PK>, Serializable  {
 
         private List<PK> id_IN;
         private List<PK> id_NOTIN;
 
+        private List<PK> fileId_IN;
+        private List<PK> fileId_NOTIN;
 
-        private List<String> fileId_IN;
-        private List<String> fileId_NOTIN;
 
         private List<String> showName_IN;
         private List<String> showName_NOTIN;
+
         private List<String> businessType_IN;
         private List<String> businessType_NOTIN;
 
-
-        private List<String> businessTmpId_IN;
-        private List<String> businessTmpId_NOTIN;
-
         private List<String> businessId_IN;
         private List<String> businessId_NOTIN;
+
+        private List<String> businessFileType_IN;
+        private List<String> businessFileType_NOTIN;
+
+        private List<String> businessTempId_IN;
+        private List<String> businessTempId_NOTIN;
 
         private List<String> remark_IN;
         private List<String> remark_NOTIN;
@@ -54,9 +57,9 @@ public class TsFileUseQueryImpl<PK extends Serializable> extends TsFileUseAbstra
 
         private List<String> updateUserName_IN;
         private List<String> updateUserName_NOTIN;
-        private List<PK> tenantId_IN;
-        private List<PK> tenantId_NOTIN;
 
+        private List<String> tenantId_IN;
+        private List<String> tenantId_NOTIN;
 
 
         @Override
@@ -110,9 +113,8 @@ public class TsFileUseQueryImpl<PK extends Serializable> extends TsFileUseAbstra
         }
 
 
-
         @Override
-        public TsFileUseQuery fileId(String fileId) {
+        public TsFileUseQuery fileId(PK fileId) {
             if(!IdUtils.isEmpty(fileId)){
                 this.fileId = fileId;
             }
@@ -120,7 +122,7 @@ public class TsFileUseQueryImpl<PK extends Serializable> extends TsFileUseAbstra
         }
 
         @Override
-        public TsFileUseQuery fileIdNot(String fileIdNot) {
+        public TsFileUseQuery fileIdNot(PK fileIdNot) {
             if(!IdUtils.isEmpty(fileIdNot)){
                 this.fileId_NE = fileIdNot;
             }
@@ -128,26 +130,10 @@ public class TsFileUseQueryImpl<PK extends Serializable> extends TsFileUseAbstra
         }
 
         @Override
-        public TsFileUseQuery fileIdLike(String fileIdLike) {
-            if(!IdUtils.isEmpty(fileIdLike)){
-                this.fileId_LIKE = fileIdLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileUseQuery fileIdNotLike(String fileIdNotLike) {
-            if(!IdUtils.isEmpty(fileIdNotLike)){
-                this.fileId_NOTLIKE = fileIdNotLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileUseQuery fileIdIn(String fileIdIn) {
+        public TsFileUseQuery fileIdIn(PK fileIdIn) {
             if(!IdUtils.isEmpty(fileIdIn)){
                 if(this.fileId_IN == null){
-                    this.fileId_IN = new ArrayList<String>();
+                    this.fileId_IN = new ArrayList<PK>();
                 }
                 this.fileId_IN.add( fileIdIn );
             }
@@ -155,10 +141,10 @@ public class TsFileUseQueryImpl<PK extends Serializable> extends TsFileUseAbstra
         }
 
         @Override
-        public TsFileUseQuery fileIdNotIn(String fileIdNotIn) {
+        public TsFileUseQuery fileIdNotIn(PK fileIdNotIn) {
             if(!IdUtils.isEmpty(fileIdNotIn)){
                 if(this.fileId_NOTIN == null){
-                    this.fileId_NOTIN = new ArrayList<String>();
+                    this.fileId_NOTIN = new ArrayList<PK>();
                 }
                 this.fileId_NOTIN.add( fileIdNotIn );
             }
@@ -246,6 +232,7 @@ public class TsFileUseQueryImpl<PK extends Serializable> extends TsFileUseAbstra
         }
 
 
+
         @Override
         public TsFileUseQuery businessType(String businessType) {
             if(!IdUtils.isEmpty(businessType)){
@@ -258,6 +245,22 @@ public class TsFileUseQueryImpl<PK extends Serializable> extends TsFileUseAbstra
         public TsFileUseQuery businessTypeNot(String businessTypeNot) {
             if(!IdUtils.isEmpty(businessTypeNot)){
                 this.businessType_NE = businessTypeNot;
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileUseQuery businessTypeLike(String businessTypeLike) {
+            if(!IdUtils.isEmpty(businessTypeLike)){
+                this.businessType_LIKE = businessTypeLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileUseQuery businessTypeNotLike(String businessTypeNotLike) {
+            if(!IdUtils.isEmpty(businessTypeNotLike)){
+                this.businessType_NOTLIKE = businessTypeNotLike;
             }
             return this;
         }
@@ -293,74 +296,6 @@ public class TsFileUseQueryImpl<PK extends Serializable> extends TsFileUseAbstra
         @Override
         public TsFileUseQuery businessTypeIsNotNull() {
             this.isNotNulls.add("businessType");
-            return this;
-        }
-
-
-
-        @Override
-        public TsFileUseQuery businessTmpId(String businessTmpId) {
-            if(!IdUtils.isEmpty(businessTmpId)){
-                this.businessTmpId = businessTmpId;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileUseQuery businessTmpIdNot(String businessTmpIdNot) {
-            if(!IdUtils.isEmpty(businessTmpIdNot)){
-                this.businessTmpId_NE = businessTmpIdNot;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileUseQuery businessTmpIdLike(String businessTmpIdLike) {
-            if(!IdUtils.isEmpty(businessTmpIdLike)){
-                this.businessTmpId_LIKE = businessTmpIdLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileUseQuery businessTmpIdNotLike(String businessTmpIdNotLike) {
-            if(!IdUtils.isEmpty(businessTmpIdNotLike)){
-                this.businessTmpId_NOTLIKE = businessTmpIdNotLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileUseQuery businessTmpIdIn(String businessTmpIdIn) {
-            if(!IdUtils.isEmpty(businessTmpIdIn)){
-                if(this.businessTmpId_IN == null){
-                    this.businessTmpId_IN = new ArrayList<String>();
-                }
-                this.businessTmpId_IN.add( businessTmpIdIn );
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileUseQuery businessTmpIdNotIn(String businessTmpIdNotIn) {
-            if(!IdUtils.isEmpty(businessTmpIdNotIn)){
-                if(this.businessTmpId_NOTIN == null){
-                    this.businessTmpId_NOTIN = new ArrayList<String>();
-                }
-                this.businessTmpId_NOTIN.add( businessTmpIdNotIn );
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileUseQuery businessTmpIdIsNull() {
-            this.isNulls.add("businessTmpId");
-            return this;
-        }
-
-        @Override
-        public TsFileUseQuery businessTmpIdIsNotNull() {
-            this.isNotNulls.add("businessTmpId");
             return this;
         }
 
@@ -429,6 +364,142 @@ public class TsFileUseQueryImpl<PK extends Serializable> extends TsFileUseAbstra
         @Override
         public TsFileUseQuery businessIdIsNotNull() {
             this.isNotNulls.add("businessId");
+            return this;
+        }
+
+
+
+        @Override
+        public TsFileUseQuery businessFileType(String businessFileType) {
+            if(!IdUtils.isEmpty(businessFileType)){
+                this.businessFileType = businessFileType;
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileUseQuery businessFileTypeNot(String businessFileTypeNot) {
+            if(!IdUtils.isEmpty(businessFileTypeNot)){
+                this.businessFileType_NE = businessFileTypeNot;
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileUseQuery businessFileTypeLike(String businessFileTypeLike) {
+            if(!IdUtils.isEmpty(businessFileTypeLike)){
+                this.businessFileType_LIKE = businessFileTypeLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileUseQuery businessFileTypeNotLike(String businessFileTypeNotLike) {
+            if(!IdUtils.isEmpty(businessFileTypeNotLike)){
+                this.businessFileType_NOTLIKE = businessFileTypeNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileUseQuery businessFileTypeIn(String businessFileTypeIn) {
+            if(!IdUtils.isEmpty(businessFileTypeIn)){
+                if(this.businessFileType_IN == null){
+                    this.businessFileType_IN = new ArrayList<String>();
+                }
+                this.businessFileType_IN.add( businessFileTypeIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileUseQuery businessFileTypeNotIn(String businessFileTypeNotIn) {
+            if(!IdUtils.isEmpty(businessFileTypeNotIn)){
+                if(this.businessFileType_NOTIN == null){
+                    this.businessFileType_NOTIN = new ArrayList<String>();
+                }
+                this.businessFileType_NOTIN.add( businessFileTypeNotIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileUseQuery businessFileTypeIsNull() {
+            this.isNulls.add("businessFileType");
+            return this;
+        }
+
+        @Override
+        public TsFileUseQuery businessFileTypeIsNotNull() {
+            this.isNotNulls.add("businessFileType");
+            return this;
+        }
+
+
+
+        @Override
+        public TsFileUseQuery businessTempId(String businessTempId) {
+            if(!IdUtils.isEmpty(businessTempId)){
+                this.businessTempId = businessTempId;
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileUseQuery businessTempIdNot(String businessTempIdNot) {
+            if(!IdUtils.isEmpty(businessTempIdNot)){
+                this.businessTempId_NE = businessTempIdNot;
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileUseQuery businessTempIdLike(String businessTempIdLike) {
+            if(!IdUtils.isEmpty(businessTempIdLike)){
+                this.businessTempId_LIKE = businessTempIdLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileUseQuery businessTempIdNotLike(String businessTempIdNotLike) {
+            if(!IdUtils.isEmpty(businessTempIdNotLike)){
+                this.businessTempId_NOTLIKE = businessTempIdNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileUseQuery businessTempIdIn(String businessTempIdIn) {
+            if(!IdUtils.isEmpty(businessTempIdIn)){
+                if(this.businessTempId_IN == null){
+                    this.businessTempId_IN = new ArrayList<String>();
+                }
+                this.businessTempId_IN.add( businessTempIdIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileUseQuery businessTempIdNotIn(String businessTempIdNotIn) {
+            if(!IdUtils.isEmpty(businessTempIdNotIn)){
+                if(this.businessTempId_NOTIN == null){
+                    this.businessTempId_NOTIN = new ArrayList<String>();
+                }
+                this.businessTempId_NOTIN.add( businessTempIdNotIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileUseQuery businessTempIdIsNull() {
+            this.isNulls.add("businessTempId");
+            return this;
+        }
+
+        @Override
+        public TsFileUseQuery businessTempIdIsNotNull() {
+            this.isNotNulls.add("businessTempId");
             return this;
         }
 
@@ -967,8 +1038,9 @@ public class TsFileUseQueryImpl<PK extends Serializable> extends TsFileUseAbstra
             return this;
         }
 
+
         @Override
-        public TsFileUseQuery tenantId(PK tenantId) {
+        public TsFileUseQuery tenantId(String tenantId) {
             if(!IdUtils.isEmpty(tenantId)){
                 this.tenantId = tenantId;
             }
@@ -976,7 +1048,7 @@ public class TsFileUseQueryImpl<PK extends Serializable> extends TsFileUseAbstra
         }
 
         @Override
-        public TsFileUseQuery tenantIdNot(PK tenantIdNot) {
+        public TsFileUseQuery tenantIdNot(String tenantIdNot) {
             if(!IdUtils.isEmpty(tenantIdNot)){
                 this.tenantId_NE = tenantIdNot;
             }
@@ -984,10 +1056,26 @@ public class TsFileUseQueryImpl<PK extends Serializable> extends TsFileUseAbstra
         }
 
         @Override
-        public TsFileUseQuery tenantIdIn(PK tenantIdIn) {
+        public TsFileUseQuery tenantIdLike(String tenantIdLike) {
+            if(!IdUtils.isEmpty(tenantIdLike)){
+                this.tenantId_LIKE = tenantIdLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileUseQuery tenantIdNotLike(String tenantIdNotLike) {
+            if(!IdUtils.isEmpty(tenantIdNotLike)){
+                this.tenantId_NOTLIKE = tenantIdNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileUseQuery tenantIdIn(String tenantIdIn) {
             if(!IdUtils.isEmpty(tenantIdIn)){
                 if(this.tenantId_IN == null){
-                    this.tenantId_IN = new ArrayList<PK>();
+                    this.tenantId_IN = new ArrayList<String>();
                 }
                 this.tenantId_IN.add( tenantIdIn );
             }
@@ -995,10 +1083,10 @@ public class TsFileUseQueryImpl<PK extends Serializable> extends TsFileUseAbstra
         }
 
         @Override
-        public TsFileUseQuery tenantIdNotIn(PK tenantIdNotIn) {
+        public TsFileUseQuery tenantIdNotIn(String tenantIdNotIn) {
             if(!IdUtils.isEmpty(tenantIdNotIn)){
                 if(this.tenantId_NOTIN == null){
-                    this.tenantId_NOTIN = new ArrayList<PK>();
+                    this.tenantId_NOTIN = new ArrayList<String>();
                 }
                 this.tenantId_NOTIN.add( tenantIdNotIn );
             }

@@ -13,7 +13,7 @@ import java.lang.Integer;
  * 文件使用 查询抽象类
  *
  * @author Administrator
- * @date 2018-9-6 23:56:31
+ * @date 2019-4-11 14:06:14
  */
 public interface TsFileUseQuery<PK extends Serializable> extends Query<TsFileUseEntity,PK> {
 
@@ -28,12 +28,10 @@ public interface TsFileUseQuery<PK extends Serializable> extends Query<TsFileUse
 
 
 
-        public TsFileUseQuery fileId(String fileId);
-        public TsFileUseQuery fileIdNot(String fileIdNot);
-        public TsFileUseQuery fileIdIn(String fileIdIn);
-        public TsFileUseQuery fileIdNotIn(String fileIdNotIn);
-        public TsFileUseQuery fileIdLike(String fileIdLike);
-        public TsFileUseQuery fileIdNotLike(String fileIdNotLike);
+        public TsFileUseQuery fileId(PK fileId);
+        public TsFileUseQuery fileIdNot(PK fileIdNot);
+        public TsFileUseQuery fileIdIn(PK fileIdIn);
+        public TsFileUseQuery fileIdNotIn(PK fileIdNotIn);
         public TsFileUseQuery fileIdIsNull();
         public TsFileUseQuery fileIdIsNotNull();
 
@@ -58,21 +56,10 @@ public interface TsFileUseQuery<PK extends Serializable> extends Query<TsFileUse
         public TsFileUseQuery businessTypeNot(String businessTypeNot);
         public TsFileUseQuery businessTypeIn(String businessTypeIn);
         public TsFileUseQuery businessTypeNotIn(String businessTypeNotIn);
+        public TsFileUseQuery businessTypeLike(String businessTypeLike);
+        public TsFileUseQuery businessTypeNotLike(String businessTypeNotLike);
         public TsFileUseQuery businessTypeIsNull();
         public TsFileUseQuery businessTypeIsNotNull();
-
-
-
-
-
-        public TsFileUseQuery businessTmpId(String businessTmpId);
-        public TsFileUseQuery businessTmpIdNot(String businessTmpIdNot);
-        public TsFileUseQuery businessTmpIdIn(String businessTmpIdIn);
-        public TsFileUseQuery businessTmpIdNotIn(String businessTmpIdNotIn);
-        public TsFileUseQuery businessTmpIdLike(String businessTmpIdLike);
-        public TsFileUseQuery businessTmpIdNotLike(String businessTmpIdNotLike);
-        public TsFileUseQuery businessTmpIdIsNull();
-        public TsFileUseQuery businessTmpIdIsNotNull();
 
 
 
@@ -86,6 +73,32 @@ public interface TsFileUseQuery<PK extends Serializable> extends Query<TsFileUse
         public TsFileUseQuery businessIdNotLike(String businessIdNotLike);
         public TsFileUseQuery businessIdIsNull();
         public TsFileUseQuery businessIdIsNotNull();
+
+
+
+
+
+        public TsFileUseQuery businessFileType(String businessFileType);
+        public TsFileUseQuery businessFileTypeNot(String businessFileTypeNot);
+        public TsFileUseQuery businessFileTypeIn(String businessFileTypeIn);
+        public TsFileUseQuery businessFileTypeNotIn(String businessFileTypeNotIn);
+        public TsFileUseQuery businessFileTypeLike(String businessFileTypeLike);
+        public TsFileUseQuery businessFileTypeNotLike(String businessFileTypeNotLike);
+        public TsFileUseQuery businessFileTypeIsNull();
+        public TsFileUseQuery businessFileTypeIsNotNull();
+
+
+
+
+
+        public TsFileUseQuery businessTempId(String businessTempId);
+        public TsFileUseQuery businessTempIdNot(String businessTempIdNot);
+        public TsFileUseQuery businessTempIdIn(String businessTempIdIn);
+        public TsFileUseQuery businessTempIdNotIn(String businessTempIdNotIn);
+        public TsFileUseQuery businessTempIdLike(String businessTempIdLike);
+        public TsFileUseQuery businessTempIdNotLike(String businessTempIdNotLike);
+        public TsFileUseQuery businessTempIdIsNull();
+        public TsFileUseQuery businessTempIdIsNotNull();
 
 
 
@@ -200,10 +213,12 @@ public interface TsFileUseQuery<PK extends Serializable> extends Query<TsFileUse
 
 
 
-        public TsFileUseQuery tenantId(PK tenantId);
-        public TsFileUseQuery tenantIdNot(PK tenantIdNot);
-        public TsFileUseQuery tenantIdIn(PK tenantIdIn);
-        public TsFileUseQuery tenantIdNotIn(PK tenantIdNotIn);
+        public TsFileUseQuery tenantId(String tenantId);
+        public TsFileUseQuery tenantIdNot(String tenantIdNot);
+        public TsFileUseQuery tenantIdIn(String tenantIdIn);
+        public TsFileUseQuery tenantIdNotIn(String tenantIdNotIn);
+        public TsFileUseQuery tenantIdLike(String tenantIdLike);
+        public TsFileUseQuery tenantIdNotLike(String tenantIdNotLike);
         public TsFileUseQuery tenantIdIsNull();
         public TsFileUseQuery tenantIdIsNotNull();
 

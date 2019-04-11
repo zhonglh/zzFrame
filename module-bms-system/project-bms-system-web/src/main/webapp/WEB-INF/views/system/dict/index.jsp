@@ -37,6 +37,35 @@
 
 
 
+        <div class="btn-bar" style="margin-left: -10px;">
+            <button type="button" class="btn btn-primary btn-sm" onclick="toAdd()">
+                <svg class="icon" aria-hidden="true">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
+                </svg>
+                <span>新建 </span>
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" url="" onclick="doDel('url')">
+                <svg class="icon" aria-hidden="true">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use>
+                </svg>
+                <span>删除 </span>
+            </button>
+        </div>
+
+        <div style="height: 482px">
+            <table id='tableData-${tableId}' class='easyui-datagrid'  method='post' fit='true' pagination='true' fitColumns="true"  border='true' sortName="id" sortOrder="desc" style="width: 100%;height: 100%">
+                <thead>
+                <tr>
+                    <th field="ck" checkbox="true"></th>
+                    <th field="dictName" align="left" width="1" sortable="false"  formatter="titleFmt">字典名称</th>
+                    <th field="dictVal" align="left" width="1" sortable="false" >字典值</th>
+                    <th field="dictReg"  align="left" width="2" sortable="false">字典规则</th>
+                    <th field="orderby" align="right" width="1" sortable="false">排序</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
 
     </div>
 </div>
@@ -57,7 +86,6 @@
     var searchData = {};
     var listUrl = "";
 
-    var queryString = "dictTypeId=${fistTypeId}";
 
     //字典类型选中事件
     $("#dicttypeList li").click(function(){
@@ -66,15 +94,18 @@
 
         queryString = "dictTypeId="+ $(this).attr("data-typeid");
 
+        debugger
 
-        var url = location.href.replaceAll("index","toList")+"?dictTypeId="+ $(this).attr("data-typeid");
+        var url = ctx+dataUrl+"/toList?dictTypeId="+ $(this).attr("data-typeid");
 
-        $("#dictList").panel(
+        /*$("#dictList").panel(
             {
                 title :'',
                 href:url
             }
-        );
+        );*/
+
+        initPage();
 
     });
 

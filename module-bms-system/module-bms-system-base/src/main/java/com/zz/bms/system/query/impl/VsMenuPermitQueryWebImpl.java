@@ -9,7 +9,7 @@ import java.lang.String;
 * 菜单许可关联 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2019-4-1 13:52:04
+* @date 2019-4-11 14:06:15
 */
 public class VsMenuPermitQueryWebImpl<PK extends Serializable> extends VsMenuPermitAbstractQueryImpl<PK> implements Serializable {
 
@@ -37,6 +37,16 @@ public class VsMenuPermitQueryWebImpl<PK extends Serializable> extends VsMenuPer
 
             private String permitName_IN;
             private String permitName_NOTIN;
+
+
+
+            private String menuName_IN;
+            private String menuName_NOTIN;
+
+
+
+            private String menuCode_IN;
+            private String menuCode_NOTIN;
 
 
 
@@ -269,5 +279,103 @@ public class VsMenuPermitQueryWebImpl<PK extends Serializable> extends VsMenuPer
 
             public void setPermitName_NOTLIKE(String permitName_NOTLIKE) {
                 this.permitName_NOTLIKE = permitName_NOTLIKE;
+            }
+
+
+            public String getMenuName() {
+                return menuName;
+            }
+
+            public void setMenuName(String menuName) {
+                this.menuName = menuName;
+            }
+
+            public String getMenuName_NE() {
+                return menuName_NE;
+            }
+
+            public void setMenuName_NE(String menuName_NE) {
+                this.menuName_NE = menuName_NE;
+            }
+
+            public String getMenuName_IN() {
+                return menuName_IN;
+            }
+
+            public void setMenuName_IN(String menuName_IN) {
+                this.menuName_IN = menuName_IN;
+            }
+
+            public String getMenuName_NOTIN() {
+                return menuName_NOTIN;
+            }
+
+            public void setMenuName_NOTIN(String menuName_NOTIN) {
+                this.menuName_NOTIN = menuName_NOTIN;
+            }
+
+            public String getMenuName_LIKE() {
+                return menuName_LIKE;
+            }
+
+            public void setMenuName_LIKE(String menuName_LIKE) {
+                this.menuName_LIKE = menuName_LIKE;
+            }
+
+            public String getMenuName_NOTLIKE() {
+                return menuName_NOTLIKE;
+            }
+
+            public void setMenuName_NOTLIKE(String menuName_NOTLIKE) {
+                this.menuName_NOTLIKE = menuName_NOTLIKE;
+            }
+
+
+            public String getMenuCode() {
+                return menuCode;
+            }
+
+            public void setMenuCode(String menuCode) {
+                this.menuCode = menuCode;
+            }
+
+            public String getMenuCode_NE() {
+                return menuCode_NE;
+            }
+
+            public void setMenuCode_NE(String menuCode_NE) {
+                this.menuCode_NE = menuCode_NE;
+            }
+
+            public String getMenuCode_IN() {
+                return menuCode_IN;
+            }
+
+            public void setMenuCode_IN(String menuCode_IN) {
+                this.menuCode_IN = menuCode_IN;
+            }
+
+            public String getMenuCode_NOTIN() {
+                return menuCode_NOTIN;
+            }
+
+            public void setMenuCode_NOTIN(String menuCode_NOTIN) {
+                this.menuCode_NOTIN = menuCode_NOTIN;
+            }
+
+            public String getMenuCode_LIKE() {
+                return menuCode_LIKE;
+            }
+
+            public void setMenuCode_LIKE(String menuCode_LIKE) {
+                this.menuCode_LIKE = menuCode_LIKE;
+            }
+
+            public String getMenuCode_NOTLIKE() {
+                return menuCode_NOTLIKE;
+            }
+
+            public void setMenuCode_NOTLIKE(String menuCode_NOTLIKE) {
+                this.menuCode_NOTLIKE = menuCode_NOTLIKE;
             }
 }

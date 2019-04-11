@@ -17,7 +17,7 @@ import java.lang.Integer;
 * 菜单 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:30
+* @date 2019-4-11 14:06:18
 */
 public class TsMenuQueryImpl<PK extends Serializable> extends TsMenuAbstractQueryImpl<PK> implements TsMenuQuery<PK>, Serializable  {
 
@@ -45,6 +45,12 @@ public class TsMenuQueryImpl<PK extends Serializable> extends TsMenuAbstractQuer
 
         private List<String> menuRedirect_IN;
         private List<String> menuRedirect_NOTIN;
+        private List<String> shortcut_IN;
+        private List<String> shortcut_NOTIN;
+
+        private List<String> leaf_IN;
+        private List<String> leaf_NOTIN;
+
 
         private List<String> remark_IN;
         private List<String> remark_NOTIN;
@@ -619,6 +625,156 @@ public class TsMenuQueryImpl<PK extends Serializable> extends TsMenuAbstractQuer
         @Override
         public TsMenuQuery menuRedirectIsNotNull() {
             this.isNotNulls.add("menuRedirect");
+            return this;
+        }
+
+
+        @Override
+        public TsMenuQuery shortcut(String shortcut) {
+            if(!IdUtils.isEmpty(shortcut)){
+                this.shortcut = shortcut;
+            }
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery shortcutNot(String shortcutNot) {
+            if(!IdUtils.isEmpty(shortcutNot)){
+                this.shortcut_NE = shortcutNot;
+            }
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery shortcutIn(String shortcutIn) {
+            if(!IdUtils.isEmpty(shortcutIn)){
+                if(this.shortcut_IN == null){
+                    this.shortcut_IN = new ArrayList<String>();
+                }
+                this.shortcut_IN.add( shortcutIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery shortcutNotIn(String shortcutNotIn) {
+            if(!IdUtils.isEmpty(shortcutNotIn)){
+                if(this.shortcut_NOTIN == null){
+                    this.shortcut_NOTIN = new ArrayList<String>();
+                }
+                this.shortcut_NOTIN.add( shortcutNotIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery shortcutIsNull() {
+            this.isNulls.add("shortcut");
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery shortcutIsNotNull() {
+            this.isNotNulls.add("shortcut");
+            return this;
+        }
+
+
+        @Override
+        public TsMenuQuery level(Integer level) {
+            if(!IdUtils.isEmpty(level)){
+                this.level = level;
+            }
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery levelNot(Integer levelNot) {
+            if(!IdUtils.isEmpty(levelNot)){
+                this.level_NE = levelNot;
+            }
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery levelGreaterThan(Integer levelGreaterThan){
+            if(levelGreaterThan != null){
+                this.level_GT = levelGreaterThan;
+            }
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery levelGreaterEqual(Integer levelGreaterEqual){
+            if(levelGreaterEqual != null){
+                this.level_GE = levelGreaterEqual;
+            }
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery levelLessThan(Integer levelLessThan){
+            if(levelLessThan != null){
+                this.level_LT = levelLessThan;
+            }
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery levelLessEqual(Integer levelLessEqual){
+            if(levelLessEqual != null){
+                this.level_LE = levelLessEqual;
+            }
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery leaf(String leaf) {
+            if(!IdUtils.isEmpty(leaf)){
+                this.leaf = leaf;
+            }
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery leafNot(String leafNot) {
+            if(!IdUtils.isEmpty(leafNot)){
+                this.leaf_NE = leafNot;
+            }
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery leafIn(String leafIn) {
+            if(!IdUtils.isEmpty(leafIn)){
+                if(this.leaf_IN == null){
+                    this.leaf_IN = new ArrayList<String>();
+                }
+                this.leaf_IN.add( leafIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery leafNotIn(String leafNotIn) {
+            if(!IdUtils.isEmpty(leafNotIn)){
+                if(this.leaf_NOTIN == null){
+                    this.leaf_NOTIN = new ArrayList<String>();
+                }
+                this.leaf_NOTIN.add( leafNotIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery leafIsNull() {
+            this.isNulls.add("leaf");
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery leafIsNotNull() {
+            this.isNotNulls.add("leaf");
             return this;
         }
 

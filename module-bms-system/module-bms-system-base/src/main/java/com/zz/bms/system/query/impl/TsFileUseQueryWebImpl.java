@@ -11,7 +11,7 @@ import java.lang.Integer;
 * 文件使用 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-11 14:06:14
 */
 public class TsFileUseQueryWebImpl<PK extends Serializable> extends TsFileUseAbstractQueryImpl<PK> implements Serializable {
 
@@ -21,9 +21,9 @@ public class TsFileUseQueryWebImpl<PK extends Serializable> extends TsFileUseAbs
 
 
 
+            private PK fileId_IN;
+            private PK fileId_NOTIN;
 
-            private String fileId_IN;
-            private String fileId_NOTIN;
 
 
 
@@ -31,19 +31,24 @@ public class TsFileUseQueryWebImpl<PK extends Serializable> extends TsFileUseAbs
             private String showName_NOTIN;
 
 
+
             private String businessType_IN;
             private String businessType_NOTIN;
 
 
 
-
-            private String businessTmpId_IN;
-            private String businessTmpId_NOTIN;
-
-
-
             private String businessId_IN;
             private String businessId_NOTIN;
+
+
+
+            private String businessFileType_IN;
+            private String businessFileType_NOTIN;
+
+
+
+            private String businessTempId_IN;
+            private String businessTempId_NOTIN;
 
 
 
@@ -87,9 +92,9 @@ public class TsFileUseQueryWebImpl<PK extends Serializable> extends TsFileUseAbs
 
         //todo INT versionNo;
 
-            private PK tenantId_IN;
-            private PK tenantId_NOTIN;
 
+            private String tenantId_IN;
+            private String tenantId_NOTIN;
 
 
 
@@ -128,54 +133,38 @@ public class TsFileUseQueryWebImpl<PK extends Serializable> extends TsFileUseAbs
             }
 
 
-
-            public String getFileId() {
+            public PK getFileId() {
                 return fileId;
             }
 
-            public void setFileId(String fileId) {
+            public void setFileId(PK fileId) {
                 this.fileId = fileId;
             }
 
-            public String getFileId_NE() {
+            public PK getFileId_NE() {
                 return fileId_NE;
             }
 
-            public void setFileId_NE(String fileId_NE) {
+            public void setFileId_NE(PK fileId_NE) {
                 this.fileId_NE = fileId_NE;
             }
 
-            public String getFileId_IN() {
+            public PK getFileId_IN() {
                 return fileId_IN;
             }
 
-            public void setFileId_IN(String fileId_IN) {
+            public void setFileId_IN(PK fileId_IN) {
                 this.fileId_IN = fileId_IN;
             }
 
-            public String getFileId_NOTIN() {
+            public PK getFileId_NOTIN() {
                 return fileId_NOTIN;
             }
 
-            public void setFileId_NOTIN(String fileId_NOTIN) {
+            public void setFileId_NOTIN(PK fileId_NOTIN) {
                 this.fileId_NOTIN = fileId_NOTIN;
             }
 
-            public String getFileId_LIKE() {
-                return fileId_LIKE;
-            }
-
-            public void setFileId_LIKE(String fileId_LIKE) {
-                this.fileId_LIKE = fileId_LIKE;
-            }
-
-            public String getFileId_NOTLIKE() {
-                return fileId_NOTLIKE;
-            }
-
-            public void setFileId_NOTLIKE(String fileId_NOTLIKE) {
-                this.fileId_NOTLIKE = fileId_NOTLIKE;
-            }
 
 
             public String getShowName() {
@@ -226,6 +215,7 @@ public class TsFileUseQueryWebImpl<PK extends Serializable> extends TsFileUseAbs
                 this.showName_NOTLIKE = showName_NOTLIKE;
             }
 
+
             public String getBusinessType() {
                 return businessType;
             }
@@ -258,54 +248,20 @@ public class TsFileUseQueryWebImpl<PK extends Serializable> extends TsFileUseAbs
                 this.businessType_NOTIN = businessType_NOTIN;
             }
 
-
-
-            public String getBusinessTmpId() {
-                return businessTmpId;
+            public String getBusinessType_LIKE() {
+                return businessType_LIKE;
             }
 
-            public void setBusinessTmpId(String businessTmpId) {
-                this.businessTmpId = businessTmpId;
+            public void setBusinessType_LIKE(String businessType_LIKE) {
+                this.businessType_LIKE = businessType_LIKE;
             }
 
-            public String getBusinessTmpId_NE() {
-                return businessTmpId_NE;
+            public String getBusinessType_NOTLIKE() {
+                return businessType_NOTLIKE;
             }
 
-            public void setBusinessTmpId_NE(String businessTmpId_NE) {
-                this.businessTmpId_NE = businessTmpId_NE;
-            }
-
-            public String getBusinessTmpId_IN() {
-                return businessTmpId_IN;
-            }
-
-            public void setBusinessTmpId_IN(String businessTmpId_IN) {
-                this.businessTmpId_IN = businessTmpId_IN;
-            }
-
-            public String getBusinessTmpId_NOTIN() {
-                return businessTmpId_NOTIN;
-            }
-
-            public void setBusinessTmpId_NOTIN(String businessTmpId_NOTIN) {
-                this.businessTmpId_NOTIN = businessTmpId_NOTIN;
-            }
-
-            public String getBusinessTmpId_LIKE() {
-                return businessTmpId_LIKE;
-            }
-
-            public void setBusinessTmpId_LIKE(String businessTmpId_LIKE) {
-                this.businessTmpId_LIKE = businessTmpId_LIKE;
-            }
-
-            public String getBusinessTmpId_NOTLIKE() {
-                return businessTmpId_NOTLIKE;
-            }
-
-            public void setBusinessTmpId_NOTLIKE(String businessTmpId_NOTLIKE) {
-                this.businessTmpId_NOTLIKE = businessTmpId_NOTLIKE;
+            public void setBusinessType_NOTLIKE(String businessType_NOTLIKE) {
+                this.businessType_NOTLIKE = businessType_NOTLIKE;
             }
 
 
@@ -355,6 +311,104 @@ public class TsFileUseQueryWebImpl<PK extends Serializable> extends TsFileUseAbs
 
             public void setBusinessId_NOTLIKE(String businessId_NOTLIKE) {
                 this.businessId_NOTLIKE = businessId_NOTLIKE;
+            }
+
+
+            public String getBusinessFileType() {
+                return businessFileType;
+            }
+
+            public void setBusinessFileType(String businessFileType) {
+                this.businessFileType = businessFileType;
+            }
+
+            public String getBusinessFileType_NE() {
+                return businessFileType_NE;
+            }
+
+            public void setBusinessFileType_NE(String businessFileType_NE) {
+                this.businessFileType_NE = businessFileType_NE;
+            }
+
+            public String getBusinessFileType_IN() {
+                return businessFileType_IN;
+            }
+
+            public void setBusinessFileType_IN(String businessFileType_IN) {
+                this.businessFileType_IN = businessFileType_IN;
+            }
+
+            public String getBusinessFileType_NOTIN() {
+                return businessFileType_NOTIN;
+            }
+
+            public void setBusinessFileType_NOTIN(String businessFileType_NOTIN) {
+                this.businessFileType_NOTIN = businessFileType_NOTIN;
+            }
+
+            public String getBusinessFileType_LIKE() {
+                return businessFileType_LIKE;
+            }
+
+            public void setBusinessFileType_LIKE(String businessFileType_LIKE) {
+                this.businessFileType_LIKE = businessFileType_LIKE;
+            }
+
+            public String getBusinessFileType_NOTLIKE() {
+                return businessFileType_NOTLIKE;
+            }
+
+            public void setBusinessFileType_NOTLIKE(String businessFileType_NOTLIKE) {
+                this.businessFileType_NOTLIKE = businessFileType_NOTLIKE;
+            }
+
+
+            public String getBusinessTempId() {
+                return businessTempId;
+            }
+
+            public void setBusinessTempId(String businessTempId) {
+                this.businessTempId = businessTempId;
+            }
+
+            public String getBusinessTempId_NE() {
+                return businessTempId_NE;
+            }
+
+            public void setBusinessTempId_NE(String businessTempId_NE) {
+                this.businessTempId_NE = businessTempId_NE;
+            }
+
+            public String getBusinessTempId_IN() {
+                return businessTempId_IN;
+            }
+
+            public void setBusinessTempId_IN(String businessTempId_IN) {
+                this.businessTempId_IN = businessTempId_IN;
+            }
+
+            public String getBusinessTempId_NOTIN() {
+                return businessTempId_NOTIN;
+            }
+
+            public void setBusinessTempId_NOTIN(String businessTempId_NOTIN) {
+                this.businessTempId_NOTIN = businessTempId_NOTIN;
+            }
+
+            public String getBusinessTempId_LIKE() {
+                return businessTempId_LIKE;
+            }
+
+            public void setBusinessTempId_LIKE(String businessTempId_LIKE) {
+                this.businessTempId_LIKE = businessTempId_LIKE;
+            }
+
+            public String getBusinessTempId_NOTLIKE() {
+                return businessTempId_NOTLIKE;
+            }
+
+            public void setBusinessTempId_NOTLIKE(String businessTempId_NOTLIKE) {
+                this.businessTempId_NOTLIKE = businessTempId_NOTLIKE;
             }
 
             public Integer getFileOrder() {
@@ -796,36 +850,52 @@ public class TsFileUseQueryWebImpl<PK extends Serializable> extends TsFileUseAbs
             }
 
 
-            public PK getTenantId() {
+
+            public String getTenantId() {
                 return tenantId;
             }
 
-            public void setTenantId(PK tenantId) {
+            public void setTenantId(String tenantId) {
                 this.tenantId = tenantId;
             }
 
-            public PK getTenantId_NE() {
+            public String getTenantId_NE() {
                 return tenantId_NE;
             }
 
-            public void setTenantId_NE(PK tenantId_NE) {
+            public void setTenantId_NE(String tenantId_NE) {
                 this.tenantId_NE = tenantId_NE;
             }
 
-            public PK getTenantId_IN() {
+            public String getTenantId_IN() {
                 return tenantId_IN;
             }
 
-            public void setTenantId_IN(PK tenantId_IN) {
+            public void setTenantId_IN(String tenantId_IN) {
                 this.tenantId_IN = tenantId_IN;
             }
 
-            public PK getTenantId_NOTIN() {
+            public String getTenantId_NOTIN() {
                 return tenantId_NOTIN;
             }
 
-            public void setTenantId_NOTIN(PK tenantId_NOTIN) {
+            public void setTenantId_NOTIN(String tenantId_NOTIN) {
                 this.tenantId_NOTIN = tenantId_NOTIN;
             }
 
+            public String getTenantId_LIKE() {
+                return tenantId_LIKE;
+            }
+
+            public void setTenantId_LIKE(String tenantId_LIKE) {
+                this.tenantId_LIKE = tenantId_LIKE;
+            }
+
+            public String getTenantId_NOTLIKE() {
+                return tenantId_NOTLIKE;
+            }
+
+            public void setTenantId_NOTLIKE(String tenantId_NOTLIKE) {
+                this.tenantId_NOTLIKE = tenantId_NOTLIKE;
+            }
 }

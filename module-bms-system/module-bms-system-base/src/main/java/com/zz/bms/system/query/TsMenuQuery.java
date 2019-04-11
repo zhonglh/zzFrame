@@ -13,7 +13,7 @@ import java.lang.Integer;
  * 菜单 查询抽象类
  *
  * @author Administrator
- * @date 2018-9-6 23:56:30
+ * @date 2019-4-11 14:06:18
  */
 public interface TsMenuQuery<PK extends Serializable> extends Query<TsMenuEntity,PK> {
 
@@ -123,6 +123,39 @@ public interface TsMenuQuery<PK extends Serializable> extends Query<TsMenuEntity
         public TsMenuQuery menuRedirectNotLike(String menuRedirectNotLike);
         public TsMenuQuery menuRedirectIsNull();
         public TsMenuQuery menuRedirectIsNotNull();
+
+
+
+
+
+        public TsMenuQuery shortcut(String shortcut);
+        public TsMenuQuery shortcutNot(String shortcutNot);
+        public TsMenuQuery shortcutIn(String shortcutIn);
+        public TsMenuQuery shortcutNotIn(String shortcutNotIn);
+        public TsMenuQuery shortcutIsNull();
+        public TsMenuQuery shortcutIsNotNull();
+
+
+
+
+
+        public TsMenuQuery level(Integer level);
+        public TsMenuQuery levelNot(Integer levelNot);
+        public TsMenuQuery levelGreaterThan(Integer levelGreaterThan);
+        public TsMenuQuery levelGreaterEqual(Integer levelGreaterEqual);
+        public TsMenuQuery levelLessThan(Integer levelLessThan);
+        public TsMenuQuery levelLessEqual(Integer levelLessEqual);
+
+
+
+
+
+        public TsMenuQuery leaf(String leaf);
+        public TsMenuQuery leafNot(String leafNot);
+        public TsMenuQuery leafIn(String leafIn);
+        public TsMenuQuery leafNotIn(String leafNotIn);
+        public TsMenuQuery leafIsNull();
+        public TsMenuQuery leafIsNotNull();
 
 
 

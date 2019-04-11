@@ -11,7 +11,7 @@ import java.lang.Integer;
 * 字典信息 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:30
+* @date 2019-4-11 14:06:15
 */
 public class TsDictQueryWebImpl<PK extends Serializable> extends TsDictAbstractQueryImpl<PK> implements Serializable {
 
@@ -26,9 +26,9 @@ public class TsDictQueryWebImpl<PK extends Serializable> extends TsDictAbstractQ
 
 
 
-
             private String dictVal_IN;
             private String dictVal_NOTIN;
+
 
 
 
@@ -87,9 +87,9 @@ public class TsDictQueryWebImpl<PK extends Serializable> extends TsDictAbstractQ
             private String deleteFlag_NOTIN;
 
 
-            private PK tenantId_IN;
-            private PK tenantId_NOTIN;
 
+            private String tenantId_IN;
+            private String tenantId_NOTIN;
 
 
 
@@ -161,7 +161,6 @@ public class TsDictQueryWebImpl<PK extends Serializable> extends TsDictAbstractQ
             }
 
 
-
             public String getDictVal() {
                 return dictVal;
             }
@@ -194,21 +193,6 @@ public class TsDictQueryWebImpl<PK extends Serializable> extends TsDictAbstractQ
                 this.dictVal_NOTIN = dictVal_NOTIN;
             }
 
-            public String getDictVal_LIKE() {
-                return dictVal_LIKE;
-            }
-
-            public void setDictVal_LIKE(String dictVal_LIKE) {
-                this.dictVal_LIKE = dictVal_LIKE;
-            }
-
-            public String getDictVal_NOTLIKE() {
-                return dictVal_NOTLIKE;
-            }
-
-            public void setDictVal_NOTLIKE(String dictVal_NOTLIKE) {
-                this.dictVal_NOTLIKE = dictVal_NOTLIKE;
-            }
 
 
             public String getDictName() {
@@ -796,36 +780,52 @@ public class TsDictQueryWebImpl<PK extends Serializable> extends TsDictAbstractQ
                 this.deleteFlag_NOTLIKE = deleteFlag_NOTLIKE;
             }
 
-            public PK getTenantId() {
+
+            public String getTenantId() {
                 return tenantId;
             }
 
-            public void setTenantId(PK tenantId) {
+            public void setTenantId(String tenantId) {
                 this.tenantId = tenantId;
             }
 
-            public PK getTenantId_NE() {
+            public String getTenantId_NE() {
                 return tenantId_NE;
             }
 
-            public void setTenantId_NE(PK tenantId_NE) {
+            public void setTenantId_NE(String tenantId_NE) {
                 this.tenantId_NE = tenantId_NE;
             }
 
-            public PK getTenantId_IN() {
+            public String getTenantId_IN() {
                 return tenantId_IN;
             }
 
-            public void setTenantId_IN(PK tenantId_IN) {
+            public void setTenantId_IN(String tenantId_IN) {
                 this.tenantId_IN = tenantId_IN;
             }
 
-            public PK getTenantId_NOTIN() {
+            public String getTenantId_NOTIN() {
                 return tenantId_NOTIN;
             }
 
-            public void setTenantId_NOTIN(PK tenantId_NOTIN) {
+            public void setTenantId_NOTIN(String tenantId_NOTIN) {
                 this.tenantId_NOTIN = tenantId_NOTIN;
             }
 
+            public String getTenantId_LIKE() {
+                return tenantId_LIKE;
+            }
+
+            public void setTenantId_LIKE(String tenantId_LIKE) {
+                this.tenantId_LIKE = tenantId_LIKE;
+            }
+
+            public String getTenantId_NOTLIKE() {
+                return tenantId_NOTLIKE;
+            }
+
+            public void setTenantId_NOTLIKE(String tenantId_NOTLIKE) {
+                this.tenantId_NOTLIKE = tenantId_NOTLIKE;
+            }
 }

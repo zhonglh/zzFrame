@@ -13,7 +13,7 @@ import java.lang.Integer;
 * 文件使用 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2019-4-1 13:52:03
+* @date 2019-4-11 14:06:19
 */
 public class VsFileUseQueryWebImpl<PK extends Serializable> extends VsFileUseAbstractQueryImpl<PK> implements Serializable {
 
@@ -33,19 +33,24 @@ public class VsFileUseQueryWebImpl<PK extends Serializable> extends VsFileUseAbs
             private String showName_NOTIN;
 
 
+
             private String businessType_IN;
             private String businessType_NOTIN;
 
 
 
-
-            private String businessTmpId_IN;
-            private String businessTmpId_NOTIN;
-
-
-
             private String businessId_IN;
             private String businessId_NOTIN;
+
+
+
+            private String businessFileType_IN;
+            private String businessFileType_NOTIN;
+
+
+
+            private String businessTempId_IN;
+            private String businessTempId_NOTIN;
 
 
 
@@ -259,6 +264,7 @@ public class VsFileUseQueryWebImpl<PK extends Serializable> extends VsFileUseAbs
                 this.showName_NOTLIKE = showName_NOTLIKE;
             }
 
+
             public String getBusinessType() {
                 return businessType;
             }
@@ -291,54 +297,20 @@ public class VsFileUseQueryWebImpl<PK extends Serializable> extends VsFileUseAbs
                 this.businessType_NOTIN = businessType_NOTIN;
             }
 
-
-
-            public String getBusinessTmpId() {
-                return businessTmpId;
+            public String getBusinessType_LIKE() {
+                return businessType_LIKE;
             }
 
-            public void setBusinessTmpId(String businessTmpId) {
-                this.businessTmpId = businessTmpId;
+            public void setBusinessType_LIKE(String businessType_LIKE) {
+                this.businessType_LIKE = businessType_LIKE;
             }
 
-            public String getBusinessTmpId_NE() {
-                return businessTmpId_NE;
+            public String getBusinessType_NOTLIKE() {
+                return businessType_NOTLIKE;
             }
 
-            public void setBusinessTmpId_NE(String businessTmpId_NE) {
-                this.businessTmpId_NE = businessTmpId_NE;
-            }
-
-            public String getBusinessTmpId_IN() {
-                return businessTmpId_IN;
-            }
-
-            public void setBusinessTmpId_IN(String businessTmpId_IN) {
-                this.businessTmpId_IN = businessTmpId_IN;
-            }
-
-            public String getBusinessTmpId_NOTIN() {
-                return businessTmpId_NOTIN;
-            }
-
-            public void setBusinessTmpId_NOTIN(String businessTmpId_NOTIN) {
-                this.businessTmpId_NOTIN = businessTmpId_NOTIN;
-            }
-
-            public String getBusinessTmpId_LIKE() {
-                return businessTmpId_LIKE;
-            }
-
-            public void setBusinessTmpId_LIKE(String businessTmpId_LIKE) {
-                this.businessTmpId_LIKE = businessTmpId_LIKE;
-            }
-
-            public String getBusinessTmpId_NOTLIKE() {
-                return businessTmpId_NOTLIKE;
-            }
-
-            public void setBusinessTmpId_NOTLIKE(String businessTmpId_NOTLIKE) {
-                this.businessTmpId_NOTLIKE = businessTmpId_NOTLIKE;
+            public void setBusinessType_NOTLIKE(String businessType_NOTLIKE) {
+                this.businessType_NOTLIKE = businessType_NOTLIKE;
             }
 
 
@@ -388,6 +360,104 @@ public class VsFileUseQueryWebImpl<PK extends Serializable> extends VsFileUseAbs
 
             public void setBusinessId_NOTLIKE(String businessId_NOTLIKE) {
                 this.businessId_NOTLIKE = businessId_NOTLIKE;
+            }
+
+
+            public String getBusinessFileType() {
+                return businessFileType;
+            }
+
+            public void setBusinessFileType(String businessFileType) {
+                this.businessFileType = businessFileType;
+            }
+
+            public String getBusinessFileType_NE() {
+                return businessFileType_NE;
+            }
+
+            public void setBusinessFileType_NE(String businessFileType_NE) {
+                this.businessFileType_NE = businessFileType_NE;
+            }
+
+            public String getBusinessFileType_IN() {
+                return businessFileType_IN;
+            }
+
+            public void setBusinessFileType_IN(String businessFileType_IN) {
+                this.businessFileType_IN = businessFileType_IN;
+            }
+
+            public String getBusinessFileType_NOTIN() {
+                return businessFileType_NOTIN;
+            }
+
+            public void setBusinessFileType_NOTIN(String businessFileType_NOTIN) {
+                this.businessFileType_NOTIN = businessFileType_NOTIN;
+            }
+
+            public String getBusinessFileType_LIKE() {
+                return businessFileType_LIKE;
+            }
+
+            public void setBusinessFileType_LIKE(String businessFileType_LIKE) {
+                this.businessFileType_LIKE = businessFileType_LIKE;
+            }
+
+            public String getBusinessFileType_NOTLIKE() {
+                return businessFileType_NOTLIKE;
+            }
+
+            public void setBusinessFileType_NOTLIKE(String businessFileType_NOTLIKE) {
+                this.businessFileType_NOTLIKE = businessFileType_NOTLIKE;
+            }
+
+
+            public String getBusinessTempId() {
+                return businessTempId;
+            }
+
+            public void setBusinessTempId(String businessTempId) {
+                this.businessTempId = businessTempId;
+            }
+
+            public String getBusinessTempId_NE() {
+                return businessTempId_NE;
+            }
+
+            public void setBusinessTempId_NE(String businessTempId_NE) {
+                this.businessTempId_NE = businessTempId_NE;
+            }
+
+            public String getBusinessTempId_IN() {
+                return businessTempId_IN;
+            }
+
+            public void setBusinessTempId_IN(String businessTempId_IN) {
+                this.businessTempId_IN = businessTempId_IN;
+            }
+
+            public String getBusinessTempId_NOTIN() {
+                return businessTempId_NOTIN;
+            }
+
+            public void setBusinessTempId_NOTIN(String businessTempId_NOTIN) {
+                this.businessTempId_NOTIN = businessTempId_NOTIN;
+            }
+
+            public String getBusinessTempId_LIKE() {
+                return businessTempId_LIKE;
+            }
+
+            public void setBusinessTempId_LIKE(String businessTempId_LIKE) {
+                this.businessTempId_LIKE = businessTempId_LIKE;
+            }
+
+            public String getBusinessTempId_NOTLIKE() {
+                return businessTempId_NOTLIKE;
+            }
+
+            public void setBusinessTempId_NOTLIKE(String businessTempId_NOTLIKE) {
+                this.businessTempId_NOTLIKE = businessTempId_NOTLIKE;
             }
 
             public Integer getFileOrder() {

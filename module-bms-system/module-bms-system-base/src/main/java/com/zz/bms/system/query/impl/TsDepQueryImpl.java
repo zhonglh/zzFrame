@@ -17,7 +17,7 @@ import java.lang.Integer;
 * 部门 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-11 14:06:18
 */
 public class TsDepQueryImpl<PK extends Serializable> extends TsDepAbstractQueryImpl<PK> implements TsDepQuery<PK>, Serializable  {
 
@@ -42,9 +42,9 @@ public class TsDepQueryImpl<PK extends Serializable> extends TsDepAbstractQueryI
         private List<PK> leadUserId_IN;
         private List<PK> leadUserId_NOTIN;
 
-        private List<PK> organId_IN;
-        private List<PK> organId_NOTIN;
 
+        private List<String> organId_IN;
+        private List<String> organId_NOTIN;
 
         private List<String> remark_IN;
         private List<String> remark_NOTIN;
@@ -63,9 +63,9 @@ public class TsDepQueryImpl<PK extends Serializable> extends TsDepAbstractQueryI
 
         private List<String> updateUserName_IN;
         private List<String> updateUserName_NOTIN;
-        private List<PK> tenantId_IN;
-        private List<PK> tenantId_NOTIN;
 
+        private List<String> tenantId_IN;
+        private List<String> tenantId_NOTIN;
 
 
         @Override
@@ -476,8 +476,9 @@ public class TsDepQueryImpl<PK extends Serializable> extends TsDepAbstractQueryI
         }
 
 
+
         @Override
-        public TsDepQuery organId(PK organId) {
+        public TsDepQuery organId(String organId) {
             if(!IdUtils.isEmpty(organId)){
                 this.organId = organId;
             }
@@ -485,7 +486,7 @@ public class TsDepQueryImpl<PK extends Serializable> extends TsDepAbstractQueryI
         }
 
         @Override
-        public TsDepQuery organIdNot(PK organIdNot) {
+        public TsDepQuery organIdNot(String organIdNot) {
             if(!IdUtils.isEmpty(organIdNot)){
                 this.organId_NE = organIdNot;
             }
@@ -493,10 +494,26 @@ public class TsDepQueryImpl<PK extends Serializable> extends TsDepAbstractQueryI
         }
 
         @Override
-        public TsDepQuery organIdIn(PK organIdIn) {
+        public TsDepQuery organIdLike(String organIdLike) {
+            if(!IdUtils.isEmpty(organIdLike)){
+                this.organId_LIKE = organIdLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsDepQuery organIdNotLike(String organIdNotLike) {
+            if(!IdUtils.isEmpty(organIdNotLike)){
+                this.organId_NOTLIKE = organIdNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsDepQuery organIdIn(String organIdIn) {
             if(!IdUtils.isEmpty(organIdIn)){
                 if(this.organId_IN == null){
-                    this.organId_IN = new ArrayList<PK>();
+                    this.organId_IN = new ArrayList<String>();
                 }
                 this.organId_IN.add( organIdIn );
             }
@@ -504,10 +521,10 @@ public class TsDepQueryImpl<PK extends Serializable> extends TsDepAbstractQueryI
         }
 
         @Override
-        public TsDepQuery organIdNotIn(PK organIdNotIn) {
+        public TsDepQuery organIdNotIn(String organIdNotIn) {
             if(!IdUtils.isEmpty(organIdNotIn)){
                 if(this.organId_NOTIN == null){
-                    this.organId_NOTIN = new ArrayList<PK>();
+                    this.organId_NOTIN = new ArrayList<String>();
                 }
                 this.organId_NOTIN.add( organIdNotIn );
             }
@@ -1081,8 +1098,9 @@ public class TsDepQueryImpl<PK extends Serializable> extends TsDepAbstractQueryI
             return this;
         }
 
+
         @Override
-        public TsDepQuery tenantId(PK tenantId) {
+        public TsDepQuery tenantId(String tenantId) {
             if(!IdUtils.isEmpty(tenantId)){
                 this.tenantId = tenantId;
             }
@@ -1090,7 +1108,7 @@ public class TsDepQueryImpl<PK extends Serializable> extends TsDepAbstractQueryI
         }
 
         @Override
-        public TsDepQuery tenantIdNot(PK tenantIdNot) {
+        public TsDepQuery tenantIdNot(String tenantIdNot) {
             if(!IdUtils.isEmpty(tenantIdNot)){
                 this.tenantId_NE = tenantIdNot;
             }
@@ -1098,10 +1116,26 @@ public class TsDepQueryImpl<PK extends Serializable> extends TsDepAbstractQueryI
         }
 
         @Override
-        public TsDepQuery tenantIdIn(PK tenantIdIn) {
+        public TsDepQuery tenantIdLike(String tenantIdLike) {
+            if(!IdUtils.isEmpty(tenantIdLike)){
+                this.tenantId_LIKE = tenantIdLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsDepQuery tenantIdNotLike(String tenantIdNotLike) {
+            if(!IdUtils.isEmpty(tenantIdNotLike)){
+                this.tenantId_NOTLIKE = tenantIdNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsDepQuery tenantIdIn(String tenantIdIn) {
             if(!IdUtils.isEmpty(tenantIdIn)){
                 if(this.tenantId_IN == null){
-                    this.tenantId_IN = new ArrayList<PK>();
+                    this.tenantId_IN = new ArrayList<String>();
                 }
                 this.tenantId_IN.add( tenantIdIn );
             }
@@ -1109,10 +1143,10 @@ public class TsDepQueryImpl<PK extends Serializable> extends TsDepAbstractQueryI
         }
 
         @Override
-        public TsDepQuery tenantIdNotIn(PK tenantIdNotIn) {
+        public TsDepQuery tenantIdNotIn(String tenantIdNotIn) {
             if(!IdUtils.isEmpty(tenantIdNotIn)){
                 if(this.tenantId_NOTIN == null){
-                    this.tenantId_NOTIN = new ArrayList<PK>();
+                    this.tenantId_NOTIN = new ArrayList<String>();
                 }
                 this.tenantId_NOTIN.add( tenantIdNotIn );
             }

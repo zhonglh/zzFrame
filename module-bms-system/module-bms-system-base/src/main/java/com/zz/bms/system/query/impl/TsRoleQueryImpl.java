@@ -17,7 +17,7 @@ import java.lang.Integer;
 * 角色 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-11 14:06:16
 */
 public class TsRoleQueryImpl<PK extends Serializable> extends TsRoleAbstractQueryImpl<PK> implements TsRoleQuery<PK>, Serializable  {
 
@@ -36,18 +36,15 @@ public class TsRoleQueryImpl<PK extends Serializable> extends TsRoleAbstractQuer
         private List<PK> depId_IN;
         private List<PK> depId_NOTIN;
 
-        private List<PK> organId_IN;
-        private List<PK> organId_NOTIN;
 
+        private List<String> organId_IN;
+        private List<String> organId_NOTIN;
         private List<String> roleStatus_IN;
         private List<String> roleStatus_NOTIN;
 
 
         private List<String> remark_IN;
         private List<String> remark_NOTIN;
-
-        private List<String> deleteFlag_IN;
-        private List<String> deleteFlag_NOTIN;
 
         private List<String> createUserId_IN;
         private List<String> createUserId_NOTIN;
@@ -60,9 +57,9 @@ public class TsRoleQueryImpl<PK extends Serializable> extends TsRoleAbstractQuer
 
         private List<String> updateUserName_IN;
         private List<String> updateUserName_NOTIN;
-        private List<PK> tenantId_IN;
-        private List<PK> tenantId_NOTIN;
 
+        private List<String> tenantId_IN;
+        private List<String> tenantId_NOTIN;
 
 
         @Override
@@ -354,8 +351,9 @@ public class TsRoleQueryImpl<PK extends Serializable> extends TsRoleAbstractQuer
         }
 
 
+
         @Override
-        public TsRoleQuery organId(PK organId) {
+        public TsRoleQuery organId(String organId) {
             if(!IdUtils.isEmpty(organId)){
                 this.organId = organId;
             }
@@ -363,7 +361,7 @@ public class TsRoleQueryImpl<PK extends Serializable> extends TsRoleAbstractQuer
         }
 
         @Override
-        public TsRoleQuery organIdNot(PK organIdNot) {
+        public TsRoleQuery organIdNot(String organIdNot) {
             if(!IdUtils.isEmpty(organIdNot)){
                 this.organId_NE = organIdNot;
             }
@@ -371,10 +369,26 @@ public class TsRoleQueryImpl<PK extends Serializable> extends TsRoleAbstractQuer
         }
 
         @Override
-        public TsRoleQuery organIdIn(PK organIdIn) {
+        public TsRoleQuery organIdLike(String organIdLike) {
+            if(!IdUtils.isEmpty(organIdLike)){
+                this.organId_LIKE = organIdLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsRoleQuery organIdNotLike(String organIdNotLike) {
+            if(!IdUtils.isEmpty(organIdNotLike)){
+                this.organId_NOTLIKE = organIdNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsRoleQuery organIdIn(String organIdIn) {
             if(!IdUtils.isEmpty(organIdIn)){
                 if(this.organId_IN == null){
-                    this.organId_IN = new ArrayList<PK>();
+                    this.organId_IN = new ArrayList<String>();
                 }
                 this.organId_IN.add( organIdIn );
             }
@@ -382,10 +396,10 @@ public class TsRoleQueryImpl<PK extends Serializable> extends TsRoleAbstractQuer
         }
 
         @Override
-        public TsRoleQuery organIdNotIn(PK organIdNotIn) {
+        public TsRoleQuery organIdNotIn(String organIdNotIn) {
             if(!IdUtils.isEmpty(organIdNotIn)){
                 if(this.organId_NOTIN == null){
-                    this.organId_NOTIN = new ArrayList<PK>();
+                    this.organId_NOTIN = new ArrayList<String>();
                 }
                 this.organId_NOTIN.add( organIdNotIn );
             }
@@ -520,74 +534,6 @@ public class TsRoleQueryImpl<PK extends Serializable> extends TsRoleAbstractQuer
         @Override
         public TsRoleQuery remarkIsNotNull() {
             this.isNotNulls.add("remark");
-            return this;
-        }
-
-
-
-        @Override
-        public TsRoleQuery deleteFlag(String deleteFlag) {
-            if(!IdUtils.isEmpty(deleteFlag)){
-                this.deleteFlag = deleteFlag;
-            }
-            return this;
-        }
-
-        @Override
-        public TsRoleQuery deleteFlagNot(String deleteFlagNot) {
-            if(!IdUtils.isEmpty(deleteFlagNot)){
-                this.deleteFlag_NE = deleteFlagNot;
-            }
-            return this;
-        }
-
-        @Override
-        public TsRoleQuery deleteFlagLike(String deleteFlagLike) {
-            if(!IdUtils.isEmpty(deleteFlagLike)){
-                this.deleteFlag_LIKE = deleteFlagLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TsRoleQuery deleteFlagNotLike(String deleteFlagNotLike) {
-            if(!IdUtils.isEmpty(deleteFlagNotLike)){
-                this.deleteFlag_NOTLIKE = deleteFlagNotLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TsRoleQuery deleteFlagIn(String deleteFlagIn) {
-            if(!IdUtils.isEmpty(deleteFlagIn)){
-                if(this.deleteFlag_IN == null){
-                    this.deleteFlag_IN = new ArrayList<String>();
-                }
-                this.deleteFlag_IN.add( deleteFlagIn );
-            }
-            return this;
-        }
-
-        @Override
-        public TsRoleQuery deleteFlagNotIn(String deleteFlagNotIn) {
-            if(!IdUtils.isEmpty(deleteFlagNotIn)){
-                if(this.deleteFlag_NOTIN == null){
-                    this.deleteFlag_NOTIN = new ArrayList<String>();
-                }
-                this.deleteFlag_NOTIN.add( deleteFlagNotIn );
-            }
-            return this;
-        }
-
-        @Override
-        public TsRoleQuery deleteFlagIsNull() {
-            this.isNulls.add("deleteFlag");
-            return this;
-        }
-
-        @Override
-        public TsRoleQuery deleteFlagIsNotNull() {
-            this.isNotNulls.add("deleteFlag");
             return this;
         }
 
@@ -1010,8 +956,9 @@ public class TsRoleQueryImpl<PK extends Serializable> extends TsRoleAbstractQuer
             return this;
         }
 
+
         @Override
-        public TsRoleQuery tenantId(PK tenantId) {
+        public TsRoleQuery tenantId(String tenantId) {
             if(!IdUtils.isEmpty(tenantId)){
                 this.tenantId = tenantId;
             }
@@ -1019,7 +966,7 @@ public class TsRoleQueryImpl<PK extends Serializable> extends TsRoleAbstractQuer
         }
 
         @Override
-        public TsRoleQuery tenantIdNot(PK tenantIdNot) {
+        public TsRoleQuery tenantIdNot(String tenantIdNot) {
             if(!IdUtils.isEmpty(tenantIdNot)){
                 this.tenantId_NE = tenantIdNot;
             }
@@ -1027,10 +974,26 @@ public class TsRoleQueryImpl<PK extends Serializable> extends TsRoleAbstractQuer
         }
 
         @Override
-        public TsRoleQuery tenantIdIn(PK tenantIdIn) {
+        public TsRoleQuery tenantIdLike(String tenantIdLike) {
+            if(!IdUtils.isEmpty(tenantIdLike)){
+                this.tenantId_LIKE = tenantIdLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsRoleQuery tenantIdNotLike(String tenantIdNotLike) {
+            if(!IdUtils.isEmpty(tenantIdNotLike)){
+                this.tenantId_NOTLIKE = tenantIdNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsRoleQuery tenantIdIn(String tenantIdIn) {
             if(!IdUtils.isEmpty(tenantIdIn)){
                 if(this.tenantId_IN == null){
-                    this.tenantId_IN = new ArrayList<PK>();
+                    this.tenantId_IN = new ArrayList<String>();
                 }
                 this.tenantId_IN.add( tenantIdIn );
             }
@@ -1038,10 +1001,10 @@ public class TsRoleQueryImpl<PK extends Serializable> extends TsRoleAbstractQuer
         }
 
         @Override
-        public TsRoleQuery tenantIdNotIn(PK tenantIdNotIn) {
+        public TsRoleQuery tenantIdNotIn(String tenantIdNotIn) {
             if(!IdUtils.isEmpty(tenantIdNotIn)){
                 if(this.tenantId_NOTIN == null){
-                    this.tenantId_NOTIN = new ArrayList<PK>();
+                    this.tenantId_NOTIN = new ArrayList<String>();
                 }
                 this.tenantId_NOTIN.add( tenantIdNotIn );
             }

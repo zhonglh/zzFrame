@@ -11,7 +11,7 @@ import java.lang.String;
  * VIEW 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2019-4-1 13:52:05
+ * @date 2019-4-11 14:06:18
  */
 public abstract class VsUserPermitAbstractQueryImpl<PK extends Serializable> extends QueryImpl<VsUserPermitEntity,PK> {
 

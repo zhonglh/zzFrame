@@ -15,7 +15,7 @@ import java.lang.String;
 * 用户角色关联 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:30
+* @date 2019-4-11 14:06:17
 */
 public class TsUserRoleQueryImpl<PK extends Serializable> extends TsUserRoleAbstractQueryImpl<PK> implements TsUserRoleQuery<PK>, Serializable  {
 

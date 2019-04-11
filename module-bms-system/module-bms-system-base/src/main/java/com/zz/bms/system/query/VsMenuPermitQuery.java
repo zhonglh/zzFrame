@@ -11,7 +11,7 @@ import java.lang.String;
  * 菜单许可关联 查询抽象类
  *
  * @author Administrator
- * @date 2019-4-1 13:52:04
+ * @date 2019-4-11 14:06:15
  */
 public interface VsMenuPermitQuery<PK extends Serializable> extends Query<VsMenuPermitEntity,PK> {
 
@@ -73,6 +73,32 @@ public interface VsMenuPermitQuery<PK extends Serializable> extends Query<VsMenu
         public VsMenuPermitQuery permitNameNotLike(String permitNameNotLike);
         public VsMenuPermitQuery permitNameIsNull();
         public VsMenuPermitQuery permitNameIsNotNull();
+
+
+
+
+
+        public VsMenuPermitQuery menuName(String menuName);
+        public VsMenuPermitQuery menuNameNot(String menuNameNot);
+        public VsMenuPermitQuery menuNameIn(String menuNameIn);
+        public VsMenuPermitQuery menuNameNotIn(String menuNameNotIn);
+        public VsMenuPermitQuery menuNameLike(String menuNameLike);
+        public VsMenuPermitQuery menuNameNotLike(String menuNameNotLike);
+        public VsMenuPermitQuery menuNameIsNull();
+        public VsMenuPermitQuery menuNameIsNotNull();
+
+
+
+
+
+        public VsMenuPermitQuery menuCode(String menuCode);
+        public VsMenuPermitQuery menuCodeNot(String menuCodeNot);
+        public VsMenuPermitQuery menuCodeIn(String menuCodeIn);
+        public VsMenuPermitQuery menuCodeNotIn(String menuCodeNotIn);
+        public VsMenuPermitQuery menuCodeLike(String menuCodeLike);
+        public VsMenuPermitQuery menuCodeNotLike(String menuCodeNotLike);
+        public VsMenuPermitQuery menuCodeIsNull();
+        public VsMenuPermitQuery menuCodeIsNotNull();
 
 
 

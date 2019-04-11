@@ -1,7 +1,7 @@
 package com.zz.bms.system.query.impl;
 
 
-import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
+import com.zz.bms.core.db.mybatis.query.QueryImpl;
 import com.zz.bms.system.domain.TsDepEntity;
 
 import java.io.Serializable;
@@ -13,9 +13,9 @@ import java.lang.Integer;
  * 部门 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2018-9-6 23:56:31
+ * @date 2019-4-11 14:06:18
  */
-public abstract class TsDepAbstractQueryImpl<PK extends Serializable> extends CommonQueryImpl<TsDepEntity,PK> {
+public abstract class TsDepAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TsDepEntity,PK> {
 
             protected PK id;
             protected PK id_NE;
@@ -44,8 +44,10 @@ public abstract class TsDepAbstractQueryImpl<PK extends Serializable> extends Co
             protected PK leadUserId;
             protected PK leadUserId_NE;
 
-            protected PK organId;
-            protected PK organId_NE;
+            protected String organId;
+            protected String organId_NE;
+            protected String organId_LIKE;
+            protected String organId_NOTLIKE;
 
             protected String remark;
             protected String remark_NE;
@@ -98,8 +100,10 @@ public abstract class TsDepAbstractQueryImpl<PK extends Serializable> extends Co
         protected Integer versionNo_LT;
         protected Integer versionNo_LE;
 
-            protected PK tenantId;
-            protected PK tenantId_NE;
+            protected String tenantId;
+            protected String tenantId_NE;
+            protected String tenantId_LIKE;
+            protected String tenantId_NOTLIKE;
 
 
 	

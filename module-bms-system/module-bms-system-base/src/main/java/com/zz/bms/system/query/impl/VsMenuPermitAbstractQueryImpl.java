@@ -11,7 +11,7 @@ import java.lang.String;
  * 菜单许可关联 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2019-4-1 13:52:04
+ * @date 2019-4-11 14:06:15
  */
 public abstract class VsMenuPermitAbstractQueryImpl<PK extends Serializable> extends QueryImpl<VsMenuPermitEntity,PK> {
 
@@ -37,6 +37,16 @@ public abstract class VsMenuPermitAbstractQueryImpl<PK extends Serializable> ext
             protected String permitName_NE;
             protected String permitName_LIKE;
             protected String permitName_NOTLIKE;
+
+            protected String menuName;
+            protected String menuName_NE;
+            protected String menuName_LIKE;
+            protected String menuName_NOTLIKE;
+
+            protected String menuCode;
+            protected String menuCode_NE;
+            protected String menuCode_LIKE;
+            protected String menuCode_NOTLIKE;
 
 
 	

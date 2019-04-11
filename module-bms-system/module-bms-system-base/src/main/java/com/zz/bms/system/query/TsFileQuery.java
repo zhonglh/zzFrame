@@ -6,7 +6,6 @@ import com.zz.bms.system.domain.TsFileEntity;
 
 import java.io.Serializable;
 import java.lang.Long;
-import java.sql.Timestamp;
 import java.lang.String;
 import java.lang.Integer;
 
@@ -14,7 +13,7 @@ import java.lang.Integer;
  * 文件 查询抽象类
  *
  * @author Administrator
- * @date 2018-9-6 23:56:31
+ * @date 2019-4-11 14:06:16
  */
 public interface TsFileQuery<PK extends Serializable> extends Query<TsFileEntity,PK> {
 
@@ -63,6 +62,19 @@ public interface TsFileQuery<PK extends Serializable> extends Query<TsFileEntity
         public TsFileQuery fileHostNotLike(String fileHostNotLike);
         public TsFileQuery fileHostIsNull();
         public TsFileQuery fileHostIsNotNull();
+
+
+
+
+
+        public TsFileQuery fileBasePath(String fileBasePath);
+        public TsFileQuery fileBasePathNot(String fileBasePathNot);
+        public TsFileQuery fileBasePathIn(String fileBasePathIn);
+        public TsFileQuery fileBasePathNotIn(String fileBasePathNotIn);
+        public TsFileQuery fileBasePathLike(String fileBasePathLike);
+        public TsFileQuery fileBasePathNotLike(String fileBasePathNotLike);
+        public TsFileQuery fileBasePathIsNull();
+        public TsFileQuery fileBasePathIsNotNull();
 
 
 
@@ -161,93 +173,6 @@ public interface TsFileQuery<PK extends Serializable> extends Query<TsFileEntity
         public TsFileQuery useFrequencyGreaterEqual(Integer useFrequencyGreaterEqual);
         public TsFileQuery useFrequencyLessThan(Integer useFrequencyLessThan);
         public TsFileQuery useFrequencyLessEqual(Integer useFrequencyLessEqual);
-
-
-
-
-
-        public TsFileQuery deleteFlag(String deleteFlag);
-        public TsFileQuery deleteFlagNot(String deleteFlagNot);
-        public TsFileQuery deleteFlagIn(String deleteFlagIn);
-        public TsFileQuery deleteFlagNotIn(String deleteFlagNotIn);
-        public TsFileQuery deleteFlagLike(String deleteFlagLike);
-        public TsFileQuery deleteFlagNotLike(String deleteFlagNotLike);
-        public TsFileQuery deleteFlagIsNull();
-        public TsFileQuery deleteFlagIsNotNull();
-
-
-
-
-
-        public TsFileQuery createUserId(String createUserId);
-        public TsFileQuery createUserIdNot(String createUserIdNot);
-        public TsFileQuery createUserIdIn(String createUserIdIn);
-        public TsFileQuery createUserIdNotIn(String createUserIdNotIn);
-        public TsFileQuery createUserIdLike(String createUserIdLike);
-        public TsFileQuery createUserIdNotLike(String createUserIdNotLike);
-        public TsFileQuery createUserIdIsNull();
-        public TsFileQuery createUserIdIsNotNull();
-
-
-
-
-
-        public TsFileQuery createUserName(String createUserName);
-        public TsFileQuery createUserNameNot(String createUserNameNot);
-        public TsFileQuery createUserNameIn(String createUserNameIn);
-        public TsFileQuery createUserNameNotIn(String createUserNameNotIn);
-        public TsFileQuery createUserNameLike(String createUserNameLike);
-        public TsFileQuery createUserNameNotLike(String createUserNameNotLike);
-        public TsFileQuery createUserNameIsNull();
-        public TsFileQuery createUserNameIsNotNull();
-
-
-
-
-
-        public TsFileQuery createTime(Timestamp createTime);
-        public TsFileQuery createTimeNot(Timestamp createTimeNot);
-        public TsFileQuery createTimeGreaterThan(Timestamp createTimeGreaterThan);
-        public TsFileQuery createTimeGreaterEqual(Timestamp createTimeGreaterEqual);
-        public TsFileQuery createTimeLessThan(Timestamp createTimeLessThan);
-        public TsFileQuery createTimeLessEqual(Timestamp createTimeLessEqual);
-
-
-
-
-
-        public TsFileQuery updateUserId(String updateUserId);
-        public TsFileQuery updateUserIdNot(String updateUserIdNot);
-        public TsFileQuery updateUserIdIn(String updateUserIdIn);
-        public TsFileQuery updateUserIdNotIn(String updateUserIdNotIn);
-        public TsFileQuery updateUserIdLike(String updateUserIdLike);
-        public TsFileQuery updateUserIdNotLike(String updateUserIdNotLike);
-        public TsFileQuery updateUserIdIsNull();
-        public TsFileQuery updateUserIdIsNotNull();
-
-
-
-
-
-        public TsFileQuery updateUserName(String updateUserName);
-        public TsFileQuery updateUserNameNot(String updateUserNameNot);
-        public TsFileQuery updateUserNameIn(String updateUserNameIn);
-        public TsFileQuery updateUserNameNotIn(String updateUserNameNotIn);
-        public TsFileQuery updateUserNameLike(String updateUserNameLike);
-        public TsFileQuery updateUserNameNotLike(String updateUserNameNotLike);
-        public TsFileQuery updateUserNameIsNull();
-        public TsFileQuery updateUserNameIsNotNull();
-
-
-
-
-
-        public TsFileQuery updateTime(Timestamp updateTime);
-        public TsFileQuery updateTimeNot(Timestamp updateTimeNot);
-        public TsFileQuery updateTimeGreaterThan(Timestamp updateTimeGreaterThan);
-        public TsFileQuery updateTimeGreaterEqual(Timestamp updateTimeGreaterEqual);
-        public TsFileQuery updateTimeLessThan(Timestamp updateTimeLessThan);
-        public TsFileQuery updateTimeLessEqual(Timestamp updateTimeLessEqual);
 
 
 

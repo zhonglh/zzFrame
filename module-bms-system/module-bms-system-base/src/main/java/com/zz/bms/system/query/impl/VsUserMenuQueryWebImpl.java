@@ -7,10 +7,10 @@ import java.lang.String;
 import java.lang.Integer;
 
 /**
-* VIEW 用于装载用户在查询时提交的数据
+* 用户菜单信息 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2019-4-1 13:52:05
+* @date 2019-4-11 14:06:18
 */
 public class VsUserMenuQueryWebImpl<PK extends Serializable> extends VsUserMenuAbstractQueryImpl<PK> implements Serializable {
 
@@ -66,6 +66,11 @@ public class VsUserMenuQueryWebImpl<PK extends Serializable> extends VsUserMenuA
             private String leaf_IN;
             private String leaf_NOTIN;
 
+
+
+
+            private String deleteFlag_IN;
+            private String deleteFlag_NOTIN;
 
 
 
@@ -560,6 +565,55 @@ public class VsUserMenuQueryWebImpl<PK extends Serializable> extends VsUserMenuA
                 this.leaf_NOTIN = leaf_NOTIN;
             }
 
+
+
+            public String getDeleteFlag() {
+                return deleteFlag;
+            }
+
+            public void setDeleteFlag(String deleteFlag) {
+                this.deleteFlag = deleteFlag;
+            }
+
+            public String getDeleteFlag_NE() {
+                return deleteFlag_NE;
+            }
+
+            public void setDeleteFlag_NE(String deleteFlag_NE) {
+                this.deleteFlag_NE = deleteFlag_NE;
+            }
+
+            public String getDeleteFlag_IN() {
+                return deleteFlag_IN;
+            }
+
+            public void setDeleteFlag_IN(String deleteFlag_IN) {
+                this.deleteFlag_IN = deleteFlag_IN;
+            }
+
+            public String getDeleteFlag_NOTIN() {
+                return deleteFlag_NOTIN;
+            }
+
+            public void setDeleteFlag_NOTIN(String deleteFlag_NOTIN) {
+                this.deleteFlag_NOTIN = deleteFlag_NOTIN;
+            }
+
+            public String getDeleteFlag_LIKE() {
+                return deleteFlag_LIKE;
+            }
+
+            public void setDeleteFlag_LIKE(String deleteFlag_LIKE) {
+                this.deleteFlag_LIKE = deleteFlag_LIKE;
+            }
+
+            public String getDeleteFlag_NOTLIKE() {
+                return deleteFlag_NOTLIKE;
+            }
+
+            public void setDeleteFlag_NOTLIKE(String deleteFlag_NOTLIKE) {
+                this.deleteFlag_NOTLIKE = deleteFlag_NOTLIKE;
+            }
 
 
             public String getUserName() {

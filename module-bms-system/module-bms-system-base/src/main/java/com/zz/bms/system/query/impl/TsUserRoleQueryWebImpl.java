@@ -9,7 +9,7 @@ import java.lang.String;
 * 用户角色关联 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:30
+* @date 2019-4-11 14:06:17
 */
 public class TsUserRoleQueryWebImpl<PK extends Serializable> extends TsUserRoleAbstractQueryImpl<PK> implements Serializable {
 

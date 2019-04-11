@@ -10,10 +10,10 @@ import java.lang.String;
 import java.lang.Integer;
 
 /**
- * VIEW 查询抽象类
+ * 用户 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2019-4-1 13:52:04
+ * @date 2019-4-11 14:06:19
  */
 public abstract class VsNodeUserAbstractQueryImpl<PK extends Serializable> extends QueryImpl<VsNodeUserEntity,PK> {
 

@@ -13,7 +13,7 @@ import java.lang.Integer;
  * 用户 查询抽象类
  *
  * @author Administrator
- * @date 2018-9-6 23:56:30
+ * @date 2019-4-11 14:06:16
  */
 public interface VsUserQuery<PK extends Serializable> extends Query<VsUserEntity,PK> {
 
@@ -128,14 +128,14 @@ public interface VsUserQuery<PK extends Serializable> extends Query<VsUserEntity
 
 
 
-        public VsUserQuery avatarUrl(String avatarUrl);
-        public VsUserQuery avatarUrlNot(String avatarUrlNot);
-        public VsUserQuery avatarUrlIn(String avatarUrlIn);
-        public VsUserQuery avatarUrlNotIn(String avatarUrlNotIn);
-        public VsUserQuery avatarUrlLike(String avatarUrlLike);
-        public VsUserQuery avatarUrlNotLike(String avatarUrlNotLike);
-        public VsUserQuery avatarUrlIsNull();
-        public VsUserQuery avatarUrlIsNotNull();
+        public VsUserQuery avatarImage(String avatarImage);
+        public VsUserQuery avatarImageNot(String avatarImageNot);
+        public VsUserQuery avatarImageIn(String avatarImageIn);
+        public VsUserQuery avatarImageNotIn(String avatarImageNotIn);
+        public VsUserQuery avatarImageLike(String avatarImageLike);
+        public VsUserQuery avatarImageNotLike(String avatarImageNotLike);
+        public VsUserQuery avatarImageIsNull();
+        public VsUserQuery avatarImageIsNotNull();
 
 
 
@@ -199,6 +199,17 @@ public interface VsUserQuery<PK extends Serializable> extends Query<VsUserEntity
         public VsUserQuery organIdNotLike(String organIdNotLike);
         public VsUserQuery organIdIsNull();
         public VsUserQuery organIdIsNotNull();
+
+
+
+
+
+        public VsUserQuery pageLimit(Integer pageLimit);
+        public VsUserQuery pageLimitNot(Integer pageLimitNot);
+        public VsUserQuery pageLimitGreaterThan(Integer pageLimitGreaterThan);
+        public VsUserQuery pageLimitGreaterEqual(Integer pageLimitGreaterEqual);
+        public VsUserQuery pageLimitLessThan(Integer pageLimitLessThan);
+        public VsUserQuery pageLimitLessEqual(Integer pageLimitLessEqual);
 
 
 

@@ -11,7 +11,7 @@ import java.lang.Integer;
 * 机构 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-11 14:06:15
 */
 public class TsOrganQueryWebImpl<PK extends Serializable> extends TsOrganAbstractQueryImpl<PK> implements Serializable {
 
@@ -98,9 +98,9 @@ public class TsOrganQueryWebImpl<PK extends Serializable> extends TsOrganAbstrac
 
         //todo INT versionNo;
 
-            private PK tenantId_IN;
-            private PK tenantId_NOTIN;
 
+            private String tenantId_IN;
+            private String tenantId_NOTIN;
 
 
 
@@ -857,36 +857,52 @@ public class TsOrganQueryWebImpl<PK extends Serializable> extends TsOrganAbstrac
             }
 
 
-            public PK getTenantId() {
+
+            public String getTenantId() {
                 return tenantId;
             }
 
-            public void setTenantId(PK tenantId) {
+            public void setTenantId(String tenantId) {
                 this.tenantId = tenantId;
             }
 
-            public PK getTenantId_NE() {
+            public String getTenantId_NE() {
                 return tenantId_NE;
             }
 
-            public void setTenantId_NE(PK tenantId_NE) {
+            public void setTenantId_NE(String tenantId_NE) {
                 this.tenantId_NE = tenantId_NE;
             }
 
-            public PK getTenantId_IN() {
+            public String getTenantId_IN() {
                 return tenantId_IN;
             }
 
-            public void setTenantId_IN(PK tenantId_IN) {
+            public void setTenantId_IN(String tenantId_IN) {
                 this.tenantId_IN = tenantId_IN;
             }
 
-            public PK getTenantId_NOTIN() {
+            public String getTenantId_NOTIN() {
                 return tenantId_NOTIN;
             }
 
-            public void setTenantId_NOTIN(PK tenantId_NOTIN) {
+            public void setTenantId_NOTIN(String tenantId_NOTIN) {
                 this.tenantId_NOTIN = tenantId_NOTIN;
             }
 
+            public String getTenantId_LIKE() {
+                return tenantId_LIKE;
+            }
+
+            public void setTenantId_LIKE(String tenantId_LIKE) {
+                this.tenantId_LIKE = tenantId_LIKE;
+            }
+
+            public String getTenantId_NOTLIKE() {
+                return tenantId_NOTLIKE;
+            }
+
+            public void setTenantId_NOTLIKE(String tenantId_NOTLIKE) {
+                this.tenantId_NOTLIKE = tenantId_NOTLIKE;
+            }
 }

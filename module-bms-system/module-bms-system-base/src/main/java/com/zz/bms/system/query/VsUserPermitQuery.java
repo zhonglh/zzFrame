@@ -11,7 +11,7 @@ import java.lang.String;
  * VIEW 查询抽象类
  *
  * @author Administrator
- * @date 2019-4-1 13:52:05
+ * @date 2019-4-11 14:06:18
  */
 public interface VsUserPermitQuery<PK extends Serializable> extends Query<VsUserPermitEntity,PK> {
 

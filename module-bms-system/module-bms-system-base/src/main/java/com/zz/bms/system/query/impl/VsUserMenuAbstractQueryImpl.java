@@ -9,10 +9,10 @@ import java.lang.String;
 import java.lang.Integer;
 
 /**
- * VIEW 查询抽象类
+ * 用户菜单信息 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2019-4-1 13:52:05
+ * @date 2019-4-11 14:06:18
  */
 public abstract class VsUserMenuAbstractQueryImpl<PK extends Serializable> extends QueryImpl<VsUserMenuEntity,PK> {
 
@@ -66,6 +66,11 @@ public abstract class VsUserMenuAbstractQueryImpl<PK extends Serializable> exten
 
             protected String leaf;
             protected String leaf_NE;
+
+            protected String deleteFlag;
+            protected String deleteFlag_NE;
+            protected String deleteFlag_LIKE;
+            protected String deleteFlag_NOTLIKE;
 
             protected String userName;
             protected String userName_NE;

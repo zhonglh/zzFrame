@@ -17,7 +17,7 @@ import java.lang.Integer;
 * 用户 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:30
+* @date 2019-4-11 14:06:19
 */
 public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQueryImpl<PK> implements TsUserQuery<PK>, Serializable  {
 
@@ -49,8 +49,8 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
         private List<String> email_IN;
         private List<String> email_NOTIN;
 
-        private List<String> avatarUrl_IN;
-        private List<String> avatarUrl_NOTIN;
+        private List<String> avatarImage_IN;
+        private List<String> avatarImage_NOTIN;
 
         private List<String> openId_IN;
         private List<String> openId_NOTIN;
@@ -63,9 +63,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
         private List<PK> depId_IN;
         private List<PK> depId_NOTIN;
 
-        private List<PK> organId_IN;
-        private List<PK> organId_NOTIN;
 
+        private List<String> organId_IN;
+        private List<String> organId_NOTIN;
 
         private List<String> remark_IN;
         private List<String> remark_NOTIN;
@@ -84,9 +84,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
 
         private List<String> updateUserName_IN;
         private List<String> updateUserName_NOTIN;
-        private List<PK> tenantId_IN;
-        private List<PK> tenantId_NOTIN;
 
+        private List<String> tenantId_IN;
+        private List<String> tenantId_NOTIN;
 
 
         @Override
@@ -652,68 +652,68 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
 
 
         @Override
-        public TsUserQuery avatarUrl(String avatarUrl) {
-            if(!IdUtils.isEmpty(avatarUrl)){
-                this.avatarUrl = avatarUrl;
+        public TsUserQuery avatarImage(String avatarImage) {
+            if(!IdUtils.isEmpty(avatarImage)){
+                this.avatarImage = avatarImage;
             }
             return this;
         }
 
         @Override
-        public TsUserQuery avatarUrlNot(String avatarUrlNot) {
-            if(!IdUtils.isEmpty(avatarUrlNot)){
-                this.avatarUrl_NE = avatarUrlNot;
+        public TsUserQuery avatarImageNot(String avatarImageNot) {
+            if(!IdUtils.isEmpty(avatarImageNot)){
+                this.avatarImage_NE = avatarImageNot;
             }
             return this;
         }
 
         @Override
-        public TsUserQuery avatarUrlLike(String avatarUrlLike) {
-            if(!IdUtils.isEmpty(avatarUrlLike)){
-                this.avatarUrl_LIKE = avatarUrlLike;
+        public TsUserQuery avatarImageLike(String avatarImageLike) {
+            if(!IdUtils.isEmpty(avatarImageLike)){
+                this.avatarImage_LIKE = avatarImageLike;
             }
             return this;
         }
 
         @Override
-        public TsUserQuery avatarUrlNotLike(String avatarUrlNotLike) {
-            if(!IdUtils.isEmpty(avatarUrlNotLike)){
-                this.avatarUrl_NOTLIKE = avatarUrlNotLike;
+        public TsUserQuery avatarImageNotLike(String avatarImageNotLike) {
+            if(!IdUtils.isEmpty(avatarImageNotLike)){
+                this.avatarImage_NOTLIKE = avatarImageNotLike;
             }
             return this;
         }
 
         @Override
-        public TsUserQuery avatarUrlIn(String avatarUrlIn) {
-            if(!IdUtils.isEmpty(avatarUrlIn)){
-                if(this.avatarUrl_IN == null){
-                    this.avatarUrl_IN = new ArrayList<String>();
+        public TsUserQuery avatarImageIn(String avatarImageIn) {
+            if(!IdUtils.isEmpty(avatarImageIn)){
+                if(this.avatarImage_IN == null){
+                    this.avatarImage_IN = new ArrayList<String>();
                 }
-                this.avatarUrl_IN.add( avatarUrlIn );
+                this.avatarImage_IN.add( avatarImageIn );
             }
             return this;
         }
 
         @Override
-        public TsUserQuery avatarUrlNotIn(String avatarUrlNotIn) {
-            if(!IdUtils.isEmpty(avatarUrlNotIn)){
-                if(this.avatarUrl_NOTIN == null){
-                    this.avatarUrl_NOTIN = new ArrayList<String>();
+        public TsUserQuery avatarImageNotIn(String avatarImageNotIn) {
+            if(!IdUtils.isEmpty(avatarImageNotIn)){
+                if(this.avatarImage_NOTIN == null){
+                    this.avatarImage_NOTIN = new ArrayList<String>();
                 }
-                this.avatarUrl_NOTIN.add( avatarUrlNotIn );
+                this.avatarImage_NOTIN.add( avatarImageNotIn );
             }
             return this;
         }
 
         @Override
-        public TsUserQuery avatarUrlIsNull() {
-            this.isNulls.add("avatarUrl");
+        public TsUserQuery avatarImageIsNull() {
+            this.isNulls.add("avatarImage");
             return this;
         }
 
         @Override
-        public TsUserQuery avatarUrlIsNotNull() {
-            this.isNotNulls.add("avatarUrl");
+        public TsUserQuery avatarImageIsNotNull() {
+            this.isNotNulls.add("avatarImage");
             return this;
         }
 
@@ -956,8 +956,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
         }
 
 
+
         @Override
-        public TsUserQuery organId(PK organId) {
+        public TsUserQuery organId(String organId) {
             if(!IdUtils.isEmpty(organId)){
                 this.organId = organId;
             }
@@ -965,7 +966,7 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
         }
 
         @Override
-        public TsUserQuery organIdNot(PK organIdNot) {
+        public TsUserQuery organIdNot(String organIdNot) {
             if(!IdUtils.isEmpty(organIdNot)){
                 this.organId_NE = organIdNot;
             }
@@ -973,10 +974,26 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
         }
 
         @Override
-        public TsUserQuery organIdIn(PK organIdIn) {
+        public TsUserQuery organIdLike(String organIdLike) {
+            if(!IdUtils.isEmpty(organIdLike)){
+                this.organId_LIKE = organIdLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsUserQuery organIdNotLike(String organIdNotLike) {
+            if(!IdUtils.isEmpty(organIdNotLike)){
+                this.organId_NOTLIKE = organIdNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsUserQuery organIdIn(String organIdIn) {
             if(!IdUtils.isEmpty(organIdIn)){
                 if(this.organId_IN == null){
-                    this.organId_IN = new ArrayList<PK>();
+                    this.organId_IN = new ArrayList<String>();
                 }
                 this.organId_IN.add( organIdIn );
             }
@@ -984,10 +1001,10 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
         }
 
         @Override
-        public TsUserQuery organIdNotIn(PK organIdNotIn) {
+        public TsUserQuery organIdNotIn(String organIdNotIn) {
             if(!IdUtils.isEmpty(organIdNotIn)){
                 if(this.organId_NOTIN == null){
-                    this.organId_NOTIN = new ArrayList<PK>();
+                    this.organId_NOTIN = new ArrayList<String>();
                 }
                 this.organId_NOTIN.add( organIdNotIn );
             }
@@ -1006,6 +1023,54 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
             return this;
         }
 
+
+        @Override
+        public TsUserQuery pageLimit(Integer pageLimit) {
+            if(!IdUtils.isEmpty(pageLimit)){
+                this.pageLimit = pageLimit;
+            }
+            return this;
+        }
+
+        @Override
+        public TsUserQuery pageLimitNot(Integer pageLimitNot) {
+            if(!IdUtils.isEmpty(pageLimitNot)){
+                this.pageLimit_NE = pageLimitNot;
+            }
+            return this;
+        }
+
+        @Override
+        public TsUserQuery pageLimitGreaterThan(Integer pageLimitGreaterThan){
+            if(pageLimitGreaterThan != null){
+                this.pageLimit_GT = pageLimitGreaterThan;
+            }
+            return this;
+        }
+
+        @Override
+        public TsUserQuery pageLimitGreaterEqual(Integer pageLimitGreaterEqual){
+            if(pageLimitGreaterEqual != null){
+                this.pageLimit_GE = pageLimitGreaterEqual;
+            }
+            return this;
+        }
+
+        @Override
+        public TsUserQuery pageLimitLessThan(Integer pageLimitLessThan){
+            if(pageLimitLessThan != null){
+                this.pageLimit_LT = pageLimitLessThan;
+            }
+            return this;
+        }
+
+        @Override
+        public TsUserQuery pageLimitLessEqual(Integer pageLimitLessEqual){
+            if(pageLimitLessEqual != null){
+                this.pageLimit_LE = pageLimitLessEqual;
+            }
+            return this;
+        }
 
 
         @Override
@@ -1561,8 +1626,9 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
             return this;
         }
 
+
         @Override
-        public TsUserQuery tenantId(PK tenantId) {
+        public TsUserQuery tenantId(String tenantId) {
             if(!IdUtils.isEmpty(tenantId)){
                 this.tenantId = tenantId;
             }
@@ -1570,7 +1636,7 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
         }
 
         @Override
-        public TsUserQuery tenantIdNot(PK tenantIdNot) {
+        public TsUserQuery tenantIdNot(String tenantIdNot) {
             if(!IdUtils.isEmpty(tenantIdNot)){
                 this.tenantId_NE = tenantIdNot;
             }
@@ -1578,10 +1644,26 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
         }
 
         @Override
-        public TsUserQuery tenantIdIn(PK tenantIdIn) {
+        public TsUserQuery tenantIdLike(String tenantIdLike) {
+            if(!IdUtils.isEmpty(tenantIdLike)){
+                this.tenantId_LIKE = tenantIdLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsUserQuery tenantIdNotLike(String tenantIdNotLike) {
+            if(!IdUtils.isEmpty(tenantIdNotLike)){
+                this.tenantId_NOTLIKE = tenantIdNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsUserQuery tenantIdIn(String tenantIdIn) {
             if(!IdUtils.isEmpty(tenantIdIn)){
                 if(this.tenantId_IN == null){
-                    this.tenantId_IN = new ArrayList<PK>();
+                    this.tenantId_IN = new ArrayList<String>();
                 }
                 this.tenantId_IN.add( tenantIdIn );
             }
@@ -1589,10 +1671,10 @@ public class TsUserQueryImpl<PK extends Serializable> extends TsUserAbstractQuer
         }
 
         @Override
-        public TsUserQuery tenantIdNotIn(PK tenantIdNotIn) {
+        public TsUserQuery tenantIdNotIn(String tenantIdNotIn) {
             if(!IdUtils.isEmpty(tenantIdNotIn)){
                 if(this.tenantId_NOTIN == null){
-                    this.tenantId_NOTIN = new ArrayList<PK>();
+                    this.tenantId_NOTIN = new ArrayList<String>();
                 }
                 this.tenantId_NOTIN.add( tenantIdNotIn );
             }

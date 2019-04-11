@@ -13,7 +13,7 @@ import java.lang.Integer;
  * 消息模板 查询抽象类
  *
  * @author Administrator
- * @date 2018-9-6 23:56:31
+ * @date 2019-4-11 14:06:18
  */
 public interface TsMsgTempletQuery<PK extends Serializable> extends Query<TsMsgTempletEntity,PK> {
 
@@ -111,10 +111,12 @@ public interface TsMsgTempletQuery<PK extends Serializable> extends Query<TsMsgT
 
 
 
-        public TsMsgTempletQuery organId(PK organId);
-        public TsMsgTempletQuery organIdNot(PK organIdNot);
-        public TsMsgTempletQuery organIdIn(PK organIdIn);
-        public TsMsgTempletQuery organIdNotIn(PK organIdNotIn);
+        public TsMsgTempletQuery organId(String organId);
+        public TsMsgTempletQuery organIdNot(String organIdNot);
+        public TsMsgTempletQuery organIdIn(String organIdIn);
+        public TsMsgTempletQuery organIdNotIn(String organIdNotIn);
+        public TsMsgTempletQuery organIdLike(String organIdLike);
+        public TsMsgTempletQuery organIdNotLike(String organIdNotLike);
         public TsMsgTempletQuery organIdIsNull();
         public TsMsgTempletQuery organIdIsNotNull();
 
@@ -207,10 +209,12 @@ public interface TsMsgTempletQuery<PK extends Serializable> extends Query<TsMsgT
 
 
 
-        public TsMsgTempletQuery tenantId(PK tenantId);
-        public TsMsgTempletQuery tenantIdNot(PK tenantIdNot);
-        public TsMsgTempletQuery tenantIdIn(PK tenantIdIn);
-        public TsMsgTempletQuery tenantIdNotIn(PK tenantIdNotIn);
+        public TsMsgTempletQuery tenantId(String tenantId);
+        public TsMsgTempletQuery tenantIdNot(String tenantIdNot);
+        public TsMsgTempletQuery tenantIdIn(String tenantIdIn);
+        public TsMsgTempletQuery tenantIdNotIn(String tenantIdNotIn);
+        public TsMsgTempletQuery tenantIdLike(String tenantIdLike);
+        public TsMsgTempletQuery tenantIdNotLike(String tenantIdNotLike);
         public TsMsgTempletQuery tenantIdIsNull();
         public TsMsgTempletQuery tenantIdIsNotNull();
 

@@ -11,7 +11,7 @@ import java.lang.Integer;
 * 用户 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:30
+* @date 2019-4-11 14:06:19
 */
 public class TsUserQueryWebImpl<PK extends Serializable> extends TsUserAbstractQueryImpl<PK> implements Serializable {
 
@@ -62,8 +62,8 @@ public class TsUserQueryWebImpl<PK extends Serializable> extends TsUserAbstractQ
 
 
 
-            private String avatarUrl_IN;
-            private String avatarUrl_NOTIN;
+            private String avatarImage_IN;
+            private String avatarImage_NOTIN;
 
 
 
@@ -86,10 +86,14 @@ public class TsUserQueryWebImpl<PK extends Serializable> extends TsUserAbstractQ
 
 
 
-            private PK organId_IN;
-            private PK organId_NOTIN;
+
+            private String organId_IN;
+            private String organId_NOTIN;
 
 
+
+
+        //todo INT pageLimit;
 
 
             private String remark_IN;
@@ -133,9 +137,9 @@ public class TsUserQueryWebImpl<PK extends Serializable> extends TsUserAbstractQ
 
         //todo INT versionNo;
 
-            private PK tenantId_IN;
-            private PK tenantId_NOTIN;
 
+            private String tenantId_IN;
+            private String tenantId_NOTIN;
 
 
 
@@ -535,52 +539,52 @@ public class TsUserQueryWebImpl<PK extends Serializable> extends TsUserAbstractQ
             }
 
 
-            public String getAvatarUrl() {
-                return avatarUrl;
+            public String getAvatarImage() {
+                return avatarImage;
             }
 
-            public void setAvatarUrl(String avatarUrl) {
-                this.avatarUrl = avatarUrl;
+            public void setAvatarImage(String avatarImage) {
+                this.avatarImage = avatarImage;
             }
 
-            public String getAvatarUrl_NE() {
-                return avatarUrl_NE;
+            public String getAvatarImage_NE() {
+                return avatarImage_NE;
             }
 
-            public void setAvatarUrl_NE(String avatarUrl_NE) {
-                this.avatarUrl_NE = avatarUrl_NE;
+            public void setAvatarImage_NE(String avatarImage_NE) {
+                this.avatarImage_NE = avatarImage_NE;
             }
 
-            public String getAvatarUrl_IN() {
-                return avatarUrl_IN;
+            public String getAvatarImage_IN() {
+                return avatarImage_IN;
             }
 
-            public void setAvatarUrl_IN(String avatarUrl_IN) {
-                this.avatarUrl_IN = avatarUrl_IN;
+            public void setAvatarImage_IN(String avatarImage_IN) {
+                this.avatarImage_IN = avatarImage_IN;
             }
 
-            public String getAvatarUrl_NOTIN() {
-                return avatarUrl_NOTIN;
+            public String getAvatarImage_NOTIN() {
+                return avatarImage_NOTIN;
             }
 
-            public void setAvatarUrl_NOTIN(String avatarUrl_NOTIN) {
-                this.avatarUrl_NOTIN = avatarUrl_NOTIN;
+            public void setAvatarImage_NOTIN(String avatarImage_NOTIN) {
+                this.avatarImage_NOTIN = avatarImage_NOTIN;
             }
 
-            public String getAvatarUrl_LIKE() {
-                return avatarUrl_LIKE;
+            public String getAvatarImage_LIKE() {
+                return avatarImage_LIKE;
             }
 
-            public void setAvatarUrl_LIKE(String avatarUrl_LIKE) {
-                this.avatarUrl_LIKE = avatarUrl_LIKE;
+            public void setAvatarImage_LIKE(String avatarImage_LIKE) {
+                this.avatarImage_LIKE = avatarImage_LIKE;
             }
 
-            public String getAvatarUrl_NOTLIKE() {
-                return avatarUrl_NOTLIKE;
+            public String getAvatarImage_NOTLIKE() {
+                return avatarImage_NOTLIKE;
             }
 
-            public void setAvatarUrl_NOTLIKE(String avatarUrl_NOTLIKE) {
-                this.avatarUrl_NOTLIKE = avatarUrl_NOTLIKE;
+            public void setAvatarImage_NOTLIKE(String avatarImage_NOTLIKE) {
+                this.avatarImage_NOTLIKE = avatarImage_NOTLIKE;
             }
 
 
@@ -747,36 +751,101 @@ public class TsUserQueryWebImpl<PK extends Serializable> extends TsUserAbstractQ
             }
 
 
-            public PK getOrganId() {
+
+            public String getOrganId() {
                 return organId;
             }
 
-            public void setOrganId(PK organId) {
+            public void setOrganId(String organId) {
                 this.organId = organId;
             }
 
-            public PK getOrganId_NE() {
+            public String getOrganId_NE() {
                 return organId_NE;
             }
 
-            public void setOrganId_NE(PK organId_NE) {
+            public void setOrganId_NE(String organId_NE) {
                 this.organId_NE = organId_NE;
             }
 
-            public PK getOrganId_IN() {
+            public String getOrganId_IN() {
                 return organId_IN;
             }
 
-            public void setOrganId_IN(PK organId_IN) {
+            public void setOrganId_IN(String organId_IN) {
                 this.organId_IN = organId_IN;
             }
 
-            public PK getOrganId_NOTIN() {
+            public String getOrganId_NOTIN() {
                 return organId_NOTIN;
             }
 
-            public void setOrganId_NOTIN(PK organId_NOTIN) {
+            public void setOrganId_NOTIN(String organId_NOTIN) {
                 this.organId_NOTIN = organId_NOTIN;
+            }
+
+            public String getOrganId_LIKE() {
+                return organId_LIKE;
+            }
+
+            public void setOrganId_LIKE(String organId_LIKE) {
+                this.organId_LIKE = organId_LIKE;
+            }
+
+            public String getOrganId_NOTLIKE() {
+                return organId_NOTLIKE;
+            }
+
+            public void setOrganId_NOTLIKE(String organId_NOTLIKE) {
+                this.organId_NOTLIKE = organId_NOTLIKE;
+            }
+
+            public Integer getPageLimit() {
+                return pageLimit;
+            }
+
+            public void setPageLimit(Integer pageLimit) {
+                this.pageLimit = pageLimit;
+            }
+
+            public Integer getPageLimit_NE() {
+                return pageLimit_NE;
+            }
+
+            public void setPageLimit_NE(Integer pageLimit_NE) {
+                this.pageLimit_NE = pageLimit_NE;
+            }
+
+            public Integer getPageLimit_GT() {
+                return pageLimit_GT;
+            }
+
+            public void setPageLimit_GT(Integer pageLimit_GT) {
+                this.pageLimit_GT = pageLimit_GT;
+            }
+
+            public Integer getPageLimit_GE() {
+                return pageLimit_GE;
+            }
+
+            public void setPageLimit_GE(Integer pageLimit_GE) {
+                this.pageLimit_GE = pageLimit_GE;
+            }
+
+            public Integer getPageLimit_LT() {
+                return pageLimit_LT;
+            }
+
+            public void setPageLimit_LT(Integer pageLimit_LT) {
+                this.pageLimit_LT = pageLimit_LT;
+            }
+
+            public Integer getPageLimit_LE() {
+                return pageLimit_LE;
+            }
+
+            public void setPageLimit_LE(Integer pageLimit_LE) {
+                this.pageLimit_LE = pageLimit_LE;
             }
 
 
@@ -1219,36 +1288,52 @@ public class TsUserQueryWebImpl<PK extends Serializable> extends TsUserAbstractQ
             }
 
 
-            public PK getTenantId() {
+
+            public String getTenantId() {
                 return tenantId;
             }
 
-            public void setTenantId(PK tenantId) {
+            public void setTenantId(String tenantId) {
                 this.tenantId = tenantId;
             }
 
-            public PK getTenantId_NE() {
+            public String getTenantId_NE() {
                 return tenantId_NE;
             }
 
-            public void setTenantId_NE(PK tenantId_NE) {
+            public void setTenantId_NE(String tenantId_NE) {
                 this.tenantId_NE = tenantId_NE;
             }
 
-            public PK getTenantId_IN() {
+            public String getTenantId_IN() {
                 return tenantId_IN;
             }
 
-            public void setTenantId_IN(PK tenantId_IN) {
+            public void setTenantId_IN(String tenantId_IN) {
                 this.tenantId_IN = tenantId_IN;
             }
 
-            public PK getTenantId_NOTIN() {
+            public String getTenantId_NOTIN() {
                 return tenantId_NOTIN;
             }
 
-            public void setTenantId_NOTIN(PK tenantId_NOTIN) {
+            public void setTenantId_NOTIN(String tenantId_NOTIN) {
                 this.tenantId_NOTIN = tenantId_NOTIN;
             }
 
+            public String getTenantId_LIKE() {
+                return tenantId_LIKE;
+            }
+
+            public void setTenantId_LIKE(String tenantId_LIKE) {
+                this.tenantId_LIKE = tenantId_LIKE;
+            }
+
+            public String getTenantId_NOTLIKE() {
+                return tenantId_NOTLIKE;
+            }
+
+            public void setTenantId_NOTLIKE(String tenantId_NOTLIKE) {
+                this.tenantId_NOTLIKE = tenantId_NOTLIKE;
+            }
 }

@@ -3,7 +3,6 @@ package com.zz.bms.system.query.impl;
 
 import java.io.Serializable;
 
-import java.util.Date;
 import java.sql.Timestamp;
 import java.lang.String;
 import java.lang.Integer;
@@ -12,18 +11,13 @@ import java.lang.Integer;
 * 系统通知 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:30
+* @date 2019-4-11 14:06:13
 */
 public class TsNotificationQueryWebImpl<PK extends Serializable> extends TsNotificationAbstractQueryImpl<PK> implements Serializable {
 
 
             private PK id_IN;
             private PK id_NOTIN;
-
-
-
-            private PK toUserId_IN;
-            private PK toUserId_NOTIN;
 
 
 
@@ -38,17 +32,16 @@ public class TsNotificationQueryWebImpl<PK extends Serializable> extends TsNotif
 
 
 
-            private String content_IN;
-            private String content_NOTIN;
+
+        //todo TEXT content;
 
 
 
+        //todo TIMESTAMP notifyTime;
 
-        //todo DATETIME notifyTime;
 
-            private String isRead_IN;
-            private String isRead_NOTIN;
-
+            private String notifyFiles_IN;
+            private String notifyFiles_NOTIN;
 
 
 
@@ -83,9 +76,9 @@ public class TsNotificationQueryWebImpl<PK extends Serializable> extends TsNotif
 
         //todo INT versionNo;
 
-            private PK tenantId_IN;
-            private PK tenantId_NOTIN;
 
+            private String tenantId_IN;
+            private String tenantId_NOTIN;
 
 
 
@@ -121,39 +114,6 @@ public class TsNotificationQueryWebImpl<PK extends Serializable> extends TsNotif
 
             public void setId_NOTIN(PK id_NOTIN) {
                 this.id_NOTIN = id_NOTIN;
-            }
-
-
-            public PK getToUserId() {
-                return toUserId;
-            }
-
-            public void setToUserId(PK toUserId) {
-                this.toUserId = toUserId;
-            }
-
-            public PK getToUserId_NE() {
-                return toUserId_NE;
-            }
-
-            public void setToUserId_NE(PK toUserId_NE) {
-                this.toUserId_NE = toUserId_NE;
-            }
-
-            public PK getToUserId_IN() {
-                return toUserId_IN;
-            }
-
-            public void setToUserId_IN(PK toUserId_IN) {
-                this.toUserId_IN = toUserId_IN;
-            }
-
-            public PK getToUserId_NOTIN() {
-                return toUserId_NOTIN;
-            }
-
-            public void setToUserId_NOTIN(PK toUserId_NOTIN) {
-                this.toUserId_NOTIN = toUserId_NOTIN;
             }
 
 
@@ -256,134 +216,104 @@ public class TsNotificationQueryWebImpl<PK extends Serializable> extends TsNotif
             }
 
 
-            public String getContent() {
-                return content;
-            }
+            //todo TEXT content;
 
-            public void setContent(String content) {
-                this.content = content;
-            }
-
-            public String getContent_NE() {
-                return content_NE;
-            }
-
-            public void setContent_NE(String content_NE) {
-                this.content_NE = content_NE;
-            }
-
-            public String getContent_IN() {
-                return content_IN;
-            }
-
-            public void setContent_IN(String content_IN) {
-                this.content_IN = content_IN;
-            }
-
-            public String getContent_NOTIN() {
-                return content_NOTIN;
-            }
-
-            public void setContent_NOTIN(String content_NOTIN) {
-                this.content_NOTIN = content_NOTIN;
-            }
-
-            public String getContent_LIKE() {
-                return content_LIKE;
-            }
-
-            public void setContent_LIKE(String content_LIKE) {
-                this.content_LIKE = content_LIKE;
-            }
-
-            public String getContent_NOTLIKE() {
-                return content_NOTLIKE;
-            }
-
-            public void setContent_NOTLIKE(String content_NOTLIKE) {
-                this.content_NOTLIKE = content_NOTLIKE;
-            }
-
-            public Date getNotifyTime() {
+            public Timestamp getNotifyTime() {
                 return notifyTime;
             }
 
-            public void setNotifyTime(Date notifyTime) {
+            public void setNotifyTime(Timestamp notifyTime) {
                 this.notifyTime = notifyTime;
             }
 
-            public Date getNotifyTime_NE() {
+            public Timestamp getNotifyTime_NE() {
                 return notifyTime_NE;
             }
 
-            public void setNotifyTime_NE(Date notifyTime_NE) {
+            public void setNotifyTime_NE(Timestamp notifyTime_NE) {
                 this.notifyTime_NE = notifyTime_NE;
             }
 
-            public Date getNotifyTime_GT() {
+            public Timestamp getNotifyTime_GT() {
                 return notifyTime_GT;
             }
 
-            public void setNotifyTime_GT(Date notifyTime_GT) {
+            public void setNotifyTime_GT(Timestamp notifyTime_GT) {
                 this.notifyTime_GT = notifyTime_GT;
             }
 
-            public Date getNotifyTime_GE() {
+            public Timestamp getNotifyTime_GE() {
                 return notifyTime_GE;
             }
 
-            public void setNotifyTime_GE(Date notifyTime_GE) {
+            public void setNotifyTime_GE(Timestamp notifyTime_GE) {
                 this.notifyTime_GE = notifyTime_GE;
             }
 
-            public Date getNotifyTime_LT() {
+            public Timestamp getNotifyTime_LT() {
                 return notifyTime_LT;
             }
 
-            public void setNotifyTime_LT(Date notifyTime_LT) {
+            public void setNotifyTime_LT(Timestamp notifyTime_LT) {
                 this.notifyTime_LT = notifyTime_LT;
             }
 
-            public Date getNotifyTime_LE() {
+            public Timestamp getNotifyTime_LE() {
                 return notifyTime_LE;
             }
 
-            public void setNotifyTime_LE(Date notifyTime_LE) {
+            public void setNotifyTime_LE(Timestamp notifyTime_LE) {
                 this.notifyTime_LE = notifyTime_LE;
             }
 
-            public String getIsRead() {
-                return isRead;
+
+            public String getNotifyFiles() {
+                return notifyFiles;
             }
 
-            public void setIsRead(String isRead) {
-                this.isRead = isRead;
+            public void setNotifyFiles(String notifyFiles) {
+                this.notifyFiles = notifyFiles;
             }
 
-            public String getIsRead_NE() {
-                return isRead_NE;
+            public String getNotifyFiles_NE() {
+                return notifyFiles_NE;
             }
 
-            public void setIsRead_NE(String isRead_NE) {
-                this.isRead_NE = isRead_NE;
+            public void setNotifyFiles_NE(String notifyFiles_NE) {
+                this.notifyFiles_NE = notifyFiles_NE;
             }
 
-            public String getIsRead_IN() {
-                return isRead_IN;
+            public String getNotifyFiles_IN() {
+                return notifyFiles_IN;
             }
 
-            public void setIsRead_IN(String isRead_IN) {
-                this.isRead_IN = isRead_IN;
+            public void setNotifyFiles_IN(String notifyFiles_IN) {
+                this.notifyFiles_IN = notifyFiles_IN;
             }
 
-            public String getIsRead_NOTIN() {
-                return isRead_NOTIN;
+            public String getNotifyFiles_NOTIN() {
+                return notifyFiles_NOTIN;
             }
 
-            public void setIsRead_NOTIN(String isRead_NOTIN) {
-                this.isRead_NOTIN = isRead_NOTIN;
+            public void setNotifyFiles_NOTIN(String notifyFiles_NOTIN) {
+                this.notifyFiles_NOTIN = notifyFiles_NOTIN;
             }
 
+            public String getNotifyFiles_LIKE() {
+                return notifyFiles_LIKE;
+            }
+
+            public void setNotifyFiles_LIKE(String notifyFiles_LIKE) {
+                this.notifyFiles_LIKE = notifyFiles_LIKE;
+            }
+
+            public String getNotifyFiles_NOTLIKE() {
+                return notifyFiles_NOTLIKE;
+            }
+
+            public void setNotifyFiles_NOTLIKE(String notifyFiles_NOTLIKE) {
+                this.notifyFiles_NOTLIKE = notifyFiles_NOTLIKE;
+            }
 
 
             public String getCreateUserId() {
@@ -726,36 +656,52 @@ public class TsNotificationQueryWebImpl<PK extends Serializable> extends TsNotif
             }
 
 
-            public PK getTenantId() {
+
+            public String getTenantId() {
                 return tenantId;
             }
 
-            public void setTenantId(PK tenantId) {
+            public void setTenantId(String tenantId) {
                 this.tenantId = tenantId;
             }
 
-            public PK getTenantId_NE() {
+            public String getTenantId_NE() {
                 return tenantId_NE;
             }
 
-            public void setTenantId_NE(PK tenantId_NE) {
+            public void setTenantId_NE(String tenantId_NE) {
                 this.tenantId_NE = tenantId_NE;
             }
 
-            public PK getTenantId_IN() {
+            public String getTenantId_IN() {
                 return tenantId_IN;
             }
 
-            public void setTenantId_IN(PK tenantId_IN) {
+            public void setTenantId_IN(String tenantId_IN) {
                 this.tenantId_IN = tenantId_IN;
             }
 
-            public PK getTenantId_NOTIN() {
+            public String getTenantId_NOTIN() {
                 return tenantId_NOTIN;
             }
 
-            public void setTenantId_NOTIN(PK tenantId_NOTIN) {
+            public void setTenantId_NOTIN(String tenantId_NOTIN) {
                 this.tenantId_NOTIN = tenantId_NOTIN;
             }
 
+            public String getTenantId_LIKE() {
+                return tenantId_LIKE;
+            }
+
+            public void setTenantId_LIKE(String tenantId_LIKE) {
+                this.tenantId_LIKE = tenantId_LIKE;
+            }
+
+            public String getTenantId_NOTLIKE() {
+                return tenantId_NOTLIKE;
+            }
+
+            public void setTenantId_NOTLIKE(String tenantId_NOTLIKE) {
+                this.tenantId_NOTLIKE = tenantId_NOTLIKE;
+            }
 }

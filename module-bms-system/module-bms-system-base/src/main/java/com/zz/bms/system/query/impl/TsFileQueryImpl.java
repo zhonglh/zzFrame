@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
 import java.lang.Long;
-import java.sql.Timestamp;
 import java.lang.String;
 import java.lang.Integer;
 
@@ -18,7 +17,7 @@ import java.lang.Integer;
 * 文件 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:31
+* @date 2019-4-11 14:06:16
 */
 public class TsFileQueryImpl<PK extends Serializable> extends TsFileAbstractQueryImpl<PK> implements TsFileQuery<PK>, Serializable  {
 
@@ -34,6 +33,9 @@ public class TsFileQueryImpl<PK extends Serializable> extends TsFileAbstractQuer
 
         private List<String> fileHost_IN;
         private List<String> fileHost_NOTIN;
+
+        private List<String> fileBasePath_IN;
+        private List<String> fileBasePath_NOTIN;
 
         private List<String> filePath_IN;
         private List<String> filePath_NOTIN;
@@ -52,21 +54,6 @@ public class TsFileQueryImpl<PK extends Serializable> extends TsFileAbstractQuer
 
         private List<String> contentType_IN;
         private List<String> contentType_NOTIN;
-
-        private List<String> deleteFlag_IN;
-        private List<String> deleteFlag_NOTIN;
-
-        private List<String> createUserId_IN;
-        private List<String> createUserId_NOTIN;
-
-        private List<String> createUserName_IN;
-        private List<String> createUserName_NOTIN;
-
-        private List<String> updateUserId_IN;
-        private List<String> updateUserId_NOTIN;
-
-        private List<String> updateUserName_IN;
-        private List<String> updateUserName_NOTIN;
 
 
         @Override
@@ -320,6 +307,74 @@ public class TsFileQueryImpl<PK extends Serializable> extends TsFileAbstractQuer
         @Override
         public TsFileQuery fileHostIsNotNull() {
             this.isNotNulls.add("fileHost");
+            return this;
+        }
+
+
+
+        @Override
+        public TsFileQuery fileBasePath(String fileBasePath) {
+            if(!IdUtils.isEmpty(fileBasePath)){
+                this.fileBasePath = fileBasePath;
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileQuery fileBasePathNot(String fileBasePathNot) {
+            if(!IdUtils.isEmpty(fileBasePathNot)){
+                this.fileBasePath_NE = fileBasePathNot;
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileQuery fileBasePathLike(String fileBasePathLike) {
+            if(!IdUtils.isEmpty(fileBasePathLike)){
+                this.fileBasePath_LIKE = fileBasePathLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileQuery fileBasePathNotLike(String fileBasePathNotLike) {
+            if(!IdUtils.isEmpty(fileBasePathNotLike)){
+                this.fileBasePath_NOTLIKE = fileBasePathNotLike;
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileQuery fileBasePathIn(String fileBasePathIn) {
+            if(!IdUtils.isEmpty(fileBasePathIn)){
+                if(this.fileBasePath_IN == null){
+                    this.fileBasePath_IN = new ArrayList<String>();
+                }
+                this.fileBasePath_IN.add( fileBasePathIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileQuery fileBasePathNotIn(String fileBasePathNotIn) {
+            if(!IdUtils.isEmpty(fileBasePathNotIn)){
+                if(this.fileBasePath_NOTIN == null){
+                    this.fileBasePath_NOTIN = new ArrayList<String>();
+                }
+                this.fileBasePath_NOTIN.add( fileBasePathNotIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TsFileQuery fileBasePathIsNull() {
+            this.isNulls.add("fileBasePath");
+            return this;
+        }
+
+        @Override
+        public TsFileQuery fileBasePathIsNotNull() {
+            this.isNotNulls.add("fileBasePath");
             return this;
         }
 
@@ -807,444 +862,6 @@ public class TsFileQueryImpl<PK extends Serializable> extends TsFileAbstractQuer
         public TsFileQuery useFrequencyLessEqual(Integer useFrequencyLessEqual){
             if(useFrequencyLessEqual != null){
                 this.useFrequency_LE = useFrequencyLessEqual;
-            }
-            return this;
-        }
-
-
-        @Override
-        public TsFileQuery deleteFlag(String deleteFlag) {
-            if(!IdUtils.isEmpty(deleteFlag)){
-                this.deleteFlag = deleteFlag;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery deleteFlagNot(String deleteFlagNot) {
-            if(!IdUtils.isEmpty(deleteFlagNot)){
-                this.deleteFlag_NE = deleteFlagNot;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery deleteFlagLike(String deleteFlagLike) {
-            if(!IdUtils.isEmpty(deleteFlagLike)){
-                this.deleteFlag_LIKE = deleteFlagLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery deleteFlagNotLike(String deleteFlagNotLike) {
-            if(!IdUtils.isEmpty(deleteFlagNotLike)){
-                this.deleteFlag_NOTLIKE = deleteFlagNotLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery deleteFlagIn(String deleteFlagIn) {
-            if(!IdUtils.isEmpty(deleteFlagIn)){
-                if(this.deleteFlag_IN == null){
-                    this.deleteFlag_IN = new ArrayList<String>();
-                }
-                this.deleteFlag_IN.add( deleteFlagIn );
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery deleteFlagNotIn(String deleteFlagNotIn) {
-            if(!IdUtils.isEmpty(deleteFlagNotIn)){
-                if(this.deleteFlag_NOTIN == null){
-                    this.deleteFlag_NOTIN = new ArrayList<String>();
-                }
-                this.deleteFlag_NOTIN.add( deleteFlagNotIn );
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery deleteFlagIsNull() {
-            this.isNulls.add("deleteFlag");
-            return this;
-        }
-
-        @Override
-        public TsFileQuery deleteFlagIsNotNull() {
-            this.isNotNulls.add("deleteFlag");
-            return this;
-        }
-
-
-
-        @Override
-        public TsFileQuery createUserId(String createUserId) {
-            if(!IdUtils.isEmpty(createUserId)){
-                this.createUserId = createUserId;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery createUserIdNot(String createUserIdNot) {
-            if(!IdUtils.isEmpty(createUserIdNot)){
-                this.createUserId_NE = createUserIdNot;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery createUserIdLike(String createUserIdLike) {
-            if(!IdUtils.isEmpty(createUserIdLike)){
-                this.createUserId_LIKE = createUserIdLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery createUserIdNotLike(String createUserIdNotLike) {
-            if(!IdUtils.isEmpty(createUserIdNotLike)){
-                this.createUserId_NOTLIKE = createUserIdNotLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery createUserIdIn(String createUserIdIn) {
-            if(!IdUtils.isEmpty(createUserIdIn)){
-                if(this.createUserId_IN == null){
-                    this.createUserId_IN = new ArrayList<String>();
-                }
-                this.createUserId_IN.add( createUserIdIn );
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery createUserIdNotIn(String createUserIdNotIn) {
-            if(!IdUtils.isEmpty(createUserIdNotIn)){
-                if(this.createUserId_NOTIN == null){
-                    this.createUserId_NOTIN = new ArrayList<String>();
-                }
-                this.createUserId_NOTIN.add( createUserIdNotIn );
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery createUserIdIsNull() {
-            this.isNulls.add("createUserId");
-            return this;
-        }
-
-        @Override
-        public TsFileQuery createUserIdIsNotNull() {
-            this.isNotNulls.add("createUserId");
-            return this;
-        }
-
-
-
-        @Override
-        public TsFileQuery createUserName(String createUserName) {
-            if(!IdUtils.isEmpty(createUserName)){
-                this.createUserName = createUserName;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery createUserNameNot(String createUserNameNot) {
-            if(!IdUtils.isEmpty(createUserNameNot)){
-                this.createUserName_NE = createUserNameNot;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery createUserNameLike(String createUserNameLike) {
-            if(!IdUtils.isEmpty(createUserNameLike)){
-                this.createUserName_LIKE = createUserNameLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery createUserNameNotLike(String createUserNameNotLike) {
-            if(!IdUtils.isEmpty(createUserNameNotLike)){
-                this.createUserName_NOTLIKE = createUserNameNotLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery createUserNameIn(String createUserNameIn) {
-            if(!IdUtils.isEmpty(createUserNameIn)){
-                if(this.createUserName_IN == null){
-                    this.createUserName_IN = new ArrayList<String>();
-                }
-                this.createUserName_IN.add( createUserNameIn );
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery createUserNameNotIn(String createUserNameNotIn) {
-            if(!IdUtils.isEmpty(createUserNameNotIn)){
-                if(this.createUserName_NOTIN == null){
-                    this.createUserName_NOTIN = new ArrayList<String>();
-                }
-                this.createUserName_NOTIN.add( createUserNameNotIn );
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery createUserNameIsNull() {
-            this.isNulls.add("createUserName");
-            return this;
-        }
-
-        @Override
-        public TsFileQuery createUserNameIsNotNull() {
-            this.isNotNulls.add("createUserName");
-            return this;
-        }
-
-
-        @Override
-        public TsFileQuery createTime(Timestamp createTime) {
-            if(!IdUtils.isEmpty(createTime)){
-                this.createTime = createTime;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery createTimeNot(Timestamp createTimeNot) {
-            if(!IdUtils.isEmpty(createTimeNot)){
-                this.createTime_NE = createTimeNot;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery createTimeGreaterThan(Timestamp createTimeGreaterThan){
-            if(createTimeGreaterThan != null){
-                this.createTime_GT = createTimeGreaterThan;
-            }
-            return this;
-        }
-
-
-        @Override
-        public TsFileQuery createTimeGreaterEqual(Timestamp createTimeGreaterEqual){
-            if(createTimeGreaterEqual != null){
-                this.createTime_GE = createTimeGreaterEqual;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery createTimeLessThan(Timestamp createTimeLessThan){
-            if(createTimeLessThan != null){
-                this.createTime_LT = createTimeLessThan;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery createTimeLessEqual(Timestamp createTimeLessEqual){
-            if(createTimeLessEqual != null){
-                this.createTime_LE = createTimeLessEqual;
-            }
-            return this;
-        }
-
-
-        @Override
-        public TsFileQuery updateUserId(String updateUserId) {
-            if(!IdUtils.isEmpty(updateUserId)){
-                this.updateUserId = updateUserId;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery updateUserIdNot(String updateUserIdNot) {
-            if(!IdUtils.isEmpty(updateUserIdNot)){
-                this.updateUserId_NE = updateUserIdNot;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery updateUserIdLike(String updateUserIdLike) {
-            if(!IdUtils.isEmpty(updateUserIdLike)){
-                this.updateUserId_LIKE = updateUserIdLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery updateUserIdNotLike(String updateUserIdNotLike) {
-            if(!IdUtils.isEmpty(updateUserIdNotLike)){
-                this.updateUserId_NOTLIKE = updateUserIdNotLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery updateUserIdIn(String updateUserIdIn) {
-            if(!IdUtils.isEmpty(updateUserIdIn)){
-                if(this.updateUserId_IN == null){
-                    this.updateUserId_IN = new ArrayList<String>();
-                }
-                this.updateUserId_IN.add( updateUserIdIn );
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery updateUserIdNotIn(String updateUserIdNotIn) {
-            if(!IdUtils.isEmpty(updateUserIdNotIn)){
-                if(this.updateUserId_NOTIN == null){
-                    this.updateUserId_NOTIN = new ArrayList<String>();
-                }
-                this.updateUserId_NOTIN.add( updateUserIdNotIn );
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery updateUserIdIsNull() {
-            this.isNulls.add("updateUserId");
-            return this;
-        }
-
-        @Override
-        public TsFileQuery updateUserIdIsNotNull() {
-            this.isNotNulls.add("updateUserId");
-            return this;
-        }
-
-
-
-        @Override
-        public TsFileQuery updateUserName(String updateUserName) {
-            if(!IdUtils.isEmpty(updateUserName)){
-                this.updateUserName = updateUserName;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery updateUserNameNot(String updateUserNameNot) {
-            if(!IdUtils.isEmpty(updateUserNameNot)){
-                this.updateUserName_NE = updateUserNameNot;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery updateUserNameLike(String updateUserNameLike) {
-            if(!IdUtils.isEmpty(updateUserNameLike)){
-                this.updateUserName_LIKE = updateUserNameLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery updateUserNameNotLike(String updateUserNameNotLike) {
-            if(!IdUtils.isEmpty(updateUserNameNotLike)){
-                this.updateUserName_NOTLIKE = updateUserNameNotLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery updateUserNameIn(String updateUserNameIn) {
-            if(!IdUtils.isEmpty(updateUserNameIn)){
-                if(this.updateUserName_IN == null){
-                    this.updateUserName_IN = new ArrayList<String>();
-                }
-                this.updateUserName_IN.add( updateUserNameIn );
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery updateUserNameNotIn(String updateUserNameNotIn) {
-            if(!IdUtils.isEmpty(updateUserNameNotIn)){
-                if(this.updateUserName_NOTIN == null){
-                    this.updateUserName_NOTIN = new ArrayList<String>();
-                }
-                this.updateUserName_NOTIN.add( updateUserNameNotIn );
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery updateUserNameIsNull() {
-            this.isNulls.add("updateUserName");
-            return this;
-        }
-
-        @Override
-        public TsFileQuery updateUserNameIsNotNull() {
-            this.isNotNulls.add("updateUserName");
-            return this;
-        }
-
-
-        @Override
-        public TsFileQuery updateTime(Timestamp updateTime) {
-            if(!IdUtils.isEmpty(updateTime)){
-                this.updateTime = updateTime;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery updateTimeNot(Timestamp updateTimeNot) {
-            if(!IdUtils.isEmpty(updateTimeNot)){
-                this.updateTime_NE = updateTimeNot;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery updateTimeGreaterThan(Timestamp updateTimeGreaterThan){
-            if(updateTimeGreaterThan != null){
-                this.updateTime_GT = updateTimeGreaterThan;
-            }
-            return this;
-        }
-
-
-        @Override
-        public TsFileQuery updateTimeGreaterEqual(Timestamp updateTimeGreaterEqual){
-            if(updateTimeGreaterEqual != null){
-                this.updateTime_GE = updateTimeGreaterEqual;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery updateTimeLessThan(Timestamp updateTimeLessThan){
-            if(updateTimeLessThan != null){
-                this.updateTime_LT = updateTimeLessThan;
-            }
-            return this;
-        }
-
-        @Override
-        public TsFileQuery updateTimeLessEqual(Timestamp updateTimeLessEqual){
-            if(updateTimeLessEqual != null){
-                this.updateTime_LE = updateTimeLessEqual;
             }
             return this;
         }

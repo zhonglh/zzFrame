@@ -13,7 +13,7 @@ import java.lang.Integer;
  * 机构 查询抽象类
  *
  * @author Administrator
- * @date 2018-9-6 23:56:31
+ * @date 2019-4-11 14:06:15
  */
 public interface TsOrganQuery<PK extends Serializable> extends Query<TsOrganEntity,PK> {
 
@@ -222,10 +222,12 @@ public interface TsOrganQuery<PK extends Serializable> extends Query<TsOrganEnti
 
 
 
-        public TsOrganQuery tenantId(PK tenantId);
-        public TsOrganQuery tenantIdNot(PK tenantIdNot);
-        public TsOrganQuery tenantIdIn(PK tenantIdIn);
-        public TsOrganQuery tenantIdNotIn(PK tenantIdNotIn);
+        public TsOrganQuery tenantId(String tenantId);
+        public TsOrganQuery tenantIdNot(String tenantIdNot);
+        public TsOrganQuery tenantIdIn(String tenantIdIn);
+        public TsOrganQuery tenantIdNotIn(String tenantIdNotIn);
+        public TsOrganQuery tenantIdLike(String tenantIdLike);
+        public TsOrganQuery tenantIdNotLike(String tenantIdNotLike);
         public TsOrganQuery tenantIdIsNull();
         public TsOrganQuery tenantIdIsNotNull();
 

@@ -8,10 +8,10 @@ import java.lang.String;
 import java.lang.Integer;
 
 /**
-* 租户 用于装载用户在查询时提交的数据
+* 企业 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2018-9-6 23:56:30
+* @date 2019-4-11 14:06:16
 */
 public class TsTenantQueryWebImpl<PK extends Serializable> extends TsTenantAbstractQueryImpl<PK> implements Serializable {
 
