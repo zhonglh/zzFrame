@@ -3,6 +3,7 @@
 <bms:contentHeader title="zz1" />
 
 
+
 <div region='north'>
     <div class="navigation">
 
@@ -11,7 +12,7 @@
 
 
     </div>
-    <div id="content-sec" style="padding: 10px 10px 0 10px;">
+    <div id="content-sec" style="padding: 10px 1px 0 1px;">
         <!-- 筛选条件表单开始 -->
         <form id="searchForm" onsubmit="return false" >
 
@@ -20,14 +21,6 @@
 
 
 
-
-        <div class="btn-bar" style="margin-left: -10px;">
-
-
-
-
-
-        </div>
 
 
 
@@ -44,8 +37,12 @@
             <th field='menuCode' align="left" width="1" sortable='false'  >菜单编号</th>
             <th field='menuSort' align="right" width="1" sortable='true'  >菜单顺序</th>
             <th field='menuUrl' align="left" width="1" sortable='false'  >菜单地址</th>
+            <th field='menuMsg' align="left" width="1" sortable='false'  >菜单提示信息</th>
             <th field='menuIcon' align="left" width="1" sortable='false'  >菜单图标</th>
             <th field='menuRedirect' align="left" width="1" sortable='false'  >跳转目标</th>
+
+
+
         </tr>
         </thead>
     </table>

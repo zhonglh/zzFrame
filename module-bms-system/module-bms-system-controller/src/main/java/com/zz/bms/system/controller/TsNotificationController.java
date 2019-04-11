@@ -6,8 +6,8 @@ import com.zz.bms.system.service.TsDictService;
 import com.zz.bms.system.bo.TsDictBO;
 import com.zz.bms.core.db.entity.*;
 
-import com.zz.bms.system.bo.TsFileBO;
-import  com.zz.bms.system.query.impl.TsFileQueryWebImpl;
+import com.zz.bms.system.bo.TsNotificationBO;
+import  com.zz.bms.system.query.impl.TsNotificationQueryWebImpl;
 
 
 
@@ -27,31 +27,24 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 文件 控制层
+ * 系统通知 控制层
 * @author Administrator
-* @date 2019-4-11 16:32:00
+* @date 2019-4-11 16:31:59
  */
-@RequestMapping("/system/file")
+@RequestMapping("/system/notification")
 @Controller
 
 
-public class TsFileController extends ZzDefaultSimpleController<TsFileBO, String , TsFileQueryWebImpl > {
+public class TsNotificationController extends ZzDefaultSimpleController<TsNotificationBO, String , TsNotificationQueryWebImpl > {
 
 	@Autowired
 	private TsDictService tsDictService;
 
 	@Override
-	public void setCustomInfoByInsert(TsFileBO bo , ILoginUserEntity sessionUser){
+	public void setCustomInfoByInsert(TsNotificationBO bo , ILoginUserEntity sessionUser){
 	}
 
 
-	@Override
-	protected void setCommonData(TsFileBO tsFileBO ,ModelMap model) {
-    	Map<String , List<TsDictBO>> dictMap = tsDictService.allDicts(EnumDictType.FILE_ENGINE.getVal());
-        for(Map.Entry<String , List<TsDictBO>> dictObj : dictMap.entrySet()){
-        	model.put(dictObj.getKey()+"_dicts", dictObj.getValue());
-        }
-	}
 
 
 

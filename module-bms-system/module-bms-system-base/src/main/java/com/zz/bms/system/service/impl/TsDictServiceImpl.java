@@ -175,8 +175,9 @@ public class TsDictServiceImpl extends BaseServiceImpl<TsDictBO,String> implemen
 			List<TsDictBO> list = result.get(dictTypeBO.getDictTypeCode());
 			if(list == null){
 				list = new ArrayList<TsDictBO>();
-				list.add(dictBO);
+				result.put(dictTypeBO.getDictTypeCode() , list);
 			}
+			list.add(dictBO);
 		}
 
 		return result;

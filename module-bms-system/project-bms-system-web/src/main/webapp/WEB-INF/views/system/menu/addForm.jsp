@@ -175,8 +175,8 @@
 
                                             <select id="shortcut"  name="shortcut" required="required" >
                                                 <option value="" ></option>
-                                                <c:forEach items="${ yes_no }" var="dict">
-                                                    <option value="${ dict.value }">${ dict.name }</option>
+                                                <c:forEach items="${ yes_no_dicts }" var="dict">
+                                                    <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.shortcut }">selected</c:if>>${ dict.dictName }</option>
                                                 </c:forEach>
                                             </select>
 
@@ -206,6 +206,30 @@
 
 
 
+                                    <th width="15%">是否叶节点<font color="red">*</font></th>
+
+                                    <td>
+
+
+
+
+
+                                            <select id="leaf"  name="leaf" required="required" >
+                                                <option value="" ></option>
+                                                <c:forEach items="${ yes_no_dicts }" var="dict">
+                                                    <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.leaf }">selected</c:if>>${ dict.dictName }</option>
+                                                </c:forEach>
+                                            </select>
+
+
+
+                                    </td>
+
+
+                                </tr>
+
+
+                                <tr>
 
                                     <th>备注</th>
 

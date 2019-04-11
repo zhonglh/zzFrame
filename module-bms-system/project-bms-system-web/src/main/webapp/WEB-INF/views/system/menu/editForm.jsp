@@ -97,27 +97,18 @@
 
                                     </td>
 
-                                    <th>快捷菜单<font color="red">*</font></th>
+                                    <th>快捷菜单</th>
 
-                                    <td>
-                                            ${ m.shortcutName }
+                                    <td class="fd_shortcutName">
+                                    ${ m.shortcutName }
                                     </td>
+
 
 
                                 </tr>
 
 
                                 <tr>
-
-                                    <th>层级<font color="red">*</font></th>
-
-                                    <td class="fd_level">
-                                            ${ m.level }
-
-
-                                    </td>
-
-
 
                                     <th>备注</th>
 
@@ -297,8 +288,8 @@
 
                                                     <select id="shortcut"  name="shortcut" required="required" >
                                                         <option value="" ></option>
-                                                        <c:forEach items="${ yes_no }" var="dict">
-                                                            <option value="${ dict.value }">${  dict.name }</option>
+                                                        <c:forEach items="${ yes_no_dicts }" var="dict">
+                                                            <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.shortcut }">selected</c:if>>${  dict.dictName }</option>
                                                         </c:forEach>
                                                     </select>
 
@@ -310,25 +301,9 @@
                                 </tr>
 
 
+
+
                                 <tr>
-
-                                    <th>层级<font color="red">*</font></th>
-
-                                    <td>
-
-
-                                                <input type="text" required="required" class="form-control input-sm required"
-                                                       placeholder="请输入层级" autocomplete="off"
-                                                       value="${ m.level }" id="level" name="level"
-                                                           maxlength="10"  />
-
-
-
-                                    </td>
-
-
-
-
 
                                     <th>备注</th>
 

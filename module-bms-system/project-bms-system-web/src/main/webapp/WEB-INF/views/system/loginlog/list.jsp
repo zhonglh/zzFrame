@@ -12,7 +12,7 @@
 
 
     </div>
-    <div id="content-sec" style="padding: 10px 10px 0 10px;">
+    <div id="content-sec" style="padding: 1px 1px 0 10px;">
         <!-- 筛选条件表单开始 -->
         <form id="searchForm" onsubmit="return false" >
 
