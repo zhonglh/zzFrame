@@ -20,7 +20,6 @@ function openSystemOrganWin(config, callBack)
 
                 tableTemple += '			<th field="organName" align="left"  >机构名称</th>' ;
                 tableTemple += '			<th field="organCode" align="left"  >机构代码</th>' ;
-                tableTemple += '			<th field="organTypeName" align="left"  >机构类型</th>' ;
 
 
     tableTemple +='		</tr>'+

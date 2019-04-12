@@ -58,7 +58,7 @@
 
                                     <td colspan="3">
 
-                                        <textarea class="form-control input-sm" name="remark " id="remark"
+                                        <textarea class="form-control input-sm" name="remark" id="remark"
                                                   placeholder="请输入备注，200字以内" maxlength="200" rows="4">${ m.remark }</textarea>
                                     </td>
 
@@ -128,9 +128,7 @@
 <script>
 
 
-    var tableid = "tableData-${ tableId }";
-
-
+    var inAllPage = "${inAllPage}";
 
 </script>
 

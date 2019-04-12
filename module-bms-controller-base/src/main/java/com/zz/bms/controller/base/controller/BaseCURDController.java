@@ -411,6 +411,7 @@ public abstract class BaseCURDController<
 
 
         customInfoByAllPage(m , modelMap);
+        processQueryString(modelMap,request);
 
         modelMap.addAttribute("m",  m);
         modelMap.addAttribute("entity", m);
@@ -606,6 +607,7 @@ public abstract class BaseCURDController<
             isInsert = false;
         }
 
+        processQueryString(modelMap, request);
         setCommonData(entity,modelMap);
 
         if(isInsert) {
@@ -619,7 +621,6 @@ public abstract class BaseCURDController<
         modelMap.addAttribute("m", entity);
         modelMap.addAttribute("entity", entity);
 
-        processQueryString(modelMap, request);
 
         String pageName = null;
         if(isInsert) {

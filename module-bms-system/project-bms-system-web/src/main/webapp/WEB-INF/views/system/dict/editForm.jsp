@@ -193,8 +193,7 @@
 
     //显示模式   明细/编辑
     var showMode = "detail";
-
-    var queryString = "${ queryString }";
+    var inAllPage = "${inAllPage}";
 </script>
 
 

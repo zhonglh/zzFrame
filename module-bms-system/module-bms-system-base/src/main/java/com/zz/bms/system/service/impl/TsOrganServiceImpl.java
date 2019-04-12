@@ -91,6 +91,14 @@ public class TsOrganServiceImpl extends BaseServiceImpl<TsOrganBO,String> implem
 			}
 		}
 
+
+		if(StringUtils.isNotEmpty(tsOrganBO.getPid())){
+			TsOrganBO temp = tsOrganDAO.selectById(tsOrganBO.getPid());
+			if(temp != null){
+				tsOrganBO.setPname(temp.getOrganName());
+			}
+		}
+
 		return tsOrganBO;
 
 	}
@@ -106,11 +114,16 @@ public class TsOrganServiceImpl extends BaseServiceImpl<TsOrganBO,String> implem
 		}
 
 		List<String> leadUserIdList = new ArrayList<String>();
+		List<String> pidList = new ArrayList<String>();
 
 		for(TsOrganBO bo : tsOrganBOs)		{
 
 			if(StringUtils.isNotEmpty( bo.getLeadUserId())){
 				leadUserIdList.add(bo.getLeadUserId());
+			}
+
+			if(StringUtils.isNotEmpty( bo.getPid())){
+				pidList.add(bo.getPid());
 			}
 		}
 
@@ -130,6 +143,19 @@ public class TsOrganServiceImpl extends BaseServiceImpl<TsOrganBO,String> implem
 		}
 
 
+		if(!pidList.isEmpty()){
+			List<TsOrganBO> list =  tsOrganDAO.selectBatchIds(pidList);
+			Map<String,TsOrganBO> map = EntityUtil.list2Map(list);
+
+			tsOrganBOs.forEach(tsOrganBO -> {
+				if(StringUtils.isNotEmpty( tsOrganBO.getPid())){
+					TsOrganBO temp = map.get( tsOrganBO.getPid() );
+					if(temp != null){
+						tsOrganBO.setPname(temp.getOrganName());
+					}
+				}
+			});
+		}
 
 
 

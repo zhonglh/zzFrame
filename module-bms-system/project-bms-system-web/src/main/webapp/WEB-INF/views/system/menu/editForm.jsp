@@ -378,11 +378,8 @@
 
     //显示模式   明细/编辑
     var showMode = "detail";
-
-    var queryString = "${ queryString }";
+    var inAllPage = "${inAllPage}";
 </script>
-
-
 
 
 
@@ -392,7 +389,7 @@
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
 
 
-    <script src="${ staticUrl }/statics2/business-js/system/menu/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/system/menu/search.js"></script>
 
 
 

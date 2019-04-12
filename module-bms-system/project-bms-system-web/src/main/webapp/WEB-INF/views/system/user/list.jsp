@@ -170,8 +170,10 @@
 
 <script>
     var tableid = "tableData-${tableId}";
-    var queryString = "${ queryString }";
 
+
+    var inAllPage = "${inAllPage}";
+    var queryString = "${ queryString }";
     var listUrl = "";
 </script>
 

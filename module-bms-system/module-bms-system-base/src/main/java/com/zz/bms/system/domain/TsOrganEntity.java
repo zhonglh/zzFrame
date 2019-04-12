@@ -41,8 +41,6 @@ public class TsOrganEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntit
     @EntityAttrDictAnnotation(group = "organType", groupName = "机构类型" ,  dbColumnName = "dict_val" , dbColumnLength = 2 , isValueField = true , dictType = "organ_type")
     @EntityAttrDBAnnotation(attrName="机构类型" ,attrColumn="organ_type"  , type = "CHAR"      ,  attrLength = 1 , notNull = false )
     @EntityAttrPageAnnotation(title = "机构类型",sort = 400  , pageElement = "select"            , maxLength = 1        ,required=false )
-	
-    
     //具体的参考业务要求        
 	private String  organType ;
 

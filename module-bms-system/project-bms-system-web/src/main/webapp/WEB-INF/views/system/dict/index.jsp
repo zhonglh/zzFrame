@@ -15,7 +15,6 @@
 </div>
 
 
-
 <div class="panel layout-panel layout-panel-west" style="width: 150px; left: 0px; top: 34px;">
     <div region="west" class="lf-mun panel-body panel-body-noheader layout-body" style="margin-top: 5px; width: 150px; height: 534px;" title="" id="">
         <div class="lf-muntit">类型</div>
@@ -36,6 +35,7 @@
          title="" class="panel-body panel-body-noheader layout-body panel-noscroll" id="dictList">
 
 
+        <c:if test="${list != null && fn:length(list) > 0}">
 
         <div class="btn-bar" style="margin-left: -10px;">
             <button type="button" class="btn btn-primary btn-sm" onclick="toAdd()">
@@ -57,14 +57,14 @@
                 <thead>
                 <tr>
                     <th field="ck" checkbox="true"></th>
-                    <th field="dictName" align="left" width="1" sortable="false"  formatter="titleFmt">字典名称</th>
+                    <th field="dictName" align="left" width="2" sortable="false"  formatter="titleFmt">字典名称</th>
                     <th field="dictVal" align="left" width="1" sortable="false" >字典值</th>
                     <th field="dictReg"  align="left" width="2" sortable="false">字典规则</th>
-                    <th field="orderby" align="right" width="1" sortable="false">排序</th>
                 </tr>
                 </thead>
             </table>
         </div>
+        </c:if>
 
 
     </div>
@@ -73,7 +73,7 @@
 
 <script language="JavaScript">
     var tableid = "tableData-${tableId}";
-    var queryString = '${queryString}';
+    var queryString = "dictTypeId=${fistTypeId}";
 </script>
 
 
@@ -94,8 +94,7 @@
 
         queryString = "dictTypeId="+ $(this).attr("data-typeid");
 
-
-
+        //searchData = {"dictTypeId" : $(this).attr("data-typeid")};
         var url = ctx+dataUrl+"/toList?dictTypeId="+ $(this).attr("data-typeid");
 
         /*$("#dictList").panel(

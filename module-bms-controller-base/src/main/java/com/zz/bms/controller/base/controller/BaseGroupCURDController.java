@@ -395,7 +395,6 @@ public abstract class   BaseGroupCURDController<
         modelMap.addAttribute("m", entity);
         modelMap.addAttribute("entity", entity);
 
-        processQueryString(modelMap, request);
 
         String pageName = null;
         if(isInsert) {

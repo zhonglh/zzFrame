@@ -36,7 +36,7 @@
                                             </c:if>
                                             <c:if test="${ !fn.indexOf(queryString,'userId') }">
                                             <input type="hidden" name="userId" id="userId" value="${ m.userId }">
-                                            <input type="text" name="userName" id="userName" value="${ m.userName }" required="required" class="form-control input-sm userName " placeholder="请选择用户" style="width: 150px; cursor: pointer;" readonly="readonly">
+                                            <input type="text" name="userName" id="userName" value="${ m.userName }" required="required" class="form-control input-sm userName " placeholder="请选择用户" style="cursor: pointer;" readonly="readonly">
                                             <div class="input-group-btn">
                                                 <button type="button"
                                                         class="btn btn-primary btn-sm userName">
@@ -66,7 +66,7 @@
                                         </c:if>
                                         <c:if test="${ !fn.indexOf(queryString,'roleId') }">
                                         <input type="hidden" name="roleId" id="roleId" value="${ m.roleId }" >
-                                        <input type="text" name="roleName" id="roleName" value="${ m.roleName }" required="required" class="form-control input-sm roleName " placeholder="请选择角色" style="width: 150px; cursor: pointer;" readonly="readonly">
+                                        <input type="text" name="roleName" id="roleName" value="${ m.roleName }" required="required" class="form-control input-sm roleName " placeholder="请选择角色" style="cursor: pointer;" readonly="readonly">
                                         <div class="input-group-btn">
                                             <button type="button"  class="btn btn-primary btn-sm roleName">
                                                 <svg class="icon" aria-hidden="true">
@@ -114,7 +114,7 @@
 
 
 <script>
-    var queryString = "${ queryString }";
+    var inAllPage = "${inAllPage}";
 </script>
 
 <bms:contentJS />

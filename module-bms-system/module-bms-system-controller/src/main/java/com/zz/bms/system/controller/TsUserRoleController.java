@@ -1,9 +1,7 @@
 package com.zz.bms.system.controller;
 
-import com.zz.bms.enums.*;
 
 import com.zz.bms.system.service.TsDictService;
-import com.zz.bms.system.bo.TsDictBO;
 import com.zz.bms.core.db.entity.*;
 
 import com.zz.bms.system.bo.TsUserRoleBO;
@@ -11,16 +9,9 @@ import  com.zz.bms.system.query.impl.TsUserRoleQueryWebImpl;
 
 
 
-
-
-import com.zz.bms.system.controller.ZzDefaultSimpleController;
-
-import com.zz.bms.util.base.java.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;

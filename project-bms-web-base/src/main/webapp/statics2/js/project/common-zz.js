@@ -4,8 +4,15 @@
  * @returns {boolean}
  */
 function isInAllPage(){
-    return true;
-    //return $(".easyui-tabs" , parent.window).length > 0;
+    try{
+        if(inAllPage == undefined || inAllPage == null || inAllPage == ""){
+            return false;
+        }else {
+            return true;
+        }
+    }catch(e){
+        return false;
+    }
 }
 
 

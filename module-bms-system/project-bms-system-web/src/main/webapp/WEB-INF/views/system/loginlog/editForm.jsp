@@ -176,7 +176,7 @@
 
                                                 <c:if test="${ !fn.indexOf(queryString,'depId') }">
                                                 <input type="hidden" name="depId" id="depId" value="${ m.depId }">
-                                                <input type="text" name="depName" id="depName" value="${ m.depName }" required="required" class="form-control input-sm depName " placeholder="请选择部门" style="width: 150px; cursor: pointer;" readonly="readonly">
+                                                <input type="text" name="depName" id="depName" value="${ m.depName }" required="required" class="form-control input-sm depName " placeholder="请选择部门" style="cursor: pointer;" readonly="readonly">
 
                                                 <div class="input-group-btn">
                                                     <button type="button"
@@ -364,8 +364,7 @@
 
     //显示模式   明细/编辑
     var showMode = "detail";
-
-    var queryString = "${ queryString }";
+    var inAllPage = "${inAllPage}";
 </script>
 
 

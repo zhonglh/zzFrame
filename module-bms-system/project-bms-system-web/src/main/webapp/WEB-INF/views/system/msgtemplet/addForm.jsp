@@ -144,9 +144,7 @@
 
 
 <script>
-
-
-    var queryString = "${ queryString }";
+    var inAllPage = "${inAllPage}";
 </script>
 
 <bms:contentJS />
@@ -155,7 +153,7 @@
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
 
 
-    <script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
 
 
 

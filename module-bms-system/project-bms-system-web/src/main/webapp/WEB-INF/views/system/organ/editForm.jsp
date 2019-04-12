@@ -161,7 +161,7 @@
                                             </c:if>
                                             <c:if test="${ !fn.indexOf(queryString,'pid') }">
                                                 <input type="hidden" name="pid" id="pid" value="${ m.pid }" >
-                                                <input type="text" name="pname" id="pname" value="${ m.pname }" required="required" class="form-control input-sm pname " placeholder="请选择上级机构" style="width: 150px; cursor: pointer;" readonly="readonly">
+                                                <input type="text" name="pname" id="pname" value="${ m.pname }" required="required" class="form-control input-sm pname " placeholder="请选择上级机构" style="cursor: pointer;" readonly="readonly">
                                                 <div class="input-group-btn">
                                                     <button type="button"  class="btn btn-primary btn-sm pname">
                                                         <svg class="icon" aria-hidden="true">
@@ -243,7 +243,7 @@
 <script>
     //显示模式   明细/编辑
     var showMode = "detail";
-    var queryString = "${ queryString }";
+    var inAllPage = "${inAllPage}";
 </script>
 
 <bms:contentJS />
@@ -265,6 +265,18 @@
             callName: "leadUserName",
             clearId: "clearLeadUserId"
         });
+
+        //选择机构
+        $(".pname").OpenSystemOrganSelectWin({
+            title: "上级机构",
+            selectType: "t1",
+            callId: "pid",
+            callName: "pname",
+            clearId: "clearPid",
+            url : $AppContext + '/system/organ/tree?id_NE='+'${m.id}'
+        });
+
+
     });
 
 </script>

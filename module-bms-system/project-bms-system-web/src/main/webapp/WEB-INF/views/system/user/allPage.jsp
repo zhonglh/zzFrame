@@ -36,8 +36,8 @@
     });
 
     var urls = [
-        ctx+'/system/user/${ m.id }/update',
-        ctx+'/system/userrole/toList?userId=${ m.id }'
+        ctx+'/system/user/${ m.id }/update?inAllPage=1',
+        ctx+'/system/userrole/toList?inAllPage=1&userId=${ m.id }'
     ];
     /**
      * Tab页点击事件：动态加载模块url

@@ -279,7 +279,14 @@ public abstract class BaseController<PK extends Serializable> {
 
 
     protected void processQueryString(ModelMap modelMap, HttpServletRequest request) {
+
         String queryString = request.getQueryString();
+        String inAllPage = request.getParameter("inAllPage");
+        if(inAllPage != null) {
+            inAllPage = "";
+        }
+
+        modelMap.addAttribute("inAllPage", inAllPage);
         if(StringUtils.isNotEmpty(queryString)) {
             modelMap.addAttribute("queryString", queryString);
             String[] queryArr = queryString.split("&");

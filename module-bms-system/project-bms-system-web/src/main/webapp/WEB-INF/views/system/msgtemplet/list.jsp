@@ -161,8 +161,8 @@
     var tableid = "tableData-${ tableId }";
 
 
+    var inAllPage = "${inAllPage}";
     var queryString = "${ queryString }";
-
     var listUrl = "";
 
 </script>

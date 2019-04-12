@@ -24,8 +24,8 @@
         <thead>
         <tr>
             <th field="ck" checkbox="true"></th>
-            <th field='fileName' align="left" width="1" sortable='false' formatter='titleFmt' >文件</th>
-            <th field='showName' align="left" width="1" sortable='false' formatter='titleFmt' >显示名称</th>
+            <th field='showName' align="left" width="1" sortable='false'  >显示名称</th>
+            <th field='fileName' align="left" width="1" sortable='false'  >文件</th>
             <th field='businessType' align="left" width="1" sortable='false'  >业务类型</th>
             <th field='businessId' align="left" width="1" sortable='false'  >业务ID</th>
             <th field='businessFileType' align="left" width="1" sortable='false'  >业务文件类型</th>
@@ -39,6 +39,8 @@
 
 <script>
     var tableid = "tableData-${ tableId }";
+
+    var inAllPage = "${inAllPage}";
     var queryString = "${ queryString }";
     var listUrl = "";
 </script>

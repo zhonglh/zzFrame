@@ -139,6 +139,7 @@
     var tree_field = "depName";
     var id_field = "id";
 
+    var inAllPage = "${inAllPage}";
     var queryString = "${ queryString }";
     var treeUrl = "";
 </script>

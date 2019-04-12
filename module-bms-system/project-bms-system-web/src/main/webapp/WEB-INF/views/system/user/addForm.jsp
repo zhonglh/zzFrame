@@ -139,7 +139,7 @@
 
 
 <script>
-    var tableid = "tableData-${tableId}";
+    var inAllPage = "${inAllPage}";
 </script>
 
 

@@ -209,11 +209,9 @@
 
 <script>
 
-
-    var tableid = "tableData-${tableId}";
-
     //显示模式   明细/编辑
     var showMode = "detail";
+    var inAllPage = "${inAllPage}";
 
 </script>
 

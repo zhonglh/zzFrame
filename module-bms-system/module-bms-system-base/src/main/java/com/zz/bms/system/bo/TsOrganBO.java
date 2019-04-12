@@ -37,7 +37,7 @@ public class TsOrganBO extends TsOrganEntity implements Serializable , IBoEntity
     @TableField(exist = false)
     @EntityAttrDictAnnotation(group = "organType", groupName = "机构类型" ,  dbColumnName = "dict_name" , dbColumnLength = 50 , isNameField = true , dictType = "organ_type")
     @EntityAttrExcelAnnotation(excelProcess= "2")
-    @EntityAttrPageAnnotation(title = "机构类型",sort = 401                      ,required=true )
+    @EntityAttrPageAnnotation(title = "机构类型",sort = 401 )
     private String organTypeName ;
 
 
@@ -54,7 +54,7 @@ public class TsOrganBO extends TsOrganEntity implements Serializable , IBoEntity
     @TableField(exist = false)
     @EntityAttrFkAnnotation(group = "leadUserId",  groupName = "负责人" ,   dbColumnName = "user_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
     @EntityAttrExcelAnnotation(excelProcess= "3")
-    @EntityAttrPageAnnotation(title = "负责人",sort = 801                      ,required=true )
+    @EntityAttrPageAnnotation(title = "负责人",sort = 801)
     private String leadUserName ;
 
 
@@ -62,7 +62,7 @@ public class TsOrganBO extends TsOrganEntity implements Serializable , IBoEntity
     @TableField(exist = false)
     @EntityAttrFkAnnotation(group = "pid",  groupName = "上级机构" ,   dbColumnName = "organ_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsOrganBO.class)
     @EntityAttrExcelAnnotation(excelProcess= "3")
-    @EntityAttrPageAnnotation(title = "上级机构",sort = 501                      ,required=true )
+    @EntityAttrPageAnnotation(title = "上级机构",sort = 501 )
     private String pname ;
 
 
@@ -89,6 +89,14 @@ public class TsOrganBO extends TsOrganEntity implements Serializable , IBoEntity
 
     public void setOrganStatusName(String organStatusName) {
         this.organStatusName = organStatusName;
+    }
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
     }
 
     public EasyUiTree toEasyUiTree(){

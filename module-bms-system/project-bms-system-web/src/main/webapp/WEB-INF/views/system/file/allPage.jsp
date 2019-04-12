@@ -35,8 +35,8 @@
     });
 
     var urls = [
-            ctx+'/system/file/${ m.id }/update',
-            ctx+'/system/fileuse/toList?fileId=${ m.id }'
+            ctx+'/system/file/${ m.id }/update?inAllPage=1',
+            ctx+'/system/fileuse/toList?inAllPage=1&fileId=${ m.id }'
     ];
 
     /**

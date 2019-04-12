@@ -1,8 +1,11 @@
 package com.zz.bms.system.controller;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 
+import com.zz.bms.core.db.entity.BaseBusinessEntity;
+import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.system.bo.TsDictBO;
 import com.zz.bms.system.bo.TsDictTypeBO;
@@ -32,15 +35,25 @@ public class TsDictController extends ZzDefaultSimpleController<TsDictBO, String
 	@Autowired
 	private TsDictTypeService tsDictTypeService;
 
+
+	@Override
+	protected Wrapper buildQueryWrapper(TsDictQueryWebImpl query , TsDictBO m) {
+		QueryWrapper wrapper =   query.buildWrapper();
+		wrapper.orderByAsc("order_by");
+		return wrapper;
+	}
+
 	@RequestMapping(value = "/index" , method = RequestMethod.GET)
 	public String index(ModelMap model , HttpServletRequest request, HttpServletResponse response) {
 		processPath(model);
 		TsDictTypeQueryImpl tsDictTypeQuery = new TsDictTypeQueryImpl();
-		tsDictTypeQuery.dictTypeShowable(EnumYesNo.YES.getCode());
+		//tsDictTypeQuery.dictTypeShowable(EnumYesNo.YES.getCode());
 		QueryWrapper<TsDictTypeBO> queryWrapper = tsDictTypeQuery.buildWrapper();
 		List<TsDictTypeBO> list = this.tsDictTypeService.list(queryWrapper);
 		model.addAttribute("list" , list);
-		model.addAttribute("fistTypeId" , list.get(0).getId());
+		if(list != null && !list.isEmpty()) {
+			model.addAttribute("fistTypeId", list.get(0).getId());
+		}
 		return this.viewName("index");
 
 	}

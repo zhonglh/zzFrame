@@ -179,7 +179,7 @@
 
 
 <script>
-    var queryString = "${ queryString }";
+    var inAllPage = "${inAllPage}";
 </script>
 
 <bms:contentJS />

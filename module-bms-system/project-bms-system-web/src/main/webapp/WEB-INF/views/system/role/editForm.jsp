@@ -74,7 +74,6 @@
 
 
 
-                    <input type="hidden" id="permitIds" name="permitIds">
 
                     <table class="info-table">
                         <colgroup>
@@ -114,7 +113,7 @@
 
                             <td colspan="3">
 
-                                        <textarea class="form-control input-sm" name="remark " id="remark"
+                                        <textarea class="form-control input-sm" name="remark" id="remark"
                                                   placeholder="请输入备注，200字以内" maxlength="200" rows="4">${ m.remark }</textarea>
                             </td>
 
@@ -148,7 +147,8 @@
 
 
                     </table>
-                    
+
+                    <input type="hidden" id="permitIds" name="permitIds">
                     
                 </form>
             </div>
@@ -201,7 +201,7 @@
 
 <script>
 
-
+    var inAllPage = "${inAllPage}";
 
     //显示模式   明细/编辑
     var showMode = "detail";
