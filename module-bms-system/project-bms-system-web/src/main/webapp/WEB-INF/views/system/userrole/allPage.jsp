@@ -12,13 +12,10 @@
 <div region='center' border=0 style='padding: 10px;' >
 -->
     <div id='divTabs' class="easyui-tabs" plain="true" fit='true' border=0>
-        <div title= "机构" >
+        <div title= "用户角色关联" >
             <iframe width='100%' height='99%' frameborder='0'></iframe>
         </div>
 
-        <div title="机构" >
-            <iframe width='100%' height='99%' frameborder='0'></iframe>
-        </div>
     </div>
 <!--</div>-->
 
@@ -31,12 +28,11 @@
     $(function(){
         $('#divTabs').tabs({onSelect: tabSelected});
 
-        tabSelected("机构", 0);
+        tabSelected("用户角色关联", 0);
     });
 
     var urls = [
-            ctx+'/system/organ/${ m.id }/update',
-            ctx+'/system/organ/toTree?pid=${ m.id }'
+            ctx+'/system/userrole/${ m.id }/update',
     ];
 
     /**
@@ -57,5 +53,6 @@
 
     }
 </script>
+
 
 <bms:contentFooter />

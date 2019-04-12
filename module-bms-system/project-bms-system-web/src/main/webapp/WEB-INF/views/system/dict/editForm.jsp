@@ -125,10 +125,9 @@
                                 <tr>
                                     <th>顺序<font color="red">*</font></th>
                                     <td>
-                                                <input type="text" required="required" class="form-control input-sm required"
+                                                <input type="text" required="required" class="form-control input-sm number required"
                                                        placeholder="请输入顺序" autocomplete="off"
-                                                       value="${ m.orderby }" id="orderby" name="orderby"
-                                                           maxlength="10"  />
+                                                       value="${ m.orderby }" id="orderby" name="orderby" maxlength="10"  />
                                     </td>
 
 

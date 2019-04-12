@@ -33,7 +33,7 @@
                                         <c:out value="${ m.fileName }" escapeXml="true"/>
                                     </td>
                                     <th>显示名称<font color="red">*</font></th>
-                                    <td class="fd_fileName">
+                                    <td class="fd_showName">
                                         <c:out value="${ m.showName }" escapeXml="true"/>
                                     </td>
                                 </tr>
@@ -44,7 +44,7 @@
                                         <c:out value="${ m.businessType }" escapeXml="true"/>
                                     </td>
                                     <th>业务ID</th>
-                                    <td class="fd_businessType">
+                                    <td class="fd_businessId">
                                         <c:out value="${ m.businessId }" escapeXml="true"/>
                                     </td>
                                 </tr>
@@ -55,7 +55,7 @@
                                         <c:out value="${ m.businessFileType }" escapeXml="true"/>
                                     </td>
                                     <th>业务临时ID<font color="red">*</font></th>
-                                    <td class="fd_businessFileType">
+                                    <td class="fd_businessTempId">
                                         <c:out value="${ m.businessTempId }" escapeXml="true"/>
                                     </td>
                                 </tr>
@@ -66,7 +66,7 @@
                                         <c:out value="${ m.fileOrder }" escapeXml="true"/>
                                     </td>
                                     <th>备注</th>
-                                    <td class="fd_fileOrder">
+                                    <td class="fd_remark">
                                         <c:out value="${ m.remark }" escapeXml="true"/>
                                     </td>
                                 </tr>
@@ -97,7 +97,7 @@
                                             </c:if>
                                             <c:if test="${ !fn.indexOf(queryString,'fileId') }">
                                             <input type="hidden" name="fileId" id="fileId" value="${ m.fileId }">
-                                            <input type="text" name="fileName" id="fileName" value="${ m.fileName }" required="required" class="form-control input-sm fileName " placeholder="请选择文件" style="width: 150px; cursor: pointer;" readonly="readonly">
+                                            <input type="text" name="fileName" id="fileName" value="${ m.fileName }" required="required" class="form-control input-sm fileName " placeholder="请选择文件" style="cursor: pointer;" readonly="readonly">
                                             <div class="input-group-btn">
                                                 <button type="button"
                                                         class="btn btn-primary btn-sm fileName">

@@ -39,7 +39,7 @@
 
                                     <th>消息模板类型<font color="red">*</font></th>
 
-                                    <td>
+                                    <td class="fd_msgTempletTypeName">
                                             ${ m.msgTempletTypeName }
                                     </td>
 
@@ -47,64 +47,38 @@
                                 </tr>
 
 
-                                <tr>
 
+
+                                <tr>
                                     <th>消息标题</th>
 
                                     <td class="fd_msgTitle">
-                                            ${ m.msgTitle }
-
-
+                                        ${ m.msgTitle }
                                     </td>
-
-                                    <th>消息内容<font color="red">*</font></th>
-
-                                    <td>
-                                            ${ m.msgContent }
-                                    </td>
-
-
-                                </tr>
-
-
-                                <tr>
 
                                     <th>语言</th>
 
                                     <td class="fd_msgLanguageName">
                                             ${ m.msgLanguageName }
-
-
                                     </td>
-
-                                    <th>模板是否有效<font color="red">*</font></th>
-
-                                    <td>
-                                            ${ m.templetEffectiveName }
-                                    </td>
-
 
                                 </tr>
-
 
                                 <tr>
 
-                                    <th>部门<font color="red">*</font></th>
 
-                                    <td class="fd_depName">
-                                            ${ m.depName }
+                                    <th>消息内容<font color="red">*</font></th>
 
-
-                                    </td>
-
-                                    <th>机构<font color="red">*</font></th>
-
-                                    <td>
-                                            ${ m.organId }
+                                    <td colspan="3" class="fd_msgContent">
+                                        <c:out value="${m.msgContent}" escapeXml="true"/>
                                     </td>
 
 
                                 </tr>
+
+
+
+
 
 
 
@@ -130,193 +104,61 @@
                                     <th>消息模板名称<font color="red">*</font></th>
 
                                     <td>
-
-
-                                                <input type="text" required="required" class="form-control input-sm required"
-                                                       placeholder="请输入消息模板名称" autocomplete="off"
-                                                       value="${ m.msgTempletName }" id="msgTempletName" name="msgTempletName"
-                                                           maxlength="50"  />
-
-
-
+                                        <input type="text" required="required" class="form-control input-sm required"
+                                               placeholder="请输入消息模板名称" autocomplete="off"
+                                               value="${ m.msgTempletName }" id="msgTempletName" name="msgTempletName"
+                                                   maxlength="50"  />
                                     </td>
-
-
-
-                                        <th>消息模板类型<font color="red">*</font></th>
-
-                                        <td>
-
-
-
-
-
-                                                    <select id="msgTempletType"  name="msgTempletType" required="required" style="width:98%">
-                                                        <option value="" ></option>
-                                                        <c:forEach items="${ msg_templet_type_dicts }" var="dict">
-                                                            <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.msgTempletType }">selected</c:if>>${  dict.dictName }</option>
-                                                        </c:forEach>
-                                                    </select>
-
-
-
-                                        </td>
-
-
+                                    <th>消息模板类型<font color="red">*</font></th>
+                                    <td>
+                                                <select id="msgTempletType"  name="msgTempletType" required="required" style="width:98%">
+                                                    <option value="" ></option>
+                                                    <c:forEach items="${ msg_templet_type_dicts }" var="dict">
+                                                        <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.msgTempletType }">selected</c:if>>${  dict.dictName }</option>
+                                                    </c:forEach>
+                                                </select>
+                                    </td>
                                 </tr>
 
-
                                 <tr>
-
                                     <th>消息标题</th>
-
                                     <td>
-
-
                                                 <input type="text"  class="form-control input-sm "
                                                        placeholder="请输入消息标题" autocomplete="off"
                                                        value="${ m.msgTitle }" id="msgTitle" name="msgTitle"
                                                            maxlength="200"  />
-
-
-
                                     </td>
 
-
-
-                                        <th>消息内容<font color="red">*</font></th>
-
-                                        <td>
-
-
-
-
-
-
-                                                    <div class="info-detail">
-                                                <textarea required="required" class="form-control input-sm required "
-                                                          name="msgContent" placeholder="请输入消息内容，5000字以内" maxlength="5000" rows="4">${ m.msgContent }</textarea>
-                                                    </div>
-
-
-
-
-
-
-                                        </td>
-
-
-                                </tr>
-
-
-                                <tr>
-
                                     <th>语言</th>
-
                                     <td>
-
-
                                                 <select id="msgLanguage"  name="msgLanguage"  style="width:98%" >
                                                     <option value="" ></option>
                                                     <c:forEach items="${ msg_language_dicts }" var="dict">
-                                                        <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.msgLanguage }">selected</c:if>>${ dict.dictName}  }</option>
+                                                        <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.msgLanguage }">selected</c:if>>${ dict.dictName}</option>
                                                     </c:forEach>
                                                 </select>
-
-
                                     </td>
 
 
-
-                                        <th>模板是否有效<font color="red">*</font></th>
-
-                                        <td>
-
-
-
-
-
-                                                    <select id="templetEffective"  name="templetEffective" required="required" style="width:98%">
-                                                        <option value="" ></option>
-                                                        <c:forEach items="${ yes_no_dicts }" var="dict">
-                                                            <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.templetEffective }">selected</c:if>>${  dict.dictName }</option>
-                                                        </c:forEach>
-                                                    </select>
-
-
-
-                                        </td>
 
 
                                 </tr>
 
 
-                                <tr>
 
-                                    <th>部门<font color="red">*</font></th>
-
-                                    <td>
+                            <tr>
 
 
 
-                                            <div class="input-group">
+                                <th>消息内容<font color="red">*</font></th>
+                                <td colspan="3">
+                                    <div class="info-detail">
+                                            <textarea required="required" class="form-control input-sm required " maxlength="5000" rows="6"
+                                                      name="msgContent" placeholder="请输入消息内容，5000字以内" ><c:out value="${m.msgContent}" escapeXml="true"/></textarea>
+                                    </div>
+                                </td>
 
-                                                <c:if test="${ fn.indexOf(queryString,'depId') }">
-                                                    <input type="text" class="form-control input-sm" name="depName" id="depName" value="${ m.depName }" readonly>
-                                                </c:if>
-
-                                                <c:if test="${ !fn.indexOf(queryString,'depId') }">
-                                                <input type="hidden" name="depId" id="depId" value="${ m.depId }">
-                                                <input type="text" name="depName" id="depName" value="${ m.depName }" required="required" class="form-control input-sm depName " placeholder="请选择部门" style="width: 150px; cursor: pointer;" readonly="readonly">
-
-                                                <div class="input-group-btn">
-                                                    <button type="button"
-                                                            class="btn btn-primary btn-sm depName">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-sousuo">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
-                                                    <button type="button" id="clearDepId"
-                                                            class="btn btn-primary btn-sm">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-close">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                                </c:if>
-                                            </div>
-
-
-
-                                    </td>
-
-
-
-                                        <th>机构<font color="red">*</font></th>
-
-                                        <td>
-
-
-
-
-
-                                                    <input type="text" required="required" class="form-control input-sm required"
-                                                           placeholder="请输入机构" autocomplete="off"
-                                                           value="${ m.organId }" id="organId" name="organId"
-                                                               maxlength="32"  />
-
-
-
-
-                                        </td>
-
-
-                                </tr>
-
+                            </tr>
 
 
                         </tbody>

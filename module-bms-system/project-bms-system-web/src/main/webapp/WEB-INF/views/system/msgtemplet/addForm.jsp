@@ -62,7 +62,7 @@
                                     <select id="msgLanguage"  name="msgLanguage" style="width:98%" >
                                     <option value="" ></option>
                                     <c:forEach items="${ msg_language_dicts }" var="dict">
-                                        <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.msgLanguage }">selected</c:if>>${ dict.dictName}  }</option>
+                                        <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.msgLanguage }">selected</c:if>>${ dict.dictName  }</option>
                                     </c:forEach>
                                     </select>
 
@@ -70,23 +70,6 @@
 
 
 
-                                <th>模板是否有效<font color="red">*</font></th>
-
-                                <td>
-                                    <select id="templetEffective"  name="templetEffective" required="required" style="width:98%">
-                                        <option value="" ></option>
-                                        <c:forEach items="${ yes_no_dicts }" var="dict">
-                                            <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.templetEffective }">selected</c:if>>${ dict.dictName }</option>
-                                        </c:forEach>
-                                    </select>
-                                </td>
-
-                            </tr>
-
-
-
-
-                            <tr>
 
                                 <th>消息标题</th>
                                 <td colspan="3">

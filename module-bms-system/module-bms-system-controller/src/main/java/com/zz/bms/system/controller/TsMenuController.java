@@ -1,5 +1,7 @@
 package com.zz.bms.system.controller;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.enums.*;
 
 import com.zz.bms.system.service.TsDictService;
@@ -42,6 +44,13 @@ public class TsMenuController extends ZzDefaultSimpleController<TsMenuBO, String
 
 	@Override
 	public void setCustomInfoByInsert(TsMenuBO bo , ILoginUserEntity sessionUser){
+	}
+
+	@Override
+	protected Wrapper buildQueryWrapper(TsMenuQueryWebImpl query , TsMenuBO m) {
+		QueryWrapper wrapper =   query.buildWrapper();
+		wrapper.orderByAsc(" menu_sort " );
+		return wrapper;
 	}
 
 

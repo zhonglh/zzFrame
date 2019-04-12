@@ -143,13 +143,11 @@
         <tr>
             <th field="ck" checkbox="true"></th>
 
-            <th field='msgTempletName' align="left" width="1" sortable='false' formatter='titleFmt' >消息模板名称</th>
+            <th field='msgTempletName' align="left" width="5" sortable='false' formatter='titleFmt' >消息模板名称</th>
             <th field='msgTempletTypeName' align="left" width="1" sortable='false'  >消息模板类型</th>
-            <th field='msgTitle' align="left" width="1" sortable='false'  >消息标题</th>
+            <th field='msgTitle' align="left" width="3" sortable='false'  >消息标题</th>
             <th field='msgLanguageName' align="left" width="1" sortable='false'  >语言</th>
             <th field='templetEffectiveName' align="left" width="1" sortable='false'  >模板是否有效</th>
-            <th field='depName' align="left" width="1" sortable='false'  >部门</th>
-            <th field='organId' align="left" width="1" sortable='false'  >机构</th>
 
         </tr>
         </thead>

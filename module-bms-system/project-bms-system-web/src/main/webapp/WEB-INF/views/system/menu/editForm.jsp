@@ -39,7 +39,7 @@
 
                                     <th>菜单编号<font color="red">*</font></th>
 
-                                    <td>
+                                    <td class="fd_menuCode">
                                             ${ m.menuCode }
                                     </td>
 
@@ -57,9 +57,9 @@
 
                                     </td>
 
-                                    <th>菜单地址<font color="red">*</font></th>
+                                    <th>菜单地址</th>
 
-                                    <td>
+                                    <td class="fd_menuUrl">
                                             ${ m.menuUrl }
                                     </td>
 
@@ -79,7 +79,7 @@
 
                                     <th>菜单图标</th>
 
-                                    <td>
+                                    <td class="fd_menuIcon">
                                             ${ m.menuIcon }
                                     </td>
 
@@ -185,20 +185,16 @@
                                     <th>菜单顺序<font color="red">*</font></th>
 
                                     <td>
-
-
-                                                <input type="text" required="required" class="form-control input-sm required"
+                                                <input type="text" required="required" class="form-control input-sm number required"
                                                        placeholder="请输入菜单顺序" autocomplete="off"
                                                        value="${ m.menuSort }" id="menuSort" name="menuSort"
                                                            maxlength="10"  />
-
-
 
                                     </td>
 
 
 
-                                        <th>菜单地址<font color="red">*</font></th>
+                                        <th>菜单地址</th>
 
                                         <td>
 
@@ -206,7 +202,7 @@
 
 
 
-                                                    <input type="text" required="required" class="form-control input-sm required"
+                                                    <input type="text" required="required" class="form-control input-sm"
                                                            placeholder="请输入菜单地址" autocomplete="off"
                                                            value="${ m.menuUrl }" id="menuUrl" name="menuUrl"
                                                                maxlength="200"  />

@@ -31,11 +31,11 @@
 
                             <th>角色名称<font color="red">*</font></th>
 
-                            <td>${ m.roleName }</td>
+                            <td class="fd_roleName">${ m.roleName }</td>
 
                             <th>角色编号<font color="red">*</font></th>
 
-                            <td>${ m.roleCode }</td>
+                            <td class="fd_roleCode">${ m.roleCode }</td>
 
 
                         </tr>
@@ -43,7 +43,7 @@
 
                         <tr>
                             <th>备注</th>
-                            <td colspan="3"><c:out value="${m.remark}" escapeXml="true"/></td>
+                            <td colspan="3" class="fd_remark"><c:out value="${m.remark}" escapeXml="true"/></td>
                         </tr>
 
 

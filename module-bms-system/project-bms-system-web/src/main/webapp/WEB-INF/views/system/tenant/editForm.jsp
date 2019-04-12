@@ -33,7 +33,7 @@
                                         <c:out value="${ m.tenantName }" escapeXml="true"/>
                                     </td>
                                     <th>企业编号<font color="red">*</font></th>
-                                    <td class="fd_tenantName">
+                                    <td class="fd_tenantCode">
                                         <c:out value="${ m.tenantCode }" escapeXml="true"/>
                                     </td>
                                 </tr>
@@ -44,7 +44,7 @@
                                         <c:out value="${ m.tenantAddr }" escapeXml="true"/>
                                     </td>
                                     <th>联系电话</th>
-                                    <td class="fd_tenantAddr">
+                                    <td class="fd_linkTel">
                                         <c:out value="${ m.linkTel }" escapeXml="true"/>
                                     </td>
                                 </tr>
@@ -55,7 +55,7 @@
                                         <c:out value="${ m.leadUserName }" escapeXml="true"/>
                                     </td>
                                     <th>LOGO</th>
-                                    <td class="fd_leadUserName">
+                                    <td class="fd_logoFile">
                                         <c:out value="${ m.logoFile }" escapeXml="true"/>
                                     </td>
                                 </tr>
@@ -66,7 +66,7 @@
                                         <c:out value="${ m.website }" escapeXml="true"/>
                                     </td>
                                     <th>说明</th>
-                                    <td class="fd_website">
+                                    <td class="fd_remark">
                                         <c:out value="${ m.remark }" escapeXml="true"/>
                                     </td>
                                 </tr>

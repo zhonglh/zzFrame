@@ -35,7 +35,6 @@
     </table>
 </div>
 
-
 <script>
     var tableid = "tableData-${ tableId }";
     var queryString = "${ queryString }";
@@ -59,6 +58,8 @@
 
 
     });
+
+
 
 
 

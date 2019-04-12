@@ -130,7 +130,7 @@
 
     insert into ts_dict(id,dict_type_id,dict_val,dict_name,orderby,create_user_id,create_user_name,create_time,version_no,delete_flag, tenant_id)
     values(
-        REPLACE(uuid() , "-" , "") , '275ef03775af42d1a003539647ba3995' , '2' , 'English '  , 2 , '11111111111111111111111111111111' , '管理员' , SYSDATE() , 0 , '0' , '11111111111111111111111111111111'
+        REPLACE(uuid() , "-" , "") , '275ef03775af42d1a003539647ba3995' , '2' , 'English'  , 2 , '11111111111111111111111111111111' , '管理员' , SYSDATE() , 0 , '0' , '11111111111111111111111111111111'
     );
 
 
