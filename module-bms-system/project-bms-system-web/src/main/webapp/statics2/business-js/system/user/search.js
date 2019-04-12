@@ -36,20 +36,10 @@ function openSystemUserWin(config, callBack)
     options.url = url;
     options.columns = [[
     {field:"id", checkbox: true, width: 40},
-        {field:"userName", title:"用户姓名", width: 150, align:"left" ,},
-        {field:"loginName", title:"登录名", width: 150, align:"left" ,},
-        {field:"loginPassword", title:"登录密码", width: 150, align:"left" ,},
-        {field:"salt", title:"加密盐", width: 150, align:"left" ,},
-        {field:"userStatusName", title:"状态", width: 150, align:"left" ,},
-        {field:"leadUserName", title:"上级领导", width: 150, align:"left" ,},
-        {field:"phone", title:"电话", width: 150, align:"left" ,},
-        {field:"email", title:"邮箱", width: 150, align:"left" ,},
-        {field:"openId", title:"微信ID", width: 150, align:"left" ,},
-        {field:"unionId", title:"微信唯一ID", width: 150, align:"left" ,},
-        {field:"systemAdminName", title:"系统管理人员", width: 150, align:"left" ,},
-        {field:"depName", title:"部门", width: 150, align:"left" ,},
-        {field:"organId", title:"机构", width: 150, align:"left" ,},
-        {field:"pageLimit", title:"每页记录数", width: 150, align:"right" ,}
+        {field:"userName", title:"用户姓名", width: 150, align:"left" },
+        {field:"loginName", title:"登录名", width: 150, align:"left" },
+        {field:"phone", title:"电话", width: 150, align:"left" },
+        {field:"email", title:"邮箱", width: 150, align:"left" }
     ]];
     options.sampleData = {id: "id", name: "userName"};
     options.htmlTemple = tableTemple;

@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/views/common/taglibs.jspf" %>
-<bms:contentHeader title="zz" />
+<bms:contentHeader title="zz1" />
 <!--
 <div region='north' border=0>
     <div class="pro-tit">
@@ -12,14 +12,10 @@
 <div region='center' border=0 style='padding: 10px;' >
 -->
     <div id='divTabs' class="easyui-tabs" plain="true" fit='true' border=0>
-        <div title= "用户" >
+        <div title= "文件使用" >
             <iframe width='100%' height='99%' frameborder='0'></iframe>
         </div>
 
-
-        <div title="分配角色" >
-            <iframe width='100%' height='99%' frameborder='0'></iframe>
-        </div>
     </div>
 <!--</div>-->
 
@@ -32,13 +28,13 @@
     $(function(){
         $('#divTabs').tabs({onSelect: tabSelected});
 
-        tabSelected("用户", 0);
+        tabSelected("文件使用", 0);
     });
 
     var urls = [
-        ctx+'/system/user/${ m.id }/update',
-        ctx+'/system/userrole/toList?userId=${ m.id }'
+            ctx+'/system/fileuse/${ m.id }/update',
     ];
+
     /**
      * Tab页点击事件：动态加载模块url
      */

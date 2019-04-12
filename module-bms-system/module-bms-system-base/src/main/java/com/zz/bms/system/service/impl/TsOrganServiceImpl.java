@@ -74,6 +74,16 @@ public class TsOrganServiceImpl extends BaseServiceImpl<TsOrganBO,String> implem
 
 		}
 
+
+		try {
+			if(StringUtils.isEmpty(tsOrganBO.getOrganStatusName()) && StringUtils.isNotEmpty(tsOrganBO.getOrganStatus()) ) {
+				String dictName = tsDictService.getDictName(tsOrganBO.getOrganStatus(),EnumDictType.ORGAN_STATUS.getVal());
+				tsOrganBO.setOrganStatusName(dictName);
+			}
+		}catch(Exception e){
+
+		}
+
 		if(StringUtils.isNotEmpty( tsOrganBO.getLeadUserId())){
 			TsUserBO temp = tsUserDAO.selectById( tsOrganBO.getLeadUserId() );
 			if(temp != null){
@@ -123,7 +133,7 @@ public class TsOrganServiceImpl extends BaseServiceImpl<TsOrganBO,String> implem
 
 
 
-		String[] dictTypes = new String[]{EnumDictType.ORGAN_TYPE.getVal()};
+		String[] dictTypes = new String[]{EnumDictType.ORGAN_TYPE.getVal(),EnumDictType.ORGAN_STATUS.getVal()};
 		Map<String , TsDictBO> dictMap = tsDictService.allDict(dictTypes);
 
 		tsOrganBOs.forEach(tsOrganBO -> {
@@ -131,6 +141,13 @@ public class TsOrganServiceImpl extends BaseServiceImpl<TsOrganBO,String> implem
 				TsDictBO dict = dictMap.get(EnumDictType.ORGAN_TYPE.getVal() + tsOrganBO.getOrganType());
 				if(dict != null) {
 					tsOrganBO.setOrganTypeName(dict.getDictName());
+				}
+			}
+
+			if(StringUtils.isEmpty(tsOrganBO.getOrganStatusName()) && StringUtils.isNotEmpty(tsOrganBO.getOrganStatus()) ) {
+				TsDictBO dict = dictMap.get(EnumDictType.ORGAN_STATUS.getVal() + tsOrganBO.getOrganStatus());
+				if(dict != null) {
+					tsOrganBO.setOrganStatusName(dict.getDictName());
 				}
 			}
 		});

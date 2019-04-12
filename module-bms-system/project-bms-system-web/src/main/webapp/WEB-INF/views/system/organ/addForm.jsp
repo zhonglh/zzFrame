@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/views/common/taglibs.jspf" %>
-<bms:contentHeader title="zz1" />
+<bms:contentHeader title="zz" />
 
 
 
@@ -143,7 +143,7 @@
 
                                             <c:if test="${ !fn.indexOf(queryString,'leadUserId') }">
                                             <input type="hidden" name="leadUserId" id="leadUserId" value="${ m.leadUserId }" >
-                                            <input type="text" name="leadUserName" id="leadUserName" value="${ m.leadUserName }" required="required" class="form-control input-sm leadUserName " placeholder="请选择负责人" style="width: 150px; cursor: pointer;" readonly="readonly">
+                                            <input type="text" name="leadUserName" id="leadUserName" value="${ m.leadUserName }"  class="form-control input-sm leadUserName " placeholder="请选择负责人" style="width: 150px; cursor: pointer;" readonly="readonly">
 
                                             <div class="input-group-btn">
                                                 <button type="button"  class="btn btn-primary btn-sm leadUserName">

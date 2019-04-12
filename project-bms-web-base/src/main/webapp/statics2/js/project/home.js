@@ -366,7 +366,7 @@ function initMenu()
     // 左侧导航菜单
     $(window).on("load",function()
     {
-        debugger;
+
         addMenuEvent();
         // 菜单区域添加滚动条效果
         $(".menu").mCustomScrollbar(
@@ -382,7 +382,7 @@ function initMenu()
 function addMenuEvent()
 {
 
-    debugger;
+
     var $lis = $(".menu li");
     for (var i = 0; i < $lis.length; i++)
     {
@@ -415,7 +415,7 @@ function addMenuEvent()
         if (_hasChild == '1')
         {
             var children = $this.siblings('[parentNodeNo=\'' + _thisMenuNo + '\']');
-            debugger;
+
             // 菜单展开合并
             if ($this.find("a").hasClass('right-arrow'))
             {

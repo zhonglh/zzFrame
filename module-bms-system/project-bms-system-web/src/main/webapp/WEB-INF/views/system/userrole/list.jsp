@@ -2,37 +2,18 @@
 <%@include file="/WEB-INF/views/common/taglibs.jspf" %>
 <bms:contentHeader title="zz1" />
 
-
-
 <div region='north'>
     <div class="navigation">
-
-
         <span class="words"><a>${ breadcrumb }</a></span>
-
-
     </div>
+    
     <div id="content-sec" style="padding: 10px 10px 0 10px;">
         <!-- 筛选条件表单开始 -->
         <form id="searchForm" onsubmit="return false" >
 
-
-
-
-
-
-
-
-
         </form>
 
-
-
-
         <div class="btn-bar" style="margin-left: -10px;">
-
-
-
                 <shiro:hasPermission name="system.userrole:add">
                     <button type="button" class="btn btn-primary btn-sm" onclick="toAdd()">
                         <svg class="icon" aria-hidden="true">
@@ -41,10 +22,6 @@
                         <span>新增 </span>
                     </button>
                 </shiro:hasPermission>
-
-
-
-
                 <shiro:hasPermission name="system.userrole:delete">
                     <button type="button" class="btn btn-primary btn-sm" onclick="doDelete()">
                         <svg class="icon" aria-hidden="true">
@@ -54,17 +31,8 @@
                     </button>
                 </shiro:hasPermission>
 
-
-
-
-
-
         </div>
-
-
-
     </div>
-
 </div>
 
 <div region='center' style="padding: 0px 10px 0 10px;">
@@ -73,29 +41,18 @@
         <thead>
         <tr>
             <th field="ck" checkbox="true"></th>
-
             <th field='userName' align="left" width="1" sortable='false' formatter='titleFmt' >用户</th>
             <th field='roleName' align="left" width="1" sortable='false'  >角色</th>
-
         </tr>
         </thead>
     </table>
 </div>
 
-
-
-
 <script>
     var tableid = "tableData-${ tableId }";
-
-
     var queryString = "${ queryString }";
-
     var listUrl = "";
-
 </script>
-
-
 
 <bms:contentJS />
 

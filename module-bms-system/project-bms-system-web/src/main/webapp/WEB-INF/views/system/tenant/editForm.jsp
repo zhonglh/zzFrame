@@ -26,89 +26,52 @@
                             <col style="width: 35%" />
                         </colgroup>
 
-
+                        <tbody>
                                 <tr>
-
                                     <th>企业名称<font color="red">*</font></th>
-
                                     <td class="fd_tenantName">
-                                            ${ m.tenantName }
-
-
+                                        <c:out value="${ m.tenantName }" escapeXml="true"/>
                                     </td>
-
                                     <th>企业编号<font color="red">*</font></th>
-
-                                    <td>
-                                            ${ m.tenantCode }
+                                    <td class="fd_tenantName">
+                                        <c:out value="${ m.tenantCode }" escapeXml="true"/>
                                     </td>
-
-
                                 </tr>
 
-
                                 <tr>
-
                                     <th>企业地址</th>
-
                                     <td class="fd_tenantAddr">
-                                            ${ m.tenantAddr }
-
-
+                                        <c:out value="${ m.tenantAddr }" escapeXml="true"/>
                                     </td>
-
                                     <th>联系电话</th>
-
-                                    <td>
-                                            ${ m.linkTel }
+                                    <td class="fd_tenantAddr">
+                                        <c:out value="${ m.linkTel }" escapeXml="true"/>
                                     </td>
-
-
                                 </tr>
 
-
                                 <tr>
-
                                     <th>法人姓名</th>
-
                                     <td class="fd_leadUserName">
-                                            ${ m.leadUserName }
-
-
+                                        <c:out value="${ m.leadUserName }" escapeXml="true"/>
                                     </td>
-
                                     <th>LOGO</th>
-
-                                    <td>
-                                            ${ m.logoFile }
+                                    <td class="fd_leadUserName">
+                                        <c:out value="${ m.logoFile }" escapeXml="true"/>
                                     </td>
-
-
                                 </tr>
-
 
                                 <tr>
-
                                     <th>官网</th>
-
                                     <td class="fd_website">
-                                            ${ m.website }
-
-
+                                        <c:out value="${ m.website }" escapeXml="true"/>
                                     </td>
-
                                     <th>说明</th>
-
-                                    <td>
-                                            ${ m.remark }
+                                    <td class="fd_website">
+                                        <c:out value="${ m.remark }" escapeXml="true"/>
                                     </td>
-
-
                                 </tr>
 
-
-
-
+                        </tbody>
                     </table>
                 </div>
 
@@ -126,174 +89,75 @@
                         <tbody>
 
                                 <tr>
-
                                     <th>企业名称<font color="red">*</font></th>
-
                                     <td>
-
-
-                                                <input type="text" required="required" class="form-control input-sm required"
-                                                       placeholder="请输入企业名称" autocomplete="off"
-                                                       value="${ m.tenantName }" id="tenantName" name="tenantName"
-                                                           maxlength="150"  />
-
-
-
+                                            <input type="text" required="required" class="form-control input-sm required"
+                                                   placeholder="请输入企业名称" autocomplete="off"
+                                                   value="${ m.tenantName }" id="tenantName" name="tenantName"
+                                                       maxlength="150"  />
                                     </td>
-
-
-
-                                        <th>企业编号<font color="red">*</font></th>
-
-                                        <td>
-
-
-
-
-
-                                                    <input type="text" required="required" class="form-control input-sm required"
-                                                           placeholder="请输入企业编号" autocomplete="off"
-                                                           value="${ m.tenantCode }" id="tenantCode" name="tenantCode"
-                                                               maxlength="4"  />
-
-
-
-
-                                        </td>
-
-
+                                    <th>企业编号<font color="red">*</font></th>
+                                    <td>
+                                            <input type="text" required="required" class="form-control input-sm required"
+                                                   placeholder="请输入企业编号" autocomplete="off"
+                                                   value="${ m.tenantCode }" id="tenantCode" name="tenantCode"
+                                                       maxlength="4"  />
+                                    </td>
                                 </tr>
 
-
                                 <tr>
-
                                     <th>企业地址</th>
-
                                     <td>
-
-
-                                                <input type="text"  class="form-control input-sm "
-                                                       placeholder="请输入企业地址" autocomplete="off"
-                                                       value="${ m.tenantAddr }" id="tenantAddr" name="tenantAddr"
-                                                           maxlength="200"  />
-
-
-
+                                            <input type="text"  class="form-control input-sm "
+                                                   placeholder="请输入企业地址" autocomplete="off"
+                                                   value="${ m.tenantAddr }" id="tenantAddr" name="tenantAddr"
+                                                       maxlength="200"  />
                                     </td>
-
-
-
-                                        <th>联系电话</th>
-
-                                        <td>
-
-
-
-
-
-                                                    <input type="text"  class="form-control input-sm "
-                                                           placeholder="请输入联系电话" autocomplete="off"
-                                                           value="${ m.linkTel }" id="linkTel" name="linkTel"
-                                                               maxlength="20"  />
-
-
-
-
-                                        </td>
-
-
+                                    <th>联系电话</th>
+                                    <td>
+                                            <input type="text"  class="form-control input-sm "
+                                                   placeholder="请输入联系电话" autocomplete="off"
+                                                   value="${ m.linkTel }" id="linkTel" name="linkTel"
+                                                       maxlength="20"  />
+                                    </td>
                                 </tr>
 
-
                                 <tr>
-
                                     <th>法人姓名</th>
-
                                     <td>
-
-
-                                                <input type="text"  class="form-control input-sm "
-                                                       placeholder="请输入法人姓名" autocomplete="off"
-                                                       value="${ m.leadUserName }" id="leadUserName" name="leadUserName"
-                                                           maxlength="50"  />
-
-
-
+                                            <input type="text"  class="form-control input-sm "
+                                                   placeholder="请输入法人姓名" autocomplete="off"
+                                                   value="${ m.leadUserName }" id="leadUserName" name="leadUserName"
+                                                       maxlength="50"  />
                                     </td>
-
-
-
-                                        <th>LOGO</th>
-
-                                        <td>
-
-
-
-
-
-
-
-
-                                        </td>
-
-
+                                    <th>LOGO</th>
+                                    <td>
+                                    </td>
                                 </tr>
-
 
                                 <tr>
-
                                     <th>官网</th>
-
                                     <td>
-
-
-                                                <input type="text"  class="form-control input-sm "
-                                                       placeholder="请输入官网" autocomplete="off"
-                                                       value="${ m.website }" id="website" name="website"
-                                                           maxlength="200"  />
-
-
-
+                                            <input type="text"  class="form-control input-sm "
+                                                   placeholder="请输入官网" autocomplete="off"
+                                                   value="${ m.website }" id="website" name="website"
+                                                       maxlength="200"  />
                                     </td>
-
-
-
-                                        <th>说明</th>
-
-                                        <td>
-
-
-
-
-
-
-                                                    <div class="info-detail">
+                                    <th>说明</th>
+                                    <td>
+                                            <div class="info-detail">
                                                 <textarea  class="form-control input-sm  "
-                                                          name="remark" placeholder="请输入说明，2000字以内" maxlength="2000" rows="4">${ m.remark }</textarea>
-                                                    </div>
-
-
-
-
-
-
-                                        </td>
-
-
+                                                  name="remark" placeholder="请输入说明，2000字以内" maxlength="2000" rows="4">${ m.remark }</textarea>
+                                            </div>
+                                    </td>
                                 </tr>
-
-
 
                         </tbody>
-
-
                     </table>
                 </form>
             </div>
 
             <div style="margin-top:10px;position:absolute;" align="center" id="toolBar">
-
-
 
                 <shiro:hasPermission name="system.user:update">
                     <button type="button" class="btn btn-primary btn-sm btn-showEdit" onclick="switchEditDetail()">
@@ -333,22 +197,11 @@
     </div>
 </div>
 
-
-
-
-
 <script>
-
-
     //显示模式   明细/编辑
     var showMode = "detail";
-
     var queryString = "${ queryString }";
 </script>
-
-
-
-
 
 <bms:contentJS />
 
@@ -356,17 +209,10 @@
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
 
 
-
-
-
 <script language="JavaScript">
 
-
     $(function() {
-
-
     });
-
 
 </script>
 

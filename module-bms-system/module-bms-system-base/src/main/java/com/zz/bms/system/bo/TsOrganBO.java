@@ -36,9 +36,18 @@ public class TsOrganBO extends TsOrganEntity implements Serializable , IBoEntity
 
     @TableField(exist = false)
     @EntityAttrDictAnnotation(group = "organType", groupName = "机构类型" ,  dbColumnName = "dict_name" , dbColumnLength = 50 , isNameField = true , dictType = "organ_type")
-    @EntityAttrExcelAnnotation(excelProcess= "3")
+    @EntityAttrExcelAnnotation(excelProcess= "2")
     @EntityAttrPageAnnotation(title = "机构类型",sort = 401                      ,required=true )
     private String organTypeName ;
+
+
+
+
+    @TableField(exist = false)
+    @EntityAttrDictAnnotation(group = "organStatus", groupName = "机构状态" ,  dbColumnName = "dict_name" , dbColumnLength = 50 , isNameField = true , dictType = "organ_status")
+    @EntityAttrExcelAnnotation(excelProcess= "2")
+    @EntityAttrPageAnnotation(title = "机构状态",sort = 701                      ,required=true )
+    private String organStatusName;
 
 
 
@@ -66,8 +75,13 @@ public class TsOrganBO extends TsOrganEntity implements Serializable , IBoEntity
         return this.leadUserName;
     }
 
+    public String getOrganStatusName() {
+        return organStatusName;
+    }
 
-
+    public void setOrganStatusName(String organStatusName) {
+        this.organStatusName = organStatusName;
+    }
 
     public EasyUiTree toEasyUiTree(){
         EasyUiTree tree = new EasyUiTree();

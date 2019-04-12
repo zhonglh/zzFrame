@@ -94,7 +94,7 @@
 
         queryString = "dictTypeId="+ $(this).attr("data-typeid");
 
-        debugger
+
 
         var url = ctx+dataUrl+"/toList?dictTypeId="+ $(this).attr("data-typeid");
 
