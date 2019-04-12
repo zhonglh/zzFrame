@@ -555,7 +555,7 @@ values (
 'TsDict' ,
 'bbf60ee1da044f959bc99b3a1406c930' ,
 11 ,
-'/system/dict/toList' ,
+'/system/dict/index' ,
 '字典信息',
 null,
 null,
