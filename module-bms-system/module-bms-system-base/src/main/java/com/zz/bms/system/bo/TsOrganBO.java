@@ -59,6 +59,14 @@ public class TsOrganBO extends TsOrganEntity implements Serializable , IBoEntity
 
 
 
+    @TableField(exist = false)
+    @EntityAttrFkAnnotation(group = "pid",  groupName = "上级机构" ,   dbColumnName = "organ_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsOrganBO.class)
+    @EntityAttrExcelAnnotation(excelProcess= "3")
+    @EntityAttrPageAnnotation(title = "上级机构",sort = 501                      ,required=true )
+    private String pname ;
+
+
+
     public void setOrganTypeName(String organTypeName){
         this.organTypeName = organTypeName;
     }
