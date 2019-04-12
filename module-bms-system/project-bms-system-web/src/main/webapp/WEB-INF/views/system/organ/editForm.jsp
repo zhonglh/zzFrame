@@ -50,8 +50,13 @@
                                 <tr>
 
                                     <th>机构地址</th>
-                                    <td class="fd_organAddr" colspan="3">
+                                    <td class="fd_organAddr" >
                                         <c:out value="${ m.organAddr }" escapeXml="true"/>
+                                    </td>
+
+                                    <th>上级机构</th>
+                                    <td class="fd_pname" >
+                                        <c:out value="${ m.pname }" escapeXml="true"/>
                                     </td>
 
                                 </tr>
@@ -141,11 +146,40 @@
 
                                 <tr>
                                     <th>机构地址</th>
-                                    <td colspan="3">
+                                    <td colspan="1">
                                         <input type="text"  class="form-control input-sm "
                                                placeholder="请输入机构地址" autocomplete="off"
                                                value="${ m.organAddr }" id="organAddr" name="organAddr"
                                                maxlength="200"  />
+                                    </td>
+
+                                    <th>上级机构<font color="red">*</font></th>
+                                    <td>
+                                        <div class="input-group">
+                                            <c:if test="${ fn.indexOf(queryString,'pid') }">
+                                                <input type="text" class="form-control input-sm" name="pname" id="pname" value="${ m.pname }" readonly>
+                                            </c:if>
+                                            <c:if test="${ !fn.indexOf(queryString,'pid') }">
+                                                <input type="hidden" name="pid" id="pid" value="${ m.pid }" >
+                                                <input type="text" name="pname" id="pname" value="${ m.pname }" required="required" class="form-control input-sm pname " placeholder="请选择上级机构" style="width: 150px; cursor: pointer;" readonly="readonly">
+                                                <div class="input-group-btn">
+                                                    <button type="button"  class="btn btn-primary btn-sm pname">
+                                                        <svg class="icon" aria-hidden="true">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                 xlink:href="#icon-sousuo">
+                                                            </use>
+                                                        </svg>
+                                                    </button>
+                                                    <button type="button" id="clearPid"   class="btn btn-primary btn-sm">
+                                                        <svg class="icon" aria-hidden="true">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                 xlink:href="#icon-close">
+                                                            </use>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </c:if>
+                                        </div>
                                     </td>
 
                                 </tr>
