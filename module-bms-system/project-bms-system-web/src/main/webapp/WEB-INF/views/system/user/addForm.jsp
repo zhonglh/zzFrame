@@ -6,6 +6,7 @@
 <div style="padding:0 10px">
     <div class="row">
         <div class="col-xs-12 col-lg-12 col-md-12" style="padding-left: 0;padding-right: 0">
+
             <div class="block-each block-each-another">
                 <div class="block-tit">
                     <svg class="icon" aria-hidden="true">
@@ -110,6 +111,10 @@
                     </table>
                 </form>
             </div>
+
+
+
+
             <div style="margin-top:10px;position:absolute;">
 
 
@@ -130,6 +135,8 @@
                     <span>取 消</span>
                 </button>
             </div>
+
+
         </div>
     </div>
 </div>
@@ -180,7 +187,6 @@
 
 
     });
-
 
 
 </script>

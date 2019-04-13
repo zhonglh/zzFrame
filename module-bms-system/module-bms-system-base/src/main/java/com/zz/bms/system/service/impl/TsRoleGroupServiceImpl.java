@@ -29,6 +29,7 @@ public class TsRoleGroupServiceImpl extends BaseGroupServiceImpl<TsRoleGroupBO,S
     private TsRolePermitService rolePermitService;
 
 
+    private BaseService[] bss = null;
 
     /**
      * 此数组需要和 TsRoleGroupBO 对象对应
@@ -36,7 +37,6 @@ public class TsRoleGroupServiceImpl extends BaseGroupServiceImpl<TsRoleGroupBO,S
      */
     @Override
     public BaseService[] getServices() {
-        BaseService[] bss = null;
         if(bss == null) {
             bss = new BaseService[]{roleService,rolePermitService};
         }

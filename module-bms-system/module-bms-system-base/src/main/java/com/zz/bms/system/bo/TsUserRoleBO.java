@@ -33,16 +33,38 @@ public class TsUserRoleBO extends TsUserRoleEntity implements Serializable , IBo
     @TableField(exist = false)
     @EntityAttrFkAnnotation(group = "userId",  groupName = "用户" ,   dbColumnName = "user_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
     @EntityAttrExcelAnnotation(excelProcess= "3")
-    @EntityAttrPageAnnotation(title = "用户",sort = 201                      ,required=true )
+    @EntityAttrPageAnnotation(title = "用户名",sort = 201                      ,required=true )
     private String userName ;
 
 
 
     @TableField(exist = false)
+    @EntityAttrFkAnnotation(group = "userId",  groupName = "用户" ,   dbColumnName = "phone" , dbColumnType = "VARCHAR" , dbColumnLength = 11   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
+    @EntityAttrExcelAnnotation(excelProcess= "3")
+    @EntityAttrPageAnnotation(title = "手机号",sort = 202                      ,required=true )
+    private String userPhone ;
+
+
+
+    @TableField(exist = false)
+    @EntityAttrFkAnnotation(group = "userId",  groupName = "用户" ,   dbColumnName = "email" , dbColumnType = "VARCHAR" , dbColumnLength = 60   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
+    @EntityAttrExcelAnnotation(excelProcess= "3")
+    @EntityAttrPageAnnotation(title = "邮箱",sort = 203                      ,required=true )
+    private String userEmail ;
+
+
+    @TableField(exist = false)
     @EntityAttrFkAnnotation(group = "roleId",  groupName = "角色" ,   dbColumnName = "role_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsRoleBO.class)
     @EntityAttrExcelAnnotation(excelProcess= "3")
-    @EntityAttrPageAnnotation(title = "角色",sort = 301                      ,required=true )
+    @EntityAttrPageAnnotation(title = "角色名",sort = 301                      ,required=true )
     private String roleName ;
+
+
+    @TableField(exist = false)
+    @EntityAttrFkAnnotation(group = "roleId",  groupName = "角色" ,   dbColumnName = "role_code" , dbColumnType = "VARCHAR" , dbColumnLength = 20   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsRoleBO.class)
+    @EntityAttrExcelAnnotation(excelProcess= "3")
+    @EntityAttrPageAnnotation(title = "角色编码",sort = 302                      ,required=true )
+    private String roleCode ;
 
 
 
@@ -63,9 +85,29 @@ public class TsUserRoleBO extends TsUserRoleEntity implements Serializable , IBo
     }
 
 
+    public String getUserPhone() {
+        return userPhone;
+    }
 
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
 
+    public String getUserEmail() {
+        return userEmail;
+    }
 
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getRoleCode() {
+        return roleCode;
+    }
+
+    public void setRoleCode(String roleCode) {
+        this.roleCode = roleCode;
+    }
 
     @Override
     public boolean isTable() {

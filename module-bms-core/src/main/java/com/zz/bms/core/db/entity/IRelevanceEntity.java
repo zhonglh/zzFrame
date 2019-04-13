@@ -7,5 +7,6 @@ package com.zz.bms.core.db.entity;
  * 在批量修改时 ，将删除原有的数据， 再插入新的数据
  * @author zhonglh
  */
-    public interface IRelevanceEntity {
+public interface IRelevanceEntity {
+
 }

@@ -72,6 +72,7 @@ public class TsUserRoleServiceImpl extends BaseServiceImpl<TsUserRoleBO,String> 
 			TsRoleBO temp = tsRoleDAO.selectById( tsUserRoleBO.getRoleId() );
 			if(temp != null){
 				tsUserRoleBO.setRoleName(temp.getRoleName());
+				tsUserRoleBO.setRoleCode(temp.getRoleCode());
 			}
 		}
 
@@ -79,6 +80,8 @@ public class TsUserRoleServiceImpl extends BaseServiceImpl<TsUserRoleBO,String> 
 			TsUserBO temp = tsUserDAO.selectById( tsUserRoleBO.getUserId() );
 			if(temp != null){
 				tsUserRoleBO.setUserName(temp.getUserName());
+				tsUserRoleBO.setUserEmail(temp.getEmail());
+				tsUserRoleBO.setUserPhone(temp.getPhone());
 			}
 		}
 
@@ -119,6 +122,7 @@ public class TsUserRoleServiceImpl extends BaseServiceImpl<TsUserRoleBO,String> 
 					TsRoleBO temp = map.get( tsUserRoleBO.getRoleId() );
 					if(temp != null){
 						tsUserRoleBO.setRoleName(temp.getRoleName());
+						tsUserRoleBO.setRoleCode(temp.getRoleCode());
 					}
 				}
 			});
@@ -133,6 +137,8 @@ public class TsUserRoleServiceImpl extends BaseServiceImpl<TsUserRoleBO,String> 
 					TsUserBO temp = map.get( tsUserRoleBO.getUserId() );
 					if(temp != null){
 						tsUserRoleBO.setUserName(temp.getUserName());
+						tsUserRoleBO.setUserEmail(temp.getEmail());
+						tsUserRoleBO.setUserPhone(temp.getPhone());
 					}
 				}
 			});

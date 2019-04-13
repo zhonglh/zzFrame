@@ -39,7 +39,7 @@ public class TsDictController extends ZzDefaultSimpleController<TsDictBO, String
 	@Override
 	protected Wrapper buildQueryWrapper(TsDictQueryWebImpl query , TsDictBO m) {
 		QueryWrapper wrapper =   query.buildWrapper();
-		wrapper.orderByAsc("order_by");
+		wrapper.orderByAsc("orderby");
 		return wrapper;
 	}
 
