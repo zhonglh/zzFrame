@@ -154,19 +154,6 @@ public class TsRolePermitServiceImpl extends BaseServiceImpl<TsRolePermitBO,Stri
 	@Override
 	public void isExist(TsRolePermitBO tsRolePermitBO) {
 
-		TsRolePermitBO ckBO ;
-		TsRolePermitBO temp = null ;
-
-		ckBO = new TsRolePermitBO();
-		ckBO.setId( tsRolePermitBO.getId() );
-		ckBO.setPermitId(tsRolePermitBO.getPermitId());
-		ckBO.setRoleId(tsRolePermitBO.getRoleId());
-		temp = this.selectCheck(ckBO);
-		if (EntityUtil.isEntityExist(temp)) {
-			throw new BizException(EnumErrorMsg.business_error.getCode(),"    ");
-		}
-
-
 	}
 
 

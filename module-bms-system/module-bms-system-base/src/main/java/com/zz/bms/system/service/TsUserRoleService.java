@@ -9,6 +9,6 @@ import com.zz.bms.system.bo.TsUserRoleBO;
 * @author Administrator
 * @date 2019-4-10 11:08:54
 */
-public interface TsUserRoleService extends BaseService<TsUserRoleBO , String> {
+public interface TsUserRoleService extends BaseService<TsUserRoleBO , String>  {
 
 }

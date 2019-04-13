@@ -154,19 +154,6 @@ public class TsMenuPermitServiceImpl extends BaseServiceImpl<TsMenuPermitBO,Stri
 	@Override
 	public void isExist(TsMenuPermitBO tsMenuPermitBO) {
 
-		TsMenuPermitBO ckBO ;
-		TsMenuPermitBO temp = null ;
-
-		ckBO = new TsMenuPermitBO();
-		ckBO.setId( tsMenuPermitBO.getId() );
-		ckBO.setMenuId(tsMenuPermitBO.getMenuId());
-		ckBO.setPermitId(tsMenuPermitBO.getPermitId());
-		temp = this.selectCheck(ckBO);
-		if (EntityUtil.isEntityExist(temp)) {
-			throw new BizException(EnumErrorMsg.business_error.getCode(),"不能多次分配给该菜单");
-		}
-
-
 	}
 
 

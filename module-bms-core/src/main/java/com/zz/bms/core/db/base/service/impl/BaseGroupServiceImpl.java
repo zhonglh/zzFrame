@@ -3,6 +3,7 @@ package com.zz.bms.core.db.base.service.impl;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.enums.SqlMethod;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -17,6 +18,7 @@ import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.BaseService;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.EntityUtil;
+import com.zz.bms.core.db.entity.IRelevanceEntity;
 import com.zz.bms.core.db.entity.TableReference;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.BizException;
@@ -133,10 +135,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
 
         //组合表情况
         if(isGroup()) {
-            long startTime = System.currentTimeMillis();
             Field[] fs = ReflectionSuper.getFields(t);
-            long endTime = System.currentTimeMillis();
-            System.out.println("getfields times by :"+(endTime - startTime));
             int index = 1;
             for (Field f : fs){
                 f.setAccessible(true);
@@ -374,50 +373,76 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
             for (Field f : fs){
                 f.setAccessible(true);
                 Object val = ReflectionUtils.getField(f,entity);
-                if(val != null) {
-                    if (val instanceof Collection || val.getClass().isArray()){
-                        //一对多的子表
+                Object oldVal = ReflectionUtils.getField(f, oldEntity);
 
-                        Object oldVal = ReflectionUtils.getField(f,oldEntity);
 
-                        Collection cs = null;
-                        Collection oldCs = null;
-                        if(val.getClass().isArray()){
-                            cs = Arrays.asList(val);
-                            if(oldVal != null) {
-                                oldCs = Arrays.asList(oldVal);
-                            }
-                        }else {
-                            cs =  (Collection)val;
-                            if(oldVal != null ) {
-                                oldCs = (Collection) oldVal;
-                            }
+                Class realClass = null;
+                Collection cs = null;
+                Collection oldCs = null;
+                if(f.getType().isArray()){
+                    if(val != null) {
+                        cs = Arrays.asList(val);
+                    }
+                    if (oldVal != null) {
+                        oldCs = Arrays.asList(oldVal);
+                    }
+                    realClass = f.getType().getClass().getComponentType();
+                }else {
+                    if(val != null) {
+                        cs = (Collection) val;
+                    }
+                    if (oldVal != null) {
+                        oldCs = (Collection) oldVal;
+                    }
+                    realClass = GenericsHelper.getFieldGenericType(f);
+                }
+
+
+                if (f.getType().isArray() || ReflectionSuper.isAssignableFrom(Collection.class, f.getType())){
+                    //一对多的子表
+
+
+                    if(ReflectionSuper.isAssignableFrom(IRelevanceEntity.class,realClass)){
+                        //处理关联表情况
+                        GroupFieldAnnotation gf = f.getAnnotation(GroupFieldAnnotation.class);
+                        if(gf == null || gf.childTableColumnName() == null || StringUtils.isEmpty(gf.childTableColumnName())){
+                            throw EnumErrorMsg.code_error.toException();
                         }
-
-
-                        Collection[] array = EntityUtil.computeAddUpdateDelete(cs , oldCs);
-                        if(array != null){
-                            if(array[0] != null && !array[0].isEmpty()) {
-                                this.getServices()[index].saveBatch(array[0] , array[0].size());
-                            }
-                            if(array[1] != null && !array[1].isEmpty()) {
-                                this.getServices()[index].updateBatchById(array[1] , array[1].size());
-                            }
-                            if(array[2] != null && !array[2].isEmpty()) {
-                                this.getServices()[index].deletesByIds(array[2]);
-                            }
+                        QueryWrapper w = new QueryWrapper();
+                        w.eq(gf.childTableColumnName() , entity.getId());
+                        this.getServices()[index].remove(w);
+                        if(cs != null && !cs.isEmpty()) {
+                            this.getServices()[index].saveBatch(cs);
                         }
 
                     }else {
-                        //一对一的子表或者附表
-                        BaseEntity be = (BaseEntity<PK>)val;
-                        if(be.getId() == null || EntityUtil.isEmpty(be.getId())){
+                        Collection[] array = EntityUtil.computeAddUpdateDelete(cs, oldCs);
+                        if (array != null) {
+                            if (array[0] != null && !array[0].isEmpty()) {
+                                this.getServices()[index].saveBatch(array[0], array[0].size());
+                            }
+                            if (array[1] != null && !array[1].isEmpty()) {
+                                this.getServices()[index].updateBatchById(array[1], array[1].size());
+                            }
+                            if (array[2] != null && !array[2].isEmpty()) {
+                                this.getServices()[index].deletesByIds(array[2]);
+                            }
+                        }
+                    }
+
+
+                }else {
+                    //一对一的子表或者附表
+                    if(val != null) {
+                        BaseEntity be = (BaseEntity<PK>) val;
+                        if (be.getId() == null || EntityUtil.isEmpty(be.getId())) {
                             this.getServices()[index].save(be);
-                        }else {
+                        } else {
                             this.getServices()[index].updateById(be);
                         }
                     }
                 }
+
                 index ++ ;
             }
         }

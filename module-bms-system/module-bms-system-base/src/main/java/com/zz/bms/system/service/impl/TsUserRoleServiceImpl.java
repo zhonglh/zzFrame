@@ -153,20 +153,6 @@ public class TsUserRoleServiceImpl extends BaseServiceImpl<TsUserRoleBO,String> 
 
 	@Override
 	public void isExist(TsUserRoleBO tsUserRoleBO) {
-
-		TsUserRoleBO ckBO ;
-		TsUserRoleBO temp = null ;
-
-		ckBO = new TsUserRoleBO();
-		ckBO.setId( tsUserRoleBO.getId() );
-		ckBO.setRoleId(tsUserRoleBO.getRoleId());
-		ckBO.setUserId(tsUserRoleBO.getUserId());
-		temp = this.selectCheck(ckBO);
-		if (EntityUtil.isEntityExist(temp)) {
-			throw new BizException(EnumErrorMsg.business_error.getCode(),"    ");
-		}
-
-
 	}
 
 

@@ -282,7 +282,7 @@ public abstract class BaseController<PK extends Serializable> {
 
         String queryString = request.getQueryString();
         String inAllPage = request.getParameter("inAllPage");
-        if(inAllPage != null) {
+        if(inAllPage == null) {
             inAllPage = "";
         }
 

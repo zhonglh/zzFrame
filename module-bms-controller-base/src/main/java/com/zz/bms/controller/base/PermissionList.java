@@ -49,12 +49,12 @@ public class PermissionList implements Serializable {
 
         permissionList.resourceIdentity = resourceIdentity;
 
-        permissionList.resourcePermissions.put(CREATE_PERMISSION, resourceIdentity + ":" + CREATE_PERMISSION);
-        permissionList.resourcePermissions.put(UPDATE_PERMISSION, resourceIdentity + ":" + UPDATE_PERMISSION);
-        permissionList.resourcePermissions.put(DELETE_PERMISSION, resourceIdentity + ":" + DELETE_PERMISSION);
-        permissionList.resourcePermissions.put(VIEW_PERMISSION, resourceIdentity + ":" + VIEW_PERMISSION);
-        permissionList.resourcePermissions.put(IMPORT_PERMISSION, resourceIdentity + ":" + IMPORT_PERMISSION);
-        permissionList.resourcePermissions.put(EXPORT_PERMISSION, resourceIdentity + ":" + EXPORT_PERMISSION);
+        permissionList.resourcePermissions.put( resourceIdentity + ":" + CREATE_PERMISSION      , CREATE_PERMISSION);
+        permissionList.resourcePermissions.put( resourceIdentity + ":" + UPDATE_PERMISSION      ,UPDATE_PERMISSION);
+        permissionList.resourcePermissions.put( resourceIdentity + ":" + DELETE_PERMISSION      ,DELETE_PERMISSION);
+        permissionList.resourcePermissions.put( resourceIdentity + ":" + VIEW_PERMISSION        ,VIEW_PERMISSION);
+        permissionList.resourcePermissions.put( resourceIdentity + ":" + IMPORT_PERMISSION      ,IMPORT_PERMISSION);
+        permissionList.resourcePermissions.put( resourceIdentity + ":" + EXPORT_PERMISSION      ,EXPORT_PERMISSION);
 
         return permissionList;
     }
@@ -96,6 +96,17 @@ public class PermissionList implements Serializable {
     }
 
 
+    public String getPermission(String permission){
+        for(String key : resourcePermissions.keySet()){
+            String val = resourcePermissions.get(key);
+            if(val.equals(permission) ){
+                return key;
+            }
+        }
+        return null;
+    }
+
+
     /**
      * 即增删改中的任何一个即可
      */
@@ -115,7 +126,7 @@ public class PermissionList implements Serializable {
         if (StringUtils.isEmpty(errorCode)) {
             errorCode = getDefaultErrorCode();
         }
-        String resourcePermission = resourcePermissions.get(permission);
+        String resourcePermission = getPermission(permission);
         if (resourcePermission == null) {
             resourcePermission = this.resourceIdentity + ":" + permission;
         }
@@ -123,6 +134,8 @@ public class PermissionList implements Serializable {
         checkPermission(resourcePermission , errorCode);
 
     }
+
+
 
     /**
      * 检查是否有权限
@@ -151,7 +164,7 @@ public class PermissionList implements Serializable {
         Subject subject = SecurityUtils.getSubject();
 
         for (String permission : permissions) {
-            String resourcePermission = resourcePermissions.get(permission);
+            String resourcePermission = getPermission(permission);
             if (resourcePermission == null) {
                 resourcePermission = this.resourceIdentity + ":" + permission;
             }
@@ -181,7 +194,7 @@ public class PermissionList implements Serializable {
         Subject subject = SecurityUtils.getSubject();
 
         for (String permission : permissions) {
-            String resourcePermission = resourcePermissions.get(permission);
+            String resourcePermission = getPermission(permission);
             if (resourcePermission == null) {
                 resourcePermission = this.resourceIdentity + ":" + permission;
             }
@@ -203,7 +216,7 @@ public class PermissionList implements Serializable {
 
         Subject subject = SecurityUtils.getSubject();
 
-        for (String resourcePermission : resourcePermissions.values()) {
+        for (String resourcePermission : resourcePermissions.keySet()) {
             if (subject.isPermitted(resourcePermission)) {
                 return;
             }
@@ -213,10 +226,9 @@ public class PermissionList implements Serializable {
     }
 
 
-
-
-
-
+    public Map<String, String> getResourcePermissions() {
+        return resourcePermissions;
+    }
 
     private String getDefaultErrorCode() {
         return "no.permission";

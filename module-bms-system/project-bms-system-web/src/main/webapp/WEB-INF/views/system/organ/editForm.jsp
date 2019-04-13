@@ -153,7 +153,7 @@
                                                maxlength="200"  />
                                     </td>
 
-                                    <th>上级机构<font color="red">*</font></th>
+                                    <th>上级机构</th>
                                     <td>
                                         <div class="input-group">
                                             <c:if test="${ fn.indexOf(queryString,'pid') }">
@@ -161,7 +161,7 @@
                                             </c:if>
                                             <c:if test="${ !fn.indexOf(queryString,'pid') }">
                                                 <input type="hidden" name="pid" id="pid" value="${ m.pid }" >
-                                                <input type="text" name="pname" id="pname" value="${ m.pname }" required="required" class="form-control input-sm pname " placeholder="请选择上级机构" style="cursor: pointer;" readonly="readonly">
+                                                <input type="text" name="pname" id="pname" value="${ m.pname }"  class="form-control input-sm pname " placeholder="请选择上级机构" style="cursor: pointer;" readonly="readonly">
                                                 <div class="input-group-btn">
                                                     <button type="button"  class="btn btn-primary btn-sm pname">
                                                         <svg class="icon" aria-hidden="true">

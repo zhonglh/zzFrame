@@ -194,23 +194,14 @@
 
 
 
-                                        <th>菜单地址</th>
+                                    <th>菜单地址</th>
 
-                                        <td>
-
-
-
-
-
-                                                    <input type="text" required="required" class="form-control input-sm"
-                                                           placeholder="请输入菜单地址" autocomplete="off"
-                                                           value="${ m.menuUrl }" id="menuUrl" name="menuUrl"
-                                                               maxlength="200"  />
-
-
-
-
-                                        </td>
+                                    <td>
+                                                <input type="text"  class="form-control input-sm"
+                                                       placeholder="请输入菜单地址" autocomplete="off"
+                                                       value="${ m.menuUrl }" id="menuUrl" name="menuUrl"
+                                                           maxlength="200"  />
+                                    </td>
 
 
                                 </tr>
@@ -232,86 +223,45 @@
 
                                     </td>
 
-
-
-                                        <th>菜单图标</th>
-
-                                        <td>
-
-
-
-
-
-                                                    <input type="text"  class="form-control input-sm "
-                                                           placeholder="请输入菜单图标" autocomplete="off"
-                                                           value="${ m.menuIcon }" id="menuIcon" name="menuIcon"
-                                                               maxlength="20"  />
-
-
-
-
-                                        </td>
-
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <th>跳转目标</th>
+                                    <th>菜单图标</th>
 
                                     <td>
+                                                <input type="text"  class="form-control input-sm "
+                                                       placeholder="请输入菜单图标" autocomplete="off"
+                                                       value="${ m.menuIcon }" id="menuIcon" name="menuIcon"
+                                                           maxlength="20"  />
+                                    </td>
+                                </tr>
 
-
+                                <tr>
+                                    <th>跳转目标</th>
+                                    <td>
                                                 <input type="text"  class="form-control input-sm "
                                                        placeholder="请输入跳转目标" autocomplete="off"
                                                        value="${ m.menuRedirect }" id="menuRedirect" name="menuRedirect"
                                                            maxlength="50"  />
-
-
-
                                     </td>
 
 
-
-                                        <th>快捷菜单<font color="red">*</font></th>
-
-                                        <td>
-
-
-
-
-
-                                                    <select id="shortcut"  name="shortcut" required="required" >
-                                                        <option value="" ></option>
-                                                        <c:forEach items="${ yes_no_dicts }" var="dict">
-                                                            <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.shortcut }">selected</c:if>>${  dict.dictName }</option>
-                                                        </c:forEach>
-                                                    </select>
-
-
-
-                                        </td>
-
-
+                                    <th>快捷菜单<font color="red">*</font></th>
+                                    <td>
+                                                <select id="shortcut"  name="shortcut" required="required" >
+                                                    <option value="" ></option>
+                                                    <c:forEach items="${ yes_no_dicts }" var="dict">
+                                                        <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.shortcut }">selected</c:if>>${  dict.dictName }</option>
+                                                    </c:forEach>
+                                                </select>
+                                    </td>
                                 </tr>
 
 
-
-
                                 <tr>
-
                                     <th>备注</th>
-
                                     <td>
-
-
                                                 <input type="text"  class="form-control input-sm "
                                                        placeholder="请输入备注" autocomplete="off"
                                                        value="${ m.remark }" id="remark" name="remark"
                                                            maxlength="200"  />
-
-
 
                                     </td>
 

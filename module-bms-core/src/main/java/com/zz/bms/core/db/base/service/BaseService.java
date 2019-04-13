@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
+ * 总的基础接口
  * @author Administrator
  */
 public interface BaseService<T extends BaseEntity, PK extends Serializable> extends IService<T> {

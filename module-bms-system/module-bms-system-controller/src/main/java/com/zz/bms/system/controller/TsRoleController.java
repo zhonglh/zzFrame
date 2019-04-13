@@ -98,34 +98,16 @@ public class TsRoleController extends ZzGroupDefaultController<TsRoleGroupBO, Ts
      */
     @Override
     protected void gatherUpdateInformation(TsRoleGroupBO m, ModelMap model , ILoginUserEntity<String> sessionUserVO, HttpServletRequest request, HttpServletResponse response){
+
         String permitIds = request.getParameter("permitIds");
         if(StringUtils.isNotEmpty(permitIds) && (  m.getRolePermitBOList() == null || m.getRolePermitBOList().isEmpty()  ) ){
             String[] permitIdArray = permitIds.split( EnumSymbol.COMMA.getCode() );
-
-            TsRolePermitQuery<String> rolePermitQuery = new TsRolePermitQueryImpl<String>();
-            rolePermitQuery.roleId(m.getId());
-            //rolePermitQuery.permitIdIn(permitIds);
-
-            QueryWrapper rolePermitQueryWrapper = rolePermitQuery.buildWrapper();
-            List<TsRolePermitBO> list = rolePermitService.list(rolePermitQueryWrapper);
-            Map<String,TsRolePermitBO> map = new HashMap<String,TsRolePermitBO>();
-            if(list != null && !list.isEmpty()){
-                for(TsRolePermitBO temp : list){
-                    map.put(temp.getPermitId() , temp );
-                }
-            }
-
-
             List<TsRolePermitBO> rolePermitBOList = new ArrayList<TsRolePermitBO>();
             for(String permitId : permitIdArray){
-                TsRolePermitBO rolePermitBO = map.get(permitId);
-                if(rolePermitBO == null) {
-                    rolePermitBO = new TsRolePermitBO();
-                    rolePermitBO.setPermitId(permitId);
-                    rolePermitBO.setRoleId(m.getId());
-                    rolePermitBOList.add(rolePermitBO);
-                }
-
+                TsRolePermitBO rolePermitBO = new TsRolePermitBO();
+                rolePermitBO.setPermitId(permitId);
+                rolePermitBO.setRoleId(m.getId());
+                rolePermitBO.setId(IdUtils.getId());
                 rolePermitBOList.add(rolePermitBO);
             }
             m.setRolePermitBOList(rolePermitBOList);

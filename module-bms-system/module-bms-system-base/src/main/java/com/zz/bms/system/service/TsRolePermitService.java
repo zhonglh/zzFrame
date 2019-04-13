@@ -9,6 +9,6 @@ import com.zz.bms.system.bo.TsRolePermitBO;
 * @author Administrator
 * @date 2019-4-10 11:08:53
 */
-public interface TsRolePermitService extends BaseService<TsRolePermitBO , String> {
+public interface TsRolePermitService extends BaseService<TsRolePermitBO , String>  {
 
 }

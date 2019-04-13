@@ -1,6 +1,7 @@
 package com.zz.bms.system.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.zz.bms.core.db.entity.IRelevanceEntity;
 import com.zz.bms.util.configs.annotaions.*;
 
 import com.zz.bms.core.Constant;
@@ -11,7 +12,7 @@ import com.zz.bms.core.db.entity.BaseEntity;
  * @author Administrator
  * @date 2019-4-10 11:08:54
  */
-public class TsUserRoleEntity extends com.zz.bms.core.db.entity.BaseEntity<String> implements java.io.Serializable{
+public class TsUserRoleEntity extends com.zz.bms.core.db.entity.BaseEntity<String> implements java.io.Serializable , IRelevanceEntity {
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;

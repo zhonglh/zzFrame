@@ -89,7 +89,16 @@ public class BaseCommonController<PK extends Serializable> extends BaseControlle
     protected void setResourceIdentity(String resourceIdentity) {
         if (!org.springframework.util.StringUtils.isEmpty(resourceIdentity)) {
             this.resourceIdentity = resourceIdentity ;
-            permissionList = PermissionList.newPermissionList(resourceIdentity);
+            if(permissionList == null) {
+                permissionList = PermissionList.newPermissionList(resourceIdentity);
+            }else {
+                PermissionList temp = PermissionList.newPermissionList(resourceIdentity);
+                if(temp != null && temp.getResourcePermissions() != null && !temp.getResourcePermissions().isEmpty()) {
+                    for(Map.Entry<String, String> entry :  temp.getResourcePermissions().entrySet()) {
+                        permissionList.getResourcePermissions().put(entry.getKey(),entry.getValue());
+                    }
+                }
+            }
         }
     }
 

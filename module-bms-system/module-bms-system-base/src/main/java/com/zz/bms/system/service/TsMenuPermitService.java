@@ -9,6 +9,6 @@ import com.zz.bms.system.bo.TsMenuPermitBO;
 * @author Administrator
 * @date 2019-4-10 11:08:52
 */
-public interface TsMenuPermitService extends BaseService<TsMenuPermitBO , String> {
+public interface TsMenuPermitService extends BaseService<TsMenuPermitBO , String>  {
 
 }

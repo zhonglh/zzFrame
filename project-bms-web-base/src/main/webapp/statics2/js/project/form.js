@@ -17,8 +17,12 @@ function clearTime(time) {
 function closeWindow() {
     if(!isInAllPage()) {
         closeIframeWindow();
+    }else {
+        parent.closeIframeWindow();
     }
 }
+
+
 
 
 /**

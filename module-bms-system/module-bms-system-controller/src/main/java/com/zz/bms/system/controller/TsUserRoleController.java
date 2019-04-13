@@ -31,8 +31,15 @@ public class TsUserRoleController extends ZzDefaultSimpleController<TsUserRoleBO
 	@Autowired
 	private TsDictService tsDictService;
 
+	public TsUserRoleController(){
+		super();
+		this.setResourceIdentity("system.role");
+		this.setResourceIdentity("system.user");
+	}
+
 	@Override
 	public void setCustomInfoByInsert(TsUserRoleBO bo , ILoginUserEntity sessionUser){
+
 	}
 
 

@@ -9,7 +9,7 @@ public class EntityTest {
 
     @Test
     public void test(){
-        boolean b = BaseBusinessExEntity.class.isAssignableFrom(BaseEntity.class);
+        boolean b = BaseEntity.class.isAssignableFrom(BaseBusinessExEntity.class);
         System.out.println(b);
 
         b = BaseBusinessEntity.class.isAssignableFrom(BaseEntity.class);
