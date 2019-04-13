@@ -30,11 +30,11 @@
                                 <tr>
                                     <th>用户<font color="red">*</font></th>
                                     <td>
+                                        <c:if test="${ fn:indexOf(allQueryString,'&userId=')>=0 }">
+                                            <input type="text" class="form-control input-sm" name="userName" id="userName" value="${ m.userName }" readonly>
+                                        </c:if>
+                                        <c:if test="${ fn:indexOf(allQueryString,'&userId=')<0 }">
                                         <div class="input-group">
-                                            <c:if test="${ fn:indexOf(allQueryString,'&userId=')>=0 }">
-                                                <input type="text" class="form-control input-sm" name="userName" id="userName" value="${ m.userName }" readonly>
-                                            </c:if>
-                                            <c:if test="${ !fn:indexOf(allQueryString,'&userId=')<0 }">
                                             <input type="hidden" name="userId" id="userId" value="${ m.userId }">
                                             <input type="text" name="userName" id="userName" value="${ m.userName }" required="required" class="form-control input-sm userName " placeholder="请选择用户" style="cursor: pointer;" readonly="readonly">
                                             <div class="input-group-btn">
@@ -55,36 +55,36 @@
                                                     </svg>
                                                 </button>
                                             </div>
-                                            </c:if>
                                         </div>
+                                        </c:if>
                                     </td>
                                     <th>角色<font color="red">*</font></th>
                                     <td>
-                                        <div class="input-group">
                                         <c:if test="${ fn:indexOf(allQueryString,'&roleId=')>=0 }">
                                             <input type="text" class="form-control input-sm" name="roleName" id="roleName" value="${ m.roleName }" readonly>
                                         </c:if>
-                                        <c:if test="${ !fn:indexOf(allQueryString,'&roleId=')<0 }">
-                                        <input type="hidden" name="roleId" id="roleId" value="${ m.roleId }" >
-                                        <input type="text" name="roleName" id="roleName" value="${ m.roleName }" required="required" class="form-control input-sm roleName " placeholder="请选择角色" style="cursor: pointer;" readonly="readonly">
-                                        <div class="input-group-btn">
-                                            <button type="button"  class="btn btn-primary btn-sm roleName">
-                                                <svg class="icon" aria-hidden="true">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                         xlink:href="#icon-sousuo">
-                                                    </use>
-                                                </svg>
-                                            </button>
-                                            <button type="button" id="clearRoleId"   class="btn btn-primary btn-sm">
-                                                <svg class="icon" aria-hidden="true">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                         xlink:href="#icon-close">
-                                                    </use>
-                                                </svg>
-                                            </button>
+                                        <c:if test="${ fn:indexOf(allQueryString,'&roleId=')<0 }">
+                                        <div class="input-group">
+                                            <input type="hidden" name="roleId" id="roleId" value="${ m.roleId }" >
+                                            <input type="text" name="roleName" id="roleName" value="${ m.roleName }" required="required" class="form-control input-sm roleName " placeholder="请选择角色" style="cursor: pointer;" readonly="readonly">
+                                            <div class="input-group-btn">
+                                                <button type="button"  class="btn btn-primary btn-sm roleName">
+                                                    <svg class="icon" aria-hidden="true">
+                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                             xlink:href="#icon-sousuo">
+                                                        </use>
+                                                    </svg>
+                                                </button>
+                                                <button type="button" id="clearRoleId"   class="btn btn-primary btn-sm">
+                                                    <svg class="icon" aria-hidden="true">
+                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                             xlink:href="#icon-close">
+                                                        </use>
+                                                    </svg>
+                                                </button>
+                                            </div>
                                         </div>
                                         </c:if>
-                                        </div>
                                     </td>
                                 </tr>
                         </tbody>

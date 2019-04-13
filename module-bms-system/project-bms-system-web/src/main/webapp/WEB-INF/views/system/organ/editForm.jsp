@@ -116,31 +116,31 @@
 
                                     <th>负责人</th>
                                     <td >
+                                        <c:if test="${ fn:indexOf(allQueryString,'&leadUserId=')>=0 }">
+                                            <input type="text" class="form-control input-sm" name="leadUserName" value="${ m.leadUserName }" readonly>
+                                        </c:if>
+                                        <c:if test="${ fn:indexOf(allQueryString,'&leadUserId=')<0 }">
                                         <div class="input-group">
-                                            <c:if test="${ fn:indexOf(allQueryString,'&leadUserId=')>=0 }">
-                                                <input type="text" class="form-control input-sm" name="leadUserName" id="leadUserName" value="${ m.leadUserName }" readonly>
-                                            </c:if>
-                                            <c:if test="${ !fn:indexOf(allQueryString,'&leadUserId=')<0 }">
-                                                <input type="hidden" name="leadUserId" id="leadUserId" value="${ m.leadUserId }" >
-                                                <input type="text" name="leadUserName" id="leadUserName" value="${ m.leadUserName }" class="form-control input-sm leadUserName " placeholder="请选择负责人" style="cursor: pointer;" readonly="readonly">
-                                                <div class="input-group-btn">
-                                                    <button type="button"  class="btn btn-primary btn-sm leadUserName">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-sousuo">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
-                                                    <button type="button" id="clearLeadUserId"   class="btn btn-primary btn-sm">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-close">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            </c:if>
+                                            <input type="hidden" name="leadUserId" id="leadUserId" value="${ m.leadUserId }" >
+                                            <input type="text" name="leadUserName" id="leadUserName" value="${ m.leadUserName }" class="form-control input-sm leadUserName " placeholder="请选择负责人" style="cursor: pointer;" readonly="readonly">
+                                            <div class="input-group-btn">
+                                                <button type="button"  class="btn btn-primary btn-sm leadUserName">
+                                                    <svg class="icon" aria-hidden="true">
+                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                             xlink:href="#icon-sousuo">
+                                                        </use>
+                                                    </svg>
+                                                </button>
+                                                <button type="button" id="clearLeadUserId"   class="btn btn-primary btn-sm">
+                                                    <svg class="icon" aria-hidden="true">
+                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                             xlink:href="#icon-close">
+                                                        </use>
+                                                    </svg>
+                                                </button>
+                                            </div>
                                         </div>
+                                        </c:if>
                                     </td>
                                 </tr>
 
@@ -155,31 +155,31 @@
 
                                     <th>上级机构</th>
                                     <td>
+                                        <c:if test="${ fn:indexOf(allQueryString,'&pid=')>=0 }">
+                                            <input type="text" class="form-control input-sm" name="pname" id="pname" value="${ m.pname }" readonly>
+                                        </c:if>
+                                        <c:if test="${ fn:indexOf(allQueryString,'&pid=')<0 }">
                                         <div class="input-group">
-                                            <c:if test="${ fn:indexOf(allQueryString,'&pid=')>=0 }">
-                                                <input type="text" class="form-control input-sm" name="pname" id="pname" value="${ m.pname }" readonly>
-                                            </c:if>
-                                            <c:if test="${ !fn:indexOf(allQueryString,'&pid=')<0 }">
-                                                <input type="hidden" name="pid" id="pid" value="${ m.pid }" >
-                                                <input type="text" name="pname" id="pname" value="${ m.pname }"  class="form-control input-sm pname " placeholder="请选择上级机构" style="cursor: pointer;" readonly="readonly">
-                                                <div class="input-group-btn">
-                                                    <button type="button"  class="btn btn-primary btn-sm pname">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-sousuo">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
-                                                    <button type="button" id="clearPid"   class="btn btn-primary btn-sm">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-close">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            </c:if>
+                                            <input type="hidden" name="pid" id="pid" value="${ m.pid }" >
+                                            <input type="text" name="pname" id="pname" value="${ m.pname }"  class="form-control input-sm pname " placeholder="请选择上级机构" style="cursor: pointer;" readonly="readonly">
+                                            <div class="input-group-btn">
+                                                <button type="button"  class="btn btn-primary btn-sm pname">
+                                                    <svg class="icon" aria-hidden="true">
+                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                             xlink:href="#icon-sousuo">
+                                                        </use>
+                                                    </svg>
+                                                </button>
+                                                <button type="button" id="clearPid"   class="btn btn-primary btn-sm">
+                                                    <svg class="icon" aria-hidden="true">
+                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                             xlink:href="#icon-close">
+                                                        </use>
+                                                    </svg>
+                                                </button>
+                                            </div>
                                         </div>
+                                        </c:if>
                                     </td>
 
                                 </tr>

@@ -37,6 +37,10 @@
                         <tr>
                             <th>部门负责人</th>
                             <td>
+                                <c:if test="${ fn:indexOf(allQueryString,'&leadUserId=')>=0 }">
+                                    <input type="text" class="form-control input-sm" name="leadUserName" value="${ m.leadUserName }" readonly>
+                                </c:if>
+                                <c:if test="${ fn:indexOf(allQueryString,'&leadUserId=')<0 }">
                                 <div class="input-group">
                                     <input type="text"  id="leadUserName" name="leadUserName" class="form-control input-sm leadUserName"
                                            placeholder="请选择部门负责人" readonly="readonly">
@@ -54,9 +58,15 @@
                                         </button>
                                     </div>
                                 </div>
+                                </c:if>
                             </td>
                             <th>上级部门</th>
                             <td>
+
+                                <c:if test="${ fn:indexOf(allQueryString,'&pid=')>=0 }">
+                                    <input type="text" class="form-control input-sm" name="pname" id="pname" value="${ m.pname }" readonly>
+                                </c:if>
+                                <c:if test="${ fn:indexOf(allQueryString,'&pid=')<0 }">
                                 <div class="input-group">
                                     <input type="text"  id="pname" name="pname" value="${m.pname}" class="form-control input-sm  pname "
                                            placeholder="请选择上级部门" readonly="readonly" >
@@ -74,6 +84,7 @@
                                         </button>
                                     </div>
                                 </div>
+                                </c:if>
                             </td>
                         </tr>
 

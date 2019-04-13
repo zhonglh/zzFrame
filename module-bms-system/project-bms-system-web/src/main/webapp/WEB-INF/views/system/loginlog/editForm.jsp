@@ -8,6 +8,7 @@
 <div style="padding:0 10px">
     <div class="row">
         <div class="col-xs-12 col-lg-12 col-md-12" style="padding-left: 0;padding-right: 0">
+
             <div class="block-each block-each-another">
                 <div class="block-tit">
                     <svg class="icon" aria-hidden="true">
@@ -106,211 +107,6 @@
                     </table>
                 </div>
 
-
-                <form action="" method="post" class="form-auto-fill hide editForm" id="editForm" viewId="detailForm" formId="editForm">
-                    <input type="hidden" id="id" name="id" value="${ m.id }">
-                    <table class="info-table">
-                        <colgroup>
-                            <col style="width: 15%" />
-                            <col style="width: 35%" />
-                            <col style="width: 15%" />
-                            <col style="width: 35%" />
-                        </colgroup>
-
-                        <tbody>
-
-                                <tr>
-
-                                    <th>操作类型<font color="red">*</font></th>
-
-                                    <td>
-
-
-                                                <select id="operationType"  name="operationType" required="required" >
-                                                    <option value="" ></option>
-                                                    <c:forEach items="${ operation_type }" var="dict">
-                                                        <option value="${ dict.value }">${ dict.name}  }</option>
-                                                    </c:forEach>
-                                                </select>
-
-
-                                    </td>
-
-
-
-                                        <th>操作说明</th>
-
-                                        <td>
-
-
-
-
-
-                                                    <input type="text"  class="form-control input-sm "
-                                                           placeholder="请输入操作说明" autocomplete="off"
-                                                           value="${ m.operationlogName }" id="operationlogName" name="operationlogName"
-                                                               maxlength="100"  />
-
-
-
-
-                                        </td>
-
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <th>部门<font color="red">*</font></th>
-
-                                    <td>
-
-
-
-                                            <div class="input-group">
-
-                                                <c:if test="${ fn:indexOf(allQueryString,'&depId=')>=0 }">
-                                                    <input type="text" class="form-control input-sm" name="depName" id="depName" value="${ m.depName }" readonly>
-                                                </c:if>
-
-                                                <c:if test="${ !fn:indexOf(allQueryString,'&depId=')<0 }">
-                                                <input type="hidden" name="depId" id="depId" value="${ m.depId }">
-                                                <input type="text" name="depName" id="depName" value="${ m.depName }" required="required" class="form-control input-sm depName " placeholder="请选择部门" style="cursor: pointer;" readonly="readonly">
-
-                                                <div class="input-group-btn">
-                                                    <button type="button"
-                                                            class="btn btn-primary btn-sm depName">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-sousuo">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
-                                                    <button type="button" id="clearDepId"
-                                                            class="btn btn-primary btn-sm">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-close">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                                </c:if>
-                                            </div>
-
-
-
-                                    </td>
-
-
-
-                                        <th>机构<font color="red">*</font></th>
-
-                                        <td>
-
-
-
-
-
-                                                    <input type="text" required="required" class="form-control input-sm required"
-                                                           placeholder="请输入机构" autocomplete="off"
-                                                           value="${ m.organId }" id="organId" name="organId"
-                                                               maxlength="32"  />
-
-
-
-
-                                        </td>
-
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <th>操作人IP</th>
-
-                                    <td>
-
-
-                                                <input type="text"  class="form-control input-sm "
-                                                       placeholder="请输入操作人IP" autocomplete="off"
-                                                       value="${ m.operationIp }" id="operationIp" name="operationIp"
-                                                           maxlength="30"  />
-
-
-
-                                    </td>
-
-
-
-                                        <th>操作人名称<font color="red">*</font></th>
-
-                                        <td>
-
-
-
-
-
-                                                    <input type="text" required="required" class="form-control input-sm required"
-                                                           placeholder="请输入操作人名称" autocomplete="off"
-                                                           value="${ m.operationUserName }" id="operationUserName" name="operationUserName"
-                                                               maxlength="50"  />
-
-
-
-
-                                        </td>
-
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <th>操作时间<font color="red">*</font></th>
-
-                                    <td>
-
-
-
-                                                <div class="input-group">
-
-                                                    <input type="text" required="required" class="form-control input-sm required"
-                                                           placeholder="请输入操作时间" autocomplete="off"
-                                                           onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'operationTime'})
-                                                                   value="${ m.operationTime }" id="operationTime" name="operationTime" readonly   />
-
-                                                    <div class="input-group-btn">
-                                                        <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('operationTime').click()">
-                                                            <svg class="icon" aria-hidden="true">
-                                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-rili"></use>
-                                                            </svg>
-                                                        </button>
-                                                        <button type="button" class="btn btn-primary btn-sm" onclick="clearTime(OperationTime);">
-                                                            <svg class="icon" aria-hidden="true">
-                                                                <use  xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-
-                                                </div>
-
-
-
-                                    </td>
-
-
-
-                                </tr>
-
-
-                        </tbody>
-
-
-                    </table>
-                </form>
             </div>
 
             <div style="margin-top:10px;position:absolute;" align="center" id="toolBar">
@@ -351,6 +147,8 @@
                 </button>
 
             </div>
+
+
         </div>
     </div>
 </div>

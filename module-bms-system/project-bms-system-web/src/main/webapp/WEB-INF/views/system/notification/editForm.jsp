@@ -103,7 +103,7 @@
                                             <div class="input-group">
                                                 <input type="text" required="required" class="form-control input-sm required"
                                                        placeholder="请输入通知时间" autocomplete="off"
-                                                       onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'notifyTime'})
+                                                       onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'notifyTime'})"
                                                                value="${ m.notifyTime }" id="notifyTime" name="notifyTime" readonly   />
                                                 <div class="input-group-btn">
                                                     <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('notifyTime').click()">
