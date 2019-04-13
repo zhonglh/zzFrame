@@ -308,6 +308,9 @@ public abstract class   BaseGroupCURDController<
 
         setInit(m);
         customInfoByCreateForm(m , modelMap);
+
+        this.baseRwService.processResult(m);
+
         modelMap.addAttribute("m",  m);
         modelMap.addAttribute("entity", m);
 
@@ -385,12 +388,13 @@ public abstract class   BaseGroupCURDController<
         setCommonData(entity,modelMap);
 
         if(isInsert) {
+            entity = this.baseRwService.processResult(entity);
+            setInit(m);
             customInfoByCreateForm(entity, modelMap);
         }else{
             customInfoByUpdateForm(entity, modelMap);
         }
 
-        entity = this.baseRwService.processResult(entity);
 
         modelMap.addAttribute("m", entity);
         modelMap.addAttribute("entity", entity);

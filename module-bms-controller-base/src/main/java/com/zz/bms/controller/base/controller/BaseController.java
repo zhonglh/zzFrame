@@ -289,6 +289,7 @@ public abstract class BaseController<PK extends Serializable> {
         modelMap.addAttribute("inAllPage", inAllPage);
         if(StringUtils.isNotEmpty(queryString)) {
             modelMap.addAttribute("queryString", queryString);
+            modelMap.addAttribute("allQueryString", "&"+queryString);
             String[] queryArr = queryString.split("&");
             modelMap.addAttribute("queryArr", queryArr);
         }

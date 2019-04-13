@@ -170,11 +170,11 @@
 
                                             <div class="input-group">
 
-                                                <c:if test="${ fn.indexOf(queryString,'depId') }">
+                                                <c:if test="${ fn:indexOf(allQueryString,'&depId=')>=0 }">
                                                     <input type="text" class="form-control input-sm" name="depName" id="depName" value="${ m.depName }" readonly>
                                                 </c:if>
 
-                                                <c:if test="${ !fn.indexOf(queryString,'depId') }">
+                                                <c:if test="${ !fn:indexOf(allQueryString,'&depId=')<0 }">
                                                 <input type="hidden" name="depId" id="depId" value="${ m.depId }">
                                                 <input type="text" name="depName" id="depName" value="${ m.depName }" required="required" class="form-control input-sm depName " placeholder="请选择部门" style="cursor: pointer;" readonly="readonly">
 

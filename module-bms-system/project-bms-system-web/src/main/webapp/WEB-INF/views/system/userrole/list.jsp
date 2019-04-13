@@ -3,9 +3,12 @@
 <bms:contentHeader title="zz1" />
 
 <div region='north'>
+
+    <c:if test="${inAllPage == null || inAllPage != '1'}">
     <div class="navigation">
         <span class="words"><a>${ breadcrumb }</a></span>
     </div>
+    </c:if>
     
     <div id="content-sec" style="padding: 10px 10px 0 10px;">
         <!-- 筛选条件表单开始 -->
@@ -35,14 +38,24 @@
     </div>
 </div>
 
+
+
 <div region='center' style="padding: 0px 10px 0 10px;">
     <table id='tableData-${ tableId }' class='easyui-datagrid' method='post' fit='true' pagination='true' fitColumns="true"
            border='true' sortName="id" sortOrder="desc" style="width: 100%;">
         <thead>
         <tr>
             <th field="ck" checkbox="true"></th>
-            <th field='userName' align="left" width="1" sortable='false' formatter='titleFmt' >用户</th>
-            <th field='roleName' align="left" width="1" sortable='false'  >角色</th>
+            <c:if test="${ fn:indexOf(allQueryString,'&userId=')<0 }">
+            <th field='userName' align="left" width="1" sortable='false' formatter='titleFmt' >用户名</th>
+            <th field='userPhone' align="left" width="1" sortable='false' >手机号</th>
+            <th field='userEmail' align="left" width="1" sortable='false' >邮箱</th>
+            </c:if>
+
+            <c:if test="${ fn:indexOf(allQueryString,'&roleId=')<0  }">
+            <th field='roleName' align="left" width="1" sortable='false'  formatter='titleFmt'>角色名</th>
+            <th field='roleCode' align="left" width="1" sortable='false'  >角色编码</th>
+            </c:if>
         </tr>
         </thead>
     </table>
