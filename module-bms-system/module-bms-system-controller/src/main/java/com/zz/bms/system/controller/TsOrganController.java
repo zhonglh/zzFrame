@@ -41,7 +41,7 @@ public class TsOrganController extends ZzDefaultSimpleController<TsOrganBO, Stri
 	private TsDictService tsDictService;
 
 	@Override
-	public void setCustomInfoByInsert(TsOrganBO bo , ILoginUserEntity sessionUser){
+	public void setCustomInfoByInsert(TsOrganBO bo , ILoginUserEntity<String> sessionUser){
 
 		bo.setOrganStatus(EnumRoleStatus.normal.getVal());
 		bo.setOrganStatusName(EnumRoleStatus.normal.getLabel());

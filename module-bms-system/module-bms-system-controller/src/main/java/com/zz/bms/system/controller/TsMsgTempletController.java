@@ -41,7 +41,7 @@ public class TsMsgTempletController extends ZzDefaultSimpleController<TsMsgTempl
 	private TsDictService tsDictService;
 
 	@Override
-	public void setCustomInfoByInsert(TsMsgTempletBO bo , ILoginUserEntity sessionUser){
+	public void setCustomInfoByInsert(TsMsgTempletBO bo , ILoginUserEntity<String> sessionUser){
 		bo.setDepId((String)sessionUser.getDepId());
 		bo.setDepName(sessionUser.getDepName());
 		bo.setOrganId((String)sessionUser.getOrganId());

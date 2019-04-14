@@ -58,7 +58,7 @@ public class TsUserRoleController extends ZzDefaultSimpleController<TsUserRoleBO
 
 
 	@Override
-	public void setCustomInfoByInsert(TsUserRoleBO bo , ILoginUserEntity sessionUser){
+	public void setCustomInfoByInsert(TsUserRoleBO bo , ILoginUserEntity<String> sessionUser){
 
 	}
 

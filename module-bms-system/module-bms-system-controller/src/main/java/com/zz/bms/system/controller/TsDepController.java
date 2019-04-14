@@ -22,7 +22,7 @@ public class TsDepController extends ZzDefaultSimpleController<TsDepBO, String ,
 
 
 	@Override
-	public void setCustomInfoByInsert(TsDepBO tsDepBO , ILoginUserEntity sessionUser){
+	public void setCustomInfoByInsert(TsDepBO tsDepBO , ILoginUserEntity<String> sessionUser){
 		tsDepBO.setDepStatus(EnumDepStatus.normal.getVal());
 		tsDepBO.setDepStatusName(EnumDepStatus.normal.getLabel());
 

@@ -43,7 +43,7 @@ public class TsFileUseController extends ZzDefaultController<TsFileUseBO,VsFileU
 	private TsDictService tsDictService;
 
 	@Override
-	public void setCustomInfoByInsert(TsFileUseBO bo , ILoginUserEntity sessionUser){
+	public void setCustomInfoByInsert(TsFileUseBO bo , ILoginUserEntity<String> sessionUser){
 	}
 
 

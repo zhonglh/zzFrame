@@ -114,7 +114,7 @@ public abstract class BaseBusinessController<
      * 比如一些状态值， 比如有效状态， 在新增是如果在界面上没有设置，应该默认设置一个状态
      * @param m
      */
-    protected void setCustomInfoByInsert(RwModel m , ILoginUserEntity sessionUser){
+    protected void setCustomInfoByInsert(RwModel m , ILoginUserEntity<PK> sessionUser){
 
     }
 
@@ -138,7 +138,7 @@ public abstract class BaseBusinessController<
      * 更新时有特殊的值需要联动或定制，需要重载
      * @param m
      */
-    protected void setCustomInfoByUpdate(RwModel m, ILoginUserEntity sessionUser){
+    protected void setCustomInfoByUpdate(RwModel m, ILoginUserEntity<PK> sessionUser){
 
     }
 

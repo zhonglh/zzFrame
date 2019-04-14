@@ -43,7 +43,7 @@ public class TsMenuController extends ZzDefaultSimpleController<TsMenuBO, String
 	private TsDictService tsDictService;
 
 	@Override
-	public void setCustomInfoByInsert(TsMenuBO bo , ILoginUserEntity sessionUser){
+	public void setCustomInfoByInsert(TsMenuBO bo , ILoginUserEntity<String> sessionUser){
 	}
 
 	@Override

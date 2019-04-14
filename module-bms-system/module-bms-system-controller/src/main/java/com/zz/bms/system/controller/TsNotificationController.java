@@ -41,7 +41,7 @@ public class TsNotificationController extends ZzDefaultSimpleController<TsNotifi
 	private TsDictService tsDictService;
 
 	@Override
-	public void setCustomInfoByInsert(TsNotificationBO bo , ILoginUserEntity sessionUser){
+	public void setCustomInfoByInsert(TsNotificationBO bo , ILoginUserEntity<String> sessionUser){
 	}
 
 

@@ -41,7 +41,7 @@ public class TsTenantController extends ZzDefaultSimpleController<TsTenantBO, St
 	private TsDictService tsDictService;
 
 	@Override
-	public void setCustomInfoByInsert(TsTenantBO bo , ILoginUserEntity sessionUser){
+	public void setCustomInfoByInsert(TsTenantBO bo , ILoginUserEntity<String> sessionUser){
 	}
 
 

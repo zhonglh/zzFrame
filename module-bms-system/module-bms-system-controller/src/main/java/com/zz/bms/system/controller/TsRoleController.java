@@ -119,7 +119,7 @@ public class TsRoleController extends ZzGroupDefaultController<TsRoleGroupBO, Ts
      * @param m
      */
     @Override
-    protected void setCustomInfoByInsert(TsRoleGroupBO m , ILoginUserEntity sessionUser){
+    protected void setCustomInfoByInsert(TsRoleGroupBO m , ILoginUserEntity<String> sessionUser){
 
         m.setRoleStatus(EnumRoleStatus.normal.getVal());
         m.setRoleStatusName(EnumRoleStatus.normal.getLabel());

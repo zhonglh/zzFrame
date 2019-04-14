@@ -38,10 +38,10 @@ public class TsUserController extends ZzDefaultController<TsUserBO,VsUserBO, Str
 
 
 	@Override
-	public void setCustomInfoByInsert(TsUserBO tsUserBO , ILoginUserEntity sessionUser){
+	public void setCustomInfoByInsert(TsUserBO tsUserBO , ILoginUserEntity<String> sessionUser){
 		tsUserBO.setUserStatus(EnumUserStatus.normal.getVal());
 		tsUserBO.setUserStatusName(EnumUserStatus.normal.getLabel());
-		tsUserBO.setOrganId(organId);
+		tsUserBO.setOrganId(sessionUser.getOrganId());
 		tsUserBO.setPageLimit(100);
 		tsUserBO.setSystemAdmin(EnumYesNo.NO.getCode());
 		tsUserBO.setSystemAdminName(EnumYesNo.NO.getCode());

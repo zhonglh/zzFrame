@@ -35,7 +35,7 @@ public class TsLoginLogController extends ZzDefaultSimpleController<TsLoginLogBO
 	private TsDictService tsDictService;
 
 	@Override
-	public void setCustomInfoByInsert(TsLoginLogBO bo , ILoginUserEntity sessionUser){
+	public void setCustomInfoByInsert(TsLoginLogBO bo , ILoginUserEntity<String> sessionUser){
 	}
 
 	@Override
