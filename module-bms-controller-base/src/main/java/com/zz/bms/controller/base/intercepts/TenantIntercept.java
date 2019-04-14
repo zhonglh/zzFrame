@@ -48,6 +48,9 @@ public class TenantIntercept {
                         continue;
                     }else if (arg instanceof BaseEntity) {
                         EntityAnnotation ea = arg.getClass().getAnnotation(EntityAnnotation.class);
+                        if(ea == null){
+                            ea = arg.getClass().getSuperclass().getAnnotation(EntityAnnotation.class);
+                        }
                         if(ea != null && ea.haveTenant()) {
                             Serializable tenantId = loginUser.getTenantId();
                             BaseEntity be = (BaseEntity) arg;
@@ -67,6 +70,9 @@ public class TenantIntercept {
                             Object first = cs.toArray()[0];
                             if(first != null && first instanceof BaseEntity) {
                                 EntityAnnotation ea = first.getClass().getAnnotation(EntityAnnotation.class);
+                                if(ea == null){
+                                    ea = first.getClass().getSuperclass().getAnnotation(EntityAnnotation.class);
+                                }
                                 if (ea != null && ea.haveTenant()) {
                                     for (Object obj : cs) {
                                         BaseEntity be = (BaseEntity) obj;

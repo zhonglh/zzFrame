@@ -220,9 +220,7 @@ public class BaseCommonController<PK extends Serializable> extends BaseControlle
         if(entity == null || SerializableUtil.isEmpty(entity.getId())){
             throw EnumErrorMsg.code_error.toException();
         }
-        if(BusinessConfig.USE_TENANT && SerializableUtil.isEmpty(entity.getTenantId())){
-            throw EnumErrorMsg.code_error.toException();
-        }
+
 
         if(entity instanceof BaseBusinessEntity){
             BaseBusinessEntity businessEntity = (BaseBusinessEntity)entity;

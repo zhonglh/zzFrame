@@ -4,6 +4,7 @@ import com.zz.bms.util.configs.BusinessConfig;
 import com.zz.bms.core.Constant;
 import com.zz.bms.util.base.data.DateKit;
 import com.zz.bms.util.base.java.IdUtils;
+import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
@@ -145,8 +146,19 @@ public class EntityUtil {
         }
 
         Timestamp currDate_ = DateKit.getCurrentDate();
+        EntityAnnotation ea = be.getClass().getAnnotation(EntityAnnotation.class);
+        if(ea == null){
+            ea = be.getClass().getSuperclass().getAnnotation(EntityAnnotation.class);
+        }
         if(BusinessConfig.USE_TENANT) {
-            be.setTenantId(sessionUserVO.getTenantId());
+            if((ea != null && ea.haveTenant()) && isEmpty(be.getTenantId())) {
+                be.setTenantId(sessionUserVO.getTenantId());
+            }
+        }
+        if(BusinessConfig.USE_ORGAN) {
+            if(ea != null && ea.haveOrgan() && isEmpty(be.getOrganId())) {
+                be.setOrganId(sessionUserVO.getOrganId());
+            }
         }
         if(be instanceof BaseBusinessSimpleEntity){
             BaseBusinessSimpleEntity bbe = (BaseBusinessSimpleEntity)be;

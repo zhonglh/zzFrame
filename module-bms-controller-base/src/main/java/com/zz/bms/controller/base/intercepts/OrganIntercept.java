@@ -44,6 +44,9 @@ public class OrganIntercept {
                         continue;
                     }else if (arg instanceof BaseEntity) {
                         EntityAnnotation ea = arg.getClass().getAnnotation(EntityAnnotation.class);
+                        if(ea == null){
+                            ea = arg.getClass().getSuperclass().getAnnotation(EntityAnnotation.class);
+                        }
                         if(ea != null && ea.haveOrgan()) {
                             Serializable organId = loginUser.getOrganId();
                             BaseEntity be = (BaseEntity) arg;
@@ -63,6 +66,9 @@ public class OrganIntercept {
                             Object first = cs.toArray()[0];
                             if(first != null && first instanceof BaseEntity) {
                                 EntityAnnotation ea = first.getClass().getAnnotation(EntityAnnotation.class);
+                                if(ea == null){
+                                    ea = first.getClass().getSuperclass().getAnnotation(EntityAnnotation.class);
+                                }
                                 if (ea != null && ea.haveOrgan()) {
                                     for (Object obj : cs) {
                                         BaseEntity be = (BaseEntity) obj;
