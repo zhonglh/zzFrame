@@ -17,7 +17,7 @@
                 </div>
 
 
-                <div id="detailForm" class="detailForm">
+                <div id="detailInfo" class="detailInfo">
                     <table class="info-table">
 
                         <colgroup>

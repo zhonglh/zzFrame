@@ -23,7 +23,7 @@ import java.io.Serializable;
 * @author Administrator
 * @date 2019-4-10 11:08:55
 */
-@EntityAnnotation(value="登陆日志" , resource = "system.loginlog"  ,businessName = "operation_user_name"    ,businessKey = { "" }    )
+@EntityAnnotation(value="登陆日志" , resource = "system.loginlog"  ,businessName = "operation_user_name"   , haveOrgan =  true , haveTenant = true   )
 @TableName(value="ts_login_log" , resultMap = "TsLoginLogResultMap")
 public class TsLoginLogBO extends TsLoginLogEntity implements Serializable , IBoEntity {
 

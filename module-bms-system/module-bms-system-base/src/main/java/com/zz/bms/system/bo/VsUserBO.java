@@ -28,7 +28,7 @@ import java.util.Map;
 * @author Administrator
 * @date 2019-4-10 20:58:03
 */
-@EntityAnnotation(value="用户" , resource = "system.user"  ,businessName = "user_name"    ,businessKey = { "" }    )
+@EntityAnnotation(value="用户" , resource = "system.user"  ,businessName = "user_name"    , haveOrgan =  true , haveTenant = true  )
 @TableName(value="vs_user" , resultMap = "VsUserResultMap")
 public class VsUserBO extends TsUserBO implements Serializable , IBoEntity {
 

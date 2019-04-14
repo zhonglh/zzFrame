@@ -72,13 +72,6 @@ public class TsMsgTempletEntity extends com.zz.bms.core.db.entity.BaseBusinessSi
 
 
 
-    @EntityAttrDBAnnotation(attrName="机构" ,attrColumn="organ_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
-    @EntityAttrPageAnnotation(title = "机构",sort = 900  , pageElement = "text"            , maxLength = 32        ,required=true )
-	private String  organId ;
-
-
-
-
 
 	public void setMsgTempletName(String msgTempletName){
 		this.msgTempletName = msgTempletName;
@@ -143,13 +136,6 @@ public class TsMsgTempletEntity extends com.zz.bms.core.db.entity.BaseBusinessSi
     }
 
 
-	public void setOrganId(String organId){
-		this.organId = organId;
-	}
-
-    public String getOrganId(){
-    	return this.organId;
-    }
 
 
 	

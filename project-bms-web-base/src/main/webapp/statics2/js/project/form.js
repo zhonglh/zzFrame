@@ -39,21 +39,20 @@ function switchEditDetail() {
 
     if(showMode === "detail"){
         // 转为编辑模式
-        $(".editForm").removeClass("hide");
-        $(".detailForm").addClass("hide");
+        $("form").removeClass("hide");
+        $(".detailInfo").addClass("hide");
 
 
-        $(".editForm").clearValidate();
-        $(".editForm").validate();
+        $("form").clearValidate();
+        $("form").validate();
 
-        $(".editForm").tform().showEdit();
+        $("form").tform().showEdit();
 
         showMode = "eidt"
 
     }else {
-        $(".editForm").addClass("hide");
-        $(".detailForm").removeClass("hide");
-
+        $("form").addClass("hide");
+        $(".detailInfo").removeClass("hide");
         showMode = "detail"
     }
 
@@ -114,6 +113,7 @@ function doSingleFormSave() {
         }
     });
 }
+
 function doMultiFormSave() {
 
     $("form").validate();
@@ -171,10 +171,22 @@ function saveSuccess(rsp, status){
     if(rsp.success) {
         info(rsp.msg);
         if(isInAllPage()){
-            //parent.toUpdate(rsp.id);
-            //this.
+            try{
+                saveAfter(rsp.id);
+            }catch(e){
+            }
+
+            try{
+                parent.parent.search();
+            }catch(e){
+            }
         }else {
-            parent.search();
+
+            try{
+                parent.search();
+            }catch(e){
+            }
+
             closeWindow();
         }
 
@@ -295,13 +307,24 @@ function doMultiFormUpdate() {
 function updateSuccess(rsp, status){
     if(rsp.success) {
         info(rsp.msg);
-
         if(isInAllPage()){
             //切换到显示界面
             switchEditDetail();
             $("form").tform().showDetail(true);
+            try{
+                updateAfter();
+            }catch(e){
+            }
+
+            try{
+                parent.parent.search();
+            }catch(e){
+            }
         }else {
-            parent.search();
+            try{
+                parent.search();
+            }catch(e){
+            }
             closeWindow();
         }
     }else{

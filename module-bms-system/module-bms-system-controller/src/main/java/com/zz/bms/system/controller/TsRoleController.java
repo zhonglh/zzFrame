@@ -74,7 +74,7 @@ public class TsRoleController extends ZzGroupDefaultController<TsRoleGroupBO, Ts
     @Override
     protected void gatherCreateInformation(TsRoleGroupBO m, ModelMap model , ILoginUserEntity<String> sessionUserVO, HttpServletRequest request, HttpServletResponse response){
         String permitIds = request.getParameter("permitIds");
-        if(StringUtils.isNotEmpty(permitIds) && (  m.getRolePermitBOList() == null || m.getRolePermitBOList().isEmpty()  ) ){
+        if(StringUtils.isNotEmpty(permitIds) && (  m.getRolePermitList() == null || m.getRolePermitList().isEmpty()  ) ){
             String[] permitIdArray = permitIds.split( EnumSymbol.COMMA.getCode() );
             List<TsRolePermitBO> rolePermitBOList = new ArrayList<TsRolePermitBO>();
             for(String permitId : permitIdArray){
@@ -82,7 +82,7 @@ public class TsRoleController extends ZzGroupDefaultController<TsRoleGroupBO, Ts
                 rolePermitBO.setPermitId(permitId);
                 rolePermitBOList.add(rolePermitBO);
             }
-            m.setRolePermitBOList(rolePermitBOList);
+            m.setRolePermitList(rolePermitBOList);
         }
     }
 
@@ -100,7 +100,7 @@ public class TsRoleController extends ZzGroupDefaultController<TsRoleGroupBO, Ts
     protected void gatherUpdateInformation(TsRoleGroupBO m, ModelMap model , ILoginUserEntity<String> sessionUserVO, HttpServletRequest request, HttpServletResponse response){
 
         String permitIds = request.getParameter("permitIds");
-        if(StringUtils.isNotEmpty(permitIds) && (  m.getRolePermitBOList() == null || m.getRolePermitBOList().isEmpty()  ) ){
+        if(StringUtils.isNotEmpty(permitIds) && (  m.getRolePermitList() == null || m.getRolePermitList().isEmpty()  ) ){
             String[] permitIdArray = permitIds.split( EnumSymbol.COMMA.getCode() );
             List<TsRolePermitBO> rolePermitBOList = new ArrayList<TsRolePermitBO>();
             for(String permitId : permitIdArray){
@@ -110,7 +110,7 @@ public class TsRoleController extends ZzGroupDefaultController<TsRoleGroupBO, Ts
                 rolePermitBO.setId(IdUtils.getId());
                 rolePermitBOList.add(rolePermitBO);
             }
-            m.setRolePermitBOList(rolePermitBOList);
+            m.setRolePermitList(rolePermitBOList);
         }
     }
 
@@ -137,8 +137,8 @@ public class TsRoleController extends ZzGroupDefaultController<TsRoleGroupBO, Ts
             }
         }
 
-        if(m.getRolePermitBOList() != null && !m.getRolePermitBOList().isEmpty()){
-            for(TsRolePermitBO rolePermitBO : m.getRolePermitBOList()){
+        if(m.getRolePermitList() != null && !m.getRolePermitList().isEmpty()){
+            for(TsRolePermitBO rolePermitBO : m.getRolePermitList()){
                 rolePermitBO.setId(IdUtils.getId());
                 rolePermitBO.setRoleId(m.getId());
             }

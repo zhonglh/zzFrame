@@ -36,6 +36,8 @@
 
          	<result column="version_no" property="versionNo"/>
 
+			<result column="organ_id" property="organId"/>
+
          	<result column="tenant_id" property="tenantId"/>
 
 	</resultMap>
@@ -44,25 +46,24 @@
     <!-- 校验条件配置 -->
     <sql id="TsFileUse4CheckQueryFilter">
         <where>
-
-                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
-					<if test="fileId != null and fileId != ''"> AND T.file_id = #{fileId} </if>
-					<if test="showName != null and showName != ''"> AND T.show_name = #{showName} </if>
-					<if test="businessType != null and businessType != ''"> AND T.business_type = #{businessType} </if>
-					<if test="businessId != null and businessId != ''"> AND T.business_id = #{businessId} </if>
-					<if test="businessFileType != null and businessFileType != ''"> AND T.business_file_type = #{businessFileType} </if>
-					<if test="businessTempId != null and businessTempId != ''"> AND T.business_temp_id = #{businessTempId} </if>
-					<if test="fileOrder != null"> AND T.file_order = #{fileOrder} </if>
-					<if test="remark != null and remark != ''"> AND T.remark = #{remark} </if>
-					<if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
-					<if test="createUserName != null and createUserName != ''"> AND T.create_user_name = #{createUserName} </if>
-					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
-					<if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
-					<if test="updateUserName != null and updateUserName != ''"> AND T.update_user_name = #{updateUserName} </if>
-					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
-					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
-					<if test="tenantId != null and tenantId != ''"> AND T.tenant_id = #{tenantId} </if>
-
+			<if test="id != null and id != ''"> AND T.id != #{id} </if>
+			<if test="fileId != null and fileId != ''"> AND T.file_id = #{fileId} </if>
+			<if test="showName != null and showName != ''"> AND T.show_name = #{showName} </if>
+			<if test="businessType != null and businessType != ''"> AND T.business_type = #{businessType} </if>
+			<if test="businessId != null and businessId != ''"> AND T.business_id = #{businessId} </if>
+			<if test="businessFileType != null and businessFileType != ''"> AND T.business_file_type = #{businessFileType} </if>
+			<if test="businessTempId != null and businessTempId != ''"> AND T.business_temp_id = #{businessTempId} </if>
+			<if test="fileOrder != null"> AND T.file_order = #{fileOrder} </if>
+			<if test="remark != null and remark != ''"> AND T.remark = #{remark} </if>
+			<if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+			<if test="createUserName != null and createUserName != ''"> AND T.create_user_name = #{createUserName} </if>
+			<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+			<if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+			<if test="updateUserName != null and updateUserName != ''"> AND T.update_user_name = #{updateUserName} </if>
+			<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+			<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+			<if test="tenantId != null and tenantId != ''"> AND T.tenant_id = #{tenantId} </if>
+			<if test="organId != null and organId != ''"> AND T.organ_id = #{organId} </if>
         </where>
     </sql>
 

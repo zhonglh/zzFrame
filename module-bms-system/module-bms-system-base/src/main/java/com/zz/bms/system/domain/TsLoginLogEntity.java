@@ -22,9 +22,6 @@ public class TsLoginLogEntity extends com.zz.bms.core.db.entity.BaseEntity<Strin
     @EntityAttrDictAnnotation(group = "operationType", groupName = "操作类型" ,  dbColumnName = "dict_val" , dbColumnLength = 2 , isValueField = true , dictType = "operation_type")
     @EntityAttrDBAnnotation(attrName="操作类型" ,attrColumn="operation_type"  , type = "VARCHAR"      ,  attrLength = 2 , notNull = true )
     @EntityAttrPageAnnotation(title = "操作类型",sort = 200  , pageElement = "select"            , maxLength = 2        ,required=true )
-	
-    
-    
 	private String  operationType ;
 
 
@@ -32,7 +29,6 @@ public class TsLoginLogEntity extends com.zz.bms.core.db.entity.BaseEntity<Strin
     @EntityAttrDBAnnotation(attrName="操作说明" ,attrColumn="operationlog_name"  , type = "VARCHAR"      ,  attrLength = 100 , notNull = false )
     @EntityAttrPageAnnotation(title = "操作说明",sort = 300  , pageElement = "text"            , maxLength = 100        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     //1: 登陆   2:退出  3:强制退出  4:踢出        
 	private String  operationRemark ;
 
@@ -41,27 +37,12 @@ public class TsLoginLogEntity extends com.zz.bms.core.db.entity.BaseEntity<Strin
     @EntityAttrFkAnnotation(group = "depId",  groupName = "部门" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsDepBO.class)
     @EntityAttrDBAnnotation(attrName="部门" ,attrColumn="dep_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
     @EntityAttrPageAnnotation(title = "部门",sort = 400  , pageElement = "text"            , maxLength = 32        ,required=false )
-	
-    
-    
 	private String  depId ;
-
-
-
-    @EntityAttrDBAnnotation(attrName="机构" ,attrColumn="organ_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
-    @EntityAttrPageAnnotation(title = "机构",sort = 500  , pageElement = "text"            , maxLength = 32        ,required=true )
-	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
-    
-	private String  organId ;
 
 
 
     @EntityAttrDBAnnotation(attrName="操作人" ,attrColumn="operation_user_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
     @EntityAttrPageAnnotation(title = "操作人",sort = 600  , pageElement = "text"            , maxLength = 32        ,required=true )
-	
-    
-    
 	private String  operationUserId ;
 
 
@@ -69,8 +50,6 @@ public class TsLoginLogEntity extends com.zz.bms.core.db.entity.BaseEntity<Strin
     @EntityAttrDBAnnotation(attrName="操作人IP" ,attrColumn="operation_ip"  , type = "VARCHAR"      ,  attrLength = 30 , notNull = false )
     @EntityAttrPageAnnotation(title = "操作人IP",sort = 700  , pageElement = "text"            , maxLength = 30        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
-    
 	private String  operationIp ;
 
 
@@ -78,8 +57,6 @@ public class TsLoginLogEntity extends com.zz.bms.core.db.entity.BaseEntity<Strin
     @EntityAttrDBAnnotation(attrName="操作人名称" ,attrColumn="operation_user_name"  , type = "VARCHAR"      ,  attrLength = 50 , notNull = true )
     @EntityAttrPageAnnotation(title = "操作人名称",sort = 800  , pageElement = "text"            , maxLength = 50        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
-    
 	private String  operationUserName ;
 
 
@@ -87,8 +64,6 @@ public class TsLoginLogEntity extends com.zz.bms.core.db.entity.BaseEntity<Strin
     @EntityAttrDBAnnotation(attrName="操作时间" ,attrColumn="operation_time"  , type = "TIMESTAMP"       , notNull = true )
     @EntityAttrPageAnnotation(title = "操作时间",sort = 900  , pageElement = "timestamp"                  ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
-    
 	private Timestamp  operationTime ;
 
 
@@ -120,13 +95,6 @@ public class TsLoginLogEntity extends com.zz.bms.core.db.entity.BaseEntity<Strin
     }
 
 
-	public void setOrganId(String organId){
-		this.organId = organId;
-	}
-
-    public String getOrganId(){
-    	return this.organId;
-    }
 
 
 	public void setOperationUserId(String operationUserId){

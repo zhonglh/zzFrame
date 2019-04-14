@@ -21,16 +21,15 @@ public class TsRoleGroupBO extends TsRoleBO implements Serializable {
 
 
     @GroupFieldAnnotation(childTableColumnName = "role_id" , filedName = "角色许可关联")
-    List<TsRolePermitBO> rolePermitBOList ;
+    List<TsRolePermitBO> rolePermitList ;
 
-
-    public List<TsRolePermitBO>  getRolePermitBOList(){
-        return rolePermitBOList ;
-    }
-    public void setRolePermitBOList(List<TsRolePermitBO> rolePermitBOList ){
-        this.rolePermitBOList = rolePermitBOList;
+    public List<TsRolePermitBO> getRolePermitList() {
+        return rolePermitList;
     }
 
+    public void setRolePermitList(List<TsRolePermitBO> rolePermitList) {
+        this.rolePermitList = rolePermitList;
+    }
 
     @Override
     public String toString() {

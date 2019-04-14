@@ -23,7 +23,7 @@ import java.io.Serializable;
 * @author Administrator
 * @date 2019-4-10 11:08:53
 */
-@EntityAnnotation(value="角色" , resource = "system.role"  ,businessName = "role_name"    ,businessKey = { "role_code" }    )
+@EntityAnnotation(value="角色" , resource = "system.role"  ,businessName = "role_name"    ,businessKey = { "role_code" }  , haveOrgan =  true , haveTenant = true)
 @TableName(value="ts_role" , resultMap = "TsRoleResultMap")
 public class TsRoleBO extends TsRoleEntity implements Serializable , IBoEntity {
 

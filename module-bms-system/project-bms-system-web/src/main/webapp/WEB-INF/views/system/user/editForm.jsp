@@ -15,7 +15,7 @@
 
 
 
-                <div id="detailForm" class="detailForm">
+                <div id="detailInfo" class="detailInfo">
                     <table class="info-table">
                         <tr>
                             <th width="15%">用户名称</th>
@@ -47,7 +47,7 @@
                 </div>
 
 
-                <form action="" method="post" class="form-auto-fill hide editForm" id="editForm" viewId="detailForm" formId="editForm">
+                <form action="" method="post" class="form-auto-fill hide editForm" id="editForm" viewId="detailInfo" formId="editForm">
                     <input type="hidden" id="id" name="id" value="${m.id}">
                     <table class="info-table">
                         <tr>

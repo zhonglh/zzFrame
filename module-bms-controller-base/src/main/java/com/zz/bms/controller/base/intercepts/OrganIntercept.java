@@ -23,11 +23,11 @@ import java.util.Collection;
  * @author Administrator
  */
 @Aspect
-@Order(1)
-public class TenantIntercept {
+@Order(2)
+public class OrganIntercept {
 
 
-    Logger logger = Logger.getLogger(TenantIntercept.class);
+    Logger logger = Logger.getLogger(OrganIntercept.class);
 
 
     @Around("execution(* com..*Service*.*(..))")
@@ -35,24 +35,20 @@ public class TenantIntercept {
 
         Object[] args = joinPoint.getArgs();
 
-        if(BusinessConfig.USE_TENANT && BusinessConfig.IS_Tenant_Intercept) {
-
+        if(BusinessConfig.USE_ORGAN && BusinessConfig.IS_Organ_Intercept) {
             ILoginUserEntity loginUser = ((ILoginUserEntity)ShiroUtils.getUserEntity());
-
             if(loginUser != null) {
-
                 for (Object arg : args) {
-
 
                     if (arg == null) {
                         continue;
                     }else if (arg instanceof BaseEntity) {
                         EntityAnnotation ea = arg.getClass().getAnnotation(EntityAnnotation.class);
-                        if(ea != null && ea.haveTenant()) {
-                            Serializable tenantId = loginUser.getTenantId();
+                        if(ea != null && ea.haveOrgan()) {
+                            Serializable organId = loginUser.getOrganId();
                             BaseEntity be = (BaseEntity) arg;
-                            if (EntityUtil.isEmpty(be.getTenantId())) {
-                                be.setTenantId(tenantId);
+                            if (EntityUtil.isEmpty(be.getOrganId())) {
+                                be.setOrganId(organId);
                             }
                         }
                     }else if (arg instanceof Collation || arg.getClass().isArray()) {
@@ -63,15 +59,15 @@ public class TenantIntercept {
                             cs =  (Collection)arg;
                         }
                         if(cs != null && !cs.isEmpty()) {
-                            Serializable tenantId = loginUser.getTenantId();
+                            Serializable organId = loginUser.getOrganId();
                             Object first = cs.toArray()[0];
                             if(first != null && first instanceof BaseEntity) {
                                 EntityAnnotation ea = first.getClass().getAnnotation(EntityAnnotation.class);
-                                if (ea != null && ea.haveTenant()) {
+                                if (ea != null && ea.haveOrgan()) {
                                     for (Object obj : cs) {
                                         BaseEntity be = (BaseEntity) obj;
-                                        if (be != null && EntityUtil.isEmpty(be.getTenantId())) {
-                                            be.setTenantId(tenantId);
+                                        if (be != null && EntityUtil.isEmpty(be.getOrganId())) {
+                                            be.setOrganId(organId);
                                         }
                                     }
                                 }

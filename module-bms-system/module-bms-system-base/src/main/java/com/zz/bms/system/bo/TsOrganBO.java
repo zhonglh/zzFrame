@@ -27,7 +27,7 @@ import java.util.Map;
 * @author Administrator
 * @date 2019-4-10 11:08:52
 */
-@EntityAnnotation(value="机构" , resource = "system.organ"  ,businessName = "organ_name"    ,businessKey = { "organ_code" }   ,parentColumnName="pid" ,textColumnName="organ_name" )
+@EntityAnnotation(value="机构" , resource = "system.organ"  ,businessName = "organ_name"    ,businessKey = { "organ_code" }   ,parentColumnName="pid" ,textColumnName="organ_name" ,  haveTenant = true )
 @TableName(value="ts_organ" , resultMap = "TsOrganResultMap")
 public class TsOrganBO extends TsOrganEntity implements Serializable , IBoEntity {
 

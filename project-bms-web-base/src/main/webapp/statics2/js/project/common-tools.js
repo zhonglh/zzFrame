@@ -1112,18 +1112,18 @@ $(function(){
         }
     };
 
+
     /**
      * 显示详情
      */
     FormTools.FormData.prototype.showDetail = function(flag){
-        var that = this;
 
+        var that = this;
         // 是否提交数据成功
         flag = flag || false;
         if(flag == true){
             that.init();
         }
-
         // 显示数据
         for(key in that.data){
             // 处理class

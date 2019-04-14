@@ -99,7 +99,7 @@ public class PermissionList implements Serializable {
     public String getPermission(String permission){
         for(String key : resourcePermissions.keySet()){
             String val = resourcePermissions.get(key);
-            if(val.equals(permission) ){
+            if(key.equals(permission) || val.equals(permission) ){
                 return key;
             }
         }

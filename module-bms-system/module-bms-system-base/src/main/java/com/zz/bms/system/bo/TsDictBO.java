@@ -23,7 +23,7 @@ import java.io.Serializable;
 * @author Administrator
 * @date 2019-4-10 11:08:53
 */
-@EntityAnnotation(value="字典信息" , resource = "system.dict"  ,businessName = ""    ,businessKey = { "" }    )
+@EntityAnnotation(value="字典信息" , resource = "system.dict"  ,  haveOrgan =  true , haveTenant = true    )
 @TableName(value="ts_dict" , resultMap = "TsDictResultMap")
 public class TsDictBO extends TsDictEntity implements Serializable , IBoEntity {
 

@@ -23,7 +23,7 @@ import java.io.Serializable;
 * @author Administrator
 * @date 2019-4-10 11:08:55
 */
-@EntityAnnotation(value="消息模板" , resource = "system.msgtemplet"  ,businessName = ""    ,businessKey = { "" }    )
+@EntityAnnotation(value="消息模板" , resource = "system.msgtemplet"  ,businessName = "msg_templet_name"    ,businessKey = { "msg_templet_name" } , haveOrgan =  true , haveTenant = true   )
 @TableName(value="ts_msg_templet" , resultMap = "TsMsgTempletResultMap")
 public class TsMsgTempletBO extends TsMsgTempletEntity implements Serializable , IBoEntity {
 

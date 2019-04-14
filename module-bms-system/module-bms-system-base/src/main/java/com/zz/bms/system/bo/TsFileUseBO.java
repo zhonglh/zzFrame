@@ -23,7 +23,7 @@ import java.io.Serializable;
 * @author Administrator
 * @date 2019-4-10 11:08:51
 */
-@EntityAnnotation(value="文件使用" , resource = "system.fileuse"  ,businessName = "show_name"    ,businessKey = { "" }    )
+@EntityAnnotation(value="文件使用" , resource = "system.fileuse"  ,businessName = "show_name"   , haveOrgan =  true , haveTenant = true      )
 @TableName(value="ts_file_use" , resultMap = "TsFileUseResultMap")
 public class TsFileUseBO extends TsFileUseEntity implements Serializable , IBoEntity {
 

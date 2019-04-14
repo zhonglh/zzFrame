@@ -23,7 +23,7 @@ import java.io.Serializable;
 * @author Administrator
 * @date 2019-4-10 11:08:51
 */
-@EntityAnnotation(value="系统通知" , resource = "system.notification"  ,businessName = "title"    ,businessKey = { "" }    )
+@EntityAnnotation(value="系统通知" , resource = "system.notification"  ,businessName = "title"    , haveTenant = true    )
 @TableName(value="ts_notification" , resultMap = "TsNotificationResultMap")
 public class TsNotificationBO extends TsNotificationEntity implements Serializable , IBoEntity {
 

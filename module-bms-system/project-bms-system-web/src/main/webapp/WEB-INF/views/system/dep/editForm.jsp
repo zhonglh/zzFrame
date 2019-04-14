@@ -13,16 +13,22 @@
                     </svg>基本信息
                 </div>
 
-
-
-                <div id="detailForm" class="detailForm">
+                <div id="detailInfo" class="detailInfo">
                     <table class="info-table">
-                        <tr>
-                            <th width="15%">部门名称</th>
-                            <td class="fd_depName">${m.depName}</td>
+                        <colgroup>
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                        </colgroup>
 
-                            <th width="15%">部门编号</th>
+                        <tbody>
+                        <tr>
+
+                            <th>部门编号</th>
                             <td class="fd_depCode">${m.depCode}</td>
+                            <th>部门名称</th>
+                            <td class="fd_depName">${m.depName}</td>
                         </tr>
                         <tr>
                             <th>部门负责人</th>
@@ -36,11 +42,13 @@
                             <td colspan="3" class="fd_remark">${m.remark}</td>
                         </tr>
 
+                        </tbody>
+
                     </table>
                 </div>
 
 
-                <form action="" method="post" class="form-auto-fill hide editForm" id="editForm" viewId="detailForm" formId="editForm">
+                <form action="" method="post" class="form-auto-fill hide" id="editForm" viewId="detailInfo" formId="editForm">
                     <input type="hidden" id="id" name="id" value="${m.id}">
                     <table class="info-table">
                         <colgroup>

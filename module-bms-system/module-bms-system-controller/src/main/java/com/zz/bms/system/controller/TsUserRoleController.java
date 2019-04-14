@@ -1,6 +1,7 @@
 package com.zz.bms.system.controller;
 
 
+import com.zz.bms.controller.base.PermissionList;
 import com.zz.bms.system.service.TsDictService;
 import com.zz.bms.core.db.entity.*;
 
@@ -36,6 +37,25 @@ public class TsUserRoleController extends ZzDefaultSimpleController<TsUserRoleBO
 		this.setResourceIdentity("system.role");
 		this.setResourceIdentity("system.user");
 	}
+
+	@Override
+	public void assertHasCreatePermission() {
+		permissionList.assertHasAnyPermission(new String[]{
+				"system.role:"+ PermissionList.UPDATE_PERMISSION,
+				"system.user:"+ PermissionList.UPDATE_PERMISSION
+		});
+	}
+
+
+	@Override
+	public void assertHasDeletePermission() {
+		permissionList.assertHasAnyPermission(new String[]{
+				"system.role:"+ PermissionList.UPDATE_PERMISSION,
+				"system.user:"+ PermissionList.UPDATE_PERMISSION
+		});
+
+	}
+
 
 	@Override
 	public void setCustomInfoByInsert(TsUserRoleBO bo , ILoginUserEntity sessionUser){

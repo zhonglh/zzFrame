@@ -14,6 +14,7 @@ public abstract class BaseEntity<PK extends Serializable> implements Serializabl
     @TableField
     private PK id;
     private PK tenantId;
+    private PK organId;
 
 
     @TableField(exist = false)
@@ -53,6 +54,13 @@ public abstract class BaseEntity<PK extends Serializable> implements Serializabl
         this.id = id;
     }
 
+    public PK getOrganId() {
+        return organId;
+    }
+
+    public void setOrganId(PK organId) {
+        this.organId = organId;
+    }
 
     public PK getTenantId() {
         return tenantId;

@@ -17,23 +17,20 @@
         </form>
 
         <div class="btn-bar" style="margin-left: -10px;">
-                <shiro:hasPermission name="system.userrole:add">
-                    <button type="button" class="btn btn-primary btn-sm" onclick="toAdd()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
-                        </svg>
-                        <span>新增 </span>
-                    </button>
-                </shiro:hasPermission>
-                <shiro:hasPermission name="system.userrole:delete">
-                    <button type="button" class="btn btn-primary btn-sm" onclick="doDelete()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use>
-                        </svg>
-                        <span>删除 </span>
-                    </button>
-                </shiro:hasPermission>
 
+            <button type="button" class="btn btn-primary btn-sm" onclick="toAdd()">
+                <svg class="icon" aria-hidden="true">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
+                </svg>
+                <span>新增 </span>
+            </button>
+
+            <button type="button" class="btn btn-primary btn-sm" onclick="doDelete()">
+                <svg class="icon" aria-hidden="true">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use>
+                </svg>
+                <span>删除 </span>
+            </button>
         </div>
     </div>
 </div>

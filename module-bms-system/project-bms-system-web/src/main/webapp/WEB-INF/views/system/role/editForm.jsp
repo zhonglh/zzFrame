@@ -16,7 +16,7 @@
                 </div>
 
 
-                <div id="detailForm" class="detailForm">
+                <div id="detailInfo" class="detailInfo">
                     <table class="info-table">
 
                         <colgroup>
@@ -69,7 +69,7 @@
                 </div>
 
 
-                <form action="" method="post" class="form-auto-fill hide editForm" id="editForm" viewId="detailForm" formId="editForm">
+                <form action="" method="post" class="form-auto-fill hide editForm" id="editForm" viewId="detailInfo" formId="editForm">
                     <input type="hidden" id="id" name="id" value="${ m.id }">
 
 
@@ -216,11 +216,7 @@
 
 
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
-
-
-    <script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
-
-
+<script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
 
 <script language="JavaScript">
 
@@ -286,6 +282,21 @@
             var html = "<input type='hidden' name='permitIds' value='"+permitIds+"'>";
             $("#editForm").append($(html));
         }
+    }
+
+
+    function updateAfter(){
+        $("#permitSelectedTree").tree({
+            url:'${ctx}/system/role/permitSelectedTree/${m.id}',
+            animate:true
+        });
+
+
+        $("#rolePermitTree").tree({
+            url:'${ctx}/system/role/permitTree/${m.id}',
+            animate:true,
+            checkbox : true
+        });
     }
 
 

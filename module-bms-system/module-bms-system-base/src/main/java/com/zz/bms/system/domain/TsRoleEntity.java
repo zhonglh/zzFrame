@@ -23,8 +23,6 @@ public class TsRoleEntity extends com.zz.bms.core.db.entity.BaseBusinessSimpleEx
     @EntityAttrDBAnnotation(attrName="角色名称" ,attrColumn="role_name"  , type = "VARCHAR"      ,  attrLength = 50 , notNull = true )
     @EntityAttrPageAnnotation(title = "角色名称",sort = 200  , pageElement = "text"            , maxLength = 50        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
-    
 	private String  roleName ;
 
 
@@ -32,8 +30,6 @@ public class TsRoleEntity extends com.zz.bms.core.db.entity.BaseBusinessSimpleEx
     @EntityAttrDBAnnotation(attrName="角色编号" ,attrColumn="role_code"  , type = "VARCHAR"      ,  attrLength = 20 , notNull = true )
     @EntityAttrPageAnnotation(title = "角色编号",sort = 300  , pageElement = "text"            , maxLength = 20        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
-    
 	private String  roleCode ;
 
 
@@ -41,9 +37,6 @@ public class TsRoleEntity extends com.zz.bms.core.db.entity.BaseBusinessSimpleEx
     @EntityAttrDictAnnotation(group = "roleType", groupName = "角色类型" ,  dbColumnName = "dict_val" , dbColumnLength = 2 , isValueField = true , dictType = "role_type")
     @EntityAttrDBAnnotation(attrName="角色类型" ,attrColumn="role_type"  , type = "CHAR"      ,  attrLength = 1 , notNull = true )
     @EntityAttrPageAnnotation(title = "角色类型",sort = 400  , pageElement = "select"            , maxLength = 1        ,required=true )
-	
-    
-    
 	private String  roleType ;
 
 
@@ -51,27 +44,15 @@ public class TsRoleEntity extends com.zz.bms.core.db.entity.BaseBusinessSimpleEx
     @EntityAttrFkAnnotation(group = "depId",  groupName = "部门" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsDepBO.class)
     @EntityAttrDBAnnotation(attrName="部门" ,attrColumn="dep_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
     @EntityAttrPageAnnotation(title = "部门",sort = 500  , pageElement = "text"            , maxLength = 32        ,required=false )
-	
-    
-    
 	private String  depId ;
 
 
-
-    @EntityAttrDBAnnotation(attrName="机构" ,attrColumn="organ_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
-    @EntityAttrPageAnnotation(title = "机构",sort = 600  , pageElement = "text"            , maxLength = 32        ,required=true )
-	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
-    
-	private String  organId ;
 
 
 
     @EntityAttrDictAnnotation(group = "roleStatus", groupName = "角色状态" ,  dbColumnName = "dict_val" , dbColumnLength = 2 , isValueField = true , dictType = "role_status")
     @EntityAttrDBAnnotation(attrName="角色状态" ,attrColumn="role_status"  , type = "CHAR"      ,  attrLength = 1 , notNull = true )
     @EntityAttrPageAnnotation(title = "角色状态",sort = 700  , pageElement = "select"            , maxLength = 1        ,required=true )
-	
-    
     //0: 禁用   1:可用        
 	private String  roleStatus ;
 
@@ -80,8 +61,6 @@ public class TsRoleEntity extends com.zz.bms.core.db.entity.BaseBusinessSimpleEx
     @EntityAttrDBAnnotation(attrName="备注" ,attrColumn="remark"  , type = "VARCHAR"      ,  attrLength = 200 , notNull = false )
     @EntityAttrPageAnnotation(title = "备注",sort = 800  , pageElement = "text"            , maxLength = 200        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
-    
 	private String  remark ;
 
 
@@ -124,13 +103,6 @@ public class TsRoleEntity extends com.zz.bms.core.db.entity.BaseBusinessSimpleEx
     }
 
 
-	public void setOrganId(String organId){
-		this.organId = organId;
-	}
-
-    public String getOrganId(){
-    	return this.organId;
-    }
 
 
 	public void setRoleStatus(String roleStatus){

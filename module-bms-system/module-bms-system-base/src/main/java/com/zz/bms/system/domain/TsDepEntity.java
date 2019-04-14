@@ -151,13 +151,6 @@ public class TsDepEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity<
     }
 
 
-	public void setOrganId(String organId){
-		this.organId = organId;
-	}
-
-    public String getOrganId(){
-    	return this.organId;
-    }
 
 
 	public void setRemark(String remark){
