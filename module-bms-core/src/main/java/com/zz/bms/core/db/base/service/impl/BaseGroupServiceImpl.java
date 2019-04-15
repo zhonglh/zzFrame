@@ -350,6 +350,12 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
     public void updateAfter(T t){
     }
 
+
+    @Override
+    public void saveBatchRelevance(List<T> list , T t) {
+
+    }
+
     /**
      * 先从库里查出对应的主表信息， 附表信息 ， 子表信息
      * 1.先修改主表信息

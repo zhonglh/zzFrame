@@ -59,12 +59,12 @@ public abstract class TsRoleAbstractQueryImpl<PK extends Serializable> extends Q
             protected String createUserName_LIKE;
             protected String createUserName_NOTLIKE;
 
-        protected Timestamp createTime;
-        protected Timestamp createTime_NE;
-        protected Timestamp createTime_GT;
-        protected Timestamp createTime_GE;
-        protected Timestamp createTime_LT;
-        protected Timestamp createTime_LE;
+            protected Timestamp createTime;
+            protected Timestamp createTime_NE;
+            protected Timestamp createTime_GT;
+            protected Timestamp createTime_GE;
+            protected Timestamp createTime_LT;
+            protected Timestamp createTime_LE;
 
             protected String updateUserId;
             protected String updateUserId_NE;
@@ -76,19 +76,19 @@ public abstract class TsRoleAbstractQueryImpl<PK extends Serializable> extends Q
             protected String updateUserName_LIKE;
             protected String updateUserName_NOTLIKE;
 
-        protected Timestamp updateTime;
-        protected Timestamp updateTime_NE;
-        protected Timestamp updateTime_GT;
-        protected Timestamp updateTime_GE;
-        protected Timestamp updateTime_LT;
-        protected Timestamp updateTime_LE;
+            protected Timestamp updateTime;
+            protected Timestamp updateTime_NE;
+            protected Timestamp updateTime_GT;
+            protected Timestamp updateTime_GE;
+            protected Timestamp updateTime_LT;
+            protected Timestamp updateTime_LE;
 
-        protected Integer versionNo;
-        protected Integer versionNo_NE;
-        protected Integer versionNo_GT;
-        protected Integer versionNo_GE;
-        protected Integer versionNo_LT;
-        protected Integer versionNo_LE;
+            protected Integer versionNo;
+            protected Integer versionNo_NE;
+            protected Integer versionNo_GT;
+            protected Integer versionNo_GE;
+            protected Integer versionNo_LT;
+            protected Integer versionNo_LE;
 
             protected String tenantId;
             protected String tenantId_NE;

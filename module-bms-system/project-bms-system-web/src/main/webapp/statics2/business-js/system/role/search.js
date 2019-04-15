@@ -83,14 +83,17 @@ function openSystemRoleWin(config, callBack)
 
 };
 
-
+var systemRoleWin = null;
 
 //角色选择控件
 $.fn.OpenSystemRoleSelectWin = function(config, callBack){
-    var win = openSystemRoleWin(config, callBack);
+    if(systemRoleWin != null){
+        systemRoleWin.remove();
+    }
+    systemRoleWin = openSystemRoleWin(config, callBack);
     $(this).unbind("click");
     $(this).bind("click", function(){
-        win.show();
+        systemRoleWin.show();
     });
-    return win;
+    return systemRoleWin;
 };

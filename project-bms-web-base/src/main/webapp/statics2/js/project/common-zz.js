@@ -18,6 +18,19 @@ function isInAllPage(){
 }
 
 
+function getSimpleQueryString(queryString){
+    if(queryString != undefined && queryString != ""){
+        var simpleQueryString = queryString;
+        if(queryString.startsWith("inAllPage=1&")){
+            simpleQueryString = simpleQueryString.substring(12,simpleQueryString.length);
+        }
+        return simpleQueryString;
+    }else {
+        return "";
+    }
+}
+
+
 
 /**
  * 日期格式化

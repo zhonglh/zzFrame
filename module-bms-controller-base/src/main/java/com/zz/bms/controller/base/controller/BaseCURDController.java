@@ -90,7 +90,9 @@ public abstract class BaseCURDController<
 
         this.assertHasViewPermission();
 
+        this.baseRwService.processResult(m);
         modelMap.put("entity" ,m);
+        modelMap.put("m" ,m);
 
         if (listAlsoSetCommonData) {
             setCommonData(m,modelMap);
@@ -147,12 +149,15 @@ public abstract class BaseCURDController<
 
 
 
+
     @RequestMapping(value = "/toTree" , method={ RequestMethod.POST, RequestMethod.GET})
     public String toTree(QueryModel m,  ModelMap modelMap , HttpServletRequest request, HttpServletResponse response) {
 
         this.assertHasViewPermission();
 
+        this.baseRwService.processResult(m);
         modelMap.put("entity" ,m);
+        modelMap.put("m" ,m);
 
         if (listAlsoSetCommonData) {
             setCommonData(m,modelMap);

@@ -9,7 +9,6 @@ import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.util.base.java.GenericsHelper;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +36,7 @@ public abstract class BaseBusinessController<
     public final String defaultAddPageName = "editForm";
     public final String defaultAllPageName = "allPage";
     public final String defaultViewPageName = "viewForm";
+    public final String defaultRelevanceListPageName = "relevanceList";
     public final String defaultListPageName = "list";
     public final String defaultTreePageName = "tree";
 
@@ -413,6 +413,15 @@ public abstract class BaseBusinessController<
      * @return
      */
     protected String getListPageName(){
+        return null;
+    }
+
+    /**
+     * 返回关联表列表页面指定的Page 名称
+     * 如果没有指定，将会使用默认的名称: listForm  对应编辑页面为 list.jsp
+     * @return
+     */
+    protected String getRelevanceListPageName(){
         return null;
     }
 

@@ -87,6 +87,8 @@
                                         </c:if>
                                     </td>
                                 </tr>
+
+
                         </tbody>
                     </table>
                 </form>
@@ -141,6 +143,14 @@
             callId: "roleId",
             callName: "roleName",
             clearId: "clearRoleId"
+        });
+        //选择角色
+        $(".roleName1").OpenSystemRoleSelectWin({
+            title: "角色",
+            selectType: "d1",
+            callId: "roleId1",
+            callName: "roleName1",
+            clearId: "clearRoleId1"
         });
     });
 

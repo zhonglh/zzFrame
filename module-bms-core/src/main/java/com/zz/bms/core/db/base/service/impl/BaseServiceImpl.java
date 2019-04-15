@@ -195,6 +195,13 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
     }
 
 
+
+    @Override
+    public void saveBatchRelevance(List<T> list , T t) {
+
+    }
+
+
     @Override
     public boolean updateById(T entity) {
         boolean result =  retBool(getDAO().updateById(entity));

@@ -24,12 +24,11 @@ function closeWindow() {
 
 
 
-
 /**
  * 切换 编辑 和 明细 模式
  */
 function switchEditDetail() {
-    $("#toolBar").find("button").each(function(){
+    $("button").each(function(){
         if($(this).hasClass("hide")){
             $(this).removeClass("hide");
         }else{

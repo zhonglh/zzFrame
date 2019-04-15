@@ -168,9 +168,15 @@ function deleteOne (obj)
 function toAdd(){
     var addUrl = ctx+dataUrl+"/create";
     try{
+
+
         if(queryString != undefined && queryString != ""){
-            addUrl = addUrl+ "?" + queryString;
+            var simpleQueryString = getSimpleQueryString(queryString);
+            if(addUrl != null && simpleQueryString != "") {
+                addUrl = addUrl + "?" + simpleQueryString;
+            }
         }
+
     }catch(e){
 
     }
@@ -186,7 +192,10 @@ function toUpdate(id){
     var updateUrl = ctx+dataUrl+"/"+id+"/update";
     try{
         if(queryString != undefined && queryString != ""){
-            addUrl = addUrl+ "?" + queryString;
+            var simpleQueryString = getSimpleQueryString(queryString);
+            if(simpleQueryString != null && simpleQueryString != "") {
+                updateUrl = updateUrl + "?" + simpleQueryString;
+            }
         }
     }catch(e){
 

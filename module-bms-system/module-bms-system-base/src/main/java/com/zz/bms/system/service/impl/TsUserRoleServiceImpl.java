@@ -1,5 +1,6 @@
 package com.zz.bms.system.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.enums.*;
 
@@ -143,18 +144,44 @@ public class TsUserRoleServiceImpl extends BaseServiceImpl<TsUserRoleBO,String> 
 				}
 			});
 		}
-
-
-
-
-
-
-
-
 		return tsUserRoleBOs;
 	}
 
 
+    @Override
+    public void saveBatchRelevance(List<TsUserRoleBO> list, TsUserRoleBO t) {
+	    if(t == null || (EntityUtil.isEmpty(t.getUserId()) && EntityUtil.isEmpty(t.getRoleId()) )){
+	        throw EnumErrorMsg.param_format_error.toException();
+        }
+
+	    if(!EntityUtil.isEmpty(t.getUserId())){
+            QueryWrapper<TsUserRoleBO> qw = new QueryWrapper<TsUserRoleBO>();
+            qw.eq("user_id", t.getUserId());
+	        this.tsUserRoleDAO.delete(qw);
+	        if(list != null && !list.isEmpty()){
+	            for(TsUserRoleBO bo : list){
+	                bo.setUserId(t.getUserId());
+                }
+	            this.saveBatch(list);
+            }
+        }else if(!EntityUtil.isEmpty(t.getRoleId())){
+
+            QueryWrapper<TsUserRoleBO> qw = new QueryWrapper<TsUserRoleBO>();
+            qw.eq("role_id", t.getRoleId());
+            this.tsUserRoleDAO.delete(qw);
+            if(list != null && !list.isEmpty()){
+                for(TsUserRoleBO bo : list){
+                    bo.setRoleId(t.getRoleId());
+                }
+                this.saveBatch(list);
+            }
+        }else {
+            throw EnumErrorMsg.param_format_error.toException();
+        }
+
+
+
+    }
 
 
 	@Override

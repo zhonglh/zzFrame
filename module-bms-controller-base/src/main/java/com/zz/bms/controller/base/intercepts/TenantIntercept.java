@@ -35,7 +35,7 @@ public class TenantIntercept {
 
         Object[] args = joinPoint.getArgs();
 
-        if(BusinessConfig.USE_TENANT && BusinessConfig.IS_Tenant_Intercept) {
+        if(BusinessConfig.USE_TENANT && BusinessConfig.IS_CHECK_Tenant) {
 
             ILoginUserEntity loginUser = ((ILoginUserEntity)ShiroUtils.getUserEntity());
 

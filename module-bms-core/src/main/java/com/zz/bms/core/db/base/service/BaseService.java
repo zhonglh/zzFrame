@@ -143,4 +143,12 @@ public interface BaseService<T extends BaseEntity, PK extends Serializable> exte
     void updateAfter(T t);
 
 
+    /**
+     * 批量保存关联表信息， 先删除原来的数据， 在批量插入新的
+     * @param list
+     * @param t
+     */
+    void saveBatchRelevance(List<T> list , T t) ;
+
+
 }
