@@ -92,7 +92,7 @@
                 </form>
             </div>
 
-            <div style="margin-top:10px;position:absolute;" align="center" id="toolBar">
+            <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
                 <shiro:hasPermission name="system.user:add">
                     <button type="button" class="btn btn-primary btn-sm" onclick="doSave()">
                         <svg class="icon" aria-hidden="true">

@@ -28,7 +28,7 @@ function closeWindow() {
  * 切换 编辑 和 明细 模式
  */
 function switchEditDetail() {
-    $("button").each(function(){
+    $(".toolBar").find("button").each(function(){
         if($(this).hasClass("hide")){
             $(this).removeClass("hide");
         }else{
@@ -36,23 +36,35 @@ function switchEditDetail() {
         }
     });
 
-    if(showMode === "detail"){
-        // 转为编辑模式
-        $("form").removeClass("hide");
-        $(".detailInfo").addClass("hide");
+    try {
+
+        var editForms = $("form").filter(".editForm");
+
+        if (showMode === "detail") {
+            // 转为编辑模式
+            editForms.removeClass("hide");
+            $(".detailInfo").addClass("hide");
 
 
-        $("form").clearValidate();
-        $("form").validate();
+            editForms.clearValidate();
+            editForms.validate();
 
-        $("form").tform().showEdit();
+            editForms.tform().showEdit();
 
-        showMode = "eidt"
 
-    }else {
-        $("form").addClass("hide");
-        $(".detailInfo").removeClass("hide");
-        showMode = "detail"
+            showMode = "eidt"
+
+            $(".easyui-datagrid").datagrid("showColumn", "option");
+
+        } else {
+            editForms.addClass("hide");
+            $(".detailInfo").removeClass("hide");
+            showMode = "detail"
+            $(".easyui-datagrid").datagrid("hideColumn", "option");
+        }
+
+    }catch(e){
+
     }
 
 

@@ -94,7 +94,6 @@
           scope="prototype">
         <property name="patterns">
             <list>
-                <value>com.zz.*.controller.*</value>
                 <value>com.zz.*.service.*.*</value>
             </list>
         </property>

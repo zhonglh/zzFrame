@@ -68,19 +68,27 @@ public class VsUserServiceImpl extends BaseServiceImpl<VsUserBO,String> implemen
 
     }
 
+    @Override
+    public void specialHandler(VsUserBO t){
+        t.setLoginPassword(null);
+        t.setSalt(null);
+    }
 
 
-
+    @Override
+    public void specialHandler(List<VsUserBO> ts){
+        if(ts != null && !ts.isEmpty()) {
+            for (VsUserBO user : ts) {
+                specialHandler(user);
+            }
+        }
+    }
 
     @Override
     public List<VsUserBO> processResult(List<VsUserBO> vsUserBOs) {
         if(vsUserBOs == null || vsUserBOs.isEmpty()){
             return vsUserBOs;
         }
-
-
-
-
 
 
         String[] dictTypes = new String[]{EnumDictType.USER_STATUS.getVal(),EnumDictType.YES_NO.getVal()};

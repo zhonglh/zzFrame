@@ -36,14 +36,13 @@ public class TsUserEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
 
     @EntityAttrDBAnnotation(attrName="登录密码" ,attrColumn="login_password"  , type = "VARCHAR"      ,  attrLength = 128 , notNull = false )
     @EntityAttrPageAnnotation(title = "登录密码",sort = 400  , pageElement = "text"            , maxLength = 128        ,required=false )
-	@EntityAttrExcelAnnotation(excelProcess= "3")
+	@EntityAttrExcelAnnotation(excelProcess= "1")
 	private String  loginPassword ;
 
 
 
     @EntityAttrDBAnnotation(attrName="加密盐" ,attrColumn="salt"  , type = "VARCHAR"      ,  attrLength = 64 , notNull = false )
     @EntityAttrPageAnnotation(title = "加密盐",sort = 500  , pageElement = "text"            , maxLength = 64        ,required=false )
-	@EntityAttrExcelAnnotation(excelProcess= "3")
 	private String  salt ;
 
 

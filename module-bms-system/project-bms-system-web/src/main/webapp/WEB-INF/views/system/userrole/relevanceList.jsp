@@ -15,41 +15,33 @@
                 </div>
 
 
-                <form id="from1" action="" >
+                <form id="from1" action="">
                     <table id='tableData-${ tableId }'  class='easyui-datagrid' method='post' fit='false' pagination='false' fitColumns="true" border='true' singleSelect="true">
                         <thead>
                             <tr>
                                 <th field="id" hidden="true" ></th>
                                 <c:if test="${ fn:indexOf(allQueryString,'&userId=')<0 }">
-                                    <th field='userName' align="left" width="1" sortable='false' formatter='titleFmt' >用户名</th>
+                                    <th field='userName' align="left" width="1" sortable='false'  >用户名</th>
                                     <th field='userPhone' align="left" width="1" sortable='false' >手机号</th>
                                     <th field='userEmail' align="left" width="1" sortable='false' >邮箱</th>
-                                    <th field='userId' align="left" width="1" sortable='false' hidden="true" formatter='userIdFmt'>用户ID</th>
+                                    <th field='userId' align="left" width="0" sortable='false'  hidden="true">用户ID</th>
                                 </c:if>
 
                                 <c:if test="${ fn:indexOf(allQueryString,'&roleId=')<0  }">
-                                    <th field='roleName' align="left" width="1" sortable='false'  formatter='titleFmt'>角色名</th>
+                                    <th field='roleName' align="left" width="1" sortable='false' >角色名</th>
                                     <th field='roleCode' align="left" width="1" sortable='false'  >角色编码</th>
-                                    <th field='roleId' align="left" width="1" sortable='false' hidden="true" formatter='roleIdFmt'>用户ID</th>
+                                    <th field='roleId' align="left" width="0" sortable='false'  hidden="true">用户ID</th>
                                 </c:if>
 
-                                <th field="option" align="left" formatter="markFmt">操作</th>
+                                <th hidden="true" field="option" align="left" formatter="markFmt">操作</th>
 
                             </tr>
                         </thead>
                     </table>
 
-                    <div style="text-align: center; margin-top: 15px">
+                    <div style="text-align: center; margin-top: 15px" class="toolBar">
 
 
-                        <c:if test="${ fn:indexOf(allQueryString,'&userId=')<0 && fn:indexOf(allQueryString,'&roleId=')<0}">
-                            <button type="button" id="addBtn" class="btn btn-primary btn-sm hide" onclick="clkSystemUserRole()" >
-                                <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
-                                </svg>
-                                <span>添 加</span>
-                            </button>
-                        </c:if>
 
                         <c:if test="${ fn:indexOf(allQueryString,'&userId=')>=0 || fn:indexOf(allQueryString,'&roleId=')>=0}">
                             <c:if test="${ fn:indexOf(allQueryString,'&userId=')>=0 }">
@@ -80,7 +72,8 @@
 
             </div>
 
-            <div style="margin-top:10px;position:absolute;" align="center" id="toolBar">
+
+            <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
 
                 <shiro:hasPermission name="system.user:update">
                     <button type="button" class="btn btn-primary btn-sm btn-showEdit" onclick="switchEditDetail()">
@@ -149,29 +142,36 @@
 
     function userIdFmt(val, r,index){
         var html = '<input type="hidden" name="ms['+index+'].userId" id=“userId'+index+'”>';
+        return html;
     }
 
     function roleIdFmt(val, r,index){
         var html = '<input type="hidden" name="ms['+index+'].roleId" id=“roleId'+index+'”>';
+        return html;
     }
 
 
     function saveRelevanceList() {
 
-        var actionUrl = ctx+dataUrl + "/saveRelevanceList"
+        var actionUrl = ctx+dataUrl + "/saveRelevanceList?"+queryString;
+
+        var rows = $('#'+tableid).datagrid("getRows");
+
+
 
         //提交表单
         $.ajax({
             url: actionUrl,
             type: 'POST',
-            data: $("form").serializeToString(),
+            dataType:"json",
+            contentType: "application/json; charset=utf-8",
+            cache:false,
+            data: JSON.stringify(rows),
             success: function (rsp, status) {
                 updateSuccess(rsp, status);
             }
         });
     }
-
-
 
 
     function markFmt(val, r,index){
@@ -192,7 +192,6 @@
 
 
     function clkSystemRole(){
-
         openSystemRole();
         $(".roleNames").click();
     }
@@ -248,8 +247,55 @@
 
 
 
-    function openSystemUser(){
+    function clkSystemUser(){
+        openSystemUser();
         $(".userNames").click();
+    }
+
+
+    var systemUserWindow = null;
+    function openSystemUser(){
+        if(systemUserWindow != null){
+            systemUserWindow.remove();
+        }
+        //获取当前列表包含的协议
+        var rows=$('#'+tableid).datagrid("getRows");
+        var userIds =rows.map(n=>n.userId);
+
+        userIds = userIds.join(',');
+
+        systemUserWindow = $(".userNames").OpenSystemUserSelectWin(
+            {
+                title:"用户(多选)",
+                selectType: 'd2',
+                callId:"userIds",
+                callName:"userNames",
+                params:{ "id_NOTIN":userIds , "userStatus":"1" , "systemAdmin":"0"}
+            },
+            function(ids,names,rows){
+
+                var datarow = $('#'+tableid).datagrid("getRows");
+                var newRows = [];
+                $.each(datarow,function(){
+                    newRows.push(this);
+                });
+
+                $.each(rows,function(i,sub){
+                    newRows.push({
+                        id:'',
+                        userId:sub.id,
+                        userName:sub.userName,
+                        userPhone:sub.phone,
+                        userEmail:sub.email,
+                        roleId:'${m.roleId}',
+                        roleName:'${m.roleName}',
+                        roleCode:'${m.roleCode}'
+                    });
+                });
+                var data = {rows:newRows};
+                $('#'+tableid).datagrid("loadData",data);
+
+            });
     }
 
 </script>

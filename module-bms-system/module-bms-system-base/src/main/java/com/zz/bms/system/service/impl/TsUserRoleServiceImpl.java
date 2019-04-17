@@ -23,9 +23,11 @@ import com.zz.bms.system.bo.TsUserBO;
 import com.zz.bms.system.dao.TsUserDAO;
 
 
+import com.zz.bms.util.base.java.IdUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -148,6 +150,7 @@ public class TsUserRoleServiceImpl extends BaseServiceImpl<TsUserRoleBO,String> 
 	}
 
 
+	@Transactional
     @Override
     public void saveBatchRelevance(List<TsUserRoleBO> list, TsUserRoleBO t) {
 	    if(t == null || (EntityUtil.isEmpty(t.getUserId()) && EntityUtil.isEmpty(t.getRoleId()) )){
@@ -157,10 +160,13 @@ public class TsUserRoleServiceImpl extends BaseServiceImpl<TsUserRoleBO,String> 
 	    if(!EntityUtil.isEmpty(t.getUserId())){
             QueryWrapper<TsUserRoleBO> qw = new QueryWrapper<TsUserRoleBO>();
             qw.eq("user_id", t.getUserId());
-	        this.tsUserRoleDAO.delete(qw);
+	        this.getDAO().delete(qw);
 	        if(list != null && !list.isEmpty()){
 	            for(TsUserRoleBO bo : list){
 	                bo.setUserId(t.getUserId());
+	                if(EntityUtil.isEmpty(bo.getId())){
+	                	bo.setId(IdUtils.getId());
+					}
                 }
 	            this.saveBatch(list);
             }
@@ -168,11 +174,15 @@ public class TsUserRoleServiceImpl extends BaseServiceImpl<TsUserRoleBO,String> 
 
             QueryWrapper<TsUserRoleBO> qw = new QueryWrapper<TsUserRoleBO>();
             qw.eq("role_id", t.getRoleId());
-            this.tsUserRoleDAO.delete(qw);
+            this.getDAO().delete(qw);
             if(list != null && !list.isEmpty()){
                 for(TsUserRoleBO bo : list){
                     bo.setRoleId(t.getRoleId());
+					if(EntityUtil.isEmpty(bo.getId())){
+						bo.setId(IdUtils.getId());
+					}
                 }
+				list.get(1).setId(null);
                 this.saveBatch(list);
             }
         }else {

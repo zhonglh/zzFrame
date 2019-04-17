@@ -136,7 +136,7 @@
         <tr>
             <th field="ck" checkbox="true"></th>
 
-            <th field='roleName' align="left" width="2" sortable='false' formatter='titleFmt' >角色名称</th>
+            <th field='roleName' align="left" width="2" sortable='false' formatter='titleAllFmt' >角色名称</th>
             <th field='roleCode' align="left" width="1" sortable='false'  >角色编号</th>
             <th field='roleTypeName' align="left" width="1" sortable='false'  >角色类型</th>
             <th field='depName' align="left" width="2" sortable='false'  >部门</th>

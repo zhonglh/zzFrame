@@ -17,12 +17,9 @@
                http://www.springframework.org/schema/context/spring-context.xsd">
 
 
+    <aop:config proxy-target-class="true"/>
 
 
-    <!-- 扫描service组件 -->
-    <context:component-scan base-package="com.zz.**.service;com.zz.**.service.impl"  use-default-filters="false">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
-    </context:component-scan>
 
 
 
@@ -40,10 +37,13 @@
 
 
 
+    <!-- 扫描service组件 -->
+    <context:component-scan base-package="com.**.service.impl"  use-default-filters="true">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+    </context:component-scan>
 
 
 
-    <aop:aspectj-autoproxy/>
 
 
 

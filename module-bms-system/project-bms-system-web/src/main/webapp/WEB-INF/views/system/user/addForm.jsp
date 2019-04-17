@@ -53,7 +53,7 @@
                                 <c:if test="${ fn:indexOf(allQueryString,'&leadUserId=')>=0 }">
                                     <input type="text"  id="leadUserName" name="leadUserName" class="form-control input-sm" readonly="readonly">
                                 </c:if>
-                                <c:if test="${ fn:indexOf(allQueryString,'&leadUserId=')>=0 }">
+                                <c:if test="${ fn:indexOf(allQueryString,'&leadUserId=')<0 }">
                                 <div class="input-group">
                                     <input type="text"  id="leadUserName" name="leadUserName" class="form-control input-sm leadUserName"
                                            placeholder="请选择直属领导" readonly="readonly">
@@ -78,7 +78,7 @@
                                 <c:if test="${ fn:indexOf(allQueryString,'&depId=')>=0 }">
                                     <input type="text"  id="depName" name="depName" value="${m.depId}" class="form-control input-sm" readonly="readonly" >
                                 </c:if>
-                                <c:if test="${ fn:indexOf(allQueryString,'&depId=')>=0 }">
+                                <c:if test="${ fn:indexOf(allQueryString,'&depId=')<0 }">
                                 <div class="input-group">
                                     <input type="text"  id="depName" name="depName" value="${m.depId}" class="form-control input-sm  depName "
                                            placeholder="请选择所在部门" readonly="readonly" >

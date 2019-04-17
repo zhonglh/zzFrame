@@ -168,6 +168,8 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
     public void saveAfter(T t){
     }
 
+
+    //@Transactional
     @Override
     public boolean save(T entity) {
 
@@ -364,6 +366,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
      * @param entity
      * @return
      */
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean updateById(T entity) {
 

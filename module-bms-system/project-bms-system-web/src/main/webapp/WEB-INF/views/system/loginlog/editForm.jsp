@@ -109,7 +109,7 @@
 
             </div>
 
-            <div style="margin-top:10px;position:absolute;" align="center" id="toolBar">
+            <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
 
 
 

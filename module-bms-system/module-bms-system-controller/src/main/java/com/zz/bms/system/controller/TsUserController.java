@@ -37,6 +37,15 @@ public class TsUserController extends ZzDefaultController<TsUserBO,VsUserBO, Str
 	private TsDictService tsDictService;
 
 
+
+
+	@Override
+	protected void setCommonData(TsUserBO m, ModelMap model) {
+		m.setLoginPassword(null);
+		m.setSalt(null);
+	}
+
+
 	@Override
 	public void setCustomInfoByInsert(TsUserBO tsUserBO , ILoginUserEntity<String> sessionUser){
 		tsUserBO.setUserStatus(EnumUserStatus.normal.getVal());

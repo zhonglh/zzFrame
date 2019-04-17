@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -131,9 +132,9 @@ public class TsUserRoleController extends ZzDefaultSimpleController<TsUserRoleBO
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = "/saveRelevanceList", method = RequestMethod.POST)
+	@RequestMapping(value = "/saveRelevanceList", method = RequestMethod.POST , consumes = "application/json")
 	@ResponseBody
-	public Object saveRelevanceList( List<TsUserRoleBO> ms, TsUserRoleBO m, TsUserRoleQueryWebImpl Q,  ModelMap modelMap , HttpServletRequest request, HttpServletResponse response) {
+	public Object saveRelevanceList(@RequestBody List<TsUserRoleBO> ms, TsUserRoleBO m, TsUserRoleQueryWebImpl Q, ModelMap modelMap , HttpServletRequest request, HttpServletResponse response) {
 
 
 		this.assertHasCreatePermission();

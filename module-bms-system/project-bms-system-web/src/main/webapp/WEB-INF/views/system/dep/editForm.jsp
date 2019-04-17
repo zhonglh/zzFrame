@@ -48,7 +48,7 @@
                 </div>
 
 
-                <form action="" method="post" class="form-auto-fill hide" id="editForm" viewId="detailInfo" formId="editForm">
+                <form action="" method="post" class="form-auto-fill hide editForm" id="editForm" viewId="detailInfo" formId="editForm">
                     <input type="hidden" id="id" name="id" value="${m.id}">
                     <table class="info-table">
                         <colgroup>
@@ -128,7 +128,7 @@
                 </form>
             </div>
 
-            <div style="margin-top:10px;position:absolute;" align="center" id="toolBar">
+            <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
 
 
 

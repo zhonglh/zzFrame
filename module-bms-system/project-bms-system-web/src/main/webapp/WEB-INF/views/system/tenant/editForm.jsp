@@ -157,7 +157,7 @@
                 </form>
             </div>
 
-            <div style="margin-top:10px;position:absolute;" align="center" id="toolBar">
+            <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
 
                 <shiro:hasPermission name="system.user:update">
                     <button type="button" class="btn btn-primary btn-sm btn-showEdit" onclick="switchEditDetail()">
