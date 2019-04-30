@@ -35,8 +35,35 @@
     <%@include file="/WEB-INF/views/common/import-css.jspf"%>
 
     <style>
-        body{overflow-y: auto !important}
+        body {
+            overflow-y: auto !important
+        }
+
+        @media (min-width: 992px) {
+            .col-md-5 .block-con {
+                margin-left: 10px
+            }
+        }
+
+        .table-cell .info-detail .input-check {
+            margin-bottom: 5px
+        }
+
+        .datagrid-body {
+            margin-bottom: -1px
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        input[type="number"]{
+            -moz-appearance: textfield;
+        }
+        .show-area{
+            display:none;
+        }
     </style>
+
 
 
 

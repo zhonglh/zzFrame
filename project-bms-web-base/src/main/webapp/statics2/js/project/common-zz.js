@@ -6,6 +6,7 @@
  * @returns {boolean}
  */
 function isInAllPage(){
+
     try{
         if(inAllPage == undefined || inAllPage == null || inAllPage == ""){
             return false;

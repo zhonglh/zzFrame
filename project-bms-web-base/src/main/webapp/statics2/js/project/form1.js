@@ -23,25 +23,55 @@ function closeWindow() {
 }
 
 
-//显示编辑
-function openEdit(){
-    $(".form").validate();//开启验证
-    $(".show-area").show();
-    $(".hide-area").hide();
-    $(".easyui-datagrid").datagrid("showColumn","option");
-    $(".form").tform().showEdit();
+
+/**
+ * 切换 编辑 和 明细 模式
+ */
+function switchEditDetail() {
+    $(".toolBar").find("button").each(function(){
+        if($(this).hasClass("hide")){
+            $(this).removeClass("hide");
+        }else{
+            $(this).addClass("hide");
+        }
+    });
+
+    try {
+
+        var editForms = $("form").filter(".editForm");
+
+        if (showMode === "detail") {
+            // 转为编辑模式
+            editForms.removeClass("hide");
+            $(".detailInfo").addClass("hide");
+
+
+            editForms.clearValidate();
+            editForms.validate();
+
+            editForms.tform().showEdit();
+
+
+            showMode = "eidt"
+
+            $(".easyui-datagrid").datagrid("showColumn", "option");
+
+        } else {
+            editForms.addClass("hide");
+            $(".detailInfo").removeClass("hide");
+            showMode = "detail"
+            $(".easyui-datagrid").datagrid("hideColumn", "option");
+        }
+
+    }catch(e){
+
+    }
+
+
+
+
+
 }
-
-//取消编辑
-function cancelEdit(){
-    $(".show-area").hide();
-    $(".hide-area").show();
-    $('.easyui-datagrid').datagrid("reload");
-    $(".easyui-datagrid").datagrid("hideColumn","option");
-    $(".form").clearValidate();//清除验证
-}
-
-
 
 
 
@@ -289,6 +319,8 @@ function updateSuccess(rsp, status){
     if(rsp.success) {
         info(rsp.msg);
         if(isInAllPage()){
+            //切换到显示界面
+            switchEditDetail();
             $("form").tform().showDetail(true);
             try{
                 updateAfter();
@@ -299,9 +331,6 @@ function updateSuccess(rsp, status){
                 parent.parent.search();
             }catch(e){
             }
-
-            //切换到显示界面
-            cancelEdit();
         }else {
             try{
                 parent.search();
