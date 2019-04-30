@@ -7,21 +7,31 @@
     <div class="row">
         <div class="col-xs-12 col-lg-12 col-md-12" style="padding-left: 0;padding-right: 0">
             <div class="block-each block-each-another">
-                <div class="block-tit">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                    </svg>基本信息
-                </div>
+
+
+                <form action="" method="post" id="editForm" viewId="detailInfo">
+
+                    <div class="block-tit">
+                        <svg class="icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
+                        </svg>基本信息
+                    </div>
 
 
 
-                <div id="detailInfo" class="detailInfo">
-                    <table class="info-table">
+                    <table class="info-table hide-area">
+                        <colgroup>
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                        </colgroup>
+                        
                         <tr>
-                            <th width="15%">用户名称</th>
+                            <th>用户名称</th>
                             <td class="fd_userName">${m.userName}</td>
 
-                            <th width="15%">用户登录名</th>
+                            <th>用户登录名</th>
                             <td class="fd_loginName">${m.loginName}</td>
                         </tr>
                         <tr>
@@ -32,10 +42,10 @@
                         </tr>
 
                         <tr>
-                            <th width="15%">手机号</th>
+                            <th>手机号</th>
                             <td class="fd_phone">${m.phone}</td>
 
-                            <th width="15%">邮箱</th>
+                            <th>邮箱</th>
                             <td class="fd_email">${m.email}</td>
                         </tr>
                         <tr>
@@ -44,29 +54,35 @@
                         </tr>
 
                     </table>
-                </div>
 
 
-                <form action="" method="post" class="form-auto-fill hide editForm" id="editForm" viewId="detailInfo" formId="editForm">
                     <input type="hidden" id="id" name="id" value="${m.id}">
-                    <table class="info-table">
+                    <table class="info-table show-area">
+
+                        <colgroup>
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                        </colgroup>
+
                         <tr>
-                            <th width="15%">用户名称<font color="red">*</font></th>
+                            <th>用户名称<font color="red">*</font></th>
                             <td><input type="text" class="form-control input-sm required"  placeholder="请输入用户名称"
                                        value="${m.userName}" id="userName" name="userName" minlength="2" maxlength='50'/></td>
 
-                            <th width="15%">用户登录名<font color="red">*</font></th>
+                            <th>用户登录名<font color="red">*</font></th>
                             <td><input type="text" class="form-control input-sm required"  placeholder="请输入用户登录名"  autocomplete="off"
                                        value="${m.loginName}" id="loginName" name="loginName" minlength="4" maxlength='20'/></td>
                         </tr>
 
                         <c:if test="${empty m.id}">
                         <tr>
-                            <th width="15%">密码<font color="red">*</font></th>
+                            <th>密码<font color="red">*</font></th>
                             <td><input type="password" class="form-control input-sm required"  placeholder="请输入用户名称"
                                        autocomplete="off" id="loginPassword" name="loginPassword" minlength="6" maxlength='10'/></td>
 
-                            <th width="15%">确认密码<font color="red">*</font></th>
+                            <th>确认密码<font color="red">*</font></th>
                             <td><input type="password" class="form-control input-sm required"  placeholder="请输入用户名称" id="loginPasswordConfirm" name="loginPasswordConfirm"
                                        autocomplete="off" equalto="#loginPassword" data-msg-equalto="您2次输入的新密码不一致！" minlength="6" maxlength='10'/></td>
                         </tr>
@@ -126,17 +142,17 @@
                         </tr>
 
                         <tr>
-                            <th width="15%">手机号<font color="red">*</font></th>
+                            <th>手机号<font color="red">*</font></th>
                             <td><input type="text" class="form-control input-sm required"  placeholder="请输入手机号"
                                        value="${m.phone}" id="phone" name="phone" minlength="11" maxlength='11'/></td>
 
-                            <th width="15%">邮箱<font color="red">*</font></th>
+                            <th>邮箱<font color="red">*</font></th>
                             <td><input type="email" class="form-control input-sm required"  placeholder="请输入邮箱"
                                        value="${m.email}"  id="email" name="email" minlength="4" maxlength='50'/></td>
                         </tr>
 
                         <tr>
-                            <th width="15%" height="10%">附件</th>
+                            <th height="10%">附件</th>
                             <td width="15%" colspan="3">
                                 <div class="" style="margin-bottom: 0px;">
                                     <div class="info-detail">
@@ -168,6 +184,8 @@
                         </tr>
 
                     </table>
+
+
                 </form>
             </div>
 
@@ -176,7 +194,7 @@
 
 
                 <shiro:hasPermission name="system.user:update">
-                <button type="button" class="btn btn-primary btn-sm btn-showEdit" onclick="switchEditDetail()">
+                <button type="button" class="btn btn-primary btn-sm hide-area" onclick="openEdit()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use>
                     </svg>
@@ -184,7 +202,7 @@
                 </button>
                 </shiro:hasPermission>
 
-                <button type="button" class="btn  btn-warning btn-sm btn-showEdit" onclick="closeWindow()">
+                <button type="button" class="btn  btn-warning btn-sm hide-area" onclick="closeWindow()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chexiao"></use>
                     </svg>
@@ -193,7 +211,7 @@
 
 
                 <shiro:hasPermission name="system.user:update">
-                <button type="button" class="btn btn-primary btn-sm hide" onclick="doUpdate()">
+                <button type="button" class="btn btn-primary btn-sm show-area" onclick="doUpdate()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
                     </svg>
@@ -201,7 +219,7 @@
                 </button>
                 </shiro:hasPermission>
 
-                <button type="button" class="btn  btn-warning btn-sm hide" onclick="switchEditDetail()">
+                <button type="button" class="btn  btn-warning btn-sm show-area" onclick="cancelEdit()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                     </svg>
@@ -219,8 +237,7 @@
 
 <script>
 
-    //显示模式   明细/编辑
-    var showMode = "detail";
+
     var inAllPage = "${inAllPage}";
 
 </script>

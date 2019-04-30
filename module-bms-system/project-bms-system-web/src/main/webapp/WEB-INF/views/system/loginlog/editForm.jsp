@@ -17,95 +17,93 @@
                 </div>
 
 
-                <div id="detailInfo" class="detailInfo">
-                    <table class="info-table">
+                <table class="info-table hide-area">
 
-                        <colgroup>
-                            <col style="width: 15%" />
-                            <col style="width: 35%" />
-                            <col style="width: 15%" />
-                            <col style="width: 35%" />
-                        </colgroup>
-
-
-                                <tr>
-
-                                    <th>操作类型<font color="red">*</font></th>
-
-                                    <td class="fd_operationTypeName">
-                                            ${ m.operationTypeName }
+                    <colgroup>
+                        <col style="width: 15%" />
+                        <col style="width: 35%" />
+                        <col style="width: 15%" />
+                        <col style="width: 35%" />
+                    </colgroup>
 
 
-                                    </td>
+                            <tr>
 
-                                    <th>操作说明</th>
+                                <th>操作类型<font color="red">*</font></th>
 
-                                    <td>
-                                            ${ m.operationlogName }
-                                    </td>
-
-
-                                </tr>
+                                <td class="fd_operationTypeName">
+                                        ${ m.operationTypeName }
 
 
-                                <tr>
+                                </td>
 
-                                    <th>部门<font color="red">*</font></th>
+                                <th>操作说明</th>
 
-                                    <td class="fd_depName">
-                                            ${ m.depName }
-
-
-                                    </td>
-
-                                    <th>机构<font color="red">*</font></th>
-
-                                    <td>
-                                            ${ m.organId }
-                                    </td>
+                                <td>
+                                        ${ m.operationlogName }
+                                </td>
 
 
-                                </tr>
+                            </tr>
 
 
-                                <tr>
+                            <tr>
 
-                                    <th>操作人IP</th>
+                                <th>部门<font color="red">*</font></th>
 
-                                    <td class="fd_operationIp">
-                                            ${ m.operationIp }
-
-
-                                    </td>
-
-                                    <th>操作人名称<font color="red">*</font></th>
-
-                                    <td>
-                                            ${ m.operationUserName }
-                                    </td>
+                                <td class="fd_depName">
+                                        ${ m.depName }
 
 
-                                </tr>
+                                </td>
+
+                                <th>机构<font color="red">*</font></th>
+
+                                <td>
+                                        ${ m.organId }
+                                </td>
 
 
-                                <tr>
-
-                                    <th>操作时间<font color="red">*</font></th>
-
-                                    <td class="fd_operationTime">
-                                            <fmt:formatDate value="${ m.operationTime }" pattern="yyyy-MM-dd  HH:mm:ss" />
+                            </tr>
 
 
-                                    </td>
+                            <tr>
+
+                                <th>操作人IP</th>
+
+                                <td class="fd_operationIp">
+                                        ${ m.operationIp }
 
 
+                                </td>
 
-                                </tr>
+                                <th>操作人名称<font color="red">*</font></th>
+
+                                <td>
+                                        ${ m.operationUserName }
+                                </td>
+
+
+                            </tr>
+
+
+                            <tr>
+
+                                <th>操作时间<font color="red">*</font></th>
+
+                                <td class="fd_operationTime">
+                                        <fmt:formatDate value="${ m.operationTime }" pattern="yyyy-MM-dd  HH:mm:ss" />
+
+
+                                </td>
 
 
 
-                    </table>
-                </div>
+                            </tr>
+
+
+
+                </table>
 
             </div>
 
@@ -113,37 +111,12 @@
 
 
 
-                <shiro:hasPermission name="system.user:update">
-                    <button type="button" class="btn btn-primary btn-sm btn-showEdit" onclick="switchEditDetail()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use>
-                        </svg>
-                        <span>编 辑</span>
-                    </button>
-                </shiro:hasPermission>
 
-                <button type="button" class="btn  btn-warning btn-sm btn-showEdit" onclick="closeWindow()">
+                <button type="button" class="btn  btn-warning btn-sm hide-area" onclick="closeWindow()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chexiao"></use>
                     </svg>
                     <span>返 回</span>
-                </button>
-
-
-                <shiro:hasPermission name="system.user:update">
-                    <button type="button" class="btn btn-primary btn-sm hide" onclick="doUpdate()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
-                        </svg>
-                        <span>保 存</span>
-                    </button>
-                </shiro:hasPermission>
-
-                <button type="button" class="btn  btn-warning btn-sm hide" onclick="switchEditDetail()">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                    </svg>
-                    <span>取 消</span>
                 </button>
 
             </div>
@@ -160,8 +133,7 @@
 <script>
 
 
-    //显示模式   明细/编辑
-    var showMode = "detail";
+
     var inAllPage = "${inAllPage}";
 </script>
 

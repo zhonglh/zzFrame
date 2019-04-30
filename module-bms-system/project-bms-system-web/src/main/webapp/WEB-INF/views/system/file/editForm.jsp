@@ -9,15 +9,16 @@
     <div class="row">
         <div class="col-xs-12 col-lg-12 col-md-12" style="padding-left: 0;padding-right: 0">
             <div class="block-each block-each-another">
-                <div class="block-tit">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                    </svg>基本信息
-                </div>
+
+                <form action="" method="post" id="editForm" viewId="editForm" >
+                    <div class="block-tit">
+                        <svg class="icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
+                        </svg>基本信息
+                    </div>
 
 
-                <div id="detailInfo" class="detailInfo">
-                    <table class="info-table">
+                    <table class="info-table hide-area">
 
                         <colgroup>
                             <col style="width: 15%" />
@@ -27,80 +28,79 @@
                         </colgroup>
 
                         <tbody>
-                                <tr>
-                                    <th>访问路径前缀</th>
-                                    <td class="fd_accessUrlPrefix">
-                                        <c:out value="${ m.accessUrlPrefix }" escapeXml="true"/>
-                                    </td>
-                                    <th>访问路径<font color="red">*</font></th>
-                                    <td class="fd_accessUrlPrefix">
-                                        <c:out value="${ m.accessUrl }" escapeXml="true"/>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <th>访问路径前缀</th>
+                                <td class="fd_accessUrlPrefix">
+                                    <c:out value="${ m.accessUrlPrefix }" escapeXml="true"/>
+                                </td>
+                                <th>访问路径<font color="red">*</font></th>
+                                <td class="fd_accessUrlPrefix">
+                                    <c:out value="${ m.accessUrl }" escapeXml="true"/>
+                                </td>
+                            </tr>
 
-                                <tr>
-                                    <th>文件所在主机</th>
-                                    <td class="fd_fileHost">
-                                        <c:out value="${ m.fileHost }" escapeXml="true"/>
-                                    </td>
-                                    <th>FILE_BASE_PATH</th>
-                                    <td class="fd_fileHost">
-                                        <c:out value="${ m.fileBasePath }" escapeXml="true"/>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <th>文件所在主机</th>
+                                <td class="fd_fileHost">
+                                    <c:out value="${ m.fileHost }" escapeXml="true"/>
+                                </td>
+                                <th>FILE_BASE_PATH</th>
+                                <td class="fd_fileHost">
+                                    <c:out value="${ m.fileBasePath }" escapeXml="true"/>
+                                </td>
+                            </tr>
 
-                                <tr>
-                                    <th>文件路径</th>
-                                    <td class="fd_filePath">
-                                        <c:out value="${ m.filePath }" escapeXml="true"/>
-                                    </td>
-                                    <th>文件名<font color="red">*</font></th>
-                                    <td class="fd_filePath">
-                                        <c:out value="${ m.fileName }" escapeXml="true"/>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <th>文件路径</th>
+                                <td class="fd_filePath">
+                                    <c:out value="${ m.filePath }" escapeXml="true"/>
+                                </td>
+                                <th>文件名<font color="red">*</font></th>
+                                <td class="fd_filePath">
+                                    <c:out value="${ m.fileName }" escapeXml="true"/>
+                                </td>
+                            </tr>
 
-                                <tr>
-                                    <th>文件大小<font color="red">*</font></th>
-                                    <td class="fd_fileSize">
-                                        <c:out value="${ m.fileSize }" escapeXml="true"/>
-                                    </td>
-                                    <th>文件后缀</th>
-                                    <td class="fd_fileSize">
-                                        <c:out value="${ m.fileSuffix }" escapeXml="true"/>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <th>文件大小<font color="red">*</font></th>
+                                <td class="fd_fileSize">
+                                    <c:out value="${ m.fileSize }" escapeXml="true"/>
+                                </td>
+                                <th>文件后缀</th>
+                                <td class="fd_fileSize">
+                                    <c:out value="${ m.fileSuffix }" escapeXml="true"/>
+                                </td>
+                            </tr>
 
-                                <tr>
-                                    <th>文件引擎<font color="red">*</font></th>
-                                    <td class="fd_fileEngineName">
-                                        ${ m.fileEngineName }
-                                    </td>
-                                    <th>MD5码</th>
-                                    <td class="fd_fileEngineName">
-                                        <c:out value="${ m.md5 }" escapeXml="true"/>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <th>文件引擎<font color="red">*</font></th>
+                                <td class="fd_fileEngineName">
+                                    ${ m.fileEngineName }
+                                </td>
+                                <th>MD5码</th>
+                                <td class="fd_fileEngineName">
+                                    <c:out value="${ m.md5 }" escapeXml="true"/>
+                                </td>
+                            </tr>
 
-                                <tr>
-                                    <th>文件类型</th>
-                                    <td class="fd_contentType">
-                                        <c:out value="${ m.contentType }" escapeXml="true"/>
-                                    </td>
-                                    <th>使用次数</th>
-                                    <td class="fd_contentType">
-                                        <c:out value="${ m.useFrequency }" escapeXml="true"/>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <th>文件类型</th>
+                                <td class="fd_contentType">
+                                    <c:out value="${ m.contentType }" escapeXml="true"/>
+                                </td>
+                                <th>使用次数</th>
+                                <td class="fd_contentType">
+                                    <c:out value="${ m.useFrequency }" escapeXml="true"/>
+                                </td>
+                            </tr>
 
                         </tbody>
                     </table>
-                </div>
 
 
-                <form action="" method="post" class="form-auto-fill hide editForm" id="editForm" viewId="detailInfo" formId="editForm">
                     <input type="hidden" id="id" name="id" value="${ m.id }">
-                    <table class="info-table">
+
+                    <table class="info-table show-area">
                         <colgroup>
                             <col style="width: 15%" />
                             <col style="width: 35%" />
@@ -222,7 +222,7 @@
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
 
                 <shiro:hasPermission name="system.user:update">
-                    <button type="button" class="btn btn-primary btn-sm btn-showEdit" onclick="switchEditDetail()">
+                    <button type="button" class="btn btn-primary btn-sm hide-area" onclick="openEdit()">
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use>
                         </svg>
@@ -230,7 +230,7 @@
                     </button>
                 </shiro:hasPermission>
 
-                <button type="button" class="btn  btn-warning btn-sm btn-showEdit" onclick="closeWindow()">
+                <button type="button" class="btn  btn-warning btn-sm hide-area" onclick="closeWindow()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chexiao"></use>
                     </svg>
@@ -239,7 +239,7 @@
 
 
                 <shiro:hasPermission name="system.user:update">
-                    <button type="button" class="btn btn-primary btn-sm hide" onclick="doUpdate()">
+                    <button type="button" class="btn btn-primary btn-sm show-area" onclick="doUpdate()">
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
                         </svg>
@@ -247,7 +247,7 @@
                     </button>
                 </shiro:hasPermission>
 
-                <button type="button" class="btn  btn-warning btn-sm hide" onclick="switchEditDetail()">
+                <button type="button" class="btn  btn-warning btn-sm show-area" onclick="cancelEdit()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                     </svg>
@@ -260,8 +260,6 @@
 </div>
 
 <script>
-    //显示模式   明细/编辑
-    var showMode = "detail";
     var inAllPage = "${inAllPage}";
 </script>
 

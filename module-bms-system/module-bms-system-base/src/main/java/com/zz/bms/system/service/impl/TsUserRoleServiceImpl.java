@@ -182,7 +182,6 @@ public class TsUserRoleServiceImpl extends BaseServiceImpl<TsUserRoleBO,String> 
 						bo.setId(IdUtils.getId());
 					}
                 }
-				list.get(1).setId(null);
                 this.saveBatch(list);
             }
         }else {

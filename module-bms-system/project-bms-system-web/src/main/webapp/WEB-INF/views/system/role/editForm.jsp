@@ -9,15 +9,18 @@
     <div class="row">
         <div class="col-xs-12 col-lg-12 col-md-12" style="padding-left: 0;padding-right: 0">
             <div class="block-each block-each-another">
-                <div class="block-tit">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                    </svg>基本信息
-                </div>
 
 
-                <div id="detailInfo" class="detailInfo">
-                    <table class="info-table">
+                <form action="" method="post" id="editForm" viewId="editForm" >
+
+                    <div class="block-tit">
+                        <svg class="icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
+                        </svg>基本信息
+                    </div>
+
+
+                    <table class="info-table hide-area">
 
                         <colgroup>
                             <col style="width: 15%" />
@@ -66,16 +69,11 @@
 
 
                     </table>
-                </div>
 
-
-                <form action="" method="post" class="form-auto-fill hide editForm" id="editForm" viewId="detailInfo" formId="editForm">
                     <input type="hidden" id="id" name="id" value="${ m.id }">
 
 
-
-
-                    <table class="info-table">
+                    <table class="info-table show-area">
                         <colgroup>
                             <col style="width: 15%" />
                             <col style="width: 35%" />
@@ -85,80 +83,73 @@
 
                         <tbody>
 
-                        <tr>
+                            <tr>
 
-                            <th>角色名称<font color="red">*</font></th>
+                                <th>角色名称<font color="red">*</font></th>
 
-                            <td>
-                                <input type="text" required="required" class="form-control input-sm required"
-                                       placeholder="请输入角色名称" autocomplete="off"
-                                       value="${ m.roleName }" id="roleName" name="roleName"    maxlength="50"  />
-                            </td>
-
-
-
-                            <th>角色编号<font color="red">*</font></th>
-
-                            <td>
-                                <input type="text" required="required" class="form-control input-sm required"
-                                       placeholder="请输入角色编号" autocomplete="off"
-                                       value="${ m.roleCode }" id="roleCode" name="roleCode"    maxlength="20"  />
-                            </td>
-                        </tr>
+                                <td>
+                                    <input type="text" required="required" class="form-control input-sm required"
+                                           placeholder="请输入角色名称" autocomplete="off"
+                                           value="${ m.roleName }" id="roleName" name="roleName"    maxlength="50"  />
+                                </td>
 
 
 
-                        <tr>
-                            <th>备注</th>
+                                <th>角色编号<font color="red">*</font></th>
 
-                            <td colspan="3">
-
-                                        <textarea class="form-control input-sm" name="remark" id="remark"
-                                                  placeholder="请输入备注，200字以内" maxlength="200" rows="4">${ m.remark }</textarea>
-                            </td>
-
-
-
-                        </tr>
+                                <td>
+                                    <input type="text" required="required" class="form-control input-sm required"
+                                           placeholder="请输入角色编号" autocomplete="off"
+                                           value="${ m.roleCode }" id="roleCode" name="roleCode"    maxlength="20"  />
+                                </td>
+                            </tr>
 
 
 
+                            <tr>
+                                <th>备注</th>
 
-                        <tr>
-                            <th>许可设置</th>
+                                <td colspan="3">
 
-                            <td colspan="3">
-
-                                <div class="easyui-panel" style="padding:5px">
-                                    <ul id="rolePermitTree" class="easyui-tree" idField="id" treeField="text"></ul>
-                                </div>
-
-                            </td>
+                                            <textarea class="form-control input-sm" name="remark" id="remark"
+                                                      placeholder="请输入备注，200字以内" maxlength="200" rows="4">${ m.remark }</textarea>
+                                </td>
 
 
 
-                        </tr>
+                            </tr>
 
 
 
+
+                            <tr>
+                                <th>许可设置</th>
+
+                                <td colspan="3">
+
+                                    <div class="easyui-panel" style="padding:5px">
+                                        <ul id="rolePermitTree" class="easyui-tree" idField="id" treeField="text"></ul>
+                                    </div>
+
+                                </td>
+
+
+
+                            </tr>
 
                         </tbody>
-
-
 
                     </table>
 
                     <input type="hidden" id="permitIds" name="permitIds">
-                    
                 </form>
             </div>
 
+
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
 
-
-
                 <shiro:hasPermission name="system.user:update">
-                    <button type="button" class="btn btn-primary btn-sm btn-showEdit" onclick="switchEditDetail()">
+                    <button type="button" class="btn btn-primary btn-sm hide-area" onclick="openEdit()">
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use>
                         </svg>
@@ -166,16 +157,15 @@
                     </button>
                 </shiro:hasPermission>
 
-                <button type="button" class="btn  btn-warning btn-sm btn-showEdit" onclick="closeWindow()">
+                <button type="button" class="btn  btn-warning btn-sm hide-area" onclick="closeWindow()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chexiao"></use>
                     </svg>
                     <span>返 回</span>
                 </button>
 
-
                 <shiro:hasPermission name="system.user:update">
-                    <button type="button" class="btn btn-primary btn-sm hide" onclick="doUpdate()">
+                    <button type="button" class="btn btn-primary btn-sm show-area" onclick="doUpdate()">
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
                         </svg>
@@ -183,7 +173,7 @@
                     </button>
                 </shiro:hasPermission>
 
-                <button type="button" class="btn  btn-warning btn-sm hide" onclick="switchEditDetail()">
+                <button type="button" class="btn  btn-warning btn-sm show-area" onclick="cancelEdit()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                     </svg>
@@ -202,9 +192,6 @@
 <script>
 
     var inAllPage = "${inAllPage}";
-
-    //显示模式   明细/编辑
-    var showMode = "detail";
 
 </script>
 

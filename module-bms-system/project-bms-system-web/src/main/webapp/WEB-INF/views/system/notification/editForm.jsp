@@ -9,15 +9,16 @@
     <div class="row">
         <div class="col-xs-12 col-lg-12 col-md-12" style="padding-left: 0;padding-right: 0">
             <div class="block-each block-each-another">
-                <div class="block-tit">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                    </svg>基本信息
-                </div>
+
+                <form action="" method="post" id="editForm" viewId="editForm" >
+                    <div class="block-tit">
+                        <svg class="icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
+                        </svg>基本信息
+                    </div>
 
 
-                <div id="detailInfo" class="detailInfo">
-                    <table class="info-table">
+                    <table class="info-table hide-area">
 
                         <colgroup>
                             <col style="width: 15%" />
@@ -58,12 +59,11 @@
 
                         </tbody>
                     </table>
-                </div>
 
 
-                <form action="" method="post" class="form-auto-fill hide editForm" id="editForm" viewId="detailInfo" formId="editForm">
                     <input type="hidden" id="id" name="id" value="${ m.id }">
-                    <table class="info-table">
+
+                    <table class="info-table show-area">
                         <colgroup>
                             <col style="width: 15%" />
                             <col style="width: 35%" />
@@ -73,59 +73,59 @@
 
                         <tbody>
 
-                                <tr>
-                                    <th>模块</th>
-                                    <td>
-                                            <input type="text"  class="form-control input-sm "
-                                                   placeholder="请输入模块" autocomplete="off"
-                                                   value="${ m.notifyModule }" id="notifyModule" name="notifyModule"
-                                                       maxlength="100"  />
-                                    </td>
-                                    <th>通知标题</th>
-                                    <td>
-                                            <input type="text"  class="form-control input-sm "
-                                                   placeholder="请输入通知标题" autocomplete="off"
-                                                   value="${ m.title }" id="title" name="title"
-                                                       maxlength="100"  />
-                                    </td>
-                                </tr>
+                            <tr>
+                                <th>模块</th>
+                                <td>
+                                        <input type="text"  class="form-control input-sm "
+                                               placeholder="请输入模块" autocomplete="off"
+                                               value="${ m.notifyModule }" id="notifyModule" name="notifyModule"
+                                                   maxlength="100"  />
+                                </td>
+                                <th>通知标题</th>
+                                <td>
+                                        <input type="text"  class="form-control input-sm "
+                                               placeholder="请输入通知标题" autocomplete="off"
+                                               value="${ m.title }" id="title" name="title"
+                                                   maxlength="100"  />
+                                </td>
+                            </tr>
 
-                                <tr>
-                                    <th>通知内容<font color="red">*</font></th>
-                                    <td>
-                                            <div class="info-detail">
-                                                <textarea required="required" class="form-control input-sm required "
-                                                          name="content " placeholder="请输入通知内容，65535字以内" maxlength="65535" rows="6"><c:out value="${ m.content $}" escapeXml="true"/></textarea>
+                            <tr>
+                                <th>通知内容<font color="red">*</font></th>
+                                <td>
+                                        <div class="info-detail">
+                                            <textarea required="required" class="form-control input-sm required "
+                                                      name="content " placeholder="请输入通知内容，65535字以内" maxlength="65535" rows="6"><c:out value="${ m.content $}" escapeXml="true"/></textarea>
+                                        </div>
+                                </td>
+                                <th>通知时间<font color="red">*</font></th>
+                                <td>
+                                        <div class="input-group">
+                                            <input type="text" required="required" class="form-control input-sm required"
+                                                   placeholder="请输入通知时间" autocomplete="off"
+                                                   onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'notifyTime'})"
+                                                           value="${ m.notifyTime }" id="notifyTime" name="notifyTime" readonly   />
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('notifyTime').click()">
+                                                    <svg class="icon" aria-hidden="true">
+                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-rili"></use>
+                                                    </svg>
+                                                </button>
+                                                <button type="button" class="btn btn-primary btn-sm" onclick="clearTime(NotifyTime);">
+                                                    <svg class="icon" aria-hidden="true">
+                                                        <use  xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
+                                                    </svg>
+                                                </button>
                                             </div>
-                                    </td>
-                                    <th>通知时间<font color="red">*</font></th>
-                                    <td>
-                                            <div class="input-group">
-                                                <input type="text" required="required" class="form-control input-sm required"
-                                                       placeholder="请输入通知时间" autocomplete="off"
-                                                       onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'notifyTime'})"
-                                                               value="${ m.notifyTime }" id="notifyTime" name="notifyTime" readonly   />
-                                                <div class="input-group-btn">
-                                                    <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('notifyTime').click()">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-rili"></use>
-                                                        </svg>
-                                                    </button>
-                                                    <button type="button" class="btn btn-primary btn-sm" onclick="clearTime(NotifyTime);">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use  xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                    </td>
-                                </tr>
+                                        </div>
+                                </td>
+                            </tr>
 
-                                <tr>
-                                    <th>通知文件</th>
-                                    <td>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <th>通知文件</th>
+                                <td>
+                                </td>
+                            </tr>
 
                         </tbody>
                     </table>
@@ -135,7 +135,7 @@
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
 
                 <shiro:hasPermission name="system.user:update">
-                    <button type="button" class="btn btn-primary btn-sm btn-showEdit" onclick="switchEditDetail()">
+                    <button type="button" class="btn btn-primary btn-sm hide-area" onclick="openEdit()">
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use>
                         </svg>
@@ -143,7 +143,7 @@
                     </button>
                 </shiro:hasPermission>
 
-                <button type="button" class="btn  btn-warning btn-sm btn-showEdit" onclick="closeWindow()">
+                <button type="button" class="btn  btn-warning btn-sm hide-area" onclick="closeWindow()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chexiao"></use>
                     </svg>
@@ -152,7 +152,7 @@
 
 
                 <shiro:hasPermission name="system.user:update">
-                    <button type="button" class="btn btn-primary btn-sm hide" onclick="doUpdate()">
+                    <button type="button" class="btn btn-primary btn-sm show-area" onclick="doUpdate()">
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
                         </svg>
@@ -160,7 +160,7 @@
                     </button>
                 </shiro:hasPermission>
 
-                <button type="button" class="btn  btn-warning btn-sm hide" onclick="switchEditDetail()">
+                <button type="button" class="btn  btn-warning btn-sm show-area" onclick="cancelEdit()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                     </svg>
@@ -173,8 +173,6 @@
 </div>
 
 <script>
-    //显示模式   明细/编辑
-    var showMode = "detail";
     var inAllPage = "${inAllPage}";
 </script>
 

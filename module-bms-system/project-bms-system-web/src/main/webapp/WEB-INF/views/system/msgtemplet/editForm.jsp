@@ -9,15 +9,18 @@
     <div class="row">
         <div class="col-xs-12 col-lg-12 col-md-12" style="padding-left: 0;padding-right: 0">
             <div class="block-each block-each-another">
-                <div class="block-tit">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                    </svg>基本信息
-                </div>
 
 
-                <div id="detailInfo" class="detailInfo">
-                    <table class="info-table">
+                <form action="" method="post" id="editForm" viewId="editForm" >
+
+                    <div class="block-tit">
+                        <svg class="icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
+                        </svg>基本信息
+                    </div>
+
+
+                    <table class="info-table hide-area">
 
                         <colgroup>
                             <col style="width: 15%" />
@@ -27,69 +30,61 @@
                         </colgroup>
 
 
-                                <tr>
+                        <tr>
 
-                                    <th>消息模板名称<font color="red">*</font></th>
+                            <th>消息模板名称<font color="red">*</font></th>
 
-                                    <td class="fd_msgTempletName">
-                                            ${ m.msgTempletName }
-
-
-                                    </td>
-
-                                    <th>消息模板类型<font color="red">*</font></th>
-
-                                    <td class="fd_msgTempletTypeName">
-                                            ${ m.msgTempletTypeName }
-                                    </td>
+                            <td class="fd_msgTempletName">
+                                    ${ m.msgTempletName }
 
 
-                                </tr>
+                            </td>
+
+                            <th>消息模板类型<font color="red">*</font></th>
+
+                            <td class="fd_msgTempletTypeName">
+                                    ${ m.msgTempletTypeName }
+                            </td>
 
 
-
-
-                                <tr>
-                                    <th>消息标题</th>
-
-                                    <td class="fd_msgTitle">
-                                        ${ m.msgTitle }
-                                    </td>
-
-                                    <th>语言</th>
-
-                                    <td class="fd_msgLanguageName">
-                                            ${ m.msgLanguageName }
-                                    </td>
-
-                                </tr>
-
-                                <tr>
-
-
-                                    <th>消息内容<font color="red">*</font></th>
-
-                                    <td colspan="3" class="fd_msgContent">
-                                        <c:out value="${m.msgContent}" escapeXml="true"/>
-                                    </td>
-
-
-                                </tr>
+                        </tr>
 
 
 
 
+                        <tr>
+                            <th>消息标题</th>
+
+                            <td class="fd_msgTitle">
+                                ${ m.msgTitle }
+                            </td>
+
+                            <th>语言</th>
+
+                            <td class="fd_msgLanguageName">
+                                    ${ m.msgLanguageName }
+                            </td>
+
+                        </tr>
+
+                        <tr>
 
 
+                            <th>消息内容<font color="red">*</font></th>
 
+                            <td colspan="3" class="fd_msgContent">
+                                <c:out value="${m.msgContent}" escapeXml="true"/>
+                            </td>
+
+
+                        </tr>
 
                     </table>
-                </div>
 
 
-                <form action="" method="post" class="form-auto-fill hide editForm" id="editForm" viewId="detailInfo" formId="editForm">
                     <input type="hidden" id="id" name="id" value="${ m.id }">
-                    <table class="info-table">
+
+                    <table class="info-table show-area">
                         <colgroup>
                             <col style="width: 15%" />
                             <col style="width: 35%" />
@@ -99,50 +94,50 @@
 
                         <tbody>
 
-                                <tr>
+                            <tr>
 
-                                    <th>消息模板名称<font color="red">*</font></th>
+                                <th>消息模板名称<font color="red">*</font></th>
 
-                                    <td>
-                                        <input type="text" required="required" class="form-control input-sm required"
-                                               placeholder="请输入消息模板名称" autocomplete="off"
-                                               value="${ m.msgTempletName }" id="msgTempletName" name="msgTempletName"
-                                                   maxlength="50"  />
-                                    </td>
-                                    <th>消息模板类型<font color="red">*</font></th>
-                                    <td>
-                                                <select id="msgTempletType"  name="msgTempletType" required="required" style="width:98%">
-                                                    <option value="" ></option>
-                                                    <c:forEach items="${ msg_templet_type_dicts }" var="dict">
-                                                        <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.msgTempletType }">selected</c:if>>${  dict.dictName }</option>
-                                                    </c:forEach>
-                                                </select>
-                                    </td>
-                                </tr>
+                                <td>
+                                    <input type="text" required="required" class="form-control input-sm required"
+                                           placeholder="请输入消息模板名称" autocomplete="off"
+                                           value="${ m.msgTempletName }" id="msgTempletName" name="msgTempletName"
+                                               maxlength="50"  />
+                                </td>
+                                <th>消息模板类型<font color="red">*</font></th>
+                                <td>
+                                            <select id="msgTempletType"  name="msgTempletType" required="required" style="width:98%">
+                                                <option value="" ></option>
+                                                <c:forEach items="${ msg_templet_type_dicts }" var="dict">
+                                                    <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.msgTempletType }">selected</c:if>>${  dict.dictName }</option>
+                                                </c:forEach>
+                                            </select>
+                                </td>
+                            </tr>
 
-                                <tr>
-                                    <th>消息标题</th>
-                                    <td>
-                                                <input type="text"  class="form-control input-sm "
-                                                       placeholder="请输入消息标题" autocomplete="off"
-                                                       value="${ m.msgTitle }" id="msgTitle" name="msgTitle"
-                                                           maxlength="200"  />
-                                    </td>
+                            <tr>
+                                <th>消息标题</th>
+                                <td>
+                                            <input type="text"  class="form-control input-sm "
+                                                   placeholder="请输入消息标题" autocomplete="off"
+                                                   value="${ m.msgTitle }" id="msgTitle" name="msgTitle"
+                                                       maxlength="200"  />
+                                </td>
 
-                                    <th>语言</th>
-                                    <td>
-                                                <select id="msgLanguage"  name="msgLanguage"  style="width:98%" >
-                                                    <option value="" ></option>
-                                                    <c:forEach items="${ msg_language_dicts }" var="dict">
-                                                        <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.msgLanguage }">selected</c:if>>${ dict.dictName}</option>
-                                                    </c:forEach>
-                                                </select>
-                                    </td>
-
-
+                                <th>语言</th>
+                                <td>
+                                            <select id="msgLanguage"  name="msgLanguage"  style="width:98%" >
+                                                <option value="" ></option>
+                                                <c:forEach items="${ msg_language_dicts }" var="dict">
+                                                    <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.msgLanguage }">selected</c:if>>${ dict.dictName}</option>
+                                                </c:forEach>
+                                            </select>
+                                </td>
 
 
-                                </tr>
+
+
+                            </tr>
 
 
 
@@ -168,12 +163,11 @@
                 </form>
             </div>
 
+
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
 
-
-
                 <shiro:hasPermission name="system.user:update">
-                    <button type="button" class="btn btn-primary btn-sm btn-showEdit" onclick="switchEditDetail()">
+                    <button type="button" class="btn btn-primary btn-sm hide-area" onclick="openEdit()">
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use>
                         </svg>
@@ -181,7 +175,7 @@
                     </button>
                 </shiro:hasPermission>
 
-                <button type="button" class="btn  btn-warning btn-sm btn-showEdit" onclick="closeWindow()">
+                <button type="button" class="btn  btn-warning btn-sm hide-area" onclick="closeWindow()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chexiao"></use>
                     </svg>
@@ -190,7 +184,7 @@
 
 
                 <shiro:hasPermission name="system.user:update">
-                    <button type="button" class="btn btn-primary btn-sm hide" onclick="doUpdate()">
+                    <button type="button" class="btn btn-primary btn-sm show-area" onclick="doUpdate()">
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
                         </svg>
@@ -198,7 +192,7 @@
                     </button>
                 </shiro:hasPermission>
 
-                <button type="button" class="btn  btn-warning btn-sm hide" onclick="switchEditDetail()">
+                <button type="button" class="btn  btn-warning btn-sm show-area" onclick="cancelEdit()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                     </svg>
@@ -216,9 +210,6 @@
 
 <script>
 
-
-    //显示模式   明细/编辑
-    var showMode = "detail";
     var inAllPage = "${inAllPage}";
 </script>
 

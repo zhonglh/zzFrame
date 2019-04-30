@@ -45,7 +45,7 @@
 
                         <c:if test="${ fn:indexOf(allQueryString,'&userId=')>=0 || fn:indexOf(allQueryString,'&roleId=')>=0}">
                             <c:if test="${ fn:indexOf(allQueryString,'&userId=')>=0 }">
-                            <button type="button" id="addBtn" class="btn btn-primary btn-sm hide" onclick="clkSystemRole()" >
+                            <button type="button" id="addBtn" class="btn btn-primary btn-sm show-area" onclick="clkSystemRole()" >
                                 <svg class="icon" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
                                 </svg>
@@ -53,7 +53,7 @@
                             </button>
                             </c:if>
                             <c:if test="${ fn:indexOf(allQueryString,'&roleId=')>=0 }">
-                                <button type="button" id="addBtn" class="btn btn-primary btn-sm hide" onclick="clkSystemUser()" >
+                                <button type="button" id="addBtn" class="btn btn-primary btn-sm show-area" onclick="clkSystemUser()" >
                                     <svg class="icon" aria-hidden="true">
                                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
                                     </svg>
@@ -76,7 +76,7 @@
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
 
                 <shiro:hasPermission name="system.user:update">
-                    <button type="button" class="btn btn-primary btn-sm btn-showEdit" onclick="switchEditDetail()">
+                    <button type="button" class="btn btn-primary btn-sm hide-area" onclick="openEdit()">
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use>
                         </svg>
@@ -84,7 +84,7 @@
                     </button>
                 </shiro:hasPermission>
 
-                <button type="button" class="btn  btn-warning btn-sm btn-showEdit" onclick="closeWindow()">
+                <button type="button" class="btn  btn-warning btn-sm hide-area" onclick="closeWindow()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chexiao"></use>
                     </svg>
@@ -93,7 +93,7 @@
 
 
                 <shiro:hasPermission name="system.user:update">
-                    <button type="button" class="btn btn-primary btn-sm hide" onclick="saveRelevanceList()">
+                    <button type="button" class="btn btn-primary btn-sm show-area" onclick="saveRelevanceList()">
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
                         </svg>
@@ -101,7 +101,7 @@
                     </button>
                 </shiro:hasPermission>
 
-                <button type="button" class="btn  btn-warning btn-sm hide" onclick="switchEditDetail()">
+                <button type="button" class="btn  btn-warning btn-sm show-area" onclick="cancelEdit()">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                     </svg>
