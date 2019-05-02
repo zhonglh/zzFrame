@@ -50,6 +50,11 @@ public class VsUserMenuBO extends VsUserMenuEntity implements Serializable , IBo
     private String leafName ;
 
 
+    //排序编号
+    @TableField(exist = false)
+    private int sortIndex;
+
+
 
     public void setShortcutName(String shortcutName){
         this.shortcutName = shortcutName;
@@ -67,8 +72,13 @@ public class VsUserMenuBO extends VsUserMenuEntity implements Serializable , IBo
         return this.leafName;
     }
 
+    public int getSortIndex() {
+        return sortIndex;
+    }
 
-
+    public void setSortIndex(int sortIndex) {
+        this.sortIndex = sortIndex;
+    }
 
     public EasyUiTree toEasyUiTree(){
         EasyUiTree tree = new EasyUiTree();

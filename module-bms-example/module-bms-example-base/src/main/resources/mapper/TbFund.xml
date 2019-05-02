@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.example.dao.TbFundDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TbFundResultMap" type="com.zz.bms.example.bo.TbFundBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="fund_name" property="fundName"/>
+
+         	<result column="fund_code" property="fundCode"/>
+
+         	<result column="fund_type" property="fundType"/>
+
+         	<result column="fund_direction" property="fundDirection"/>
+
+         	<result column="start_money" property="startMoney"/>
+
+         	<result column="manag_type" property="managType"/>
+
+         	<result column="fund_scale" property="fundScale"/>
+
+         	<result column="manager_user_id" property="managerUserId"/>
+
+         	<result column="start_date" property="startDate"/>
+
+         	<result column="end_date" property="endDate"/>
+
+         	<result column="investment_field" property="investmentField"/>
+
+         	<result column="income_allocation" property="incomeAllocation"/>
+
+         	<result column="fund_files" property="fundFiles"/>
+
+         	<result column="remark" property="remark"/>
+
+         	<result column="dep_id" property="depId"/>
+
+         	<result column="organ_id" property="organId"/>
+
+         	<result column="delete_flag" property="deleteFlag"/>
+
+         	<result column="create_user_id" property="createUserId"/>
+
+         	<result column="create_user_name" property="createUserName"/>
+
+         	<result column="create_time" property="createTime"/>
+
+         	<result column="update_user_id" property="updateUserId"/>
+
+         	<result column="update_user_name" property="updateUserName"/>
+
+         	<result column="update_time" property="updateTime"/>
+
+         	<result column="version_no" property="versionNo"/>
+
+         	<result column="tenant_id" property="tenantId"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TbFund4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="fundName != null and fundName != ''"> AND T.fund_name = #{fundName} </if>
+					<if test="fundCode != null and fundCode != ''"> AND T.fund_code = #{fundCode} </if>
+					<if test="fundType != null and fundType != ''"> AND T.fund_type = #{fundType} </if>
+					<if test="fundDirection != null and fundDirection != ''"> AND T.fund_direction = #{fundDirection} </if>
+					<if test="startMoney != null"> AND T.start_money = #{startMoney} </if>
+					<if test="managType != null and managType != ''"> AND T.manag_type = #{managType} </if>
+					<if test="fundScale != null"> AND T.fund_scale = #{fundScale} </if>
+					<if test="managerUserId != null and managerUserId != ''"> AND T.manager_user_id = #{managerUserId} </if>
+					<if test="startDate != null"> AND T.start_date = #{startDate} </if>
+					<if test="endDate != null"> AND T.end_date = #{endDate} </if>
+					<if test="investmentField != null and investmentField != ''"> AND T.investment_field = #{investmentField} </if>
+					<if test="incomeAllocation != null and incomeAllocation != ''"> AND T.income_allocation = #{incomeAllocation} </if>
+					<if test="fundFiles != null and fundFiles != ''"> AND T.fund_files = #{fundFiles} </if>
+					<if test="remark != null and remark != ''"> AND T.remark = #{remark} </if>
+					<if test="depId != null and depId != ''"> AND T.dep_id = #{depId} </if>
+					<if test="organId != null and organId != ''"> AND T.organ_id = #{organId} </if>
+					<if test="deleteFlag != null and deleteFlag != ''"> AND T.delete_flag = #{deleteFlag} </if>
+					<if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+					<if test="createUserName != null and createUserName != ''"> AND T.create_user_name = #{createUserName} </if>
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+					<if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+					<if test="updateUserName != null and updateUserName != ''"> AND T.update_user_name = #{updateUserName} </if>
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+					<if test="tenantId != null and tenantId != ''"> AND T.tenant_id = #{tenantId} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.example.bo.TbFundBO" resultMap="TbFundResultMap">
+        SELECT T.* FROM tb_fund T
+        <include refid="TbFund4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

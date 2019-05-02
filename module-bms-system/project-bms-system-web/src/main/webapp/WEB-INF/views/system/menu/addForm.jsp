@@ -77,7 +77,7 @@
                                                 <input type="text" required="required" class="form-control input-sm required"
                                                        placeholder="请输入菜单顺序" autocomplete="off"
                                                        value="${ m.menuSort }" id="menuSort" name="menuSort"
-                                                          maxlength="10"  />
+                                                          maxlength="2"  />
 
 
 

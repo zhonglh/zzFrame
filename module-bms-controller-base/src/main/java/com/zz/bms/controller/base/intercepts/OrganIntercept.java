@@ -35,7 +35,7 @@ public class OrganIntercept {
 
         Object[] args = joinPoint.getArgs();
 
-        if(BusinessConfig.USE_ORGAN && BusinessConfig.IS_Organ_Intercept) {
+        if(BusinessConfig.USE_ORGAN && BusinessConfig.IS_CHECK_Organ) {
             ILoginUserEntity loginUser = ((ILoginUserEntity)ShiroUtils.getUserEntity());
             if(loginUser != null) {
                 for (Object arg : args) {

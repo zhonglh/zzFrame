@@ -19,6 +19,7 @@
 
     <module>project-bms-web-base</module>
     <module>module-bms-system</module>
+      <module>module-bms-example</module>
 
   </modules>
   <packaging>pom</packaging>

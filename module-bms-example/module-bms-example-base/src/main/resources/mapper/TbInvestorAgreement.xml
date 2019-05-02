@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.example.dao.TbInvestorAgreementDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TbInvestorAgreementResultMap" type="com.zz.bms.example.bo.TbInvestorAgreementBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="agreement_name" property="agreementName"/>
+
+         	<result column="agreement_code" property="agreementCode"/>
+
+         	<result column="fund_id" property="fundId"/>
+
+         	<result column="investor_id" property="investorId"/>
+
+         	<result column="amount" property="amount"/>
+
+         	<result column="actual_amount" property="actualAmount"/>
+
+         	<result column="sketch" property="sketch"/>
+
+         	<result column="sign_dep_id" property="signDepId"/>
+
+         	<result column="sign_organ_id" property="signOrganId"/>
+
+         	<result column="sign_user_id" property="signUserId"/>
+
+         	<result column="sign_date" property="signDate"/>
+
+         	<result column="agreement_files" property="agreementFiles"/>
+
+         	<result column="remark" property="remark"/>
+
+         	<result column="delete_flag" property="deleteFlag"/>
+
+         	<result column="create_user_id" property="createUserId"/>
+
+         	<result column="create_user_name" property="createUserName"/>
+
+         	<result column="create_time" property="createTime"/>
+
+         	<result column="update_user_id" property="updateUserId"/>
+
+         	<result column="update_user_name" property="updateUserName"/>
+
+         	<result column="update_time" property="updateTime"/>
+
+         	<result column="version_no" property="versionNo"/>
+
+         	<result column="tenant_id" property="tenantId"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TbInvestorAgreement4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="agreementName != null and agreementName != ''"> AND T.agreement_name = #{agreementName} </if>
+					<if test="agreementCode != null and agreementCode != ''"> AND T.agreement_code = #{agreementCode} </if>
+					<if test="fundId != null and fundId != ''"> AND T.fund_id = #{fundId} </if>
+					<if test="investorId != null and investorId != ''"> AND T.investor_id = #{investorId} </if>
+					<if test="amount != null"> AND T.amount = #{amount} </if>
+					<if test="actualAmount != null"> AND T.actual_amount = #{actualAmount} </if>
+					<if test="sketch != null and sketch != ''"> AND T.sketch = #{sketch} </if>
+					<if test="signDepId != null and signDepId != ''"> AND T.sign_dep_id = #{signDepId} </if>
+					<if test="signOrganId != null and signOrganId != ''"> AND T.sign_organ_id = #{signOrganId} </if>
+					<if test="signUserId != null and signUserId != ''"> AND T.sign_user_id = #{signUserId} </if>
+					<if test="signDate != null"> AND T.sign_date = #{signDate} </if>
+					<if test="agreementFiles != null and agreementFiles != ''"> AND T.agreement_files = #{agreementFiles} </if>
+					<if test="remark != null and remark != ''"> AND T.remark = #{remark} </if>
+					<if test="deleteFlag != null and deleteFlag != ''"> AND T.delete_flag = #{deleteFlag} </if>
+					<if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+					<if test="createUserName != null and createUserName != ''"> AND T.create_user_name = #{createUserName} </if>
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+					<if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+					<if test="updateUserName != null and updateUserName != ''"> AND T.update_user_name = #{updateUserName} </if>
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+					<if test="tenantId != null and tenantId != ''"> AND T.tenant_id = #{tenantId} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.example.bo.TbInvestorAgreementBO" resultMap="TbInvestorAgreementResultMap">
+        SELECT T.* FROM tb_investor_agreement T
+        <include refid="TbInvestorAgreement4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

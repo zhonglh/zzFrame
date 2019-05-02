@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.example.dao.TbFundRecordDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TbFundRecordResultMap" type="com.zz.bms.example.bo.TbFundRecordBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="fund_id" property="fundId"/>
+
+         	<result column="record_date" property="recordDate"/>
+
+         	<result column="record_addr" property="recordAddr"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TbFundRecord4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="fundId != null and fundId != ''"> AND T.fund_id = #{fundId} </if>
+					<if test="recordDate != null"> AND T.record_date = #{recordDate} </if>
+					<if test="recordAddr != null and recordAddr != ''"> AND T.record_addr = #{recordAddr} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.example.bo.TbFundRecordBO" resultMap="TbFundRecordResultMap">
+        SELECT T.* FROM tb_fund_record T
+        <include refid="TbFundRecord4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

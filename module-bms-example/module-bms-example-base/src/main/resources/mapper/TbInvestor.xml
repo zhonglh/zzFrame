@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.example.dao.TbInvestorDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TbInvestorResultMap" type="com.zz.bms.example.bo.TbInvestorBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="investor_name" property="investorName"/>
+
+         	<result column="investor_code" property="investorCode"/>
+
+         	<result column="investor_type" property="investorType"/>
+
+         	<result column="manage_user_id" property="manageUserId"/>
+
+         	<result column="card_type" property="cardType"/>
+
+         	<result column="card_no" property="cardNo"/>
+
+         	<result column="investor_files" property="investorFiles"/>
+
+         	<result column="remark" property="remark"/>
+
+         	<result column="delete_flag" property="deleteFlag"/>
+
+         	<result column="create_user_id" property="createUserId"/>
+
+         	<result column="create_user_name" property="createUserName"/>
+
+         	<result column="create_time" property="createTime"/>
+
+         	<result column="update_user_id" property="updateUserId"/>
+
+         	<result column="update_user_name" property="updateUserName"/>
+
+         	<result column="update_time" property="updateTime"/>
+
+         	<result column="version_no" property="versionNo"/>
+
+         	<result column="tenant_id" property="tenantId"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TbInvestor4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="investorName != null and investorName != ''"> AND T.investor_name = #{investorName} </if>
+					<if test="investorCode != null and investorCode != ''"> AND T.investor_code = #{investorCode} </if>
+					<if test="investorType != null and investorType != ''"> AND T.investor_type = #{investorType} </if>
+					<if test="manageUserId != null and manageUserId != ''"> AND T.manage_user_id = #{manageUserId} </if>
+					<if test="cardType != null and cardType != ''"> AND T.card_type = #{cardType} </if>
+					<if test="cardNo != null and cardNo != ''"> AND T.card_no = #{cardNo} </if>
+					<if test="investorFiles != null and investorFiles != ''"> AND T.investor_files = #{investorFiles} </if>
+					<if test="remark != null and remark != ''"> AND T.remark = #{remark} </if>
+					<if test="deleteFlag != null and deleteFlag != ''"> AND T.delete_flag = #{deleteFlag} </if>
+					<if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+					<if test="createUserName != null and createUserName != ''"> AND T.create_user_name = #{createUserName} </if>
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+					<if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+					<if test="updateUserName != null and updateUserName != ''"> AND T.update_user_name = #{updateUserName} </if>
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+					<if test="tenantId != null and tenantId != ''"> AND T.tenant_id = #{tenantId} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.example.bo.TbInvestorBO" resultMap="TbInvestorResultMap">
+        SELECT T.* FROM tb_investor T
+        <include refid="TbInvestor4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

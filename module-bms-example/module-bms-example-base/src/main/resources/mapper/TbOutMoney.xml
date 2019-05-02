@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.example.dao.TbOutMoneyDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TbOutMoneyResultMap" type="com.zz.bms.example.bo.TbOutMoneyBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="investor_agreement_id" property="investorAgreementId"/>
+
+         	<result column="fund_id" property="fundId"/>
+
+         	<result column="investor_id" property="investorId"/>
+
+         	<result column="actual_amount" property="actualAmount"/>
+
+         	<result column="handle_dep_id" property="handleDepId"/>
+
+         	<result column="handle_organ_id" property="handleOrganId"/>
+
+         	<result column="handle_user_id" property="handleUserId"/>
+
+         	<result column="arrival_account_date" property="arrivalAccountDate"/>
+
+         	<result column="out_money_files" property="outMoneyFiles"/>
+
+         	<result column="remark" property="remark"/>
+
+         	<result column="delete_flag" property="deleteFlag"/>
+
+         	<result column="create_user_id" property="createUserId"/>
+
+         	<result column="create_user_name" property="createUserName"/>
+
+         	<result column="create_time" property="createTime"/>
+
+         	<result column="update_user_id" property="updateUserId"/>
+
+         	<result column="update_user_name" property="updateUserName"/>
+
+         	<result column="update_time" property="updateTime"/>
+
+         	<result column="version_no" property="versionNo"/>
+
+         	<result column="tenant_id" property="tenantId"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TbOutMoney4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="investorAgreementId != null and investorAgreementId != ''"> AND T.investor_agreement_id = #{investorAgreementId} </if>
+					<if test="fundId != null and fundId != ''"> AND T.fund_id = #{fundId} </if>
+					<if test="investorId != null and investorId != ''"> AND T.investor_id = #{investorId} </if>
+					<if test="actualAmount != null"> AND T.actual_amount = #{actualAmount} </if>
+					<if test="handleDepId != null and handleDepId != ''"> AND T.handle_dep_id = #{handleDepId} </if>
+					<if test="handleOrganId != null and handleOrganId != ''"> AND T.handle_organ_id = #{handleOrganId} </if>
+					<if test="handleUserId != null and handleUserId != ''"> AND T.handle_user_id = #{handleUserId} </if>
+					<if test="arrivalAccountDate != null"> AND T.arrival_account_date = #{arrivalAccountDate} </if>
+					<if test="outMoneyFiles != null and outMoneyFiles != ''"> AND T.out_money_files = #{outMoneyFiles} </if>
+					<if test="remark != null and remark != ''"> AND T.remark = #{remark} </if>
+					<if test="deleteFlag != null and deleteFlag != ''"> AND T.delete_flag = #{deleteFlag} </if>
+					<if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+					<if test="createUserName != null and createUserName != ''"> AND T.create_user_name = #{createUserName} </if>
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+					<if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+					<if test="updateUserName != null and updateUserName != ''"> AND T.update_user_name = #{updateUserName} </if>
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+					<if test="tenantId != null and tenantId != ''"> AND T.tenant_id = #{tenantId} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.example.bo.TbOutMoneyBO" resultMap="TbOutMoneyResultMap">
+        SELECT T.* FROM tb_out_money T
+        <include refid="TbOutMoney4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

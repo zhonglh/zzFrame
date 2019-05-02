@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.example.dao.TbFundAccountDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TbFundAccountResultMap" type="com.zz.bms.example.bo.TbFundAccountBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="fund_id" property="fundId"/>
+
+         	<result column="fund_account_type" property="fundAccountType"/>
+
+         	<result column="account_name" property="accountName"/>
+
+         	<result column="bank_id" property="bankId"/>
+
+         	<result column="account_no" property="accountNo"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TbFundAccount4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="fundId != null and fundId != ''"> AND T.fund_id = #{fundId} </if>
+					<if test="fundAccountType != null and fundAccountType != ''"> AND T.fund_account_type = #{fundAccountType} </if>
+					<if test="accountName != null and accountName != ''"> AND T.account_name = #{accountName} </if>
+					<if test="bankId != null and bankId != ''"> AND T.bank_id = #{bankId} </if>
+					<if test="accountNo != null and accountNo != ''"> AND T.account_no = #{accountNo} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.example.bo.TbFundAccountBO" resultMap="TbFundAccountResultMap">
+        SELECT T.* FROM tb_fund_account T
+        <include refid="TbFundAccount4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

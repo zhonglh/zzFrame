@@ -23,6 +23,7 @@ import com.zz.bms.system.bo.VsUserBO;
 import com.zz.bms.system.dao.VsUserDAO;
 
 
+import com.zz.bms.util.configs.AppConfig;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -89,8 +90,25 @@ public class VsUserMenuServiceImpl extends BaseServiceImpl<VsUserMenuBO,String> 
 			return vsUserMenuBOs;
 		}
 
+		int n = AppConfig.MENU_MAX_LEVEL;
+		Map<String , VsUserMenuBO> map = new HashMap<String , VsUserMenuBO>();
+		vsUserMenuBOs.forEach(vsUserMenuBO -> {
+			int count = (n - vsUserMenuBO.getLevel())*2;
+			StringBuilder s = new StringBuilder(vsUserMenuBO.getSortno().toString());
+			for(int index = 0 ; index < count ; index ++){
+				s.append("0");
+			}
+			vsUserMenuBO.setSortIndex(Integer.parseInt(s.toString()));
 
+			if(StringUtils.isNotEmpty(vsUserMenuBO.getPid())){
+				VsUserMenuBO parent = map.get(vsUserMenuBO.getPid());
+				if(parent != null){
+					vsUserMenuBO.setSortIndex(vsUserMenuBO.getSortIndex() + parent.getSortIndex());
+				}
+			}
+			map.put(vsUserMenuBO.getId() , vsUserMenuBO);
 
+		});
 
 
 

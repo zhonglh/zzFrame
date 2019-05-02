@@ -9,6 +9,9 @@
     <div class="row">
         <div class="col-xs-12 col-lg-12 col-md-12" style="padding-left: 0;padding-right: 0">
             <div class="block-each block-each-another">
+
+                <form id="editForm" action="" method="post">
+
                 <div class="block-tit">
                     <svg class="icon" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
@@ -16,7 +19,6 @@
                 </div>
 
 
-                <form id="editForm" action="" method="post">
 
                     <input type="hidden" id="permitIds" name="permitIds">
 
@@ -30,59 +32,59 @@
 
                         <tbody>
 
-                                <tr>
+                            <tr>
 
-                                    <th>角色名称<font color="red">*</font></th>
+                                <th>角色名称<font color="red">*</font></th>
 
-                                    <td>
-                                                <input type="text" required="required" class="form-control input-sm required"
-                                                       placeholder="请输入角色名称" autocomplete="off"
-                                                       value="${ m.roleName }" id="roleName" name="roleName"    maxlength="50"  />
-                                    </td>
-
-
-
-                                    <th>角色编号<font color="red">*</font></th>
-
-                                    <td>
+                                <td>
                                             <input type="text" required="required" class="form-control input-sm required"
-                                                   placeholder="请输入角色编号" autocomplete="off"
-                                                   value="${ m.roleCode }" id="roleCode" name="roleCode"    maxlength="20"  />
-                                    </td>
-                                </tr>
+                                                   placeholder="请输入角色名称" autocomplete="off"
+                                                   value="${ m.roleName }" id="roleName" name="roleName"    maxlength="50"  />
+                                </td>
 
 
 
-                                <tr>
-                                    <th>备注</th>
+                                <th>角色编号<font color="red">*</font></th>
 
-                                    <td colspan="3">
-
-                                        <textarea class="form-control input-sm" name="remark" id="remark"
-                                                  placeholder="请输入备注，200字以内" maxlength="200" rows="4">${ m.remark }</textarea>
-                                    </td>
-
-
-
-                                </tr>
+                                <td>
+                                        <input type="text" required="required" class="form-control input-sm required"
+                                               placeholder="请输入角色编号" autocomplete="off"
+                                               value="${ m.roleCode }" id="roleCode" name="roleCode"    maxlength="20"  />
+                                </td>
+                            </tr>
 
 
 
+                            <tr>
+                                <th>备注</th>
 
-                                <tr>
-                                    <th>许可设置</th>
+                                <td colspan="3">
 
-                                    <td colspan="3">
-
-                                        <div class="easyui-panel" style="padding:5px">
-                                            <ul id="rolePermitTree" class="easyui-tree" idField="id" treeField="text"></ul>
-                                        </div>
-
-                                    </td>
+                                    <textarea class="form-control input-sm" name="remark" id="remark"
+                                              placeholder="请输入备注，200字以内" maxlength="200" rows="4">${ m.remark }</textarea>
+                                </td>
 
 
 
-                                </tr>
+                            </tr>
+
+
+
+
+                            <tr>
+                                <th>许可设置</th>
+
+                                <td colspan="3">
+
+                                    <div class="easyui-panel" style="padding:5px">
+                                        <ul id="rolePermitTree" class="easyui-tree" idField="id" treeField="text"></ul>
+                                    </div>
+
+                                </td>
+
+
+
+                            </tr>
 
 
 

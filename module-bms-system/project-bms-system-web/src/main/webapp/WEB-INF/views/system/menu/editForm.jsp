@@ -189,7 +189,7 @@
                                                 <input type="text" required="required" class="form-control input-sm number required"
                                                        placeholder="请输入菜单顺序" autocomplete="off"
                                                        value="${ m.menuSort }" id="menuSort" name="menuSort"
-                                                           maxlength="10"  />
+                                                           maxlength="2"  />
 
                                     </td>
 

@@ -82,12 +82,16 @@ public class MainController extends BaseController {
             //处理菜单
             VsUserMenuQuery query = new VsUserMenuQueryImpl();
             query.userId(loginUser.getId());
-            List<VsUserMenuBO> menus = vsUserMenuService.list(query.buildWrapper());
-            if (menus == null) {
+            QueryWrapper<VsUserMenuBO> qw = query.buildWrapper();
+            qw.orderByAsc("level");
+            List<VsUserMenuBO> menus = vsUserMenuService.list();
+
+            if(menus != null && !menus.isEmpty()) {
+                menus = MenuLogic.sortMenu(menus);
+                menus.sort ((o1, o2) -> o1.getSortIndex() - o2.getSortIndex() );
+            }else {
                 menus = new ArrayList<VsUserMenuBO>();
             }
-            menus = MenuLogic.sortMenu(menus);
-            menus.sort((o1, o2) -> (o1.getLevel() * 100000 + o1.getSortno()) - (o2.getLevel() * 100000 + o2.getSortno()));
             model.put("menus", menus);
 
         //处理快捷菜单

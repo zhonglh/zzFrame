@@ -24,6 +24,13 @@ public enum EnumDictType implements EnumBase<String> {
     DICT_VAL("dict_val"),
     MSG_TEMPLET_TYPE("msg_templet_type"),
 
+    FUND_TYPE("fund_type"),
+    FUND_DIRECTION("fund_direction"),
+    INVESTOR_TYPE("investor_type"),
+    FUND_ACCOUNT_TYPE("fund_account_type"),
+    MANAG_TYPE("manag_type"),
+    CARD_TYPE("card_type"),
+
     ;
 
 
