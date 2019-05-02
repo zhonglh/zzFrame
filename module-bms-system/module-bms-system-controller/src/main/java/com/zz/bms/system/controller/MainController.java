@@ -84,7 +84,7 @@ public class MainController extends BaseController {
             query.userId(loginUser.getId());
             QueryWrapper<VsUserMenuBO> qw = query.buildWrapper();
             qw.orderByAsc("level");
-            List<VsUserMenuBO> menus = vsUserMenuService.list();
+            List<VsUserMenuBO> menus = vsUserMenuService.list(qw);
 
             if(menus != null && !menus.isEmpty()) {
                 menus = MenuLogic.sortMenu(menus);

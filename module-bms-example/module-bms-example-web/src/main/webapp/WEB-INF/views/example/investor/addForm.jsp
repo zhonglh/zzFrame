@@ -7,14 +7,15 @@
     <div class="row">
         <div class="col-xs-12 col-lg-12 col-md-12" style="padding-left: 0;padding-right: 0">
             <div class="block-each block-each-another">
-                <div class="block-tit">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                    </svg>基本信息
-                </div>
-
 
                 <form id="editForm" action="" method="post">
+
+                    <div class="block-tit">
+                        <svg class="icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
+                        </svg>基本信息
+                    </div>
+
                     <table class="info-table">
                         <colgroup>
                             <col style="width: 15%" />
@@ -91,6 +92,9 @@
                                 </tr>
                         </tbody>
                     </table>
+
+
+
                 </form>
             </div>
 

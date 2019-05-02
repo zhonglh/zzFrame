@@ -137,10 +137,10 @@
                             <tr>
                                 <th>认购基金<font color="red">*</font></th>
                                 <td>
-                                        <c:if test="${ fn.indexOf(allQueryString,'&fundId=') >= 0 }">
+                                        <c:if test="${ fn:indexOf(allQueryString,'&fundId=') >= 0 }">
                                             <input type="text" class="form-control input-sm" name="fundName"  id="fundName" value="${ m.fundName }" readonly>
                                         </c:if>
-                                        <c:if test="${ !fn.indexOf(allQueryString,'&fundId=') <0  }">
+                                        <c:if test="${ fn:indexOf(allQueryString,'&fundId=') <0  }">
                                         <div class="input-group">
                                             <input type="hidden" name="fundId" id="fundId" value="${ m.fundId }">
                                             <input type="text" name="fundName" id="fundName" value="${ m.fundName }" required="required" class="form-control input-sm fundName " placeholder="请选择认购基金" style="cursor: pointer;" readonly="readonly">
@@ -167,10 +167,10 @@
                                 </td>
                                 <th>投资人<font color="red">*</font></th>
                                 <td>
-                                            <c:if test="${ fn.indexOf(allQueryString,'&investorId=') >= 0 }">
+                                            <c:if test="${ fn:indexOf(allQueryString,'&investorId=') >= 0 }">
                                                 <input type="text" class="form-control input-sm" name="investorName" id="investorName" value="${ m.investorName }" readonly>
                                             </c:if>
-                                            <c:if test="${ !fn.indexOf(allQueryString,'&investorId=') < 0 }">
+                                            <c:if test="${ fn:indexOf(allQueryString,'&investorId=') < 0 }">
                                             <div class="input-group">
                                                 <input type="hidden" name="investorId" id="investorId" value="${ m.investorId }" >
                                                 <input type="text" name="investorName" id="investorName" value="${ m.investorName }" required="required" class="form-control input-sm investorName " placeholder="请选择投资人" style="cursor: pointer;" readonly="readonly">
@@ -217,7 +217,7 @@
                                 <td>
                                         <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
-                                                      name="sketch " placeholder="请输入协议简述，500字以内" maxlength="500" rows="6"><c:out value="${ m.sketch $}" escapeXml="true"/></textarea>
+                                                      name="sketch " placeholder="请输入协议简述，500字以内" maxlength="500" rows="6"><c:out value="${ m.sketch }" escapeXml="true"/></textarea>
                                         </div>
                                 </td>
                                 <th>部门</th>
@@ -278,7 +278,7 @@
                                 <td>
                                         <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
-                                                      name="remark " placeholder="请输入备注，500字以内" maxlength="500" rows="6"><c:out value="${ m.remark $}" escapeXml="true"/></textarea>
+                                                      name="remark " placeholder="请输入备注，500字以内" maxlength="500" rows="6"><c:out value="${ m.remark }" escapeXml="true"/></textarea>
                                         </div>
                                 </td>
                             </tr>

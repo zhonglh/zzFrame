@@ -199,10 +199,10 @@
                                 </td>
                                 <th>基金经理<font color="red">*</font></th>
                                 <td>
-                                            <c:if test="${ fn.indexOf(allQueryString,'&managerUserId=') >= 0 }">
+                                            <c:if test="${ fn:indexOf(allQueryString,'&managerUserId=') >= 0 }">
                                                 <input type="text" class="form-control input-sm" name="managerUserName" id="managerUserName" value="${ m.managerUserName }" readonly>
                                             </c:if>
-                                            <c:if test="${ !fn.indexOf(allQueryString,'&managerUserId=') < 0 }">
+                                            <c:if test="${ fn:indexOf(allQueryString,'&managerUserId=') < 0 }">
                                             <div class="input-group">
                                                 <input type="hidden" name="managerUserId" id="managerUserId" value="${ m.managerUserId }" >
                                                 <input type="text" name="managerUserName" id="managerUserName" value="${ m.managerUserName }" required="required" class="form-control input-sm managerUserName " placeholder="请选择基金经理" style="cursor: pointer;" readonly="readonly">
@@ -277,7 +277,7 @@
                                 <td>
                                         <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
-                                                      name="investmentField " placeholder="请输入投资领域，500字以内" maxlength="500" rows="6"><c:out value="${ m.investmentField $}" escapeXml="true"/></textarea>
+                                                      name="investmentField " placeholder="请输入投资领域，500字以内" maxlength="500" rows="6"><c:out value="${ m.investmentField }" escapeXml="true"/></textarea>
                                         </div>
                                 </td>
                                 <th>收入分配</th>
@@ -305,10 +305,10 @@
                             <tr>
                                 <th>部门<font color="red">*</font></th>
                                 <td>
-                                        <c:if test="${ fn.indexOf(allQueryString,'&depId=') >= 0 }">
+                                        <c:if test="${ fn:indexOf(allQueryString,'&depId=') >= 0 }">
                                             <input type="text" class="form-control input-sm" name="depName"  id="depName" value="${ m.depName }" readonly>
                                         </c:if>
-                                        <c:if test="${ !fn.indexOf(allQueryString,'&depId=') <0  }">
+                                        <c:if test="${ fn:indexOf(allQueryString,'&depId=') <0  }">
                                         <div class="input-group">
                                             <input type="hidden" name="depId" id="depId" value="${ m.depId }">
                                             <input type="text" name="depName" id="depName" value="${ m.depName }" required="required" class="form-control input-sm depName " placeholder="请选择部门" style="cursor: pointer;" readonly="readonly">

@@ -7,14 +7,15 @@
     <div class="row">
         <div class="col-xs-12 col-lg-12 col-md-12" style="padding-left: 0;padding-right: 0">
             <div class="block-each block-each-another">
-                <div class="block-tit">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                    </svg>基本信息
-                </div>
-
 
                 <form id="editForm" action="" method="post">
+
+                    <div class="block-tit">
+                        <svg class="icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
+                        </svg>基本信息
+                    </div>
+
                     <table class="info-table">
                         <colgroup>
                             <col style="width: 15%" />
@@ -89,10 +90,10 @@
                                     </td>
                                     <th>基金经理<font color="red">*</font></th>
                                     <td>
-                                        <c:if test="${ fn.indexOf(allQueryString,'&managerUserId=') >= 0 }">
+                                        <c:if test="${ fn:indexOf(allQueryString,'&managerUserId=') >= 0 }">
                                             <input type="text" class="form-control input-sm" name="managerUserName" id="managerUserName"  value="${ m.managerUserName }" readonly>
                                         </c:if>
-                                        <c:if test="${ !fn.indexOf(allQueryString,'&managerUserId=') < 0 }">
+                                        <c:if test="${ fn:indexOf(allQueryString,'&managerUserId=') < 0 }">
                                         <div class="input-group">
                                             <input type="hidden" name="managerUserId" id="managerUserId" value="${ m.managerUserId }" >
                                             <input type="text" name="managerUserName" id="managerUserName" value="${ m.managerUserName }" required="required" class="form-control input-sm managerUserName " placeholder="请选择基金经理" style="cursor: pointer;" readonly="readonly">
@@ -165,7 +166,7 @@
                                     <td>
                                             <div class="info-detail">
                                                 <textarea  class="form-control input-sm  "
-                                                          name="investmentField" id="investmentField " placeholder="请输入投资领域，500字以内" maxlength="500" rows="4">${ m.investmentField $}</textarea>
+                                                          name="investmentField" id="investmentField " placeholder="请输入投资领域，500字以内" maxlength="500" rows="4">${ m.investmentField }</textarea>
                                             </div>
                                     </td>
                                     <th>收入分配</th>
@@ -188,47 +189,12 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>部门<font color="red">*</font></th>
-                                    <td>
-                                            <c:if test="${ fn:indexOf(allQueryString,'&depId=') >=0 }">
-                                                <input type="text" class="form-control input-sm" name="depName" id="depName"  value="${ m.depName }" readonly>
-                                            </c:if>
-                                            <c:if test="${ !fn.indexOf(allQueryString,'&depId=') < 0 }">
-                                            <div class="input-group">
-                                                <input type="hidden" name="depId" id="depId" value="${ m.depId }">
-                                                <input type="text" name="depName" id="depName" value="${ m.depName }" required="required" class="form-control input-sm depName " placeholder="请选择部门" style="cursor: pointer;" readonly="readonly">
-                                                <div class="input-group-btn">
-                                                    <button type="button"
-                                                            class="btn btn-primary btn-sm depName">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-sousuo">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
-                                                    <button type="button" id="clearDepId"
-                                                            class="btn btn-primary btn-sm">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-close">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            </c:if>
-                                    </td>
-                                    <th>机构</th>
-                                    <td>
-                                        <input type="text"  class="form-control input-sm "
-                                               placeholder="请输入机构" autocomplete="off"
-                                               value="${ m.organId }" id="organId" name="organId"
-                                                   maxlength="32"  />
-                                    </td>
-                                </tr>
+
                         </tbody>
                     </table>
+
+
+
                 </form>
             </div>
 

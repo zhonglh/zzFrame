@@ -37,8 +37,6 @@ import java.util.Map;
  */
 @RequestMapping("/example/fund")
 @Controller
-
-
 public class TbFundController extends ZzGroupDefaultSimpleController<TbFundGroupBO, String , TbFundQueryWebImpl > {
 
 	@Autowired
@@ -46,27 +44,17 @@ public class TbFundController extends ZzGroupDefaultSimpleController<TbFundGroup
 
 
 
-
-
-
-
-
-	public void setCustomInfoByInsert(TbFundBO bo , ILoginUserEntity sessionUser){
+	@Override
+	public void setCustomInfoByInsert(TbFundGroupBO bo , ILoginUserEntity sessionUser){
 	}
 
-
-	protected void setCommonData(TbFundBO tbFundBO ,ModelMap model) {
+	@Override
+	public void setCommonData(TbFundGroupBO tbFundBO , ModelMap model) {
     	Map<String , List<TsDictBO>> dictMap = tsDictService.allDicts(EnumDictType.FUND_TYPE.getVal(),EnumDictType.FUND_DIRECTION.getVal(),EnumDictType.MANAG_TYPE.getVal());
         for(Map.Entry<String , List<TsDictBO>> dictObj : dictMap.entrySet()){
         	model.put(dictObj.getKey()+"_dicts", dictObj.getValue());
         }
 	}
-
-
-
-
-
-
 
 
 }

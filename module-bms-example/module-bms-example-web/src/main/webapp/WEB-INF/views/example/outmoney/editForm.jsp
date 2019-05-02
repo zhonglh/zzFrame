@@ -102,10 +102,10 @@
                             <tr>
                                 <th>协议<font color="red">*</font></th>
                                 <td>
-                                        <c:if test="${ fn.indexOf(allQueryString,'&investorAgreementId=') >= 0 }">
+                                        <c:if test="${ fn:indexOf(allQueryString,'&investorAgreementId=') >= 0 }">
                                             <input type="text" class="form-control input-sm" name="investorAgreementName"  id="investorAgreementName" value="${ m.investorAgreementName }" readonly>
                                         </c:if>
-                                        <c:if test="${ !fn.indexOf(allQueryString,'&investorAgreementId=') <0  }">
+                                        <c:if test="${ fn:indexOf(allQueryString,'&investorAgreementId=') <0  }">
                                         <div class="input-group">
                                             <input type="hidden" name="investorAgreementId" id="investorAgreementId" value="${ m.investorAgreementId }">
                                             <input type="text" name="investorAgreementName" id="investorAgreementName" value="${ m.investorAgreementName }" required="required" class="form-control input-sm investorAgreementName " placeholder="请选择协议" style="cursor: pointer;" readonly="readonly">
@@ -132,10 +132,10 @@
                                 </td>
                                 <th>基金<font color="red">*</font></th>
                                 <td>
-                                            <c:if test="${ fn.indexOf(allQueryString,'&fundId=') >= 0 }">
+                                            <c:if test="${ fn:indexOf(allQueryString,'&fundId=') >= 0 }">
                                                 <input type="text" class="form-control input-sm" name="fundName" id="fundName" value="${ m.fundName }" readonly>
                                             </c:if>
-                                            <c:if test="${ !fn.indexOf(allQueryString,'&fundId=') < 0 }">
+                                            <c:if test="${ fn:indexOf(allQueryString,'&fundId=') < 0 }">
                                             <div class="input-group">
                                                 <input type="hidden" name="fundId" id="fundId" value="${ m.fundId }" >
                                                 <input type="text" name="fundName" id="fundName" value="${ m.fundName }" required="required" class="form-control input-sm fundName " placeholder="请选择基金" style="cursor: pointer;" readonly="readonly">
@@ -163,10 +163,10 @@
                             <tr>
                                 <th>投资人<font color="red">*</font></th>
                                 <td>
-                                        <c:if test="${ fn.indexOf(allQueryString,'&investorId=') >= 0 }">
+                                        <c:if test="${ fn:indexOf(allQueryString,'&investorId=') >= 0 }">
                                             <input type="text" class="form-control input-sm" name="investorName"  id="investorName" value="${ m.investorName }" readonly>
                                         </c:if>
-                                        <c:if test="${ !fn.indexOf(allQueryString,'&investorId=') <0  }">
+                                        <c:if test="${ fn:indexOf(allQueryString,'&investorId=') <0  }">
                                         <div class="input-group">
                                             <input type="hidden" name="investorId" id="investorId" value="${ m.investorId }">
                                             <input type="text" name="investorName" id="investorName" value="${ m.investorName }" required="required" class="form-control input-sm investorName " placeholder="请选择投资人" style="cursor: pointer;" readonly="readonly">
@@ -203,10 +203,10 @@
                             <tr>
                                 <th>部门<font color="red">*</font></th>
                                 <td>
-                                        <c:if test="${ fn.indexOf(allQueryString,'&handleDepId=') >= 0 }">
+                                        <c:if test="${ fn:indexOf(allQueryString,'&handleDepId=') >= 0 }">
                                             <input type="text" class="form-control input-sm" name="handleDepName"  id="handleDepName" value="${ m.handleDepName }" readonly>
                                         </c:if>
-                                        <c:if test="${ !fn.indexOf(allQueryString,'&handleDepId=') <0  }">
+                                        <c:if test="${ fn:indexOf(allQueryString,'&handleDepId=') <0  }">
                                         <div class="input-group">
                                             <input type="hidden" name="handleDepId" id="handleDepId" value="${ m.handleDepId }">
                                             <input type="text" name="handleDepName" id="handleDepName" value="${ m.handleDepName }" required="required" class="form-control input-sm handleDepName " placeholder="请选择部门" style="cursor: pointer;" readonly="readonly">
@@ -243,10 +243,10 @@
                             <tr>
                                 <th>经办人<font color="red">*</font></th>
                                 <td>
-                                        <c:if test="${ fn.indexOf(allQueryString,'&handleUserId=') >= 0 }">
+                                        <c:if test="${ fn:indexOf(allQueryString,'&handleUserId=') >= 0 }">
                                             <input type="text" class="form-control input-sm" name="handleUserName"  id="handleUserName" value="${ m.handleUserName }" readonly>
                                         </c:if>
-                                        <c:if test="${ !fn.indexOf(allQueryString,'&handleUserId=') <0  }">
+                                        <c:if test="${ fn:indexOf(allQueryString,'&handleUserId=') <0  }">
                                         <div class="input-group">
                                             <input type="hidden" name="handleUserId" id="handleUserId" value="${ m.handleUserId }">
                                             <input type="text" name="handleUserName" id="handleUserName" value="${ m.handleUserName }" required="required" class="form-control input-sm handleUserName " placeholder="请选择经办人" style="cursor: pointer;" readonly="readonly">

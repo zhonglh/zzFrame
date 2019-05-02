@@ -5,7 +5,7 @@
 <div region='north'>
 
 
-    <c:if test="${ {inAllPage == null || inAllPage != '1' }">
+    <c:if test="${ inAllPage == null || inAllPage != '1' }">
     <div class="navigation">
         <span class="words"><a>${ breadcrumb }</a></span>
     </div>
