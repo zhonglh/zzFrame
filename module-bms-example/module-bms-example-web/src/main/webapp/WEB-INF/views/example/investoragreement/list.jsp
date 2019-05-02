@@ -110,13 +110,13 @@
         <tr>
             <th field="ck" checkbox="true"></th>
 
-            <th field='agreementName' align="left" width="2" sortable='false' formatter='titleAllFmt' >协议名称</th>
+            <th field='agreementName' align="left" width="1" sortable='false' formatter='titleAllFmt' >协议名称</th>
             <th field='agreementCode' align="left" width="1" sortable='false'  >协议代码</th>
             <th field='fundName' align="left" width="1" sortable='false'  >认购基金</th>
             <th field='investorName' align="left" width="1" sortable='false'  >投资人</th>
             <th field='amount' align="right" width="1" sortable='true'  >认购金额</th>
             <th field='actualAmount' align="right" width="1" sortable='true'  >实际出资金额</th>
-            <th field='signUserId' align="left" width="1" sortable='false'  >签订人</th>
+            <th field='signUserName' align="left" width="1" sortable='false'  >签订人</th>
             <th field='signDate' align="center" width="1" sortable='true' formatter='dateFmt' >签订日期</th>
 
         </tr>
@@ -141,8 +141,10 @@
 <script src="${ staticUrl }/statics2/js/project/common-import-excel.js"></script>
 </shiro:hasPermission>
 
-<script src="${ staticUrl }/statics2/business-js/example/fund/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/example/investor/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/example/fund/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 
 <script language="JavaScript">
 

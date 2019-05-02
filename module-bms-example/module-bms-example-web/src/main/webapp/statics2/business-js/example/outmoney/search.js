@@ -40,10 +40,8 @@ function openExampleOutmoneyWin(config, callBack)
         {field:"fundName", title:"基金", width: 150, align:"left" ,},
         {field:"investorName", title:"投资人", width: 150, align:"left" ,},
         {field:"actualAmount", title:"实际出资金额", width: 150, align:"right" ,},
-        {field:"handleDepName", title:"部门", width: 150, align:"left" ,},
-        {field:"handleOrganId", title:"机构", width: 150, align:"left" ,},
         {field:"handleUserName", title:"经办人", width: 150, align:"left" ,},
-        {field:"arrivalAccountDate", title:"到账日期", width: 150, align:"center" ,formatter='dateFmt'}
+        {field:"arrivalAccountDate", title:"到账日期", width: 150, align:"center" ,formatter:dateFmt}
     ]];
     options.sampleData = {id: "id", name: ""};
     options.htmlTemple = tableTemple;

@@ -41,11 +41,7 @@ function openExampleInvestoragreementWin(config, callBack)
         {field:"fundName", title:"认购基金", width: 150, align:"left" ,},
         {field:"investorName", title:"投资人", width: 150, align:"left" ,},
         {field:"amount", title:"认购金额", width: 150, align:"right" ,},
-        {field:"actualAmount", title:"实际出资金额", width: 150, align:"right" ,},
-        {field:"signDepId", title:"部门", width: 150, align:"left" ,},
-        {field:"signOrganId", title:"机构", width: 150, align:"left" ,},
-        {field:"signUserId", title:"签订人", width: 150, align:"left" ,},
-        {field:"signDate", title:"签订日期", width: 150, align:"center" ,formatter='dateFmt'}
+        {field:"actualAmount", title:"实际出资金额", width: 150, align:"right" ,}
     ]];
     options.sampleData = {id: "id", name: "agreementName"};
     options.htmlTemple = tableTemple;

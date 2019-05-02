@@ -20,7 +20,7 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 /**
  * 基金 实体类
  * @author Administrator
- * @date 2019-5-2 18:36:07
+ * @date 2019-5-2 19:20:45
  */
 public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity<String> implements java.io.Serializable  {
 

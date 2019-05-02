@@ -20,7 +20,7 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 /**
  * 投资协议 实体类
  * @author Administrator
- * @date 2019-5-2 18:36:10
+ * @date 2019-5-2 19:20:46
  */
 public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity<String> implements java.io.Serializable  {
 
@@ -107,9 +107,10 @@ public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBus
 
 
 
+    @EntityAttrFkAnnotation(group = "signDepId",  groupName = "部门" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsDepBO.class)
     @EntityAttrDBAnnotation(attrName="部门" ,attrColumn="sign_dep_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
     @EntityAttrPageAnnotation(title = "部门",sort = 900  , pageElement = "text"            , maxLength = 32        ,required=false )
-	@EntityAttrExcelAnnotation(excelProcess= "3")
+	
     
     
 	private String  signDepId ;
@@ -129,9 +130,10 @@ public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBus
 
 
 
+    @EntityAttrFkAnnotation(group = "signUserId",  groupName = "签订人" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
     @EntityAttrDBAnnotation(attrName="签订人" ,attrColumn="sign_user_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
     @EntityAttrPageAnnotation(title = "签订人",sort = 1100  , pageElement = "text"            , maxLength = 32        ,required=true )
-	@EntityAttrExcelAnnotation(excelProcess= "3")
+	
     
     
 	private String  signUserId ;

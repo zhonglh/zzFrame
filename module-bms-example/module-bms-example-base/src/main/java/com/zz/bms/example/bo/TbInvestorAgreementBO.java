@@ -24,9 +24,9 @@ import java.util.Map;
 /**
 * 投资协议 BO , 扩展 TbInvestorAgreementEntity 对象
 * @author Administrator
-* @date 2019-5-2 18:36:10
+* @date 2019-5-2 19:20:46
 */
-@EntityAnnotation(value="投资协议" , resource = "example.investoragreement"  ,haveTenant = true   ,businessName = "agreement_name"    ,businessKey = { "agreement_code" }    )
+@EntityAnnotation(value="投资协议" , resource = "example.investoragreement"  ,haveTenant = true   ,businessName = ""    ,businessKey = { "" }    )
 @TableName(value="tb_investor_agreement" , resultMap = "TbInvestorAgreementResultMap")
 public class TbInvestorAgreementBO extends TbInvestorAgreementEntity implements Serializable , IBoEntity {
 
@@ -49,6 +49,22 @@ public class TbInvestorAgreementBO extends TbInvestorAgreementEntity implements 
 
 
 
+    @TableField(exist = false)
+    @EntityAttrFkAnnotation(group = "signDepId",  groupName = "部门" ,   dbColumnName = "dep_name" , dbColumnType = "VARCHAR" , dbColumnLength = 100   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsDepBO.class)
+    @EntityAttrExcelAnnotation(excelProcess= "3")
+    @EntityAttrPageAnnotation(title = "部门",sort = 901                      ,required=true )
+    private String signDepName ;
+
+
+
+    @TableField(exist = false)
+    @EntityAttrFkAnnotation(group = "signUserId",  groupName = "签订人" ,   dbColumnName = "user_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
+    @EntityAttrExcelAnnotation(excelProcess= "3")
+    @EntityAttrPageAnnotation(title = "签订人",sort = 1101                      ,required=true )
+    private String signUserName ;
+
+
+
     public void setFundName(String fundName){
         this.fundName = fundName;
     }
@@ -63,6 +79,22 @@ public class TbInvestorAgreementBO extends TbInvestorAgreementEntity implements 
 
     public String getInvestorName(){
         return this.investorName;
+    }
+
+    public void setSignDepName(String signDepName){
+        this.signDepName = signDepName;
+    }
+
+    public String getSignDepName(){
+        return this.signDepName;
+    }
+
+    public void setSignUserName(String signUserName){
+        this.signUserName = signUserName;
+    }
+
+    public String getSignUserName(){
+        return this.signUserName;
     }
 
 
@@ -83,7 +115,7 @@ public class TbInvestorAgreementBO extends TbInvestorAgreementEntity implements 
     public String toString() {
 
 
-            return this.getAgreementName();
-        
+        return super.toString();
+
     }
 }

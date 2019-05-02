@@ -39,13 +39,7 @@ function openExampleFundWin(config, callBack)
         {field:"fundTypeName", title:"基金类型", width: 150, align:"left" ,},
         {field:"fundDirectionName", title:"基金投向", width: 150, align:"left" ,},
         {field:"startMoney", title:"起购金额", width: 150, align:"right" ,},
-        {field:"managTypeName", title:"管理类型", width: 150, align:"left" ,},
-        {field:"fundScale", title:"基金规模", width: 150, align:"right" ,},
-        {field:"managerUserName", title:"基金经理", width: 150, align:"left" ,},
-        {field:"startDate", title:"成立日期", width: 150, align:"center" ,formatter='dateFmt'},
-        {field:"endDate", title:"到期日期", width: 150, align:"center" ,formatter='dateFmt'},
-        {field:"depName", title:"部门", width: 150, align:"left" ,},
-        {field:"organId", title:"机构", width: 150, align:"left" ,}
+        {field:"fundScale", title:"基金规模", width: 150, align:"right" ,}
     ]];
     options.sampleData = {id: "id", name: "fundName"};
     options.htmlTemple = tableTemple;

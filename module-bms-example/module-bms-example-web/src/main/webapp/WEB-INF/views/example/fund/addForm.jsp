@@ -192,6 +192,46 @@
                         </tbody>
                     </table>
 
+                    <div class="block-each block-each-another">
+                        <div class="block-tit">
+                            <svg class="icon" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
+                            </svg>基金账户
+                        </div>
+
+                        <div class="fundAccount">
+                            <table id='tableData-fundAccount' class='easyui-datagrid' singleSelect="true" scrollbarSize="0"   method='post' fit='false'  fitColumns="true" border='true'>
+                                <thead>
+                                <tr>
+
+                                    <th field='fundAccountTypeName' align="left" width="2" sortable='false' formatter="fundAccountTypeNameFmt">账户类型</th>
+                                    <th field='bankName' align="left" width="2" sortable='false' formatter="bankNameFmt">开户行</th>
+                                    <th field='accountName' align="left" width="2" sortable='false' formatter="accountNameFmt">账户名</th>
+                                    <th field='accountNo' align="left" width="2" sortable='false' formatter="accountNoFmt">账号</th>
+
+
+
+                                    <th field="option" align="left" formatter="markFmt">操作</th>
+                                </tr>
+                                </thead>
+                            </table>
+                            <div style="text-align: center;margin: 5px">
+                                <button type="button" class="btn btn-primary btn-sm" onclick="doAdd()">
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
+                                    </svg>
+                                    <span>添 加</span>
+                                </button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="costShare" name="costShareCustomDetail" />
+                        <input type="hidden" id="fileIds" name="fileIds" />
+                        <input type="hidden" id="fileIds1" name="fileIds1" />
+                        <input type="hidden" id="coustomTemp" />
+                    </div>
+
+
+
 
 
                 </form>

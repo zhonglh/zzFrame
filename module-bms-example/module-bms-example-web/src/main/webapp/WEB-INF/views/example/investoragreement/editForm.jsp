@@ -56,48 +56,40 @@
                                 <td class="fd_amount">
                                     <c:out value="${ m.amount }" escapeXml="true"/>
                                 </td>
-                                <th>实际出资金额</th>
-                                <td class="fd_actualAmount">
-                                    <c:out value="${ m.actualAmount }" escapeXml="true"/>
-                                </td>
-                            </tr>
 
-                            <tr>
                                 <th>协议简述</th>
                                 <td class="fd_sketch">
                                     <c:out value="${ m.sketch }" escapeXml="true"/>
                                 </td>
-                                <th>部门</th>
-                                <td class="fd_signDepId">
-                                    <c:out value="${ m.signDepId }" escapeXml="true"/>
-                                </td>
+
                             </tr>
 
                             <tr>
-                                <th>机构</th>
-                                <td class="fd_signOrganId">
-                                    <c:out value="${ m.signOrganId }" escapeXml="true"/>
-                                </td>
+
                                 <th>签订人<font color="red">*</font></th>
-                                <td class="fd_signUserId">
-                                    <c:out value="${ m.signUserId }" escapeXml="true"/>
+                                <td class="fd_signUserName">
+                                    <c:out value="${ m.signUserName }" escapeXml="true"/>
                                 </td>
-                            </tr>
 
-                            <tr>
                                 <th>签订日期<font color="red">*</font></th>
                                 <td class="fd_signDate">
                                     <fmt:formatDate value="${ m.signDate }" pattern="yyyy-MM-dd" />
                                 </td>
-                                <th>附件</th>
-                                <td class="fd_agreementFiles">
-                                    <c:out value="${ m.agreementFiles }" escapeXml="true"/>
-                                </td>
+
                             </tr>
 
                             <tr>
+                                <th>附件</th>
+                                <td class="fd_agreementFiles" colspan="3">
+                                    <c:out value="${ m.agreementFiles }" escapeXml="true"/>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
                                 <th>备注</th>
-                                <td class="fd_remark">
+                                <td class="fd_remark" colspan="3">
                                     <c:out value="${ m.remark }" escapeXml="true"/>
                                 </td>
                             </tr>
@@ -203,16 +195,7 @@
                                                value="${ m.amount }" id="amount" name="amount" step="0.01"
                                                    maxlength="14"  />
                                 </td>
-                                <th>实际出资金额</th>
-                                <td>
-                                        <input type="text"  class="form-control input-sm number fd-decimal2 "
-                                               placeholder="请输入实际出资金额" autocomplete="off"
-                                               value="${ m.actualAmount }" id="actualAmount" name="actualAmount" step="0.01"
-                                                   maxlength="14"  />
-                                </td>
-                            </tr>
 
-                            <tr>
                                 <th>协议简述</th>
                                 <td>
                                         <div class="info-detail">
@@ -220,47 +203,54 @@
                                                       name="sketch " placeholder="请输入协议简述，500字以内" maxlength="500" rows="6"><c:out value="${ m.sketch }" escapeXml="true"/></textarea>
                                         </div>
                                 </td>
-                                <th>部门</th>
-                                <td>
-                                        <input type="text"  class="form-control input-sm "
-                                               placeholder="请输入部门" autocomplete="off"
-                                               value="${ m.signDepId }" id="signDepId" name="signDepId"
-                                                   maxlength="32"  />
-                                </td>
+
                             </tr>
 
                             <tr>
-                                <th>机构</th>
-                                <td>
-                                        <input type="text"  class="form-control input-sm "
-                                               placeholder="请输入机构" autocomplete="off"
-                                               value="${ m.signOrganId }" id="signOrganId" name="signOrganId"
-                                                   maxlength="32"  />
-                                </td>
+
                                 <th>签订人<font color="red">*</font></th>
                                 <td>
-                                        <input type="text" required="required" class="form-control input-sm required"
-                                               placeholder="请输入签订人" autocomplete="off"
-                                               value="${ m.signUserId }" id="signUserId" name="signUserId"
-                                                   maxlength="32"  />
+                                            <c:if test="${ fn:indexOf(allQueryString,'&signUserId=') >= 0 }">
+                                                <input type="text" class="form-control input-sm" name="signUserName" id="signUserName" value="${ m.signUserName }" readonly>
+                                            </c:if>
+                                            <c:if test="${ fn:indexOf(allQueryString,'&signUserId=') < 0 }">
+                                            <div class="input-group">
+                                                <input type="hidden" name="signUserId" id="signUserId" value="${ m.signUserId }" >
+                                                <input type="text" name="signUserName" id="signUserName" value="${ m.signUserName }" required="required" class="form-control input-sm signUserName " placeholder="请选择签订人" style="cursor: pointer;" readonly="readonly">
+                                                <div class="input-group-btn">
+                                                    <button type="button"  class="btn btn-primary btn-sm signUserName">
+                                                        <svg class="icon" aria-hidden="true">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                 xlink:href="#icon-sousuo">
+                                                            </use>
+                                                        </svg>
+                                                    </button>
+                                                    <button type="button" id="clearSignUserId"   class="btn btn-primary btn-sm">
+                                                        <svg class="icon" aria-hidden="true">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                 xlink:href="#icon-close">
+                                                            </use>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            </c:if>
                                 </td>
-                            </tr>
 
-                            <tr>
                                 <th>签订日期<font color="red">*</font></th>
                                 <td>
                                         <div class="input-group">
                                             <input type="text" required="required" class="form-control input-sm required"
                                                    placeholder="请输入签订日期" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'signDate'})"
-                                                           value="${ m.signDate }" id="signDate" name="signDate" readonly   />
+                                                           value="<fmt:formatDate value="${ m.signDate }" pattern="yyyy-MM-dd" />" id="signDate" name="signDate" readonly   />
                                             <div class="input-group-btn">
                                                 <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('signDate').click()">
                                                     <svg class="icon" aria-hidden="true">
                                                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-rili"></use>
                                                     </svg>
                                                 </button>
-                                                <button type="button" class="btn btn-primary btn-sm" onclick="clearTime(SignDate);">
+                                                <button type="button" class="btn btn-primary btn-sm" onclick="clearTime(signDate);">
                                                     <svg class="icon" aria-hidden="true">
                                                         <use  xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                                                     </svg>
@@ -268,14 +258,20 @@
                                             </div>
                                         </div>
                                 </td>
-                                <th>附件</th>
-                                <td>
-                                </td>
+
                             </tr>
 
                             <tr>
+                                <th>附件</th>
+                                <td colspan="3">
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
                                 <th>备注</th>
-                                <td>
+                                <td colspan="3">
                                         <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
                                                       name="remark " placeholder="请输入备注，500字以内" maxlength="500" rows="6"><c:out value="${ m.remark }" escapeXml="true"/></textarea>
@@ -336,8 +332,10 @@
 
 
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
-<script src="${ staticUrl }/statics2/business-js/example/fund/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/example/investor/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/example/fund/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 
 
 <script language="JavaScript">
@@ -367,8 +365,24 @@
 
 
 
+        //选择部门
+        $(".signDepName").OpenSystemDepSelectWin({
+            title: "部门",
+            selectType: "t1",
+            callId: "signDepId",
+            callName: "signDepName",
+            clearId: "clearSignDepId"
+        });
 
 
+        //选择签订人
+        $(".signUserName").OpenSystemUserSelectWin({
+            title: "签订人",
+            selectType: "d1",
+            callId: "signUserId",
+            callName: "signUserName",
+            clearId: "clearSignUserId"
+        });
 
 
 
