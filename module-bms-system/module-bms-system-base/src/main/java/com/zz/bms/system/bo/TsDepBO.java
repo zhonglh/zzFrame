@@ -27,7 +27,7 @@ import java.util.Map;
 * @author Administrator
 * @date 2019-4-10 11:08:55
 */
-@EntityAnnotation(value="部门" , resource = "system.dep"  ,businessName = "dep_name"    ,businessKey = { "dep_code" }   ,parentColumnName="pid" ,textColumnName="dep_name"  )
+@EntityAnnotation(value="部门" , resource = "system.dep"  ,businessName = "dep_name"    ,businessKey = { "dep_code" }   ,parentColumnName="pid" ,textColumnName="dep_name"  , haveTenant = true , haveOrgan = true  )
 @TableName(value="ts_dep" , resultMap = "TsDepResultMap")
 public class TsDepBO extends TsDepEntity implements Serializable , IBoEntity {
 
@@ -37,7 +37,7 @@ public class TsDepBO extends TsDepEntity implements Serializable , IBoEntity {
     @TableField(exist = false)
     @EntityAttrFkAnnotation(group = "pid",  groupName = "上级部门" ,   dbColumnName = "dep_name" , dbColumnType = "VARCHAR" , dbColumnLength = 100   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsDepBO.class)
     @EntityAttrExcelAnnotation(excelProcess= "3")
-    @EntityAttrPageAnnotation(title = "上级部门",sort = 501                      ,required=true )
+    @EntityAttrPageAnnotation(title = "上级部门",sort = 501                      ,required=false )
     private String pname ;
 
 

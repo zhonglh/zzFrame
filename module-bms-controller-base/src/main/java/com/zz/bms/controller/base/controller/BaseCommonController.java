@@ -296,10 +296,16 @@ public class BaseCommonController<PK extends Serializable> extends BaseControlle
 
                         if (val instanceof Double || val instanceof BigDecimal) {
                             String str = val.toString();
+                            int count = str.length();
+                            boolean havePoint = (str.indexOf("\\.") > 0);
                             if ((str.length() - 1) > maxLength) {
                                 throw new BizException(EnumErrorMsg.check_data_too.getCode(), msg);
                             } else {
-                                if (str.indexOf("\\.") <= maxLength - AnnotaionEntityUtil.decimalsLength(dbAnnotation, fkAnnotation)) {
+                                int integerCount = count;
+                                if(str.indexOf("\\.") > 0){
+                                    integerCount = str.indexOf("\\.");
+                                }
+                                if (integerCount > maxLength - AnnotaionEntityUtil.decimalsLength(dbAnnotation, fkAnnotation)) {
                                     msg = this.getMessage(EnumErrorMsg.check_decimal_too.getI18n(),name+" 小数位太长", name);
                                     throw new BizException(EnumErrorMsg.check_decimal_too.getCode(), msg);
                                 }
