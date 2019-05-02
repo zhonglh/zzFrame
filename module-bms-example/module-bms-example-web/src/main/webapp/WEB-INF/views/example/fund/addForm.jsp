@@ -189,45 +189,6 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>部门<font color="red">*</font></th>
-                                    <td>
-                                            <c:if test="${ fn:indexOf(allQueryString,'&depId=') >=0 }">
-                                                <input type="text" class="form-control input-sm" name="depName" id="depName"  value="${ m.depName }" readonly>
-                                            </c:if>
-                                            <c:if test="${ fn:indexOf(allQueryString,'&depId=') < 0 }">
-                                            <div class="input-group">
-                                                <input type="hidden" name="depId" id="depId" value="${ m.depId }">
-                                                <input type="text" name="depName" id="depName" value="${ m.depName }" required="required" class="form-control input-sm depName " placeholder="请选择部门" style="cursor: pointer;" readonly="readonly">
-                                                <div class="input-group-btn">
-                                                    <button type="button"
-                                                            class="btn btn-primary btn-sm depName">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-sousuo">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
-                                                    <button type="button" id="clearDepId"
-                                                            class="btn btn-primary btn-sm">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-close">
-                                                            </use>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            </c:if>
-                                    </td>
-                                    <th>机构</th>
-                                    <td>
-                                        <input type="text"  class="form-control input-sm "
-                                               placeholder="请输入机构" autocomplete="off"
-                                               value="${ m.organId }" id="organId" name="organId"
-                                                   maxlength="32"  />
-                                    </td>
-                                </tr>
                         </tbody>
                     </table>
 

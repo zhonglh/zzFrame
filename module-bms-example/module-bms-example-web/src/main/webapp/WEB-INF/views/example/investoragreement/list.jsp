@@ -110,14 +110,12 @@
         <tr>
             <th field="ck" checkbox="true"></th>
 
-            <th field='agreementName' align="left" width="1" sortable='false' formatter='titleAllFmt' >协议名称</th>
+            <th field='agreementName' align="left" width="2" sortable='false' formatter='titleAllFmt' >协议名称</th>
             <th field='agreementCode' align="left" width="1" sortable='false'  >协议代码</th>
             <th field='fundName' align="left" width="1" sortable='false'  >认购基金</th>
             <th field='investorName' align="left" width="1" sortable='false'  >投资人</th>
             <th field='amount' align="right" width="1" sortable='true'  >认购金额</th>
             <th field='actualAmount' align="right" width="1" sortable='true'  >实际出资金额</th>
-            <th field='signDepId' align="left" width="1" sortable='false'  >部门</th>
-            <th field='signOrganId' align="left" width="1" sortable='false'  >机构</th>
             <th field='signUserId' align="left" width="1" sortable='false'  >签订人</th>
             <th field='signDate' align="center" width="1" sortable='true' formatter='dateFmt' >签订日期</th>
 

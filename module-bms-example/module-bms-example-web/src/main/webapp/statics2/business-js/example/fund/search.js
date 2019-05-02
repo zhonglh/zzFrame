@@ -18,20 +18,6 @@ function openExampleFundWin(config, callBack)
                 + '<div class="form-inline" role="form" >';
 
 
-                <select id="fundType" name='fundType'   class="form-control input-sm" onChange='search();'  >
-                    <option value="" >''</option>
-                    <c:forEach items="${ yes_no_dicts }" var="dict">
-                        <option value="${ dict.value }">${ dict.name }</option>
-                    </c:forEach>
-                </select>
-                <select id="managType" name='managType'   class="form-control input-sm" onChange='search();'  >
-                    <option value="" >''</option>
-                    <c:forEach items="${ yes_no_dicts }" var="dict">
-                        <option value="${ dict.value }">${ dict.name }</option>
-                    </c:forEach>
-                </select>
-
-
             tableTemple += '<button type="submit" class="btn btn-success btn-sm" ><i class="fa fa-search"></i>&nbsp;查询</button>'
             + '</div>'
         + '</td>'
