@@ -8,18 +8,25 @@ import com.baomidou.mybatisplus.annotation.TableField;
 
 import com.zz.bms.core.db.entity.IBoEntity;
 import com.zz.bms.util.configs.annotaions.*;
+import com.zz.bms.constants.DefaultTypeConstant;
+import com.zz.bms.constants.DictTypeConstant;
+import com.zz.bms.constants.ExcelTypeConstant;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
 * 基金账户 BO , 扩展 TbFundAccountEntity 对象
 * @author Administrator
-* @date 2019-5-1 17:49:19
+* @date 2019-5-2 17:31:56
 */
-@EntityAnnotation(value="基金账户" , resource = "example.fundaccount"  ,businessName = ""    ,businessKey = { "" }    )
+@EntityAnnotation(value="基金账户" , resource = "example.fundaccount"    ,businessName = "account_name"    ,businessKey = { "account_name" }    )
 @TableName(value="tb_fund_account" , resultMap = "TbFundAccountResultMap")
 public class TbFundAccountBO extends TbFundAccountEntity implements Serializable , IBoEntity {
 
@@ -76,7 +83,7 @@ public class TbFundAccountBO extends TbFundAccountEntity implements Serializable
     public String toString() {
 
 
-        return super.toString();
-
+            return this.getAccountName();
+        
     }
 }

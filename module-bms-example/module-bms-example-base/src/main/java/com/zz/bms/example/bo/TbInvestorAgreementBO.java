@@ -8,18 +8,25 @@ import com.baomidou.mybatisplus.annotation.TableField;
 
 import com.zz.bms.core.db.entity.IBoEntity;
 import com.zz.bms.util.configs.annotaions.*;
+import com.zz.bms.constants.DefaultTypeConstant;
+import com.zz.bms.constants.DictTypeConstant;
+import com.zz.bms.constants.ExcelTypeConstant;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
 * 投资协议 BO , 扩展 TbInvestorAgreementEntity 对象
 * @author Administrator
-* @date 2019-5-1 17:49:21
+* @date 2019-5-2 17:31:58
 */
-@EntityAnnotation(value="投资协议" , resource = "example.investoragreement"  ,businessName = "agreement_name"    ,businessKey = { "agreement_code" }    )
+@EntityAnnotation(value="投资协议" , resource = "example.investoragreement"  ,haveTenant = true   ,businessName = "agreement_name"    ,businessKey = { "agreement_code" }    )
 @TableName(value="tb_investor_agreement" , resultMap = "TbInvestorAgreementResultMap")
 public class TbInvestorAgreementBO extends TbInvestorAgreementEntity implements Serializable , IBoEntity {
 

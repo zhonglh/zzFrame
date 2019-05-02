@@ -2,8 +2,8 @@ package com.zz.bms.example.bo;
 import com.zz.bms.util.configs.annotaions.GroupFieldAnnotation;
 
 
-import com.zz.bms.example.bo.TbFundAccountBO ;
 import com.zz.bms.example.bo.TbFundRecordBO ;
+import com.zz.bms.example.bo.TbFundAccountBO ;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,29 +16,29 @@ import java.util.List;
 * 注意： 对象属性需要和 TbFundGroupServiceImpl.getServices 对应
 * @author Administrator
 * @author Administrator
-* @date 2019-5-1 17:49:20
+* @date 2019-5-2 17:31:57
 */
 public class TbFundGroupBO extends TbFundBO implements Serializable {
 
 
-    @GroupFieldAnnotation(childTableColumnName = "fund_id" , filedName = "基金账户")
-    List<TbFundAccountBO> fundAccountBOList ;
-
     @GroupFieldAnnotation(childTableColumnName = "fund_id" , filedName = "基金备案")
     TbFundRecordBO fundRecordBO ;
 
+    @GroupFieldAnnotation(childTableColumnName = "fund_id" , filedName = "基金账户")
+    List<TbFundAccountBO> fundAccountBOList ;
 
-    public List<TbFundAccountBO>  getFundAccountBOList(){
-        return fundAccountBOList ;
-    }
-    public void setFundAccountBOList(List<TbFundAccountBO> fundAccountBOList ){
-        this.fundAccountBOList = fundAccountBOList;
-    }
+
     public TbFundRecordBO getFundRecordBO(){
         return fundRecordBO ;
     }
     public void setFundRecordBO(TbFundRecordBO fundRecordBO ){
          this.fundRecordBO = fundRecordBO;
+    }
+    public List<TbFundAccountBO>  getFundAccountBOList(){
+        return fundAccountBOList ;
+    }
+    public void setFundAccountBOList(List<TbFundAccountBO> fundAccountBOList ){
+        this.fundAccountBOList = fundAccountBOList;
     }
 
 
