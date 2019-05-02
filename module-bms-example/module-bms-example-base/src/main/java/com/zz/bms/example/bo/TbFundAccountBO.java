@@ -24,7 +24,7 @@ import java.util.Map;
 /**
 * 基金账户 BO , 扩展 TbFundAccountEntity 对象
 * @author Administrator
-* @date 2019-5-2 17:31:56
+* @date 2019-5-2 18:36:07
 */
 @EntityAnnotation(value="基金账户" , resource = "example.fundaccount"    ,businessName = "account_name"    ,businessKey = { "account_name" }    )
 @TableName(value="tb_fund_account" , resultMap = "TbFundAccountResultMap")

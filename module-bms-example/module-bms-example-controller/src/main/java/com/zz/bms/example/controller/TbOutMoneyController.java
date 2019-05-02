@@ -32,7 +32,7 @@ import java.util.Map;
 /**
  * 出资明细 控制层
 * @author Administrator
-* @date 2019-5-1 17:49:20
+* @date 2019-5-2 18:36:08
  */
 @RequestMapping("/example/outmoney")
 @Controller
@@ -53,7 +53,6 @@ public class TbOutMoneyController extends ZzDefaultSimpleController<TbOutMoneyBO
 	@Override
 	public void setCustomInfoByInsert(TbOutMoneyBO bo , ILoginUserEntity sessionUser){
 	}
-
 
 
 

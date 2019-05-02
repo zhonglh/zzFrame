@@ -24,7 +24,7 @@ import java.util.Map;
 /**
 * 基金备案 BO , 扩展 TbFundRecordEntity 对象
 * @author Administrator
-* @date 2019-5-2 17:31:59
+* @date 2019-5-2 18:36:10
 */
 @EntityAnnotation(value="基金备案" , resource = "example.fundrecord"    ,businessName = ""    ,businessKey = { "" }    )
 @TableName(value="tb_fund_record" , resultMap = "TbFundRecordResultMap")

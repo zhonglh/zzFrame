@@ -13,7 +13,7 @@ import java.lang.Integer;
 * 投资协议 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2019-5-1 17:49:21
+* @date 2019-5-2 18:36:10
 */
 public class TbInvestorAgreementQueryWebImpl<PK extends Serializable> extends TbInvestorAgreementAbstractQueryImpl<PK> implements Serializable {
 

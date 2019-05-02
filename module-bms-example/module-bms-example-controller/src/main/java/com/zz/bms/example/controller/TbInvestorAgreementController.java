@@ -32,7 +32,7 @@ import java.util.Map;
 /**
  * 投资协议 控制层
 * @author Administrator
-* @date 2019-5-1 17:49:21
+* @date 2019-5-2 18:36:10
  */
 @RequestMapping("/example/investoragreement")
 @Controller
@@ -53,7 +53,6 @@ public class TbInvestorAgreementController extends ZzDefaultSimpleController<TbI
 	@Override
 	public void setCustomInfoByInsert(TbInvestorAgreementBO bo , ILoginUserEntity sessionUser){
 	}
-
 
 
 

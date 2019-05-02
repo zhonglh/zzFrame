@@ -15,7 +15,7 @@ import java.lang.Integer;
  * 投资协议 查询抽象类
  *
  * @author Administrator
- * @date 2019-5-1 17:49:21
+ * @date 2019-5-2 18:36:10
  */
 public interface TbInvestorAgreementQuery<PK extends Serializable> extends Query<TbInvestorAgreementEntity,PK> {
 

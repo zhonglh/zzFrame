@@ -3,13 +3,22 @@ package com.zz.bms.example.domain;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.zz.bms.util.configs.annotaions.*;
 
+import com.zz.bms.core.Constant;
+import java.sql.Timestamp;
 import java.lang.String;
+import java.lang.Integer;
+import com.zz.bms.core.db.entity.BaseBusinessExEntity;
+
+
+
+
+
 
 
 /**
  * 投资人 实体类
  * @author Administrator
- * @date 2019-5-1 17:49:22
+ * @date 2019-5-2 18:36:09
  */
 public class TbInvestorEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity<String> implements java.io.Serializable  {
 
@@ -51,9 +60,10 @@ public class TbInvestorEntity extends com.zz.bms.core.db.entity.BaseBusinessExEn
 
 
 
+    @EntityAttrFkAnnotation(group = "manageUserId",  groupName = "投资经理" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
     @EntityAttrDBAnnotation(attrName="投资经理" ,attrColumn="manage_user_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
     @EntityAttrPageAnnotation(title = "投资经理",sort = 500  , pageElement = "text"            , maxLength = 32        ,required=true )
-	@EntityAttrExcelAnnotation(excelProcess= "3")
+	
     
     
 	private String  manageUserId ;

@@ -33,14 +33,21 @@ import java.util.Map;
 /**
  * 基金 控制层
 * @author Administrator
-* @date 2019-5-1 17:49:20
+* @date 2019-5-2 18:36:08
  */
 @RequestMapping("/example/fund")
 @Controller
+
+
 public class TbFundController extends ZzGroupDefaultSimpleController<TbFundGroupBO, String , TbFundQueryWebImpl > {
 
 	@Autowired
 	private TsDictService tsDictService;
+
+
+
+
+
 
 
 
@@ -49,12 +56,18 @@ public class TbFundController extends ZzGroupDefaultSimpleController<TbFundGroup
 	}
 
 	@Override
-	public void setCommonData(TbFundGroupBO tbFundBO , ModelMap model) {
+	protected void setCommonData(TbFundGroupBO tbFundBO ,ModelMap model) {
     	Map<String , List<TsDictBO>> dictMap = tsDictService.allDicts(EnumDictType.FUND_TYPE.getVal(),EnumDictType.FUND_DIRECTION.getVal(),EnumDictType.MANAG_TYPE.getVal());
         for(Map.Entry<String , List<TsDictBO>> dictObj : dictMap.entrySet()){
         	model.put(dictObj.getKey()+"_dicts", dictObj.getValue());
         }
 	}
+
+
+
+
+
+
 
 
 }

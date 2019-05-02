@@ -13,7 +13,7 @@ import java.lang.Integer;
  * 投资人 查询抽象类
  *
  * @author Administrator
- * @date 2019-5-1 17:49:22
+ * @date 2019-5-2 18:36:09
  */
 public interface TbInvestorQuery<PK extends Serializable> extends Query<TbInvestorEntity,PK> {
 
@@ -65,12 +65,10 @@ public interface TbInvestorQuery<PK extends Serializable> extends Query<TbInvest
 
 
 
-        public TbInvestorQuery manageUserId(String manageUserId);
-        public TbInvestorQuery manageUserIdNot(String manageUserIdNot);
-        public TbInvestorQuery manageUserIdIn(String manageUserIdIn);
-        public TbInvestorQuery manageUserIdNotIn(String manageUserIdNotIn);
-        public TbInvestorQuery manageUserIdLike(String manageUserIdLike);
-        public TbInvestorQuery manageUserIdNotLike(String manageUserIdNotLike);
+        public TbInvestorQuery manageUserId(PK manageUserId);
+        public TbInvestorQuery manageUserIdNot(PK manageUserIdNot);
+        public TbInvestorQuery manageUserIdIn(PK manageUserIdIn);
+        public TbInvestorQuery manageUserIdNotIn(PK manageUserIdNotIn);
         public TbInvestorQuery manageUserIdIsNull();
         public TbInvestorQuery manageUserIdIsNotNull();
 

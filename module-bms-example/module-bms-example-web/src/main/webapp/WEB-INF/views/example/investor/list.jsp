@@ -113,7 +113,7 @@
             <th field='investorName' align="left" width="1" sortable='false' formatter='titleAllFmt' >投资人名称</th>
             <th field='investorCode' align="left" width="1" sortable='false'  >投资人代码</th>
             <th field='investorTypeName' align="left" width="1" sortable='false'  >投资人类型</th>
-            <th field='manageUserId' align="left" width="1" sortable='false'  >投资经理</th>
+            <th field='manageUserName' align="left" width="1" sortable='false'  >投资经理</th>
             <th field='cardTypeName' align="left" width="1" sortable='false'  >证件类型</th>
             <th field='cardNo' align="left" width="1" sortable='false'  >证件号码</th>
 
@@ -139,6 +139,7 @@
 <script src="${ staticUrl }/statics2/js/project/common-import-excel.js"></script>
 </shiro:hasPermission>
 
+<script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 
 <script language="JavaScript">
 

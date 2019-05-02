@@ -24,7 +24,7 @@ import java.util.Map;
 /**
 * 投资人 BO , 扩展 TbInvestorEntity 对象
 * @author Administrator
-* @date 2019-5-2 17:31:59
+* @date 2019-5-2 18:36:09
 */
 @EntityAnnotation(value="投资人" , resource = "example.investor"  ,haveTenant = true   ,businessName = "investor_name"    ,businessKey = { "investor_code" }    )
 @TableName(value="tb_investor" , resultMap = "TbInvestorResultMap")
@@ -42,6 +42,14 @@ public class TbInvestorBO extends TbInvestorEntity implements Serializable , IBo
 
 
     @TableField(exist = false)
+    @EntityAttrFkAnnotation(group = "manageUserId",  groupName = "投资经理" ,   dbColumnName = "user_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
+    @EntityAttrExcelAnnotation(excelProcess= "3")
+    @EntityAttrPageAnnotation(title = "投资经理",sort = 501                      ,required=true )
+    private String manageUserName ;
+
+
+
+    @TableField(exist = false)
     @EntityAttrDictAnnotation(group = "cardType", groupName = "证件类型" ,  dbColumnName = "dict_name" , dbColumnLength = 50 , isNameField = true , dictType = "card_type")
     @EntityAttrExcelAnnotation(excelProcess= "3")
     @EntityAttrPageAnnotation(title = "证件类型",sort = 601                      ,required=true )
@@ -55,6 +63,14 @@ public class TbInvestorBO extends TbInvestorEntity implements Serializable , IBo
 
     public String getInvestorTypeName(){
         return this.investorTypeName;
+    }
+
+    public void setManageUserName(String manageUserName){
+        this.manageUserName = manageUserName;
+    }
+
+    public String getManageUserName(){
+        return this.manageUserName;
     }
 
     public void setCardTypeName(String cardTypeName){

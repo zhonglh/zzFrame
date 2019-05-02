@@ -121,7 +121,7 @@
                                     <td>
                                         <input type="text"  class="form-control input-sm number fd-decimal2 "
                                                placeholder="请输入实际出资金额" autocomplete="off"
-                                               value="${ m.actualAmount }" id="actualAmount" name="actualAmount" step="0.01"
+                                               value="${ m.actualAmount }" id="actualAmount" name="actualAmount" step="1"
                                                    maxlength="14"  />
                                     </td>
                                 </tr>

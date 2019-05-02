@@ -17,7 +17,7 @@ import java.lang.Integer;
 * 投资人 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2019-5-1 17:49:22
+* @date 2019-5-2 18:36:09
 */
 public class TbInvestorQueryImpl<PK extends Serializable> extends TbInvestorAbstractQueryImpl<PK> implements TbInvestorQuery<PK>, Serializable  {
 
@@ -33,9 +33,9 @@ public class TbInvestorQueryImpl<PK extends Serializable> extends TbInvestorAbst
         private List<String> investorType_IN;
         private List<String> investorType_NOTIN;
 
+        private List<PK> manageUserId_IN;
+        private List<PK> manageUserId_NOTIN;
 
-        private List<String> manageUserId_IN;
-        private List<String> manageUserId_NOTIN;
         private List<String> cardType_IN;
         private List<String> cardType_NOTIN;
 
@@ -306,9 +306,8 @@ public class TbInvestorQueryImpl<PK extends Serializable> extends TbInvestorAbst
         }
 
 
-
         @Override
-        public TbInvestorQuery manageUserId(String manageUserId) {
+        public TbInvestorQuery manageUserId(PK manageUserId) {
             if(!IdUtils.isEmpty(manageUserId)){
                 this.manageUserId = manageUserId;
             }
@@ -316,7 +315,7 @@ public class TbInvestorQueryImpl<PK extends Serializable> extends TbInvestorAbst
         }
 
         @Override
-        public TbInvestorQuery manageUserIdNot(String manageUserIdNot) {
+        public TbInvestorQuery manageUserIdNot(PK manageUserIdNot) {
             if(!IdUtils.isEmpty(manageUserIdNot)){
                 this.manageUserId_NE = manageUserIdNot;
             }
@@ -324,26 +323,10 @@ public class TbInvestorQueryImpl<PK extends Serializable> extends TbInvestorAbst
         }
 
         @Override
-        public TbInvestorQuery manageUserIdLike(String manageUserIdLike) {
-            if(!IdUtils.isEmpty(manageUserIdLike)){
-                this.manageUserId_LIKE = manageUserIdLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TbInvestorQuery manageUserIdNotLike(String manageUserIdNotLike) {
-            if(!IdUtils.isEmpty(manageUserIdNotLike)){
-                this.manageUserId_NOTLIKE = manageUserIdNotLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TbInvestorQuery manageUserIdIn(String manageUserIdIn) {
+        public TbInvestorQuery manageUserIdIn(PK manageUserIdIn) {
             if(!IdUtils.isEmpty(manageUserIdIn)){
                 if(this.manageUserId_IN == null){
-                    this.manageUserId_IN = new ArrayList<String>();
+                    this.manageUserId_IN = new ArrayList<PK>();
                 }
                 this.manageUserId_IN.add( manageUserIdIn );
             }
@@ -351,10 +334,10 @@ public class TbInvestorQueryImpl<PK extends Serializable> extends TbInvestorAbst
         }
 
         @Override
-        public TbInvestorQuery manageUserIdNotIn(String manageUserIdNotIn) {
+        public TbInvestorQuery manageUserIdNotIn(PK manageUserIdNotIn) {
             if(!IdUtils.isEmpty(manageUserIdNotIn)){
                 if(this.manageUserId_NOTIN == null){
-                    this.manageUserId_NOTIN = new ArrayList<String>();
+                    this.manageUserId_NOTIN = new ArrayList<PK>();
                 }
                 this.manageUserId_NOTIN.add( manageUserIdNotIn );
             }

@@ -562,7 +562,6 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
                         String childTableColumnName = gfa.childTableColumnName();
 
                         QueryWrapper qw = new QueryWrapper();
-                        qw.setEntity(f.getType().newInstance());
                         qw.eq(childTableColumnName , id);
                         List list = this.getServices()[index].list(qw);
                         if(list != null && !list.isEmpty()){

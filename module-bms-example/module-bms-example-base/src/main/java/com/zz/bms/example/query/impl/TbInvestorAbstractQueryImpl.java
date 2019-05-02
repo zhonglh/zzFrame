@@ -13,7 +13,7 @@ import java.lang.Integer;
  * 投资人 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2019-5-1 17:49:22
+ * @date 2019-5-2 18:36:09
  */
 public abstract class TbInvestorAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TbInvestorEntity,PK> {
 
@@ -33,10 +33,8 @@ public abstract class TbInvestorAbstractQueryImpl<PK extends Serializable> exten
             protected String investorType;
             protected String investorType_NE;
 
-            protected String manageUserId;
-            protected String manageUserId_NE;
-            protected String manageUserId_LIKE;
-            protected String manageUserId_NOTLIKE;
+            protected PK manageUserId;
+            protected PK manageUserId_NE;
 
             protected String cardType;
             protected String cardType_NE;

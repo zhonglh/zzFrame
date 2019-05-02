@@ -16,7 +16,7 @@ import java.lang.String;
 * 基金备案 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2019-5-1 17:49:22
+* @date 2019-5-2 18:36:10
 */
 public class TbFundRecordQueryImpl<PK extends Serializable> extends TbFundRecordAbstractQueryImpl<PK> implements TbFundRecordQuery<PK>, Serializable  {
 

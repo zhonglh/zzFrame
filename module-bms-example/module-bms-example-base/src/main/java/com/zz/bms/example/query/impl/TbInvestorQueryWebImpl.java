@@ -11,7 +11,7 @@ import java.lang.Integer;
 * 投资人 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2019-5-1 17:49:22
+* @date 2019-5-2 18:36:09
 */
 public class TbInvestorQueryWebImpl<PK extends Serializable> extends TbInvestorAbstractQueryImpl<PK> implements Serializable {
 
@@ -36,9 +36,9 @@ public class TbInvestorQueryWebImpl<PK extends Serializable> extends TbInvestorA
 
 
 
+            private PK manageUserId_IN;
+            private PK manageUserId_NOTIN;
 
-            private String manageUserId_IN;
-            private String manageUserId_NOTIN;
 
 
             private String cardType_IN;
@@ -270,54 +270,38 @@ public class TbInvestorQueryWebImpl<PK extends Serializable> extends TbInvestorA
             }
 
 
-
-            public String getManageUserId() {
+            public PK getManageUserId() {
                 return manageUserId;
             }
 
-            public void setManageUserId(String manageUserId) {
+            public void setManageUserId(PK manageUserId) {
                 this.manageUserId = manageUserId;
             }
 
-            public String getManageUserId_NE() {
+            public PK getManageUserId_NE() {
                 return manageUserId_NE;
             }
 
-            public void setManageUserId_NE(String manageUserId_NE) {
+            public void setManageUserId_NE(PK manageUserId_NE) {
                 this.manageUserId_NE = manageUserId_NE;
             }
 
-            public String getManageUserId_IN() {
+            public PK getManageUserId_IN() {
                 return manageUserId_IN;
             }
 
-            public void setManageUserId_IN(String manageUserId_IN) {
+            public void setManageUserId_IN(PK manageUserId_IN) {
                 this.manageUserId_IN = manageUserId_IN;
             }
 
-            public String getManageUserId_NOTIN() {
+            public PK getManageUserId_NOTIN() {
                 return manageUserId_NOTIN;
             }
 
-            public void setManageUserId_NOTIN(String manageUserId_NOTIN) {
+            public void setManageUserId_NOTIN(PK manageUserId_NOTIN) {
                 this.manageUserId_NOTIN = manageUserId_NOTIN;
             }
 
-            public String getManageUserId_LIKE() {
-                return manageUserId_LIKE;
-            }
-
-            public void setManageUserId_LIKE(String manageUserId_LIKE) {
-                this.manageUserId_LIKE = manageUserId_LIKE;
-            }
-
-            public String getManageUserId_NOTLIKE() {
-                return manageUserId_NOTLIKE;
-            }
-
-            public void setManageUserId_NOTLIKE(String manageUserId_NOTLIKE) {
-                this.manageUserId_NOTLIKE = manageUserId_NOTLIKE;
-            }
 
             public String getCardType() {
                 return cardType;

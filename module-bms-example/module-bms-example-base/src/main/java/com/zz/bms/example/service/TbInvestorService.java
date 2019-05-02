@@ -7,7 +7,7 @@ import com.zz.bms.example.bo.TbInvestorBO;
 /**
 * 投资人 Service
 * @author Administrator
-* @date 2019-5-1 17:49:22
+* @date 2019-5-2 18:36:09
 */
 public interface TbInvestorService extends BaseService<TbInvestorBO , String> {
 

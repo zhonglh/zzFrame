@@ -1,6 +1,11 @@
 package com.zz.bms.example.service.impl;
 
+import com.zz.bms.core.enums.EnumErrorMsg;
+import com.zz.bms.enums.*;
+
 import com.zz.bms.core.db.entity.EntityUtil;
+import com.zz.bms.core.exceptions.DbException;
+import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
@@ -22,13 +27,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
 * 投资协议 ServiceImpl
 * @author Administrator
-* @date 2019-5-1 17:49:21
+* @date 2019-5-2 18:36:10
 */
 @Service
 public class TbInvestorAgreementServiceImpl extends BaseServiceImpl<TbInvestorAgreementBO,String> implements TbInvestorAgreementService {

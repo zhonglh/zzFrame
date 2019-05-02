@@ -8,8 +8,8 @@ import com.zz.bms.example.bo.TbFundGroupBO;
 import com.zz.bms.example.service.TbFundGroupService;
 import com.zz.bms.example.service.TbFundService;
 
-import com.zz.bms.example.service.TbFundAccountService;
 import com.zz.bms.example.service.TbFundRecordService;
+import com.zz.bms.example.service.TbFundAccountService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 /**
 * 基金 ServiceImpl
 * @author Administrator
-* @date 2019-5-1 17:49:20
+* @date 2019-5-2 18:36:08
 */
 @Service
 public class TbFundGroupServiceImpl extends BaseGroupServiceImpl<TbFundGroupBO,String> implements TbFundGroupService {
@@ -27,10 +27,10 @@ public class TbFundGroupServiceImpl extends BaseGroupServiceImpl<TbFundGroupBO,S
 	TbFundService fundService;
 
 	@Autowired
-	private TbFundAccountService fundAccountService;
+	private TbFundRecordService fundRecordService;
 
 	@Autowired
-	private TbFundRecordService fundRecordService;
+	private TbFundAccountService fundAccountService;
 
 
 	private BaseService[] bss = null;
@@ -43,7 +43,7 @@ public class TbFundGroupServiceImpl extends BaseGroupServiceImpl<TbFundGroupBO,S
 	@Override
 	public BaseService[] getServices() {
 		if(bss == null) {
-			bss = new BaseService[]{fundService,fundAccountService,fundRecordService};
+			bss = new BaseService[]{fundService,fundRecordService,fundAccountService};
 		}
 		return bss;
 	}

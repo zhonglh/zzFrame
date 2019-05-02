@@ -46,8 +46,8 @@
                                     ${ m.investorTypeName }
                                 </td>
                                 <th>投资经理<font color="red">*</font></th>
-                                <td class="fd_manageUserId">
-                                    <c:out value="${ m.manageUserId }" escapeXml="true"/>
+                                <td class="fd_manageUserName">
+                                    <c:out value="${ m.manageUserName }" escapeXml="true"/>
                                 </td>
                             </tr>
 
@@ -117,10 +117,31 @@
                                 </td>
                                 <th>投资经理<font color="red">*</font></th>
                                 <td>
-                                        <input type="text" required="required" class="form-control input-sm required"
-                                               placeholder="请输入投资经理" autocomplete="off"
-                                               value="${ m.manageUserId }" id="manageUserId" name="manageUserId"
-                                                   maxlength="32"  />
+                                            <c:if test="${ fn:indexOf(allQueryString,'&manageUserId=') >= 0 }">
+                                                <input type="text" class="form-control input-sm" name="manageUserName" id="manageUserName" value="${ m.manageUserName }" readonly>
+                                            </c:if>
+                                            <c:if test="${ fn:indexOf(allQueryString,'&manageUserId=') < 0 }">
+                                            <div class="input-group">
+                                                <input type="hidden" name="manageUserId" id="manageUserId" value="${ m.manageUserId }" >
+                                                <input type="text" name="manageUserName" id="manageUserName" value="${ m.manageUserName }" required="required" class="form-control input-sm manageUserName " placeholder="请选择投资经理" style="cursor: pointer;" readonly="readonly">
+                                                <div class="input-group-btn">
+                                                    <button type="button"  class="btn btn-primary btn-sm manageUserName">
+                                                        <svg class="icon" aria-hidden="true">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                 xlink:href="#icon-sousuo">
+                                                            </use>
+                                                        </svg>
+                                                    </button>
+                                                    <button type="button" id="clearManageUserId"   class="btn btn-primary btn-sm">
+                                                        <svg class="icon" aria-hidden="true">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                 xlink:href="#icon-close">
+                                                            </use>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            </c:if>
                                 </td>
                             </tr>
 
@@ -209,6 +230,7 @@
 
 
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
+<script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 
 
 <script language="JavaScript">
@@ -218,6 +240,14 @@
 
 
 
+        //选择投资经理
+        $(".manageUserName").OpenSystemUserSelectWin({
+            title: "投资经理",
+            selectType: "d1",
+            callId: "manageUserId",
+            callName: "manageUserName",
+            clearId: "clearManageUserId"
+        });
 
 
 

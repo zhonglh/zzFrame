@@ -3,15 +3,24 @@ package com.zz.bms.example.domain;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.zz.bms.util.configs.annotaions.*;
 
+import com.zz.bms.core.Constant;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.sql.Timestamp;
 import java.lang.String;
+import java.lang.Integer;
+import com.zz.bms.core.db.entity.BaseBusinessExEntity;
+
+
+
+
+
 
 
 /**
  * 投资协议 实体类
  * @author Administrator
- * @date 2019-5-1 17:49:21
+ * @date 2019-5-2 18:36:10
  */
 public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity<String> implements java.io.Serializable  {
 

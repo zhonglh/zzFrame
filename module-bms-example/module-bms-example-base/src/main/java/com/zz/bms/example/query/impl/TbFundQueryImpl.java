@@ -19,7 +19,7 @@ import java.lang.Integer;
 * 基金 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2019-5-1 17:49:20
+* @date 2019-5-2 18:36:08
 */
 public class TbFundQueryImpl<PK extends Serializable> extends TbFundAbstractQueryImpl<PK> implements TbFundQuery<PK>, Serializable  {
 
