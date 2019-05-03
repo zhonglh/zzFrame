@@ -208,15 +208,12 @@
                                     <th field='bankName' align="left" width="2" sortable='false' formatter="bankNameFmt">开户行</th>
                                     <th field='accountName' align="left" width="2" sortable='false' formatter="accountNameFmt">户名</th>
                                     <th field='accountNo' align="left" width="2" sortable='false' formatter="accountNoFmt">账号</th>
-
-
-
                                     <th field="option" align="left" formatter="markFmt">操作</th>
                                 </tr>
                                 </thead>
                             </table>
                             <div style="text-align: center;margin: 5px">
-                                <button type="button" class="btn btn-primary btn-sm" onclick="doAdd()">
+                                <button type="button" class="btn btn-primary btn-sm" onclick="doAddFundAccount()">
                                     <svg class="icon" aria-hidden="true">
                                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
                                     </svg>
@@ -224,13 +221,11 @@
                                 </button>
                             </div>
                         </div>
-                        <input type="hidden" id="costShare" name="costShareCustomDetail" />
-                        <input type="hidden" id="fileIds" name="fileIds" />
-                        <input type="hidden" id="fileIds1" name="fileIds1" />
-                        <input type="hidden" id="coustomTemp" />
+
                     </div>
 
 
+                    <input type="hidden" id="tempExampleBank" />
 
 
 
@@ -265,8 +260,11 @@
 <bms:contentJS />
 
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
+<script src="${ staticUrl }/statics2/js/project/list.js"></script>
+<script src="${ staticUrl }/statics2/js/project/listCommon.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/example/bank/search.js"></script>
 
 <script language="JavaScript">
     $(function() {
@@ -287,7 +285,92 @@
             callName: "depName",
             clearId: "clearDepId"
         });
+        //选择银行
+        $("#tempExampleBank").OpenExampleBankSelectWin({
+            title: "银行",
+            selectType: "d1",
+            callId: "",
+            callName: "",
+            clearId: ""
+        },function(id,name,row){
+            $(tempExampleBank).val(row.bankName);
+            $(tempExampleBank).prev().val(row.id);
+
+        });
     });
+
+
+    var tempExampleBank  , tempExampleBankIndex ;
+    
+    function fund_account_type_dicts() {
+        var html = "<option value=''>请选择</option>";
+        <c:forEach items="${fund_account_type_dicts}" var="dict">
+        html += "<option value='${dict.dictVal}'>${dict.dictName}</option>";
+        </c:forEach>
+        return html;
+    }
+
+
+    function openExampleBank(obj ,index){
+        if(obj != null && obj != undefined) {
+            tempExampleBankIndex = index;
+            tempExampleBank = obj[0];
+            if(tempExampleBank == null){
+                tempExampleBank = obj;
+            }
+
+            $("#tempExampleBank").click();
+        }
+    }
+    function clearExampleBank(obj ,index){
+        if(obj != null && obj != undefined){
+            tempExampleBankIndex = index;
+            tempExampleBank = obj[0];
+            if(tempExampleBank == null){
+                tempExampleBank = obj;
+            }
+
+            $(tempExampleBank).val("");
+            $(tempExampleBank).prev().val("");
+
+        }
+    }
+    
+    
+    function fundAccountTypeNameFmt(val, row,index) {
+        var html = "<select name='fundAccountType' id='fundAccountType' class=’form-control input-sm required‘>" ;
+        html += checkedOption(fund_account_type_dicts() , row.fundAccountType);
+        html += "</select>";
+        return html;
+    }
+
+    function bankNameFmt(val, row,index) {
+        var html = '<div class="input-group">';
+        html += '<input type="hidden" id="bankId" name="bankId" value="'+row.bankId+'" >';
+        html += '<input type="text"  class="form-control input-sm bankName" onclick="openExampleBank(this,'+index+')" required="required" value="'+row.bankName+'" name="bankName" placeholder="请选择开户行" readonly >';
+        html += '<div class="input-group-btn">';
+        html += '<div class="btn btn-primary btn-sm" onclick=openExampleBank(document.getElementsById("bankName"),'+index+')>';
+        html += '<svg class="icon" aria-hidden="true">';
+        html += '<use xmlns:xlink="http://www.w3.org/1999/xlink"  xlink:href="#icon-sousuo"></use>';
+        html += '</svg>';
+        html += '</div>';
+        html += '<div class="btn btn-primary btn-sm" onclick=clearExampleBank(document.getElementsById("bankName"),'+index+')  >';
+        html += '<svg class="icon" aria-hidden="true">';
+        html += ' <use xmlns:xlink="http://www.w3.org/1999/xlink"	xlink:href="#icon-close"></use>';
+        html += '</svg>';
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
+
+        return html;
+    }
+    
+    function doAddFundAccount() {
+        var rows = $('#tableData-fundAccount').datagrid("getRows");
+        rows.push({id:""});
+        $('#tableData-fundAccount').datagrid("loadData",rows);
+
+    }
 
 </script>
 

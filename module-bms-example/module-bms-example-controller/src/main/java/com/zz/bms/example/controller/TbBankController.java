@@ -1,33 +1,13 @@
 package com.zz.bms.example.controller;
 
-import com.zz.bms.enums.*;
-
-import com.zz.bms.system.service.TsDictService;
-import com.zz.bms.system.bo.TsDictBO;
-import com.zz.bms.core.db.entity.*;
-
+import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.example.bo.TbBankBO;
-import  com.zz.bms.example.query.impl.TbBankQueryWebImpl;
-
-
-
-
-
+import com.zz.bms.example.query.impl.TbBankQueryWebImpl;
 import com.zz.bms.system.controller.ZzGroupDefaultSimpleController;
-
-
-
-
-import com.zz.bms.util.base.java.IdUtils;
+import com.zz.bms.system.service.TsDictService;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * 银行信息 控制层

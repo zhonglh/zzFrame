@@ -100,3 +100,18 @@ function changeDatetimeFormat(cellval) {
 function moneyFmt(val, r){
     return FormatMoney(val,4,true);
 }
+
+
+
+//设置选中项
+function checkedOption(str,val){
+    var serachStr = '"'+val+'"';
+    var index = str.indexOf(serachStr);
+    if(""!=val && -1!=index){
+        index += serachStr.length;
+        var before = str.substring(0,index);
+        var after = str.substring(index,str.length);
+        return before +" selected " +after;
+    }
+    return str;
+}
