@@ -101,22 +101,11 @@
                                 <th>通知时间<font color="red">*</font></th>
                                 <td>
                                         <div class="input-group">
-                                            <input type="text" required="required" class="form-control input-sm required"
+                                            <input type="text" required="required" class="form-control input-sm Wdate required "
                                                    placeholder="请输入通知时间" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'notifyTime'})"
                                                            value="${ m.notifyTime }" id="notifyTime" name="notifyTime" readonly   />
-                                            <div class="input-group-btn">
-                                                <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('notifyTime').click()">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-rili"></use>
-                                                    </svg>
-                                                </button>
-                                                <button type="button" class="btn btn-primary btn-sm" onclick="clearTime(NotifyTime);">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use  xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                                                    </svg>
-                                                </button>
-                                            </div>
+
                                         </div>
                                 </td>
                             </tr>

@@ -121,43 +121,19 @@
                                     <th>成立日期</th>
                                     <td>
                                         <div class="input-group">
-                                            <input type="text"  class="form-control input-sm "
+                                            <input type="text"  class="form-control input-sm Wdate"
                                                    placeholder="请输入成立日期" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'startDate'})"
                                                    value="${ m.startDate }" id="startDate" name="startDate" readonly   />
-                                            <div class="input-group-btn">
-                                                <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('startDate').click()">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-rili"></use>
-                                                    </svg>
-                                                </button>
-                                                <button type="button" class="btn btn-primary btn-sm" onclick="clearTime(StartDate);">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use  xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                                                    </svg>
-                                                </button>
-                                            </div>
                                         </div>
                                     </td>
                                     <th>到期日期</th>
                                     <td>
                                         <div class="input-group">
-                                            <input type="text"  class="form-control input-sm "
+                                            <input type="text"  class="form-control input-sm Wdate "
                                                    placeholder="请输入到期日期" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'endDate'})"
                                                            value="${ m.endDate }" id="endDate" name="endDate" readonly   />
-                                            <div class="input-group-btn">
-                                                <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('endDate').click()">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-rili"></use>
-                                                    </svg>
-                                                </button>
-                                                <button type="button" class="btn btn-primary btn-sm" onclick="clearTime(EndDate);">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use  xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                                                    </svg>
-                                                </button>
-                                            </div>
                                         </div>
                                     </td>
                                 </tr>
@@ -192,7 +168,38 @@
                         </tbody>
                     </table>
 
+
+                    <input type="hidden" id="tempExampleBank" />
+、
+
+
+
                     <div class="block-each block-each-another">
+
+
+                        <div class="block-tit">
+                            <svg class="icon" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
+                            </svg>备案信息
+                        </div>
+                        <table class="info-table">
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                            <tr>
+                                <th>备案日期<font color="red">*</font></th>
+                                <td>
+                                    <input type="text" class="form-control input-sm Wdate required " name="recordDate" id="recordDate" onclick="WdatePicker({dateFmt: 'yyyy-MM-dd'})" placeholder="请选择备案日期" readonly required="required">
+                                </td>
+                                <th>备案地点<font color="red">*</font></th>
+                                <td><input type="text" name="recordAddr" id="recordAddr" required="required" maxlength="200" placeholder="请输入备案地点" class="form-control input-sm required" required="required" /></td>
+                            </tr>
+                        </table>
+
+
+
+
                         <div class="block-tit">
                             <svg class="icon" aria-hidden="true">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
@@ -225,7 +232,6 @@
                     </div>
 
 
-                    <input type="hidden" id="tempExampleBank" />
 
 
 
@@ -260,8 +266,6 @@
 <bms:contentJS />
 
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
-<script src="${ staticUrl }/statics2/js/project/list.js"></script>
-<script src="${ staticUrl }/statics2/js/project/listCommon.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/example/bank/search.js"></script>
@@ -297,8 +301,12 @@
             $(tempExampleBank).prev().val(row.id);
 
         });
-    });
 
+
+        $('#tableData-fundAccount').datagrid({
+            data : []
+        });
+    });
 
     var tempExampleBank  , tempExampleBankIndex ;
     
@@ -347,14 +355,14 @@
     function bankNameFmt(val, row,index) {
         var html = '<div class="input-group">';
         html += '<input type="hidden" id="bankId" name="bankId" value="'+row.bankId+'" >';
-        html += '<input type="text"  class="form-control input-sm bankName" onclick="openExampleBank(this,'+index+')" required="required" value="'+row.bankName+'" name="bankName" placeholder="请选择开户行" readonly >';
+        html += '<input type="text"  class="form-control input-sm bankName" onclick="openExampleBank(this,'+index+')" required="required" value="'+row.bankName+'" id="bankName"  name="bankName" placeholder="请选择开户行" readonly >';
         html += '<div class="input-group-btn">';
-        html += '<div class="btn btn-primary btn-sm" onclick=openExampleBank(document.getElementsById("bankName"),'+index+')>';
+        html += '<div class="btn btn-primary btn-sm" onclick=openExampleBank(document.getElementById("bankName"),'+index+')>';
         html += '<svg class="icon" aria-hidden="true">';
         html += '<use xmlns:xlink="http://www.w3.org/1999/xlink"  xlink:href="#icon-sousuo"></use>';
         html += '</svg>';
         html += '</div>';
-        html += '<div class="btn btn-primary btn-sm" onclick=clearExampleBank(document.getElementsById("bankName"),'+index+')  >';
+        html += '<div class="btn btn-primary btn-sm" onclick=clearExampleBank(document.getElementById("bankName"),'+index+')  >';
         html += '<svg class="icon" aria-hidden="true">';
         html += ' <use xmlns:xlink="http://www.w3.org/1999/xlink"	xlink:href="#icon-close"></use>';
         html += '</svg>';
@@ -365,11 +373,33 @@
         return html;
     }
     
+    function accountNameFmt(val, row,index) {
+        return '<input type="text" maxlength="100" value="'+val+'" name="accountName" id="accountName" placeholder="请输入账户名" class="form-control input-sm  required" />';
+
+    }
+
+    function accountNoFmt(val, row,index) {
+        return '<input type="text" maxlength="50" value="'+val+'" name="accountNo" id="accountNo" placeholder="请输入银行账号" isFormat="false" class="form-control input-sm fd-decimal required" />';
+    }
+
+
+    function markFmt(val, r,index){
+        var html =	'<div class="grid-column-option">';
+        html+=	'<a href="javascript: doDelFundAccount('+ index + ');" title="删除"><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use></svg></a>';
+        html+=	'</div>';
+        return html;
+    }
+
+    function doDelFundAccount(index){
+        $('#tableData-fundAccount').datagrid("deleteRow" , index);
+        var rows = $('#'+tableid).datagrid("getRows");
+        $('#tableData-fundAccount').datagrid("loadData",rows);
+    }
+
     function doAddFundAccount() {
         var rows = $('#tableData-fundAccount').datagrid("getRows");
-        rows.push({id:""});
+        rows.push({id:"" , fundAccountTypeName:"" , fundAccountType : "" , bankId : "" , bankName :"" , accountName:"" ,accountNo:"" });
         $('#tableData-fundAccount').datagrid("loadData",rows);
-
     }
 
 </script>

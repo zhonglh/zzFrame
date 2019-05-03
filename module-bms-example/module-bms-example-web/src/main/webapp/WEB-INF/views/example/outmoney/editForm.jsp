@@ -274,22 +274,11 @@
                                 <th>到账日期<font color="red">*</font></th>
                                 <td>
                                         <div class="input-group">
-                                            <input type="text" required="required" class="form-control input-sm required"
+                                            <input type="text" required="required" class="form-control input-sm Wdate required"
                                                    placeholder="请输入到账日期" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'arrivalAccountDate'})"
                                                            value="${ m.arrivalAccountDate }" id="arrivalAccountDate" name="arrivalAccountDate" readonly   />
-                                            <div class="input-group-btn">
-                                                <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('arrivalAccountDate').click()">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-rili"></use>
-                                                    </svg>
-                                                </button>
-                                                <button type="button" class="btn btn-primary btn-sm" onclick="clearTime(ArrivalAccountDate);">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use  xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                                                    </svg>
-                                                </button>
-                                            </div>
+
                                         </div>
                                 </td>
                             </tr>

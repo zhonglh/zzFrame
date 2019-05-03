@@ -221,43 +221,19 @@
                                 <th>成立日期</th>
                                 <td>
                                         <div class="input-group">
-                                            <input type="text"  class="form-control input-sm "
+                                            <input type="text"  class="form-control input-sm Wdate"
                                                    placeholder="请输入成立日期" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'startDate'})"
                                                            value="${ m.startDate }" id="startDate" name="startDate" readonly   />
-                                            <div class="input-group-btn">
-                                                <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('startDate').click()">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-rili"></use>
-                                                    </svg>
-                                                </button>
-                                                <button type="button" class="btn btn-primary btn-sm" onclick="clearTime(StartDate);">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use  xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                                                    </svg>
-                                                </button>
-                                            </div>
                                         </div>
                                 </td>
                                 <th>到期日期</th>
                                 <td>
                                         <div class="input-group">
-                                            <input type="text"  class="form-control input-sm "
+                                            <input type="text"  class="form-control input-sm Wdate"
                                                    placeholder="请输入到期日期" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'endDate'})"
                                                            value="${ m.endDate }" id="endDate" name="endDate" readonly   />
-                                            <div class="input-group-btn">
-                                                <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('endDate').click()">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-rili"></use>
-                                                    </svg>
-                                                </button>
-                                                <button type="button" class="btn btn-primary btn-sm" onclick="clearTime(EndDate);">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use  xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                                                    </svg>
-                                                </button>
-                                            </div>
                                         </div>
                                 </td>
                             </tr>

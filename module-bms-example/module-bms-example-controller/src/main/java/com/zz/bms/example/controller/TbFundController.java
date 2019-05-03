@@ -57,7 +57,7 @@ public class TbFundController extends ZzGroupDefaultSimpleController<TbFundGroup
 
 	@Override
 	protected void setCommonData(TbFundGroupBO tbFundBO ,ModelMap model) {
-    	Map<String , List<TsDictBO>> dictMap = tsDictService.allDicts(EnumDictType.FUND_TYPE.getVal(),EnumDictType.FUND_DIRECTION.getVal(),EnumDictType.MANAG_TYPE.getVal());
+    	Map<String , List<TsDictBO>> dictMap = tsDictService.allDicts(EnumDictType.FUND_TYPE.getVal(),EnumDictType.FUND_DIRECTION.getVal(),EnumDictType.MANAG_TYPE.getVal(),EnumDictType.FUND_ACCOUNT_TYPE.getVal());
         for(Map.Entry<String , List<TsDictBO>> dictObj : dictMap.entrySet()){
         	model.put(dictObj.getKey()+"_dicts", dictObj.getValue());
         }

@@ -126,22 +126,10 @@
                                     <th>签订日期<font color="red">*</font></th>
                                     <td>
                                         <div class="input-group">
-                                            <input type="text" required="required" class="form-control input-sm required "
+                                            <input type="text" required="required" class="form-control input-sm Wdate required "
                                                    placeholder="请输入签订日期" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'signDate'})"
                                                    value="${ m.signDate }" id="signDate" name="signDate" readonly   />
-                                            <div class="input-group-btn">
-                                                <button type="button" class="btn btn-primary btn-sm" onclick="document.getElementById('signDate').click()">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-rili"></use>
-                                                    </svg>
-                                                </button>
-                                                <button type="button" class="btn btn-primary btn-sm" onclick="clearTime(signDate);">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use  xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                                                    </svg>
-                                                </button>
-                                            </div>
                                         </div>
                                     </td>
                                     <th>签订人<font color="red">*</font></th>
