@@ -20,18 +20,23 @@ import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.base.java.ReflectionSuper;
 import com.zz.bms.util.configs.AppConfig;
 import com.zz.bms.util.configs.annotaions.EntityAnnotation;
+import com.zz.bms.util.configs.annotaions.GroupFieldAnnotation;
 import com.zz.bms.util.web.PaginationContext;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -457,6 +462,8 @@ public abstract class   BaseGroupCURDController<
         //初始化默认值
         setInit(m);
 
+        setChildFkInfo(m);
+
         //创建时定制的数据，如状态 等
         this.setCustomInfoByInsert(m,sessionUserVO);
 
@@ -494,6 +501,7 @@ public abstract class   BaseGroupCURDController<
             throw DbException.DB_INSERT_RESULT_0;
         }
     }
+
 
 
     @RequestMapping(value = "/{id}/update", method = {RequestMethod.POST , RequestMethod.PUT})
@@ -698,35 +706,203 @@ public abstract class   BaseGroupCURDController<
     }
 
 
+    /**
+     * 设置组内对象的外键信息
+     * @param be
+     */
+    protected void setChildFkInfo(BaseEntity be){
+        if(be == null){
+            return ;
+        }
+
+        Field[] fs = ReflectionSuper.getFields(be.getClass());
+        for (Field f : fs) {
+            f.setAccessible(true);
+            Object val = ReflectionUtils.getField(f, be);
+            if (val != null) {
+
+                GroupFieldAnnotation gf = f.getAnnotation(GroupFieldAnnotation.class);
+                if(gf == null || gf.childTableColumnName() == null || StringUtils.isEmpty(gf.childTableColumnName())){
+                    throw EnumErrorMsg.code_error.toException();
+                }
 
 
+                if (val instanceof Collection || val.getClass().isArray()) {
 
+                    Collection cs = null;
+                    if (val.getClass().isArray()) {
+                        cs = Arrays.asList(val);
+                    } else {
+                        cs = (Collection) val;
+                    }
 
+                    Field clsField = null;
+                    for (Object obj : cs) {
+                        if(clsField == null) {
+                            clsField = getTheField(gf.childTableColumnName(), obj);
+                        }
+                        try {
+                            clsField.set(obj , be.getId());
+                        } catch (IllegalAccessException e) {
+                            throw EnumErrorMsg.code_error.toException();
+                        }
 
+                    }
 
+                } else {
+                    Field clsField = getTheField(gf.childTableColumnName(), val);
+                    try {
+                        clsField.set(val , be.getId());
+                    } catch (IllegalAccessException e) {
+                        throw EnumErrorMsg.code_error.toException();
+                    }
+                }
+            }
+        }
+    }
 
+    private Field getTheField(String childTableColumnName, Object obj ) {
 
+        try {
+            Field f = obj.getClass().getField(StringFormatKit.toCamelCase(childTableColumnName));
 
+            f.setAccessible(true);
+
+            return f;
+        } catch (NoSuchFieldException e) {
+            throw EnumErrorMsg.code_error.toException();
+        }
+
+    }
 
 
     /**
-     * 插入对象加上插入信息
+     * 插入对象加上插入信息 , 包括组内其他信息
      * @param be
      * @param sessionUserVO
      */
     @Override
     public void setInsertInfo(BaseEntity be , ILoginUserEntity sessionUserVO){
+        if(be == null){
+            return ;
+        }
         EntityUtil.autoSetInsertEntity(be, sessionUserVO);
+
+        Field[] fs = ReflectionSuper.getFields(be.getClass());
+        for (Field f : fs) {
+            f.setAccessible(true);
+            Object val = ReflectionUtils.getField(f, be);
+            if (val != null) {
+                if (val instanceof Collection || val.getClass().isArray()) {
+
+                    Collection cs = null;
+                    if (val.getClass().isArray()) {
+                        cs = Arrays.asList(val);
+                    } else {
+                        cs = (Collection) val;
+                    }
+                    for (Object obj : cs) {
+                        if (obj instanceof BaseEntity) {
+                            EntityUtil.autoSetInsertEntity((BaseEntity) obj, sessionUserVO);
+                        }
+                    }
+
+                } else {
+                    EntityUtil.autoSetInsertEntity((BaseEntity) val, sessionUserVO);
+                }
+            }
+        }
+    }
+
+
+
+
+    /**
+     * 设置初始值 ,  一般用于新增界面
+     * @param be
+     */
+    @Override
+    public void setInit(BaseEntity be) {
+        if (be == null) {
+            return;
+        }
+        super.setInit(be);
+
+
+        Field[] fs = ReflectionSuper.getFields(be.getClass());
+        for (Field f : fs) {
+            f.setAccessible(true);
+            Object val = ReflectionUtils.getField(f, be);
+            if (val != null) {
+                if (val instanceof Collection || val.getClass().isArray()) {
+
+                    Collection cs = null;
+                    if (val.getClass().isArray()) {
+                        cs = Arrays.asList(val);
+                    } else {
+                        cs = (Collection) val;
+                    }
+                    for (Object obj : cs) {
+                        if (obj instanceof BaseEntity) {
+                            super.setInit((BaseEntity) obj);
+                        }
+                    }
+
+                } else {
+                    super.setInit((BaseEntity) val);
+                }
+            }
+        }
+
     }
 
 
 
 
 
+    /**
+     * 检查实体数据的合法性
+     * @param entity            需要检查的实体
+     * @param checkRequired     是否检查必填
+     * @param checkLength       是否检查长度
+     * @param checkRule         是否检查规则
+     */
+    @Override
+    public void checkEntityLegality(BaseEntity entity , boolean checkRequired , boolean checkLength , boolean checkRule) {
+
+        if(entity == null){
+            return ;
+        }
+
+        super.checkEntityLegality(entity , checkRequired , checkLength , checkRule);
 
 
+        Field[] fs = ReflectionSuper.getFields(entity.getClass());
+        for (Field f : fs) {
+            f.setAccessible(true);
+            Object val = ReflectionUtils.getField(f, entity);
+            if (val != null) {
+                if (val instanceof Collection || val.getClass().isArray()) {
 
+                    Collection cs = null;
+                    if (val.getClass().isArray()) {
+                        cs = Arrays.asList(val);
+                    } else {
+                        cs = (Collection) val;
+                    }
+                    for (Object obj : cs) {
+                        if (obj instanceof BaseEntity) {
+                            super.checkEntityLegality((BaseEntity) obj, checkRequired , checkLength , checkRule);
+                        }
+                    }
 
+                } else {
+                    super.checkEntityLegality((BaseEntity) val, checkRequired , checkLength , checkRule);
+                }
+            }
+        }
+
+    }
 
 
 
