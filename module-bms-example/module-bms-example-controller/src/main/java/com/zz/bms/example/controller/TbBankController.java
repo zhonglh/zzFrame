@@ -11,7 +11,6 @@ import  com.zz.bms.example.query.impl.TbBankQueryWebImpl;
 
 
 
-import com.zz.bms.example.bo.TbBankGroupBO;
 
 
 import com.zz.bms.system.controller.ZzGroupDefaultSimpleController;
@@ -39,7 +38,7 @@ import java.util.Map;
 @Controller
 
 
-public class TbBankController extends ZzGroupDefaultSimpleController<TbBankGroupBO, String , TbBankQueryWebImpl > {
+public class TbBankController extends ZzGroupDefaultSimpleController<TbBankBO, String , TbBankQueryWebImpl > {
 
 	@Autowired
 	private TsDictService tsDictService;
@@ -52,7 +51,7 @@ public class TbBankController extends ZzGroupDefaultSimpleController<TbBankGroup
 
 
 	@Override
-	public void setCustomInfoByInsert(TbBankGroupBO bo , ILoginUserEntity sessionUser){
+	public void setCustomInfoByInsert(TbBankBO bo , ILoginUserEntity sessionUser){
 	}
 
 
