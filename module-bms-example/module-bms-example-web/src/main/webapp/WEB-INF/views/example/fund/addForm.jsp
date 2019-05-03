@@ -120,21 +120,19 @@
                                 <tr>
                                     <th>成立日期</th>
                                     <td>
-                                        <div class="input-group">
                                             <input type="text"  class="form-control input-sm Wdate"
                                                    placeholder="请输入成立日期" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'startDate'})"
                                                    value="${ m.startDate }" id="startDate" name="startDate" readonly   />
-                                        </div>
+
                                     </td>
                                     <th>到期日期</th>
                                     <td>
-                                        <div class="input-group">
                                             <input type="text"  class="form-control input-sm Wdate "
                                                    placeholder="请输入到期日期" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'endDate'})"
                                                            value="${ m.endDate }" id="endDate" name="endDate" readonly   />
-                                        </div>
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -182,6 +180,7 @@
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
                             </svg>备案信息
                         </div>
+
                         <table class="info-table">
                             <col style="width: 15%" />
                             <col style="width: 35%" />
@@ -190,10 +189,10 @@
                             <tr>
                                 <th>备案日期<font color="red">*</font></th>
                                 <td>
-                                    <input type="text" class="form-control input-sm Wdate required " name="recordDate" id="recordDate" onclick="WdatePicker({dateFmt: 'yyyy-MM-dd'})" placeholder="请选择备案日期" readonly required="required">
+                                    <input type="text" class="form-control input-sm Wdate required " name="fundRecordBO.recordDate" id="fundRecordBO_recordDate" onclick="WdatePicker({dateFmt: 'yyyy-MM-dd'})" placeholder="请选择备案日期" readonly required="required">
                                 </td>
                                 <th>备案地点<font color="red">*</font></th>
-                                <td><input type="text" name="recordAddr" id="recordAddr" required="required" maxlength="200" placeholder="请输入备案地点" class="form-control input-sm required" required="required" /></td>
+                                <td><input type="text" name="fundRecordBO.recordAddr" id="fundRecordBO_recordAddr" required="required" maxlength="200" placeholder="请输入备案地点" class="form-control input-sm required" required="required" /></td>
                             </tr>
                         </table>
 

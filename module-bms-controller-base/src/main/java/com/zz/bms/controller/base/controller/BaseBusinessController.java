@@ -3,13 +3,16 @@ package com.zz.bms.controller.base.controller;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.base.service.BaseService;
 import com.zz.bms.core.db.entity.*;
 import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.util.base.java.GenericsHelper;
+import com.zz.bms.util.configs.AppConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,6 +45,8 @@ public abstract class BaseBusinessController<
 
 
 
+    protected String viewPrefix;
+
     @Autowired
     protected BaseService<QueryModel, PK> baseQueryService;
 
@@ -65,6 +70,20 @@ public abstract class BaseBusinessController<
 
 
 
+    /**
+     * 处理各种路径
+     * @param modelMap
+     */
+    protected void processPath(ModelMap modelMap) {
+        String prefix =  getViewPrefix();
+        String tableid = prefix.replaceAll("/" , "");
+        modelMap.put(Constant.TABLEID, tableid);
+        modelMap.put(Constant.CURR_PARENT_URL, prefix);
+        //todo 处理面包屑 菜单路径
+        if(AppConfig.USE_CRUMB) {
+            modelMap.put(Constant.BREADCRUMB, "");
+        }
+    }
 
 
 
@@ -435,4 +454,70 @@ public abstract class BaseBusinessController<
     protected String getTreePageName(){
         return null;
     }
+
+
+
+
+
+    /**
+     * 当前模块 视图的前缀
+     * 默认
+     * 1、获取当前类头上的@RequestMapping中的value作为前缀
+     * 2、如果没有就使用当前模型小写的简单类名
+     */
+    public void setViewPrefix(String viewPrefix) {
+        if (viewPrefix.startsWith("/")) {
+            viewPrefix = viewPrefix.substring(1);
+        }
+        this.viewPrefix = viewPrefix;
+    }
+
+    public String getViewPrefix() {
+        return viewPrefix;
+    }
+
+
+    /**
+     * 获取视图名称：即prefixViewName + "/" + suffixName
+     *
+     * @return
+     */
+    public String viewName(String suffixName) {
+        if (!suffixName.startsWith("/")) {
+            suffixName = "/" + suffixName;
+        }
+        return getViewPrefix() + suffixName;
+    }
+
+
+    /**
+     * @param backURL null 将重定向到默认getViewPrefix()
+     * @return
+     */
+    protected String redirectToUrl(String backURL) {
+        if (org.springframework.util.StringUtils.isEmpty(backURL)) {
+            backURL = getViewPrefix();
+        }
+        if (!backURL.startsWith("/") && !backURL.startsWith("http")) {
+            backURL = "/" + backURL;
+        }
+        return "redirect:" + backURL;
+    }
+
+    protected String defaultViewPrefix() {
+        String currentViewPrefix = "";
+        RequestMapping requestMapping = AnnotationUtils.findAnnotation(getClass(), RequestMapping.class);
+        if (requestMapping != null && requestMapping.value().length > 0) {
+            currentViewPrefix = requestMapping.value()[0];
+        }
+
+        if (org.springframework.util.StringUtils.isEmpty(currentViewPrefix)) {
+            currentViewPrefix = this.getRwEntityClass().getSimpleName();
+        }
+
+        return currentViewPrefix;
+    }
+
+
+
 }

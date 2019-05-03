@@ -25,6 +25,8 @@ import com.zz.bms.util.configs.annotaions.*;
 import com.zz.bms.util.configs.util.AnnotaionEntityUtil;
 import com.zz.bms.util.spring.ReflectionUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -54,6 +56,9 @@ public class BaseCommonController<PK extends Serializable> extends BaseControlle
      * 本功能的资源名称
      */
     private String resourceIdentity = null;
+
+
+
 
 
     /**
@@ -334,6 +339,14 @@ public class BaseCommonController<PK extends Serializable> extends BaseControlle
         }
 
     }
+
+
+
+
+
+
+
+
 
 
 

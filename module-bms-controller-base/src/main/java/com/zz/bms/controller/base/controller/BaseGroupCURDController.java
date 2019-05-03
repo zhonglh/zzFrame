@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessEntity;
 import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.core.enums.EnumErrorMsg;
@@ -48,12 +49,6 @@ public abstract class   BaseGroupCURDController<
 
 
 
-
-
-
-    protected String viewPrefix;
-
-
     protected BaseGroupCURDController() {
         super();
         setViewPrefix(defaultViewPrefix());
@@ -61,20 +56,6 @@ public abstract class   BaseGroupCURDController<
     }
 
 
-    /**
-     * 处理各种路径
-     * @param modelMap
-     */
-    protected void processPath(ModelMap modelMap) {
-        String prefix =  getViewPrefix();
-        String tableid = prefix.replaceAll("/" , "");
-        modelMap.put(Constant.TABLEID, tableid);
-        modelMap.put(Constant.CURR_PARENT_URL, prefix);
-        //todo 处理面包屑 菜单路径
-        if(AppConfig.USE_CRUMB) {
-            modelMap.put(Constant.BREADCRUMB, "");
-        }
-    }
 
 
 
@@ -728,70 +709,20 @@ public abstract class   BaseGroupCURDController<
 
 
 
-
-
-
-
-
-
     /**
-     * 当前模块 视图的前缀
-     * 默认
-     * 1、获取当前类头上的@RequestMapping中的value作为前缀
-     * 2、如果没有就使用当前模型小写的简单类名
+     * 插入对象加上插入信息
+     * @param be
+     * @param sessionUserVO
      */
-    public void setViewPrefix(String viewPrefix) {
-        if (viewPrefix.startsWith("/")) {
-            viewPrefix = viewPrefix.substring(1);
-        }
-        this.viewPrefix = viewPrefix;
-    }
-
-    public String getViewPrefix() {
-        return viewPrefix;
+    @Override
+    public void setInsertInfo(BaseEntity be , ILoginUserEntity sessionUserVO){
+        EntityUtil.autoSetInsertEntity(be, sessionUserVO);
     }
 
 
-    /**
-     * 获取视图名称：即prefixViewName + "/" + suffixName
-     *
-     * @return
-     */
-    public String viewName(String suffixName) {
-        if (!suffixName.startsWith("/")) {
-            suffixName = "/" + suffixName;
-        }
-        return getViewPrefix() + suffixName;
-    }
 
 
-    /**
-     * @param backURL null 将重定向到默认getViewPrefix()
-     * @return
-     */
-    protected String redirectToUrl(String backURL) {
-        if (StringUtils.isEmpty(backURL)) {
-            backURL = getViewPrefix();
-        }
-        if (!backURL.startsWith("/") && !backURL.startsWith("http")) {
-            backURL = "/" + backURL;
-        }
-        return "redirect:" + backURL;
-    }
 
-    protected String defaultViewPrefix() {
-        String currentViewPrefix = "";
-        RequestMapping requestMapping = AnnotationUtils.findAnnotation(getClass(), RequestMapping.class);
-        if (requestMapping != null && requestMapping.value().length > 0) {
-            currentViewPrefix = requestMapping.value()[0];
-        }
-
-        if (StringUtils.isEmpty(currentViewPrefix)) {
-            currentViewPrefix = this.getRwEntityClass().getSimpleName();
-        }
-
-        return currentViewPrefix;
-    }
 
 
 
