@@ -206,7 +206,7 @@
 
                                     <th field='fundAccountTypeName' align="left" width="2" sortable='false' formatter="fundAccountTypeNameFmt">账户类型</th>
                                     <th field='bankName' align="left" width="2" sortable='false' formatter="bankNameFmt">开户行</th>
-                                    <th field='accountName' align="left" width="2" sortable='false' formatter="accountNameFmt">账户名</th>
+                                    <th field='accountName' align="left" width="2" sortable='false' formatter="accountNameFmt">户名</th>
                                     <th field='accountNo' align="left" width="2" sortable='false' formatter="accountNoFmt">账号</th>
 
 

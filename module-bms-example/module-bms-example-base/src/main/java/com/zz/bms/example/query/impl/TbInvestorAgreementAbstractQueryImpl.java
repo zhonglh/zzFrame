@@ -15,7 +15,7 @@ import java.lang.Integer;
  * 投资协议 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2019-5-2 18:36:10
+ * @date 2019-5-3 10:40:31
  */
 public abstract class TbInvestorAgreementAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TbInvestorAgreementEntity,PK> {
 
@@ -57,20 +57,16 @@ public abstract class TbInvestorAgreementAbstractQueryImpl<PK extends Serializab
             protected String sketch_LIKE;
             protected String sketch_NOTLIKE;
 
-            protected String signDepId;
-            protected String signDepId_NE;
-            protected String signDepId_LIKE;
-            protected String signDepId_NOTLIKE;
+            protected PK signDepId;
+            protected PK signDepId_NE;
 
             protected String signOrganId;
             protected String signOrganId_NE;
             protected String signOrganId_LIKE;
             protected String signOrganId_NOTLIKE;
 
-            protected String signUserId;
-            protected String signUserId_NE;
-            protected String signUserId_LIKE;
-            protected String signUserId_NOTLIKE;
+            protected PK signUserId;
+            protected PK signUserId_NE;
 
         protected Date signDate;
         protected Date signDate_NE;

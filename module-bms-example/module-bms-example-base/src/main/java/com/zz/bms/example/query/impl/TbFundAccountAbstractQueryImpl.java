@@ -11,7 +11,7 @@ import java.lang.String;
  * 基金账户 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2019-5-2 18:36:07
+ * @date 2019-5-3 10:40:29
  */
 public abstract class TbFundAccountAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TbFundAccountEntity,PK> {
 
@@ -29,10 +29,8 @@ public abstract class TbFundAccountAbstractQueryImpl<PK extends Serializable> ex
             protected String accountName_LIKE;
             protected String accountName_NOTLIKE;
 
-            protected String bankId;
-            protected String bankId_NE;
-            protected String bankId_LIKE;
-            protected String bankId_NOTLIKE;
+            protected PK bankId;
+            protected PK bankId_NE;
 
             protected String accountNo;
             protected String accountNo_NE;

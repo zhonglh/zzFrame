@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.example.dao.TbBankDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="TbBankResultMap" type="com.zz.bms.example.bo.TbBankBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="bank_name" property="bankName"/>
+
+         	<result column="bank_short_name" property="bankShortName"/>
+
+         	<result column="service_telephone" property="serviceTelephone"/>
+
+         	<result column="official_website" property="officialWebsite"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="TbBank4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="bankName != null and bankName != ''"> AND T.bank_name = #{bankName} </if>
+					<if test="bankShortName != null and bankShortName != ''"> AND T.bank_short_name = #{bankShortName} </if>
+					<if test="serviceTelephone != null and serviceTelephone != ''"> AND T.service_telephone = #{serviceTelephone} </if>
+					<if test="officialWebsite != null and officialWebsite != ''"> AND T.official_website = #{officialWebsite} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.example.bo.TbBankBO" resultMap="TbBankResultMap">
+        SELECT T.* FROM tb_bank T
+        <include refid="TbBank4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>

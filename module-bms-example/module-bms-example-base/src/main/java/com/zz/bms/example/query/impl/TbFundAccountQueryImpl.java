@@ -15,7 +15,7 @@ import java.lang.String;
 * 基金账户 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2019-5-2 18:36:07
+* @date 2019-5-3 10:40:29
 */
 public class TbFundAccountQueryImpl<PK extends Serializable> extends TbFundAccountAbstractQueryImpl<PK> implements TbFundAccountQuery<PK>, Serializable  {
 
@@ -31,9 +31,9 @@ public class TbFundAccountQueryImpl<PK extends Serializable> extends TbFundAccou
 
         private List<String> accountName_IN;
         private List<String> accountName_NOTIN;
+        private List<PK> bankId_IN;
+        private List<PK> bankId_NOTIN;
 
-        private List<String> bankId_IN;
-        private List<String> bankId_NOTIN;
 
         private List<String> accountNo_IN;
         private List<String> accountNo_NOTIN;
@@ -260,9 +260,8 @@ public class TbFundAccountQueryImpl<PK extends Serializable> extends TbFundAccou
         }
 
 
-
         @Override
-        public TbFundAccountQuery bankId(String bankId) {
+        public TbFundAccountQuery bankId(PK bankId) {
             if(!IdUtils.isEmpty(bankId)){
                 this.bankId = bankId;
             }
@@ -270,7 +269,7 @@ public class TbFundAccountQueryImpl<PK extends Serializable> extends TbFundAccou
         }
 
         @Override
-        public TbFundAccountQuery bankIdNot(String bankIdNot) {
+        public TbFundAccountQuery bankIdNot(PK bankIdNot) {
             if(!IdUtils.isEmpty(bankIdNot)){
                 this.bankId_NE = bankIdNot;
             }
@@ -278,26 +277,10 @@ public class TbFundAccountQueryImpl<PK extends Serializable> extends TbFundAccou
         }
 
         @Override
-        public TbFundAccountQuery bankIdLike(String bankIdLike) {
-            if(!IdUtils.isEmpty(bankIdLike)){
-                this.bankId_LIKE = bankIdLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TbFundAccountQuery bankIdNotLike(String bankIdNotLike) {
-            if(!IdUtils.isEmpty(bankIdNotLike)){
-                this.bankId_NOTLIKE = bankIdNotLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TbFundAccountQuery bankIdIn(String bankIdIn) {
+        public TbFundAccountQuery bankIdIn(PK bankIdIn) {
             if(!IdUtils.isEmpty(bankIdIn)){
                 if(this.bankId_IN == null){
-                    this.bankId_IN = new ArrayList<String>();
+                    this.bankId_IN = new ArrayList<PK>();
                 }
                 this.bankId_IN.add( bankIdIn );
             }
@@ -305,10 +288,10 @@ public class TbFundAccountQueryImpl<PK extends Serializable> extends TbFundAccou
         }
 
         @Override
-        public TbFundAccountQuery bankIdNotIn(String bankIdNotIn) {
+        public TbFundAccountQuery bankIdNotIn(PK bankIdNotIn) {
             if(!IdUtils.isEmpty(bankIdNotIn)){
                 if(this.bankId_NOTIN == null){
-                    this.bankId_NOTIN = new ArrayList<String>();
+                    this.bankId_NOTIN = new ArrayList<PK>();
                 }
                 this.bankId_NOTIN.add( bankIdNotIn );
             }

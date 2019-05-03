@@ -15,7 +15,7 @@ import java.lang.Integer;
  * 投资协议 查询抽象类
  *
  * @author Administrator
- * @date 2019-5-2 18:36:10
+ * @date 2019-5-3 10:40:31
  */
 public interface TbInvestorAgreementQuery<PK extends Serializable> extends Query<TbInvestorAgreementEntity,PK> {
 
@@ -113,12 +113,10 @@ public interface TbInvestorAgreementQuery<PK extends Serializable> extends Query
 
 
 
-        public TbInvestorAgreementQuery signDepId(String signDepId);
-        public TbInvestorAgreementQuery signDepIdNot(String signDepIdNot);
-        public TbInvestorAgreementQuery signDepIdIn(String signDepIdIn);
-        public TbInvestorAgreementQuery signDepIdNotIn(String signDepIdNotIn);
-        public TbInvestorAgreementQuery signDepIdLike(String signDepIdLike);
-        public TbInvestorAgreementQuery signDepIdNotLike(String signDepIdNotLike);
+        public TbInvestorAgreementQuery signDepId(PK signDepId);
+        public TbInvestorAgreementQuery signDepIdNot(PK signDepIdNot);
+        public TbInvestorAgreementQuery signDepIdIn(PK signDepIdIn);
+        public TbInvestorAgreementQuery signDepIdNotIn(PK signDepIdNotIn);
         public TbInvestorAgreementQuery signDepIdIsNull();
         public TbInvestorAgreementQuery signDepIdIsNotNull();
 
@@ -139,12 +137,10 @@ public interface TbInvestorAgreementQuery<PK extends Serializable> extends Query
 
 
 
-        public TbInvestorAgreementQuery signUserId(String signUserId);
-        public TbInvestorAgreementQuery signUserIdNot(String signUserIdNot);
-        public TbInvestorAgreementQuery signUserIdIn(String signUserIdIn);
-        public TbInvestorAgreementQuery signUserIdNotIn(String signUserIdNotIn);
-        public TbInvestorAgreementQuery signUserIdLike(String signUserIdLike);
-        public TbInvestorAgreementQuery signUserIdNotLike(String signUserIdNotLike);
+        public TbInvestorAgreementQuery signUserId(PK signUserId);
+        public TbInvestorAgreementQuery signUserIdNot(PK signUserIdNot);
+        public TbInvestorAgreementQuery signUserIdIn(PK signUserIdIn);
+        public TbInvestorAgreementQuery signUserIdNotIn(PK signUserIdNotIn);
         public TbInvestorAgreementQuery signUserIdIsNull();
         public TbInvestorAgreementQuery signUserIdIsNotNull();
 

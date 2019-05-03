@@ -11,7 +11,7 @@ import java.lang.String;
  * 基金账户 查询抽象类
  *
  * @author Administrator
- * @date 2019-5-2 18:36:07
+ * @date 2019-5-3 10:40:29
  */
 public interface TbFundAccountQuery<PK extends Serializable> extends Query<TbFundAccountEntity,PK> {
 
@@ -61,12 +61,10 @@ public interface TbFundAccountQuery<PK extends Serializable> extends Query<TbFun
 
 
 
-        public TbFundAccountQuery bankId(String bankId);
-        public TbFundAccountQuery bankIdNot(String bankIdNot);
-        public TbFundAccountQuery bankIdIn(String bankIdIn);
-        public TbFundAccountQuery bankIdNotIn(String bankIdNotIn);
-        public TbFundAccountQuery bankIdLike(String bankIdLike);
-        public TbFundAccountQuery bankIdNotLike(String bankIdNotLike);
+        public TbFundAccountQuery bankId(PK bankId);
+        public TbFundAccountQuery bankIdNot(PK bankIdNot);
+        public TbFundAccountQuery bankIdIn(PK bankIdIn);
+        public TbFundAccountQuery bankIdNotIn(PK bankIdNotIn);
         public TbFundAccountQuery bankIdIsNull();
         public TbFundAccountQuery bankIdIsNotNull();
 

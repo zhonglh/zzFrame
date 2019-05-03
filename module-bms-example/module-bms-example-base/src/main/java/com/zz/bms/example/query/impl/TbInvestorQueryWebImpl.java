@@ -11,7 +11,7 @@ import java.lang.Integer;
 * 投资人 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2019-5-2 18:36:09
+* @date 2019-5-3 10:40:31
 */
 public class TbInvestorQueryWebImpl<PK extends Serializable> extends TbInvestorAbstractQueryImpl<PK> implements Serializable {
 

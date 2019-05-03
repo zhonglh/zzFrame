@@ -13,7 +13,7 @@ import java.lang.Integer;
 * 投资协议 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2019-5-2 18:36:10
+* @date 2019-5-3 10:40:31
 */
 public class TbInvestorAgreementQueryWebImpl<PK extends Serializable> extends TbInvestorAgreementAbstractQueryImpl<PK> implements Serializable {
 
@@ -56,9 +56,9 @@ public class TbInvestorAgreementQueryWebImpl<PK extends Serializable> extends Tb
             private String sketch_NOTIN;
 
 
+            private PK signDepId_IN;
+            private PK signDepId_NOTIN;
 
-            private String signDepId_IN;
-            private String signDepId_NOTIN;
 
 
 
@@ -66,9 +66,9 @@ public class TbInvestorAgreementQueryWebImpl<PK extends Serializable> extends Tb
             private String signOrganId_NOTIN;
 
 
+            private PK signUserId_IN;
+            private PK signUserId_NOTIN;
 
-            private String signUserId_IN;
-            private String signUserId_NOTIN;
 
 
 
@@ -474,54 +474,38 @@ public class TbInvestorAgreementQueryWebImpl<PK extends Serializable> extends Tb
                 this.sketch_NOTLIKE = sketch_NOTLIKE;
             }
 
-
-            public String getSignDepId() {
+            public PK getSignDepId() {
                 return signDepId;
             }
 
-            public void setSignDepId(String signDepId) {
+            public void setSignDepId(PK signDepId) {
                 this.signDepId = signDepId;
             }
 
-            public String getSignDepId_NE() {
+            public PK getSignDepId_NE() {
                 return signDepId_NE;
             }
 
-            public void setSignDepId_NE(String signDepId_NE) {
+            public void setSignDepId_NE(PK signDepId_NE) {
                 this.signDepId_NE = signDepId_NE;
             }
 
-            public String getSignDepId_IN() {
+            public PK getSignDepId_IN() {
                 return signDepId_IN;
             }
 
-            public void setSignDepId_IN(String signDepId_IN) {
+            public void setSignDepId_IN(PK signDepId_IN) {
                 this.signDepId_IN = signDepId_IN;
             }
 
-            public String getSignDepId_NOTIN() {
+            public PK getSignDepId_NOTIN() {
                 return signDepId_NOTIN;
             }
 
-            public void setSignDepId_NOTIN(String signDepId_NOTIN) {
+            public void setSignDepId_NOTIN(PK signDepId_NOTIN) {
                 this.signDepId_NOTIN = signDepId_NOTIN;
             }
 
-            public String getSignDepId_LIKE() {
-                return signDepId_LIKE;
-            }
-
-            public void setSignDepId_LIKE(String signDepId_LIKE) {
-                this.signDepId_LIKE = signDepId_LIKE;
-            }
-
-            public String getSignDepId_NOTLIKE() {
-                return signDepId_NOTLIKE;
-            }
-
-            public void setSignDepId_NOTLIKE(String signDepId_NOTLIKE) {
-                this.signDepId_NOTLIKE = signDepId_NOTLIKE;
-            }
 
 
             public String getSignOrganId() {
@@ -572,54 +556,38 @@ public class TbInvestorAgreementQueryWebImpl<PK extends Serializable> extends Tb
                 this.signOrganId_NOTLIKE = signOrganId_NOTLIKE;
             }
 
-
-            public String getSignUserId() {
+            public PK getSignUserId() {
                 return signUserId;
             }
 
-            public void setSignUserId(String signUserId) {
+            public void setSignUserId(PK signUserId) {
                 this.signUserId = signUserId;
             }
 
-            public String getSignUserId_NE() {
+            public PK getSignUserId_NE() {
                 return signUserId_NE;
             }
 
-            public void setSignUserId_NE(String signUserId_NE) {
+            public void setSignUserId_NE(PK signUserId_NE) {
                 this.signUserId_NE = signUserId_NE;
             }
 
-            public String getSignUserId_IN() {
+            public PK getSignUserId_IN() {
                 return signUserId_IN;
             }
 
-            public void setSignUserId_IN(String signUserId_IN) {
+            public void setSignUserId_IN(PK signUserId_IN) {
                 this.signUserId_IN = signUserId_IN;
             }
 
-            public String getSignUserId_NOTIN() {
+            public PK getSignUserId_NOTIN() {
                 return signUserId_NOTIN;
             }
 
-            public void setSignUserId_NOTIN(String signUserId_NOTIN) {
+            public void setSignUserId_NOTIN(PK signUserId_NOTIN) {
                 this.signUserId_NOTIN = signUserId_NOTIN;
             }
 
-            public String getSignUserId_LIKE() {
-                return signUserId_LIKE;
-            }
-
-            public void setSignUserId_LIKE(String signUserId_LIKE) {
-                this.signUserId_LIKE = signUserId_LIKE;
-            }
-
-            public String getSignUserId_NOTLIKE() {
-                return signUserId_NOTLIKE;
-            }
-
-            public void setSignUserId_NOTLIKE(String signUserId_NOTLIKE) {
-                this.signUserId_NOTLIKE = signUserId_NOTLIKE;
-            }
 
             public Date getSignDate() {
                 return signDate;

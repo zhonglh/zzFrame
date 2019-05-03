@@ -19,7 +19,7 @@ import java.lang.Integer;
 * 投资协议 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2019-5-2 18:36:10
+* @date 2019-5-3 10:40:31
 */
 public class TbInvestorAgreementQueryImpl<PK extends Serializable> extends TbInvestorAgreementAbstractQueryImpl<PK> implements TbInvestorAgreementQuery<PK>, Serializable  {
 
@@ -41,15 +41,15 @@ public class TbInvestorAgreementQueryImpl<PK extends Serializable> extends TbInv
 
         private List<String> sketch_IN;
         private List<String> sketch_NOTIN;
+        private List<PK> signDepId_IN;
+        private List<PK> signDepId_NOTIN;
 
-        private List<String> signDepId_IN;
-        private List<String> signDepId_NOTIN;
 
         private List<String> signOrganId_IN;
         private List<String> signOrganId_NOTIN;
+        private List<PK> signUserId_IN;
+        private List<PK> signUserId_NOTIN;
 
-        private List<String> signUserId_IN;
-        private List<String> signUserId_NOTIN;
 
         private List<String> agreementFiles_IN;
         private List<String> agreementFiles_NOTIN;
@@ -529,9 +529,8 @@ public class TbInvestorAgreementQueryImpl<PK extends Serializable> extends TbInv
         }
 
 
-
         @Override
-        public TbInvestorAgreementQuery signDepId(String signDepId) {
+        public TbInvestorAgreementQuery signDepId(PK signDepId) {
             if(!IdUtils.isEmpty(signDepId)){
                 this.signDepId = signDepId;
             }
@@ -539,7 +538,7 @@ public class TbInvestorAgreementQueryImpl<PK extends Serializable> extends TbInv
         }
 
         @Override
-        public TbInvestorAgreementQuery signDepIdNot(String signDepIdNot) {
+        public TbInvestorAgreementQuery signDepIdNot(PK signDepIdNot) {
             if(!IdUtils.isEmpty(signDepIdNot)){
                 this.signDepId_NE = signDepIdNot;
             }
@@ -547,26 +546,10 @@ public class TbInvestorAgreementQueryImpl<PK extends Serializable> extends TbInv
         }
 
         @Override
-        public TbInvestorAgreementQuery signDepIdLike(String signDepIdLike) {
-            if(!IdUtils.isEmpty(signDepIdLike)){
-                this.signDepId_LIKE = signDepIdLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TbInvestorAgreementQuery signDepIdNotLike(String signDepIdNotLike) {
-            if(!IdUtils.isEmpty(signDepIdNotLike)){
-                this.signDepId_NOTLIKE = signDepIdNotLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TbInvestorAgreementQuery signDepIdIn(String signDepIdIn) {
+        public TbInvestorAgreementQuery signDepIdIn(PK signDepIdIn) {
             if(!IdUtils.isEmpty(signDepIdIn)){
                 if(this.signDepId_IN == null){
-                    this.signDepId_IN = new ArrayList<String>();
+                    this.signDepId_IN = new ArrayList<PK>();
                 }
                 this.signDepId_IN.add( signDepIdIn );
             }
@@ -574,10 +557,10 @@ public class TbInvestorAgreementQueryImpl<PK extends Serializable> extends TbInv
         }
 
         @Override
-        public TbInvestorAgreementQuery signDepIdNotIn(String signDepIdNotIn) {
+        public TbInvestorAgreementQuery signDepIdNotIn(PK signDepIdNotIn) {
             if(!IdUtils.isEmpty(signDepIdNotIn)){
                 if(this.signDepId_NOTIN == null){
-                    this.signDepId_NOTIN = new ArrayList<String>();
+                    this.signDepId_NOTIN = new ArrayList<PK>();
                 }
                 this.signDepId_NOTIN.add( signDepIdNotIn );
             }
@@ -665,9 +648,8 @@ public class TbInvestorAgreementQueryImpl<PK extends Serializable> extends TbInv
         }
 
 
-
         @Override
-        public TbInvestorAgreementQuery signUserId(String signUserId) {
+        public TbInvestorAgreementQuery signUserId(PK signUserId) {
             if(!IdUtils.isEmpty(signUserId)){
                 this.signUserId = signUserId;
             }
@@ -675,7 +657,7 @@ public class TbInvestorAgreementQueryImpl<PK extends Serializable> extends TbInv
         }
 
         @Override
-        public TbInvestorAgreementQuery signUserIdNot(String signUserIdNot) {
+        public TbInvestorAgreementQuery signUserIdNot(PK signUserIdNot) {
             if(!IdUtils.isEmpty(signUserIdNot)){
                 this.signUserId_NE = signUserIdNot;
             }
@@ -683,26 +665,10 @@ public class TbInvestorAgreementQueryImpl<PK extends Serializable> extends TbInv
         }
 
         @Override
-        public TbInvestorAgreementQuery signUserIdLike(String signUserIdLike) {
-            if(!IdUtils.isEmpty(signUserIdLike)){
-                this.signUserId_LIKE = signUserIdLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TbInvestorAgreementQuery signUserIdNotLike(String signUserIdNotLike) {
-            if(!IdUtils.isEmpty(signUserIdNotLike)){
-                this.signUserId_NOTLIKE = signUserIdNotLike;
-            }
-            return this;
-        }
-
-        @Override
-        public TbInvestorAgreementQuery signUserIdIn(String signUserIdIn) {
+        public TbInvestorAgreementQuery signUserIdIn(PK signUserIdIn) {
             if(!IdUtils.isEmpty(signUserIdIn)){
                 if(this.signUserId_IN == null){
-                    this.signUserId_IN = new ArrayList<String>();
+                    this.signUserId_IN = new ArrayList<PK>();
                 }
                 this.signUserId_IN.add( signUserIdIn );
             }
@@ -710,10 +676,10 @@ public class TbInvestorAgreementQueryImpl<PK extends Serializable> extends TbInv
         }
 
         @Override
-        public TbInvestorAgreementQuery signUserIdNotIn(String signUserIdNotIn) {
+        public TbInvestorAgreementQuery signUserIdNotIn(PK signUserIdNotIn) {
             if(!IdUtils.isEmpty(signUserIdNotIn)){
                 if(this.signUserId_NOTIN == null){
-                    this.signUserId_NOTIN = new ArrayList<String>();
+                    this.signUserId_NOTIN = new ArrayList<PK>();
                 }
                 this.signUserId_NOTIN.add( signUserIdNotIn );
             }

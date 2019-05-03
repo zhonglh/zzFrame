@@ -16,7 +16,7 @@ import com.zz.bms.core.db.entity.BaseEntity;
 /**
  * 基金账户 实体类
  * @author Administrator
- * @date 2019-5-2 19:20:45
+ * @date 2019-5-3 10:40:29
  */
 public class TbFundAccountEntity extends com.zz.bms.core.db.entity.BaseEntity<String> implements java.io.Serializable  {
 
@@ -59,9 +59,10 @@ public class TbFundAccountEntity extends com.zz.bms.core.db.entity.BaseEntity<St
 
 
 
+    @EntityAttrFkAnnotation(group = "bankId",  groupName = "开户行" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbBankBO.class)
     @EntityAttrDBAnnotation(attrName="开户行" ,attrColumn="bank_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
     @EntityAttrPageAnnotation(title = "开户行",sort = 500  , pageElement = "text"            , maxLength = 32        ,required=true )
-	@EntityAttrExcelAnnotation(excelProcess= "3")
+	
     
     
 	private String  bankId ;

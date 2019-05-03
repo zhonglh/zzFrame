@@ -9,7 +9,7 @@ import java.lang.String;
 * 基金账户 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2019-5-2 18:36:07
+* @date 2019-5-3 10:40:29
 */
 public class TbFundAccountQueryWebImpl<PK extends Serializable> extends TbFundAccountAbstractQueryImpl<PK> implements Serializable {
 
@@ -34,9 +34,9 @@ public class TbFundAccountQueryWebImpl<PK extends Serializable> extends TbFundAc
             private String accountName_NOTIN;
 
 
+            private PK bankId_IN;
+            private PK bankId_NOTIN;
 
-            private String bankId_IN;
-            private String bankId_NOTIN;
 
 
 
@@ -195,54 +195,38 @@ public class TbFundAccountQueryWebImpl<PK extends Serializable> extends TbFundAc
                 this.accountName_NOTLIKE = accountName_NOTLIKE;
             }
 
-
-            public String getBankId() {
+            public PK getBankId() {
                 return bankId;
             }
 
-            public void setBankId(String bankId) {
+            public void setBankId(PK bankId) {
                 this.bankId = bankId;
             }
 
-            public String getBankId_NE() {
+            public PK getBankId_NE() {
                 return bankId_NE;
             }
 
-            public void setBankId_NE(String bankId_NE) {
+            public void setBankId_NE(PK bankId_NE) {
                 this.bankId_NE = bankId_NE;
             }
 
-            public String getBankId_IN() {
+            public PK getBankId_IN() {
                 return bankId_IN;
             }
 
-            public void setBankId_IN(String bankId_IN) {
+            public void setBankId_IN(PK bankId_IN) {
                 this.bankId_IN = bankId_IN;
             }
 
-            public String getBankId_NOTIN() {
+            public PK getBankId_NOTIN() {
                 return bankId_NOTIN;
             }
 
-            public void setBankId_NOTIN(String bankId_NOTIN) {
+            public void setBankId_NOTIN(PK bankId_NOTIN) {
                 this.bankId_NOTIN = bankId_NOTIN;
             }
 
-            public String getBankId_LIKE() {
-                return bankId_LIKE;
-            }
-
-            public void setBankId_LIKE(String bankId_LIKE) {
-                this.bankId_LIKE = bankId_LIKE;
-            }
-
-            public String getBankId_NOTLIKE() {
-                return bankId_NOTLIKE;
-            }
-
-            public void setBankId_NOTLIKE(String bankId_NOTLIKE) {
-                this.bankId_NOTLIKE = bankId_NOTLIKE;
-            }
 
 
             public String getAccountNo() {
