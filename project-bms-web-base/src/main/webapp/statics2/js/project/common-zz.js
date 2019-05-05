@@ -105,7 +105,10 @@ function moneyFmt(val, r){
 
 //设置选中项
 function checkedOption(str,val){
-    var serachStr = '"'+val+'"';
+    if(val == undefined || val == null || val == ""){
+        return str;
+    }
+    var serachStr = "'"+val+"'";
     var index = str.indexOf(serachStr);
     if(""!=val && -1!=index){
         index += serachStr.length;
@@ -114,4 +117,23 @@ function checkedOption(str,val){
         return before +" selected " +after;
     }
     return str;
+}
+
+
+/**
+ * 将值放入到table.row里
+ * @param index
+ */
+function costTableRows(easyuiTableId , tableJavaName , index){
+    var row = $('#'+easyuiTableId).datagrid("getRows")[index];
+
+    for(var item in row){
+        var val = $("#"+tableJavaName+"_"+index+"_"+item).val();
+        if(val == undefined || val == null){
+            val = "";
+        }
+        var e = "row."+item + "= '" +val+ "'";
+        eval(e);
+    }
+
 }

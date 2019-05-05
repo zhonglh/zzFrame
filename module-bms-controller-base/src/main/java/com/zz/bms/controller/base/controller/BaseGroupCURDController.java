@@ -288,23 +288,33 @@ public abstract class   BaseGroupCURDController<
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String showCreateForm(RwModel m ,ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
 
-        this.assertHasCreatePermission();
-        processQueryString(modelMap,request);
-        setCommonData(m,modelMap);
+        try {
+            this.assertHasCreatePermission();
+            processQueryString(modelMap, request);
+            setCommonData(m, modelMap);
 
-        setInit(m);
-        customInfoByCreateForm(m , modelMap);
+            setInit(m);
+            customInfoByCreateForm(m, modelMap);
 
-        this.baseRwService.processResult(m);
+            this.baseRwService.processResult(m);
 
-        modelMap.addAttribute("m",  m);
-        modelMap.addAttribute("entity", m);
+            modelMap.addAttribute("m", m);
+            modelMap.addAttribute("entity", m);
 
-        String pageName = this.getAddPageName();
-        if(StringUtils.isEmpty(pageName)){
-            pageName = defaultAddPageName;
+            String pageName = this.getAddPageName();
+            if(StringUtils.isEmpty(pageName)){
+                pageName = defaultAddPageName;
+            }
+            return viewName(pageName);
+
+        }catch(RuntimeException re){
+            logger.error(re.getMessage() ,re);
+            throw re;
+        }catch(Exception e){
+            logger.error(e.getMessage() ,e);
+            throw new RuntimeException(e);
         }
-        return viewName(pageName);
+
     }
 
 
@@ -319,26 +329,37 @@ public abstract class   BaseGroupCURDController<
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
     public String showUpdateForm(ModelMap modelMap, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
 
-        this.assertHasUpdatePermission();
+
+        try {
+
+            this.assertHasUpdatePermission();
 
 
-        QueryWrapper<RwModel> wrapper = new QueryWrapper<>();
-        wrapper.eq("id" , id);
-        RwModel m = baseRwService.getOne(wrapper);
-        if(m == null){
-            throw EnumErrorMsg.no_auth.toException();
+            QueryWrapper<RwModel> wrapper = new QueryWrapper<>();
+            wrapper.eq("id" , id);
+            RwModel m = baseRwService.getOne(wrapper);
+            if(m == null){
+                throw EnumErrorMsg.no_auth.toException();
+            }
+            processQueryString(modelMap,request);
+            setCommonData(m,modelMap);
+            customInfoByUpdateForm(m , modelMap);
+            modelMap.addAttribute("m", m);
+            modelMap.addAttribute("entity", m);
+
+            String pageName = this.getEditPageName();
+            if(StringUtils.isEmpty(pageName)){
+                pageName = defaultEditPageName;
+            }
+            return viewName(pageName);
+
+        }catch(RuntimeException re){
+            logger.error(re.getMessage() ,re);
+            throw re;
+        }catch(Exception e){
+            logger.error(e.getMessage() ,e);
+            throw new RuntimeException(e);
         }
-        processQueryString(modelMap,request);
-        setCommonData(m,modelMap);
-        customInfoByUpdateForm(m , modelMap);
-        modelMap.addAttribute("m", m);
-        modelMap.addAttribute("entity", m);
-
-        String pageName = this.getEditPageName();
-        if(StringUtils.isEmpty(pageName)){
-            pageName = defaultEditPageName;
-        }
-        return viewName(pageName);
     }
 
 
@@ -434,18 +455,28 @@ public abstract class   BaseGroupCURDController<
     @ResponseBody
     public Object create( RwModel m, ModelMap modelMap , HttpServletRequest request, HttpServletResponse response) {
 
-        this.assertHasCreatePermission();
+        try{
 
-        ILoginUserEntity<PK> sessionUserVO = getSessionUser();
+            this.assertHasCreatePermission();
 
-        this.gatherCreateInformation( m,  modelMap , sessionUserVO, request,  response);
+            ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
-        //插入信息
-        insertInfo(m, sessionUserVO);
+            this.gatherCreateInformation( m,  modelMap , sessionUserVO, request,  response);
 
-        AjaxJson result =  AjaxJson.ok();
-        result.setId(m.getId());
-        return result;
+            //插入信息
+            insertInfo(m, sessionUserVO);
+
+            AjaxJson result =  AjaxJson.ok();
+            result.setId(m.getId());
+            return result;
+
+        }catch(RuntimeException re){
+            logger.error(re.getMessage() ,re);
+            throw re;
+        }catch(Exception e){
+            logger.error(e.getMessage() ,e);
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -507,6 +538,7 @@ public abstract class   BaseGroupCURDController<
     @RequestMapping(value = "/{id}/update", method = {RequestMethod.POST , RequestMethod.PUT})
     @ResponseBody
     public Object update(@PathVariable("id") PK id, ModelMap modelMap, RwModel m , HttpServletRequest request, HttpServletResponse response) {
+
 
         this.assertHasUpdatePermission();
 
@@ -715,7 +747,7 @@ public abstract class   BaseGroupCURDController<
             return ;
         }
 
-        Field[] fs = ReflectionSuper.getFields(be.getClass());
+        Field[] fs = ReflectionSuper.getFields(be);
         for (Field f : fs) {
             f.setAccessible(true);
             Object val = ReflectionUtils.getField(f, be);
@@ -738,8 +770,11 @@ public abstract class   BaseGroupCURDController<
 
                     Field clsField = null;
                     for (Object obj : cs) {
+                        if(obj == null){
+                            continue;
+                        }
                         if(clsField == null) {
-                            clsField = getTheField(gf.childTableColumnName(), obj);
+                            clsField = getTheField(gf.childTableColumnName(), obj.getClass());
                         }
                         try {
                             clsField.set(obj , be.getId());
@@ -750,7 +785,7 @@ public abstract class   BaseGroupCURDController<
                     }
 
                 } else {
-                    Field clsField = getTheField(gf.childTableColumnName(), val);
+                    Field clsField = getTheField(gf.childTableColumnName(), val.getClass());
                     try {
                         clsField.set(val , be.getId());
                     } catch (IllegalAccessException e) {
@@ -761,17 +796,24 @@ public abstract class   BaseGroupCURDController<
         }
     }
 
-    private Field getTheField(String childTableColumnName, Object obj ) {
+    private Field getTheField(String childTableColumnName, Class clz ) {
 
         try {
-            Field f = obj.getClass().getField(StringFormatKit.toCamelCase(childTableColumnName));
+            String fieldName = StringFormatKit.toCamelCase(childTableColumnName);
+            Field[] fs = ReflectionSuper.getAllField(clz);
 
-            f.setAccessible(true);
+            for(Field f : fs){
+                if(f.getName().equalsIgnoreCase(fieldName)){
+                    f.setAccessible(true);
+                    return f;
+                }
+            }
 
-            return f;
-        } catch (NoSuchFieldException e) {
-            throw EnumErrorMsg.code_error.toException();
+        } catch (Exception e) {
+
         }
+
+        throw EnumErrorMsg.code_error.toException();
 
     }
 
@@ -788,7 +830,7 @@ public abstract class   BaseGroupCURDController<
         }
         EntityUtil.autoSetInsertEntity(be, sessionUserVO);
 
-        Field[] fs = ReflectionSuper.getFields(be.getClass());
+        Field[] fs = ReflectionSuper.getFields(be);
         for (Field f : fs) {
             f.setAccessible(true);
             Object val = ReflectionUtils.getField(f, be);
@@ -829,7 +871,7 @@ public abstract class   BaseGroupCURDController<
         super.setInit(be);
 
 
-        Field[] fs = ReflectionSuper.getFields(be.getClass());
+        Field[] fs = ReflectionSuper.getFields(be);
         for (Field f : fs) {
             f.setAccessible(true);
             Object val = ReflectionUtils.getField(f, be);
@@ -877,7 +919,7 @@ public abstract class   BaseGroupCURDController<
         super.checkEntityLegality(entity , checkRequired , checkLength , checkRule);
 
 
-        Field[] fs = ReflectionSuper.getFields(entity.getClass());
+        Field[] fs = ReflectionSuper.getFields(entity);
         for (Field f : fs) {
             f.setAccessible(true);
             Object val = ReflectionUtils.getField(f, entity);

@@ -298,9 +298,8 @@
         },function(id,name,row){
             $(tempExampleBank).val(row.bankName);
             $(tempExampleBank).prev().val(row.id);
-
+            costTableRows("tableData-fundAccount" , "fundAccountBOList" , tempExampleBankIndex)
         });
-
 
         $('#tableData-fundAccount').datagrid({
             data : []
@@ -345,23 +344,25 @@
     
     
     function fundAccountTypeNameFmt(val, row,index) {
-        var html = "<select name='fundAccountType' id='fundAccountType' class=’form-control input-sm required‘>" ;
+        debugger
+        var html = "<select name='fundAccountBOList["+index+"].fundAccountType' id='fundAccountBOList_"+index+"_fundAccountType' onblur='costTableRows(\"tableData-fundAccount\" , \"fundAccountBOList\" , "+index+")'  class='form-control input-sm required'>" ;
         html += checkedOption(fund_account_type_dicts() , row.fundAccountType);
         html += "</select>";
         return html;
     }
 
     function bankNameFmt(val, row,index) {
+        debugger
         var html = '<div class="input-group">';
-        html += '<input type="hidden" id="bankId" name="bankId" value="'+row.bankId+'" >';
-        html += '<input type="text"  class="form-control input-sm bankName" onclick="openExampleBank(this,'+index+')" required="required" value="'+row.bankName+'" id="bankName"  name="bankName" placeholder="请选择开户行" readonly >';
+        html += '<input type="hidden" name="fundAccountBOList['+index+'].bankId" id="fundAccountBOList_'+index+'_bankId" value="'+row.bankId+'" >';
+        html += '<input type="text"  class="form-control input-sm bankName" onclick="openExampleBank(this,'+index+')" required="required" value="'+row.bankName+'" id="fundAccountBOList_'+index+'_bankName"  name="fundAccountBOList['+index+'].bankName"  onblur="costTableRows(\'tableData-fundAccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择开户行" readonly >';
         html += '<div class="input-group-btn">';
-        html += '<div class="btn btn-primary btn-sm" onclick=openExampleBank(document.getElementById("bankName"),'+index+')>';
+        html += '<div class="btn btn-primary btn-sm" onclick=openExampleBank(document.getElementById("fundAccountBOList_'+index+'_bankName"),'+index+')>';
         html += '<svg class="icon" aria-hidden="true">';
         html += '<use xmlns:xlink="http://www.w3.org/1999/xlink"  xlink:href="#icon-sousuo"></use>';
         html += '</svg>';
         html += '</div>';
-        html += '<div class="btn btn-primary btn-sm" onclick=clearExampleBank(document.getElementById("bankName"),'+index+')  >';
+        html += '<div class="btn btn-primary btn-sm" onclick=clearExampleBank(document.getElementById("fundAccountBOList_'+index+'_bankName"),'+index+')  >';
         html += '<svg class="icon" aria-hidden="true">';
         html += ' <use xmlns:xlink="http://www.w3.org/1999/xlink"	xlink:href="#icon-close"></use>';
         html += '</svg>';
@@ -373,12 +374,12 @@
     }
     
     function accountNameFmt(val, row,index) {
-        return '<input type="text" maxlength="100" value="'+val+'" name="accountName" id="accountName" placeholder="请输入账户名" class="form-control input-sm  required" />';
+        return '<input type="text" maxlength="100" value="'+val+'" name="fundAccountBOList['+index+'].accountName" id="fundAccountBOList_'+index+'_accountName" onblur="costTableRows(\'tableData-fundAccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请输入账户名" class="form-control input-sm  required" />';
 
     }
 
     function accountNoFmt(val, row,index) {
-        return '<input type="text" maxlength="50" value="'+val+'" name="accountNo" id="accountNo" placeholder="请输入银行账号" isFormat="false" class="form-control input-sm fd-decimal required" />';
+        return '<input type="text" maxlength="50" value="'+val+'" name="fundAccountBOList['+index+'].accountNo" id="fundAccountBOList_'+index+'_accountNo" onblur="costTableRows(\'tableData-fundAccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请输入银行账号" isFormat="false" class="form-control input-sm fd-decimal required" />';
     }
 
 
@@ -389,9 +390,10 @@
         return html;
     }
 
+
     function doDelFundAccount(index){
         $('#tableData-fundAccount').datagrid("deleteRow" , index);
-        var rows = $('#'+tableid).datagrid("getRows");
+        var rows = $('#tableData-fundAccount').datagrid("getRows");
         $('#tableData-fundAccount').datagrid("loadData",rows);
     }
 
