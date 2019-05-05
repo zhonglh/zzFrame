@@ -161,6 +161,8 @@ function saveSuccess(rsp, status){
                 parent.parent.search();
             }catch(e){
             }
+            var h = $AppContext+dataUrl+"/"+rsp.id+"/update";
+            location.href = h;
         }else {
 
             try{

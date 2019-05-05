@@ -265,6 +265,8 @@ public abstract class BaseCURDController<
         modelMap.addAttribute("m", m);
         modelMap.addAttribute("entity", m);
 
+
+        processPath(modelMap);
         String pageName = this.getViewPageName();
         if(StringUtils.isEmpty(pageName)){
             pageName = defaultViewPageName;
@@ -295,6 +297,7 @@ public abstract class BaseCURDController<
         modelMap.addAttribute("m",  m);
         modelMap.addAttribute("entity", m);
 
+        processPath(modelMap);
         String pageName = this.getAddPageName();
         if(StringUtils.isEmpty(pageName)){
             pageName = defaultAddPageName;
@@ -329,6 +332,7 @@ public abstract class BaseCURDController<
         modelMap.addAttribute("m", m);
         modelMap.addAttribute("entity", m);
 
+        processPath(modelMap);
         String pageName = this.getEditPageName();
         if(StringUtils.isEmpty(pageName)){
             pageName = defaultEditPageName;
@@ -379,6 +383,7 @@ public abstract class BaseCURDController<
         modelMap.addAttribute("entity", entity);
 
 
+        processPath(modelMap);
         String pageName = null;
         if(isInsert) {
             pageName = this.getAddPageName();
@@ -407,6 +412,7 @@ public abstract class BaseCURDController<
         modelMap.addAttribute("m",  m);
         modelMap.addAttribute("entity", m);
 
+        processPath(modelMap);
         String pageName = this.getAllPageName();
         if(StringUtils.isEmpty(pageName)){
             pageName = defaultAllPageName;

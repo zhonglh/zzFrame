@@ -280,6 +280,7 @@
             callName: "managerUserName",
             clearId: "clearManagerUserId"
         });
+
         //选择部门
         $(".depName").OpenSystemDepSelectWin({
             title: "部门",
@@ -288,6 +289,7 @@
             callName: "depName",
             clearId: "clearDepId"
         });
+
         //选择银行
         $("#tempExampleBank").OpenExampleBankSelectWin({
             title: "银行",
@@ -298,7 +300,7 @@
         },function(id,name,row){
             $(tempExampleBank).val(row.bankName);
             $(tempExampleBank).prev().val(row.id);
-            costTableRows("tableData-fundAccount" , "fundAccountBOList" , tempExampleBankIndex)
+            costTableRows(tableId , tableJavaName , tempExampleBankIndex);
         });
 
         $('#tableData-fundAccount').datagrid({
@@ -306,6 +308,7 @@
         });
     });
 
+    var tableId , tableJavaName;
     var tempExampleBank  , tempExampleBankIndex ;
     
     function fund_account_type_dicts() {
@@ -317,7 +320,7 @@
     }
 
 
-    function openExampleBank(obj ,index){
+    function openExampleBank(theTabelId , theTableJavaName , obj ,index){
         if(obj != null && obj != undefined) {
             tempExampleBankIndex = index;
             tempExampleBank = obj[0];
@@ -325,26 +328,34 @@
                 tempExampleBank = obj;
             }
 
+            tableId = theTabelId;
+            tableJavaName = theTableJavaName;
+
             $("#tempExampleBank").click();
         }
     }
-    function clearExampleBank(obj ,index){
+    function clearExampleBank(theTabelId , theTableJavaName , obj ,index){
         if(obj != null && obj != undefined){
             tempExampleBankIndex = index;
             tempExampleBank = obj[0];
             if(tempExampleBank == null){
                 tempExampleBank = obj;
             }
+            tableId = theTabelId
+            tableJavaName = theTableJavaName
 
             $(tempExampleBank).val("");
             $(tempExampleBank).prev().val("");
+
+
+            costTableRows(tableId , tableJavaName , tempExampleBankIndex);
 
         }
     }
     
     
     function fundAccountTypeNameFmt(val, row,index) {
-        debugger
+        
         var html = "<select name='fundAccountBOList["+index+"].fundAccountType' id='fundAccountBOList_"+index+"_fundAccountType' onblur='costTableRows(\"tableData-fundAccount\" , \"fundAccountBOList\" , "+index+")'  class='form-control input-sm required'>" ;
         html += checkedOption(fund_account_type_dicts() , row.fundAccountType);
         html += "</select>";
@@ -352,17 +363,17 @@
     }
 
     function bankNameFmt(val, row,index) {
-        debugger
+        
         var html = '<div class="input-group">';
         html += '<input type="hidden" name="fundAccountBOList['+index+'].bankId" id="fundAccountBOList_'+index+'_bankId" value="'+row.bankId+'" >';
-        html += '<input type="text"  class="form-control input-sm bankName" onclick="openExampleBank(this,'+index+')" required="required" value="'+row.bankName+'" id="fundAccountBOList_'+index+'_bankName"  name="fundAccountBOList['+index+'].bankName"  onblur="costTableRows(\'tableData-fundAccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择开户行" readonly >';
+        html += '<input type="text"  class="form-control input-sm bankName" onclick="openExampleBank(\'tableData-fundAccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.bankName+'" id="fundAccountBOList_'+index+'_bankName"  name="fundAccountBOList['+index+'].bankName"  onblur="costTableRows(\'tableData-fundAccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择开户行" readonly >';
         html += '<div class="input-group-btn">';
-        html += '<div class="btn btn-primary btn-sm" onclick=openExampleBank(document.getElementById("fundAccountBOList_'+index+'_bankName"),'+index+')>';
+        html += '<div class="btn btn-primary btn-sm" onclick="openExampleBank(\'tableData-fundAccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_bankName\'),'+index+')">';
         html += '<svg class="icon" aria-hidden="true">';
         html += '<use xmlns:xlink="http://www.w3.org/1999/xlink"  xlink:href="#icon-sousuo"></use>';
         html += '</svg>';
         html += '</div>';
-        html += '<div class="btn btn-primary btn-sm" onclick=clearExampleBank(document.getElementById("fundAccountBOList_'+index+'_bankName"),'+index+')  >';
+        html += '<div class="btn btn-primary btn-sm" onclick="clearExampleBank(\'tableData-fundAccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_bankName\'),'+index+')"  >';
         html += '<svg class="icon" aria-hidden="true">';
         html += ' <use xmlns:xlink="http://www.w3.org/1999/xlink"	xlink:href="#icon-close"></use>';
         html += '</svg>';

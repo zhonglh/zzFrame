@@ -1,7 +1,12 @@
 package com.zz.bms.example.controller;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.enums.*;
 
+import com.zz.bms.example.bo.TbFundAccountBO;
+import com.zz.bms.example.query.impl.TbFundAccountQueryWebImpl;
+import com.zz.bms.example.service.TbFundAccountService;
 import com.zz.bms.system.service.TsDictService;
 import com.zz.bms.system.bo.TsDictBO;
 import com.zz.bms.core.db.entity.*;
@@ -26,6 +31,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Map;
@@ -45,7 +52,17 @@ public class TbFundController extends ZzGroupDefaultSimpleController<TbFundGroup
 	private TsDictService tsDictService;
 
 
+	@Autowired
+	private TbFundAccountService tbFundAccountService;
 
+
+	@RequestMapping(value = "/fundAccount/list" , method={ RequestMethod.POST, RequestMethod.GET})
+	@ResponseBody
+	public List<TbFundAccountBO> fundAccountList(TbFundAccountBO m , TbFundAccountQueryWebImpl query,ModelMap modelMap){
+		QueryWrapper wrapper =   query.buildWrapper();
+
+		return tbFundAccountService.list(wrapper);
+	}
 
 
 

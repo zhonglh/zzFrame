@@ -270,6 +270,93 @@
 
                         </tbody>
                     </table>
+
+
+
+                    <input type="hidden" id="tempExampleBank" />
+
+                    <div class="block-each block-each-another">
+
+
+                        <div class="block-tit">
+                            <svg class="icon" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
+                            </svg>备案信息
+                        </div>
+
+                            <table class="info-table hide-area">
+                                <col style="width: 15%" />
+                                <col style="width: 35%" />
+                                <col style="width: 15%" />
+                                <col style="width: 35%" />
+                                <tr>
+                                    <th>备案日期<font color="red">*</font></th>
+                                    <td class="fd_fundRecordBO_recordDate">
+                                        <c:if test="${m.fundRecordBO != null}">
+                                        <fmt:formatDate value="${m.fundRecordBO.recordDate}" pattern="yyyy-MM-dd" />
+                                        </c:if>
+                                    </td>
+                                    <th>备案地点<font color="red">*</font></th>
+                                    <td class="fd_remark">
+                                        <c:if test="${m.fundRecordBO != null}">
+                                            ${m.fundRecordBO.recordAddr}
+                                        </c:if>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <table class="info-table show-area">
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                            <col style="width: 15%" />
+                            <col style="width: 35%" />
+                            <tr>
+                                <th>备案日期<font color="red">*</font></th>
+                                <td>
+                                    <input type="text" class="form-control input-sm Wdate required " name="fundRecordBO.recordDate" id="fundRecordBO_recordDate" value="<fmt:formatDate value="${m.fundRecordBO.recordDate}" pattern="yyyy-MM-dd" />" onclick="WdatePicker({dateFmt: 'yyyy-MM-dd'})" placeholder="请选择备案日期" readonly required="required">
+                                </td>
+                                <th>备案地点<font color="red">*</font></th>
+                                <td><input type="text" name="fundRecordBO.recordAddr" id="fundRecordBO_recordAddr" value="${m.fundRecordBO.recordAddr}"  required="required" maxlength="200" placeholder="请输入备案地点" class="form-control input-sm required" required="required" /></td>
+                            </tr>
+                        </table>
+
+
+
+
+                        <div class="block-tit">
+                            <svg class="icon" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
+                            </svg>基金账户
+                        </div>
+
+                        <div class="fundAccount">
+                            <table id='tableData-fundAccount' class='easyui-datagrid' singleSelect="true" scrollbarSize="0"   method='post' fit='false'  fitColumns="true" border='true'>
+                                <thead>
+                                <tr>
+
+                                    <th field="id" align="left" hidden="true">id</th>
+                                    <th field='fundAccountTypeName' align="left" width="2" sortable='false' formatter="fundAccountTypeNameFmt">账户类型</th>
+                                    <th field='bankName' align="left" width="2" sortable='false' formatter="bankNameFmt">开户行</th>
+                                    <th field='accountName' align="left" width="2" sortable='false' formatter="accountNameFmt">户名</th>
+                                    <th field='accountNo' align="left" width="2" sortable='false' formatter="accountNoFmt">账号</th>
+                                    <th field="option" align="left" formatter="markFmt">操作</th>
+                                </tr>
+                                </thead>
+                            </table>
+                            <div style="text-align: center;margin: 5px">
+                                <button type="button" class="btn btn-primary btn-sm" onclick="doAddFundAccount()">
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
+                                    </svg>
+                                    <span>添 加</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
                 </form>
             </div>
 
@@ -323,18 +410,12 @@
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/example/bank/search.js"></script>
 
 
 <script language="JavaScript">
 
     $(function() {
-
-
-
-
-
-
-
 
         //选择基金经理
         $(".managerUserName").OpenSystemUserSelectWin({
@@ -345,12 +426,6 @@
             clearId: "clearManagerUserId"
         });
 
-
-
-
-
-
-
         //选择部门
         $(".depName").OpenSystemDepSelectWin({
             title: "部门",
@@ -360,7 +435,149 @@
             clearId: "clearDepId"
         });
 
+        //选择银行
+        $("#tempExampleBank").OpenExampleBankSelectWin({
+            title: "银行",
+            selectType: "d1",
+            callId: "",
+            callName: "",
+            clearId: ""
+        },function(id,name,row){
+            $(tempExampleBank).val(row.bankName);
+            $(tempExampleBank).prev().val(row.id);
+            costTableRows(tableId , tableJavaName , tempExampleBankIndex)
+        });
+
+
+        $('#tableData-fundAccount').datagrid({
+            url : $AppContext+dataUrl+"/fundAccount/list?fundId=${m.id}",
+            onLoadSuccess : function(data){
+                if(data.rows!=null){
+                    $('#tableData-fundAccount').datagrid("resize", {height: (data.rows.length + 1) * 44-5});
+                    $(".fd-decimal2").inputDecimal(2);
+                }
+            }
+
+        });
+
+
     });
+
+
+    var tableId , tableJavaName;
+    var tempExampleBank  , tempExampleBankIndex ;
+
+
+    function fund_account_type_dicts() {
+        var html = "<option value=''>请选择</option>";
+        <c:forEach items="${fund_account_type_dicts}" var="dict">
+        html += "<option value='${dict.dictVal}'>${dict.dictName}</option>";
+        </c:forEach>
+        return html;
+    }
+
+
+    function openExampleBank(theTabelId , theTableJavaName , obj ,index){
+        if(obj != null && obj != undefined) {
+            tempExampleBankIndex = index;
+            tempExampleBank = obj[0];
+            if(tempExampleBank == null){
+                tempExampleBank = obj;
+            }
+
+            tableId = theTabelId;
+            tableJavaName = theTableJavaName;
+
+            $("#tempExampleBank").click();
+        }
+    }
+    function clearExampleBank(theTabelId , theTableJavaName , obj ,index){
+        if(obj != null && obj != undefined){
+            tempExampleBankIndex = index;
+            tempExampleBank = obj[0];
+            if(tempExampleBank == null){
+                tempExampleBank = obj;
+            }
+            tableId = theTabelId
+            tableJavaName = theTableJavaName
+
+            $(tempExampleBank).val("");
+            $(tempExampleBank).prev().val("");
+
+            costTableRows(tableId , tableJavaName , tempExampleBankIndex);
+        }
+    }
+
+
+    function fundAccountTypeNameFmt(val, row,index) {
+        
+        var html = "<select name='fundAccountBOList["+index+"].fundAccountType' id='fundAccountBOList_"+index+"_fundAccountType' onblur='costTableRows(\"tableData-fundAccount\" , \"fundAccountBOList\" , "+index+")'  class='form-control input-sm show-area required'>" ;
+        html += checkedOption(fund_account_type_dicts() , row.fundAccountType);
+        html += "</select>";
+
+        html += "<div class='hide-area'>"+row.fundAccountTypeName+"</div>";
+        return html;
+    }
+
+    function bankNameFmt(val, row,index) {
+        
+        var html = '<div class="input-group show-area">';
+        html += '<input type="hidden" name="fundAccountBOList['+index+'].bankId" id="fundAccountBOList_'+index+'_bankId" value="'+row.bankId+'" >';
+        html += '<input type="text"  class="form-control input-sm bankName" onclick="openExampleBank(\'tableData-fundAccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.bankName+'" id="fundAccountBOList_'+index+'_bankName"  name="fundAccountBOList['+index+'].bankName"  onblur="costTableRows(\'tableData-fundAccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择开户行" readonly >';
+        html += '<div class="input-group-btn">';
+        html += '<div class="btn btn-primary btn-sm" onclick="openExampleBank(\'tableData-fundAccount\', \'fundAccountBOList\',document.getElementById("fundAccountBOList_'+index+'_bankName"),'+index+')">';
+        html += '<svg class="icon" aria-hidden="true">';
+        html += '<use xmlns:xlink="http://www.w3.org/1999/xlink"  xlink:href="#icon-sousuo"></use>';
+        html += '</svg>';
+        html += '</div>';
+        html += '<div class="btn btn-primary btn-sm" onclick=“clearExampleBank(document.getElementById(\'tableData-fundAccount\', \'fundAccountBOList\',"fundAccountBOList_'+index+'_bankName"),'+index+')"  >';
+        html += '<svg class="icon" aria-hidden="true">';
+        html += ' <use xmlns:xlink="http://www.w3.org/1999/xlink"	xlink:href="#icon-close"></use>';
+        html += '</svg>';
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
+
+        html += "<div class='hide-area' >"+row.bankName+"</div>" ;
+
+        return html;
+    }
+
+    function accountNameFmt(val, row,index) {
+        var html = '<input type="text" maxlength="100" value="'+val+'" name="fundAccountBOList['+index+'].accountName" id="fundAccountBOList_'+index+'_accountName" onblur="costTableRows(\'tableData-fundAccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请输入账户名" class="form-control input-sm show-area required" />';
+        html += "<div class='hide-area' >"+val+"</div>" ;
+        return html;
+    }
+
+    function accountNoFmt(val, row,index) {
+        var html = '<input type="text" maxlength="50" value="'+val+'" name="fundAccountBOList['+index+'].accountNo" id="fundAccountBOList_'+index+'_accountNo" onblur="costTableRows(\'tableData-fundAccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请输入银行账号" isFormat="false" class="form-control input-sm fd-decimal show-area required" />';
+        html += "<div class='hide-area' >"+val+"</div>" ;
+        return html;
+    }
+
+
+    function markFmt(val, r,index){
+        var html =	'<div class="grid-column-option">';
+        html+=	'<a href="javascript: doDelFundAccount('+ index + ');" title="删除"><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use></svg></a>';
+        html+=	'</div>';
+        return html;
+    }
+
+
+
+    function doDelFundAccount(index){
+        $('#tableData-fundAccount').datagrid("deleteRow" , index);
+        var rows = $('#tableData-fundAccount').datagrid("getRows");
+        $('#tableData-fundAccount').datagrid("loadData",rows);
+    }
+
+    function doAddFundAccount() {
+        var rows = $('#tableData-fundAccount').datagrid("getRows");
+        rows.push({id:"" , fundAccountTypeName:"" , fundAccountType : "" , bankId : "" , bankName :"" , accountName:"" ,accountNo:"" });
+        $('#tableData-fundAccount').datagrid("loadData",rows);
+    }
+
+
 
 </script>
 
