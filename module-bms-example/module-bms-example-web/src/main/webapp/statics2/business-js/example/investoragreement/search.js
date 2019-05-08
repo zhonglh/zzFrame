@@ -25,7 +25,7 @@ function openExampleInvestoragreementWin(config, callBack)
         + '</td>'
     + '</tr>'
     + '</table>'
-    + '<table class="_dataContorl _w_height" style="height: 300px;" pagination="true" border="true"  sortName="agreementName" sortOrder="asc"></table>'
+    + '<table class="_dataContorl _w_height" style="height: 300px;" pagination="true" border="true"  sortName="" sortOrder="asc"></table>'
     + '</div>';
 
     var options = config || {};
@@ -41,9 +41,13 @@ function openExampleInvestoragreementWin(config, callBack)
         {field:"fundName", title:"认购基金", width: 150, align:"left" ,},
         {field:"investorName", title:"投资人", width: 150, align:"left" ,},
         {field:"amount", title:"认购金额", width: 150, align:"right" ,},
-        {field:"actualAmount", title:"实际出资金额", width: 150, align:"right" ,}
+        {field:"actualAmount", title:"实际出资金额", width: 150, align:"right" ,},
+        {field:"signDepName", title:"部门", width: 150, align:"left" ,},
+        {field:"signOrganId", title:"机构", width: 150, align:"left" ,},
+        {field:"signUserName", title:"签订人", width: 150, align:"left" ,},
+        {field:"signDate", title:"签订日期", width: 150, align:"center" ,formatter:dateFmt}
     ]];
-    options.sampleData = {id: "id", name: "agreementName"};
+    options.sampleData = {id: "id", name: ""};
     options.htmlTemple = tableTemple;
     options.compiledSuccess = function(){
         // 查询按钮事件

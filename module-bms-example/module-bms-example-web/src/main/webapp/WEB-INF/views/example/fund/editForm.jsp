@@ -620,7 +620,7 @@
             url : $AppContext+dataUrl+"/fundAccount/list?fundId=${ m.id }",
             onLoadSuccess : function(data){
                 if(data.rows!=null){
-                    $('#tableData-fundAccount').datagrid("resize", {height: (data.rows.length + 1) * 40});
+                    $('#tableData-fundAccount').datagrid("resize", {height: (data.rows.length + 1) * 42});
                     $(".fd-decimal2").inputDecimal(2);
                 }
             }
