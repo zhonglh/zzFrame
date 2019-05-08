@@ -16,7 +16,7 @@ import java.lang.String;
 * 基金备案 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2019-5-3 10:40:32
+* @date 2019-5-8 10:49:22
 */
 public class TbFundRecordQueryImpl<PK extends Serializable> extends TbFundRecordAbstractQueryImpl<PK> implements TbFundRecordQuery<PK>, Serializable  {
 
@@ -29,6 +29,15 @@ public class TbFundRecordQueryImpl<PK extends Serializable> extends TbFundRecord
 
         private List<String> recordAddr_IN;
         private List<String> recordAddr_NOTIN;
+        private List<PK> bankId_IN;
+        private List<PK> bankId_NOTIN;
+
+        private List<String> cardType_IN;
+        private List<String> cardType_NOTIN;
+
+        private List<PK> recordUserId_IN;
+        private List<PK> recordUserId_NOTIN;
+
 
 
         @Override
@@ -246,6 +255,159 @@ public class TbFundRecordQueryImpl<PK extends Serializable> extends TbFundRecord
         @Override
         public TbFundRecordQuery recordAddrIsNotNull() {
             this.isNotNulls.add("recordAddr");
+            return this;
+        }
+
+
+        @Override
+        public TbFundRecordQuery bankId(PK bankId) {
+            if(!IdUtils.isEmpty(bankId)){
+                this.bankId = bankId;
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundRecordQuery bankIdNot(PK bankIdNot) {
+            if(!IdUtils.isEmpty(bankIdNot)){
+                this.bankId_NE = bankIdNot;
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundRecordQuery bankIdIn(PK bankIdIn) {
+            if(!IdUtils.isEmpty(bankIdIn)){
+                if(this.bankId_IN == null){
+                    this.bankId_IN = new ArrayList<PK>();
+                }
+                this.bankId_IN.add( bankIdIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundRecordQuery bankIdNotIn(PK bankIdNotIn) {
+            if(!IdUtils.isEmpty(bankIdNotIn)){
+                if(this.bankId_NOTIN == null){
+                    this.bankId_NOTIN = new ArrayList<PK>();
+                }
+                this.bankId_NOTIN.add( bankIdNotIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundRecordQuery bankIdIsNull() {
+            this.isNulls.add("bankId");
+            return this;
+        }
+
+        @Override
+        public TbFundRecordQuery bankIdIsNotNull() {
+            this.isNotNulls.add("bankId");
+            return this;
+        }
+
+
+        @Override
+        public TbFundRecordQuery cardType(String cardType) {
+            if(!IdUtils.isEmpty(cardType)){
+                this.cardType = cardType;
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundRecordQuery cardTypeNot(String cardTypeNot) {
+            if(!IdUtils.isEmpty(cardTypeNot)){
+                this.cardType_NE = cardTypeNot;
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundRecordQuery cardTypeIn(String cardTypeIn) {
+            if(!IdUtils.isEmpty(cardTypeIn)){
+                if(this.cardType_IN == null){
+                    this.cardType_IN = new ArrayList<String>();
+                }
+                this.cardType_IN.add( cardTypeIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundRecordQuery cardTypeNotIn(String cardTypeNotIn) {
+            if(!IdUtils.isEmpty(cardTypeNotIn)){
+                if(this.cardType_NOTIN == null){
+                    this.cardType_NOTIN = new ArrayList<String>();
+                }
+                this.cardType_NOTIN.add( cardTypeNotIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundRecordQuery cardTypeIsNull() {
+            this.isNulls.add("cardType");
+            return this;
+        }
+
+        @Override
+        public TbFundRecordQuery cardTypeIsNotNull() {
+            this.isNotNulls.add("cardType");
+            return this;
+        }
+
+
+        @Override
+        public TbFundRecordQuery recordUserId(PK recordUserId) {
+            if(!IdUtils.isEmpty(recordUserId)){
+                this.recordUserId = recordUserId;
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundRecordQuery recordUserIdNot(PK recordUserIdNot) {
+            if(!IdUtils.isEmpty(recordUserIdNot)){
+                this.recordUserId_NE = recordUserIdNot;
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundRecordQuery recordUserIdIn(PK recordUserIdIn) {
+            if(!IdUtils.isEmpty(recordUserIdIn)){
+                if(this.recordUserId_IN == null){
+                    this.recordUserId_IN = new ArrayList<PK>();
+                }
+                this.recordUserId_IN.add( recordUserIdIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundRecordQuery recordUserIdNotIn(PK recordUserIdNotIn) {
+            if(!IdUtils.isEmpty(recordUserIdNotIn)){
+                if(this.recordUserId_NOTIN == null){
+                    this.recordUserId_NOTIN = new ArrayList<PK>();
+                }
+                this.recordUserId_NOTIN.add( recordUserIdNotIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundRecordQuery recordUserIdIsNull() {
+            this.isNulls.add("recordUserId");
+            return this;
+        }
+
+        @Override
+        public TbFundRecordQuery recordUserIdIsNotNull() {
+            this.isNotNulls.add("recordUserId");
             return this;
         }
 

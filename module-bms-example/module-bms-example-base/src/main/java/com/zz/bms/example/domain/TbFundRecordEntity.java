@@ -17,7 +17,7 @@ import com.zz.bms.core.db.entity.BaseEntity;
 /**
  * 基金备案 实体类
  * @author Administrator
- * @date 2019-5-2 19:20:47
+ * @date 2019-5-8 10:49:22
  */
 public class TbFundRecordEntity extends com.zz.bms.core.db.entity.BaseEntity<String> implements java.io.Serializable  {
 
@@ -59,6 +59,42 @@ public class TbFundRecordEntity extends com.zz.bms.core.db.entity.BaseEntity<Str
 
 
 
+    @EntityAttrFkAnnotation(group = "bankId",  groupName = "开户行" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbBankBO.class)
+    @EntityAttrDBAnnotation(attrName="开户行" ,attrColumn="bank_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
+    @EntityAttrPageAnnotation(title = "开户行",sort = 500  , pageElement = "text"            , maxLength = 32        ,required=true )
+	
+    
+    
+	private String  bankId ;
+
+
+
+
+
+    @EntityAttrDictAnnotation(group = "cardType", groupName = "证件类型" ,  dbColumnName = "dict_val" , dbColumnLength = 2 , isValueField = true , dictType = "card_type")
+    @EntityAttrDBAnnotation(attrName="证件类型" ,attrColumn="card_type"  , type = "VARCHAR"      ,  attrLength = 2 , notNull = false )
+    @EntityAttrPageAnnotation(title = "证件类型",sort = 600  , pageElement = "select"            , maxLength = 2        ,required=false )
+	
+    
+    
+	private String  cardType ;
+
+
+
+
+
+    @EntityAttrFkAnnotation(group = "recordUserId",  groupName = "备案人" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
+    @EntityAttrDBAnnotation(attrName="备案人" ,attrColumn="record_user_id"  , type = "VARCHAR"      ,  attrLength = 32 , notNull = false )
+    @EntityAttrPageAnnotation(title = "备案人",sort = 700  , pageElement = "text"            , maxLength = 32        ,required=false )
+	
+    
+    
+	private String  recordUserId ;
+
+
+
+
+
 
 
 
@@ -87,6 +123,33 @@ public class TbFundRecordEntity extends com.zz.bms.core.db.entity.BaseEntity<Str
 
     public String getRecordAddr(){
     	return this.recordAddr;
+    }
+
+
+	public void setBankId(String bankId){
+		this.bankId = bankId;
+	}
+
+    public String getBankId(){
+    	return this.bankId;
+    }
+
+
+	public void setCardType(String cardType){
+		this.cardType = cardType;
+	}
+
+    public String getCardType(){
+    	return this.cardType;
+    }
+
+
+	public void setRecordUserId(String recordUserId){
+		this.recordUserId = recordUserId;
+	}
+
+    public String getRecordUserId(){
+    	return this.recordUserId;
     }
 
 

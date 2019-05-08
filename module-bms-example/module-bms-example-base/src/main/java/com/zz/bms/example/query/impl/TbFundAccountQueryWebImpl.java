@@ -3,13 +3,14 @@ package com.zz.bms.example.query.impl;
 
 import java.io.Serializable;
 
+import java.util.Date;
 import java.lang.String;
 
 /**
 * 基金账户 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2019-5-3 10:40:29
+* @date 2019-5-8 10:49:21
 */
 public class TbFundAccountQueryWebImpl<PK extends Serializable> extends TbFundAccountAbstractQueryImpl<PK> implements Serializable {
 
@@ -42,6 +43,20 @@ public class TbFundAccountQueryWebImpl<PK extends Serializable> extends TbFundAc
 
             private String accountNo_IN;
             private String accountNo_NOTIN;
+
+
+
+
+        //todo DATE startDate;
+
+            private PK otherBankId_IN;
+            private PK otherBankId_NOTIN;
+
+
+
+            private PK userId_IN;
+            private PK userId_NOTIN;
+
 
 
 
@@ -276,4 +291,118 @@ public class TbFundAccountQueryWebImpl<PK extends Serializable> extends TbFundAc
             public void setAccountNo_NOTLIKE(String accountNo_NOTLIKE) {
                 this.accountNo_NOTLIKE = accountNo_NOTLIKE;
             }
+
+            public Date getStartDate() {
+                return startDate;
+            }
+
+            public void setStartDate(Date startDate) {
+                this.startDate = startDate;
+            }
+
+            public Date getStartDate_NE() {
+                return startDate_NE;
+            }
+
+            public void setStartDate_NE(Date startDate_NE) {
+                this.startDate_NE = startDate_NE;
+            }
+
+            public Date getStartDate_GT() {
+                return startDate_GT;
+            }
+
+            public void setStartDate_GT(Date startDate_GT) {
+                this.startDate_GT = startDate_GT;
+            }
+
+            public Date getStartDate_GE() {
+                return startDate_GE;
+            }
+
+            public void setStartDate_GE(Date startDate_GE) {
+                this.startDate_GE = startDate_GE;
+            }
+
+            public Date getStartDate_LT() {
+                return startDate_LT;
+            }
+
+            public void setStartDate_LT(Date startDate_LT) {
+                this.startDate_LT = startDate_LT;
+            }
+
+            public Date getStartDate_LE() {
+                return startDate_LE;
+            }
+
+            public void setStartDate_LE(Date startDate_LE) {
+                this.startDate_LE = startDate_LE;
+            }
+
+            public PK getOtherBankId() {
+                return otherBankId;
+            }
+
+            public void setOtherBankId(PK otherBankId) {
+                this.otherBankId = otherBankId;
+            }
+
+            public PK getOtherBankId_NE() {
+                return otherBankId_NE;
+            }
+
+            public void setOtherBankId_NE(PK otherBankId_NE) {
+                this.otherBankId_NE = otherBankId_NE;
+            }
+
+            public PK getOtherBankId_IN() {
+                return otherBankId_IN;
+            }
+
+            public void setOtherBankId_IN(PK otherBankId_IN) {
+                this.otherBankId_IN = otherBankId_IN;
+            }
+
+            public PK getOtherBankId_NOTIN() {
+                return otherBankId_NOTIN;
+            }
+
+            public void setOtherBankId_NOTIN(PK otherBankId_NOTIN) {
+                this.otherBankId_NOTIN = otherBankId_NOTIN;
+            }
+
+
+            public PK getUserId() {
+                return userId;
+            }
+
+            public void setUserId(PK userId) {
+                this.userId = userId;
+            }
+
+            public PK getUserId_NE() {
+                return userId_NE;
+            }
+
+            public void setUserId_NE(PK userId_NE) {
+                this.userId_NE = userId_NE;
+            }
+
+            public PK getUserId_IN() {
+                return userId_IN;
+            }
+
+            public void setUserId_IN(PK userId_IN) {
+                this.userId_IN = userId_IN;
+            }
+
+            public PK getUserId_NOTIN() {
+                return userId_NOTIN;
+            }
+
+            public void setUserId_NOTIN(PK userId_NOTIN) {
+                this.userId_NOTIN = userId_NOTIN;
+            }
+
 }

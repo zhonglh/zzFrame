@@ -16,10 +16,10 @@
             <iframe width='100%' height='99%' frameborder='0'></iframe>
         </div>
 
-        <div title="投资协议" >
+        <div title="出资明细" >
             <iframe width='100%' height='99%' frameborder='0'></iframe>
         </div>
-        <div title="出资明细" >
+        <div title="投资协议" >
             <iframe width='100%' height='99%' frameborder='0'></iframe>
         </div>
     </div>
@@ -39,8 +39,8 @@
 
     var urls = [
             ctx+'/example/fund/${ m.id }/update?inAllPage=1',
-            ctx+'/example/investoragreement/toList?inAllPage=1&fundId=${ m.id }',
-            ctx+'/example/outmoney/toList?inAllPage=1&fundId=${ m.id }'
+            ctx+'/example/outmoney/toList?inAllPage=1&fundId=${ m.id }',
+            ctx+'/example/investoragreement/toList?inAllPage=1&fundId=${ m.id }'
     ];
 
     /**

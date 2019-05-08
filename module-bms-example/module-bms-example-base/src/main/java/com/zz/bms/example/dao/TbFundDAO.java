@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 /**
 * 基金 操作DAO
 * @author Administrator
-* @date 2019-5-2 18:36:08
+* @date 2019-5-8 10:49:23
 */
 @Repository
 public interface TbFundDAO extends BaseDAO<TbFundBO , String> {

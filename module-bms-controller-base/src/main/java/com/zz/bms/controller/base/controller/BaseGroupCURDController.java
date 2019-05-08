@@ -576,6 +576,9 @@ public abstract class   BaseGroupCURDController<
         setCustomInfoByUpdate(m , sessionUserVO);
 
 
+        setChildFkInfo(m);
+
+
         //处理创建的数据， 如反填状态名称，外键信息等
         this.processBO(m);
 

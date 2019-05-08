@@ -273,13 +273,11 @@
                                 </td>
                                 <th>到账日期<font color="red">*</font></th>
                                 <td>
-                                        <div class="input-group">
                                             <input type="text" required="required" class="form-control input-sm Wdate required"
                                                    placeholder="请输入到账日期" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'arrivalAccountDate'})"
                                                            value="${ m.arrivalAccountDate }" id="arrivalAccountDate" name="arrivalAccountDate" readonly   />
 
-                                        </div>
                                 </td>
                             </tr>
 
@@ -298,6 +296,19 @@
 
                         </tbody>
                     </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </form>
             </div>
 
@@ -349,6 +360,8 @@
 
 
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
+
+
 <script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/example/fund/search.js"></script>
@@ -356,9 +369,10 @@
 <script src="${ staticUrl }/statics2/business-js/example/investoragreement/search.js"></script>
 
 
-<script language="JavaScript">
 
+<script language="JavaScript">
     $(function() {
+
 
         //选择协议
         $(".investorAgreementName").OpenExampleInvestoragreementSelectWin({
@@ -387,7 +401,6 @@
             clearId: "clearInvestorId"
         });
 
-
         //选择部门
         $(".handleDepName").OpenSystemDepSelectWin({
             title: "部门",
@@ -396,7 +409,6 @@
             callName: "handleDepName",
             clearId: "clearHandleDepId"
         });
-
 
         //选择经办人
         $(".handleUserName").OpenSystemUserSelectWin({
@@ -409,8 +421,26 @@
 
 
 
+
+
+
     });
 
+
+    var tableId , tableJavaName;
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
+
 
 <bms:contentFooter />

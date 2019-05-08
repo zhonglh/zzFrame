@@ -24,7 +24,7 @@ import java.util.Map;
 /**
 * 基金账户 BO , 扩展 TbFundAccountEntity 对象
 * @author Administrator
-* @date 2019-5-3 10:40:29
+* @date 2019-5-8 10:49:21
 */
 @EntityAnnotation(value="基金账户" , resource = "example.fundaccount"    ,businessName = "account_no"    ,businessKey = { "account_no" }    )
 @TableName(value="tb_fund_account" , resultMap = "TbFundAccountResultMap")
@@ -57,6 +57,22 @@ public class TbFundAccountBO extends TbFundAccountEntity implements Serializable
 
 
 
+    @TableField(exist = false)
+    @EntityAttrFkAnnotation(group = "otherBankId",  groupName = "其他行" ,   dbColumnName = "bank_name" , dbColumnType = "VARCHAR" , dbColumnLength = 200   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbBankBO.class)
+    @EntityAttrExcelAnnotation(excelProcess= "3")
+    @EntityAttrPageAnnotation(title = "其他行",sort = 801                      ,required=true )
+    private String otherBankName ;
+
+
+
+    @TableField(exist = false)
+    @EntityAttrFkAnnotation(group = "userId",  groupName = "账户处理人" ,   dbColumnName = "user_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
+    @EntityAttrExcelAnnotation(excelProcess= "3")
+    @EntityAttrPageAnnotation(title = "账户处理人",sort = 901                      ,required=true )
+    private String userName ;
+
+
+
     public void setFundName(String fundName){
         this.fundName = fundName;
     }
@@ -79,6 +95,22 @@ public class TbFundAccountBO extends TbFundAccountEntity implements Serializable
 
     public String getBankName(){
         return this.bankName;
+    }
+
+    public void setOtherBankName(String otherBankName){
+        this.otherBankName = otherBankName;
+    }
+
+    public String getOtherBankName(){
+        return this.otherBankName;
+    }
+
+    public void setUserName(String userName){
+        this.userName = userName;
+    }
+
+    public String getUserName(){
+        return this.userName;
     }
 
 

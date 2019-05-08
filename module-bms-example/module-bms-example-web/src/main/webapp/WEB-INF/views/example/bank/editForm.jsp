@@ -102,6 +102,19 @@
 
                         </tbody>
                     </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </form>
             </div>
 
@@ -155,15 +168,35 @@
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
 
 
-<script language="JavaScript">
 
+
+
+<script language="JavaScript">
     $(function() {
+
+
+
 
 
 
 
     });
 
+
+    var tableId , tableJavaName;
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
+
 
 <bms:contentFooter />

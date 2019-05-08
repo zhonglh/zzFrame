@@ -12,7 +12,7 @@ import java.lang.String;
  * 基金备案 查询抽象类
  *
  * @author Administrator
- * @date 2019-5-3 10:40:32
+ * @date 2019-5-8 10:49:22
  */
 public interface TbFundRecordQuery<PK extends Serializable> extends Query<TbFundRecordEntity,PK> {
 
@@ -57,6 +57,39 @@ public interface TbFundRecordQuery<PK extends Serializable> extends Query<TbFund
         public TbFundRecordQuery recordAddrNotLike(String recordAddrNotLike);
         public TbFundRecordQuery recordAddrIsNull();
         public TbFundRecordQuery recordAddrIsNotNull();
+
+
+
+
+
+        public TbFundRecordQuery bankId(PK bankId);
+        public TbFundRecordQuery bankIdNot(PK bankIdNot);
+        public TbFundRecordQuery bankIdIn(PK bankIdIn);
+        public TbFundRecordQuery bankIdNotIn(PK bankIdNotIn);
+        public TbFundRecordQuery bankIdIsNull();
+        public TbFundRecordQuery bankIdIsNotNull();
+
+
+
+
+
+        public TbFundRecordQuery cardType(String cardType);
+        public TbFundRecordQuery cardTypeNot(String cardTypeNot);
+        public TbFundRecordQuery cardTypeIn(String cardTypeIn);
+        public TbFundRecordQuery cardTypeNotIn(String cardTypeNotIn);
+        public TbFundRecordQuery cardTypeIsNull();
+        public TbFundRecordQuery cardTypeIsNotNull();
+
+
+
+
+
+        public TbFundRecordQuery recordUserId(PK recordUserId);
+        public TbFundRecordQuery recordUserIdNot(PK recordUserIdNot);
+        public TbFundRecordQuery recordUserIdIn(PK recordUserIdIn);
+        public TbFundRecordQuery recordUserIdNotIn(PK recordUserIdNotIn);
+        public TbFundRecordQuery recordUserIdIsNull();
+        public TbFundRecordQuery recordUserIdIsNotNull();
 
 
 

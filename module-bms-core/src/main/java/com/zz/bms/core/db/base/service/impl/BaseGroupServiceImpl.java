@@ -381,33 +381,35 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
             for (Field f : fs){
                 f.setAccessible(true);
                 Object val = ReflectionUtils.getField(f,entity);
-                Object oldVal = ReflectionUtils.getField(f, oldEntity);
 
-
-                Class realClass = null;
-                Collection cs = null;
-                Collection oldCs = null;
-                if(f.getType().isArray()){
-                    if(val != null) {
-                        cs = Arrays.asList(val);
-                    }
-                    if (oldVal != null) {
-                        oldCs = Arrays.asList(oldVal);
-                    }
-                    realClass = f.getType().getClass().getComponentType();
-                }else {
-                    if(val != null) {
-                        cs = (Collection) val;
-                    }
-                    if (oldVal != null) {
-                        oldCs = (Collection) oldVal;
-                    }
-                    realClass = GenericsHelper.getFieldGenericType(f);
-                }
 
 
                 if (f.getType().isArray() || ReflectionSuper.isAssignableFrom(Collection.class, f.getType())){
                     //一对多的子表
+
+                    Object oldVal = ReflectionUtils.getField(f, oldEntity);
+
+
+                    Class realClass = null;
+                    Collection cs = null;
+                    Collection oldCs = null;
+                    if(f.getType().isArray()){
+                        if(val != null) {
+                            cs = Arrays.asList(val);
+                        }
+                        if (oldVal != null) {
+                            oldCs = Arrays.asList(oldVal);
+                        }
+                        realClass = f.getType().getClass().getComponentType();
+                    }else {
+                        if(val != null) {
+                            cs = (Collection) val;
+                        }
+                        if (oldVal != null) {
+                            oldCs = (Collection) oldVal;
+                        }
+                        realClass = GenericsHelper.getFieldGenericType(f);
+                    }
 
 
                     if(ReflectionSuper.isAssignableFrom(IRelevanceEntity.class,realClass)){

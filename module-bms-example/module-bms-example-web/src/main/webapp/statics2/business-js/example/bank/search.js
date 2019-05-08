@@ -86,7 +86,10 @@ var exampleBankWin = null;
 $.fn.OpenExampleBankSelectWin = function(config, callBack){
     if(exampleBankWin != null){
         exampleBankWin.remove();
+        exampleBankWin = null;
     }
+
+    debugger;
 
     exampleBankWin = openExampleBankWin(config, callBack);
     $(this).unbind("click");

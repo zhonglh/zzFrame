@@ -9,13 +9,14 @@ import com.zz.bms.example.query.TbFundAccountQuery;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
+import java.util.Date;
 import java.lang.String;
 
 /**
 * 基金账户 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2019-5-3 10:40:29
+* @date 2019-5-8 10:49:21
 */
 public class TbFundAccountQueryImpl<PK extends Serializable> extends TbFundAccountAbstractQueryImpl<PK> implements TbFundAccountQuery<PK>, Serializable  {
 
@@ -37,6 +38,12 @@ public class TbFundAccountQueryImpl<PK extends Serializable> extends TbFundAccou
 
         private List<String> accountNo_IN;
         private List<String> accountNo_NOTIN;
+        private List<PK> otherBankId_IN;
+        private List<PK> otherBankId_NOTIN;
+
+        private List<PK> userId_IN;
+        private List<PK> userId_NOTIN;
+
 
 
         @Override
@@ -375,6 +382,157 @@ public class TbFundAccountQueryImpl<PK extends Serializable> extends TbFundAccou
         @Override
         public TbFundAccountQuery accountNoIsNotNull() {
             this.isNotNulls.add("accountNo");
+            return this;
+        }
+
+
+        @Override
+        public TbFundAccountQuery startDate(Date startDate) {
+            if(!IdUtils.isEmpty(startDate)){
+                this.startDate = startDate;
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundAccountQuery startDateNot(Date startDateNot) {
+            if(!IdUtils.isEmpty(startDateNot)){
+                this.startDate_NE = startDateNot;
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundAccountQuery startDateGreaterThan(Date startDateGreaterThan){
+            if(startDateGreaterThan != null){
+                this.startDate_GT = startDateGreaterThan;
+            }
+            return this;
+        }
+
+
+        @Override
+        public TbFundAccountQuery startDateGreaterEqual(Date startDateGreaterEqual){
+            if(startDateGreaterEqual != null){
+                this.startDate_GE = startDateGreaterEqual;
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundAccountQuery startDateLessThan(Date startDateLessThan){
+            if(startDateLessThan != null){
+                this.startDate_LT = startDateLessThan;
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundAccountQuery startDateLessEqual(Date startDateLessEqual){
+            if(startDateLessEqual != null){
+                this.startDate_LE = startDateLessEqual;
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundAccountQuery otherBankId(PK otherBankId) {
+            if(!IdUtils.isEmpty(otherBankId)){
+                this.otherBankId = otherBankId;
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundAccountQuery otherBankIdNot(PK otherBankIdNot) {
+            if(!IdUtils.isEmpty(otherBankIdNot)){
+                this.otherBankId_NE = otherBankIdNot;
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundAccountQuery otherBankIdIn(PK otherBankIdIn) {
+            if(!IdUtils.isEmpty(otherBankIdIn)){
+                if(this.otherBankId_IN == null){
+                    this.otherBankId_IN = new ArrayList<PK>();
+                }
+                this.otherBankId_IN.add( otherBankIdIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundAccountQuery otherBankIdNotIn(PK otherBankIdNotIn) {
+            if(!IdUtils.isEmpty(otherBankIdNotIn)){
+                if(this.otherBankId_NOTIN == null){
+                    this.otherBankId_NOTIN = new ArrayList<PK>();
+                }
+                this.otherBankId_NOTIN.add( otherBankIdNotIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundAccountQuery otherBankIdIsNull() {
+            this.isNulls.add("otherBankId");
+            return this;
+        }
+
+        @Override
+        public TbFundAccountQuery otherBankIdIsNotNull() {
+            this.isNotNulls.add("otherBankId");
+            return this;
+        }
+
+
+        @Override
+        public TbFundAccountQuery userId(PK userId) {
+            if(!IdUtils.isEmpty(userId)){
+                this.userId = userId;
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundAccountQuery userIdNot(PK userIdNot) {
+            if(!IdUtils.isEmpty(userIdNot)){
+                this.userId_NE = userIdNot;
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundAccountQuery userIdIn(PK userIdIn) {
+            if(!IdUtils.isEmpty(userIdIn)){
+                if(this.userId_IN == null){
+                    this.userId_IN = new ArrayList<PK>();
+                }
+                this.userId_IN.add( userIdIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundAccountQuery userIdNotIn(PK userIdNotIn) {
+            if(!IdUtils.isEmpty(userIdNotIn)){
+                if(this.userId_NOTIN == null){
+                    this.userId_NOTIN = new ArrayList<PK>();
+                }
+                this.userId_NOTIN.add( userIdNotIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TbFundAccountQuery userIdIsNull() {
+            this.isNulls.add("userId");
+            return this;
+        }
+
+        @Override
+        public TbFundAccountQuery userIdIsNotNull() {
+            this.isNotNulls.add("userId");
             return this;
         }
 

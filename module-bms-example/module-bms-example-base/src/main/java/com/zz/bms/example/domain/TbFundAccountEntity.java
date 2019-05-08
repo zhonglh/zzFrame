@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.zz.bms.util.configs.annotaions.*;
 
 import com.zz.bms.core.Constant;
+import java.util.Date;
 import java.lang.String;
 import com.zz.bms.core.db.entity.BaseEntity;
 
@@ -16,7 +17,7 @@ import com.zz.bms.core.db.entity.BaseEntity;
 /**
  * 基金账户 实体类
  * @author Administrator
- * @date 2019-5-3 10:40:29
+ * @date 2019-5-8 10:49:21
  */
 public class TbFundAccountEntity extends com.zz.bms.core.db.entity.BaseEntity<String> implements java.io.Serializable  {
 
@@ -82,6 +83,41 @@ public class TbFundAccountEntity extends com.zz.bms.core.db.entity.BaseEntity<St
 
 
 
+    @EntityAttrDBAnnotation(attrName="开始日期" ,attrColumn="start_date"  , type = "DATE"       , notNull = false )
+    @EntityAttrPageAnnotation(title = "开始日期",sort = 700  , pageElement = "date"                  ,required=false )
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    
+    
+	private Date  startDate ;
+
+
+
+
+
+    @EntityAttrFkAnnotation(group = "otherBankId",  groupName = "其他行" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbBankBO.class)
+    @EntityAttrDBAnnotation(attrName="其他行" ,attrColumn="other_bank_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
+    @EntityAttrPageAnnotation(title = "其他行",sort = 800  , pageElement = "text"            , maxLength = 32        ,required=false )
+	
+    
+    
+	private String  otherBankId ;
+
+
+
+
+
+    @EntityAttrFkAnnotation(group = "userId",  groupName = "账户处理人" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
+    @EntityAttrDBAnnotation(attrName="账户处理人" ,attrColumn="user_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
+    @EntityAttrPageAnnotation(title = "账户处理人",sort = 900  , pageElement = "text"            , maxLength = 32        ,required=false )
+	
+    
+    
+	private String  userId ;
+
+
+
+
+
 
 
 
@@ -128,6 +164,33 @@ public class TbFundAccountEntity extends com.zz.bms.core.db.entity.BaseEntity<St
 
     public String getAccountNo(){
     	return this.accountNo;
+    }
+
+
+	public void setStartDate(Date startDate){
+		this.startDate = startDate;
+	}
+
+    public Date getStartDate(){
+    	return this.startDate;
+    }
+
+
+	public void setOtherBankId(String otherBankId){
+		this.otherBankId = otherBankId;
+	}
+
+    public String getOtherBankId(){
+    	return this.otherBankId;
+    }
+
+
+	public void setUserId(String userId){
+		this.userId = userId;
+	}
+
+    public String getUserId(){
+    	return this.userId;
     }
 
 

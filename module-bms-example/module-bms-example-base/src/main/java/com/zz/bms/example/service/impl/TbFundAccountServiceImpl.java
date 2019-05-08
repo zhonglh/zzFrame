@@ -18,6 +18,10 @@ import com.zz.bms.example.service.TbFundAccountService;
 
 import com.zz.bms.example.bo.TbBankBO;
 import com.zz.bms.example.dao.TbBankDAO;
+import com.zz.bms.example.bo.TbBankBO;
+import com.zz.bms.example.dao.TbBankDAO;
+import com.zz.bms.system.bo.TsUserBO;
+import com.zz.bms.system.dao.TsUserDAO;
 import com.zz.bms.example.bo.TbFundBO;
 import com.zz.bms.example.dao.TbFundDAO;
 
@@ -34,7 +38,7 @@ import java.util.Map;
 /**
 * 基金账户 ServiceImpl
 * @author Administrator
-* @date 2019-5-3 10:40:29
+* @date 2019-5-8 10:49:21
 */
 @Service
 public class TbFundAccountServiceImpl extends BaseServiceImpl<TbFundAccountBO,String> implements TbFundAccountService {
@@ -48,6 +52,8 @@ public class TbFundAccountServiceImpl extends BaseServiceImpl<TbFundAccountBO,St
 
     @Autowired
     private TbBankDAO tbBankDAO;
+    @Autowired
+    private TsUserDAO tsUserDAO;
     @Autowired
     private TbFundDAO tbFundDAO;
 
@@ -67,6 +73,27 @@ public class TbFundAccountServiceImpl extends BaseServiceImpl<TbFundAccountBO,St
 	@Override
 	public TbFundAccountBO processResult(TbFundAccountBO tbFundAccountBO) {
 
+
+		if(StringUtils.isNotEmpty( tbFundAccountBO.getOtherBankId())){
+			TbBankBO temp = tbBankDAO.selectById( tbFundAccountBO.getOtherBankId() );
+			if(temp != null){
+				tbFundAccountBO.setOtherBankName(temp.getBankName());
+			}
+		}
+
+		if(StringUtils.isNotEmpty( tbFundAccountBO.getBankId())){
+			TbBankBO temp = tbBankDAO.selectById( tbFundAccountBO.getBankId() );
+			if(temp != null){
+				tbFundAccountBO.setBankName(temp.getBankName());
+			}
+		}
+
+		if(StringUtils.isNotEmpty( tbFundAccountBO.getFundId())){
+			TbFundBO temp = tbFundDAO.selectById( tbFundAccountBO.getFundId() );
+			if(temp != null){
+				tbFundAccountBO.setFundName(temp.getFundName());
+			}
+		}
 		try {
 			if(StringUtils.isEmpty(tbFundAccountBO.getFundAccountTypeName()) && StringUtils.isNotEmpty(tbFundAccountBO.getFundAccountType()) ) {
 				String dictName = tsDictService.getDictName(tbFundAccountBO.getFundAccountType(),EnumDictType.FUND_ACCOUNT_TYPE.getVal());
@@ -76,17 +103,10 @@ public class TbFundAccountServiceImpl extends BaseServiceImpl<TbFundAccountBO,St
 
 		}
 
-		if(StringUtils.isNotEmpty( tbFundAccountBO.getFundId())){
-			TbFundBO temp = tbFundDAO.selectById( tbFundAccountBO.getFundId() );
+		if(StringUtils.isNotEmpty( tbFundAccountBO.getUserId())){
+			TsUserBO temp = tsUserDAO.selectById( tbFundAccountBO.getUserId() );
 			if(temp != null){
-				tbFundAccountBO.setFundName(temp.getFundName());
-			}
-		}
-
-		if(StringUtils.isNotEmpty( tbFundAccountBO.getBankId())){
-			TbBankBO temp = tbBankDAO.selectById( tbFundAccountBO.getBankId() );
-			if(temp != null){
-				tbFundAccountBO.setBankName(temp.getBankName());
+				tbFundAccountBO.setUserName(temp.getUserName());
 			}
 		}
 
@@ -104,19 +124,55 @@ public class TbFundAccountServiceImpl extends BaseServiceImpl<TbFundAccountBO,St
 			return tbFundAccountBOs;
 		}
 
-		List<String> fundIdList = new ArrayList<String>();
+		List<String> otherBankIdList = new ArrayList<String>();
 		List<String> bankIdList = new ArrayList<String>();
+		List<String> fundIdList = new ArrayList<String>();
+		List<String> userIdList = new ArrayList<String>();
 
 		for(TbFundAccountBO bo : tbFundAccountBOs)		{
 
-			if(StringUtils.isNotEmpty( bo.getFundId())){
-				fundIdList.add(bo.getFundId());
+			if(StringUtils.isNotEmpty( bo.getOtherBankId())){
+				otherBankIdList.add(bo.getOtherBankId());
 			}
 			if(StringUtils.isNotEmpty( bo.getBankId())){
 				bankIdList.add(bo.getBankId());
 			}
+			if(StringUtils.isNotEmpty( bo.getFundId())){
+				fundIdList.add(bo.getFundId());
+			}
+			if(StringUtils.isNotEmpty( bo.getUserId())){
+				userIdList.add(bo.getUserId());
+			}
 		}
 
+
+		if(!otherBankIdList.isEmpty()){
+			List<TbBankBO> list =  tbBankDAO.selectBatchIds(otherBankIdList);
+			Map<String,TbBankBO> map = EntityUtil.list2Map(list);
+
+			tbFundAccountBOs.forEach(tbFundAccountBO -> {
+				if(StringUtils.isNotEmpty( tbFundAccountBO.getOtherBankId())){
+					TbBankBO temp = map.get( tbFundAccountBO.getOtherBankId() );
+					if(temp != null){
+							tbFundAccountBO.setOtherBankName(temp.getBankName());
+					}
+				}
+			});
+		}
+
+		if(!bankIdList.isEmpty()){
+			List<TbBankBO> list =  tbBankDAO.selectBatchIds(bankIdList);
+			Map<String,TbBankBO> map = EntityUtil.list2Map(list);
+
+			tbFundAccountBOs.forEach(tbFundAccountBO -> {
+				if(StringUtils.isNotEmpty( tbFundAccountBO.getBankId())){
+					TbBankBO temp = map.get( tbFundAccountBO.getBankId() );
+					if(temp != null){
+							tbFundAccountBO.setBankName(temp.getBankName());
+					}
+				}
+			});
+		}
 
 		if(!fundIdList.isEmpty()){
 			List<TbFundBO> list =  tbFundDAO.selectBatchIds(fundIdList);
@@ -132,15 +188,15 @@ public class TbFundAccountServiceImpl extends BaseServiceImpl<TbFundAccountBO,St
 			});
 		}
 
-		if(!bankIdList.isEmpty()){
-			List<TbBankBO> list =  tbBankDAO.selectBatchIds(bankIdList);
-			Map<String,TbBankBO> map = EntityUtil.list2Map(list);
+		if(!userIdList.isEmpty()){
+			List<TsUserBO> list =  tsUserDAO.selectBatchIds(userIdList);
+			Map<String,TsUserBO> map = EntityUtil.list2Map(list);
 
 			tbFundAccountBOs.forEach(tbFundAccountBO -> {
-				if(StringUtils.isNotEmpty( tbFundAccountBO.getBankId())){
-					TbBankBO temp = map.get( tbFundAccountBO.getBankId() );
+				if(StringUtils.isNotEmpty( tbFundAccountBO.getUserId())){
+					TsUserBO temp = map.get( tbFundAccountBO.getUserId() );
 					if(temp != null){
-							tbFundAccountBO.setBankName(temp.getBankName());
+							tbFundAccountBO.setUserName(temp.getUserName());
 					}
 				}
 			});

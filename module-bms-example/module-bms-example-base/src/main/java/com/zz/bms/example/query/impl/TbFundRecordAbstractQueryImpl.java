@@ -12,7 +12,7 @@ import java.lang.String;
  * 基金备案 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2019-5-3 10:40:32
+ * @date 2019-5-8 10:49:22
  */
 public abstract class TbFundRecordAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TbFundRecordEntity,PK> {
 
@@ -33,6 +33,15 @@ public abstract class TbFundRecordAbstractQueryImpl<PK extends Serializable> ext
             protected String recordAddr_NE;
             protected String recordAddr_LIKE;
             protected String recordAddr_NOTLIKE;
+
+            protected PK bankId;
+            protected PK bankId_NE;
+
+            protected String cardType;
+            protected String cardType_NE;
+
+            protected PK recordUserId;
+            protected PK recordUserId_NE;
 
 
 	

@@ -15,7 +15,7 @@ import java.lang.String;
 * 银行信息 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2019-5-3 10:40:31
+* @date 2019-5-8 10:49:24
 */
 public class TbBankQueryImpl<PK extends Serializable> extends TbBankAbstractQueryImpl<PK> implements TbBankQuery<PK>, Serializable  {
 

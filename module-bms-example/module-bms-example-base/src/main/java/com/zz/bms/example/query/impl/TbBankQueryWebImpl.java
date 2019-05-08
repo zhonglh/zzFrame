@@ -9,7 +9,7 @@ import java.lang.String;
 * 银行信息 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2019-5-3 10:40:30
+* @date 2019-5-8 10:49:24
 */
 public class TbBankQueryWebImpl<PK extends Serializable> extends TbBankAbstractQueryImpl<PK> implements Serializable {
 

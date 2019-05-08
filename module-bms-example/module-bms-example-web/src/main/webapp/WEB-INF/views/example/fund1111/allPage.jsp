@@ -12,14 +12,14 @@
 <div region='center' border=0 style='padding: 10px;' >
 -->
     <div id='divTabs' class="easyui-tabs" plain="true" fit='true' border=0>
-        <div title= "投资人" >
+        <div title= "基金" >
             <iframe width='100%' height='99%' frameborder='0'></iframe>
         </div>
 
-        <div title="出资明细" >
+        <div title="投资协议" >
             <iframe width='100%' height='99%' frameborder='0'></iframe>
         </div>
-        <div title="投资协议" >
+        <div title="出资明细" >
             <iframe width='100%' height='99%' frameborder='0'></iframe>
         </div>
     </div>
@@ -34,13 +34,13 @@
     $(function(){
         $('#divTabs').tabs({onSelect: tabSelected});
 
-        tabSelected("投资人", 0);
+        tabSelected("基金", 0);
     });
 
     var urls = [
-            ctx+'/example/investor/${ m.id }/update?inAllPage=1',
-            ctx+'/example/outmoney/toList?inAllPage=1&investorId=${ m.id }',
-            ctx+'/example/investoragreement/toList?inAllPage=1&investorId=${ m.id }'
+            ctx+'/example/fund/${ m.id }/update?inAllPage=1',
+            ctx+'/example/investoragreement/toList?inAllPage=1&fundId=${ m.id }',
+            ctx+'/example/outmoney/toList?inAllPage=1&fundId=${ m.id }'
     ];
 
     /**

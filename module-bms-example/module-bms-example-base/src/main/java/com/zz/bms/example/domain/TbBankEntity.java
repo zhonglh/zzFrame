@@ -16,7 +16,7 @@ import com.zz.bms.core.db.entity.BaseEntity;
 /**
  * 银行信息 实体类
  * @author Administrator
- * @date 2019-5-3 10:40:30
+ * @date 2019-5-8 10:49:24
  */
 public class TbBankEntity extends com.zz.bms.core.db.entity.BaseEntity<String> implements java.io.Serializable  {
 

@@ -56,40 +56,48 @@
                                 <td class="fd_amount">
                                     <c:out value="${ m.amount }" escapeXml="true"/>
                                 </td>
+                                <th>实际出资金额</th>
+                                <td class="fd_actualAmount">
+                                    <c:out value="${ m.actualAmount }" escapeXml="true"/>
+                                </td>
+                            </tr>
 
+                            <tr>
                                 <th>协议简述</th>
                                 <td class="fd_sketch">
                                     <c:out value="${ m.sketch }" escapeXml="true"/>
                                 </td>
-
+                                <th>部门<font color="red">*</font></th>
+                                <td class="fd_signDepName">
+                                    <c:out value="${ m.signDepName }" escapeXml="true"/>
+                                </td>
                             </tr>
 
                             <tr>
-
+                                <th>机构</th>
+                                <td class="fd_signOrganId">
+                                    <c:out value="${ m.signOrganId }" escapeXml="true"/>
+                                </td>
                                 <th>签订人<font color="red">*</font></th>
                                 <td class="fd_signUserName">
                                     <c:out value="${ m.signUserName }" escapeXml="true"/>
                                 </td>
+                            </tr>
 
+                            <tr>
                                 <th>签订日期<font color="red">*</font></th>
                                 <td class="fd_signDate">
                                     <fmt:formatDate value="${ m.signDate }" pattern="yyyy-MM-dd" />
                                 </td>
-
-                            </tr>
-
-                            <tr>
                                 <th>附件</th>
-                                <td class="fd_agreementFiles" colspan="3">
+                                <td class="fd_agreementFiles">
                                     <c:out value="${ m.agreementFiles }" escapeXml="true"/>
                                 </td>
-
                             </tr>
 
                             <tr>
-
                                 <th>备注</th>
-                                <td class="fd_remark" colspan="3">
+                                <td class="fd_remark">
                                     <c:out value="${ m.remark }" escapeXml="true"/>
                                 </td>
                             </tr>
@@ -195,7 +203,16 @@
                                                value="${ m.amount }" id="amount" name="amount" step="0.01"
                                                    maxlength="14"  />
                                 </td>
+                                <th>实际出资金额</th>
+                                <td>
+                                        <input type="text"  class="form-control input-sm number fd-decimal2 "
+                                               placeholder="请输入实际出资金额" autocomplete="off"
+                                               value="${ m.actualAmount }" id="actualAmount" name="actualAmount" step="0.01"
+                                                   maxlength="14"  />
+                                </td>
+                            </tr>
 
+                            <tr>
                                 <th>协议简述</th>
                                 <td>
                                         <div class="info-detail">
@@ -203,11 +220,44 @@
                                                       name="sketch " placeholder="请输入协议简述，500字以内" maxlength="500" rows="6"><c:out value="${ m.sketch }" escapeXml="true"/></textarea>
                                         </div>
                                 </td>
-
+                                <th>部门<font color="red">*</font></th>
+                                <td>
+                                            <c:if test="${ fn:indexOf(allQueryString,'&signDepId=') >= 0 }">
+                                                <input type="text" class="form-control input-sm" name="signDepName" id="signDepName" value="${ m.signDepName }" readonly>
+                                            </c:if>
+                                            <c:if test="${ fn:indexOf(allQueryString,'&signDepId=') < 0 }">
+                                            <div class="input-group">
+                                                <input type="hidden" name="signDepId" id="signDepId" value="${ m.signDepId }" >
+                                                <input type="text" name="signDepName" id="signDepName" value="${ m.signDepName }" required="required" class="form-control input-sm signDepName " placeholder="请选择部门" style="cursor: pointer;" readonly="readonly">
+                                                <div class="input-group-btn">
+                                                    <button type="button"  class="btn btn-primary btn-sm signDepName">
+                                                        <svg class="icon" aria-hidden="true">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                 xlink:href="#icon-sousuo">
+                                                            </use>
+                                                        </svg>
+                                                    </button>
+                                                    <button type="button" id="clearSignDepId"   class="btn btn-primary btn-sm">
+                                                        <svg class="icon" aria-hidden="true">
+                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                 xlink:href="#icon-close">
+                                                            </use>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            </c:if>
+                                </td>
                             </tr>
 
                             <tr>
-
+                                <th>机构</th>
+                                <td>
+                                        <input type="text"  class="form-control input-sm "
+                                               placeholder="请输入机构" autocomplete="off"
+                                               value="${ m.signOrganId }" id="signOrganId" name="signOrganId"
+                                                   maxlength="32"  />
+                                </td>
                                 <th>签订人<font color="red">*</font></th>
                                 <td>
                                             <c:if test="${ fn:indexOf(allQueryString,'&signUserId=') >= 0 }">
@@ -236,30 +286,26 @@
                                             </div>
                                             </c:if>
                                 </td>
+                            </tr>
 
+                            <tr>
                                 <th>签订日期<font color="red">*</font></th>
                                 <td>
-                                        <div class="input-group">
+
                                             <input type="text" required="required" class="form-control input-sm Wdate required"
                                                    placeholder="请输入签订日期" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'signDate'})"
-                                                           value="<fmt:formatDate value="${ m.signDate }" pattern="yyyy-MM-dd" />" id="signDate" name="signDate" readonly   />
-                                        </div>
+                                                           value="${ m.signDate }" id="signDate" name="signDate" readonly   />
+
                                 </td>
-
-                            </tr>
-
-                            <tr>
                                 <th>附件</th>
-                                <td colspan="3">
+                                <td>
                                 </td>
-
                             </tr>
 
                             <tr>
-
                                 <th>备注</th>
-                                <td colspan="3">
+                                <td>
                                         <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
                                                       name="remark " placeholder="请输入备注，500字以内" maxlength="500" rows="6"><c:out value="${ m.remark }" escapeXml="true"/></textarea>
@@ -269,6 +315,19 @@
 
                         </tbody>
                     </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </form>
             </div>
 
@@ -320,16 +379,17 @@
 
 
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
+
+
 <script src="${ staticUrl }/statics2/business-js/example/investor/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/example/fund/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 
 
+
 <script language="JavaScript">
-
     $(function() {
-
 
 
         //选择认购基金
@@ -350,9 +410,6 @@
             clearId: "clearInvestorId"
         });
 
-
-
-
         //选择部门
         $(".signDepName").OpenSystemDepSelectWin({
             title: "部门",
@@ -361,7 +418,6 @@
             callName: "signDepName",
             clearId: "clearSignDepId"
         });
-
 
         //选择签订人
         $(".signUserName").OpenSystemUserSelectWin({
@@ -374,8 +430,26 @@
 
 
 
+
+
+
     });
 
+
+    var tableId , tableJavaName;
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
+
 
 <bms:contentFooter />

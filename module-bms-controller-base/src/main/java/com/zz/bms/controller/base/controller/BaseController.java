@@ -292,6 +292,8 @@ public abstract class BaseController<PK extends Serializable> {
             modelMap.addAttribute("allQueryString", "&"+queryString);
             String[] queryArr = queryString.split("&");
             modelMap.addAttribute("queryArr", queryArr);
+        }else {
+
         }
     }
 

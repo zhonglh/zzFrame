@@ -3038,6 +3038,12 @@ h3.timeline-title {
 .input-data {
 	color: #333
 }
+
+
+input.openwindow{
+	width:calc(100% - 58px) !important;
+}
+
 /*booking*/
 .booking {
 	padding: 10px;

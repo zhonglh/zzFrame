@@ -116,6 +116,8 @@
             <th field='investorName' align="left" width="1" sortable='false'  >投资人</th>
             <th field='amount' align="right" width="1" sortable='true'  >认购金额</th>
             <th field='actualAmount' align="right" width="1" sortable='true'  >实际出资金额</th>
+            <th field='signDepName' align="left" width="1" sortable='false'  >部门</th>
+            <th field='signOrganId' align="left" width="1" sortable='false'  >机构</th>
             <th field='signUserName' align="left" width="1" sortable='false'  >签订人</th>
             <th field='signDate' align="center" width="1" sortable='true' formatter='dateFmt' >签订日期</th>
 

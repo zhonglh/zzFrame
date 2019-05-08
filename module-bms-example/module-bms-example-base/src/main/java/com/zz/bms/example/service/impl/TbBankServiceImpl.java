@@ -30,7 +30,7 @@ import java.util.Map;
 /**
 * 银行信息 ServiceImpl
 * @author Administrator
-* @date 2019-5-3 10:40:30
+* @date 2019-5-8 10:49:24
 */
 @Service
 public class TbBankServiceImpl extends BaseServiceImpl<TbBankBO,String> implements TbBankService {

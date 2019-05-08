@@ -18,7 +18,7 @@
         </form>
 
         <div class="btn-bar" style="margin-left: -10px;">
-                <shiro:hasPermission name="example.outmoney:add">
+                <shiro:hasPermission name="example.fund:add">
                     <button type="button" class="btn btn-primary btn-sm" onclick="toAdd()">
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
@@ -26,7 +26,7 @@
                         <span>新增 </span>
                     </button>
                 </shiro:hasPermission>
-                <shiro:hasPermission name="example.outmoney:delete">
+                <shiro:hasPermission name="example.fund:delete">
                     <button type="button" class="btn btn-primary btn-sm" onclick="doDelete()">
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use>
@@ -36,7 +36,7 @@
                 </shiro:hasPermission>
 
 
-                <shiro:hasPermission name="example.outmoney:importExcel">
+                <shiro:hasPermission name="example.fund:importExcel">
                     <div type="button" id="importExcel" class="btn btn-primary btn-sm" >
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daoru"></use>
@@ -46,7 +46,7 @@
                 </shiro:hasPermission>
 
 
-                <shiro:hasPermission name="example.outmoney:exportExcel">
+                <shiro:hasPermission name="example.fund:exportExcel">
                 <div class="btn-group">
                     <button type="button" id="exportExcel" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <svg class="icon" aria-hidden="true">
@@ -110,14 +110,14 @@
         <tr>
             <th field="ck" checkbox="true"></th>
 
-            <th field='investorAgreementName' align="left" width="1" sortable='false' formatter='titleFmt' >协议</th>
-            <th field='fundName' align="left" width="1" sortable='false'  >基金</th>
-            <th field='investorName' align="left" width="1" sortable='false'  >投资人</th>
-            <th field='actualAmount' align="right" width="1" sortable='true'  >实际出资金额</th>
-            <th field='handleDepName' align="left" width="1" sortable='false'  >部门</th>
-            <th field='handleOrganId' align="left" width="1" sortable='false'  >机构</th>
-            <th field='handleUserName' align="left" width="1" sortable='false'  >经办人</th>
-            <th field='arrivalAccountDate' align="center" width="1" sortable='true' formatter='dateFmt' >到账日期</th>
+            <th field='fundName' align="left" width="2" sortable='false' formatter='titleAllFmt' >基金名称</th>
+            <th field='fundCode' align="left" width="1" sortable='false'  >基金代码</th>
+            <th field='fundTypeName' align="left" width="1" sortable='false'  >基金类型</th>
+            <th field='fundDirectionName' align="left" width="1" sortable='false'  >基金投向</th>
+            <th field='startMoney' align="right" width="1" sortable='true'  >起购金额</th>
+            <th field='managTypeName' align="left" width="1" sortable='false'  >管理类型</th>
+            <th field='fundScale' align="right" width="1" sortable='true'  >基金规模</th>
+            <th field='managerUserName' align="left" width="1" sortable='false'  >基金经理</th>
 
         </tr>
         </thead>
@@ -137,15 +137,12 @@
 <script src="${ staticUrl }/statics2/js/project/listCommon.js"></script>
 <script src="${ staticUrl }/statics2/js/project/list.js"></script>
 
-<shiro:hasPermission name="example.outmoney:importExcel">
+<shiro:hasPermission name="example.fund:importExcel">
 <script src="${ staticUrl }/statics2/js/project/common-import-excel.js"></script>
 </shiro:hasPermission>
 
-<script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
-<script src="${ staticUrl }/statics2/business-js/example/fund/search.js"></script>
-<script src="${ staticUrl }/statics2/business-js/example/investor/search.js"></script>
-<script src="${ staticUrl }/statics2/business-js/example/investoragreement/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
 
 <script language="JavaScript">
 

@@ -24,7 +24,7 @@ import java.util.Map;
 /**
 * 银行信息 BO , 扩展 TbBankEntity 对象
 * @author Administrator
-* @date 2019-5-3 10:40:30
+* @date 2019-5-8 10:49:24
 */
 @EntityAnnotation(value="银行信息" , resource = "example.bank"    ,businessName = "bank_name"    ,businessKey = { "bank_name" }    )
 @TableName(value="tb_bank" , resultMap = "TbBankResultMap")

@@ -5,13 +5,14 @@ import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.example.domain.TbFundAccountEntity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.lang.String;
 
 /**
  * 基金账户 查询抽象类
  *
  * @author Administrator
- * @date 2019-5-3 10:40:29
+ * @date 2019-5-8 10:49:21
  */
 public interface TbFundAccountQuery<PK extends Serializable> extends Query<TbFundAccountEntity,PK> {
 
@@ -80,6 +81,39 @@ public interface TbFundAccountQuery<PK extends Serializable> extends Query<TbFun
         public TbFundAccountQuery accountNoNotLike(String accountNoNotLike);
         public TbFundAccountQuery accountNoIsNull();
         public TbFundAccountQuery accountNoIsNotNull();
+
+
+
+
+
+        public TbFundAccountQuery startDate(Date startDate);
+        public TbFundAccountQuery startDateNot(Date startDateNot);
+        public TbFundAccountQuery startDateGreaterThan(Date startDateGreaterThan);
+        public TbFundAccountQuery startDateGreaterEqual(Date startDateGreaterEqual);
+        public TbFundAccountQuery startDateLessThan(Date startDateLessThan);
+        public TbFundAccountQuery startDateLessEqual(Date startDateLessEqual);
+
+
+
+
+
+        public TbFundAccountQuery otherBankId(PK otherBankId);
+        public TbFundAccountQuery otherBankIdNot(PK otherBankIdNot);
+        public TbFundAccountQuery otherBankIdIn(PK otherBankIdIn);
+        public TbFundAccountQuery otherBankIdNotIn(PK otherBankIdNotIn);
+        public TbFundAccountQuery otherBankIdIsNull();
+        public TbFundAccountQuery otherBankIdIsNotNull();
+
+
+
+
+
+        public TbFundAccountQuery userId(PK userId);
+        public TbFundAccountQuery userIdNot(PK userIdNot);
+        public TbFundAccountQuery userIdIn(PK userIdIn);
+        public TbFundAccountQuery userIdNotIn(PK userIdNotIn);
+        public TbFundAccountQuery userIdIsNull();
+        public TbFundAccountQuery userIdIsNotNull();
 
 
 

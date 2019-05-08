@@ -106,6 +106,16 @@
                                 </td>
                             </tr>
 
+                            <tr>
+                                <th>部门<font color="red">*</font></th>
+                                <td class="fd_depName">
+                                    <c:out value="${ m.depName }" escapeXml="true"/>
+                                </td>
+                                <th>机构</th>
+                                <td class="fd_organId">
+                                    <c:out value="${ m.organId }" escapeXml="true"/>
+                                </td>
+                            </tr>
 
                         </tbody>
                     </table>
@@ -220,21 +230,20 @@
                             <tr>
                                 <th>成立日期</th>
                                 <td>
-                                        <div class="input-group">
-                                            <input type="text"  class="form-control input-sm Wdate"
+
+                                            <input type="text"  class="form-control input-sm Wdate "
                                                    placeholder="请输入成立日期" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'startDate'})"
                                                            value="${ m.startDate }" id="startDate" name="startDate" readonly   />
-                                        </div>
+
                                 </td>
                                 <th>到期日期</th>
                                 <td>
-                                        <div class="input-group">
-                                            <input type="text"  class="form-control input-sm Wdate"
+                                            <input type="text"  class="form-control input-sm Wdate "
                                                    placeholder="请输入到期日期" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'endDate'})"
                                                            value="${ m.endDate }" id="endDate" name="endDate" readonly   />
-                                        </div>
+
                                 </td>
                             </tr>
 
@@ -268,92 +277,215 @@
                                 </td>
                             </tr>
 
+                            <tr>
+                                <th>部门<font color="red">*</font></th>
+                                <td>
+                                        <c:if test="${ fn:indexOf(allQueryString,'&depId=') >= 0 }">
+                                            <input type="text" class="form-control input-sm" name="depName"  id="depName" value="${ m.depName }" readonly>
+                                        </c:if>
+                                        <c:if test="${ fn:indexOf(allQueryString,'&depId=') <0  }">
+                                        <div class="input-group">
+                                            <input type="hidden" name="depId" id="depId" value="${ m.depId }">
+                                            <input type="text" name="depName" id="depName" value="${ m.depName }" required="required" class="form-control input-sm depName " placeholder="请选择部门" style="cursor: pointer;" readonly="readonly">
+                                            <div class="input-group-btn">
+                                                <button type="button"
+                                                        class="btn btn-primary btn-sm depName">
+                                                    <svg class="icon" aria-hidden="true">
+                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                             xlink:href="#icon-sousuo">
+                                                        </use>
+                                                    </svg>
+                                                </button>
+                                                <button type="button" id="clearDepId"
+                                                        class="btn btn-primary btn-sm">
+                                                    <svg class="icon" aria-hidden="true">
+                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                             xlink:href="#icon-close">
+                                                        </use>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        </c:if>
+                                </td>
+                                <th>机构</th>
+                                <td>
+                                        <input type="text"  class="form-control input-sm "
+                                               placeholder="请输入机构" autocomplete="off"
+                                               value="${ m.organId }" id="organId" name="organId"
+                                                   maxlength="32"  />
+                                </td>
+                            </tr>
+
                         </tbody>
                     </table>
 
 
 
-                    <input type="hidden" id="tempExampleBank" />
-
-                    <div class="block-each block-each-another">
-
-
-                        <div class="block-tit">
-                            <svg class="icon" aria-hidden="true">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                            </svg>备案信息
-                        </div>
-
-                            <table class="info-table hide-area">
-                                <col style="width: 15%" />
-                                <col style="width: 35%" />
-                                <col style="width: 15%" />
-                                <col style="width: 35%" />
-                                <tr>
-                                    <th>备案日期<font color="red">*</font></th>
-                                    <td class="fd_fundRecordBO_recordDate">
-                                        <c:if test="${m.fundRecordBO != null}">
-                                        <fmt:formatDate value="${m.fundRecordBO.recordDate}" pattern="yyyy-MM-dd" />
-                                        </c:if>
-                                    </td>
-                                    <th>备案地点<font color="red">*</font></th>
-                                    <td class="fd_remark">
-                                        <c:if test="${m.fundRecordBO != null}">
-                                            ${m.fundRecordBO.recordAddr}
-                                        </c:if>
-                                    </td>
-                                </tr>
-                            </table>
-
-                            <table class="info-table show-area">
-                            <col style="width: 15%" />
-                            <col style="width: 35%" />
-                            <col style="width: 15%" />
-                            <col style="width: 35%" />
-                            <tr>
-                                <th>备案日期<font color="red">*</font></th>
-                                <td>
-                                    <input type="text" class="form-control input-sm Wdate required " name="fundRecordBO.recordDate" id="fundRecordBO_recordDate" value="<fmt:formatDate value="${m.fundRecordBO.recordDate}" pattern="yyyy-MM-dd" />" onclick="WdatePicker({dateFmt: 'yyyy-MM-dd'})" placeholder="请选择备案日期" readonly required="required">
-                                </td>
-                                <th>备案地点<font color="red">*</font></th>
-                                <td><input type="text" name="fundRecordBO.recordAddr" id="fundRecordBO_recordAddr" value="${m.fundRecordBO.recordAddr}"  required="required" maxlength="200" placeholder="请输入备案地点" class="form-control input-sm required" required="required" /></td>
-                            </tr>
-                        </table>
+                            <input type="hidden" id="tempSystemUser" />
+                            <input type="hidden" id="tempExampleBank" />
 
 
+                        <div class="block-each block-each-another">
 
-
-                        <div class="block-tit">
-                            <svg class="icon" aria-hidden="true">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                            </svg>基金账户
-                        </div>
-
-                        <div class="fundAccount">
-                            <table id='tableData-fundAccount' class='easyui-datagrid' singleSelect="true" scrollbarSize="0"   method='post' fit='false'  fitColumns="true" border='true'>
-                                <thead>
-                                <tr>
-
-                                    <th field="id" align="left" hidden="true">id</th>
-                                    <th field='fundAccountTypeName' align="left" width="2" sortable='false' formatter="fundAccountTypeNameFmt">账户类型</th>
-                                    <th field='bankName' align="left" width="2" sortable='false' formatter="bankNameFmt">开户行</th>
-                                    <th field='accountName' align="left" width="2" sortable='false' formatter="accountNameFmt">户名</th>
-                                    <th field='accountNo' align="left" width="2" sortable='false' formatter="accountNoFmt">账号</th>
-                                    <th field="option" align="left" formatter="markFmt">操作</th>
-                                </tr>
-                                </thead>
-                            </table>
-                            <div style="text-align: center;margin: 5px">
-                                <button type="button" class="btn btn-primary btn-sm" onclick="doAddFundAccount()">
+                                <div class="block-tit">
                                     <svg class="icon" aria-hidden="true">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
-                                    </svg>
-                                    <span>添 加</span>
-                                </button>
-                            </div>
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
+                                    </svg>基金账户
+                                </div>
+
+
+
+
+                                    <div class="exampleFundaccount" style="width: 100%">
+                                        <table id='tableData-exampleFundaccount' class='easyui-datagrid' singleSelect="true" scrollbarSize="0"   method='post' fit='false'  fitColumns="true" border='true'>
+                                            <thead>
+                                            <tr>
+                                                <th field="id" align="left" hidden="true">id</th>
+                                                            <th field='fundName' align="left" width="1" sortable='false' formatter="exampleFundaccount_fundNameFmt"  >基金信息</th>
+                                                            <th field='fundAccountTypeName' align="left" width="1" sortable='false' formatter="exampleFundaccount_fundAccountTypeNameFmt"  >基金账户类型</th>
+                                                            <th field='accountName' align="left" width="1" sortable='false' formatter="exampleFundaccount_accountNameFmt"  >户名</th>
+                                                            <th field='accountNo' align="left" width="1" sortable='false' formatter="exampleFundaccount_accountNoFmt"  >账号</th>
+                                                            <th field='startDate' align="center" width="1" sortable='true' formatter="exampleFundaccount_startDateFmt"  >开始日期</th>
+                                                            <th field='otherBankName' align="left" width="1" sortable='false' formatter="exampleFundaccount_otherBankNameFmt"  >其他行</th>
+                                                            <th field='userName' align="left" width="1" sortable='false' formatter="exampleFundaccount_userNameFmt"  >账户处理人</th>
+                                                <th field="option" align="left" formatter="markFmtFundAccount">操作</th>
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                        <div class="show-area" style="text-align: center;margin: 5px">
+                                            <button type="button" class="btn btn-primary btn-sm" onclick="doAddFundAccount()">
+                                                <svg class="icon" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
+                                                </svg>
+                                                <span>添 加</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+
+
+                                <div class="block-tit">
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
+                                    </svg>基金备案
+                                </div>
+
+                                    <table class="info-table">
+                                        <col style="width: 15%" />
+                                        <col style="width: 35%" />
+                                        <col style="width: 15%" />
+                                        <col style="width: 35%" />
+
+                                        <tbody>
+
+
+                                                <tr>
+
+                                                            <th>备案日期<font color="red">*</font></th>
+                                                            <td>
+
+                                                                        <input type="text" required="required" class="form-control input-sm Wdate required"
+                                                                               placeholder="请输入备案日期" autocomplete="off"
+                                                                               onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'fundRecordBO_recordDate'})"
+                                                                               value="${ m.fundRecordBO.recordDate }" id="fundRecordBO_recordDate" name="fundRecordBO.recordDate" readonly   />
+
+                                                            </td>
+
+
+                                                </tr>
+                                                <tr>
+                                                        <th>备案地点<font color="red">*</font></th>
+                                                        <td>
+                                                                    <input type="text" required="required" class="form-control input-sm required"
+                                                                           placeholder="请输入备案地点" autocomplete="off"
+                                                                           value="${ m.fundRecordBO.recordAddr }" id="fundRecordBO_recordAddr" name="fundRecordBO.recordAddr"
+                                                                               maxlength="200"  />
+                                                        </td>
+
+                                                            <th>开户行<font color="red">*</font></th>
+                                                            <td>
+                                                                        <c:if test="${ fn:indexOf(allQueryString,'&bankId=') >= 0 }">
+                                                                            <input type="text" class="form-control input-sm" name="fundRecordBO.bankName" id="fundRecordBO_bankName"  value="${ m.fundRecordBO.bankName }" readonly>
+                                                                        </c:if>
+                                                                        <c:if test="${ fn:indexOf(allQueryString,'&bankId=') < 0 }">
+                                                                            <div class="input-group">
+                                                                                <input type="hidden" name="fundRecordBO.bankId" id="fundRecordBO_bankId" value="${ m.fundRecordBO.bankId }" >
+                                                                                <input type="text" name="fundRecordBO.bankName" id="fundRecordBO_bankName" value="${ m.fundRecordBO.bankName }" required="required" class="form-control input-sm fundRecordBO_bankName " placeholder="请选择开户行" style="cursor: pointer;" readonly="readonly">
+                                                                                <div class="input-group-btn">
+                                                                                    <button type="button"  class="btn btn-primary btn-sm fundRecordBO_bankName">
+                                                                                        <svg class="icon" aria-hidden="true">
+                                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                                 xlink:href="#icon-sousuo">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </button>
+                                                                                    <button type="button" id="clearfundRecordBO_BankId"   class="btn btn-primary btn-sm">
+                                                                                        <svg class="icon" aria-hidden="true">
+                                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                                 xlink:href="#icon-close">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </c:if>
+                                                            </td>
+
+
+                                                </tr>
+                                                <tr>
+                                                        <th>证件类型</th>
+                                                        <td>
+                                                                    <select id="fundRecordBO_cardType"  name="fundRecordBO.cardType"  style="width:98%">
+                                                                        <option value="" ></option>
+                                                                        <c:forEach items="${ card_type_dicts }" var="dict">
+                                                                            <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.fundRecordBO.cardType }">selected</c:if>>${ dict.dictName  }</option>
+                                                                        </c:forEach>
+                                                                    </select>
+                                                        </td>
+
+                                                            <th>备案人<font color="red">*</font></th>
+                                                            <td>
+                                                                        <c:if test="${ fn:indexOf(allQueryString,'&recordUserId=') >= 0 }">
+                                                                            <input type="text" class="form-control input-sm" name="fundRecordBO.recordUserName" id="fundRecordBO_recordUserName"  value="${ m.fundRecordBO.recordUserName }" readonly>
+                                                                        </c:if>
+                                                                        <c:if test="${ fn:indexOf(allQueryString,'&recordUserId=') < 0 }">
+                                                                            <div class="input-group">
+                                                                                <input type="hidden" name="fundRecordBO.recordUserId" id="fundRecordBO_recordUserId" value="${ m.fundRecordBO.recordUserId }" >
+                                                                                <input type="text" name="fundRecordBO.recordUserName" id="fundRecordBO_recordUserName" value="${ m.fundRecordBO.recordUserName }" required="required" class="form-control input-sm fundRecordBO_recordUserName " placeholder="请选择备案人" style="cursor: pointer;" readonly="readonly">
+                                                                                <div class="input-group-btn">
+                                                                                    <button type="button"  class="btn btn-primary btn-sm fundRecordBO_recordUserName">
+                                                                                        <svg class="icon" aria-hidden="true">
+                                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                                 xlink:href="#icon-sousuo">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </button>
+                                                                                    <button type="button" id="clearfundRecordBO_RecordUserId"   class="btn btn-primary btn-sm">
+                                                                                        <svg class="icon" aria-hidden="true">
+                                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                                 xlink:href="#icon-close">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </c:if>
+                                                            </td>
+
+
+                                                </tr>
+                                        </tbody>
+
+                                    </table>
+
                         </div>
 
-                    </div>
+
+
+
+
 
 
 
@@ -408,14 +540,18 @@
 
 
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
+
+        <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
+        <script src="${ staticUrl }/statics2/business-js/example/bank/search.js"></script>
+
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
-<script src="${ staticUrl }/statics2/business-js/example/bank/search.js"></script>
+
 
 
 <script language="JavaScript">
-
     $(function() {
+
 
         //选择基金经理
         $(".managerUserName").OpenSystemUserSelectWin({
@@ -435,9 +571,39 @@
             clearId: "clearDepId"
         });
 
-        //选择银行
+        $(".fundRecordBO_bankName").OpenExampleBankSelectWin({
+            title: "开户行",
+            selectType: "d1",
+            callId: "fundRecordBO_bankId",
+            callName: "fundRecordBO_bankName",
+            clearId: "clearfundRecordBO_BankId"
+        });
+        $(".fundRecordBO_recordUserName").OpenSystemUserSelectWin({
+            title: "备案人",
+            selectType: "d1",
+            callId: "fundRecordBO_recordUserId",
+            callName: "fundRecordBO_recordUserName",
+            clearId: "clearfundRecordBO_RecordUserId"
+        });
+
+
+
+
+        $("#tempSystemUser").OpenSystemUserSelectWin({
+            title: "用户",
+            selectType: "d1",
+            callId: "",
+            callName: "",
+            clearId: ""
+        },function(id,name,row){
+            $(tempSystemUser).val(row.userName);
+            $(tempSystemUser).prev().val(row.id);
+
+            costTableRows(tableId , tableJavaName , tempSystemUserIndex);
+
+        });
         $("#tempExampleBank").OpenExampleBankSelectWin({
-            title: "银行",
+            title: "银行信息",
             selectType: "d1",
             callId: "",
             callName: "",
@@ -445,39 +611,71 @@
         },function(id,name,row){
             $(tempExampleBank).val(row.bankName);
             $(tempExampleBank).prev().val(row.id);
-            costTableRows(tableId , tableJavaName , tempExampleBankIndex)
+
+            costTableRows(tableId , tableJavaName , tempExampleBankIndex);
+
         });
 
-
-        $('#tableData-fundAccount').datagrid({
-            url : $AppContext+dataUrl+"/fundAccount/list?fundId=${m.id}",
+        $('#tableData-exampleFundaccount').datagrid({
+            url : $AppContext+dataUrl+"/fundAccount/list?bankId=${ m.id }",
             onLoadSuccess : function(data){
                 if(data.rows!=null){
-                    $('#tableData-fundAccount').datagrid("resize", {height: (data.rows.length + 1) * 44-5});
+                    $('#tableData-fundAccount').datagrid("resize", {height: (data.rows.length + 1) * 42});
                     $(".fd-decimal2").inputDecimal(2);
                 }
             }
-
         });
-
-
     });
 
 
     var tableId , tableJavaName;
+
+    var tempSystemUser  , tempSystemUserIndex ;
     var tempExampleBank  , tempExampleBankIndex ;
 
 
     function fund_account_type_dicts() {
         var html = "<option value=''>请选择</option>";
-        <c:forEach items="${fund_account_type_dicts}" var="dict">
-        html += "<option value='${dict.dictVal}'>${dict.dictName}</option>";
-        </c:forEach>
+    <c:forEach items="${ fund_account_type_dicts }" var="dict">
+        html += "<option value='${ dict.dictVal }'>${ dict.dictName }</option>";
+    </c:forEach>
         return html;
     }
 
 
-    function openExampleBank(theTabelId , theTableJavaName , obj ,index){
+
+    function openSystemUser(theTabelId , theTableJavaName ,obj ,index){
+        if(obj != null && obj != undefined) {
+            tempSystemUserIndex = index;
+            tempSystemUser = obj[0];
+            if(tempSystemUser == null){
+                tempSystemUser = obj;
+            }
+
+
+            tableId = theTabelId;
+            tableJavaName = theTableJavaName;
+
+            $("#tempSystemUser").click();
+        }
+    }
+    function clearSystemUser(theTabelId , theTableJavaName ,obj ,index){
+        if(obj != null && obj != undefined){
+            tempSystemUserIndex = index;
+            tempSystemUser = obj[0];
+            if(tempSystemUser == null){
+                tempSystemUser = obj;
+            }
+
+            tableId = theTabelId
+            tableJavaName = theTableJavaName
+            $(tempSystemUser).val("");
+            $(tempSystemUser).prev().val("");
+
+            costTableRows(tableId , tableJavaName , tempSystemUserIndex);
+        }
+    }
+    function openExampleBank(theTabelId , theTableJavaName ,obj ,index){
         if(obj != null && obj != undefined) {
             tempExampleBankIndex = index;
             tempExampleBank = obj[0];
@@ -485,22 +683,23 @@
                 tempExampleBank = obj;
             }
 
+
             tableId = theTabelId;
             tableJavaName = theTableJavaName;
 
             $("#tempExampleBank").click();
         }
     }
-    function clearExampleBank(theTabelId , theTableJavaName , obj ,index){
+    function clearExampleBank(theTabelId , theTableJavaName ,obj ,index){
         if(obj != null && obj != undefined){
             tempExampleBankIndex = index;
             tempExampleBank = obj[0];
             if(tempExampleBank == null){
                 tempExampleBank = obj;
             }
+
             tableId = theTabelId
             tableJavaName = theTableJavaName
-
             $(tempExampleBank).val("");
             $(tempExampleBank).prev().val("");
 
@@ -509,28 +708,22 @@
     }
 
 
-    function fundAccountTypeNameFmt(val, row,index) {
-        
-        var html = "<select name='fundAccountBOList["+index+"].fundAccountType' id='fundAccountBOList_"+index+"_fundAccountType' onblur='costTableRows(\"tableData-fundAccount\" , \"fundAccountBOList\" , "+index+")'  class='form-control input-sm show-area required'>" ;
-        html += checkedOption(fund_account_type_dicts() , row.fundAccountType);
-        html += "</select>";
 
-        html += "<div class='hide-area'>"+row.fundAccountTypeName+"</div>";
-        return html;
-    }
 
-    function bankNameFmt(val, row,index) {
-        
+
+
+    function exampleFundaccount_fundNameFmt(val, row,index){
+
         var html = '<div class="input-group show-area">';
-        html += '<input type="hidden" name="fundAccountBOList['+index+'].bankId" id="fundAccountBOList_'+index+'_bankId" value="'+row.bankId+'" >';
-        html += '<input type="text"  class="form-control input-sm bankName" onclick="openExampleBank(\'tableData-fundAccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.bankName+'" id="fundAccountBOList_'+index+'_bankName"  name="fundAccountBOList['+index+'].bankName"  onblur="costTableRows(\'tableData-fundAccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择开户行" readonly >';
+        html += '<input type="hidden" name="fundAccountBOList['+index+'].fundId" id="fundAccountBOList_'+index+'_fundId" value="'+row.fundId+'" >';
+        html += '<input type="text"  class="form-control input-sm openwindow fundName" onclick="openExampleFund(\'tableData-exampleFundaccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.fundName+'" id="fundAccountBOList_'+index+'_fundName"  name="fundAccountBOList['+index+'].fundName"  onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择基金信息" readonly >';
         html += '<div class="input-group-btn">';
-        html += '<div class="btn btn-primary btn-sm" onclick="openExampleBank(\'tableData-fundAccount\', \'fundAccountBOList\',document.getElementById("fundAccountBOList_'+index+'_bankName"),'+index+')">';
+        html += '<div class="btn btn-primary btn-sm" onclick="openExampleFund(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_fundName\'),'+index+')">';
         html += '<svg class="icon" aria-hidden="true">';
         html += '<use xmlns:xlink="http://www.w3.org/1999/xlink"  xlink:href="#icon-sousuo"></use>';
         html += '</svg>';
         html += '</div>';
-        html += '<div class="btn btn-primary btn-sm" onclick=“clearExampleBank(document.getElementById(\'tableData-fundAccount\', \'fundAccountBOList\',"fundAccountBOList_'+index+'_bankName"),'+index+')"  >';
+        html += '<div class="btn btn-primary btn-sm" onclick="clearExampleFund(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_fundName\'),'+index+')"  >';
         html += '<svg class="icon" aria-hidden="true">';
         html += ' <use xmlns:xlink="http://www.w3.org/1999/xlink"	xlink:href="#icon-close"></use>';
         html += '</svg>';
@@ -538,25 +731,112 @@
         html += '</div>';
         html += '</div>';
 
-        html += "<div class='hide-area' >"+row.bankName+"</div>" ;
+
+        html += "<div class='hide-area' >"+row.fundName+"</div>" ;
 
         return html;
     }
 
-    function accountNameFmt(val, row,index) {
-        var html = '<input type="text" maxlength="100" value="'+val+'" name="fundAccountBOList['+index+'].accountName" id="fundAccountBOList_'+index+'_accountName" onblur="costTableRows(\'tableData-fundAccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请输入账户名" class="form-control input-sm show-area required" />';
+
+    function exampleFundaccount_fundAccountTypeNameFmt(val, row,index){
+        var html = "<select name='fundAccountBOList["+index+"].fundAccountType' id='fundAccountBOList_"+index+"_fundAccountType' onblur='costTableRows(\"tableData-exampleFundaccount\" , \"fundAccountBOList \" , "+index+")' class=’form-control input-sm show-area required‘>" ;
+        html += checkedOption(fund_account_type_dicts() , row.fundAccountType);
+        html += "</select>";
+        html += "<div class='hide-area'>"+row.fundAccountTypeName+"</div>";
+        return html;
+    }
+
+
+    function exampleFundaccount_accountNameFmt(val, row,index){
+
+        var html = '<input type="text" required="required" class="form-control input-sm show-area required"'+
+            'placeholder="请输入户名" autocomplete="off" '+ ' onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')"'+
+            'value="'+val+'" id="fundAccountBOList_'+index+'_accountName" name="fundAccountBOList['+index+'].accountName"'+
+            '   maxlength="100"  />';
+
         html += "<div class='hide-area' >"+val+"</div>" ;
         return html;
+
     }
 
-    function accountNoFmt(val, row,index) {
-        var html = '<input type="text" maxlength="50" value="'+val+'" name="fundAccountBOList['+index+'].accountNo" id="fundAccountBOList_'+index+'_accountNo" onblur="costTableRows(\'tableData-fundAccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请输入银行账号" isFormat="false" class="form-control input-sm fd-decimal show-area required" />';
+
+
+    function exampleFundaccount_accountNoFmt(val, row,index){
+
+        var html = '<input type="text" required="required" class="form-control input-sm show-area required"'+
+            'placeholder="请输入账号" autocomplete="off" '+ ' onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')"'+
+            'value="'+val+'" id="fundAccountBOList_'+index+'_accountNo" name="fundAccountBOList['+index+'].accountNo"'+
+            '   maxlength="50"  />';
+
         html += "<div class='hide-area' >"+val+"</div>" ;
+        return html;
+
+    }
+
+
+    function exampleFundaccount_startDateFmt(val, row,index){
+
+        var html = '<input type="text"  class="form-control input-sm show-area Wdate  "'+
+            'placeholder="请输入开始日期" autocomplete="off"'+ ' onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')"'+
+            'onclick="WdatePicker({dateFmt: \'yyyy-MM-dd\', el: \'fundAccountBOList_'+index+'_startDate\'})"'+
+            'value="'+val+'" id="fundAccountBOList_'+index+'_startDate" name="fundAccountBOList['+index+'].startDate" readonly   />';
+        html += "<div class='hide-area' >"+val+"</div>" ;
+        return html;
+
+    }
+
+
+    function exampleFundaccount_otherBankNameFmt(val, row,index){
+
+        var html = '<div class="input-group show-area">';
+        html += '<input type="hidden" name="fundAccountBOList['+index+'].otherBankId" id="fundAccountBOList_'+index+'_otherBankId" value="'+row.otherBankId+'" >';
+        html += '<input type="text"  class="form-control input-sm openwindow otherBankName" onclick="openExampleBank(\'tableData-exampleFundaccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.otherBankName+'" id="fundAccountBOList_'+index+'_otherBankName"  name="fundAccountBOList['+index+'].otherBankName"  onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择其他行" readonly >';
+        html += '<div class="input-group-btn">';
+        html += '<div class="btn btn-primary btn-sm" onclick="openExampleBank(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_otherBankName\'),'+index+')">';
+        html += '<svg class="icon" aria-hidden="true">';
+        html += '<use xmlns:xlink="http://www.w3.org/1999/xlink"  xlink:href="#icon-sousuo"></use>';
+        html += '</svg>';
+        html += '</div>';
+        html += '<div class="btn btn-primary btn-sm" onclick="clearExampleBank(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_otherBankName\'),'+index+')"  >';
+        html += '<svg class="icon" aria-hidden="true">';
+        html += ' <use xmlns:xlink="http://www.w3.org/1999/xlink"	xlink:href="#icon-close"></use>';
+        html += '</svg>';
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
+
+
+        html += "<div class='hide-area' >"+row.otherBankName+"</div>" ;
+
         return html;
     }
 
 
-    function markFmt(val, r,index){
+    function exampleFundaccount_userNameFmt(val, row,index){
+
+        var html = '<div class="input-group show-area">';
+        html += '<input type="hidden" name="fundAccountBOList['+index+'].userId" id="fundAccountBOList_'+index+'_userId" value="'+row.userId+'" >';
+        html += '<input type="text"  class="form-control input-sm openwindow userName" onclick="openSystemUser(\'tableData-exampleFundaccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.userName+'" id="fundAccountBOList_'+index+'_userName"  name="fundAccountBOList['+index+'].userName"  onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择账户处理人" readonly >';
+        html += '<div class="input-group-btn">';
+        html += '<div class="btn btn-primary btn-sm" onclick="openSystemUser(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_userName\'),'+index+')">';
+        html += '<svg class="icon" aria-hidden="true">';
+        html += '<use xmlns:xlink="http://www.w3.org/1999/xlink"  xlink:href="#icon-sousuo"></use>';
+        html += '</svg>';
+        html += '</div>';
+        html += '<div class="btn btn-primary btn-sm" onclick="clearSystemUser(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_userName\'),'+index+')"  >';
+        html += '<svg class="icon" aria-hidden="true">';
+        html += ' <use xmlns:xlink="http://www.w3.org/1999/xlink"	xlink:href="#icon-close"></use>';
+        html += '</svg>';
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
+
+
+        html += "<div class='hide-area' >"+row.userName+"</div>" ;
+
+        return html;
+    }
+    function markFmtFundAccount(val, r,index){
         var html =	'<div class="grid-column-option">';
         html+=	'<a href="javascript: doDelFundAccount('+ index + ');" title="删除"><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use></svg></a>';
         html+=	'</div>';
@@ -564,21 +844,22 @@
     }
 
 
-
     function doDelFundAccount(index){
-        $('#tableData-fundAccount').datagrid("deleteRow" , index);
-        var rows = $('#tableData-fundAccount').datagrid("getRows");
-        $('#tableData-fundAccount').datagrid("loadData",rows);
+        $('#tableData-exampleFundaccount').datagrid("deleteRow" , index);
+        var rows = $('#tableData-exampleFundaccount').datagrid("getRows");
+        $('#tableData-exampleFundaccount').datagrid("loadData",rows);
+        openEdit();
     }
 
     function doAddFundAccount() {
-        var rows = $('#tableData-fundAccount').datagrid("getRows");
-        rows.push({id:"" , fundAccountTypeName:"" , fundAccountType : "" , bankId : "" , bankName :"" , accountName:"" ,accountNo:"" });
-        $('#tableData-fundAccount').datagrid("loadData",rows);
+        var rows = $('#tableData-exampleFundaccount').datagrid("getRows");
+        rows.push({ fundName : "" ,fundAccountType : "" ,accountName : "" ,bankName : "" ,accountNo : "" ,startDate : "" ,otherBankName : "" ,userName : ""  });
+        $('#tableData-exampleFundaccount').datagrid("loadData",rows);
+        openEdit();
     }
 
 
-
 </script>
+
 
 <bms:contentFooter />

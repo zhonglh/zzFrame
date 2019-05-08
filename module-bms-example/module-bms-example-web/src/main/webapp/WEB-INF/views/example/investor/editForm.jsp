@@ -179,6 +179,19 @@
 
                         </tbody>
                     </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </form>
             </div>
 
@@ -230,14 +243,14 @@
 
 
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
+
+
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 
 
+
 <script language="JavaScript">
-
     $(function() {
-
-
 
 
         //选择投资经理
@@ -252,8 +265,25 @@
 
 
 
+
+
     });
 
+
+    var tableId , tableJavaName;
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
+
 
 <bms:contentFooter />
