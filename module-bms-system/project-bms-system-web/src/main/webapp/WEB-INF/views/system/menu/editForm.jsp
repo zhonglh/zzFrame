@@ -114,7 +114,7 @@
                                 <tr>
 
 
-                                    <th>备注</th>
+                                    <th>是否隐藏<font color="red">*</font></th>
                                     <td class="fd_hiddenName">
                                     ${ m.hiddenName }
 
