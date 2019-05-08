@@ -24,7 +24,7 @@ import java.util.Map;
 /**
 * 投资人 BO , 扩展 TbInvestorEntity 对象
 * @author Administrator
-* @date 2019-5-8 10:49:25
+* @date 2019-5-8 13:19:38
 */
 @EntityAnnotation(value="投资人" , resource = "example.investor"  ,haveTenant = true   ,businessName = "investor_name"    ,businessKey = { "investor_code" }    )
 @TableName(value="tb_investor" , resultMap = "TbInvestorResultMap")

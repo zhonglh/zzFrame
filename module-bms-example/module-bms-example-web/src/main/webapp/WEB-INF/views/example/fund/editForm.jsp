@@ -342,9 +342,9 @@
                                             <thead>
                                             <tr>
                                                 <th field="id" align="left" hidden="true">id</th>
-                                                            <th field='fundName' align="left" width="1" sortable='false' formatter="exampleFundaccount_fundNameFmt"  >基金信息</th>
                                                             <th field='fundAccountTypeName' align="left" width="1" sortable='false' formatter="exampleFundaccount_fundAccountTypeNameFmt"  >基金账户类型</th>
                                                             <th field='accountName' align="left" width="1" sortable='false' formatter="exampleFundaccount_accountNameFmt"  >户名</th>
+                                                            <th field='bankName' align="left" width="1" sortable='false' formatter="exampleFundaccount_bankNameFmt"  >开户行</th>
                                                             <th field='accountNo' align="left" width="1" sortable='false' formatter="exampleFundaccount_accountNoFmt"  >账号</th>
                                                             <th field='startDate' align="center" width="1" sortable='true' formatter="exampleFundaccount_startDateFmt"  >开始日期</th>
                                                             <th field='otherBankName' align="left" width="1" sortable='false' formatter="exampleFundaccount_otherBankNameFmt"  >其他行</th>
@@ -617,7 +617,7 @@
         });
 
         $('#tableData-exampleFundaccount').datagrid({
-            url : $AppContext+dataUrl+"/fundAccount/list?bankId=${ m.id }",
+            url : $AppContext+dataUrl+"/fundAccount/list?fundId=${ m.id }",
             onLoadSuccess : function(data){
                 if(data.rows!=null){
                     $('#tableData-fundAccount').datagrid("resize", {height: (data.rows.length + 1) * 42});
@@ -712,31 +712,6 @@
 
 
 
-    function exampleFundaccount_fundNameFmt(val, row,index){
-
-        var html = '<div class="input-group show-area">';
-        html += '<input type="hidden" name="fundAccountBOList['+index+'].fundId" id="fundAccountBOList_'+index+'_fundId" value="'+row.fundId+'" >';
-        html += '<input type="text"  class="form-control input-sm openwindow fundName" onclick="openExampleFund(\'tableData-exampleFundaccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.fundName+'" id="fundAccountBOList_'+index+'_fundName"  name="fundAccountBOList['+index+'].fundName"  onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择基金信息" readonly >';
-        html += '<div class="input-group-btn">';
-        html += '<div class="btn btn-primary btn-sm" onclick="openExampleFund(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_fundName\'),'+index+')">';
-        html += '<svg class="icon" aria-hidden="true">';
-        html += '<use xmlns:xlink="http://www.w3.org/1999/xlink"  xlink:href="#icon-sousuo"></use>';
-        html += '</svg>';
-        html += '</div>';
-        html += '<div class="btn btn-primary btn-sm" onclick="clearExampleFund(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_fundName\'),'+index+')"  >';
-        html += '<svg class="icon" aria-hidden="true">';
-        html += ' <use xmlns:xlink="http://www.w3.org/1999/xlink"	xlink:href="#icon-close"></use>';
-        html += '</svg>';
-        html += '</div>';
-        html += '</div>';
-        html += '</div>';
-
-
-        html += "<div class='hide-area' >"+row.fundName+"</div>" ;
-
-        return html;
-    }
-
 
     function exampleFundaccount_fundAccountTypeNameFmt(val, row,index){
         var html = "<select name='fundAccountBOList["+index+"].fundAccountType' id='fundAccountBOList_"+index+"_fundAccountType' onblur='costTableRows(\"tableData-exampleFundaccount\" , \"fundAccountBOList \" , "+index+")' class=’form-control input-sm show-area required‘>" ;
@@ -759,6 +734,31 @@
 
     }
 
+
+    function exampleFundaccount_bankNameFmt(val, row,index){
+
+        var html = '<div class="input-group show-area">';
+        html += '<input type="hidden" name="fundAccountBOList['+index+'].bankId" id="fundAccountBOList_'+index+'_bankId" value="'+row.bankId+'" >';
+        html += '<input type="text"  class="form-control input-sm openwindow bankName" onclick="openExampleBank(\'tableData-exampleFundaccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.bankName+'" id="fundAccountBOList_'+index+'_bankName"  name="fundAccountBOList['+index+'].bankName"  onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择开户行" readonly >';
+        html += '<div class="input-group-btn">';
+        html += '<div class="btn btn-primary btn-sm" onclick="openExampleBank(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_bankName\'),'+index+')">';
+        html += '<svg class="icon" aria-hidden="true">';
+        html += '<use xmlns:xlink="http://www.w3.org/1999/xlink"  xlink:href="#icon-sousuo"></use>';
+        html += '</svg>';
+        html += '</div>';
+        html += '<div class="btn btn-primary btn-sm" onclick="clearExampleBank(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_bankName\'),'+index+')"  >';
+        html += '<svg class="icon" aria-hidden="true">';
+        html += ' <use xmlns:xlink="http://www.w3.org/1999/xlink"	xlink:href="#icon-close"></use>';
+        html += '</svg>';
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
+
+
+        html += "<div class='hide-area' >"+row.bankName+"</div>" ;
+
+        return html;
+    }
 
 
     function exampleFundaccount_accountNoFmt(val, row,index){

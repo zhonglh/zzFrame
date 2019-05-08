@@ -38,7 +38,7 @@ import java.util.Map;
 /**
 * 投资协议 ServiceImpl
 * @author Administrator
-* @date 2019-5-8 10:49:24
+* @date 2019-5-8 13:19:38
 */
 @Service
 public class TbInvestorAgreementServiceImpl extends BaseServiceImpl<TbInvestorAgreementBO,String> implements TbInvestorAgreementService {

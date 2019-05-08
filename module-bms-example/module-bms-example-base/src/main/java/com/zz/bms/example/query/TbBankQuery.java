@@ -11,7 +11,7 @@ import java.lang.String;
  * 银行信息 查询抽象类
  *
  * @author Administrator
- * @date 2019-5-8 10:49:24
+ * @date 2019-5-8 13:19:37
  */
 public interface TbBankQuery<PK extends Serializable> extends Query<TbBankEntity,PK> {
 

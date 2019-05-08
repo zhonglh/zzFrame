@@ -19,7 +19,7 @@ import java.lang.Integer;
 * 投资协议 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2019-5-8 10:49:24
+* @date 2019-5-8 13:19:38
 */
 public class TbInvestorAgreementQueryImpl<PK extends Serializable> extends TbInvestorAgreementAbstractQueryImpl<PK> implements TbInvestorAgreementQuery<PK>, Serializable  {
 

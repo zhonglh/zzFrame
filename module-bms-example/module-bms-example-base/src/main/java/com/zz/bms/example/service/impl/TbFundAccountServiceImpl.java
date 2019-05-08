@@ -38,7 +38,7 @@ import java.util.Map;
 /**
 * 基金账户 ServiceImpl
 * @author Administrator
-* @date 2019-5-8 10:49:21
+* @date 2019-5-8 13:19:34
 */
 @Service
 public class TbFundAccountServiceImpl extends BaseServiceImpl<TbFundAccountBO,String> implements TbFundAccountService {
@@ -50,6 +50,8 @@ public class TbFundAccountServiceImpl extends BaseServiceImpl<TbFundAccountBO,St
 
 
 
+    @Autowired
+    private TbBankDAO tbBankDAO;
     @Autowired
     private TbBankDAO tbBankDAO;
     @Autowired

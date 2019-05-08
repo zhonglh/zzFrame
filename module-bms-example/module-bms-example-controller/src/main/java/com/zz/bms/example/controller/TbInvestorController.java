@@ -6,6 +6,8 @@ import com.zz.bms.system.service.TsDictService;
 import com.zz.bms.system.bo.TsDictBO;
 import com.zz.bms.core.db.entity.*;
 
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.example.bo.TbInvestorBO;
 import  com.zz.bms.example.query.impl.TbInvestorQueryWebImpl;
 
@@ -37,7 +39,7 @@ import java.util.Map;
 /**
  * 投资人 控制层
 * @author Administrator
-* @date 2019-5-8 10:56:09
+* @date 2019-5-8 13:19:38
  */
 @RequestMapping("/example/investor")
 @Controller

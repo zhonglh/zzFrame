@@ -12,7 +12,7 @@ import java.lang.String;
  * 基金备案 查询抽象类
  *
  * @author Administrator
- * @date 2019-5-8 10:49:22
+ * @date 2019-5-8 13:19:35
  */
 public interface TbFundRecordQuery<PK extends Serializable> extends Query<TbFundRecordEntity,PK> {
 

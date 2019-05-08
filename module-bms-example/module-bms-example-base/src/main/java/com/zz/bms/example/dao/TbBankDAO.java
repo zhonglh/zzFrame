@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 /**
 * 银行信息 操作DAO
 * @author Administrator
-* @date 2019-5-8 10:49:24
+* @date 2019-5-8 13:19:37
 */
 @Repository
 public interface TbBankDAO extends BaseDAO<TbBankBO , String> {
