@@ -322,8 +322,8 @@
 
 
 
-                            <input type="hidden" id="tempSystemUser" />
                             <input type="hidden" id="tempExampleBank" />
+                            <input type="hidden" id="tempSystemUser" />
 
 
                         <div class="block-each block-each-another">
@@ -371,11 +371,70 @@
                                     </svg>基金备案
                                 </div>
 
+
+
+                                    <input type="hidden" name="fundRecordBO.id" id="fundRecordBO_id" value="${ m.fundRecordBO.id }">
+                                    <table class="info-table hide-area">
+                                        <colgroup>
+                                            <col style="width: 15%" />
+                                            <col style="width: 35%" />
+                                            <col style="width: 15%" />
+                                            <col style="width: 35%" />
+                                        </colgroup>
+
+                                        <tbody>
+
+                                                <tr>
+                                                    <th>基金信息<font color="red">*</font></th>
+                                                    <td class="fd_fundRecordBO_fundName">
+                                                            <c:out value="${ m.fundRecordBO.fundName }" escapeXml="true"/>
+                                                    </td>
+                                                        <th>基金代码<font color="red">*</font></th>
+                                                        <td class="fd_fundRecordBO_fundCode">
+                                                                <c:out value="${ m.fundRecordBO.fundCode }" escapeXml="true"/>
+                                                        </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>备案地点<font color="red">*</font></th>
+                                                    <td class="fd_fundRecordBO_recordAddr">
+                                                            <c:out value="${ m.fundRecordBO.recordAddr }" escapeXml="true"/>
+                                                    </td>
+                                                        <th>基金投向<font color="red">*</font></th>
+                                                        <td class="fd_fundRecordBO_fundDirectionName">
+                                                                ${ m.fundRecordBO.fundDirectionName }
+                                                        </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>证件类型</th>
+                                                    <td class="fd_fundRecordBO_cardTypeName">
+                                                            ${ m.fundRecordBO.cardTypeName }
+                                                    </td>
+                                                        <th>管理类型<font color="red">*</font></th>
+                                                        <td class="fd_fundRecordBO_managTypeName">
+                                                                ${ m.fundRecordBO.managTypeName }
+                                                        </td>
+                                                </tr>
+
+
+                                        </tbody>
+
+
+                                    </table>
+
+
+
+
+
+
                                     <table class="info-table">
-                                        <col style="width: 15%" />
-                                        <col style="width: 35%" />
-                                        <col style="width: 15%" />
-                                        <col style="width: 35%" />
+                                        <colgroup>
+                                            <col style="width: 15%" />
+                                            <col style="width: 35%" />
+                                            <col style="width: 15%" />
+                                            <col style="width: 35%" />
+                                        </colgroup>
 
                                         <tbody>
 
@@ -541,8 +600,8 @@
 
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
 
-        <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
         <script src="${ staticUrl }/statics2/business-js/example/bank/search.js"></script>
+        <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
@@ -589,19 +648,6 @@
 
 
 
-        $("#tempSystemUser").OpenSystemUserSelectWin({
-            title: "用户",
-            selectType: "d1",
-            callId: "",
-            callName: "",
-            clearId: ""
-        },function(id,name,row){
-            $(tempSystemUser).val(row.userName);
-            $(tempSystemUser).prev().val(row.id);
-
-            costTableRows(tableId , tableJavaName , tempSystemUserIndex);
-
-        });
         $("#tempExampleBank").OpenExampleBankSelectWin({
             title: "银行信息",
             selectType: "d1",
@@ -615,12 +661,25 @@
             costTableRows(tableId , tableJavaName , tempExampleBankIndex);
 
         });
+        $("#tempSystemUser").OpenSystemUserSelectWin({
+            title: "用户",
+            selectType: "d1",
+            callId: "",
+            callName: "",
+            clearId: ""
+        },function(id,name,row){
+            $(tempSystemUser).val(row.userName);
+            $(tempSystemUser).prev().val(row.id);
+
+            costTableRows(tableId , tableJavaName , tempSystemUserIndex);
+
+        });
 
         $('#tableData-exampleFundaccount').datagrid({
             url : $AppContext+dataUrl+"/fundAccount/list?fundId=${ m.id }",
             onLoadSuccess : function(data){
                 if(data.rows!=null){
-                    $('#tableData-fundAccount').datagrid("resize", {height: (data.rows.length + 1) * 42});
+                    $('#tableData-fundAccount').datagrid("resize", {height: (data.rows.length + 1) * 30});
                     $(".fd-decimal2").inputDecimal(2);
                 }
             }
@@ -630,8 +689,8 @@
 
     var tableId , tableJavaName;
 
-    var tempSystemUser  , tempSystemUserIndex ;
     var tempExampleBank  , tempExampleBankIndex ;
+    var tempSystemUser  , tempSystemUserIndex ;
 
 
     function fund_account_type_dicts() {
@@ -644,37 +703,6 @@
 
 
 
-    function openSystemUser(theTabelId , theTableJavaName ,obj ,index){
-        if(obj != null && obj != undefined) {
-            tempSystemUserIndex = index;
-            tempSystemUser = obj[0];
-            if(tempSystemUser == null){
-                tempSystemUser = obj;
-            }
-
-
-            tableId = theTabelId;
-            tableJavaName = theTableJavaName;
-
-            $("#tempSystemUser").click();
-        }
-    }
-    function clearSystemUser(theTabelId , theTableJavaName ,obj ,index){
-        if(obj != null && obj != undefined){
-            tempSystemUserIndex = index;
-            tempSystemUser = obj[0];
-            if(tempSystemUser == null){
-                tempSystemUser = obj;
-            }
-
-            tableId = theTabelId
-            tableJavaName = theTableJavaName
-            $(tempSystemUser).val("");
-            $(tempSystemUser).prev().val("");
-
-            costTableRows(tableId , tableJavaName , tempSystemUserIndex);
-        }
-    }
     function openExampleBank(theTabelId , theTableJavaName ,obj ,index){
         if(obj != null && obj != undefined) {
             tempExampleBankIndex = index;
@@ -704,6 +732,37 @@
             $(tempExampleBank).prev().val("");
 
             costTableRows(tableId , tableJavaName , tempExampleBankIndex);
+        }
+    }
+    function openSystemUser(theTabelId , theTableJavaName ,obj ,index){
+        if(obj != null && obj != undefined) {
+            tempSystemUserIndex = index;
+            tempSystemUser = obj[0];
+            if(tempSystemUser == null){
+                tempSystemUser = obj;
+            }
+
+
+            tableId = theTabelId;
+            tableJavaName = theTableJavaName;
+
+            $("#tempSystemUser").click();
+        }
+    }
+    function clearSystemUser(theTabelId , theTableJavaName ,obj ,index){
+        if(obj != null && obj != undefined){
+            tempSystemUserIndex = index;
+            tempSystemUser = obj[0];
+            if(tempSystemUser == null){
+                tempSystemUser = obj;
+            }
+
+            tableId = theTabelId
+            tableJavaName = theTableJavaName
+            $(tempSystemUser).val("");
+            $(tempSystemUser).prev().val("");
+
+            costTableRows(tableId , tableJavaName , tempSystemUserIndex);
         }
     }
 

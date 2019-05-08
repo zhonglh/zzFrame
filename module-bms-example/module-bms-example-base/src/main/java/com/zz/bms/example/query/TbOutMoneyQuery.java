@@ -15,7 +15,7 @@ import java.lang.Integer;
  * 出资明细 查询抽象类
  *
  * @author Administrator
- * @date 2019-5-8 13:19:37
+ * @date 2019-5-8 13:45:41
  */
 public interface TbOutMoneyQuery<PK extends Serializable> extends Query<TbOutMoneyEntity,PK> {
 

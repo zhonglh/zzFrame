@@ -16,12 +16,12 @@ import com.zz.bms.example.bo.TbFundRecordBO;
 import com.zz.bms.example.dao.TbFundRecordDAO;
 import com.zz.bms.example.service.TbFundRecordService;
 
-import com.zz.bms.system.bo.TsUserBO;
-import com.zz.bms.system.dao.TsUserDAO;
 import com.zz.bms.example.bo.TbFundBO;
 import com.zz.bms.example.dao.TbFundDAO;
 import com.zz.bms.example.bo.TbBankBO;
 import com.zz.bms.example.dao.TbBankDAO;
+import com.zz.bms.system.bo.TsUserBO;
+import com.zz.bms.system.dao.TsUserDAO;
 
 
 import org.apache.commons.lang3.StringUtils;
@@ -36,7 +36,7 @@ import java.util.Map;
 /**
 * 基金备案 ServiceImpl
 * @author Administrator
-* @date 2019-5-8 13:19:35
+* @date 2019-5-8 13:45:40
 */
 @Service
 public class TbFundRecordServiceImpl extends BaseServiceImpl<TbFundRecordBO,String> implements TbFundRecordService {
@@ -49,11 +49,11 @@ public class TbFundRecordServiceImpl extends BaseServiceImpl<TbFundRecordBO,Stri
 
 
     @Autowired
-    private TsUserDAO tsUserDAO;
-    @Autowired
     private TbFundDAO tbFundDAO;
     @Autowired
     private TbBankDAO tbBankDAO;
+    @Autowired
+    private TsUserDAO tsUserDAO;
 
 
     @Autowired

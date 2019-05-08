@@ -32,7 +32,7 @@ import java.util.Map;
 /**
 * 投资人 ServiceImpl
 * @author Administrator
-* @date 2019-5-8 13:19:38
+* @date 2019-5-8 13:45:42
 */
 @Service
 public class TbInvestorServiceImpl extends BaseServiceImpl<TbInvestorBO,String> implements TbInvestorService {

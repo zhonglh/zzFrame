@@ -34,7 +34,7 @@ import java.util.Map;
 /**
 * 基金 ServiceImpl
 * @author Administrator
-* @date 2019-5-8 13:19:36
+* @date 2019-5-8 13:45:41
 */
 @Service
 public class TbFundServiceImpl extends BaseServiceImpl<TbFundBO,String> implements TbFundService {

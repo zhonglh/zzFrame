@@ -210,165 +210,167 @@
 
 
 
-                            <input type="hidden" id="tempSystemUser" />
-                            <input type="hidden" id="tempExampleBank" />
+                        <input type="hidden" id="tempExampleBank" />
+                        <input type="hidden" id="tempSystemUser" />
 
 
-                            <div class="block-each block-each-another">
+                        <div class="block-each block-each-another">
 
-                                    <div class="block-tit">
-                                        <svg class="icon" aria-hidden="true">
-                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                                        </svg>基金账户
+                                <div class="block-tit">
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
+                                    </svg>基金账户
+                                </div>
+
+
+
+
+                                    <div class="exampleFundaccount" style="width: 100%">
+                                        <table id='tableData-exampleFundaccount' class='easyui-datagrid' singleSelect="true" scrollbarSize="0"   method='post' fit='false'  fitColumns="true" border='true'>
+                                            <thead>
+                                            <tr>
+
+                                                        <th field='fundAccountTypeName' align="left" width="1" sortable='false' formatter="exampleFundaccount_fundAccountTypeNameFmt"  >基金账户类型</th>
+                                                        <th field='accountName' align="left" width="1" sortable='false' formatter="exampleFundaccount_accountNameFmt"  >户名</th>
+                                                        <th field='bankName' align="left" width="1" sortable='false' formatter="exampleFundaccount_bankNameFmt"  >开户行</th>
+                                                        <th field='accountNo' align="left" width="1" sortable='false' formatter="exampleFundaccount_accountNoFmt"  >账号</th>
+                                                        <th field='startDate' align="center" width="1" sortable='true' formatter="exampleFundaccount_startDateFmt"  >开始日期</th>
+                                                        <th field='otherBankName' align="left" width="1" sortable='false' formatter="exampleFundaccount_otherBankNameFmt"  >其他行</th>
+                                                        <th field='userName' align="left" width="1" sortable='false' formatter="exampleFundaccount_userNameFmt"  >账户处理人</th>
+                                                <th field="option" align="left" formatter="markFmtFundAccount">操作</th>
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                        <div style="text-align: center;margin: 5px">
+                                            <button type="button" class="btn btn-primary btn-sm" onclick="doAddFundAccount()">
+                                                <svg class="icon" aria-hidden="true">
+                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
+                                                </svg>
+                                                <span>添 加</span>
+                                            </button>
+                                        </div>
                                     </div>
 
 
 
+                                <div class="block-tit">
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
+                                    </svg>基金备案
+                                </div>
 
-                                        <div class="exampleFundaccount" style="width: 100%">
-                                            <table id='tableData-exampleFundaccount' class='easyui-datagrid' singleSelect="true" scrollbarSize="0"   method='post' fit='false'  fitColumns="true" border='true'>
-                                                <thead>
+                                    <table class="info-table">
+                                        <colgroup>
+                                            <col style="width: 15%" />
+                                            <col style="width: 35%" />
+                                            <col style="width: 15%" />
+                                            <col style="width: 35%" />
+                                        </colgroup>
+
+                                        <tbody>
+
+
                                                 <tr>
 
-                                                            <th field='fundAccountTypeName' align="left" width="1" sortable='false' formatter="exampleFundaccount_fundAccountTypeNameFmt"  >基金账户类型</th>
-                                                            <th field='accountName' align="left" width="1" sortable='false' formatter="exampleFundaccount_accountNameFmt"  >户名</th>
-                                                            <th field='bankName' align="left" width="1" sortable='false' formatter="exampleFundaccount_bankNameFmt"  >开户行</th>
-                                                            <th field='accountNo' align="left" width="1" sortable='false' formatter="exampleFundaccount_accountNoFmt"  >账号</th>
-                                                            <th field='startDate' align="center" width="1" sortable='true' formatter="exampleFundaccount_startDateFmt"  >开始日期</th>
-                                                            <th field='otherBankName' align="left" width="1" sortable='false' formatter="exampleFundaccount_otherBankNameFmt"  >其他行</th>
-                                                            <th field='userName' align="left" width="1" sortable='false' formatter="exampleFundaccount_userNameFmt"  >账户处理人</th>
-                                                    <th field="option" align="left" formatter="markFmtFundAccount">操作</th>
+                                                            <th>备案日期<font color="red">*</font></th>
+                                                            <td>
+
+                                                                            <input type="text" required="required" class="form-control input-sm Wdate required"
+                                                                                   placeholder="请输入备案日期" autocomplete="off"
+                                                                                   onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'fundRecordBO_recordDate'})"
+                                                                                   value="${ m.fundRecordBO.recordDate }" id="fundRecordBO_recordDate" name="fundRecordBO.recordDate" readonly   />
+
+                                                            </td>
+
+
                                                 </tr>
-                                                </thead>
-                                            </table>
-                                            <div style="text-align: center;margin: 5px">
-                                                <button type="button" class="btn btn-primary btn-sm" onclick="doAddFundAccount()">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
-                                                    </svg>
-                                                    <span>添 加</span>
-                                                </button>
-                                            </div>
-                                        </div>
+                                                <tr>
+                                                    <th>备案地点<font color="red">*</font></th>
+                                                    <td>
+                                                                <input type="text" required="required" class="form-control input-sm required"
+                                                                       placeholder="请输入备案地点" autocomplete="off"
+                                                                       value="${ m.fundRecordBO.recordAddr }" id="fundRecordBO_recordAddr" name="fundRecordBO.recordAddr"
+                                                                           maxlength="200"  />
+                                                    </td>
 
-
-
-                                    <div class="block-tit">
-                                        <svg class="icon" aria-hidden="true">
-                                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                                        </svg>基金备案
-                                    </div>
-
-                                        <table class="info-table">
-                                            <col style="width: 15%" />
-                                            <col style="width: 35%" />
-                                            <col style="width: 15%" />
-                                            <col style="width: 35%" />
-
-                                            <tbody>
-
-
-                                                    <tr>
-
-                                                                <th>备案日期<font color="red">*</font></th>
-                                                                <td>
-
-                                                                                <input type="text" required="required" class="form-control input-sm Wdate required"
-                                                                                       placeholder="请输入备案日期" autocomplete="off"
-                                                                                       onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'fundRecordBO_recordDate'})"
-                                                                                       value="${ m.fundRecordBO.recordDate }" id="fundRecordBO_recordDate" name="fundRecordBO.recordDate" readonly   />
-
-                                                                </td>
-
-
-                                                    </tr>
-                                                    <tr>
-                                                        <th>备案地点<font color="red">*</font></th>
-                                                        <td>
-                                                                    <input type="text" required="required" class="form-control input-sm required"
-                                                                           placeholder="请输入备案地点" autocomplete="off"
-                                                                           value="${ m.fundRecordBO.recordAddr }" id="fundRecordBO_recordAddr" name="fundRecordBO.recordAddr"
-                                                                               maxlength="200"  />
-                                                        </td>
-
-                                                                <th>开户行<font color="red">*</font></th>
-                                                                <td>
-                                                                            <c:if test="${ fn:indexOf(allQueryString,'&bankId=') >= 0 }">
-                                                                                <input type="text" class="form-control input-sm" name="fundRecordBO.bankName" id="fundRecordBO_bankName"  value="${ m.fundRecordBO.bankName }" readonly>
-                                                                            </c:if>
-                                                                            <c:if test="${ fn:indexOf(allQueryString,'&bankId=') < 0 }">
-                                                                                <div class="input-group">
-                                                                                    <input type="hidden" name="fundRecordBO.bankId" id="fundRecordBO_bankId" value="${ m.fundRecordBO.bankId }" >
-                                                                                    <input type="text" name="fundRecordBO.bankName" id="fundRecordBO_bankName" value="${ m.fundRecordBO.bankName }" required="required" class="form-control input-sm fundRecordBO_bankName " placeholder="请选择开户行" style="cursor: pointer;" readonly="readonly">
-                                                                                    <div class="input-group-btn">
-                                                                                        <button type="button"  class="btn btn-primary btn-sm fundRecordBO_bankName">
-                                                                                            <svg class="icon" aria-hidden="true">
-                                                                                                <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                                     xlink:href="#icon-sousuo">
-                                                                                                </use>
-                                                                                            </svg>
-                                                                                        </button>
-                                                                                        <button type="button" id="clearfundRecordBO_BankId"   class="btn btn-primary btn-sm">
-                                                                                            <svg class="icon" aria-hidden="true">
-                                                                                                <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                                     xlink:href="#icon-close">
-                                                                                                </use>
-                                                                                            </svg>
-                                                                                        </button>
-                                                                                    </div>
+                                                            <th>开户行<font color="red">*</font></th>
+                                                            <td>
+                                                                        <c:if test="${ fn:indexOf(allQueryString,'&bankId=') >= 0 }">
+                                                                            <input type="text" class="form-control input-sm" name="fundRecordBO.bankName" id="fundRecordBO_bankName"  value="${ m.fundRecordBO.bankName }" readonly>
+                                                                        </c:if>
+                                                                        <c:if test="${ fn:indexOf(allQueryString,'&bankId=') < 0 }">
+                                                                            <div class="input-group">
+                                                                                <input type="hidden" name="fundRecordBO.bankId" id="fundRecordBO_bankId" value="${ m.fundRecordBO.bankId }" >
+                                                                                <input type="text" name="fundRecordBO.bankName" id="fundRecordBO_bankName" value="${ m.fundRecordBO.bankName }" required="required" class="form-control input-sm fundRecordBO_bankName " placeholder="请选择开户行" style="cursor: pointer;" readonly="readonly">
+                                                                                <div class="input-group-btn">
+                                                                                    <button type="button"  class="btn btn-primary btn-sm fundRecordBO_bankName">
+                                                                                        <svg class="icon" aria-hidden="true">
+                                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                                 xlink:href="#icon-sousuo">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </button>
+                                                                                    <button type="button" id="clearfundRecordBO_BankId"   class="btn btn-primary btn-sm">
+                                                                                        <svg class="icon" aria-hidden="true">
+                                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                                 xlink:href="#icon-close">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </button>
                                                                                 </div>
-                                                                            </c:if>
-                                                                </td>
+                                                                            </div>
+                                                                        </c:if>
+                                                            </td>
 
 
-                                                    </tr>
-                                                    <tr>
-                                                        <th>证件类型</th>
-                                                        <td>
-                                                                    <select id="fundRecordBO_cardType"  name="fundRecordBO.cardType"  style="width:98%">
-                                                                        <option value="" ></option>
-                                                                        <c:forEach items="${ card_type_dicts }" var="dict">
-                                                                            <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.fundRecordBO.cardType }">selected</c:if>>${ dict.dictName  }</option>
-                                                                        </c:forEach>
-                                                                    </select>
-                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>证件类型</th>
+                                                    <td>
+                                                                <select id="fundRecordBO_cardType"  name="fundRecordBO.cardType"  style="width:98%">
+                                                                    <option value="" ></option>
+                                                                    <c:forEach items="${ card_type_dicts }" var="dict">
+                                                                        <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.fundRecordBO.cardType }">selected</c:if>>${ dict.dictName  }</option>
+                                                                    </c:forEach>
+                                                                </select>
+                                                    </td>
 
-                                                                <th>备案人<font color="red">*</font></th>
-                                                                <td>
-                                                                            <c:if test="${ fn:indexOf(allQueryString,'&recordUserId=') >= 0 }">
-                                                                                <input type="text" class="form-control input-sm" name="fundRecordBO.recordUserName" id="fundRecordBO_recordUserName"  value="${ m.fundRecordBO.recordUserName }" readonly>
-                                                                            </c:if>
-                                                                            <c:if test="${ fn:indexOf(allQueryString,'&recordUserId=') < 0 }">
-                                                                                <div class="input-group">
-                                                                                    <input type="hidden" name="fundRecordBO.recordUserId" id="fundRecordBO_recordUserId" value="${ m.fundRecordBO.recordUserId }" >
-                                                                                    <input type="text" name="fundRecordBO.recordUserName" id="fundRecordBO_recordUserName" value="${ m.fundRecordBO.recordUserName }" required="required" class="form-control input-sm fundRecordBO_recordUserName " placeholder="请选择备案人" style="cursor: pointer;" readonly="readonly">
-                                                                                    <div class="input-group-btn">
-                                                                                        <button type="button"  class="btn btn-primary btn-sm fundRecordBO_recordUserName">
-                                                                                            <svg class="icon" aria-hidden="true">
-                                                                                                <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                                     xlink:href="#icon-sousuo">
-                                                                                                </use>
-                                                                                            </svg>
-                                                                                        </button>
-                                                                                        <button type="button" id="clearfundRecordBO_RecordUserId"   class="btn btn-primary btn-sm">
-                                                                                            <svg class="icon" aria-hidden="true">
-                                                                                                <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                                     xlink:href="#icon-close">
-                                                                                                </use>
-                                                                                            </svg>
-                                                                                        </button>
-                                                                                    </div>
+                                                            <th>备案人<font color="red">*</font></th>
+                                                            <td>
+                                                                        <c:if test="${ fn:indexOf(allQueryString,'&recordUserId=') >= 0 }">
+                                                                            <input type="text" class="form-control input-sm" name="fundRecordBO.recordUserName" id="fundRecordBO_recordUserName"  value="${ m.fundRecordBO.recordUserName }" readonly>
+                                                                        </c:if>
+                                                                        <c:if test="${ fn:indexOf(allQueryString,'&recordUserId=') < 0 }">
+                                                                            <div class="input-group">
+                                                                                <input type="hidden" name="fundRecordBO.recordUserId" id="fundRecordBO_recordUserId" value="${ m.fundRecordBO.recordUserId }" >
+                                                                                <input type="text" name="fundRecordBO.recordUserName" id="fundRecordBO_recordUserName" value="${ m.fundRecordBO.recordUserName }" required="required" class="form-control input-sm fundRecordBO_recordUserName " placeholder="请选择备案人" style="cursor: pointer;" readonly="readonly">
+                                                                                <div class="input-group-btn">
+                                                                                    <button type="button"  class="btn btn-primary btn-sm fundRecordBO_recordUserName">
+                                                                                        <svg class="icon" aria-hidden="true">
+                                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                                 xlink:href="#icon-sousuo">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </button>
+                                                                                    <button type="button" id="clearfundRecordBO_RecordUserId"   class="btn btn-primary btn-sm">
+                                                                                        <svg class="icon" aria-hidden="true">
+                                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                                 xlink:href="#icon-close">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </button>
                                                                                 </div>
-                                                                            </c:if>
-                                                                </td>
+                                                                            </div>
+                                                                        </c:if>
+                                                            </td>
 
 
-                                                    </tr>
-                                            </tbody>
+                                                </tr>
+                                        </tbody>
 
-                                        </table>
+                                    </table>
 
-                            </div>
+                        </div>
 
 
 
@@ -392,6 +394,9 @@
                     <span>取 消</span>
                 </button>
             </div>
+
+
+
         </div>
     </div>
 </div>
@@ -406,8 +411,8 @@
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
 
 
-<script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/example/bank/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
@@ -455,19 +460,6 @@
 
 
 
-        $("#tempSystemUser").OpenSystemUserSelectWin({
-            title: "用户",
-            selectType: "d1",
-            callId: "",
-            callName: "",
-            clearId: ""
-        },function(id,name,row){
-            $(tempSystemUser).val(row.userName);
-            $(tempSystemUser).prev().val(row.id);
-
-            costTableRows(tableId , tableJavaName , tempSystemUserIndex);
-
-        });
         $("#tempExampleBank").OpenExampleBankSelectWin({
             title: "银行信息",
             selectType: "d1",
@@ -481,6 +473,19 @@
             costTableRows(tableId , tableJavaName , tempExampleBankIndex);
 
         });
+        $("#tempSystemUser").OpenSystemUserSelectWin({
+            title: "用户",
+            selectType: "d1",
+            callId: "",
+            callName: "",
+            clearId: ""
+        },function(id,name,row){
+            $(tempSystemUser).val(row.userName);
+            $(tempSystemUser).prev().val(row.id);
+
+            costTableRows(tableId , tableJavaName , tempSystemUserIndex);
+
+        });
 
         $('#tableData-exampleFundaccount').datagrid({
             data : []
@@ -490,8 +495,8 @@
 
     var tableId , tableJavaName;
 
-    var tempSystemUser  , tempSystemUserIndex ;
     var tempExampleBank  , tempExampleBankIndex ;
+    var tempSystemUser  , tempSystemUserIndex ;
 
 
     function fund_account_type_dicts() {
@@ -504,37 +509,6 @@
 
 
 
-    function openSystemUser(theTabelId , theTableJavaName ,obj ,index){
-        if(obj != null && obj != undefined) {
-            tempSystemUserIndex = index;
-            tempSystemUser = obj[0];
-            if(tempSystemUser == null){
-                tempSystemUser = obj;
-            }
-
-
-            tableId = theTabelId;
-            tableJavaName = theTableJavaName;
-
-            $("#tempSystemUser").click();
-        }
-    }
-    function clearSystemUser(theTabelId , theTableJavaName ,obj ,index){
-        if(obj != null && obj != undefined){
-            tempSystemUserIndex = index;
-            tempSystemUser = obj[0];
-            if(tempSystemUser == null){
-                tempSystemUser = obj;
-            }
-
-            tableId = theTabelId
-            tableJavaName = theTableJavaName
-            $(tempSystemUser).val("");
-            $(tempSystemUser).prev().val("");
-
-            costTableRows(tableId , tableJavaName , tempSystemUserIndex);
-        }
-    }
     function openExampleBank(theTabelId , theTableJavaName ,obj ,index){
         if(obj != null && obj != undefined) {
             tempExampleBankIndex = index;
@@ -564,6 +538,37 @@
             $(tempExampleBank).prev().val("");
 
             costTableRows(tableId , tableJavaName , tempExampleBankIndex);
+        }
+    }
+    function openSystemUser(theTabelId , theTableJavaName ,obj ,index){
+        if(obj != null && obj != undefined) {
+            tempSystemUserIndex = index;
+            tempSystemUser = obj[0];
+            if(tempSystemUser == null){
+                tempSystemUser = obj;
+            }
+
+
+            tableId = theTabelId;
+            tableJavaName = theTableJavaName;
+
+            $("#tempSystemUser").click();
+        }
+    }
+    function clearSystemUser(theTabelId , theTableJavaName ,obj ,index){
+        if(obj != null && obj != undefined){
+            tempSystemUserIndex = index;
+            tempSystemUser = obj[0];
+            if(tempSystemUser == null){
+                tempSystemUser = obj;
+            }
+
+            tableId = theTabelId
+            tableJavaName = theTableJavaName
+            $(tempSystemUser).val("");
+            $(tempSystemUser).prev().val("");
+
+            costTableRows(tableId , tableJavaName , tempSystemUserIndex);
         }
     }
 
