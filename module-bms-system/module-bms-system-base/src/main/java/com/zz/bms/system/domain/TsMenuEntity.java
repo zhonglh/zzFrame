@@ -8,17 +8,23 @@ import java.sql.Timestamp;
 import java.lang.String;
 import java.lang.Integer;
 import com.zz.bms.core.db.entity.BaseBusinessExEntity;
+
+
+
+
+
+
+
 /**
  * 菜单 实体类
  *         path                       menu_url        co        
  * @author Administrator
- * @date 2019-4-10 11:08:55
+ * @date 2019-5-8 16:10:21
  */
-public class TsMenuEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity<String> implements java.io.Serializable{
+public class TsMenuEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity<String> implements java.io.Serializable  {
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
-
 
 
     @EntityAttrDBAnnotation(attrName="菜单名称" ,attrColumn="menu_name"  , type = "VARCHAR"      ,  attrLength = 30 , notNull = true )
@@ -30,12 +36,16 @@ public class TsMenuEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
 
 
 
+
+
     @EntityAttrDBAnnotation(attrName="菜单编号" ,attrColumn="menu_code"  , type = "VARCHAR"      ,  attrLength = 50 , notNull = true )
     @EntityAttrPageAnnotation(title = "菜单编号",sort = 300  , pageElement = "text"            , maxLength = 50        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
     
 	private String  menuCode ;
+
+
 
 
 
@@ -49,8 +59,10 @@ public class TsMenuEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
 
 
 
+
+
     @EntityAttrDBAnnotation(attrName="菜单顺序" ,attrColumn="menu_sort"  , type = "INT"      ,  attrLength = 10 , notNull = true )
-    @EntityAttrPageAnnotation(title = "菜单顺序",sort = 500  , pageElement = "text"            , maxLength = 10        ,required=true )
+    @EntityAttrPageAnnotation(title = "菜单顺序",sort = 500  , pageElement = "digits"            , maxLength = 10        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
     
@@ -58,12 +70,16 @@ public class TsMenuEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
 
 
 
-    @EntityAttrDBAnnotation(attrName="菜单地址" ,attrColumn="menu_url"  , type = "VARCHAR"      ,  attrLength = 200 , notNull = true )
-    @EntityAttrPageAnnotation(title = "菜单地址",sort = 600  , pageElement = "text"            , maxLength = 200        ,required=true )
+
+
+    @EntityAttrDBAnnotation(attrName="菜单地址" ,attrColumn="menu_url"  , type = "VARCHAR"      ,  attrLength = 200 , notNull = false )
+    @EntityAttrPageAnnotation(title = "菜单地址",sort = 600  , pageElement = "text"            , maxLength = 200        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
     
 	private String  menuUrl ;
+
+
 
 
 
@@ -76,6 +92,8 @@ public class TsMenuEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
 
 
 
+
+
     @EntityAttrDBAnnotation(attrName="菜单图标" ,attrColumn="menu_icon"  , type = "VARCHAR"      ,  attrLength = 20 , notNull = false )
     @EntityAttrPageAnnotation(title = "菜单图标",sort = 800  , pageElement = "text"            , maxLength = 20        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
@@ -85,12 +103,16 @@ public class TsMenuEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
 
 
 
+
+
     @EntityAttrDBAnnotation(attrName="跳转目标" ,attrColumn="menu_redirect"  , type = "VARCHAR"      ,  attrLength = 50 , notNull = false )
     @EntityAttrPageAnnotation(title = "跳转目标",sort = 900  , pageElement = "text"            , maxLength = 50        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
     
 	private String  menuRedirect ;
+
+
 
 
 
@@ -104,12 +126,16 @@ public class TsMenuEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
 
 
 
+
+
     @EntityAttrDBAnnotation(attrName="层级" ,attrColumn="level"  , type = "INT"      ,  attrLength = 10 , notNull = true )
-    @EntityAttrPageAnnotation(title = "层级",sort = 1100  , pageElement = "text"            , maxLength = 10        ,required=true )
+    @EntityAttrPageAnnotation(title = "层级",sort = 1100  , pageElement = "digits"            , maxLength = 10        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
     
 	private Integer  level ;
+
+
 
 
 
@@ -123,12 +149,30 @@ public class TsMenuEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
 
 
 
+
+
+    @EntityAttrDictAnnotation(group = "hidden", groupName = "是否隐藏" ,  dbColumnName = "dict_val" , dbColumnLength = 2 , isValueField = true , dictType = "yes_no")
+    @EntityAttrDBAnnotation(attrName="是否隐藏" ,attrColumn="hidden"  , type = "CHAR"      ,  attrLength = 1 , notNull = true )
+    @EntityAttrPageAnnotation(title = "是否隐藏",sort = 1300  , pageElement = "select"            , maxLength = 1        ,required=true )
+	
+    
+    
+	private String  hidden ;
+
+
+
+
+
     @EntityAttrDBAnnotation(attrName="备注" ,attrColumn="remark"  , type = "VARCHAR"      ,  attrLength = 200 , notNull = false )
-    @EntityAttrPageAnnotation(title = "备注",sort = 1300  , pageElement = "text"            , maxLength = 200        ,required=false )
+    @EntityAttrPageAnnotation(title = "备注",sort = 1400  , pageElement = "text"            , maxLength = 200        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
     
 	private String  remark ;
+
+
+
+
 
 
 
@@ -233,6 +277,15 @@ public class TsMenuEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
     }
 
 
+	public void setHidden(String hidden){
+		this.hidden = hidden;
+	}
+
+    public String getHidden(){
+    	return this.hidden;
+    }
+
+
 	public void setRemark(String remark){
 		this.remark = remark;
 	}
@@ -242,5 +295,5 @@ public class TsMenuEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
     }
 
 
-	
+
 }

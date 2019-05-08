@@ -13,7 +13,7 @@ import java.lang.Integer;
  * 菜单 查询抽象类
  *
  * @author Administrator
- * @date 2019-4-11 14:06:18
+ * @date 2019-5-8 16:10:22
  */
 public interface TsMenuQuery<PK extends Serializable> extends Query<TsMenuEntity,PK> {
 
@@ -156,6 +156,17 @@ public interface TsMenuQuery<PK extends Serializable> extends Query<TsMenuEntity
         public TsMenuQuery leafNotIn(String leafNotIn);
         public TsMenuQuery leafIsNull();
         public TsMenuQuery leafIsNotNull();
+
+
+
+
+
+        public TsMenuQuery hidden(String hidden);
+        public TsMenuQuery hiddenNot(String hiddenNot);
+        public TsMenuQuery hiddenIn(String hiddenIn);
+        public TsMenuQuery hiddenNotIn(String hiddenNotIn);
+        public TsMenuQuery hiddenIsNull();
+        public TsMenuQuery hiddenIsNotNull();
 
 
 

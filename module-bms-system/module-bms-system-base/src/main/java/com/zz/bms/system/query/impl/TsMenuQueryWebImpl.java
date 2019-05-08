@@ -11,7 +11,7 @@ import java.lang.Integer;
 * 菜单 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2019-4-11 14:06:18
+* @date 2019-5-8 16:10:22
 */
 public class TsMenuQueryWebImpl<PK extends Serializable> extends TsMenuAbstractQueryImpl<PK> implements Serializable {
 
@@ -71,6 +71,11 @@ public class TsMenuQueryWebImpl<PK extends Serializable> extends TsMenuAbstractQ
 
             private String leaf_IN;
             private String leaf_NOTIN;
+
+
+
+            private String hidden_IN;
+            private String hidden_NOTIN;
 
 
 
@@ -640,6 +645,39 @@ public class TsMenuQueryWebImpl<PK extends Serializable> extends TsMenuAbstractQ
 
             public void setLeaf_NOTIN(String leaf_NOTIN) {
                 this.leaf_NOTIN = leaf_NOTIN;
+            }
+
+
+            public String getHidden() {
+                return hidden;
+            }
+
+            public void setHidden(String hidden) {
+                this.hidden = hidden;
+            }
+
+            public String getHidden_NE() {
+                return hidden_NE;
+            }
+
+            public void setHidden_NE(String hidden_NE) {
+                this.hidden_NE = hidden_NE;
+            }
+
+            public String getHidden_IN() {
+                return hidden_IN;
+            }
+
+            public void setHidden_IN(String hidden_IN) {
+                this.hidden_IN = hidden_IN;
+            }
+
+            public String getHidden_NOTIN() {
+                return hidden_NOTIN;
+            }
+
+            public void setHidden_NOTIN(String hidden_NOTIN) {
+                this.hidden_NOTIN = hidden_NOTIN;
             }
 
 

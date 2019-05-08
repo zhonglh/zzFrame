@@ -13,7 +13,7 @@ import java.lang.Integer;
  * 菜单 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2019-4-11 14:06:18
+ * @date 2019-5-8 16:10:22
  */
 public abstract class TsMenuAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TsMenuEntity,PK> {
 
@@ -72,6 +72,9 @@ public abstract class TsMenuAbstractQueryImpl<PK extends Serializable> extends Q
 
             protected String leaf;
             protected String leaf_NE;
+
+            protected String hidden;
+            protected String hidden_NE;
 
             protected String remark;
             protected String remark_NE;

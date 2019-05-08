@@ -113,6 +113,13 @@
 
                                 <tr>
 
+
+                                    <th>备注</th>
+                                    <td class="fd_hiddenName">
+                                    ${ m.hiddenName }
+
+                                    </td>
+
                                     <th>备注</th>
 
                                     <td class="fd_remark">
@@ -257,6 +264,18 @@
 
 
                                 <tr>
+
+
+                                    <th>是否隐藏<font color="red">*</font></th>
+                                    <td>
+                                        <select id="hidden"  name="hidden" required="required" style="width:98%">
+                                        <option value="" ></option>
+                                        <c:forEach items="${ yes_no_dicts }" var="dict">
+                                            <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.hidden }">selected</c:if>>${ dict.dictName }</option>
+                                        </c:forEach>
+                                        </select>
+                                    </td>
+
                                     <th>备注</th>
                                     <td>
                                                 <input type="text"  class="form-control input-sm "

@@ -17,7 +17,7 @@ import java.lang.Integer;
 * 菜单 查询实现类
 * 用于链式查询
 * @author Administrator
-* @date 2019-4-11 14:06:18
+* @date 2019-5-8 16:10:22
 */
 public class TsMenuQueryImpl<PK extends Serializable> extends TsMenuAbstractQueryImpl<PK> implements TsMenuQuery<PK>, Serializable  {
 
@@ -50,6 +50,9 @@ public class TsMenuQueryImpl<PK extends Serializable> extends TsMenuAbstractQuer
 
         private List<String> leaf_IN;
         private List<String> leaf_NOTIN;
+
+        private List<String> hidden_IN;
+        private List<String> hidden_NOTIN;
 
 
         private List<String> remark_IN;
@@ -775,6 +778,57 @@ public class TsMenuQueryImpl<PK extends Serializable> extends TsMenuAbstractQuer
         @Override
         public TsMenuQuery leafIsNotNull() {
             this.isNotNulls.add("leaf");
+            return this;
+        }
+
+
+        @Override
+        public TsMenuQuery hidden(String hidden) {
+            if(!IdUtils.isEmpty(hidden)){
+                this.hidden = hidden;
+            }
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery hiddenNot(String hiddenNot) {
+            if(!IdUtils.isEmpty(hiddenNot)){
+                this.hidden_NE = hiddenNot;
+            }
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery hiddenIn(String hiddenIn) {
+            if(!IdUtils.isEmpty(hiddenIn)){
+                if(this.hidden_IN == null){
+                    this.hidden_IN = new ArrayList<String>();
+                }
+                this.hidden_IN.add( hiddenIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery hiddenNotIn(String hiddenNotIn) {
+            if(!IdUtils.isEmpty(hiddenNotIn)){
+                if(this.hidden_NOTIN == null){
+                    this.hidden_NOTIN = new ArrayList<String>();
+                }
+                this.hidden_NOTIN.add( hiddenNotIn );
+            }
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery hiddenIsNull() {
+            this.isNulls.add("hidden");
+            return this;
+        }
+
+        @Override
+        public TsMenuQuery hiddenIsNotNull() {
+            this.isNotNulls.add("hidden");
             return this;
         }
 
