@@ -53,8 +53,6 @@ public class TbFundAccountServiceImpl extends BaseServiceImpl<TbFundAccountBO,St
     @Autowired
     private TbBankDAO tbBankDAO;
     @Autowired
-    private TbBankDAO tbBankDAO;
-    @Autowired
     private TsUserDAO tsUserDAO;
     @Autowired
     private TbFundDAO tbFundDAO;
