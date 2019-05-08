@@ -39,7 +39,7 @@ import java.util.Map;
 /**
  * 银行信息 控制层
 * @author Administrator
-* @date 2019-5-8 13:45:41
+* @date 2019-5-8 14:17:27
  */
 @RequestMapping("/example/bank")
 @Controller
