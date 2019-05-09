@@ -49,6 +49,7 @@ public class TsMsgTempletBO extends TsMsgTempletEntity implements Serializable ,
     @TableField(exist = false)
     @EntityAttrDictAnnotation(group = "templetEffective", groupName = "模板是否有效" ,  dbColumnName = "dict_name" , dbColumnLength = 50 , isNameField = true , dictType = "yes_no")
     @EntityAttrPageAnnotation(title = "模板是否有效",sort = 701                      ,required=true )
+    @EntityAttrExcelAnnotation(excelProcess= "2")
     private String templetEffectiveName ;
 
 

@@ -394,9 +394,6 @@
                     <span>取 消</span>
                 </button>
             </div>
-
-
-
         </div>
     </div>
 </div>
@@ -579,7 +576,7 @@
 
 
     function exampleFundaccount_fundAccountTypeNameFmt(val, row,index){
-        var html = "<select name='fundAccountBOList["+index+"].fundAccountType' id='fundAccountBOList_"+index+"_fundAccountType' onblur='costTableRows(\"tableData-exampleFundaccount\" , \"fundAccountBOList \" , "+index+")' class=’form-control input-sm required‘>" ;
+        var html = "<select name='fundAccountBOList["+index+"].fundAccountType' id='fundAccountBOList_"+index+"_fundAccountType' onblur='costTableRows(\"tableData-exampleFundaccount\" , \"fundAccountBOList \" , "+index+")' class='form-control input-sm required'>" ;
         html += checkedOption(fund_account_type_dicts() , row.fundAccountType);
         html += "</select>";
         return html;

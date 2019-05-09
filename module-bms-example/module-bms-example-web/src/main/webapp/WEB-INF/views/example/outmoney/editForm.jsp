@@ -276,7 +276,7 @@
                                             <input type="text" required="required" class="form-control input-sm Wdate required"
                                                    placeholder="请输入到账日期" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'arrivalAccountDate'})"
-                                                           value="${ m.arrivalAccountDate }" id="arrivalAccountDate" name="arrivalAccountDate" readonly   />
+                                                           value='<fmt:formatDate value="${ m.arrivalAccountDate }" pattern="yyyy-MM-dd" />' id="arrivalAccountDate" name="arrivalAccountDate" readonly   />
 
                                 </td>
                             </tr>

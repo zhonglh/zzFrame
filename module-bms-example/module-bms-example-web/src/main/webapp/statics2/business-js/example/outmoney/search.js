@@ -85,17 +85,12 @@ function openExampleOutmoneyWin(config, callBack)
 };
 
 
-var exampleOutmoneyWin = null;
 //出资明细选择控件
 $.fn.OpenExampleOutmoneySelectWin = function(config, callBack){
-    if(exampleOutmoneyWin != null){
-        exampleOutmoneyWin.remove();
-    }
-
-    exampleOutmoneyWin = openExampleOutmoneyWin(config, callBack);
+    var win = openExampleOutmoneyWin(config, callBack);
     $(this).unbind("click");
     $(this).bind("click", function(){
-        exampleOutmoneyWin.show();
+        win.show();
     });
-    return exampleOutmoneyWin;
+    return win;
 };

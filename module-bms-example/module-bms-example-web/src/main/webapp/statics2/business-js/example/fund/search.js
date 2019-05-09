@@ -93,17 +93,12 @@ function openExampleFundWin(config, callBack)
 };
 
 
-var exampleFundWin = null;
 //基金选择控件
 $.fn.OpenExampleFundSelectWin = function(config, callBack){
-    if(exampleFundWin != null){
-        exampleFundWin.remove();
-    }
-
-    exampleFundWin = openExampleFundWin(config, callBack);
+    var win = openExampleFundWin(config, callBack);
     $(this).unbind("click");
     $(this).bind("click", function(){
-        exampleFundWin.show();
+        win.show();
     });
-    return exampleFundWin;
+    return win;
 };

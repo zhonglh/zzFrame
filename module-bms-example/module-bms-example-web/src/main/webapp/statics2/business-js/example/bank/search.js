@@ -81,17 +81,12 @@ function openExampleBankWin(config, callBack)
 };
 
 
-var exampleBankWin = null;
 //银行信息选择控件
 $.fn.OpenExampleBankSelectWin = function(config, callBack){
-    if(exampleBankWin != null){
-        exampleBankWin.remove();
-    }
-
-    exampleBankWin = openExampleBankWin(config, callBack);
+    var win = openExampleBankWin(config, callBack);
     $(this).unbind("click");
     $(this).bind("click", function(){
-        exampleBankWin.show();
+        win.show();
     });
-    return exampleBankWin;
+    return win;
 };

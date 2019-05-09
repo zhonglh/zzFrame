@@ -83,17 +83,12 @@ function openExampleInvestorWin(config, callBack)
 };
 
 
-var exampleInvestorWin = null;
 //投资人选择控件
 $.fn.OpenExampleInvestorSelectWin = function(config, callBack){
-    if(exampleInvestorWin != null){
-        exampleInvestorWin.remove();
-    }
-
-    exampleInvestorWin = openExampleInvestorWin(config, callBack);
+    var win = openExampleInvestorWin(config, callBack);
     $(this).unbind("click");
     $(this).bind("click", function(){
-        exampleInvestorWin.show();
+        win.show();
     });
-    return exampleInvestorWin;
+    return win;
 };

@@ -234,7 +234,7 @@
                                             <input type="text"  class="form-control input-sm Wdate "
                                                    placeholder="请输入成立日期" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'startDate'})"
-                                                           value="${ m.startDate }" id="startDate" name="startDate" readonly   />
+                                                   value='<fmt:formatDate value="${ m.startDate }" pattern="yyyy-MM-dd" />' id="startDate" name="startDate" readonly   />
 
                                 </td>
                                 <th>到期日期</th>
@@ -242,7 +242,7 @@
                                             <input type="text"  class="form-control input-sm Wdate "
                                                    placeholder="请输入到期日期" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'endDate'})"
-                                                           value="${ m.endDate }" id="endDate" name="endDate" readonly   />
+                                                           value='<fmt:formatDate value="${ m.endDate }" pattern="yyyy-MM-dd" />' id="endDate" name="endDate" readonly   />
 
                                 </td>
                             </tr>
@@ -371,8 +371,6 @@
                                     </svg>基金备案
                                 </div>
 
-
-
                                     <input type="hidden" name="fundRecordBO.id" id="fundRecordBO_id" value="${ m.fundRecordBO.id }">
                                     <table class="info-table hide-area">
                                         <colgroup>
@@ -385,13 +383,10 @@
                                         <tbody>
 
                                                 <tr>
-                                                    <th>基金信息<font color="red">*</font></th>
-                                                    <td class="fd_fundRecordBO_fundName">
-                                                            <c:out value="${ m.fundRecordBO.fundName }" escapeXml="true"/>
-                                                    </td>
-                                                        <th>基金代码<font color="red">*</font></th>
-                                                        <td class="fd_fundRecordBO_fundCode">
-                                                                <c:out value="${ m.fundRecordBO.fundCode }" escapeXml="true"/>
+
+                                                        <th>备案日期<font color="red">*</font></th>
+                                                        <td class="fd_fundRecordBO_recordDate">
+                                                                <fmt:formatDate value="${ m.fundRecordBO.recordDate }" pattern="yyyy-MM-dd" />
                                                         </td>
                                                 </tr>
 
@@ -400,9 +395,10 @@
                                                     <td class="fd_fundRecordBO_recordAddr">
                                                             <c:out value="${ m.fundRecordBO.recordAddr }" escapeXml="true"/>
                                                     </td>
-                                                        <th>基金投向<font color="red">*</font></th>
-                                                        <td class="fd_fundRecordBO_fundDirectionName">
-                                                                ${ m.fundRecordBO.fundDirectionName }
+
+                                                        <th>开户行<font color="red">*</font></th>
+                                                        <td class="fd_fundRecordBO_bankName">
+                                                                <c:out value="${ m.fundRecordBO.bankName }" escapeXml="true"/>
                                                         </td>
                                                 </tr>
 
@@ -411,9 +407,10 @@
                                                     <td class="fd_fundRecordBO_cardTypeName">
                                                             ${ m.fundRecordBO.cardTypeName }
                                                     </td>
-                                                        <th>管理类型<font color="red">*</font></th>
-                                                        <td class="fd_fundRecordBO_managTypeName">
-                                                                ${ m.fundRecordBO.managTypeName }
+
+                                                        <th>备案人<font color="red">*</font></th>
+                                                        <td class="fd_fundRecordBO_recordUserName">
+                                                                <c:out value="${ m.fundRecordBO.recordUserName }" escapeXml="true"/>
                                                         </td>
                                                 </tr>
 
@@ -428,7 +425,7 @@
 
 
 
-                                    <table class="info-table">
+                                    <table class="info-table show-area">
                                         <colgroup>
                                             <col style="width: 15%" />
                                             <col style="width: 35%" />
@@ -447,7 +444,7 @@
                                                                         <input type="text" required="required" class="form-control input-sm Wdate required"
                                                                                placeholder="请输入备案日期" autocomplete="off"
                                                                                onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'fundRecordBO_recordDate'})"
-                                                                               value="${ m.fundRecordBO.recordDate }" id="fundRecordBO_recordDate" name="fundRecordBO.recordDate" readonly   />
+                                                                               value='<fmt:formatDate value="${ m.fundRecordBO.recordDate }" pattern="yyyy-MM-dd" />' id="fundRecordBO_recordDate" name="fundRecordBO.recordDate" readonly   />
 
                                                             </td>
 
@@ -676,10 +673,10 @@
         });
 
         $('#tableData-exampleFundaccount').datagrid({
-            url : $AppContext+dataUrl+"/fundAccount/list?fundId=${ m.id }",
+            url : $AppContext+dataUrl+"/fundAccount/list?fundId=${ m.id }"
             onLoadSuccess : function(data){
                 if(data.rows!=null){
-                    $('#tableData-fundAccount').datagrid("resize", {height: (data.rows.length + 1) * 30});
+                    //$('#tableData-fundAccount').datagrid("resize", {height: (data.rows.length + 1) * 38});
                     $(".fd-decimal2").inputDecimal(2);
                 }
             }
@@ -773,7 +770,7 @@
 
 
     function exampleFundaccount_fundAccountTypeNameFmt(val, row,index){
-        var html = "<select name='fundAccountBOList["+index+"].fundAccountType' id='fundAccountBOList_"+index+"_fundAccountType' onblur='costTableRows(\"tableData-exampleFundaccount\" , \"fundAccountBOList \" , "+index+")' class=’form-control input-sm show-area required‘>" ;
+        var html = "<select name='fundAccountBOList["+index+"].fundAccountType' id='fundAccountBOList_"+index+"_fundAccountType' onblur='costTableRows(\"tableData-exampleFundaccount\" , \"fundAccountBOList \" , "+index+")' class='form-control input-sm show-area required'>" ;
         html += checkedOption(fund_account_type_dicts() , row.fundAccountType);
         html += "</select>";
         html += "<div class='hide-area'>"+row.fundAccountTypeName+"</div>";

@@ -87,17 +87,12 @@ function openExampleInvestoragreementWin(config, callBack)
 };
 
 
-var exampleInvestoragreementWin = null;
 //投资协议选择控件
 $.fn.OpenExampleInvestoragreementSelectWin = function(config, callBack){
-    if(exampleInvestoragreementWin != null){
-        exampleInvestoragreementWin.remove();
-    }
-
-    exampleInvestoragreementWin = openExampleInvestoragreementWin(config, callBack);
+    var win = openExampleInvestoragreementWin(config, callBack);
     $(this).unbind("click");
     $(this).bind("click", function(){
-        exampleInvestoragreementWin.show();
+        win.show();
     });
-    return exampleInvestoragreementWin;
+    return win;
 };

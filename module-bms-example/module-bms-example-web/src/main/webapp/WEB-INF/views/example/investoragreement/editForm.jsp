@@ -295,7 +295,7 @@
                                             <input type="text" required="required" class="form-control input-sm Wdate required"
                                                    placeholder="请输入签订日期" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'signDate'})"
-                                                           value="${ m.signDate }" id="signDate" name="signDate" readonly   />
+                                                   value='<fmt:formatDate value="${ m.signDate }" pattern="yyyy-MM-dd" />' id="signDate" name="signDate" readonly   />
 
                                 </td>
                                 <th>附件</th>

@@ -208,7 +208,7 @@ public abstract class BaseExcelController<
      * @param m
      * @param isAddNumber
      */
-    protected void exportTitles(ExcelExport<QueryModel> aee , int header, QueryModel m, boolean isAddNumber){
+        protected void exportTitles(ExcelExport<QueryModel> aee , int header, QueryModel m, boolean isAddNumber){
         aee.exportTitles(header ,  m  , isAddNumber );
     }
 
