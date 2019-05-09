@@ -1085,6 +1085,7 @@ $(function(){
         formList: [],
         getForm: function(options){
             //判断是否已经创建
+            debugger;
             var formData = null;
             for(var i=0; i<this.formList.length; i++){
                 if(this.formList[i].options.id == options.id){

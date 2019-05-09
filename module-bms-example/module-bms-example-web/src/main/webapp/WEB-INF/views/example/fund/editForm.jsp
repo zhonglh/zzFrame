@@ -252,14 +252,14 @@
                                 <td>
                                         <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
-                                                      name="investmentField " placeholder="请输入投资领域，500字以内" maxlength="500" rows="6"><c:out value="${ m.investmentField }" escapeXml="true"/></textarea>
+                                                      name="investmentField" id="investmentField"  placeholder="请输入投资领域，500字以内" maxlength="500" rows="6"><c:out value="${ m.investmentField }" escapeXml="true"/></textarea>
                                         </div>
                                 </td>
                                 <th>收入分配</th>
                                 <td>
                                         <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
-                                              name="incomeAllocation" placeholder="请输入收入分配，500字以内" maxlength="500" rows="4">${ m.incomeAllocation }</textarea>
+                                                      id="incomeAllocation" name="incomeAllocation" placeholder="请输入收入分配，500字以内" maxlength="500" rows="4">${ m.incomeAllocation }</textarea>
                                         </div>
                                 </td>
                             </tr>
@@ -272,7 +272,7 @@
                                 <td>
                                         <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
-                                              name="remark" placeholder="请输入备注，500字以内" maxlength="500" rows="4">${ m.remark }</textarea>
+                                                      id="remark" name="remark" placeholder="请输入备注，500字以内" maxlength="500" rows="4">${ m.remark }</textarea>
                                         </div>
                                 </td>
                             </tr>
@@ -322,8 +322,8 @@
 
 
 
-                            <input type="hidden" id="tempSystemUser" />
                             <input type="hidden" id="tempExampleBank" />
+                            <input type="hidden" id="tempSystemUser" />
 
 
                         <div class="block-each block-each-another">
@@ -385,31 +385,31 @@
                                                 <tr>
 
                                                         <th>备案日期<font color="red">*</font></th>
-                                                        <td class="fd_fundRecordBO_recordDate">
+                                                        <td class="fd_fundRecordBOrecordDate">
                                                                 <fmt:formatDate value="${ m.fundRecordBO.recordDate }" pattern="yyyy-MM-dd" />
                                                         </td>
                                                 </tr>
 
                                                 <tr>
                                                     <th>备案地点<font color="red">*</font></th>
-                                                    <td class="fd_fundRecordBO_recordAddr">
+                                                    <td class="fd_fundRecordBOrecordAddr">
                                                             <c:out value="${ m.fundRecordBO.recordAddr }" escapeXml="true"/>
                                                     </td>
 
                                                         <th>开户行<font color="red">*</font></th>
-                                                        <td class="fd_fundRecordBO_bankName">
+                                                        <td class="fd_fundRecordBObankName">
                                                                 <c:out value="${ m.fundRecordBO.bankName }" escapeXml="true"/>
                                                         </td>
                                                 </tr>
 
                                                 <tr>
                                                     <th>证件类型</th>
-                                                    <td class="fd_fundRecordBO_cardTypeName">
+                                                    <td class="fd_fundRecordBOcardTypeName">
                                                             ${ m.fundRecordBO.cardTypeName }
                                                     </td>
 
                                                         <th>备案人<font color="red">*</font></th>
-                                                        <td class="fd_fundRecordBO_recordUserName">
+                                                        <td class="fd_fundRecordBOrecordUserName">
                                                                 <c:out value="${ m.fundRecordBO.recordUserName }" escapeXml="true"/>
                                                         </td>
                                                 </tr>
@@ -597,8 +597,8 @@
 
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
 
-        <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
         <script src="${ staticUrl }/statics2/business-js/example/bank/search.js"></script>
+        <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
@@ -645,19 +645,6 @@
 
 
 
-        $("#tempSystemUser").OpenSystemUserSelectWin({
-            title: "用户",
-            selectType: "d1",
-            callId: "",
-            callName: "",
-            clearId: ""
-        },function(id,name,row){
-            $(tempSystemUser).val(row.userName);
-            $(tempSystemUser).prev().val(row.id);
-
-            costTableRows(tableId , tableJavaName , tempSystemUserIndex);
-
-        });
         $("#tempExampleBank").OpenExampleBankSelectWin({
             title: "银行信息",
             selectType: "d1",
@@ -669,6 +656,19 @@
             $(tempExampleBank).prev().val(row.id);
 
             costTableRows(tableId , tableJavaName , tempExampleBankIndex);
+
+        });
+        $("#tempSystemUser").OpenSystemUserSelectWin({
+            title: "用户",
+            selectType: "d1",
+            callId: "",
+            callName: "",
+            clearId: ""
+        },function(id,name,row){
+            $(tempSystemUser).val(row.userName);
+            $(tempSystemUser).prev().val(row.id);
+
+            costTableRows(tableId , tableJavaName , tempSystemUserIndex);
 
         });
 
@@ -686,8 +686,8 @@
 
     var tableId , tableJavaName;
 
-    var tempSystemUser  , tempSystemUserIndex ;
     var tempExampleBank  , tempExampleBankIndex ;
+    var tempSystemUser  , tempSystemUserIndex ;
 
 
     function fund_account_type_dicts() {
@@ -700,37 +700,6 @@
 
 
 
-    function openSystemUser(theTabelId , theTableJavaName ,obj ,index){
-        if(obj != null && obj != undefined) {
-            tempSystemUserIndex = index;
-            tempSystemUser = obj[0];
-            if(tempSystemUser == null){
-                tempSystemUser = obj;
-            }
-
-
-            tableId = theTabelId;
-            tableJavaName = theTableJavaName;
-
-            $("#tempSystemUser").click();
-        }
-    }
-    function clearSystemUser(theTabelId , theTableJavaName ,obj ,index){
-        if(obj != null && obj != undefined){
-            tempSystemUserIndex = index;
-            tempSystemUser = obj[0];
-            if(tempSystemUser == null){
-                tempSystemUser = obj;
-            }
-
-            tableId = theTabelId
-            tableJavaName = theTableJavaName
-            $(tempSystemUser).val("");
-            $(tempSystemUser).prev().val("");
-
-            costTableRows(tableId , tableJavaName , tempSystemUserIndex);
-        }
-    }
     function openExampleBank(theTabelId , theTableJavaName ,obj ,index){
         if(obj != null && obj != undefined) {
             tempExampleBankIndex = index;
@@ -760,6 +729,37 @@
             $(tempExampleBank).prev().val("");
 
             costTableRows(tableId , tableJavaName , tempExampleBankIndex);
+        }
+    }
+    function openSystemUser(theTabelId , theTableJavaName ,obj ,index){
+        if(obj != null && obj != undefined) {
+            tempSystemUserIndex = index;
+            tempSystemUser = obj[0];
+            if(tempSystemUser == null){
+                tempSystemUser = obj;
+            }
+
+
+            tableId = theTabelId;
+            tableJavaName = theTableJavaName;
+
+            $("#tempSystemUser").click();
+        }
+    }
+    function clearSystemUser(theTabelId , theTableJavaName ,obj ,index){
+        if(obj != null && obj != undefined){
+            tempSystemUserIndex = index;
+            tempSystemUser = obj[0];
+            if(tempSystemUser == null){
+                tempSystemUser = obj;
+            }
+
+            tableId = theTabelId
+            tableJavaName = theTableJavaName
+            $(tempSystemUser).val("");
+            $(tempSystemUser).prev().val("");
+
+            costTableRows(tableId , tableJavaName , tempSystemUserIndex);
         }
     }
 

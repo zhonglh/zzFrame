@@ -217,7 +217,7 @@
                                 <td>
                                         <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
-                                                      name="sketch " placeholder="请输入协议简述，500字以内" maxlength="500" rows="6"><c:out value="${ m.sketch }" escapeXml="true"/></textarea>
+                                                      name="sketch" id="sketch"  placeholder="请输入协议简述，500字以内" maxlength="500" rows="6"><c:out value="${ m.sketch }" escapeXml="true"/></textarea>
                                         </div>
                                 </td>
                                 <th>部门<font color="red">*</font></th>
@@ -308,7 +308,7 @@
                                 <td>
                                         <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
-                                                      name="remark " placeholder="请输入备注，500字以内" maxlength="500" rows="6"><c:out value="${ m.remark }" escapeXml="true"/></textarea>
+                                                      name="remark" id="remark"  placeholder="请输入备注，500字以内" maxlength="500" rows="6"><c:out value="${ m.remark }" escapeXml="true"/></textarea>
                                         </div>
                                 </td>
                             </tr>
