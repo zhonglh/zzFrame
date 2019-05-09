@@ -673,10 +673,10 @@
         });
 
         $('#tableData-exampleFundaccount').datagrid({
-            url : $AppContext+dataUrl+"/fundAccount/list?fundId=${ m.id }"
+            url : $AppContext+dataUrl+"/fundAccount/list?fundId=${ m.id }",
             onLoadSuccess : function(data){
                 if(data.rows!=null){
-                    //$('#tableData-fundAccount').datagrid("resize", {height: (data.rows.length + 1) * 38});
+                    $('#tableData-fundAccount').datagrid("resize", {height: (data.rows.length + 1) * 38});
                     $(".fd-decimal2").inputDecimal(2);
                 }
             }
