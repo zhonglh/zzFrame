@@ -108,7 +108,7 @@
                                         <td>
                                                     <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
-                                                      name="remark" placeholder="请输入备注，500字以内" maxlength="500" rows="4">${ m.remark }</textarea>
+                                                      id="remark"  name="remark" placeholder="请输入备注，500字以内" maxlength="500" rows="4">${ m.remark }</textarea>
                                                     </div>
                                         </td>
                                 </tr>

@@ -150,7 +150,7 @@
                                         <td>
                                                     <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
-                                                      name="incomeAllocation" placeholder="请输入收入分配，500字以内" maxlength="500" rows="4">${ m.incomeAllocation }</textarea>
+                                                      id="incomeAllocation"  name="incomeAllocation" placeholder="请输入收入分配，500字以内" maxlength="500" rows="4">${ m.incomeAllocation }</textarea>
                                                     </div>
                                         </td>
                                 </tr>
@@ -162,7 +162,7 @@
                                         <td>
                                                     <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
-                                                      name="remark" placeholder="请输入备注，500字以内" maxlength="500" rows="4">${ m.remark }</textarea>
+                                                      id="remark"  name="remark" placeholder="请输入备注，500字以内" maxlength="500" rows="4">${ m.remark }</textarea>
                                                     </div>
                                         </td>
                                 </tr>
