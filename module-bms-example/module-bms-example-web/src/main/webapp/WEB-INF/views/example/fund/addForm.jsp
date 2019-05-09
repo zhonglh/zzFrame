@@ -210,8 +210,8 @@
 
 
 
-                        <input type="hidden" id="tempExampleBank" />
                         <input type="hidden" id="tempSystemUser" />
+                        <input type="hidden" id="tempExampleBank" />
 
 
                         <div class="block-each block-each-another">
@@ -408,8 +408,8 @@
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
 
 
-<script src="${ staticUrl }/statics2/business-js/example/bank/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/example/bank/search.js"></script>
 
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
@@ -457,19 +457,6 @@
 
 
 
-        $("#tempExampleBank").OpenExampleBankSelectWin({
-            title: "银行信息",
-            selectType: "d1",
-            callId: "",
-            callName: "",
-            clearId: ""
-        },function(id,name,row){
-            $(tempExampleBank).val(row.bankName);
-            $(tempExampleBank).prev().val(row.id);
-
-            costTableRows(tableId , tableJavaName , tempExampleBankIndex);
-
-        });
         $("#tempSystemUser").OpenSystemUserSelectWin({
             title: "用户",
             selectType: "d1",
@@ -483,6 +470,19 @@
             costTableRows(tableId , tableJavaName , tempSystemUserIndex);
 
         });
+        $("#tempExampleBank").OpenExampleBankSelectWin({
+            title: "银行信息",
+            selectType: "d1",
+            callId: "",
+            callName: "",
+            clearId: ""
+        },function(id,name,row){
+            $(tempExampleBank).val(row.bankName);
+            $(tempExampleBank).prev().val(row.id);
+
+            costTableRows(tableId , tableJavaName , tempExampleBankIndex);
+
+        });
 
         $('#tableData-exampleFundaccount').datagrid({
             data : []
@@ -492,8 +492,8 @@
 
     var tableId , tableJavaName;
 
-    var tempExampleBank  , tempExampleBankIndex ;
     var tempSystemUser  , tempSystemUserIndex ;
+    var tempExampleBank  , tempExampleBankIndex ;
 
 
     function fund_account_type_dicts() {
@@ -506,37 +506,6 @@
 
 
 
-    function openExampleBank(theTabelId , theTableJavaName ,obj ,index){
-        if(obj != null && obj != undefined) {
-            tempExampleBankIndex = index;
-            tempExampleBank = obj[0];
-            if(tempExampleBank == null){
-                tempExampleBank = obj;
-            }
-
-
-            tableId = theTabelId;
-            tableJavaName = theTableJavaName;
-
-            $("#tempExampleBank").click();
-        }
-    }
-    function clearExampleBank(theTabelId , theTableJavaName ,obj ,index){
-        if(obj != null && obj != undefined){
-            tempExampleBankIndex = index;
-            tempExampleBank = obj[0];
-            if(tempExampleBank == null){
-                tempExampleBank = obj;
-            }
-
-            tableId = theTabelId
-            tableJavaName = theTableJavaName
-            $(tempExampleBank).val("");
-            $(tempExampleBank).prev().val("");
-
-            costTableRows(tableId , tableJavaName , tempExampleBankIndex);
-        }
-    }
     function openSystemUser(theTabelId , theTableJavaName ,obj ,index){
         if(obj != null && obj != undefined) {
             tempSystemUserIndex = index;
@@ -566,6 +535,37 @@
             $(tempSystemUser).prev().val("");
 
             costTableRows(tableId , tableJavaName , tempSystemUserIndex);
+        }
+    }
+    function openExampleBank(theTabelId , theTableJavaName ,obj ,index){
+        if(obj != null && obj != undefined) {
+            tempExampleBankIndex = index;
+            tempExampleBank = obj[0];
+            if(tempExampleBank == null){
+                tempExampleBank = obj;
+            }
+
+
+            tableId = theTabelId;
+            tableJavaName = theTableJavaName;
+
+            $("#tempExampleBank").click();
+        }
+    }
+    function clearExampleBank(theTabelId , theTableJavaName ,obj ,index){
+        if(obj != null && obj != undefined){
+            tempExampleBankIndex = index;
+            tempExampleBank = obj[0];
+            if(tempExampleBank == null){
+                tempExampleBank = obj;
+            }
+
+            tableId = theTabelId
+            tableJavaName = theTableJavaName
+            $(tempExampleBank).val("");
+            $(tempExampleBank).prev().val("");
+
+            costTableRows(tableId , tableJavaName , tempExampleBankIndex);
         }
     }
 

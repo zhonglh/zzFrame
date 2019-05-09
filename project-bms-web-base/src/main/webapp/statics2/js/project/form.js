@@ -23,21 +23,30 @@ function closeWindow() {
 }
 
 
+var tableHeight = 37;
+
 //显示编辑
 function openEdit(){
+    tableHeight = 44;
     $(".form").validate();//开启验证
+    $(".easyui-datagrid").datagrid("showColumn","option");
     $(".show-area").show();
     $(".hide-area").hide();
-    $(".easyui-datagrid").datagrid("showColumn","option");
+
+    $.each($(".easyui-datagrid"),function(index,value){
+        var rows = $(this).datagrid("getRows");
+        $(this).datagrid("resize", {height: (rows.length + 1) * tableHeight});
+    });
     $(".form").tform().showEdit();
 }
 
 //取消编辑
 function cancelEdit(){
+    tableHeight = 37;
     $(".show-area").hide();
     $(".hide-area").show();
-    $('.easyui-datagrid').datagrid("reload");
     $(".easyui-datagrid").datagrid("hideColumn","option");
+    $('.easyui-datagrid').datagrid("reload");
     $(".form").clearValidate();//清除验证
 }
 

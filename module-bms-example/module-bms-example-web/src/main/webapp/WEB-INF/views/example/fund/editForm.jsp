@@ -322,8 +322,8 @@
 
 
 
-                            <input type="hidden" id="tempExampleBank" />
                             <input type="hidden" id="tempSystemUser" />
+                            <input type="hidden" id="tempExampleBank" />
 
 
                         <div class="block-each block-each-another">
@@ -597,8 +597,8 @@
 
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
 
-        <script src="${ staticUrl }/statics2/business-js/example/bank/search.js"></script>
         <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
+        <script src="${ staticUrl }/statics2/business-js/example/bank/search.js"></script>
 
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
@@ -645,19 +645,6 @@
 
 
 
-        $("#tempExampleBank").OpenExampleBankSelectWin({
-            title: "银行信息",
-            selectType: "d1",
-            callId: "",
-            callName: "",
-            clearId: ""
-        },function(id,name,row){
-            $(tempExampleBank).val(row.bankName);
-            $(tempExampleBank).prev().val(row.id);
-
-            costTableRows(tableId , tableJavaName , tempExampleBankIndex);
-
-        });
         $("#tempSystemUser").OpenSystemUserSelectWin({
             title: "用户",
             selectType: "d1",
@@ -671,12 +658,25 @@
             costTableRows(tableId , tableJavaName , tempSystemUserIndex);
 
         });
+        $("#tempExampleBank").OpenExampleBankSelectWin({
+            title: "银行信息",
+            selectType: "d1",
+            callId: "",
+            callName: "",
+            clearId: ""
+        },function(id,name,row){
+            $(tempExampleBank).val(row.bankName);
+            $(tempExampleBank).prev().val(row.id);
+
+            costTableRows(tableId , tableJavaName , tempExampleBankIndex);
+
+        });
 
         $('#tableData-exampleFundaccount').datagrid({
             url : $AppContext+dataUrl+"/fundAccount/list?fundId=${ m.id }",
             onLoadSuccess : function(data){
                 if(data.rows!=null){
-                    $('#tableData-exampleFundaccount').datagrid("resize", {height: (data.rows.length + 1) * 44});
+                    $('#tableData-exampleFundaccount').datagrid("resize", {height: (data.rows.length + 1) * tableHeight});
                     $(".fd-decimal2").inputDecimal(2);
                 }
             }
@@ -686,8 +686,8 @@
 
     var tableId , tableJavaName;
 
-    var tempExampleBank  , tempExampleBankIndex ;
     var tempSystemUser  , tempSystemUserIndex ;
+    var tempExampleBank  , tempExampleBankIndex ;
 
 
     function fund_account_type_dicts() {
@@ -700,37 +700,6 @@
 
 
 
-    function openExampleBank(theTabelId , theTableJavaName ,obj ,index){
-        if(obj != null && obj != undefined) {
-            tempExampleBankIndex = index;
-            tempExampleBank = obj[0];
-            if(tempExampleBank == null){
-                tempExampleBank = obj;
-            }
-
-
-            tableId = theTabelId;
-            tableJavaName = theTableJavaName;
-
-            $("#tempExampleBank").click();
-        }
-    }
-    function clearExampleBank(theTabelId , theTableJavaName ,obj ,index){
-        if(obj != null && obj != undefined){
-            tempExampleBankIndex = index;
-            tempExampleBank = obj[0];
-            if(tempExampleBank == null){
-                tempExampleBank = obj;
-            }
-
-            tableId = theTabelId
-            tableJavaName = theTableJavaName
-            $(tempExampleBank).val("");
-            $(tempExampleBank).prev().val("");
-
-            costTableRows(tableId , tableJavaName , tempExampleBankIndex);
-        }
-    }
     function openSystemUser(theTabelId , theTableJavaName ,obj ,index){
         if(obj != null && obj != undefined) {
             tempSystemUserIndex = index;
@@ -762,6 +731,37 @@
             costTableRows(tableId , tableJavaName , tempSystemUserIndex);
         }
     }
+    function openExampleBank(theTabelId , theTableJavaName ,obj ,index){
+        if(obj != null && obj != undefined) {
+            tempExampleBankIndex = index;
+            tempExampleBank = obj[0];
+            if(tempExampleBank == null){
+                tempExampleBank = obj;
+            }
+
+
+            tableId = theTabelId;
+            tableJavaName = theTableJavaName;
+
+            $("#tempExampleBank").click();
+        }
+    }
+    function clearExampleBank(theTabelId , theTableJavaName ,obj ,index){
+        if(obj != null && obj != undefined){
+            tempExampleBankIndex = index;
+            tempExampleBank = obj[0];
+            if(tempExampleBank == null){
+                tempExampleBank = obj;
+            }
+
+            tableId = theTabelId
+            tableJavaName = theTableJavaName
+            $(tempExampleBank).val("");
+            $(tempExampleBank).prev().val("");
+
+            costTableRows(tableId , tableJavaName , tempExampleBankIndex);
+        }
+    }
 
 
 
@@ -785,9 +785,6 @@
             'value="'+val+'" id="fundAccountBOList_'+index+'_accountName" name="fundAccountBOList['+index+'].accountName"'+
             '   maxlength="100"  />';
 
-
-
-        
         html += "<div class='hide-area' >"+val+"</div>" ;
         return html;
 
@@ -827,9 +824,6 @@
             'value="'+val+'" id="fundAccountBOList_'+index+'_accountNo" name="fundAccountBOList['+index+'].accountNo"'+
             '   maxlength="50"  />';
 
-
-
-        
         html += "<div class='hide-area' >"+val+"</div>" ;
         return html;
 
@@ -846,9 +840,6 @@
             'placeholder="请输入开始日期" autocomplete="off"'+ ' onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')"'+
             'onclick="WdatePicker({dateFmt: \'yyyy-MM-dd\', el: \'fundAccountBOList_'+index+'_startDate\'})"'+
             'value="'+dd+'" id="fundAccountBOList_'+index+'_startDate" name="fundAccountBOList['+index+'].startDate" readonly   />';
-
-
-        
         html += "<div class='hide-area' >"+dd+"</div>" ;
         return html;
 
