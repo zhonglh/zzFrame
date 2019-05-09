@@ -676,7 +676,7 @@
             url : $AppContext+dataUrl+"/fundAccount/list?fundId=${ m.id }",
             onLoadSuccess : function(data){
                 if(data.rows!=null){
-                    $('#tableData-fundAccount').datagrid("resize", {height: (data.rows.length + 1) * 38});
+                    $('#tableData-exampleFundaccount').datagrid("resize", {height: (data.rows.length + 1) * 44});
                     $(".fd-decimal2").inputDecimal(2);
                 }
             }
@@ -785,6 +785,9 @@
             'value="'+val+'" id="fundAccountBOList_'+index+'_accountName" name="fundAccountBOList['+index+'].accountName"'+
             '   maxlength="100"  />';
 
+
+
+        
         html += "<div class='hide-area' >"+val+"</div>" ;
         return html;
 
@@ -824,6 +827,9 @@
             'value="'+val+'" id="fundAccountBOList_'+index+'_accountNo" name="fundAccountBOList['+index+'].accountNo"'+
             '   maxlength="50"  />';
 
+
+
+        
         html += "<div class='hide-area' >"+val+"</div>" ;
         return html;
 
@@ -832,11 +838,18 @@
 
     function exampleFundaccount_startDateFmt(val, row,index){
 
+        var dd = "";
+        if(val != undefined && val != null && val != 0){
+            dd = changeDateFormat(val);
+        }
         var html = '<input type="text"  class="form-control input-sm show-area Wdate  "'+
             'placeholder="请输入开始日期" autocomplete="off"'+ ' onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')"'+
             'onclick="WdatePicker({dateFmt: \'yyyy-MM-dd\', el: \'fundAccountBOList_'+index+'_startDate\'})"'+
-            'value="'+val+'" id="fundAccountBOList_'+index+'_startDate" name="fundAccountBOList['+index+'].startDate" readonly   />';
-        html += "<div class='hide-area' >"+val+"</div>" ;
+            'value="'+dd+'" id="fundAccountBOList_'+index+'_startDate" name="fundAccountBOList['+index+'].startDate" readonly   />';
+
+
+        
+        html += "<div class='hide-area' >"+dd+"</div>" ;
         return html;
 
     }
