@@ -911,6 +911,57 @@ public abstract class   BaseGroupCURDController<
 
 
 
+    /**
+     * 修改对象 将 加上修改信息
+     * 对应新增加的子表， 或者附表信息， 加上新增时的一些信息， 并且ID不能赋值 ， ID会在其它的地方赋值
+     * @param be
+     * @param sessionUserVO
+     */
+    @Override
+    public void setUpdateInfo(BaseEntity be , ILoginUserEntity sessionUserVO){
+        EntityUtil.autoSetUpdateEntity(be, sessionUserVO);
+
+
+        Field[] fs = ReflectionSuper.getFields(be);
+        for (Field f : fs) {
+            f.setAccessible(true);
+            Object val = ReflectionUtils.getField(f, be);
+            if (val != null) {
+                if (val instanceof Collection || val.getClass().isArray()) {
+                    Collection cs = null;
+                    if (val.getClass().isArray()) {
+                        cs = Arrays.asList(val);
+                    } else {
+                        cs = (Collection) val;
+                    }
+                    for (Object obj : cs) {
+                        if (obj instanceof BaseEntity) {
+                            BaseEntity childBe = (BaseEntity) obj;
+                            if(  EntityUtil.isEmpty( childBe.getId() )  ){
+                                EntityUtil.autoSetInsertEntity( childBe, sessionUserVO);
+                                childBe.setId(null);
+                            }else{
+                                EntityUtil.autoSetUpdateEntity( childBe, sessionUserVO);
+                            }
+                        }
+                    }
+
+                } else {
+                    BaseEntity childBe = (BaseEntity) val;
+                    if(  EntityUtil.isEmpty( childBe.getId() )  ) {
+                        EntityUtil.autoSetInsertEntity( childBe , sessionUserVO);
+                        childBe.setId(null);
+                    }else {
+                        EntityUtil.autoSetUpdateEntity( childBe , sessionUserVO);
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
 
     /**
      * 检查实体数据的合法性
