@@ -44,7 +44,7 @@ public class TsDepBO extends TsDepEntity implements Serializable , IBoEntity {
 
     @TableField(exist = false)
     @EntityAttrDictAnnotation(group = "depStatus", groupName = "状态" ,  dbColumnName = "dict_name" , dbColumnLength = 50 , isNameField = true , dictType = "dep_status")
-    @EntityAttrExcelAnnotation(excelProcess= "3")
+    @EntityAttrExcelAnnotation(excelProcess= "2")
     @EntityAttrPageAnnotation(title = "状态",sort = 601                      ,required=true )
     private String depStatusName ;
 

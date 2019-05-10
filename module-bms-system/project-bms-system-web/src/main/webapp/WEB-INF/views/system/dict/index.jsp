@@ -16,7 +16,7 @@
 
 
 <div class="panel layout-panel layout-panel-west" style="width: 150px; left: 0px; top: 34px;">
-    <div region="west" class="lf-mun panel-body panel-body-noheader layout-body" style="margin-top: 5px; width: 150px; height: 534px;" title="" id="">
+    <div region="west" class="lf-mun panel-body panel-body-noheader layout-body" style="margin-top: 5px; width: 150px; height: 534px;overflow-y: auto;overflow-x: hidden" title="" id="">
         <div class="lf-muntit">类型</div>
         <div class="lf-muncon">
             <ul id="dicttypeList">

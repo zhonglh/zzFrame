@@ -180,7 +180,7 @@ function toAdd(){
     }catch(e){
 
     }
-    slideIframeWindow('<a>'+breadcrumb+'</a> ＞ <a>新建</a>', addUrl ,100);
+    showIframeWindow('<a>'+breadcrumb+'</a> ＞ <a>新建</a>', addUrl ,100);
 }
 
 
