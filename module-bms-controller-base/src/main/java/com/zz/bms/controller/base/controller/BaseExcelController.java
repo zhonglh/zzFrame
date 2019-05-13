@@ -20,11 +20,11 @@ import com.zz.bms.util.poi.enums.EnumExcelFileType;
 import com.zz.bms.util.poi.exceptions.ExcelAbsenceException;
 import com.zz.bms.util.poi.exceptions.ExcelFormatException;
 import com.zz.bms.util.poi.exceptions.ExcelTypeMatchingException;
-import com.zz.bms.util.poi.export.BaseXlsExport;
-import com.zz.bms.util.poi.export.BaseXlsTemplet;
 import com.zz.bms.util.poi.export.ExcelExport;
-import com.zz.bms.util.poi.export.excel.HssfExport;
-import com.zz.bms.util.poi.export.excel.SxssfExport;
+import com.zz.bms.util.poi.export.excelype.BaseXlsExport;
+import com.zz.bms.util.poi.export.excelype.BaseXlsTemplet;
+import com.zz.bms.util.poi.export.filetype.HssfExport;
+import com.zz.bms.util.poi.export.filetype.SxssfExport;
 import com.zz.bms.util.poi.imports.DefaultExcelImport;
 import com.zz.bms.util.poi.imports.ExcelImport;
 import com.zz.bms.util.poi.util.ColumnUtil;
@@ -195,7 +195,7 @@ public abstract class BaseExcelController<
         List<QueryModel> allData = (List<QueryModel>)all;
         exportContent(aee ,allData , header+1 , isAddNumberByExport() );
 
-        //下载文件
+        //导出文件
         exportXls(aee,response);
 
     }
