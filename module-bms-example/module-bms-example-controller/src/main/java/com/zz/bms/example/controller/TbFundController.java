@@ -29,6 +29,7 @@ import com.zz.bms.example.service.TbFundAccountService;
 
 
 import com.zz.bms.util.base.java.IdUtils;
+import com.zz.bms.util.poi.ExcelDictHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.apache.commons.lang3.StringUtils;
@@ -87,6 +88,11 @@ public class TbFundController extends ZzGroupDefaultSimpleController<TbFundGroup
 	}
 
 
+
+	protected void setDictNames() {
+		Map<String , List<String>> dictMap = tsDictService.allDictNames(EnumDictType.FUND_TYPE.getVal(),EnumDictType.FUND_ACCOUNT_TYPE.getVal(),EnumDictType.FUND_DIRECTION.getVal(),EnumDictType.MANAG_TYPE.getVal(),EnumDictType.CARD_TYPE.getVal());
+		ExcelDictHolder.setDictMap(dictMap);
+	}
 
 
 

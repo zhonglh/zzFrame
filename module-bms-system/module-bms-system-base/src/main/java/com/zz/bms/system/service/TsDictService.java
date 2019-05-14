@@ -44,4 +44,11 @@ public interface TsDictService extends BaseService<TsDictBO , String> {
      * @return
      */
     public Map<String , List<TsDictBO>> allDicts(String ... dictTypes) ;
+
+
+    /**
+     * 获取所有的字典名称
+     * @return
+     */
+    public Map<String , List<String>> allDictNames(String ... dictTypes) ;
 }

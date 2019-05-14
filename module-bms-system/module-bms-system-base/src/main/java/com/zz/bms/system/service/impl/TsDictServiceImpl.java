@@ -84,6 +84,7 @@ public class TsDictServiceImpl extends BaseServiceImpl<TsDictBO,String> implemen
 		QueryWrapper<TsDictBO> queryWrapper = new QueryWrapper<TsDictBO>();
 		queryWrapper.lambda().eq(TsDictBO::getDictName ,  name)
 				.inSql(TsDictBO::getDictTypeId , "select id from ts_dict_type where dict_type_code = '"+dictType+"'");
+
 		TsDictBO tsDictBO = tsDictDAO.selectOne(queryWrapper);
 		if(tsDictBO == null){
 			return null;
@@ -120,6 +121,7 @@ public class TsDictServiceImpl extends BaseServiceImpl<TsDictBO,String> implemen
 
 		QueryWrapper<TsDictBO> queryWrapper = new QueryWrapper<TsDictBO>();
 		queryWrapper.inSql("dict_type_id" , " select id from ts_dict_type where dict_type_code in ("+ SqlKit.toInContent(dictTypes)+") " );
+		queryWrapper.orderByAsc("orderby");
 		List<TsDictBO> dictBOS = tsDictDAO.selectList(queryWrapper);
 		if(dictBOS == null || dictBOS.isEmpty()){
 			return result;
@@ -161,6 +163,7 @@ public class TsDictServiceImpl extends BaseServiceImpl<TsDictBO,String> implemen
 
 		QueryWrapper<TsDictBO> queryWrapper = new QueryWrapper<TsDictBO>();
 		queryWrapper.inSql("dict_type_id" , " select id from ts_dict_type where dict_type_code in ("+ SqlKit.toInContent(dictTypes)+") " );
+		queryWrapper.orderByAsc("orderby");
 		List<TsDictBO> dictBOS = tsDictDAO.selectList(queryWrapper);
 		if(dictBOS == null || dictBOS.isEmpty()){
 			return result;
@@ -172,10 +175,10 @@ public class TsDictServiceImpl extends BaseServiceImpl<TsDictBO,String> implemen
 				continue;
 			}
 
-			List<TsDictBO> list = result.get(dictTypeBO.getDictTypeCode());
+			List<TsDictBO> list = result.get(dictTypeBO.getDictTypeCode().toLowerCase());
 			if(list == null){
 				list = new ArrayList<TsDictBO>();
-				result.put(dictTypeBO.getDictTypeCode() , list);
+				result.put(dictTypeBO.getDictTypeCode().toLowerCase() , list);
 			}
 			list.add(dictBO);
 		}
@@ -183,6 +186,51 @@ public class TsDictServiceImpl extends BaseServiceImpl<TsDictBO,String> implemen
 		return result;
 
 
+
+	}
+
+	@Override
+	public Map<String, List<String>> allDictNames(String... dictTypes) {
+
+		Map<String , List<String>> result = new HashMap<String , List<String>>();
+		if(dictTypes == null || dictTypes.length == 0){
+			return result;
+		}
+
+		List<TsDictTypeBO> dictTypeBOS = tsDictTypeDAO.selectList(Wrappers.emptyWrapper());
+		if(dictTypeBOS == null || dictTypeBOS.isEmpty()){
+			return result;
+		}
+		Map<String,TsDictTypeBO> dictTypeBOMap = new HashMap<String,TsDictTypeBO>();
+		for(TsDictTypeBO dictTypeBO : dictTypeBOS){
+			dictTypeBOMap.put(dictTypeBO.getId() , dictTypeBO);
+		}
+
+
+
+		QueryWrapper<TsDictBO> queryWrapper = new QueryWrapper<TsDictBO>();
+		queryWrapper.inSql("dict_type_id" , " select id from ts_dict_type where dict_type_code in ("+ SqlKit.toInContent(dictTypes)+") " );
+		queryWrapper.orderByAsc("orderby");
+		List<TsDictBO> dictBOS = tsDictDAO.selectList(queryWrapper);
+		if(dictBOS == null || dictBOS.isEmpty()){
+			return result;
+		}
+		for(TsDictBO dictBO : dictBOS){
+			TsDictTypeBO dictTypeBO = dictTypeBOMap.get(dictBO.getDictTypeId());
+			if(dictTypeBO == null){
+
+				continue;
+			}
+
+			List<String> list = result.get(dictTypeBO.getDictTypeCode().toLowerCase());
+			if(list == null){
+				list = new ArrayList<String>();
+				result.put(dictTypeBO.getDictTypeCode().toLowerCase() , list);
+			}
+			list.add(dictBO.getDictName());
+		}
+
+		return result;
 
 	}
 

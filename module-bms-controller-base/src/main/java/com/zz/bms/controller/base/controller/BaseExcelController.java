@@ -16,6 +16,7 @@ import com.zz.bms.util.base.data.StringFormatKit;
 import com.zz.bms.util.configs.AppConfig;
 import com.zz.bms.util.configs.annotaions.*;
 import com.zz.bms.util.file.FileKit;
+import com.zz.bms.util.poi.ExcelDictHolder;
 import com.zz.bms.util.poi.enums.EnumExcelFileType;
 import com.zz.bms.util.poi.exceptions.ExcelAbsenceException;
 import com.zz.bms.util.poi.exceptions.ExcelFormatException;
@@ -53,14 +54,13 @@ import java.util.*;
  * @author Administrator
  */
 public abstract class BaseExcelController<
-
         RwModel extends BaseEntity<PK>,
         QueryModel extends RwModel,
         PK extends Serializable,
         RwQuery extends Query,
         OnlyQuery extends Query
         >
-        extends BaseCURDController<RwModel,QueryModel,PK,RwQuery,OnlyQuery> {
+        extends BaseCURDController<RwModel,QueryModel,PK,RwQuery,OnlyQuery> implements IExcelConttroller{
 
 
 
@@ -88,6 +88,26 @@ public abstract class BaseExcelController<
             throw EnumErrorMsg.code_error.toException();
         }
 
+        Page<QueryModel> page = new Page<QueryModel>(1, 1);
+        ILoginUserEntity<PK> sessionUserVO = getSessionUser();
+        processRwQuery(query , m , sessionUserVO);
+        Wrapper wrapper = buildRwWrapper(query , m);
+        page = (Page<QueryModel>)baseQueryService.page(page , wrapper );
+
+        QueryModel topDate = null;
+        if(page.getRecords() != null && !page.getRecords().isEmpty()){
+            topDate = page.getRecords().get(0);
+        }else {
+            topDate  = newQueryModel();
+        }
+
+
+        download(excelType, topDate, response);
+
+
+    }
+
+    private void download(String excelType, QueryModel topDate ,HttpServletResponse response ) {
         excelType = excelType.toLowerCase();
         BaseXlsTemplet<QueryModel> bxe = new BaseXlsTemplet<QueryModel>();
         bxe.setEntityClz(this.getQueryEntityClass());
@@ -105,19 +125,6 @@ public abstract class BaseExcelController<
                 break;
         }
 
-        Page<QueryModel> page = new Page<QueryModel>(1, 1);
-        ILoginUserEntity<PK> sessionUserVO = getSessionUser();
-        processRwQuery(query , m , sessionUserVO);
-        Wrapper wrapper = buildRwWrapper(query , m);
-        page = (Page<QueryModel>)baseQueryService.page(page , wrapper );
-
-        QueryModel topDate = null;
-        if(page.getRecords() != null && !page.getRecords().isEmpty()){
-            topDate = page.getRecords().get(0);
-        }else {
-            topDate  = newQueryModel();
-        }
-
 
         int header = 0;
         String[] headerInfo = getExcelHeaderInfo();
@@ -126,20 +133,29 @@ public abstract class BaseExcelController<
             header = headerInfo.length;
         }
 
-        //导出标题
-        exportTitles(aee , header , topDate , isAddNumberByExport());
+        try {
+            this.setDictNames();
 
-        //导出头信息
-        exportHeader(aee , headerInfo);
+            //导出标题
+            exportTitles(aee, header, topDate, isAddNumberByExport());
 
-        //导出内容
-        List<QueryModel> all = new ArrayList<QueryModel>();
-        all.add(topDate);
-        exportContent(aee ,all , header+1 , isAddNumberByExport() );
+            //导出头信息
+            exportHeader(aee, headerInfo);
 
-        //下载文件
-        exportXls(aee,response);
+            //导出内容
+            List<QueryModel> all = new ArrayList<QueryModel>();
+            all.add(topDate);
+            exportContent(aee, all, header + 1, isAddNumberByExport());
 
+            //下载文件
+            exportXls(aee, response);
+        }catch(RuntimeException e){
+            throw e;
+        }catch(Exception e){
+            throw new RuntimeException(e);
+        }finally {
+            ExcelDictHolder.setDictMap(null);
+        }
     }
 
     @RequestMapping(value = "/{excelType}/export", method = RequestMethod.GET)
@@ -208,7 +224,7 @@ public abstract class BaseExcelController<
      * @param m
      * @param isAddNumber
      */
-        protected void exportTitles(ExcelExport<QueryModel> aee , int header, QueryModel m, boolean isAddNumber){
+    protected void exportTitles(ExcelExport<QueryModel> aee , int header, QueryModel m, boolean isAddNumber){
         aee.exportTitles(header ,  m  , isAddNumber );
     }
 
@@ -254,7 +270,7 @@ public abstract class BaseExcelController<
 
 
     protected int getHeaderCellLength(){
-        return 13;
+        return AppConfig.HEADER_DEFAULT_CELLS;
     }
 
     /**
@@ -671,7 +687,7 @@ public abstract class BaseExcelController<
     }
 
     /**
-     * 分析处理属性数据普通
+     * 分析处理普通属性数据
      * @param list
      * @param column
      */
@@ -848,6 +864,8 @@ public abstract class BaseExcelController<
 
 
 
+    protected void setDictNames() {
 
+    }
 
 }

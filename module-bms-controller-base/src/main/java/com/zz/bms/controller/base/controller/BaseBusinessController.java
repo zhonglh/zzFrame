@@ -382,8 +382,7 @@ public abstract class BaseBusinessController<
      * @param model
      */
     protected void setCommonData(RwModel m ,ModelMap model) {
-        System.out.println(m);
-        System.out.println(model);
+
     }
 
 
