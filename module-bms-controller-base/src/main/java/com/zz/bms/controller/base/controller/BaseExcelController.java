@@ -743,7 +743,7 @@ public abstract class BaseExcelController<
 
 
 
-    protected List<QueryModel> getExcelData(MultipartFile file,EnumExcelFileType excelFileType){
+    public List<QueryModel> getExcelData(MultipartFile file,EnumExcelFileType excelFileType){
 
 
         List<QueryModel> list = new ArrayList<QueryModel>();
@@ -819,11 +819,13 @@ public abstract class BaseExcelController<
         }
     }
 
-    protected boolean isAddNumberByImport(){
+    @Override
+    public boolean isAddNumberByImport(){
         return AppConfig.EXCEL_ADD_NUMBER;
     }
 
-    protected int getExcelImportHeaderRowNum(){
+    @Override
+    public int getExcelImportHeaderRowNum(){
         if(AppConfig.EXCEL_EXPORT_HEADER) {
             return 2;
         }else {
@@ -836,7 +838,8 @@ public abstract class BaseExcelController<
      * @param ei
      * @return
      */
-    protected List<List<Object[]>> readExcel(ExcelImport ei){
+    @Override
+    public List<List<Object[]>> readExcel(ExcelImport ei){
         List<List<Object[]>> result = null;
         if(AppConfig.EXCEL_IMPORT_ALLSHEET){
             List<List<Object[]>> list = ei.readExcelAllSheet();
@@ -849,7 +852,8 @@ public abstract class BaseExcelController<
     }
 
 
-    protected List<Column> getImportColumns(){
+    @Override
+    public List<Column> getImportColumns(){
         return ColumnUtil.getExcelColumn(this.getRwEntityClass(), true);
     }
 
@@ -858,13 +862,15 @@ public abstract class BaseExcelController<
      * 获取所有的业务属性
      * @return
      */
-    protected List<Field> getImportAllFields(){
+    @Override
+    public List<Field> getImportAllFields(){
         return ColumnUtil.getBusinessAllFields(this.getRwEntityClass(),BaseEntity.class);
     }
 
 
 
-    protected void setDictNames() {
+    @Override
+    public void setDictNames() {
 
     }
 
