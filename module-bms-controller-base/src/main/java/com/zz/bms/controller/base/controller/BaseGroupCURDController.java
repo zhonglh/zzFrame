@@ -490,10 +490,10 @@ public abstract class   BaseGroupCURDController<
 
     @Override
     protected void insertInfo(RwModel m, ILoginUserEntity<PK> sessionUserVO) {
-        insertInfo(m , sessionUserVO , true);
+        insertInfo(m , sessionUserVO , true, true);
     }
 
-    protected void insertInfo(RwModel m, ILoginUserEntity<PK> sessionUserVO , boolean processBO) {
+    protected void insertInfo(RwModel m, ILoginUserEntity<PK> sessionUserVO , boolean saveFlag ,  boolean processBOFlag) {
         //设置创建附加信息，如创建时间， 创建人
         this.setInsertInfo(m, sessionUserVO);
 
@@ -506,7 +506,7 @@ public abstract class   BaseGroupCURDController<
         this.setCustomInfoByInsert(m,sessionUserVO);
 
         //处理创建的数据， 如反填状态名称，外键信息等
-        if(processBO) {
+        if(processBOFlag) {
             this.processBO(m);
         }
 
@@ -525,7 +525,11 @@ public abstract class   BaseGroupCURDController<
             //检查重复数据
             this.baseRwService.isExist(m);
 
-            success = baseRwService.save(m);
+            if(saveFlag) {
+                success = baseRwService.save(m);
+            }else {
+                success = true;
+            }
 
         }catch(RuntimeException e){
             logger.error(e.getMessage() , e);

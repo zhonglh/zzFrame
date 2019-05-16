@@ -3,7 +3,6 @@ package com.zz.bms.controller.base.controller;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.BaseBusinessEntity;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
@@ -15,10 +14,8 @@ import com.zz.bms.core.ui.Pages;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.enums.EnumTreeState;
 import com.zz.bms.util.base.java.ReflectionSuper;
-import com.zz.bms.util.configs.AppConfig;
 import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 import com.zz.bms.util.web.PaginationContext;
-import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
@@ -42,13 +39,9 @@ public abstract class BaseCURDController<
         OnlyQuery extends Query
         >
         extends BaseBusinessController<RwModel,QueryModel,PK,RwQuery,OnlyQuery>
+        implements ICURDController<RwModel , QueryModel , PK>
 
 {
-
-
-
-
-
 
     protected BaseCURDController() {
         super();
@@ -452,10 +445,11 @@ public abstract class BaseCURDController<
 
     @Override
     protected void insertInfo(RwModel m, ILoginUserEntity<PK> sessionUserVO) {
-        insertInfo(m , sessionUserVO , true);
+        insertInfo(m , sessionUserVO , true , true);
     }
 
-    protected void insertInfo(RwModel m, ILoginUserEntity<PK> sessionUserVO , boolean processBO) {
+    @Override
+    public void insertInfo(RwModel m, ILoginUserEntity<PK> sessionUserVO , boolean saveFlag , boolean processBOFlag) {
         //设置创建附加信息，如创建时间， 创建人
         this.setInsertInfo(m, sessionUserVO);
 
@@ -466,7 +460,7 @@ public abstract class BaseCURDController<
         this.setCustomInfoByInsert(m,sessionUserVO);
 
         //处理创建的数据， 如反填状态名称，外键信息等
-        if(processBO) {
+        if(processBOFlag) {
             this.processBO(m);
         }
 
@@ -485,7 +479,11 @@ public abstract class BaseCURDController<
             //检查重复数据
             this.baseRwService.isExist(m);
 
-            success = baseRwService.save(m);
+            if(saveFlag) {
+                success = baseRwService.save(m);
+            }else {
+                success = true;
+            }
 
         }catch(RuntimeException e){
             logger.error(e.getMessage() , e);

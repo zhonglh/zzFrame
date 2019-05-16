@@ -60,7 +60,8 @@ public abstract class BaseExcelController<
         RwQuery extends Query,
         OnlyQuery extends Query
         >
-        extends BaseCURDController<RwModel,QueryModel,PK,RwQuery,OnlyQuery> implements IExcelConttroller{
+        extends BaseCURDController<RwModel,QueryModel,PK,RwQuery,OnlyQuery>
+        implements IExcelConttroller<RwModel,QueryModel,PK>{
 
 
 
@@ -322,6 +323,7 @@ public abstract class BaseExcelController<
 
 
 
+        ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
 
         List<QueryModel> list  = null;
@@ -341,66 +343,20 @@ public abstract class BaseExcelController<
             return new AjaxJson(false ,  "未知错误");
         }
 
-
-
-        //分析每一行的数据
-        this.analysis(list);
-
-        ILoginUserEntity<PK> sessionUserVO = getSessionUser();
-
-        Method setErrorMethod = ExcelUtil.setErrorMethod(this.getRwEntityClass());
-        Method getErrorMethod = ExcelUtil.getErrorMethod(this.getRwEntityClass());
+        List<QueryModel> result = ExcelHelper.doExcelData(list , sessionUserVO , this);
 
 
 
-        boolean isAllOK = true;
-        int index = 0;
-        for(QueryModel m : list){
-            if(getErrorMethod != null){
-                String errorMsg = (String)getErrorMethod.invoke(m);
-                if(StringUtils.isNotEmpty(errorMsg)){
-                    isAllOK = false;
-                    continue;
-                }
-            }
-
-            try {
-                this.customExcelInsert(m , sessionUserVO , index);
-                this.insertInfo(m , sessionUserVO , false);
-                index ++ ;
-            }catch (BizException e){
-                isAllOK = false;
-                if(setErrorMethod != null) {
-                    setErrorMethod.invoke(m, e.getMsg());
-                }else {
-                    throw e;
-                }
-            }catch(RuntimeException e){
-                isAllOK = false;
-                if(setErrorMethod != null) {
-                    setErrorMethod.invoke(m, e.getMessage());
-                }else {
-                    throw e;
-                }
-            }catch(Exception e){
-                isAllOK = false;
-                logger.error(e.getMessage(),e);
-                if(setErrorMethod != null) {
-                    setErrorMethod.invoke(m, "未知错误");
-                }else {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
-
-        if(isAllOK) {
+        if(result == null) {
             return AjaxJson.ok();
         }else {
             request.getSession().setAttribute(this.getRwEntityClass().getName(), list);
             return AjaxJson.fail("导入的信息中有些问题");
         }
 
+
     }
+
 
     /**
      * Excel导入数据的自定义方法
@@ -409,7 +365,8 @@ public abstract class BaseExcelController<
      * @param sessionUserVO
      * @param index
      */
-    protected void customExcelInsert(QueryModel m, ILoginUserEntity<PK> sessionUserVO, int index){
+    @Override
+    public void customExcelInsert(QueryModel m, ILoginUserEntity<PK> sessionUserVO, int index){
         //m.setImportOrder(index);
     }
 
@@ -417,7 +374,8 @@ public abstract class BaseExcelController<
      * 解析数据
      * @param list
      */
-    protected void analysis(List<QueryModel> list) {
+    @Override
+    public void analysis(List<QueryModel> list) {
 
         List<Field> fs = getImportAllFields() ;
 
@@ -467,11 +425,12 @@ public abstract class BaseExcelController<
      * @param fkAnnotation
      * @param fkInfoMaps
      */
-    protected void analysisFk(List<QueryModel> list,
-                              Column column,
-                              EntityAttrFkAnnotation fkAnnotation,
-                              Map<Class, Map<String, Object>> fkInfoMaps,
-                              Map<String, Map<Field, List<Field>>> fkFieldMap) {
+    @Override
+    public void analysisFk(List<QueryModel> list,
+                           Column column,
+                           EntityAttrFkAnnotation fkAnnotation,
+                           Map<Class, Map<String, Object>> fkInfoMaps,
+                           Map<String, Map<Field, List<Field>>> fkFieldMap) {
         Class fkClz = fkAnnotation.fkClass();
         if(fkClz == null){
             try{
@@ -643,11 +602,12 @@ public abstract class BaseExcelController<
      * @param dictInfoMaps
      * @param dictFieldMap
      */
-    protected void analysisDict(List<QueryModel> list,
-                                Column column,
-                                EntityAttrDictAnnotation dictAnnotation,
-                                Map<String, ?> dictInfoMaps,
-                                Map<String, Map<Field, Field>> dictFieldMap) {
+    @Override
+    public void analysisDict(List<QueryModel> list,
+                             Column column,
+                             EntityAttrDictAnnotation dictAnnotation,
+                             Map<String, ?> dictInfoMaps,
+                             Map<String, Map<Field, Field>> dictFieldMap) {
         if(dictAnnotation.isValueField()){
             throw new RuntimeException(dictAnnotation.group()+" Excel设置错误");
         }
@@ -691,7 +651,8 @@ public abstract class BaseExcelController<
      * @param list
      * @param column
      */
-    protected void analysisOther(List<QueryModel> list,Column column) {
+    @Override
+    public void analysisOther(List<QueryModel> list,Column column) {
        Method setErrorMethod = ExcelUtil.setErrorMethod(this.getRwEntityClass());
         ReflectionUtil.makeAccessible(column.getField());
         for(QueryModel m : list){
@@ -743,7 +704,8 @@ public abstract class BaseExcelController<
 
 
 
-    public List<QueryModel> getExcelData(MultipartFile file,EnumExcelFileType excelFileType){
+    @Override
+    public List<QueryModel> getExcelData(MultipartFile file, EnumExcelFileType excelFileType){
 
 
         List<QueryModel> list = new ArrayList<QueryModel>();

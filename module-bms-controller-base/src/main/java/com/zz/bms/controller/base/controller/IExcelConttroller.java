@@ -1,14 +1,52 @@
 package com.zz.bms.controller.base.controller;
 
+import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.db.entity.ILoginUserEntity;
+import com.zz.bms.util.configs.annotaions.EntityAttrDictAnnotation;
+import com.zz.bms.util.configs.annotaions.EntityAttrFkAnnotation;
 import com.zz.bms.util.poi.enums.EnumExcelFileType;
 import com.zz.bms.util.poi.imports.ExcelImport;
 import com.zz.bms.util.poi.vo.Column;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Map;
 
-public interface IExcelConttroller {
+public interface IExcelConttroller<RwModel extends BaseEntity<PK>,
+        QueryModel extends RwModel,
+        PK extends Serializable>
+        extends ICURDController<RwModel , QueryModel , PK> {
+
+
+
+
+    public void customExcelInsert(QueryModel m, ILoginUserEntity<PK> sessionUserVO, int index);
+
+
+    /**
+     * 解析数据
+     * @param list
+     */
+    public void analysis(List<QueryModel> list)  ;
+
+
+    public void analysisFk(List<QueryModel> list,
+                           Column column,
+                           EntityAttrFkAnnotation fkAnnotation,
+                           Map<Class, Map<String, Object>> fkInfoMaps,
+                           Map<String, Map<Field, List<Field>>> fkFieldMap) ;
+
+    public void analysisDict(List<QueryModel> list,
+                             Column column,
+                             EntityAttrDictAnnotation dictAnnotation,
+                             Map<String, ?> dictInfoMaps,
+                             Map<String, Map<Field, Field>> dictFieldMap) ;
+
+
+    public void analysisOther(List<QueryModel> list,Column column) ;
+
 
 
     public <QueryModel> List<QueryModel> getExcelData(MultipartFile file, EnumExcelFileType excelFileType) ;

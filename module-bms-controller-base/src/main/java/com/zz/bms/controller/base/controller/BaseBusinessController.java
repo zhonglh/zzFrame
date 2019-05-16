@@ -32,7 +32,7 @@ public abstract class BaseBusinessController<
         PK extends Serializable,
         RwQuery extends Query,
         OnlyQuery extends Query
-        > extends BaseCommonController<PK> {
+        > extends BaseCommonController<PK> implements IController<RwModel , QueryModel , PK> {
 
 
     public final String defaultEditPageName = "editForm";
@@ -87,7 +87,8 @@ public abstract class BaseBusinessController<
 
 
 
-    protected QueryModel newQueryModel() {
+    @Override
+    public QueryModel newQueryModel() {
         try {
             return queryEntityClass.newInstance();
         } catch (Exception e) {
@@ -95,13 +96,16 @@ public abstract class BaseBusinessController<
         }
     }
 
+
+    @Override
     public Class<QueryModel> getQueryEntityClass() {
         return queryEntityClass;
     }
 
 
 
-    protected RwModel newRwModel() {
+    @Override
+    public RwModel newRwModel() {
         try {
             return rwEntityClass.newInstance();
         } catch (Exception e) {
@@ -109,6 +113,7 @@ public abstract class BaseBusinessController<
         }
     }
 
+    @Override
     public Class<RwModel> getRwEntityClass() {
         return rwEntityClass;
     }
@@ -518,5 +523,13 @@ public abstract class BaseBusinessController<
     }
 
 
+    @Override
+    public BaseService<QueryModel, PK> getBaseQueryService() {
+        return baseQueryService;
+    }
 
+    @Override
+    public BaseService<RwModel, PK> getBaseRwService() {
+        return baseRwService;
+    }
 }
