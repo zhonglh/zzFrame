@@ -8,14 +8,17 @@ import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.system.bo.TsPermitBO;
 import com.zz.bms.system.bo.TsUserBO;
+import com.zz.bms.system.bo.TsUserRoleBO;
 import com.zz.bms.system.bo.VsUserPermitBO;
 import com.zz.bms.system.domain.TsPermitEntity;
 import com.zz.bms.system.domain.VsUserPermitEntity;
 import com.zz.bms.system.query.TsPermitQuery;
 import com.zz.bms.system.query.TsUserQuery;
+import com.zz.bms.system.query.TsUserRoleQuery;
 import com.zz.bms.system.query.VsUserPermitQuery;
 import com.zz.bms.system.query.impl.TsPermitQueryImpl;
 import com.zz.bms.system.query.impl.TsUserQueryImpl;
+import com.zz.bms.system.query.impl.TsUserRoleQueryImpl;
 import com.zz.bms.system.query.impl.VsUserPermitQueryImpl;
 import com.zz.bms.system.service.TsPermitService;
 import com.zz.bms.system.service.TsUserRoleService;
@@ -64,8 +67,10 @@ public class UserServiceImpl implements IUserService<String> {
 
     @Override
     public List<ILoginRoleEntity> getUserRoleInfo(ILoginUserEntity loginUserEntity) {
-        //todo 后期加上 vs_user_role 视图来处理
-        return null;
+        TsUserRoleQuery query = new TsUserRoleQueryImpl();
+        query.userId(loginUserEntity.getId());
+        QueryWrapper qw = query.buildWrapper();
+        return tsUserRoleService.list(qw);
     }
 
     @Override

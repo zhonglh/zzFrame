@@ -33,7 +33,7 @@ public class TsNotificationQueryWebImpl<PK extends Serializable> extends TsNotif
 
 
 
-        //todo TEXT content;
+
 
 
 
@@ -216,7 +216,7 @@ public class TsNotificationQueryWebImpl<PK extends Serializable> extends TsNotif
             }
 
 
-            //todo TEXT content;
+
 
             public Timestamp getNotifyTime() {
                 return notifyTime;

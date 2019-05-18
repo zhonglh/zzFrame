@@ -115,10 +115,10 @@
                     <li role="separator" class="divider"></li>
 
                     <li>
-                        <a href="${ctx}/${currParentUrl}/cvs/export" class="export" >
+                        <a href="${ctx}/${currParentUrl}/csv/export" class="export" >
                             <svg class="icon" aria-hidden="true">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
-                            </svg>导出CVS
+                            </svg>导出CSV
                         </a>
                     </li>
                     <li>

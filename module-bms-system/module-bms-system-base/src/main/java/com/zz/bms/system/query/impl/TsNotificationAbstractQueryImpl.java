@@ -31,7 +31,7 @@ public abstract class TsNotificationAbstractQueryImpl<PK extends Serializable> e
             protected String title_NOTLIKE;
 
 
-        //todo TEXT content;
+
         protected Timestamp notifyTime;
         protected Timestamp notifyTime_NE;
         protected Timestamp notifyTime_GT;

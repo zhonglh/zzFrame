@@ -61,21 +61,6 @@ public class BaseCommonController<PK extends Serializable> extends BaseControlle
 
 
 
-    /**
-     * 获取所有用到的字典信息
-     * @param dictTypes
-     * @return
-     */
-    protected Map<String,?> getDictMaps(String ... dictTypes) {
-        throw EnumErrorMsg.code_error.toException();
-    }
-    protected String getDictVal (Object dict) {
-        throw EnumErrorMsg.code_error.toException();
-    }
-    protected String getDictName (Object dict) {
-        throw EnumErrorMsg.code_error.toException();
-    }
-
 
 
     /**

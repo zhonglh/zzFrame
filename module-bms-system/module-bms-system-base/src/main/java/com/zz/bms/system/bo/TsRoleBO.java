@@ -1,5 +1,6 @@
 package com.zz.bms.system.bo;
 
+import com.zz.bms.enums.EnumDefaultType;
 import com.zz.bms.system.domain.TsRoleEntity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -32,7 +33,7 @@ public class TsRoleBO extends TsRoleEntity implements Serializable , IBoEntity {
 
     @TableField(exist = false)
     @EntityAttrDictAnnotation(group = "roleType", groupName = "角色类型" ,  dbColumnName = "dict_name" , dbColumnLength = 50 , isNameField = true , dictType = "role_type")
-    @EntityAttrExcelAnnotation(excelProcess= "3")
+    @EntityAttrExcelAnnotation(excelProcess= "2")
     @EntityAttrPageAnnotation(title = "角色类型",sort = 401                      ,required=true )
     private String roleTypeName ;
 
@@ -40,15 +41,15 @@ public class TsRoleBO extends TsRoleEntity implements Serializable , IBoEntity {
 
     @TableField(exist = false)
     @EntityAttrFkAnnotation(group = "depId",  groupName = "部门" ,   dbColumnName = "dep_name" , dbColumnType = "VARCHAR" , dbColumnLength = 100   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsDepBO.class)
-    @EntityAttrExcelAnnotation(excelProcess= "3")
-    @EntityAttrPageAnnotation(title = "部门",sort = 501                      ,required=true )
+    @EntityAttrExcelAnnotation(excelProcess= "2")
+    @EntityAttrPageAnnotation(title = "部门",sort = 501                      ,required=true , defaultType = DefaultTypeConstant.CURRENT_USER_DEPTNAME)
     private String depName ;
 
 
 
     @TableField(exist = false)
     @EntityAttrDictAnnotation(group = "roleStatus", groupName = "角色状态" ,  dbColumnName = "dict_name" , dbColumnLength = 50 , isNameField = true , dictType = "role_status")
-    @EntityAttrExcelAnnotation(excelProcess= "3")
+    @EntityAttrExcelAnnotation(excelProcess= "2")
     @EntityAttrPageAnnotation(title = "角色状态",sort = 701                      ,required=true )
     private String roleStatusName ;
 

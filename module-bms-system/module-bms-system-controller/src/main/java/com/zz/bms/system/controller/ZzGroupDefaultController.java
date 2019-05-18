@@ -2,6 +2,7 @@ package com.zz.bms.system.controller;
 
 import com.zz.bms.controller.base.controller.BaseExcelController;
 import com.zz.bms.controller.base.controller.BaseGroupCURDController;
+import com.zz.bms.controller.base.controller.BaseGroupExcelController;
 import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.system.bo.TsDictBO;
@@ -23,7 +24,7 @@ public abstract class ZzGroupDefaultController<
         RwQuery extends Query,
         OnlyQuery extends RwQuery
         >
-        extends BaseGroupCURDController<RwModel,QueryModel,PK,RwQuery,OnlyQuery> {
+        extends BaseGroupExcelController<RwModel,QueryModel,PK,RwQuery,OnlyQuery> {
 
 
     @Autowired
@@ -42,18 +43,18 @@ public abstract class ZzGroupDefaultController<
     }
 
     @Override
-    protected Map<String, ?> getDictMaps(String... dictTypes) {
+    public Map<String, ?> getDictMaps(String... dictTypes) {
         return tsDictService.allDict(dictTypes);
     }
 
     @Override
-    protected String getDictVal(Object dict) {
+    public String getDictVal(Object dict) {
         TsDictBO dictBO = (TsDictBO)dict;
         return dictBO.getDictVal();
     }
 
     @Override
-    protected String getDictName(Object dict) {
+    public String getDictName(Object dict) {
         TsDictBO dictBO = (TsDictBO)dict;
         return dictBO.getDictName();
     }

@@ -50,7 +50,9 @@ public abstract class   BaseGroupCURDController<
         RwQuery extends Query,
         OnlyQuery extends RwQuery
         >
-        extends BaseBusinessController<RwModel,QueryModel,PK,RwQuery,OnlyQuery>  {
+        extends BaseBusinessController<RwModel,QueryModel,PK,RwQuery,OnlyQuery>
+        implements ICURDController<RwModel , QueryModel , PK>
+{
 
 
 
@@ -493,7 +495,8 @@ public abstract class   BaseGroupCURDController<
         insertInfo(m , sessionUserVO , true, true);
     }
 
-    protected void insertInfo(RwModel m, ILoginUserEntity<PK> sessionUserVO , boolean saveFlag ,  boolean processBOFlag) {
+    @Override
+    public void insertInfo(RwModel m, ILoginUserEntity<PK> sessionUserVO , boolean saveFlag , boolean processBOFlag) {
         //设置创建附加信息，如创建时间， 创建人
         this.setInsertInfo(m, sessionUserVO);
 

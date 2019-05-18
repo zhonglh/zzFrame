@@ -55,7 +55,7 @@ public interface TsNotificationQuery<PK extends Serializable> extends Query<TsNo
 
 
 
-        //todo TEXT content;
+
 
 
 

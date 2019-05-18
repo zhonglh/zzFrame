@@ -13,13 +13,9 @@ public class AnnotaionEntity implements Serializable{
 
     //检查规则  正则表达式
     //检查内容是否符合该表达式
-    public String checkRule ;
+    public String[] checkRule ;
 
-    //字典类型
-    public String dictType;
-
-    //高级校验， 在Excel和普通方式都会有提现
-    public boolean customCheck = false;
+    public String[] checkTipMsg;
 
 
 
@@ -133,28 +129,20 @@ public class AnnotaionEntity implements Serializable{
         isCheck = check;
     }
 
-    public String getCheckRule() {
+    public String[] getCheckRule() {
         return checkRule;
     }
 
-    public void setCheckRule(String checkRule) {
+    public void setCheckRule(String[] checkRule) {
         this.checkRule = checkRule;
     }
 
-    public String getDictType() {
-        return dictType;
+    public String[] getCheckTipMsg() {
+        return checkTipMsg;
     }
 
-    public void setDictType(String dictType) {
-        this.dictType = dictType;
-    }
-
-    public boolean isCustomCheck() {
-        return customCheck;
-    }
-
-    public void setCustomCheck(boolean customCheck) {
-        this.customCheck = customCheck;
+    public void setCheckTipMsg(String[] checkTipMsg) {
+        this.checkTipMsg = checkTipMsg;
     }
 
     public boolean isDB() {

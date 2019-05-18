@@ -7,6 +7,7 @@ import com.zz.bms.core.enums.EnumSymbol;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.ui.easyui.EasyUiTree;
 import com.zz.bms.core.ui.easyui.EasyUiTreeUtil;
+import com.zz.bms.enums.EnumDictType;
 import com.zz.bms.enums.EnumRoleStatus;
 import com.zz.bms.enums.EnumRoleType;
 import com.zz.bms.system.bo.*;
@@ -15,12 +16,10 @@ import com.zz.bms.system.query.TsRolePermitQuery;
 import com.zz.bms.system.query.impl.TsRolePermitQueryImpl;
 import  com.zz.bms.system.query.impl.TsRoleQueryWebImpl;
 
-import com.zz.bms.system.service.TsDepService;
-import com.zz.bms.system.service.TsMenuService;
-import com.zz.bms.system.service.TsRolePermitService;
-import com.zz.bms.system.service.VsMenuPermitService;
+import com.zz.bms.system.service.*;
 import com.zz.bms.util.base.data.MyBeanUtils;
 import com.zz.bms.util.base.java.IdUtils;
+import com.zz.bms.util.poi.ExcelDictHolder;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,6 +45,8 @@ import java.util.Map;
 @Controller
 public class TsRoleController extends ZzGroupDefaultController<TsRoleGroupBO, TsRoleGroupBO , String , TsRoleQueryWebImpl,TsRoleQueryWebImpl> {
 
+
+
 	@Autowired
 	private TsMenuService menuService;
 
@@ -57,6 +58,10 @@ public class TsRoleController extends ZzGroupDefaultController<TsRoleGroupBO, Ts
 
     @Autowired
     private TsDepService depService;
+
+
+    @Autowired
+    private TsDictService tsDictService;
 
 
 	private static List<EasyUiTree> allPermit = null;
@@ -144,6 +149,25 @@ public class TsRoleController extends ZzGroupDefaultController<TsRoleGroupBO, Ts
             }
         }
     }
+
+
+
+    @Override
+    protected void setCommonData(TsRoleGroupBO tbFundBO ,ModelMap model) {
+        Map<String , List<TsDictBO>> dictMap = tsDictService.allDicts(EnumDictType.ROLE_TYPE.getVal() , EnumDictType.ROLE_STATUS.getVal());
+        for(Map.Entry<String , List<TsDictBO>> dictObj : dictMap.entrySet()){
+            model.put(dictObj.getKey()+"_dicts", dictObj.getValue());
+        }
+    }
+
+
+
+    @Override
+    public void setDictNames() {
+        Map<String , List<String>> dictMap = tsDictService.allDictNames(EnumDictType.ROLE_TYPE.getVal() , EnumDictType.ROLE_STATUS.getVal());
+        ExcelDictHolder.setDictMap(dictMap);
+    }
+
 
 
 

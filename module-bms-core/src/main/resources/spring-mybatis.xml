@@ -29,8 +29,7 @@
     <!-- Spring整合Mybatis，更多查看文档：http://mp.baomidou.com -->
     <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <!-- todo ，将自己的业务路径加入到下面的 value中， 通过 ';'分割 -->
-        <property name="typeAliasesPackage" value="com.zz.**.domain;com.zz.**.entity;com.zz.**.bo"/>
+        <property name="typeAliasesPackage" value="com.**.domain;com.**.entity;com.**.bo"/>
         <property name="configuration" ref="mybatisConfig"/>
         <!-- MP 全局配置注入 -->
         <property name="globalConfig" ref="globalConfig"/>
@@ -100,8 +99,7 @@
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <!-- todo ，将自己的业务路径加入到下面的 value中， 通过 ';'分割 -->
-        <property name="basePackage" value="com.zz.**.dao" />
+        <property name="basePackage" value="com.**.dao" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
     </bean>
 

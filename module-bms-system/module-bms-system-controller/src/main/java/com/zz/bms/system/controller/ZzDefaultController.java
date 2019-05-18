@@ -36,18 +36,18 @@ public abstract class ZzDefaultController<
     }
 
     @Override
-    protected Map<String, ?> getDictMaps(String... dictTypes) {
+    public Map<String, ?> getDictMaps(String... dictTypes) {
         return tsDictService.allDict(dictTypes);
     }
 
     @Override
-    protected String getDictVal(Object dict) {
+    public String getDictVal(Object dict) {
         TsDictBO dictBO = (TsDictBO)dict;
         return dictBO.getDictVal();
     }
 
     @Override
-    protected String getDictName(Object dict) {
+    public String getDictName(Object dict) {
         TsDictBO dictBO = (TsDictBO)dict;
         return dictBO.getDictName();
     }

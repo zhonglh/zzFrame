@@ -1,6 +1,7 @@
 package com.zz.bms.system.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.zz.bms.constants.DefaultTypeConstant;
 import com.zz.bms.util.configs.annotaions.*;
 
 import com.zz.bms.core.Constant;
@@ -43,7 +44,7 @@ public class TsRoleEntity extends com.zz.bms.core.db.entity.BaseBusinessSimpleEx
 
     @EntityAttrFkAnnotation(group = "depId",  groupName = "部门" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsDepBO.class)
     @EntityAttrDBAnnotation(attrName="部门" ,attrColumn="dep_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
-    @EntityAttrPageAnnotation(title = "部门",sort = 500  , pageElement = "text"            , maxLength = 32        ,required=false )
+    @EntityAttrPageAnnotation(title = "部门",sort = 500  , pageElement = "text"            , maxLength = 32   , defaultType = DefaultTypeConstant.CURRENT_USER_DEPTNAME     ,required=false )
 	private String  depId ;
 
 
@@ -60,7 +61,7 @@ public class TsRoleEntity extends com.zz.bms.core.db.entity.BaseBusinessSimpleEx
 
     @EntityAttrDBAnnotation(attrName="备注" ,attrColumn="remark"  , type = "VARCHAR"      ,  attrLength = 200 , notNull = false )
     @EntityAttrPageAnnotation(title = "备注",sort = 800  , pageElement = "text"            , maxLength = 200        ,required=false )
-	@EntityAttrExcelAnnotation(excelProcess= "3")
+	@EntityAttrExcelAnnotation(excelProcess= "3" , width = 100)
 	private String  remark ;
 
 

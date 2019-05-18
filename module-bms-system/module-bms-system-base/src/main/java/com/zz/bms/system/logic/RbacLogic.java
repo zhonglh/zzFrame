@@ -10,9 +10,8 @@ import java.util.Collection;
 import java.util.List;
 
 public class RbacLogic {
-    //todo 权限处理
+    //todo 数据权限处理
     public void checkData(){
-        //从tsuserrolecontroller 拷贝过来的
         /*if(BusinessConfig.USE_TENANT && BusinessConfig.IS_CHECK_Tenant){
             if(!userBO.getTenantId().equals(sessionUserVO.getId())){
                 throw EnumErrorMsg.no_auth.toException();

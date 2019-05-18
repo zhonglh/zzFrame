@@ -89,7 +89,8 @@ public class TbFundController extends ZzGroupDefaultSimpleController<TbFundGroup
 
 
 
-	protected void setDictNames() {
+	@Override
+	public void setDictNames() {
 		Map<String , List<String>> dictMap = tsDictService.allDictNames(EnumDictType.FUND_TYPE.getVal(),EnumDictType.FUND_ACCOUNT_TYPE.getVal(),EnumDictType.FUND_DIRECTION.getVal(),EnumDictType.MANAG_TYPE.getVal(),EnumDictType.CARD_TYPE.getVal());
 		ExcelDictHolder.setDictMap(dictMap);
 	}

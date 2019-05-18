@@ -4,6 +4,7 @@ import com.zz.bms.core.db.base.service.BaseService;
 import com.zz.bms.core.db.entity.BaseEntity;
 
 import java.io.Serializable;
+import java.util.Map;
 
 public interface IController<RwModel extends BaseEntity<PK>,
         QueryModel extends RwModel,
@@ -27,4 +28,13 @@ public interface IController<RwModel extends BaseEntity<PK>,
     public BaseService<QueryModel, PK> getBaseQueryService()  ;
 
     public BaseService<RwModel, PK> getBaseRwService()  ;
+
+
+
+    public Map<String,?> getDictMaps(String ... dictTypes)  ;
+
+
+    public String getDictVal (Object dict)  ;
+
+    public String getDictName (Object dict);
 }

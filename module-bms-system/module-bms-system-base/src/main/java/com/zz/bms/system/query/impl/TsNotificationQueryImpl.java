@@ -31,7 +31,7 @@ public class TsNotificationQueryImpl<PK extends Serializable> extends TsNotifica
         private List<String> title_IN;
         private List<String> title_NOTIN;
 
-        //todo TEXT content;
+
 
         private List<String> notifyFiles_IN;
         private List<String> notifyFiles_NOTIN;
@@ -240,7 +240,7 @@ public class TsNotificationQueryImpl<PK extends Serializable> extends TsNotifica
 
 
 
-        //todo TEXT content;
+
         @Override
         public TsNotificationQuery notifyTime(Timestamp notifyTime) {
             if(!IdUtils.isEmpty(notifyTime)){

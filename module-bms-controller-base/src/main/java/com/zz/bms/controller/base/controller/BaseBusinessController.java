@@ -7,6 +7,7 @@ import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.base.service.BaseService;
 import com.zz.bms.core.db.entity.*;
 import com.zz.bms.core.db.mybatis.query.Query;
+import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.util.base.java.GenericsHelper;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Administrator
@@ -326,9 +328,9 @@ public abstract class BaseBusinessController<
      * @param m
      */
     protected void processBO(RwModel m){
-        //todo
-        //this.baseService.processResult(m);
-        //this.baseService.specialHandler(m);
+
+        this.getBaseRwService().processResult(m);
+        //this.getBaseRwService().specialHandler(m);
     }
 
     /**
@@ -532,4 +534,24 @@ public abstract class BaseBusinessController<
     public BaseService<RwModel, PK> getBaseRwService() {
         return baseRwService;
     }
+
+
+    /**
+     * 获取所有用到的字典信息
+     * @param dictTypes
+     * @return
+     */
+    @Override
+    public Map<String,?> getDictMaps(String ... dictTypes) {
+        throw EnumErrorMsg.code_error.toException();
+    }
+    @Override
+    public String getDictVal (Object dict) {
+        throw EnumErrorMsg.code_error.toException();
+    }
+    @Override
+    public String getDictName (Object dict) {
+        throw EnumErrorMsg.code_error.toException();
+    }
+
 }

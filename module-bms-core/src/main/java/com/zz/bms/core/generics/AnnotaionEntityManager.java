@@ -18,8 +18,6 @@ import java.util.*;
 @Component
 public class AnnotaionEntityManager {
 
-    //todo
-    //Anntotain 重新编写过，  需要调整所有的逻辑
 
 
     public List<AnnotaionEntity>  takeAnnotaions(Class clz){
@@ -53,18 +51,14 @@ public class AnnotaionEntityManager {
             if(field.isAnnotationPresent(EntityAttrCheckAnnotation.class)){
                 EntityAttrCheckAnnotation checkAnnotation = field.getAnnotation(EntityAttrCheckAnnotation.class);
                 ae.setCheck(true);
-                //todo
-                //ae.setCheckRule(checkAnnotation.checkRule());
-                //ae.setDictType(checkAnnotation.dictType());
-                ae.setCustomCheck(ae.customCheck);
+                ae.setCheckRule(checkAnnotation.checkRule());
+                ae.setCheckTipMsg(checkAnnotation.checkTipMsg());
             }
 
             if(field.isAnnotationPresent(EntityAttrPageAnnotation.class)){
                 EntityAttrPageAnnotation pageAnnotation = field.getAnnotation(EntityAttrPageAnnotation.class);
                 ae.setPage(true);
-                //todo
-                //ae.setGroup(pageAnnotation.group());
-                //ae.setGroupField(pageAnnotation.groupField());
+
                 if(StringUtils.isNotEmpty(ae.getGroup())){
                     List aes = groupMap.get(ae.getGroup());
                     if(aes == null){
@@ -77,7 +71,7 @@ public class AnnotaionEntityManager {
                 ae.setHidden(pageAnnotation.hidden());
                 ae.setReadonly(pageAnnotation.readonly());
 
-                //todo 解析初始值 , 配合 EnumPageElement
+
                 ae.setDefaultType(pageAnnotation.defaultType());
                 ae.setDefaultVal(pageAnnotation.defaultValue());
 

@@ -63,15 +63,13 @@
                 </shiro:hasPermission>
 
 
-
-
-                <shiro:hasPermission name="system.role:exportExcel">
+            <shiro:hasPermission name="system.role:importExcel">
                 <div class="btn-group">
-                    <button type="button" id="exportExcel" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" id="exportRemplet" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
                         </svg>
-                    导出 <span class="caret"></span>
+                        模板下载 <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
 
@@ -90,14 +88,26 @@
                                 </svg>下载模板(Excel2007)
                             </a>
                         </li>
+                    </ul>
+                </div>
+            </shiro:hasPermission>
 
-                        <li role="separator" class="divider"></li>
+
+                <shiro:hasPermission name="system.role:exportExcel">
+                <div class="btn-group">
+                    <button type="button" id="exportExcel" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg class="icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
+                        </svg>
+                    导出 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
 
                         <li>
-                            <a href="${ ctx }/${ currParentUrl }/cvs/export" class="export" >
+                            <a href="${ ctx }/${ currParentUrl }/csv/export" class="export" >
                                 <svg class="icon" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
-                                </svg>导出CVS
+                                </svg>导出CSV
                             </a>
                         </li>
                         <li>
