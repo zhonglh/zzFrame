@@ -1,25 +1,75 @@
 
-    var options = {};
+
+
+$.fn.UploadExcel = function(config){
+    var options = $(this).attr("data-options");
+    options = stringToJson(options);
+    options.id =  $(this).attr("id");
+    options = $.extend(options, config || {});
+
+    var excelFile = null;
+
+    if(excelFile == null){
+        options.html = $(this).html();
+        excelFile = new UploadExcelFile(options);
+    }
+    return excelFile;
+};
+
+
+
+// 给含有 importExcel 样式的元素绑定上传事件
+$("#importExcel").each(function(){
+
+    // 获取参数
+    var options = $(this).attr("data-options");
+    options = stringToJson(options);
+    var isInit = options.init||true;
+    if(isInit == true){
+        $(this).UploadExcel();
+    }
+});
+
+
+
+
+/**
+ * 文件导入
+ * options{
+ * 		id: 绑定上传事件控件ID
+ * 		maxFileSize: 单个文件大小限制，默认为50 * 1024 * 1024
+ * 		uploadUrl: 文件上传地址
+ * 		deleteUrl: 文件删除地址
+ * 		viewAreaId: 上传完成后，文件显示区域
+ * 		dataId: 关联数据的ID
+ * 		maxCount: 最大上传文件数量，如果小于大于0，则没有限制，默认0.
+ * }
+ */
+function UploadExcelFile(options)
+{
+    var that = this;
+    that.id = options.id;
     // 是否删除服务器中的文件内容
-    options.isDelServerFile = true;
+    options.isDelServerFile = options.isDelServerFile || true;
     // 最大上传文件数量
-    options.maxCount = 1;
+    options.maxCount = options.maxCount || 0;
     // 关联数据的ID
-    options.dataId = "";
+    options.dataId = options.dataId || "";
     // 单个文件大小限制
-    options.maxFileSize = (50 * 1024 * 1024);
+    options.maxFileSize = options.maxFileSize || (50 * 1024 * 1024);
     // 默认上传地址
-    options.uploadUrl =  ($AppContext + dataUrl+"/doExcel" );
+    options.uploadUrl = options.uploadUrl || ($AppContext + dataUrl+"/doExcel" );
     // 上传之前回调函数
-    options.beforeUpload =  function(){return true;};
+    options.beforeUpload = options.beforeUpload || function(){return true;};
+    that.options = options;
 
     // 创建文件上传
     var uploader = WebUploader.create({
         auto: true,
         swf: $AppContext + '/statics2/js/webuploader/Uploader.swf',
-        //server: options.uploadUrl,
-        pick: '#importExcel'
-        //fileNumLimit: 1,
+        server: options.uploadUrl,
+        pick: '#' + options.id ,
+        fileNumLimit: 1,
         // 验证单个文件大小是否超出限制, 超出则不允许加入队列。
         //fileSingleSizeLimit: options.maxFileSize,
         //上传并发数
@@ -30,10 +80,10 @@
         //disableGlobalDnd: true ,
 
         // 禁掉分块传输，默认是开起的。
-        //chunked: false,
+        chunked: false,
 
         // 禁掉上传前压缩功能
-        //compress: false
+        compress: false
     });
 
 
@@ -91,3 +141,6 @@
             error("文件上传失败。");
         }
     });
+
+}
+

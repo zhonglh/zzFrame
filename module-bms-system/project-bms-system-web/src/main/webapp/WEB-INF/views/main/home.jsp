@@ -417,7 +417,7 @@
 <script src="${staticUrl}/statics2/js/project/common-jquery.js"></script>
 <script src="${staticUrl}/statics2/js/project/common-data.js"></script>
 <script src="${staticUrl}/statics2/js/project/common-validate.js"></script>
-<script src="${staticUrl}/statics2/js/project/common-sys-function.js"></script>
+<script src="${staticUrl}/statics2/js/project/common-upload.js"></script>
 
 <script src="${staticUrl}/statics2/js/project/home.js"></script>
 

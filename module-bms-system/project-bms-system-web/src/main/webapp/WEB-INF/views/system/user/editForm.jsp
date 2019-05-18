@@ -253,7 +253,7 @@
 <script src="${staticUrl}/statics2/js/project/form.js"></script>
 
 
-<script src="${staticUrl}/statics2/js/project/common-sys-function.js"></script>
+<script src="${staticUrl}/statics2/js/project/common-upload.js"></script>
 
 
 <script language="JavaScript">

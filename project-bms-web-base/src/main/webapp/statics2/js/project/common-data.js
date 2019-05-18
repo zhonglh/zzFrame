@@ -511,7 +511,7 @@ function getFileSize(fileSize)
 function stringToJson(options)
 {
 	var jsonObj = {};
-	if(options == null)
+	if(options == undefined ||options == null || options == "")
 	{
 		return jsonObj;
 	}
