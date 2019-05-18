@@ -1,5 +1,7 @@
 package com.zz.bms.system.controller;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.DbException;
@@ -35,7 +37,6 @@ public class TsUserController extends ZzDefaultController<TsUserBO,VsUserBO, Str
 
 	@Autowired
 	private TsDictService tsDictService;
-
 
 
 

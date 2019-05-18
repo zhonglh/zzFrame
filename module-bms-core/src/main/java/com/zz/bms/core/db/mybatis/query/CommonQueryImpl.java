@@ -18,8 +18,19 @@ public class CommonQueryImpl<M,PK extends Serializable> extends QueryImpl<M,PK> 
     public String rbac ;
 
 
+    public String getKeyword() {
+        return keyword;
+    }
 
     public void setKeyword(String keyword) {
         this.keyword = keyword;
+    }
+
+    public String getRbac() {
+        return rbac;
+    }
+
+    public void setRbac(String rbac) {
+        this.rbac = rbac;
     }
 }

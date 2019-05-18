@@ -1,7 +1,7 @@
 package com.zz.bms.system.query.impl;
 
 
-import com.zz.bms.core.db.mybatis.query.QueryImpl;
+import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
 import com.zz.bms.system.domain.TsRolePermitEntity;
 
 import java.io.Serializable;
@@ -13,7 +13,7 @@ import java.lang.String;
  * @author Administrator
  * @date 2019-4-11 14:06:16
  */
-public abstract class TsRolePermitAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TsRolePermitEntity,PK> {
+public abstract class TsRolePermitAbstractQueryImpl<PK extends Serializable> extends CommonQueryImpl<TsRolePermitEntity,PK> {
 
             protected PK id;
             protected PK id_NE;

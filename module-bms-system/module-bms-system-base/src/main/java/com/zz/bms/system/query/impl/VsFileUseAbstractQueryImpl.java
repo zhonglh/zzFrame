@@ -1,7 +1,7 @@
 package com.zz.bms.system.query.impl;
 
 
-import com.zz.bms.core.db.mybatis.query.QueryImpl;
+import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
 import com.zz.bms.system.domain.VsFileUseEntity;
 
 import java.io.Serializable;
@@ -17,7 +17,7 @@ import java.lang.Integer;
  * @author Administrator
  * @date 2019-4-11 14:06:19
  */
-public abstract class VsFileUseAbstractQueryImpl<PK extends Serializable> extends QueryImpl<VsFileUseEntity,PK> {
+public abstract class VsFileUseAbstractQueryImpl<PK extends Serializable> extends CommonQueryImpl<VsFileUseEntity,PK> {
 
             protected PK id;
             protected PK id_NE;

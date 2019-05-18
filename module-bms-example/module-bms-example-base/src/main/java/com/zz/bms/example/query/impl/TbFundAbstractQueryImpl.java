@@ -1,6 +1,7 @@
 package com.zz.bms.example.query.impl;
 
 
+import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
 import com.zz.bms.core.db.mybatis.query.QueryImpl;
 import com.zz.bms.example.domain.TbFundEntity;
 
@@ -17,7 +18,7 @@ import java.lang.Integer;
  * @author Administrator
  * @date 2019-5-8 13:45:41
  */
-public abstract class TbFundAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TbFundEntity,PK> {
+public abstract class TbFundAbstractQueryImpl<PK extends Serializable> extends CommonQueryImpl<TbFundEntity,PK> {
 
             protected PK id;
             protected PK id_NE;

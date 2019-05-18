@@ -1,7 +1,7 @@
 package com.zz.bms.system.query.impl;
 
 
-import com.zz.bms.core.db.mybatis.query.QueryImpl;
+import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
 import com.zz.bms.system.domain.TsMsgTempletEntity;
 
 import java.io.Serializable;
@@ -15,7 +15,7 @@ import java.lang.Integer;
  * @author Administrator
  * @date 2019-4-11 14:06:18
  */
-public abstract class TsMsgTempletAbstractQueryImpl<PK extends Serializable> extends QueryImpl<TsMsgTempletEntity,PK> {
+public abstract class TsMsgTempletAbstractQueryImpl<PK extends Serializable> extends CommonQueryImpl<TsMsgTempletEntity,PK> {
 
             protected PK id;
             protected PK id_NE;

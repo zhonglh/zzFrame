@@ -30,15 +30,6 @@ public abstract class BaseEntity<PK extends Serializable> implements Serializabl
 
 
 
-    /**
-     * 关键字， 用于查询时记录关键字信息
-     */
-    /*
-    @TableField(exist = false)
-    private String keyword;
-    */
-
-
 
     @TableField(exist = false)
     private int pageNum;
