@@ -111,11 +111,11 @@ public abstract class BaseExcelController<
     protected void export(@PathVariable("excelType") String excelType, QueryModel m , OnlyQuery query, HttpServletRequest request, HttpServletResponse response) {
 
 
-        this.permissionList.assertHasExportPermission();
-
         if(StringUtils.isEmpty(excelType)){
             throw EnumErrorMsg.code_error.toException();
         }
+
+        this.permissionList.assertHasExportPermission();
 
         BaseXlsExport<QueryModel> bxe = null;
         ExcelExport<QueryModel> aee = null;

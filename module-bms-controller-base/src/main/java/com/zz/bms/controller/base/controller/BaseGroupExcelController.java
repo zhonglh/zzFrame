@@ -19,6 +19,8 @@ import com.zz.bms.util.poi.exceptions.ExcelFormatException;
 import com.zz.bms.util.poi.exceptions.ExcelTypeMatchingException;
 import com.zz.bms.util.poi.export.ExcelExport;
 import com.zz.bms.util.poi.export.excelype.BaseXlsExport;
+import com.zz.bms.util.poi.export.excelype.CsvXlsExport;
+import com.zz.bms.util.poi.export.filetype.CsvExport;
 import com.zz.bms.util.poi.export.filetype.HssfExport;
 import com.zz.bms.util.poi.export.filetype.SxssfExport;
 import com.zz.bms.util.poi.imports.ExcelImport;
@@ -103,18 +105,34 @@ public abstract class BaseGroupExcelController <
     @RequestMapping(value = "/{excelType}/export", method = RequestMethod.GET)
     protected void export(@PathVariable("excelType") String excelType, QueryModel m , OnlyQuery query, HttpServletRequest request, HttpServletResponse response) {
 
-
-        this.permissionList.assertHasExportPermission();
-
         if(StringUtils.isEmpty(excelType)){
             throw EnumErrorMsg.code_error.toException();
         }
 
-        excelType = excelType.toLowerCase();
-        BaseXlsExport<QueryModel> bxe = new BaseXlsExport<QueryModel>();
-        bxe.setEntityClz(this.getQueryEntityClass());
+        this.permissionList.assertHasExportPermission();
 
+
+        BaseXlsExport<QueryModel> bxe = null;
         ExcelExport<QueryModel> aee = null;
+        excelType = excelType.toLowerCase();
+
+        switch (excelType) {
+            case "csv":
+                bxe = new CsvXlsExport<QueryModel>();
+                bxe.setEntityClz(this.getQueryEntityClass());
+                break;
+            case "hssf":
+                bxe = new BaseXlsExport<QueryModel>();
+                bxe.setEntityClz(this.getQueryEntityClass());
+                break;
+            case "sxssf":
+                bxe = new BaseXlsExport<QueryModel>();
+                bxe.setEntityClz(this.getQueryEntityClass());
+                break;
+        }
+
+
+
         switch (excelType) {
             case "sxssf":
                 aee = new SxssfExport<QueryModel>(bxe);
@@ -123,7 +141,7 @@ public abstract class BaseGroupExcelController <
                 aee = new HssfExport<QueryModel>(bxe);
                 break;
             case "csv":
-                //aee = new SxssfExport(bxe);
+                aee = new CsvExport(bxe);
                 break;
 
         }
