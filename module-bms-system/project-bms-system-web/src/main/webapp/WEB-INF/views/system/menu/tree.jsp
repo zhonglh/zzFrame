@@ -39,7 +39,7 @@
             <th field='menuUrl' align="left" width="1" sortable='false'  >菜单地址</th>
             <th field='menuMsg' align="left" width="1" sortable='false'  >菜单提示信息</th>
             <th field='menuIcon' align="left" width="1" sortable='false'  >菜单图标</th>
-            <th field='menuRedirect' align="left" width="1" sortable='false'  >跳转目标</th>
+            <th field='target' align="left" width="1" sortable='false'  >链接目标</th>
 
 
 

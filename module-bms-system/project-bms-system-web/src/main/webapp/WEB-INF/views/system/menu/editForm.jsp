@@ -92,12 +92,10 @@
 
                                 <tr>
 
-                                    <th>跳转目标</th>
+                                    <th>路由目标</th>
 
                                     <td class="fd_menuRedirect">
                                             ${ m.menuRedirect }
-
-
                                     </td>
 
                                     <th>快捷菜单</th>
@@ -120,16 +118,27 @@
 
                                     </td>
 
-                                    <th>备注</th>
+                                    <th>链接目标</th>
 
-                                    <td class="fd_remark">
-                                            ${ m.remark }
+                                    <td class="fd_target">
+                                    ${ m.target }
 
 
                                     </td>
 
 
 
+                                </tr>
+
+                                <tr>
+
+                                    <th>备注</th>
+
+                                    <td colspan="3" class="fd_remark">
+                                    ${ m.remark }
+
+
+                                    </td>
                                 </tr>
 
 
@@ -242,7 +251,7 @@
                                 </tr>
 
                                 <tr>
-                                    <th>跳转目标</th>
+                                    <th>路由目标</th>
                                     <td>
                                                 <input type="text"  class="form-control input-sm "
                                                        placeholder="请输入跳转目标" autocomplete="off"
@@ -276,14 +285,31 @@
                                         </select>
                                     </td>
 
-                                    <th>备注</th>
+                                    <th>链接目标</th>
                                     <td>
-                                                <input type="text"  class="form-control input-sm "
-                                                       placeholder="请输入备注" autocomplete="off"
-                                                       value="${ m.remark }" id="remark" name="remark"
-                                                           maxlength="200"  />
+                                        <input type="text"  class="form-control input-sm "
+                                        placeholder="请输入菜单链接目标" autocomplete="off"
+                                        value="${ m.target }" id="target" name="target"
+                                        maxlength="50"  />
 
                                     </td>
+
+
+
+                                </tr>
+
+                                <tr>
+
+
+
+                                <th>备注</th>
+                                <td colspan="3">
+                                <input type="text"  class="form-control input-sm "
+                                placeholder="请输入备注" autocomplete="off"
+                                value="${ m.remark }" id="remark" name="remark"
+                                maxlength="200"  />
+
+                                </td>
 
 
 
