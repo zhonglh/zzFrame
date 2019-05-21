@@ -3,16 +3,6 @@ package com.zz.bms.system.domain;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.zz.bms.util.configs.annotaions.*;
 
-import com.zz.bms.core.Constant;
-import java.sql.Timestamp;
-import java.lang.String;
-import java.lang.Integer;
-import com.zz.bms.core.db.entity.BaseBusinessExEntity;
-
-
-
-
-
 
 
 /**
@@ -154,17 +144,21 @@ public class TsMenuEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
     @EntityAttrDictAnnotation(group = "hidden", groupName = "是否隐藏" ,  dbColumnName = "dict_val" , dbColumnLength = 2 , isValueField = true , dictType = "yes_no")
     @EntityAttrDBAnnotation(attrName="是否隐藏" ,attrColumn="hidden"  , type = "CHAR"      ,  attrLength = 1 , notNull = true )
     @EntityAttrPageAnnotation(title = "是否隐藏",sort = 1300  , pageElement = "select"            , maxLength = 1        ,required=true )
-	
-    
-    
+
 	private String  hidden ;
+
+
+
+	@EntityAttrDBAnnotation(attrName="链接目标" ,attrColumn="target"  , type = "VARCHAR"      ,  attrLength = 20 )
+	@EntityAttrPageAnnotation(title = "链接目标",sort = 1400  , pageElement = "text"            , maxLength = 20        )
+	private String target;
 
 
 
 
 
     @EntityAttrDBAnnotation(attrName="备注" ,attrColumn="remark"  , type = "VARCHAR"      ,  attrLength = 200 , notNull = false )
-    @EntityAttrPageAnnotation(title = "备注",sort = 1400  , pageElement = "text"            , maxLength = 200        ,required=false )
+    @EntityAttrPageAnnotation(title = "备注",sort = 1500  , pageElement = "text"            , maxLength = 200        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
     
@@ -285,6 +279,14 @@ public class TsMenuEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
     	return this.hidden;
     }
 
+
+	public String getTarget() {
+		return target;
+	}
+
+	public void setTarget(String target) {
+		this.target = target;
+	}
 
 	public void setRemark(String remark){
 		this.remark = remark;

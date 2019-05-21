@@ -188,9 +188,16 @@
         <c:forEach items="${menus}" var="menu">
 
             <li menuNodeNo="${menu.id}" menuLevel="${menu.level}" menuLeaf="${menu.leaf}" style="display : <c:if test="${menu.level == 1}">block</c:if><c:if test="${menu.level > 1}">none</c:if>" parentNodeNo="<c:if test="${empty menu.pid}">-1</c:if><c:if test="${not empty menu.pid}">${menu.pid}</c:if>"  >
+                <c:if test="${empty menu.target}">
                 <a href="javascript: openMenu('<c:if test="${menu.leaf == '1'}">${ctx}${menu.path}</c:if>');" title="${menu.title}"  style="padding-left: <c:if test="${menu.level == 1}">6</c:if><c:if test="${menu.level != 1}">${(menu.level-1)*22}</c:if>px;">
                     <c:if test="${not empty menu.icon}"><i class="fa ${menu.icon}"></i></c:if>${menu.title}
                 </a>
+                </c:if>
+                <c:if test="${not empty menu.target}">
+                    <a href="${menu.path}" target="${menu.target}" title="${menu.title}"  style="padding-left: <c:if test="${menu.level == 1}">6</c:if><c:if test="${menu.level != 1}">${(menu.level-1)*22}</c:if>px;">
+                        <c:if test="${not empty menu.icon}"><i class="fa ${menu.icon}"></i></c:if>${menu.title}
+                    </a>
+                </c:if>
             </li>
 
         </c:forEach>

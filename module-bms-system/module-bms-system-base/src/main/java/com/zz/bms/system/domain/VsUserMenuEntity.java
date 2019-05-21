@@ -89,6 +89,12 @@ public class VsUserMenuEntity extends BaseEntity<String> implements java.io.Seri
 
 
 
+	@EntityAttrDBAnnotation(attrName="链接目标" ,attrColumn="target"  , type = "VARCHAR"      ,  attrLength = 20 )
+	@EntityAttrPageAnnotation(title = "链接目标",sort = 1400  , pageElement = "text"            , maxLength = 20        )
+	private String target;
+
+
+
     @EntityAttrDBAnnotation(attrName="USER_NAME" ,attrColumn="user_name"  , type = "VARCHAR"      ,  attrLength = 50 , notNull = true )
     @EntityAttrPageAnnotation(title = "USER_NAME",sort = 1200  , pageElement = "text"            , maxLength = 50        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
@@ -201,6 +207,13 @@ public class VsUserMenuEntity extends BaseEntity<String> implements java.io.Seri
     	return this.leaf;
     }
 
+	public String getTarget() {
+		return target;
+	}
+
+	public void setTarget(String target) {
+		this.target = target;
+	}
 
 	public void setUserName(String userName){
 		this.userName = userName;
