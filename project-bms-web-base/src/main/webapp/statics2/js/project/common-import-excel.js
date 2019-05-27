@@ -17,7 +17,7 @@ options.beforeUpload =  function(){return true;};
 var uploader = WebUploader.create({
     auto: true,
     swf: $AppContext + '/statics2/js/webuploader/Uploader.swf',
-    //server: options.uploadUrl,
+    server: options.uploadUrl,
     pick: '#importExcel' ,
     fileNumLimit: (options.maxCount == 1?null:options.maxCount),
     // 验证单个文件大小是否超出限制, 超出则不允许加入队列。
