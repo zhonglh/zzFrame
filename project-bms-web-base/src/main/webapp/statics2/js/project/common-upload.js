@@ -45,7 +45,7 @@ $(".webuploader-container").each(function(){
     var options = $(this).attr("data-options");
     options = stringToJson(options);
     var isInit = options.init||true;
-    if(isInit == true){
+    if(Boolean(isInit) == true){
         $(this).UploadFile();
     }
 });
