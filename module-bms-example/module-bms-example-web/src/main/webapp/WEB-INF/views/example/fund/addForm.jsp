@@ -11,9 +11,7 @@
                 <form id="editForm" action="" method="post">
 
                     <div class="block-tit">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                        </svg>基本信息
+                        &nbsp;<i class="fa fa-th-list"></i>&nbsp;基本信息
                     </div>
 
                     <table class="info-table">
@@ -100,18 +98,10 @@
                                                             <input type="text" name="managerUserName" id="managerUserName" value="${ m.managerUserName }" required="required" class="form-control input-sm managerUserName " placeholder="请选择基金经理" style="cursor: pointer;" readonly="readonly">
                                                             <div class="input-group-btn">
                                                                 <button type="button"  class="btn btn-primary btn-sm managerUserName">
-                                                                    <svg class="icon" aria-hidden="true">
-                                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                             xlink:href="#icon-sousuo">
-                                                                        </use>
-                                                                    </svg>
+                                                                    &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                                 </button>
                                                                 <button type="button" id="clearManagerUserId"   class="btn btn-primary btn-sm">
-                                                                    <svg class="icon" aria-hidden="true">
-                                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                             xlink:href="#icon-close">
-                                                                        </use>
-                                                                    </svg>
+                                                                    &nbsp;<i class="fa fa-close"></i>&nbsp;
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -179,19 +169,11 @@
                                                         <div class="input-group-btn">
                                                             <button type="button"
                                                                     class="btn btn-primary btn-sm depName">
-                                                                <svg class="icon" aria-hidden="true">
-                                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                         xlink:href="#icon-sousuo">
-                                                                    </use>
-                                                                </svg>
+                                                                &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                             </button>
                                                             <button type="button" id="clearDepId"
                                                                     class="btn btn-primary btn-sm">
-                                                                <svg class="icon" aria-hidden="true">
-                                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                         xlink:href="#icon-close">
-                                                                    </use>
-                                                                </svg>
+                                                                &nbsp;<i class="fa fa-close"></i>&nbsp;
                                                             </button>
                                                         </div>
                                                     </div>
@@ -217,9 +199,7 @@
                         <div class="block-each block-each-another">
 
                                 <div class="block-tit">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                                    </svg>基金账户
+                                    &nbsp;<i class="fa fa-th-list"></i>&nbsp;基金账户
                                 </div>
 
 
@@ -243,9 +223,7 @@
                                         </table>
                                         <div style="text-align: center;margin: 5px">
                                             <button type="button" class="btn btn-primary btn-sm" onclick="doAddFundAccount()">
-                                                <svg class="icon" aria-hidden="true">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
-                                                </svg>
+                                                <i class="fa fa-plus"></i>
                                                 <span>添 加</span>
                                             </button>
                                         </div>
@@ -254,9 +232,7 @@
 
 
                                 <div class="block-tit">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                                    </svg>基金备案
+                                    &nbsp;<i class="fa fa-th-list"></i>&nbsp;基金备案
                                 </div>
 
                                     <table class="info-table">
@@ -304,18 +280,10 @@
                                                                                 <input type="text" name="fundRecordBO.bankName" id="fundRecordBO_bankName" value="${ m.fundRecordBO.bankName }" required="required" class="form-control input-sm fundRecordBO_bankName " placeholder="请选择开户行" style="cursor: pointer;" readonly="readonly">
                                                                                 <div class="input-group-btn">
                                                                                     <button type="button"  class="btn btn-primary btn-sm fundRecordBO_bankName">
-                                                                                        <svg class="icon" aria-hidden="true">
-                                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                                 xlink:href="#icon-sousuo">
-                                                                                            </use>
-                                                                                        </svg>
+                                                                                        &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                                                     </button>
                                                                                     <button type="button" id="clearfundRecordBO_BankId"   class="btn btn-primary btn-sm">
-                                                                                        <svg class="icon" aria-hidden="true">
-                                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                                 xlink:href="#icon-close">
-                                                                                            </use>
-                                                                                        </svg>
+                                                                                        &nbsp;<i class="fa fa-close"></i>&nbsp;
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
@@ -346,18 +314,10 @@
                                                                                 <input type="text" name="fundRecordBO.recordUserName" id="fundRecordBO_recordUserName" value="${ m.fundRecordBO.recordUserName }" required="required" class="form-control input-sm fundRecordBO_recordUserName " placeholder="请选择备案人" style="cursor: pointer;" readonly="readonly">
                                                                                 <div class="input-group-btn">
                                                                                     <button type="button"  class="btn btn-primary btn-sm fundRecordBO_recordUserName">
-                                                                                        <svg class="icon" aria-hidden="true">
-                                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                                 xlink:href="#icon-sousuo">
-                                                                                            </use>
-                                                                                        </svg>
+                                                                                        &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                                                     </button>
                                                                                     <button type="button" id="clearfundRecordBO_RecordUserId"   class="btn btn-primary btn-sm">
-                                                                                        <svg class="icon" aria-hidden="true">
-                                                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                                                 xlink:href="#icon-close">
-                                                                                            </use>
-                                                                                        </svg>
+                                                                                        &nbsp;<i class="fa fa-close"></i>&nbsp;
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
@@ -381,16 +341,12 @@
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
                 <shiro:hasPermission name="example.fund:add">
                     <button type="button" class="btn btn-primary btn-sm" onclick="doSave()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
-                        </svg>
+                        <i class="fa fa-save"></i>
                         <span>保 存</span>
                     </button>
                 </shiro:hasPermission>
                 <button type="button" class="btn  btn-warning btn-sm" onclick="closeWindow()">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                    </svg>
+                    <i class="fa fa-close"></i>
                     <span>取 消</span>
                 </button>
             </div>

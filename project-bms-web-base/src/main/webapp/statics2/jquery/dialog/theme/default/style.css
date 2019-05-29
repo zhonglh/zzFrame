@@ -5,6 +5,7 @@
 .i-dialog .i-close:hover{color: #ff0000;}
 .i-dialog .i-content{clear:both; margin: 5px 10px 10px 0px;}
 .i-dialog .i-wrapBtn{height: 45px; line-height: 20px; text-align:right; border-top: solid 1px #d3d3d3;}
+/*在项目主css设置主题颜色及按钮颜色*/
 .i-dialog .i-wrapBtn input{
 	outline: none;
     background-image: none;
@@ -23,13 +24,14 @@
     white-space: nowrap;
     background-color: #fff;
     border-color: #ccc;
-    color: #333;	
+    color: #333;
 }
 .i-dialog .i-wrapBtn input:hover{
 	background-color: #EBEBEB;
     border-color: #ADADAD;
 }
-.i-dialog .i-wrapBtn input.green{
+
+/*.i-dialog .i-wrapBtn input.green{
     background-color: #5CB85C;
     border-color: #4CAE4C;
     color: #fff;
@@ -37,7 +39,7 @@
 .i-dialog .i-wrapBtn input.green:hover{
 	background-color: #47A447;
     border-color: #398439;
-}
+}*/
 .i-dialog .i-wrapBtn input.blue{
     background-color: #5BC0DE;
     border-color: #46B8DA;

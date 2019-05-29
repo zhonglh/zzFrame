@@ -34,6 +34,12 @@
     <![endif]-->
 
     <link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/css/login.css" >
+    <link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/css/common-style-red.css" >
+    <style>
+        .input-group {
+            width: 100%;
+        }
+    </style>
 
 </head>
 <body>
@@ -43,8 +49,9 @@
     <div class="feather"><img src="${staticUrl}/statics2/image/p_login_slider.jpg" ></div>
     <div class="feather"><img src="${staticUrl}/statics2/image/p_login_slider1.jpg" ></div>
     <div class="feather"> <img src="${staticUrl}/statics2/image/p_login_slider2.jpg" > </div>
+    <div class="feather"> <img src="${staticUrl}/statics2/image/p_login_slider3.jpg" > </div>
+    <div class="feather"> <img src="${staticUrl}/statics2/image/p_login_slider2.jpg" > </div>
 </div>
-
 
 
 <!--内容-->
@@ -76,12 +83,12 @@
                     <!--左侧界面-->
                     <div class="login_main_l">
                         <dl>
-                            <dt><spring:message code="common.corporate.culture.headline" text="攀越高峰" /><small><spring:message code="common.corporate.culture.subhead" text="Over the future" /></small></dt>
+                            <dt><spring:message code="common.corporate.culture.headline" text="永不止步" /><small><spring:message code="common.corporate.culture.subhead" text="Never stop" /></small></dt>
                             <dd>
                                 <h4>
-                                    <spring:message code="common.corporate.culture.content1" text="企业文化是一种撼世气度与一种超然境界" /> ！<br>
-                                    <spring:message code="common.corporate.culture.content2" text="责任为重、诚信为本" /><br>
-                                    <spring:message code="common.corporate.culture.content3" text="立足当下，着眼未来" /><br>
+                                    <spring:message code="common.corporate.culture.content1" text="" /> <br>
+                                    <spring:message code="common.corporate.culture.content2" text="" /><br>
+                                    <spring:message code="common.corporate.culture.content3" text="" /><br>
                                 </h4>
                             </dd>
                         </dl>
@@ -109,13 +116,13 @@
                                        class="input-login" placeholder="请输入密码">
                             </div>
 
-                            <div class="input-group"><button id='btnLogin' class="btn btn-info btn-block btn-lg" value="登录" type="button" onclick='doLogin();' style='border-radius: 2px; padding: 10px 20px 12px; font-size: 14px;'>登录</button></div>
+                            <div class="input-group"><button id='btnLogin' class="btn btn-primary btn-block btn-lg" value="登录" type="button" onclick='doLogin();' style='border-radius: 2px; padding: 10px 20px 12px; font-size: 14px;'>登录</button></div>
                         </form>
 
 
 
                         <div style='padding-top: 23px;'>
-                            <div id='divMsg' style='padding: 10px; border-top: 1px solid #6a6d6d; color: #ff0300; height: 42px; text-align: center; word-break: break-all;'></div>
+                            <div id='divMsg' style='padding: 10px; border-top: 1px solid #ffffff22; color: #ff0300; height: 42px; text-align: center; word-break: break-all;'></div>
                         </div>
                     </div>
                     <!--/右侧界面-->

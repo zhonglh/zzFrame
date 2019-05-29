@@ -39,15 +39,11 @@
 
         <div class="btn-bar" style="margin-left: -10px;">
             <button type="button" class="btn btn-primary btn-sm" onclick="toAdd()">
-                <svg class="icon" aria-hidden="true">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
-                </svg>
+                <i class="fa fa-plus"></i>
                 <span>新建 </span>
             </button>
             <button type="button" class="btn btn-primary btn-sm" url="" onclick="doDelete()">
-                <svg class="icon" aria-hidden="true">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use>
-                </svg>
+                <i class="fa fa-trash"></i>
                 <span>删除 </span>
             </button>
         </div>

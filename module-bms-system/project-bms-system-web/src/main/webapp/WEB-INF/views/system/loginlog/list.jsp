@@ -35,9 +35,7 @@
 
                 <shiro:hasPermission name="system.loginlog:delete">
                     <button type="button" class="btn btn-primary btn-sm" onclick="doDelete()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use>
-                        </svg>
+                        <i class="fa fa-trash"></i>
                         <span>删除 </span>
                     </button>
                 </shiro:hasPermission>

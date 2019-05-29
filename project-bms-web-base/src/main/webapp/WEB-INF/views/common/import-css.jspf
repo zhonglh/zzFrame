@@ -5,12 +5,17 @@
 
 
 <link rel="stylesheet" href="${ctx}/statics2/font-awesome/font-awesome.min.css"/>
+
+<link rel="stylesheet" href="${ctx}/statics2/font-awesome/font-awesome.min.css"/>
+<link rel="stylesheet" href="${ctx}/statics2/font-awesome/font-awesome.min.css"/>
+
+
 <link rel="stylesheet" href="${ctx}/statics2/bootstrap/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="${ctx}/statics2/jquery/easyui/themes/default/easyui.css">
 <link rel="stylesheet" href="${ctx}/statics2/jquery/opentip/opentip.css" />
 <link rel="stylesheet" href="${ctx}/statics2/jquery/jquery-confirm/jquery-confirm.min.css"/>
 <link rel="stylesheet" href="${ctx}/statics2/jquery/toastr/toastr.min.css"/>
-<link rel="stylesheet" href="${ctx}/statics2/css/common.css"/>
+<link rel="stylesheet" href="${ctx}/statics2/css/common-style-red.css"/>
 
 <!-- 文件上传组件 baidu WebFE -->
 <link rel="stylesheet" href="${ctx}/statics2/js/webuploader/webuploader.css"/>

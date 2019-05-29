@@ -40,8 +40,7 @@ $(function ()
     {
         $inputImage.change(function()
         {
-            var file = this.file;
-            var file;
+            var file = this.files;
             if (!$image.data('cropper'))
             {
                 return;

@@ -3,9 +3,6 @@
 <c:set var="staticUrl" value="${pageContext.request.contextPath}"/>
 
 
-
-<script src="${staticUrl}/statics2/iconfont/iconfont.js"></script>
-
 <script src="${staticUrl}/statics2/jquery/jquery.min.js"></script>
 <script src="${staticUrl}/statics2/jquery/jquery-migrate.min.js"></script>
 <script src="${staticUrl}/statics2/bootstrap/bootstrap.min.js"></script>

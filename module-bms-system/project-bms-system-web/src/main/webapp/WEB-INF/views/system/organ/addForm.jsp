@@ -10,9 +10,7 @@
         <div class="col-xs-12 col-lg-12 col-md-12" style="padding-left: 0;padding-right: 0">
             <div class="block-each block-each-another">
                 <div class="block-tit">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                    </svg>基本信息
+                    &nbsp;<i class="fa fa-th-list"></i>&nbsp;基本信息
                 </div>
 
 
@@ -65,18 +63,10 @@
                                             <input type="text" name="leadUserName" id="leadUserName" value="${ m.leadUserName }" class="form-control input-sm leadUserName " placeholder="请选择负责人" style=" cursor: pointer;" readonly="readonly">
                                             <div class="input-group-btn">
                                                 <button type="button"  class="btn btn-primary btn-sm leadUserName">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                             xlink:href="#icon-sousuo">
-                                                        </use>
-                                                    </svg>
+                                                    &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                 </button>
                                                 <button type="button" id="clearLeadUserId"   class="btn btn-primary btn-sm">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                             xlink:href="#icon-close">
-                                                        </use>
-                                                    </svg>
+                                                    &nbsp;<i class="fa fa-close"></i>&nbsp;
                                                 </button>
                                             </div>
                                         </div>
@@ -107,18 +97,10 @@
                                                 <input type="text" name="pname" id="pname" value="${ m.pname }"  class="form-control input-sm pname " placeholder="请选择上级机构" style="cursor: pointer;" readonly="readonly">
                                                 <div class="input-group-btn">
                                                     <button type="button"  class="btn btn-primary btn-sm pname">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-sousuo">
-                                                            </use>
-                                                        </svg>
+                                                        &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                     </button>
                                                     <button type="button" id="clearPid"   class="btn btn-primary btn-sm">
-                                                        <svg class="icon" aria-hidden="true">
-                                                            <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 xlink:href="#icon-close">
-                                                            </use>
-                                                        </svg>
+                                                        &nbsp;<i class="fa fa-close"></i>&nbsp;
                                                     </button>
                                                 </div>
                                             </div>
@@ -147,16 +129,12 @@
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
                 <shiro:hasPermission name="system.user:add">
                     <button type="button" class="btn btn-primary btn-sm" onclick="doSave()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
-                        </svg>
+                        <i class="fa fa-save"></i>
                         <span>保 存</span>
                     </button>
                 </shiro:hasPermission>
                 <button type="button" class="btn  btn-warning btn-sm" onclick="closeWindow()">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                    </svg>
+                    <i class="fa fa-close"></i>
                     <span>取 消</span>
                 </button>
             </div>

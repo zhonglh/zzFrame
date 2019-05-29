@@ -11,9 +11,7 @@
 
             <div class="block-each block-each-another">
                 <div class="block-tit">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                    </svg>基本信息
+                    &nbsp;<i class="fa fa-th-list"></i>&nbsp;基本信息
                 </div>
 
 
@@ -113,9 +111,7 @@
 
 
                 <button type="button" class="btn  btn-warning btn-sm hide-area" onclick="closeWindow()">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chexiao"></use>
-                    </svg>
+                    <i class="fa fa-mail-reply"></i>
                     <span>返 回</span>
                 </button>
 

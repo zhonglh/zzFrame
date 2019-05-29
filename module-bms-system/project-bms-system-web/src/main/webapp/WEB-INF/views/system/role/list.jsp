@@ -31,9 +31,7 @@
 
                 <shiro:hasPermission name="system.role:add">
                     <button type="button" class="btn btn-primary btn-sm" onclick="toAdd()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
-                        </svg>
+                        <i class="fa fa-plus"></i>
                         <span>新增 </span>
                     </button>
                 </shiro:hasPermission>
@@ -43,9 +41,7 @@
 
                 <shiro:hasPermission name="system.role:delete">
                     <button type="button" class="btn btn-primary btn-sm" onclick="doDelete()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use>
-                        </svg>
+                        <i class="fa fa-trash"></i>
                         <span>删除 </span>
                     </button>
                 </shiro:hasPermission>
@@ -55,9 +51,7 @@
 
                 <shiro:hasPermission name="system.role:importExcel">
                     <div type="button" id="importExcel" class="btn btn-primary btn-sm" >
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daoru"></use>
-                        </svg>
+                        <i class="fa fa-upload"></i>
                         <span>导入</span>
                     </div>
                 </shiro:hasPermission>
@@ -66,9 +60,7 @@
             <shiro:hasPermission name="system.role:importExcel">
                 <div class="btn-group">
                     <button type="button" id="exportRemplet" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
-                        </svg>
+                        <i class="fa fa-download"></i>
                         模板下载 <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
@@ -96,33 +88,25 @@
                 <shiro:hasPermission name="system.role:exportExcel">
                 <div class="btn-group">
                     <button type="button" id="exportExcel" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
-                        </svg>
+                        <i class="fa fa-download"></i>
                     导出 <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
 
                         <li>
                             <a href="${ ctx }/${ currParentUrl }/csv/export" class="export" >
-                                <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
-                                </svg>导出CSV
+                                <i class="fa fa-download"></i>导出CSV
                             </a>
                         </li>
                         <li>
                             <a href="${ ctx }/${ currParentUrl }/hssf/export" class="export" >
-                                <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
-                                </svg>导出Excel2003
+                                <i class="fa fa-download"></i>导出Excel2003
                             </a>
                         </li>
 
                         <li>
                             <a href="${ ctx }/${ currParentUrl }/sxssf/export" class="export" >
-                                <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-daochu"></use>
-                                </svg>导出Excel2007
+                                <i class="fa fa-download"></i>导出Excel2007
                             </a>
                         </li>
                     </ul>

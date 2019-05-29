@@ -52,15 +52,8 @@
 
 
     <link rel="stylesheet" href="${ctx}/statics2/css/home.css">
-    <link rel="stylesheet" href="${ctx}/statics2/css/common.css"/>
+    <link rel="stylesheet" href="${ctx}/statics2/css/common-style-red.css"/>
 
-    <style>
-        #full-screen {padding: 10px; background: #ffffff; position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 99999; overflow: auto}
-        .fixed-top-show{position: fixed;top: 0;left: 0;right: 0;bottom: 0}
-        @media (min-width: 992px){.col-md-3 .block-each{margin-left: 10px}}
-        @media (max-width: 767px){.col-xs-12 .block-each{margin-left: 0}}
-        .nav-personal .dropdown+li {border-left: 1px solid #0896ba;}
-    </style>
 
 
 
@@ -87,7 +80,7 @@
 <body>
 <nav class="navbar" role="navigation">
     <div class="container-fluid">
-        <div class="navbar-header"><img class="logo" src="logo.png"/></div>
+        <div class="navbar-header"><img class="logo" src="${ctx}/statics2/image/logo.png"/></div>
         <div class="collapse navbar-collapse" style="padding-left: 0;margin-left: 230px;">
 
             <div id="limitSec">
@@ -156,10 +149,26 @@
                     </ul>
                 </li>
 
+
+                <li class='dropdown'>
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" style='margin-top: -8px; margin-bottom: 0px; padding-bottom: 3px;'>
+                        <img id='colorImg' class='img-circle' src="${staticUrl}/statics2/image/color.png"
+                             width=40 height=40 style='border:solid 2px;' />
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li style="background: red"><a href="javascript: change2Red();">    </a></li>
+                        <li style="background: green"><a href="javascript: change2Green();">  </a></li>
+                        <li style="background: blue"><a href="javascript: change2Blue();">   </a></li>
+                    </ul>
+                </li>
+
                 <li>
                     <a href="javascript:openMenu('${ctx}/system/notification/toList')" >
                         <i class="fa fa-bell-o"><span class="badge hidden">0</span></i>
                     </a>
+
+
+
 
                     <%--<div class="msg-toast-container">
                         <div class="msg-toast-title">

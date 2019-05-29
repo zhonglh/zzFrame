@@ -10,9 +10,7 @@
         <div class="col-xs-12 col-lg-12 col-md-12" style="padding-left: 0;padding-right: 0">
             <div class="block-each block-each-another">
                 <div class="block-tit">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                    </svg>基本信息
+                    &nbsp;<i class="fa fa-th-list"></i>&nbsp;基本信息
                 </div>
 
 
@@ -40,19 +38,11 @@
                                             <div class="input-group-btn">
                                                 <button type="button"
                                                         class="btn btn-primary btn-sm userName">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                             xlink:href="#icon-sousuo">
-                                                        </use>
-                                                    </svg>
+                                                    &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                 </button>
                                                 <button type="button" id="clearUserId"
                                                         class="btn btn-primary btn-sm">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                             xlink:href="#icon-close">
-                                                        </use>
-                                                    </svg>
+                                                    &nbsp;<i class="fa fa-close"></i>&nbsp;
                                                 </button>
                                             </div>
                                         </div>
@@ -69,18 +59,10 @@
                                             <input type="text" name="roleName" id="roleName" value="${ m.roleName }" required="required" class="form-control input-sm roleName " placeholder="请选择角色" style="cursor: pointer;" readonly="readonly">
                                             <div class="input-group-btn">
                                                 <button type="button"  class="btn btn-primary btn-sm roleName">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                             xlink:href="#icon-sousuo">
-                                                        </use>
-                                                    </svg>
+                                                    &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                 </button>
                                                 <button type="button" id="clearRoleId"   class="btn btn-primary btn-sm">
-                                                    <svg class="icon" aria-hidden="true">
-                                                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                             xlink:href="#icon-close">
-                                                        </use>
-                                                    </svg>
+                                                    &nbsp;<i class="fa fa-close"></i>&nbsp;
                                                 </button>
                                             </div>
                                         </div>
@@ -97,16 +79,12 @@
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
                 <shiro:hasPermission name="system.user:add">
                     <button type="button" class="btn btn-primary btn-sm" onclick="doSave()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
-                        </svg>
+                        <i class="fa fa-save"></i>
                         <span>保 存</span>
                     </button>
                 </shiro:hasPermission>
                 <button type="button" class="btn  btn-warning btn-sm" onclick="closeWindow()">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                    </svg>
+                    <i class="fa fa-close"></i>
                     <span>取 消</span>
                 </button>
             </div>

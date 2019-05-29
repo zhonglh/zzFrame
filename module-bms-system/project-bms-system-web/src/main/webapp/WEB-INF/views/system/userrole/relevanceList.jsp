@@ -9,9 +9,7 @@
         <div class="col-xs-12 col-lg-12 col-md-12" style="padding-left: 0;padding-right: 0">
             <div class="block-each block-each-another">
                 <div class="block-tit">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                    </svg>用户角色信息
+                    &nbsp;<i class="fa fa-th-list"></i>&nbsp;用户角色信息
                 </div>
 
 
@@ -46,17 +44,13 @@
                         <c:if test="${ fn:indexOf(allQueryString,'&userId=')>=0 || fn:indexOf(allQueryString,'&roleId=')>=0}">
                             <c:if test="${ fn:indexOf(allQueryString,'&userId=')>=0 }">
                             <button type="button" id="addBtn" class="btn btn-primary btn-sm show-area" onclick="clkSystemRole()" >
-                                <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
-                                </svg>
+                                <i class="fa fa-plus"></i>
                                 <span>添 加</span>
                             </button>
                             </c:if>
                             <c:if test="${ fn:indexOf(allQueryString,'&roleId=')>=0 }">
                                 <button type="button" id="addBtn" class="btn btn-primary btn-sm show-area" onclick="clkSystemUser()" >
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plus"></use>
-                                    </svg>
+                                    <i class="fa fa-plus"></i>
                                     <span>添 加</span>
                                 </button>
                             </c:if>
@@ -77,34 +71,26 @@
 
                 <shiro:hasPermission name="system.user:update">
                     <button type="button" class="btn btn-primary btn-sm hide-area" onclick="openEdit()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-edit"></use>
-                        </svg>
+                        <i class="fa fa-edit"></i>
                         <span>编 辑</span>
                     </button>
                 </shiro:hasPermission>
 
                 <button type="button" class="btn  btn-warning btn-sm hide-area" onclick="closeWindow()">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chexiao"></use>
-                    </svg>
+                    <i class="fa fa-mail-reply"></i>
                     <span>返 回</span>
                 </button>
 
 
                 <shiro:hasPermission name="system.user:update">
                     <button type="button" class="btn btn-primary btn-sm show-area" onclick="saveRelevanceList()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
-                        </svg>
+                        <i class="fa fa-save"></i>
                         <span>保 存</span>
                     </button>
                 </shiro:hasPermission>
 
                 <button type="button" class="btn  btn-warning btn-sm show-area" onclick="cancelEdit()">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                    </svg>
+                    <i class="fa fa-close"></i>
                     <span>取 消</span>
                 </button>
 

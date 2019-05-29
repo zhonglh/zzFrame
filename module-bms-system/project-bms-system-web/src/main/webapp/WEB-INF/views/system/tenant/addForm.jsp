@@ -10,9 +10,7 @@
         <div class="col-xs-12 col-lg-12 col-md-12" style="padding-left: 0;padding-right: 0">
             <div class="block-each block-each-another">
                 <div class="block-tit">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youjiantou"></use>
-                    </svg>基本信息
+                    &nbsp;<i class="fa fa-th-list"></i>&nbsp;基本信息
                 </div>
 
 
@@ -95,16 +93,12 @@
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
                 <shiro:hasPermission name="system.user:add">
                     <button type="button" class="btn btn-primary btn-sm" onclick="doSave()">
-                        <svg class="icon" aria-hidden="true">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-save-continue"></use>
-                        </svg>
+                        <i class="fa fa-save"></i>
                         <span>保 存</span>
                     </button>
                 </shiro:hasPermission>
                 <button type="button" class="btn  btn-warning btn-sm" onclick="closeWindow()">
-                    <svg class="icon" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
-                    </svg>
+                    <i class="fa fa-close"></i>
                     <span>取 消</span>
                 </button>
             </div>

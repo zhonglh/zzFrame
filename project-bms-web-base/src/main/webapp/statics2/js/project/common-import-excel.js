@@ -23,7 +23,7 @@ var uploader = WebUploader.create({
     // 验证单个文件大小是否超出限制, 超出则不允许加入队列。
     fileSingleSizeLimit: options.maxFileSize,
     //去重， 根据文件名字、文件大小和最后修改时间来生成hash Key.
-    duplicate: false,
+    duplicate: true,
     //是否禁掉整个页面的拖拽功能，如果不禁用，图片拖进来的时候会默认被浏览器打开。
     disableGlobalDnd: true,
     accept: {
@@ -91,6 +91,6 @@ uploader.on('error', function (reason)
     }else if(reason == 'Q_TYPE_DENIED'){
         error("上传验证失败。");
     }else {
-        error("文件上传失败。");
+        error("文件上传失败。"+reason);
     }
 });
