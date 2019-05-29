@@ -154,7 +154,7 @@
                                             <ul id="thelist" class="file-list" style="margin: 0 0 10px 0" ></ul>
                                         </div>
                                         <div class="btns">
-                                            <div id="uploadFile" title='附件' class="webuploader-container" data-options="viewAreaId:'#thelist', fileSource:100">
+                                            <div id="uploadFile" title='附件' class="webuploader-container" data-options="viewAreaId:'#thelist', init:true,  fileSource:100">
                                                 <svg class="icon" aria-hidden="true">
                                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-upload"></use>
                                                 </svg>
@@ -163,6 +163,13 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+
+
+
+
+
                             </td>
                         </tr>
 
