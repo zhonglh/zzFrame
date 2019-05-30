@@ -99,9 +99,7 @@
                                     <input type="hidden" id="leadUserId" name="leadUserId" value="${m.leadUserId}">
                                     <div class="input-group-btn">
                                         <button type="button"  class="btn btn-primary btn-sm leadUserName">
-                                            <svg class="icon" aria-hidden="true">
-                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-sousuo"></use>
-                                            </svg>
+                                            <i class="fa fa-search-plus"></i>
                                         </button>
                                         <button type="button"  id="clearLeadUserId"  class="btn btn-primary btn-sm">
                                             <i class="fa fa-close"></i>
@@ -122,9 +120,7 @@
                                     <input type="hidden" id="depId" name="depId" value="${m.depId}">
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-primary btn-sm depName">
-                                            <svg class="icon" aria-hidden="true">
-                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-sousuo"></use>
-                                            </svg>
+                                            <i class="fa fa-search-plus"></i>
                                         </button>
                                         <button type="button" id="clearDepId" class="btn btn-primary btn-sm">
                                             <i class="fa fa-close"></i>
@@ -148,27 +144,20 @@
                         <tr>
                             <th height="10%">附件</th>
                             <td width="15%" colspan="3">
-                                <div class="" style="margin-bottom: 0px;">
+
+                                <div class="" style="margin-bottom: 0px;width: 80px">
                                     <div class="info-detail">
                                         <div class="uploader-list">
                                             <ul id="thelist" class="file-list" style="margin: 0 0 10px 0" ></ul>
                                         </div>
                                         <div class="btns">
-                                            <div id="uploadFile" title='附件' class="webuploader-container" data-options="viewAreaId:'#thelist', init:true,  fileSource:100">
-                                                <svg class="icon" aria-hidden="true">
-                                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-upload"></use>
-                                                </svg>
+                                            <div id="uploadFile" title='附件' class="webuploader-container" data-options="viewAreaId:'#thelist', fileSource:100">
+                                                <i class="fa fa-upload"></i>
                                                 <span>上传附件</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
-
-
 
                             </td>
                         </tr>

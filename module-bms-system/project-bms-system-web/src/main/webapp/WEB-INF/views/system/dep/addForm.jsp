@@ -45,9 +45,7 @@
                                     <input type="hidden" id="leadUserId" name="leadUserId" value="${m.leadUserId}">
                                     <div class="input-group-btn">
                                         <button type="button"  class="btn btn-primary btn-sm leadUserName">
-                                            <svg class="icon" aria-hidden="true">
-                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-sousuo"></use>
-                                            </svg>
+                                            <i class="fa fa-search-plus"></i>
                                         </button>
                                         <button type="button"  id="clearLeadUserId"  class="btn btn-primary btn-sm">
                                             <i class="fa fa-close"></i>
@@ -69,9 +67,7 @@
                                     <input type="hidden" id="pid" name="pid" value="${m.pid}">
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-primary btn-sm pname">
-                                            <svg class="icon" aria-hidden="true">
-                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-sousuo"></use>
-                                            </svg>
+                                            <i class="fa fa-search-plus"></i>
                                         </button>
                                         <button type="button" id="clearPid" class="btn btn-primary btn-sm">
                                             <i class="fa fa-close"></i>

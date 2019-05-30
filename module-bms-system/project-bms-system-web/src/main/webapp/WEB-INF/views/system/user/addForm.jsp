@@ -58,9 +58,7 @@
                                     <input type="hidden" id="leadUserId" name="leadUserId" value="${m.leadUserId}">
                                     <div class="input-group-btn">
                                         <button type="button"  class="btn btn-primary btn-sm leadUserName">
-                                            <svg class="icon" aria-hidden="true">
-                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-sousuo"></use>
-                                            </svg>
+                                            <i class="fa fa-search-plus"></i>
                                         </button>
                                         <button type="button"  id="clearLeadUserId"  class="btn btn-primary btn-sm">
                                             <i class="fa fa-close"></i>
@@ -81,9 +79,7 @@
                                     <input type="hidden" id="depId" name="depId" value="${m.depId}">
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-primary btn-sm depName">
-                                            <svg class="icon" aria-hidden="true">
-                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-sousuo"></use>
-                                            </svg>
+                                            <i class="fa fa-search-plus"></i>
                                         </button>
                                         <button type="button" id="cleaDepId" class="btn btn-primary btn-sm">
                                             <i class="fa fa-close"></i>
