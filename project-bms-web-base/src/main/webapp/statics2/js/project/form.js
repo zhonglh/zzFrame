@@ -73,6 +73,8 @@ function openEdit(){
     $(".hide-area").hide();
     $(".easyui-datagrid").datagrid("showColumn","option");
     $(".form").tform().showEdit();
+    $(".webuploader-container").UploadFile();
+
 }
 
 //取消编辑

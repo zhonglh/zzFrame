@@ -63,26 +63,18 @@
                             <tr>
                                 <th>附件</th>
                                 <td class="fd_investorFiles" colspan="3">
-
-
                                     <ul style="margin: 0 0 10px 0">
+                                        <c:forEach var="item" items="${m.investorFilesList}">
                                         <li>
-                                            <a href="javascript:void(0);" class="file-operate"><i class="fa fa-download"></i></a>
-                                            <a href="javascript:void(0);" class="file-text" title="152626496180214.png">
-                                                	<span style="float:left;">152626496180214.png</span>
-                                                <span style="float:right;">11.59KB</span>
+                                            <a href="javascript:download('${item.id}');" class="file-operate"><i class="fa fa-download"></i></a>
+                                            <a href="${item.accessUrl}" class="file-text" title="${item.showName}">
+                                                <span style="float:left;">${item.showName}</span>
+                                                <span style="float:right;" filesSize="${item.fileSize}">${item.fileSize}</span>
                                             </a>
                                             <div style="clear: both;"></div>
                                         </li>
-
-
+                                        </c:forEach>
                                     </ul>
-
-
-                                    <a href="javascript:downloadMongoDBFile('5cef9bfeecce3e29c8d2d1ea');">152626496180214.png</a><br>
-
-                                    <a href="javascript:downloadMongoDBFile('5cef9c47ecce3e29c8d2d1ec');">152626510889919.png</a><br>
-
                                 </td>
                             </tr>
 
@@ -176,12 +168,37 @@
                                 </td>
                             </tr>
 
+
                             <tr>
                                 <th>附件</th>
-                                <td>
+                                <td colspan="3">
+                                    <div class="" style="margin-bottom: 0px">
+                                        <div class="info-detail">
+                                            <input type="hidden" id="investorFiles" name="investorFiles" value="${m.investorFiles}">
+                                            <div class="uploader-list">
+                                                <ul id="thelist-investorFiles" class="file-list" style="margin: 0 0 10px 0" ></ul>
+                                            </div>
+                                            <div id="thelist-investorFiles-items" style="display: none;">
+                                                <c:forEach var="item" items="${m.investorFilesList}">
+                                                <span id="${item.id}" size="${item.fileSize}">${item.showName}</span>
+                                                </c:forEach>
+                                            </div>
+
+                                            <div class="btns">
+                                                <div id="uploadFile-investorFiles" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist-investorFiles', businessFileType:'investorFiles'  ,businessTempId: '${m.investorFiles}' ">
+                                                    <i class="fa fa-upload"></i>
+                                                    <span>上传附件</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
+                            </tr>
+
+                            <tr>
+
                                 <th>备注</th>
-                                <td>
+                                <td colspan="3">
                                         <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
                                                       id="remark" name="remark" placeholder="请输入备注，500字以内" maxlength="500" rows="4">${ m.remark }</textarea>
@@ -247,16 +264,14 @@
 
 
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
+<script src="${ staticUrl }/statics2/js/project/common-upload.js"></script>
 
 
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 
 
-
 <script language="JavaScript">
     $(function() {
-
-
         //选择投资经理
         $(".manageUserName").OpenSystemUserSelectWin({
             title: "投资经理",
@@ -266,24 +281,7 @@
             clearId: "clearManageUserId"
         });
 
-
-
-
-
-
     });
-
-
-    var tableId , tableJavaName;
-
-
-
-
-
-
-
-
-
 
 
 

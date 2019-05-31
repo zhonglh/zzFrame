@@ -231,17 +231,17 @@ function UploadFile(options)
 
     // 加载已经存在文件列表
     function initFileList(){
-        $(options.viewAreaId + "_dataItems").find("span").each(function(){
+        $(options.viewAreaId + "-items").find("span").each(function(){
             var id = $(this).attr("id");
-            var size = $(this).attr("size");
+            var fileSize = $(this).attr("fileSize");
             var accessUrl = $(this).attr("accessUrl");
             var showName = $(this).attr("showName");
             var businessId =  $(this).attr("businessId");
 
-            var fileQueued = getFileTemp(id, id, businessId , showName  , accessUrl , size);
+            var fileQueued = getFileTemp(id, id, businessId , showName  , accessUrl , fileSize);
             fileQueued.find(".file-remove").removeClass("hidden");
             vewArea.append(fileQueued);
-            new DeleteFile(id, businessId, showName,  accessUrl, size  , null);
+            new DeleteFile(id, businessId, showName,  accessUrl, fileSize  , null);
         });
     };
 
