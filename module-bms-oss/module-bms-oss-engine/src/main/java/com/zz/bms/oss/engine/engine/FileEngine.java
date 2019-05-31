@@ -3,6 +3,8 @@ package com.zz.bms.oss.engine.engine;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.oss.engine.config.FileSystemConfig;
 import com.zz.bms.oss.engine.enums.EnumFileEngine;
+import com.zz.bms.oss.vo.FileVO;
+import com.zz.bms.util.web.IpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -32,10 +34,19 @@ public  class FileEngine extends AbstractEngine implements StorageProcess {
 
 
     @Override
-    public String store(InputStream inputStream, String filename) {
+    public FileVO store(InputStream inputStream, String filename) {
         try {
-            Files.copy(inputStream, rootLocation.resolve(filename), StandardCopyOption.REPLACE_EXISTING);
-            return filename;
+            Path target = rootLocation.resolve(filename) ;
+            Files.copy(inputStream, target , StandardCopyOption.REPLACE_EXISTING);
+
+            FileVO fileVO = new FileVO();
+            fileVO.setFileBasePath(rootLocation.toAbsolutePath().toString());
+            fileVO.setFilePath(target.toAbsolutePath().toString());
+            fileVO.setFileName(target.toFile().getName());
+            fileVO.setAccessUrl("/oss/file/view/");
+            fileVO.setAccessUrlPrefix("");
+            fileVO.setFileHost(IpUtil.getIp());
+            return fileVO;
         }
         catch (IOException e) {
             throw new RuntimeException ("Failed to store file " + filename, e);
@@ -81,5 +92,11 @@ public  class FileEngine extends AbstractEngine implements StorageProcess {
     @Override
     public boolean isActive() {
         return config.isActive();
+    }
+
+
+    @Override
+    public EnumFileEngine getEngine() {
+        return EnumFileEngine.FILESYSTEM;
     }
 }

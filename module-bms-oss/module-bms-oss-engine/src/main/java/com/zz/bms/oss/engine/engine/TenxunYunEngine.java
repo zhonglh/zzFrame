@@ -12,17 +12,10 @@ import com.qcloud.cos.model.UploadResult;
 import com.qcloud.cos.region.Region;
 import com.qcloud.cos.transfer.TransferManager;
 import com.qcloud.cos.transfer.Upload;
-import com.qiniu.common.QiniuException;
-import com.qiniu.common.Zone;
-import com.qiniu.http.Response;
-import com.qiniu.storage.BucketManager;
-import com.qiniu.storage.Configuration;
-import com.qiniu.storage.UploadManager;
-import com.qiniu.util.Auth;
 import com.zz.bms.core.exceptions.BizException;
-import com.zz.bms.oss.engine.config.cloudconfig.impl.QiniuCloudConfig;
 import com.zz.bms.oss.engine.config.cloudconfig.impl.TenxunCloudConfig;
-import org.apache.commons.io.IOUtils;
+import com.zz.bms.oss.engine.enums.EnumFileEngine;
+import com.zz.bms.oss.vo.FileVO;
 import org.apache.http.entity.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -62,7 +55,7 @@ public class TenxunYunEngine extends AbstractEngine implements StorageProcess {
 
 
     @Override
-    public String store(InputStream inputStream, String filename) {
+    public FileVO store(InputStream inputStream, String filename) {
         {
             // 腾讯云必需要以"/"开头
             if (!filename.startsWith("/")) {
@@ -111,7 +104,12 @@ public class TenxunYunEngine extends AbstractEngine implements StorageProcess {
                 transferManager.shutdownNow();
             }
             // 例如：https://paddy-1256559626.cosbj.myqcloud.com/images/demo/20180426/0034397501f917.png
-            return config.getCloudDomain() + filename;
+            String accessUrl =  config.getCloudDomain() + filename;
+
+
+            FileVO fileVO = new FileVO();
+            fileVO.setAccessUrl(accessUrl);
+            return fileVO;
         }
     }
 
@@ -129,6 +127,13 @@ public class TenxunYunEngine extends AbstractEngine implements StorageProcess {
     @Override
     public boolean isActive() {
         return config.isActive();
+    }
+
+
+
+    @Override
+    public EnumFileEngine getEngine() {
+        return EnumFileEngine.CLOUD_TENXEN;
     }
 
 

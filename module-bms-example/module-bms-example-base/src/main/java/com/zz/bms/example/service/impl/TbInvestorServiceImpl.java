@@ -1,5 +1,6 @@
 package com.zz.bms.example.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.enums.*;
 
@@ -9,6 +10,7 @@ import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.core.db.base.service.impl.BaseServiceImpl;
 
+import com.zz.bms.system.bo.VsFileUseBO;
 import com.zz.bms.system.service.TsDictService;
 
 import com.zz.bms.system.bo.TsDictBO;
@@ -20,6 +22,7 @@ import com.zz.bms.system.bo.TsUserBO;
 import com.zz.bms.system.dao.TsUserDAO;
 
 
+import com.zz.bms.system.service.VsFileUseService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +47,14 @@ public class TbInvestorServiceImpl extends BaseServiceImpl<TbInvestorBO,String> 
 
 
 
-    @Autowired
+	@Autowired
+	private VsFileUseService vsFileUseService;
+
+
+
+
+
+	@Autowired
     private TsUserDAO tsUserDAO;
 
 
@@ -85,6 +95,13 @@ public class TbInvestorServiceImpl extends BaseServiceImpl<TbInvestorBO,String> 
 			if(temp != null){
 				tbInvestorBO.setManageUserName(temp.getUserName());
 			}
+		}
+
+		if(StringUtils.isNotEmpty(tbInvestorBO.getInvestorFiles())){
+			QueryWrapper<VsFileUseBO> qw = new QueryWrapper<VsFileUseBO>();
+			qw.lambda().eq(VsFileUseBO::getBusinessTempId , tbInvestorBO.getInvestorFiles());
+			List<VsFileUseBO> investorFilesList = vsFileUseService.list(qw);
+			tbInvestorBO.setInvestorFilesList(investorFilesList);
 		}
 
 		return tbInvestorBO;

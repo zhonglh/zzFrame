@@ -1,6 +1,9 @@
 package com.zz.bms.oss.engine.engine;
 
 
+import com.zz.bms.oss.engine.enums.EnumFileEngine;
+import com.zz.bms.oss.vo.FileVO;
+
 import java.io.InputStream;
 
 /**
@@ -14,15 +17,9 @@ public interface StorageProcess {
      * @param inputStream
      * @param filename
      */
-    public String store(InputStream inputStream, String filename);
+    public FileVO store(InputStream inputStream, String filename);
 
 
-    /**
-     * 获取路径
-     * @param prefix
-     * @return
-     */
-    public String getPath(String prefix) ;
 
     /**
      * 删除文件
@@ -37,10 +34,16 @@ public interface StorageProcess {
      */
     public Object get(String filename);
 
+
+
+
+
     /**
      * Engine 是否有效
      * @return
      */
     public boolean isActive();
+
+    public EnumFileEngine getEngine();
 
 }

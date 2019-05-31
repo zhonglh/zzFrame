@@ -32,7 +32,6 @@ public class TsFileEntity extends com.zz.bms.core.db.entity.BaseEntity<String> i
     @EntityAttrDBAnnotation(attrName="访问路径" ,attrColumn="access_url"  , type = "VARCHAR"      ,  attrLength = 200 , notNull = true )
     @EntityAttrPageAnnotation(title = "访问路径",sort = 300  , pageElement = "text"            , maxLength = 200        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     //不包括前缀        
 	private String  accessUrl ;
 
@@ -47,8 +46,8 @@ public class TsFileEntity extends com.zz.bms.core.db.entity.BaseEntity<String> i
 
 
 
-    @EntityAttrDBAnnotation(attrName="FILE_BASE_PATH" ,attrColumn="file_base_path"  , type = "VARCHAR"      ,  attrLength = 100 , notNull = false )
-    @EntityAttrPageAnnotation(title = "FILE_BASE_PATH",sort = 500  , pageElement = "text"            , maxLength = 100        ,required=false )
+    @EntityAttrDBAnnotation(attrName="文件路径" ,attrColumn="file_base_path"  , type = "VARCHAR"      ,  attrLength = 100 , notNull = false )
+    @EntityAttrPageAnnotation(title = "文件路径",sort = 500  , pageElement = "text"            , maxLength = 100        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
     

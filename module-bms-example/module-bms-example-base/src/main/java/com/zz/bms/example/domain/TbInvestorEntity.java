@@ -97,7 +97,6 @@ public class TbInvestorEntity extends com.zz.bms.core.db.entity.BaseBusinessExEn
 
     @EntityAttrDBAnnotation(attrName="附件" ,attrColumn="investor_files"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
     @EntityAttrPageAnnotation(title = "附件",sort = 800  , pageElement = "multifile"            , maxLength = 32        ,required=false )
-	@EntityAttrExcelAnnotation(excelProcess= "3")
     
     
 	private String  investorFiles ;

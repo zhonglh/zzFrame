@@ -1,6 +1,5 @@
 package com.zz.bms.oss.engine.engine;
 
-import com.aliyun.oss.OSSClient;
 import com.qiniu.common.QiniuException;
 import com.qiniu.common.Zone;
 import com.qiniu.http.Response;
@@ -9,8 +8,9 @@ import com.qiniu.storage.Configuration;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
 import com.zz.bms.core.exceptions.BizException;
-import com.zz.bms.oss.engine.config.cloudconfig.impl.AliCloudConfig;
 import com.zz.bms.oss.engine.config.cloudconfig.impl.QiniuCloudConfig;
+import com.zz.bms.oss.engine.enums.EnumFileEngine;
+import com.zz.bms.oss.vo.FileVO;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -52,10 +52,14 @@ public class QiniuYunEngine extends AbstractEngine implements StorageProcess {
 
 
     @Override
-    public String store(InputStream inputStream, String filename) {
+    public FileVO store(InputStream inputStream, String filename) {
         try {
             byte[] data = IOUtils.toByteArray(inputStream);
-            return this.upload(data, filename);
+            String accessUrl =  this.upload(data, filename);
+
+            FileVO fileVO = new FileVO();
+            fileVO.setAccessUrl(accessUrl);
+            return fileVO;
         } catch (IOException e) {
             throw new BizException("上传文件失败", e);
         }
@@ -83,6 +87,12 @@ public class QiniuYunEngine extends AbstractEngine implements StorageProcess {
     @Override
     public boolean isActive() {
         return config.isActive();
+    }
+
+
+    @Override
+    public EnumFileEngine getEngine() {
+        return EnumFileEngine.CLOUD_QINIU;
     }
 
 

@@ -62,7 +62,7 @@ $(".webuploader-container").each(function(){
 	 * 		deleteUrl: 文件删除地址
 	 * 		viewAreaId: 上传完成后，文件显示区域
 	 * 		dataId: 关联数据的ID
-	 * 		maxCount: 最大上传文件数量，如果小于大于0，则没有限制，默认0.
+	 * 		maxCount: 最大上传文件数量，如果小于等于0，则没有限制，默认0.
 	 * 		isDelServerFile: 是否删除服务器中的文件内容.
 	 * }
  */
@@ -95,7 +95,7 @@ function UploadFile(options)
         auto: true,
         swf: $AppContext + '/statics2/js/webuploader/Uploader.swf',
         server: options.uploadUrl,
-        pick: ".webuploader-container",
+        pick: {id: ('#' + options.id)},
         fileNumLimit: (options.maxCount == 1?null:options.maxCount),
         fileSingleSizeLimit: options.maxFileSize, // 验证单个文件大小是否超出限制, 超出则不允许加入队列。
         duplicate: true,//去重， 根据文件名字、文件大小和最后修改时间来生成hash Key.
@@ -129,7 +129,7 @@ function UploadFile(options)
 
         if(bl == true)
         {
-            vewArea.append(getFileTemp(file.id, "", file.name, file.size));
+            vewArea.append(getFileTemp(file.id, "" ,"", file.name, file.size));
             $Loading.show();
         }
     });
@@ -155,16 +155,17 @@ function UploadFile(options)
     {
         $Loading.fadeOut(500);
         var data = response.data;
-        var id = "file-" + data.fileId;
         var fileQueued = vewArea.find('#' + file.id);
-        fileQueued.attr("id", id)
+        fileQueued.attr("id", file.id);
         fileQueued.find('.progress').remove();
-        fileQueued.attr("fileId", data.fileId);
-        fileQueued.attr("docId", data.id);
+        fileQueued.attr("showName", data.showName);
+        fileQueued.attr("fileUseId", data.id);
+        fileQueued.attr("accessUrl", data.accessUrl);
+        fileQueued.attr("size", data.size);
         fileQueued.find(".file-remove").removeClass("hidden");
         // 文件容器发生变化
-        fileChangeEvent(id, {id:data.id, fileId:data.fileId, name:file.name, size:getFileSize(file.size), isDel: 0});
-        new DeleteFile(id, data.fileId, file.name, file, data.id, file.size);
+        fileChangeEvent(file.id, {id:id, showName:data.showName, accessUrl:data.accessUrl, size:getFileSize(data.size) ,deleteFlag:0} );
+        new DeleteFile(file.id, '', file.name, data.accessUrl,  file.size  , file);
     });
 
     // 上传失败回调函数
@@ -199,16 +200,16 @@ function UploadFile(options)
     // 加载已经存在文件列表
     function initFileList(){
         $(options.viewAreaId + "_dataItems").find("span").each(function(){
-            var fileId = $(this).attr("id");
+            var id = $(this).attr("id");
             var size = $(this).attr("size");
-            var docId = $(this).attr("docId");
-            var name = $(this).html();
-            var id = "file-" + fileId;
+            var accessUrl = $(this).attr("accessUrl");
+            var showName = $(this).attr("showName");
+            var businessId =  $(this).attr("businessId");
 
-            var fileQueued = getFileTemp(id, fileId, name, size, docId);
+            var fileQueued = getFileTemp(id, id, businessId , showName  , accessUrl , size);
             fileQueued.find(".file-remove").removeClass("hidden");
             vewArea.append(fileQueued);
-            new DeleteFile(id, fileId, name, null, docId, size);
+            new DeleteFile(id, businessId, showName,  accessUrl, size  , null);
         });
     };
 
@@ -216,37 +217,25 @@ function UploadFile(options)
     this.resetFileList();
 
     // 删除文件
-    function DeleteFile(id, fileId, fileName, file, docId, size){
+    function DeleteFile(id , businessId , showName  , accessUrl , size  , file){
         vewArea.find('#' + id).find(".file-remove").bind("click", function(){
+            var that = $(this);
             confirm('您确定要删除该文件吗？', function ()
             {
-                if(file || options.isDirectDel == 1){
+                if(businessId == undefined || businessId == '' || businessId == null){
                     // 新上传, 直接删除
-                    $.ajax({
-                        url: options.deleteUrl + fileId + "?fileName=" + fileName + "&docId=" + docId, type: 'DELETE',
-                        success: function (rsp, status)
-                        {
-                            if (rsp.success) {
-                                //删除成功
-                                vewArea.find('#' + id).remove();
-                                if(file != null){
-                                    uploader.removeFile(file, true);
-                                }
-                                // 文件容器发生变化
-                                fileChangeEvent(id, {id:docId, fileId:fileId, name:fileName, size:getFileSize(size), isDel: 1});
-                            }
-                            else {
-                                error(rsp.msg);
-                            }
-                        }
-                    });
+                    vewArea.find('#' + id).remove();
+                    if(file != null){
+                        uploader.removeFile(file, true);
+                    }
                 }else{
                     // 已经和数据建立关系，需要最后提交在删除
-                    vewArea.find('#' + id).attr("isDel", 1);
+                    vewArea.find('#' + id).attr("deleteFlag", 1);
                     vewArea.find('#' + id).hide();
-                    // 文件容器发生变化
-                    fileChangeEvent(id, {id:docId, fileId:fileId, name:fileName, size:getFileSize(size), isDel: 1});
                 }
+
+                // 文件容器发生变化
+                fileChangeEvent(id, {id:id, showName:showName, accessUrl:accessUrl, size:getFileSize(size) , deleteFlag : 1} );
             });
         });
     };
@@ -263,18 +252,14 @@ function UploadFile(options)
     }
 
     // 模板
-    function getFileTemp(id, fileId, name, size, docId){
-        var html = '<li id="' + id +'" fileName="' + name + '" isDel="0" fileSize="' + size + '" fileId="' + fileId + '" docId="' + docId + '">' +
+    function getFileTemp(id , fileUseId ,  businessId , showName  , accessUrl , size){
+        var html = '<li id="' + id +'" showName="' + showName + '" isDel="0" fileSize="' + size + '" businessId="' + businessId + '" fileUseId="' + fileUseId + '" accessUrl="' + accessUrl +  '">' +
             '<a href="javascript:void(0);" class="file-operate file-remove hidden">' +
-            '	<svg class="icon" aria-hidden="true">' +
-            '		<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>' +
-            '	</svg>' +
+            '	 <i class="fa fa-close"></i>' +
             '</a>' +
             '<a href="javascript:void(0);" class="file-text" title="' + name + '">' +
-            '	<svg class="icon" aria-hidden="true" style="float:left;margin-top: 6px;">' +
-            '    	<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-huixingzhen"></use>' +
-            '  	</svg>' +
-            '  	<span style="float:left;">' + name + '</span>' +
+            '	<span style="float:left;padding: 0 5px;"><i class="fa fa-paperclip"></i></span>' +
+            '  	<span style="float:left;">' + showName + '</span>' +
             '  	<span style="float:right;">' + getFileSize(size) + '</span>' +
             '</a>' +
             '<div style="clear: both;"></div>' +
@@ -282,6 +267,7 @@ function UploadFile(options)
 
         return $(html);
     }
+
 }
 
 

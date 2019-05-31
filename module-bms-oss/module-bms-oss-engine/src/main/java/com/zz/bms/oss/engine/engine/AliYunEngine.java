@@ -3,6 +3,8 @@ package com.zz.bms.oss.engine.engine;
 import com.aliyun.oss.OSSClient;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.oss.engine.config.cloudconfig.impl.AliCloudConfig;
+import com.zz.bms.oss.engine.enums.EnumFileEngine;
+import com.zz.bms.oss.vo.FileVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -35,14 +37,17 @@ public class AliYunEngine extends AbstractEngine implements StorageProcess {
     }
 
     @Override
-    public String store(InputStream inputStream, String path) {
+    public FileVO store(InputStream inputStream, String path) {
         try {
             client.putObject(config.getCloudBucketName(), path, inputStream);
         } catch (Exception e) {
             throw new BizException("上传文件失败，请检查配置信息");
         }
 
-        return config.getCloudDomain() + "/" + path;
+        String accessUrl =  config.getCloudDomain() + "/" + path;
+        FileVO fileVO = new FileVO();
+        fileVO.setAccessUrl(accessUrl);
+        return fileVO;
     }
 
     @Override
@@ -67,5 +72,10 @@ public class AliYunEngine extends AbstractEngine implements StorageProcess {
     @Override
     public boolean isActive() {
         return config.isActive();
+    }
+
+    @Override
+    public EnumFileEngine getEngine() {
+        return EnumFileEngine.CLOUD_ALI;
     }
 }

@@ -142,8 +142,8 @@
                         </tr>
 
                         <tr>
-                            <th height="10%">附件</th>
-                            <td width="15%" colspan="3">
+                            <th >附件</th>
+                            <td colspan="3">
 
                                 <div class="" style="margin-bottom: 0px;width: 80px">
                                     <div class="info-detail">

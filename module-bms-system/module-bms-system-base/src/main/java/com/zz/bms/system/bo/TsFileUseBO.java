@@ -32,10 +32,26 @@ public class TsFileUseBO extends TsFileUseEntity implements Serializable , IBoEn
 
     @TableField(exist = false)
     @EntityAttrFkAnnotation(group = "fileId",  groupName = "文件ID" ,   dbColumnName = "file_name" , dbColumnType = "VARCHAR" , dbColumnLength = 100   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsFileBO.class)
-    @EntityAttrExcelAnnotation(excelProcess= "3")
     @EntityAttrPageAnnotation(title = "文件",sort = 201                      ,required=true )
     private String fileName ;
 
+
+    @TableField(exist = false)
+    @EntityAttrExcelAnnotation(excelProcess= "2")
+    @EntityAttrPageAnnotation(title = "文件访问路径",sort = 202                      ,required=true )
+    private String  accessUrl;
+
+
+
+    @TableField(exist = false)
+    @EntityAttrPageAnnotation(title = "文件访问路径",sort = 203                      ,required=true )
+    private String  contentType;
+
+
+
+    @TableField(exist = false)
+    @EntityAttrPageAnnotation(title = "文件大小",sort = 204                      ,required=true )
+    private Long  fileSize;
 
 
     public void setFileName(String fileName){
@@ -47,9 +63,29 @@ public class TsFileUseBO extends TsFileUseEntity implements Serializable , IBoEn
     }
 
 
+    public String getAccessUrl() {
+        return accessUrl;
+    }
 
+    public void setAccessUrl(String accessUrl) {
+        this.accessUrl = accessUrl;
+    }
 
+    public String getContentType() {
+        return contentType;
+    }
 
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    public Long getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(Long fileSize) {
+        this.fileSize = fileSize;
+    }
 
     @Override
     public boolean isTable() {

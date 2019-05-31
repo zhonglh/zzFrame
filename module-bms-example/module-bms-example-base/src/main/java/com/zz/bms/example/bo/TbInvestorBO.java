@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 
 
 import com.zz.bms.core.db.entity.IBoEntity;
+import com.zz.bms.system.bo.VsFileUseBO;
 import com.zz.bms.util.configs.annotaions.*;
 import com.zz.bms.constants.DefaultTypeConstant;
 import com.zz.bms.constants.DictTypeConstant;
@@ -18,6 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -56,6 +58,13 @@ public class TbInvestorBO extends TbInvestorEntity implements Serializable , IBo
     private String cardTypeName ;
 
 
+    /**
+     * 附件列表
+     */
+    @TableField(exist = false)
+    private List<VsFileUseBO> investorFilesList ;
+
+
 
     public void setInvestorTypeName(String investorTypeName){
         this.investorTypeName = investorTypeName;
@@ -81,25 +90,22 @@ public class TbInvestorBO extends TbInvestorEntity implements Serializable , IBo
         return this.cardTypeName;
     }
 
+    public List<VsFileUseBO> getInvestorFilesList() {
+        return investorFilesList;
+    }
 
-
-
-
+    public void setInvestorFilesList(List<VsFileUseBO> investorFilesList) {
+        this.investorFilesList = investorFilesList;
+    }
 
     @Override
     public boolean isTable() {
-
         return true;
-
-
     }
 
 
     @Override
     public String toString() {
-
-
             return this.getInvestorName();
-        
     }
 }

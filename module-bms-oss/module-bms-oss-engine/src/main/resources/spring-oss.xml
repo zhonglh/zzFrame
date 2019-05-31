@@ -12,11 +12,11 @@
        http://www.springframework.org/schema/util/spring-util.xsd">
 
 
-    <util:properties id="aliyun" location="classpath:sso-cloud-aliyun.properties"/>
-    <util:properties id="qiniuyun"  location="classpath:sso-cloud-qiniuyun.properties"/>
-    <util:properties id="tenxunyun" location="classpath:sso-cloud-tenxunyun.properties"/>
-    <util:properties id="fileystem" location="classpath:sso-file.properties"/>
-    <util:properties id="fsnfs" location="classpath:sso-fsnfs.properties"/>
-    <util:properties id="mongodb" location="sso-mongodb.properties"/>
+    <util:properties id="aliyun" location="classpath:oss-cloud-aliyun.properties"/>
+    <util:properties id="qiniuyun"  location="classpath:oss-cloud-qiniuyun.properties"/>
+    <util:properties id="tenxunyun" location="classpath:oss-cloud-tenxunyun.properties"/>
+    <util:properties id="fileystem" location="classpath:oss-file.properties"/>
+    <util:properties id="fsnfs" location="classpath:oss-fsnfs.properties"/>
+    <util:properties id="mongodb" location="oss-mongodb.properties"/>
 
 </beans>

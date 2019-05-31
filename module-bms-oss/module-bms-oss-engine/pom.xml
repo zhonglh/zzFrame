@@ -47,6 +47,12 @@
 
 
         <dependency>
+            <groupId>com.zz.bms.util</groupId>
+            <artifactId>baseFileUtils</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.zz.bms</groupId>
             <artifactId>module-bms-oss-base</artifactId>
             <version>1.0.1</version>
