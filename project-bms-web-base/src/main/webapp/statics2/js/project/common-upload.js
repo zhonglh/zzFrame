@@ -36,7 +36,6 @@ $.fn.UploadFile = function(config){
 
 // 给含有 webuploader-container 样式的元素绑定上传事件
 $(".webuploader-container").each(function(){
-    debugger;
     if(GetScriptParam("source") == "1"){
         // 表单来源，不初始化组件
         return;
@@ -49,6 +48,22 @@ $(".webuploader-container").each(function(){
         $(this).UploadFile();
     }
 });
+
+try {
+    var fileHtml = "";
+    $(".file-list").each(function () {
+
+        var $ul = $(this);
+        //8为 “thelist-” 的长度
+        var fieldName = $ul.attr(id).substring(8);
+        var fieldNameList = [];
+        $ul.find("li").each(function (index, li) {
+            fieldNameList.push({id: $(this).attr("fileUseId")});
+        });
+    });
+}catch(e){
+
+}
 
 
 
@@ -77,11 +92,11 @@ function UploadFile(options)
     // 关联数据的ID
     options.dataId = options.dataId || "";
     // 单个文件大小限制
-    options.maxFileSize = options.maxFileSize || (50 * 1024 * 1024);
+    options.maxFileSize = options.maxFileSize || (2000 * 1024 * 1024);
     // 默认上传地址
-    options.uploadUrl = options.uploadUrl || ($AppContext + "/base/file/upload?dataId=" + options.dataId );
+    options.uploadUrl = options.uploadUrl || ($AppContext + "/oss/file/upload?businessTempId=" + options.businessTempId + "&businessFileType="+options.businessFileType );
     // 默认删除地址
-    options.deleteUrl = options.deleteUrl || $AppContext + "/base/file/delete/";
+    options.deleteUrl = options.deleteUrl || $AppContext + "/oss/file/delete/";
     // 文件发生变化（新增、删除）
     options.fileChange = options.fileChange || function(){};
     // 上传之前回调函数
@@ -129,7 +144,7 @@ function UploadFile(options)
 
         if(bl == true)
         {
-            vewArea.append(getFileTemp(file.id, "" ,"", file.name, file.size));
+            vewArea.append(getFileTemp(file.id, "" ,"", file.name, '', file.size));
             $Loading.show();
         }
     });
@@ -154,18 +169,35 @@ function UploadFile(options)
     uploader.on('uploadSuccess', function (file, response)
     {
         $Loading.fadeOut(500);
-        var data = response.data;
-        var fileQueued = vewArea.find('#' + file.id);
-        fileQueued.attr("id", file.id);
-        fileQueued.find('.progress').remove();
-        fileQueued.attr("showName", data.showName);
-        fileQueued.attr("fileUseId", data.id);
-        fileQueued.attr("accessUrl", data.accessUrl);
-        fileQueued.attr("size", data.size);
-        fileQueued.find(".file-remove").removeClass("hidden");
-        // 文件容器发生变化
-        fileChangeEvent(file.id, {id:id, showName:data.showName, accessUrl:data.accessUrl, size:getFileSize(data.size) ,deleteFlag:0} );
-        new DeleteFile(file.id, '', file.name, data.accessUrl,  file.size  , file);
+
+        if(!response.success){
+            error(response.msg, function(){
+                if(file != null){
+                    vewArea.find('#' + file.id).remove();
+                    uploader.removeFile(file, true);
+                }
+            });
+        }
+
+        try {
+            var data = response.obj;
+            var fileQueued = vewArea.find('#' + file.id);
+            fileQueued.attr("id", file.id);
+            fileQueued.find('.progress').remove();
+            fileQueued.attr("showName", data.showName);
+            fileQueued.attr("fileUseId", data.id);
+            fileQueued.attr("accessUrl", data.accessUrl);
+            fileQueued.find(".file-remove").removeClass("hidden");
+            // 文件容器发生变化
+            fileChangeEvent(file.id, {
+                id: data.id,
+                showName: data.showName,
+                accessUrl: data.accessUrl,
+                size: getFileSize(file.size),
+                deleteFlag: 0
+            });
+            new DeleteFile(file.id, '', file.name, data.accessUrl, file.size, file);
+        }catch(e){}
     });
 
     // 上传失败回调函数
@@ -185,7 +217,7 @@ function UploadFile(options)
     {
         $Loading.fadeOut(500);
         if(reason == 'F_EXCEED_SIZE'){
-            error("附件不能大于30M。");
+            error("附件不能大于50M。");
         }else if(reason != 'Q_TYPE_DENIED'){
             error("上传验证失败。");
         }

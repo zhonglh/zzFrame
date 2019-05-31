@@ -20,6 +20,7 @@ import org.apache.http.entity.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.*;
@@ -37,11 +38,7 @@ public class TenxunYunEngine extends AbstractEngine implements StorageProcess {
     private COSClient client;
 
 
-    public TenxunYunEngine() {
-        //初始化
-        init();
-    }
-
+    @PostConstruct
     private void init() {
 
         if(config.isActive()) {

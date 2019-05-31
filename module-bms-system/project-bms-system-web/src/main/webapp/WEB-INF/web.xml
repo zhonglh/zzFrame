@@ -17,6 +17,7 @@
       classpath:spring-mybatis.xml
       classpath:spring-shiro-redis.xml
       classpath:spring-util-redis.xml
+      classpath:spring-oss.xml
 
 
     </param-value>

@@ -10,6 +10,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -30,13 +31,21 @@ public  class FileEngine extends AbstractEngine implements StorageProcess {
     @Autowired
     private FileSystemConfig config;
 
-    private final Path rootLocation = Paths.get(config.getRoot());
+    private  Path rootLocation = null;
+
+    @PostConstruct
+    public void init(){
+        rootLocation = Paths.get("/");
+    }
 
 
     @Override
     public FileVO store(InputStream inputStream, String filename) {
         try {
-            Path target = rootLocation.resolve(filename) ;
+            Path target = rootLocation.resolve(config.getRoot() + filename) ;
+            if(!target.toFile().getParentFile().exists()){
+                target.toFile().getParentFile().mkdirs();
+            }
             Files.copy(inputStream, target , StandardCopyOption.REPLACE_EXISTING);
 
             FileVO fileVO = new FileVO();

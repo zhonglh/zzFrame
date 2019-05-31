@@ -62,11 +62,33 @@
 
                             <tr>
                                 <th>附件</th>
-                                <td class="fd_investorFiles">
-                                    <c:out value="${ m.investorFiles }" escapeXml="true"/>
+                                <td class="fd_investorFiles" colspan="3">
+
+
+                                    <ul style="margin: 0 0 10px 0">
+                                        <li>
+                                            <a href="javascript:void(0);" class="file-operate"><i class="fa fa-download"></i></a>
+                                            <a href="javascript:void(0);" class="file-text" title="152626496180214.png">
+                                                	<span style="float:left;">152626496180214.png</span>
+                                                <span style="float:right;">11.59KB</span>
+                                            </a>
+                                            <div style="clear: both;"></div>
+                                        </li>
+
+
+                                    </ul>
+
+
+                                    <a href="javascript:downloadMongoDBFile('5cef9bfeecce3e29c8d2d1ea');">152626496180214.png</a><br>
+
+                                    <a href="javascript:downloadMongoDBFile('5cef9c47ecce3e29c8d2d1ec');">152626510889919.png</a><br>
+
                                 </td>
+                            </tr>
+
+                            <tr>
                                 <th>备注</th>
-                                <td class="fd_remark">
+                                <td class="fd_remark" colspan="3">
                                     <c:out value="${ m.remark }" escapeXml="true"/>
                                 </td>
                             </tr>

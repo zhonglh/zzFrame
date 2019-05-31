@@ -2,6 +2,7 @@ package com.zz.bms.oss.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.controller.base.controller.BaseController;
+import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.InternalException;
@@ -30,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,10 +85,10 @@ public class OssController extends BaseController<String> {
      */
     @RequestMapping(value = "/upload" , method = RequestMethod.POST )
     @ResponseBody
-    public Object upload(@RequestParam(value="file") MultipartFile[] files, HttpServletResponse res, HttpServletRequest request) throws  Exception{
+    public Object upload(@RequestParam(value="file") MultipartFile file, HttpServletResponse res, HttpServletRequest request) throws  Exception{
 
 
-        if(files == null || files.length == 0) {
+        if(file == null ) {
             return AjaxJson.errorAjax;
         }
 
@@ -103,14 +105,14 @@ public class OssController extends BaseController<String> {
 
         List<FileUseVO> list = new ArrayList<FileUseVO>();
 
+        TsFileBO oneFile = null ;
+        TsFileUseBO bo = null;
+
         int index = 1;
 
         try {
 
-            for(MultipartFile file : files){
-                //处理每个文件
-
-                TsFileUseBO bo = new TsFileUseBO();
+                bo = new TsFileUseBO();
 
                 String showName = file.getOriginalFilename();
                 String md5 = FileKit.getFileMD5(file.getInputStream());
@@ -122,12 +124,17 @@ public class OssController extends BaseController<String> {
                 bo.setBusinessTempId(businessTempId);
                 bo.setRemark(remark);
                 bo.setFileOrder(index++);
+                bo.setCreateTime(new Timestamp(System.currentTimeMillis()));
+                bo.setCreateUserId(loginUser.getId());
+                bo.setCreateUserName(loginUser.getUserName());
+                bo.setTenantId(loginUser.getTenantId());
+                bo.setOrganId(loginUser.getOrganId());
+                bo.setVersionNo(Constant.INIT_VERSION);
 
                 QueryWrapper<TsFileBO> wrapper = new QueryWrapper<>();
                 wrapper.eq("md5" , md5);
-                wrapper.eq("delete_flag" , EnumYesNo.NO.getCode());
                 wrapper.gt("use_frequency" , 0) ;
-                TsFileBO oneFile = tsFileService.getOne(wrapper);
+                oneFile = tsFileService.getOne(wrapper);
                 if( oneFile == null ){
                     oneFile = new TsFileBO();
 
@@ -138,8 +145,8 @@ public class OssController extends BaseController<String> {
 
                     oneFile.setFileEngineName(sp.getEngine().getLabel());
                     oneFile.setFileEngine(sp.getEngine().getVal());
-                    oneFile.setTenantId(loginUser.getTenantId());
                     oneFile.setFileSize(fileSize);
+                    oneFile.setMd5(md5);
                     oneFile.setContentType(contentType);
                     oneFile.setFileSuffix(suffix);
                     oneFile.setAccessUrlPrefix(fileVO.getAccessUrlPrefix());
@@ -147,9 +154,10 @@ public class OssController extends BaseController<String> {
                     oneFile.setFileBasePath(fileVO.getFileBasePath());
                     oneFile.setFilePath(fileVO.getFilePath());
                     oneFile.setFileName(fileVO.getFileName());
+
                 }
                 list.add(new FileUseVO(oneFile ,bo));
-            }
+
 
 
 
@@ -161,7 +169,16 @@ public class OssController extends BaseController<String> {
         }
 
 
-        return null;
+
+        AjaxJson ajaxJson =  new AjaxJson(true);
+        VsFileUseBO vsFileUseBO = new VsFileUseBO();
+        vsFileUseBO.setId(bo.getId());
+        vsFileUseBO.setFileId(oneFile.getId());
+        vsFileUseBO.setShowName(bo.getShowName());
+        vsFileUseBO.setAccessUrl(oneFile.getAccessUrl());
+        ajaxJson.setObj(vsFileUseBO);
+
+        return ajaxJson;
     }
 
 
@@ -178,6 +195,10 @@ public class OssController extends BaseController<String> {
 
         if(storageProcesss == null || storageProcesss.length == 0){
             throw new InternalException("OSS 没有配置正确");
+        }
+
+        if(storageProcesss.length == 1){
+            return storageProcesss[0];
         }
 
         for(StorageProcess sp : storageProcesss){

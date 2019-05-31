@@ -96,11 +96,12 @@
                                     <td colspan="3">
                                         <div class="" style="margin-bottom: 0px">
                                             <div class="info-detail">
+                                                <input type="hidden" id="investorFiles" name="investorFiles" value="${m.investorFiles}">
                                                 <div class="uploader-list">
-                                                    <ul id="thelist" class="file-list" style="margin: 0 0 10px 0" ></ul>
+                                                    <ul id="thelist-investorFiles" class="file-list" style="margin: 0 0 10px 0" ></ul>
                                                 </div>
                                                 <div class="btns">
-                                                    <div id="uploadFile" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist', fileSource:100">
+                                                    <div id="uploadFile-investorFiles" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist-investorFiles', businessFileType:'investorFiles'  ,businessTempId: '${m.investorFiles}' ">
                                                         <i class="fa fa-upload"></i>
                                                         <span>上传附件</span>
                                                     </div>
@@ -158,10 +159,13 @@
 <bms:contentJS />
 
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
+<script src="${ staticUrl }/statics2/js/project/common-upload.js"></script>
 
 
 
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
+
+
 
 
 
@@ -178,11 +182,6 @@
             callName: "manageUserName",
             clearId: "clearManageUserId"
         });
-
-
-
-
-
 
     });
 

@@ -17,6 +17,6 @@
     <util:properties id="tenxunyun" location="classpath:oss-cloud-tenxunyun.properties"/>
     <util:properties id="fileystem" location="classpath:oss-file.properties"/>
     <util:properties id="fsnfs" location="classpath:oss-fsnfs.properties"/>
-    <util:properties id="mongodb" location="oss-mongodb.properties"/>
+    <util:properties id="mongodb" location="classpath:oss-mongodb.properties"/>
 
 </beans>

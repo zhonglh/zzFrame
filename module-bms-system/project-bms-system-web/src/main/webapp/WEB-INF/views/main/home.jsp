@@ -85,7 +85,7 @@
 
             <div id="limitSec">
 
-                <div id="drag-placeholder">点击"+"号定制<br/>快捷菜单</div>
+                <%--<div id="drag-placeholder" >点击"+"号定制<br/>快捷菜单</div>--%>
                 <a href="${ctx}/main/home" class="home-btn" data-ot=" 首页 " data-ot-delay="1"><i class="fa fa-home"></i></a>
                 <ul class="nav navbar-nav" id="nav-bar">
 
@@ -152,8 +152,8 @@
 
                 <li class='dropdown'>
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" style='margin-top: -8px; margin-bottom: 0px; padding-bottom: 3px;'>
-                        <img id='colorImg' class='img-circle' src="${staticUrl}/statics2/image/color.png"
-                             width=40 height=40 style='border:solid 2px;' />
+                        <img id='colorImg'  src="${staticUrl}/statics2/image/color.png"
+                             width=30 height=30 style='border:solid 0px;' />
                     </a>
                     <ul class="dropdown-menu">
                         <li style="background: red"><a href="javascript: change2Red();">    </a></li>

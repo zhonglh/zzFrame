@@ -15,6 +15,7 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -34,11 +35,8 @@ public class QiniuYunEngine extends AbstractEngine implements StorageProcess {
     private QiniuCloudConfig config;
 
 
-    public QiniuYunEngine() {
-        //初始化
-        init();
-    }
 
+    @PostConstruct
     private void init() {
         if(config.isActive()) {
             Configuration cfg = new Configuration(Zone.autoZone());

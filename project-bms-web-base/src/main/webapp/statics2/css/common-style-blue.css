@@ -18,6 +18,11 @@
 	 color: rgba(68, 108, 179, 1);
  }
 
+
+.window-close-color {
+	color: rgba(68, 108, 179, 1);
+}
+
 body {
 	color: #333333
 }

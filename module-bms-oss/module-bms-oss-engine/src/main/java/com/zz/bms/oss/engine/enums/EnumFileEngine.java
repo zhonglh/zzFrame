@@ -13,32 +13,32 @@ public enum EnumFileEngine implements EnumBase<String> {
     /**
      * 文件系统
      */
-    FILESYSTEM("FILESYSTEM" , "文件系统"),
+    FILESYSTEM("1" , "文件系统"),
 
     /**
      * Fast nfs 系统
      */
-    FASTNFS("FASTNFS" , "Fast Nfs"),
+    FASTNFS("2" , "Fast Nfs"),
 
     /**
      * Mongo DB
      */
-    MONGODB("MONGODB" , "MongoDB"),
+    MONGODB("3" , "MongoDB"),
 
     /**
      * 七牛云
      */
-    CLOUD_QINIU("CLOUD_QINIU" , "七牛云"),
+    CLOUD_QINIU("4" , "七牛云"),
 
     /**
      * 阿里云
      */
-    CLOUD_ALI("CLOUD_ALI" , "阿里云"),
+    CLOUD_ALI("5" , "阿里云"),
 
     /**
      * 腾讯云
      */
-    CLOUD_TENXEN("CLOUD_TENXEN" , "腾讯云"),
+    CLOUD_TENXEN("6" , "腾讯云"),
     ;
 
     String theValue;

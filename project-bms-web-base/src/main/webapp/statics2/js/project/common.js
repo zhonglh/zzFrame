@@ -21,9 +21,7 @@ function showIframeWindow(title, url, closeCallback, initCallback)
 		<div class="navigation">\
 			<span class="words"></span>\
 			<a href="javascript:;" class="close-mask">\
-				<svg class="icon" aria-hidden="true">\
-				    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>\
-				</svg>\
+				<i  class="fa fa-close window-close-color"></i>\
     		</a>\
 		</div>\
 		<div class="autoScrollContainer">\
@@ -102,9 +100,7 @@ function slideIframeWindow(title, url, leftPadding, closeCallback, initCallback)
 			<div class="navigation">\
 				<span class="words"></span>\
 				<a href="javascript:;" class="close-mask">\
-					<svg class="icon" aria-hidden="true">\
-						<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>\
-					</svg>\
+					<i class="fa fa-close"></i>\
 				</a>\
 			</div>\
 			<div class="autoScrollContainer">\

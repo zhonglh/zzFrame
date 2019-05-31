@@ -8,6 +8,7 @@ import com.zz.bms.oss.vo.FileVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.InputStream;
 
 /**
@@ -27,7 +28,7 @@ public class AliYunEngine extends AbstractEngine implements StorageProcess {
 
     }
 
-
+    @PostConstruct
     private void init() {
         if(config.isActive()) {
             client = new OSSClient(config.getCloudEndPoint(),
