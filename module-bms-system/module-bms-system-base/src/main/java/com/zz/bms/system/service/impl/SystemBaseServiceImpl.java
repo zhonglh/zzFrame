@@ -47,18 +47,33 @@ public abstract class SystemBaseServiceImpl<T extends BaseEntity<PK>,  PK extend
             return;
         }
 
-        List<TsFileUseBO> fileUses = new ArrayList<TsFileUseBO>(allFileUseBO.size());
+        List<TsFileUseBO> updateFileUses = new ArrayList<TsFileUseBO>();
+        List<TsFileUseBO> deleteFileUses = new ArrayList<TsFileUseBO>();
         for(VsFileUseBO vsFileUseBO : allFileUseBO){
             TsFileUseBO tsFileUseBO = new TsFileUseBO();
             tsFileUseBO.setId(vsFileUseBO.getId());
-            tsFileUseBO.setBusinessType(t.getClass().getSimpleName());
+            tsFileUseBO.setBusinessType(t.getClass().getName());
             tsFileUseBO.setBusinessId((String)t.getId());
             if(vsFileUseBO.getDeleteFlag() != null &&
                     EnumYesNo.getEnumByValue(vsFileUseBO.getDeleteFlag()) != null) {
                 tsFileUseBO.setDeleteFlag(vsFileUseBO.getDeleteFlag());
+                if(EnumYesNo.YES.getCode().equalsIgnoreCase(vsFileUseBO.getDeleteFlag())){
+                    deleteFileUses.add(tsFileUseBO);
+                }else {
+                    updateFileUses.add(tsFileUseBO);
+                }
+            }else{
+                tsFileUseBO.setDeleteFlag(EnumYesNo.NO.getCode());
+                updateFileUses.add(tsFileUseBO);
             }
         }
-        tsFileUseService.updateBatchById(fileUses);
+        if(!updateFileUses.isEmpty()) {
+            tsFileUseService.updateBatchById(updateFileUses);
+        }
+
+        if(!deleteFileUses.isEmpty()) {
+            tsFileUseService.deletesByIds(deleteFileUses);
+        }
     }
 
 

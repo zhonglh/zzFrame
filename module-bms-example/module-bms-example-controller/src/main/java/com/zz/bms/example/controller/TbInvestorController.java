@@ -54,7 +54,10 @@ public class TbInvestorController extends ZzDefaultSimpleController<TbInvestorBO
 
 
 
-
+	@Override
+	protected void customInfoByCreateForm(TbInvestorBO m, ModelMap model) {
+		m.setInvestorFiles(IdUtils.getId());
+	}
 
 
 
