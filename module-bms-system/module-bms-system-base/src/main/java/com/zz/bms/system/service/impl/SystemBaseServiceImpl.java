@@ -9,6 +9,7 @@ import com.zz.bms.system.bo.TsFileUseBO;
 import com.zz.bms.system.bo.VsFileUseBO;
 import com.zz.bms.system.service.TsFileUseService;
 import com.zz.bms.util.spring.ReflectionUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -18,7 +19,7 @@ import java.util.List;
 public abstract class SystemBaseServiceImpl<T extends BaseEntity<PK>,  PK extends Serializable>
         extends BaseServiceImpl<T , PK> implements BaseService<T , PK> {
 
-
+    @Autowired
     private TsFileUseService tsFileUseService ;
 
     protected void processFiles(T t){

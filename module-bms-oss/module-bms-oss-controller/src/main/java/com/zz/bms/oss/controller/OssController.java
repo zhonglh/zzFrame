@@ -77,7 +77,7 @@ public class OssController extends BaseController<String> {
 
     /**
      * 上传文件
-     * @param files
+     * @param file
      * @param res
      * @param request
      * @return
@@ -130,6 +130,7 @@ public class OssController extends BaseController<String> {
                 bo.setTenantId(loginUser.getTenantId());
                 bo.setOrganId(loginUser.getOrganId());
                 bo.setVersionNo(Constant.INIT_VERSION);
+                bo.setDeleteFlag(EnumYesNo.NO.getCode());
 
                 QueryWrapper<TsFileBO> wrapper = new QueryWrapper<>();
                 wrapper.eq("md5" , md5);
