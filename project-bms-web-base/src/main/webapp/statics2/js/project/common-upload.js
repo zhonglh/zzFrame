@@ -32,7 +32,13 @@ $.fn.UploadFile = function(config){
     return uploadFile;
 };
 
-
+$(".fileSize").each(function(index, item){
+    var $item = $(item);
+    var fileSize = $item.attr("fileSize") ;
+    if(fileSize != undefined && fileSize != null && fileSize != ""){
+        $item.html("("+getFileSize(fileSize) + ")");
+    }
+});
 
 // 给含有 webuploader-container 样式的元素绑定上传事件
 $(".webuploader-container").each(function(){
@@ -224,13 +230,14 @@ function UploadFile(options)
     function initFileList(){
         $(options.viewAreaId + "-items").find("span").each(function(){
             var id = $(this).attr("id");
+            var fileUseId = $(this).attr("fileUseId");
             var fileSize = $(this).attr("fileSize");
             var accessUrl = $(this).attr("accessUrl");
             var showName = $(this).attr("showName");
             var businessId =  $(this).attr("businessId");
             var fileEngine = $(this).attr("fileEngine");
 
-            var fileQueued = getFileTemp(id, id, businessId , showName  , accessUrl , fileSize ,fileEngine);
+            var fileQueued = getFileTemp(id, fileUseId, businessId , showName  , accessUrl , fileSize ,fileEngine);
             fileQueued.find(".file-remove").removeClass("hidden");
             vewArea.append(fileQueued);
             new DeleteFile(id, businessId, showName,  accessUrl, fileSize  , null);
@@ -301,6 +308,7 @@ function UploadFile(options)
         }else {
             a = accessUrl;
         }
+        return a;
     }
 
 }

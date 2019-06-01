@@ -1132,23 +1132,32 @@ $(function(){
             className = key.replace("[","").replace("]","").replace(".","");
             var cell = $("#" + that.options.viewId).find(".fd_" + className);
             var data = that.data[key];
-            if(key.indexOf("uploadFile") == 0){
+            if(key.indexOf("File") > 0 || key.indexOf("Image") > 0){
                 // 附件列表
-                cell.find("a").remove();
-                cell.find("br").remove();
-                var file = data;
-                if(file != null){
-                    for(var i=0; i<file.length; i++){
-                        var file = file[i];
-                        // 临时处理，项目文档地址
-                        if($("#" + key).attr("data-options").indexOf("document/upload") > 0)
-                        {
-                            cell.append('<a href="javascript:openDocumentView(\'' + file.docId + '\', \'' + file.fileId + '\', 0);">' + file.fileName + '</a><br>');
+                cell.find("li").remove();
+                var files = data;
+                var $ul = cell.find("ul");
+                if(files != null){
+                    for(var i=0; i<files.length; i++){
+                        var file = files[i];
+                        var ahref = "";
+                        if(file.fileEngine == '1'){
+                            ahref = "javascript:viewFile('"+file.fileUseId+"'')";
+                        }else {
+                            ahref = file.accessUrl;
                         }
-                        else
-                        {
-                            cell.append('<a href="' + $AppContext + '/base/download/' + file.fileId + '">' + file.fileName + '</a><br>');
-                        }
+
+                        $ul.append(
+                            '<li>'+
+                            '   <a href="'+ ahref + '" class="file-text" title="'+f.showName+'" style="float:left;"' +
+                            '       <span style="float:left;">'+file.showName+'</span>'+
+                            '       <span style="float:right;" class="fileSize" fileSize="'+file.fileSize+'">('+file.fileSize+')</span>' +
+                            '   </a>' +
+                            '   <a href="javascript:downloadFile(\''+file.fileUseId+'\');" class="file-operate" style="float:right;"><i class="fa fa-download"></i></a>' +
+                            '   <div style="clear: both;"></div>' +
+                            '</li>'
+                        );
+
                     }
                 }
             }else if(cell.hasClass("fd_fmoney")){
@@ -1200,20 +1209,20 @@ $(function(){
         that.fillFormData();
 
         // 填充附件信息
-        $("#" + that.options.formId).find("div[id^='uploadFile']").each(function(){
+        $("#" + that.options.formId).find(".webuploader-container").each(function(){
             var options = $(this).attr("data-options");
             options = stringToJson(options);
 
             var key = $(this).attr("id");
             var file = that.data[key];
 
-            var viewArea = $(options.viewAreaId + "_dataItems");
+            var viewArea = $(options.viewAreaId + "-items");
             viewArea.find("span").remove();
 
             if(file != null){
                 for(var i=0; i<file.length; i++){
                     var file = file[i];
-                    viewArea.append('<span id="' + file.fileId + '" size="' + file.fileSize + '" docId="' + file.docId + '">' + file.fileName + '</span>');
+                    viewArea.append('<span id="' + file.id + '" accessUrl="' + file.accessUrl + '" fileEngine="' + file.fileEngine + '" fileSize="' + file.fileSize + '" showName="' + file.showName + '" businessId="' + file.businessId + '">' + file.showName + '</span>');
                 }
             }
 
@@ -1297,31 +1306,38 @@ $(function(){
         });
 
         // 收集附件数据
-        $(formId).find("div[id^='uploadFile']").each(function(){
+        $(formId).find(".webuploader-container").each(function(){
             var options = $(this).attr("data-options");
             options = stringToJson(options);
 
             var key = $(this).attr("id");
             var file = [];
             $(options.viewAreaId).find("li").each(function(){
-                var fileId = $(this).attr("fileId");
+
+                var id = $(this).attr("id");
+                var fileUseId = $(this).attr("fileUseId");
                 var fileSize = $(this).attr("fileSize");
-                var fileName = $(this).attr("fileName");
-                var docId = $(this).attr("docId");
+                var businessId = $(this).attr("businessId");
+                var showName = $(this).attr("showName");
+                var accessUrl = $(this).attr("accessUrl");
+                var fileEngine = $(this).attr("fileEngine");
                 var isDel = $(this).attr("isDel");
-                if(isDel != "1"){
-                    file.push({fileId:fileId, fileSize:fileSize, fileName:fileName, docId:docId, isDel: 0});
+                if(isDel == "0"){
+                    file.push({id:id, fileUseId:fileUseId, fileSize:fileSize, businessId:businessId,showName:showName,accessUrl:accessUrl,fileEngine:fileEngine, isDel: '0'});
                 }
             });
 
             if(flag == true){
                 file = [];
-                $(options.viewAreaId + "_dataItems").find("span").each(function(){
-                    var fileId = $(this).attr("id");
-                    var fileSize = $(this).attr("size");
-                    var docId = $(this).attr("docId");
-                    var fileName = $(this).text();
-                    file.push({fileId:fileId, fileSize:fileSize, fileName:fileName, docId:docId, isDel: 0});
+                $(options.viewAreaId + "-items").find("span").each(function(){
+                    var id = $(this).attr("id");
+                    var fileUseId = $(this).attr("fileUseId");
+                    var fileSize = $(this).attr("fileSize");
+                    var businessId = $(this).attr("businessId");
+                    var showName = $(this).attr("showName");
+                    var accessUrl = $(this).attr("accessUrl");
+                    var fileEngine = $(this).attr("fileEngine");
+                    file.push({id:id, fileUseId:fileUseId, fileSize:fileSize, businessId:businessId,showName:showName,accessUrl:accessUrl,fileEngine:fileEngine, isDel: '0'});
                 });
             }
 

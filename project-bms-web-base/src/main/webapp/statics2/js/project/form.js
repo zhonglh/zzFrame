@@ -311,6 +311,16 @@ function doSingleFormUpdate() {
     }
 
 
+
+
+
+    var fileSerialize = "";
+    try{
+        fileSerialize = computeFileSerialize();
+    }catch(e){}
+
+
+
     try{
         //业务上的逻辑处理
         customDoHandle();
@@ -322,7 +332,7 @@ function doSingleFormUpdate() {
     $.ajax({
         url: '',
         type: 'POST',
-        data: $("form").serializeToString() ,
+        data: $("form").serializeToString() + fileSerialize,
         success: function(rsp, status) {
             updateSuccess(rsp, status);
         }

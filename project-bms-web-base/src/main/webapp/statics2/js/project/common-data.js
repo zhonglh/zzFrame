@@ -492,6 +492,7 @@ function getYearArray(years)
  */
 function getFileSize(fileSize)
 {
+
 	if(fileSize < 1024){
 		return fileSize + "B";
 	}else if(fileSize < (1024 * 1024)){
