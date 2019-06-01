@@ -129,7 +129,7 @@ function UploadFile(options)
 
         if(bl == true)
         {
-            vewArea.append(getFileTemp(file.id, "" ,"", file.name, '', file.size));
+            vewArea.append(getFileTemp(file.id, "" ,"", file.name, "", file.size , "1"));
             $Loading.show();
         }
     });
@@ -172,6 +172,12 @@ function UploadFile(options)
             fileQueued.attr("showName", data.showName);
             fileQueued.attr("fileUseId", data.id);
             fileQueued.attr("accessUrl", data.accessUrl);
+            fileQueued.attr("fileEngine", data.fileEngine);
+
+            var ahref = getViewHref(data.fileEngine  , data.accessUrl , data.id  ) ;
+            fileQueued.find(".file-text").attr("href" , ahref);
+
+
             fileQueued.find(".file-remove").removeClass("hidden");
             // 文件容器发生变化
             fileChangeEvent(file.id, {
@@ -222,8 +228,9 @@ function UploadFile(options)
             var accessUrl = $(this).attr("accessUrl");
             var showName = $(this).attr("showName");
             var businessId =  $(this).attr("businessId");
+            var fileEngine = $(this).attr("fileEngine");
 
-            var fileQueued = getFileTemp(id, id, businessId , showName  , accessUrl , fileSize);
+            var fileQueued = getFileTemp(id, id, businessId , showName  , accessUrl , fileSize ,fileEngine);
             fileQueued.find(".file-remove").removeClass("hidden");
             vewArea.append(fileQueued);
             new DeleteFile(id, businessId, showName,  accessUrl, fileSize  , null);
@@ -269,12 +276,13 @@ function UploadFile(options)
     }
 
     // 模板
-    function getFileTemp(id , fileUseId ,  businessId , showName  , accessUrl , size){
-        var html = '<li id="' + id +'" showName="' + showName + '" isDel="0" fileSize="' + size + '" businessId="' + businessId + '" fileUseId="' + fileUseId + '" accessUrl="' + accessUrl +  '">' +
+    function getFileTemp(id , fileUseId ,  businessId , showName  , accessUrl , size , fileEngine){
+
+        var html = '<li id="' + id +'" showName="' + showName + '" isDel="0" fileSize="' + size + '" businessId="' + businessId + '" fileUseId="' + fileUseId + '" accessUrl="' + accessUrl +  + '" fileEngine="' + fileEngine + '">' +
             '<a href="javascript:void(0);" class="file-operate file-remove hidden">' +
             '	 <i class="fa fa-close"></i>' +
             '</a>' +
-            '<a href="javascript:void(0);" class="file-text" title="' + name + '">' +
+            '<a href="'+getViewHref(fileEngine  , accessUrl , fileUseId  )+'" class="file-text" title="' + showName + '">' +
             '	<span style="float:left;padding: 0 5px;"><i class="fa fa-paperclip"></i></span>' +
             '  	<span style="float:left;">' + showName + '</span>' +
             '  	<span style="float:right;">' + getFileSize(size) + '</span>' +
@@ -283,6 +291,16 @@ function UploadFile(options)
             '</li>';
 
         return $(html);
+    }
+
+    function getViewHref(fileEngine ,  accessUrl , fileUseId){
+        var a = "";
+        if(fileEngine == '1'){
+            //文件系统存储
+            a="javascript:viewFile('"+fileUseId+"');";
+        }else {
+            a = accessUrl;
+        }
     }
 
 }

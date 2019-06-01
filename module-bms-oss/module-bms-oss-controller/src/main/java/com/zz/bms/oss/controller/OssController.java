@@ -21,6 +21,7 @@ import com.zz.bms.util.base.java.IdUtils;
 import com.zz.bms.util.file.DownloadBaseUtil;
 import com.zz.bms.util.file.FileKit;
 import com.zz.bms.util.file.FileUtils;
+import com.zz.bms.util.web.IpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -66,8 +67,30 @@ public class OssController extends BaseController<String> {
         QueryWrapper<VsFileUseBO> qw = new QueryWrapper<VsFileUseBO>();
         qw.lambda().eq(VsFileUseBO::getId , id) ;
         VsFileUseBO vsFileUseBO = vsFileUseService.getOne(qw);
+        if(vsFileUseBO == null){
+            return ;
+        }
         try {
-            FileUtils.download(request, response, vsFileUseBO.getFileName(), vsFileUseBO.getContentType(), vsFileUseBO.getShowName());
+            FileUtils.print(request, response, vsFileUseBO.getFilePullName(), vsFileUseBO.getContentType(), vsFileUseBO.getShowName());
+        }catch (Exception e) {
+            File f = new File(vsFileUseBO.getFileName());
+            DownloadBaseUtil.download(f, vsFileUseBO.getShowName(), response, false);
+        }
+
+    }
+
+
+    @RequestMapping(value = "/download/{id}" , method = RequestMethod.GET )
+    public void download(@PathVariable(value="id") String id, HttpServletResponse response, HttpServletRequest request) throws  Exception {
+
+        QueryWrapper<VsFileUseBO> qw = new QueryWrapper<VsFileUseBO>();
+        qw.lambda().eq(VsFileUseBO::getId , id) ;
+        VsFileUseBO vsFileUseBO = vsFileUseService.getOne(qw);
+        if(vsFileUseBO == null){
+            return ;
+        }
+        try {
+            FileUtils.download(request, response, vsFileUseBO.getFilePullName(), vsFileUseBO.getContentType(), vsFileUseBO.getShowName());
         }catch (Exception e) {
             File f = new File(vsFileUseBO.getFileName());
             DownloadBaseUtil.download(f, vsFileUseBO.getShowName(), response, false);
@@ -154,6 +177,7 @@ public class OssController extends BaseController<String> {
                     oneFile.setAccessUrl(fileVO.getAccessUrl());
                     oneFile.setFileBasePath(fileVO.getFileBasePath());
                     oneFile.setFilePath(fileVO.getFilePath());
+                    oneFile.setFileHost(IpUtil.getIp());
                     oneFile.setFileName(fileVO.getFileName());
 
                 }
@@ -177,6 +201,7 @@ public class OssController extends BaseController<String> {
         vsFileUseBO.setFileId(oneFile.getId());
         vsFileUseBO.setShowName(bo.getShowName());
         vsFileUseBO.setAccessUrl(oneFile.getAccessUrl());
+        vsFileUseBO.setFileEngine(sp.getEngine().getVal());
         ajaxJson.setObj(vsFileUseBO);
 
         return ajaxJson;

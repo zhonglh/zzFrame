@@ -54,6 +54,26 @@ public class TsFileUseBO extends TsFileUseEntity implements Serializable , IBoEn
     private Long  fileSize;
 
 
+    @TableField(exist = false)
+    @EntityAttrPageAnnotation(title = "文件存储引擎",sort = 205                      ,required=true )
+    private String fileEngine;
+
+
+    @TableField(exist = false)
+    @EntityAttrPageAnnotation(title = "文件所在机器",sort = 206                      ,required=true )
+    private String fileHost;
+
+
+    @TableField(exist = false)
+    @EntityAttrPageAnnotation(title = "文件地址",sort = 207                      ,required=true )
+    private String filePullName;
+
+
+    @TableField(exist = false)
+    @EntityAttrPageAnnotation(title = "文件使用次数",sort = 208                      ,required=true )
+    private Integer useFrequency;
+
+
     public void setFileName(String fileName){
         this.fileName = fileName;
     }
@@ -85,6 +105,39 @@ public class TsFileUseBO extends TsFileUseEntity implements Serializable , IBoEn
 
     public void setFileSize(Long fileSize) {
         this.fileSize = fileSize;
+    }
+
+
+    public String getFileEngine() {
+        return fileEngine;
+    }
+
+    public void setFileEngine(String fileEngine) {
+        this.fileEngine = fileEngine;
+    }
+
+    public String getFileHost() {
+        return fileHost;
+    }
+
+    public void setFileHost(String fileHost) {
+        this.fileHost = fileHost;
+    }
+
+    public String getFilePullName() {
+        return filePullName;
+    }
+
+    public void setFilePullName(String filePullName) {
+        this.filePullName = filePullName;
+    }
+
+    public Integer getUseFrequency() {
+        return useFrequency;
+    }
+
+    public void setUseFrequency(Integer useFrequency) {
+        this.useFrequency = useFrequency;
     }
 
     @Override

@@ -66,11 +66,12 @@
                                     <ul style="margin: 0 0 10px 0">
                                         <c:forEach var="item" items="${m.investorFilesList}">
                                         <li>
-                                            <a href="javascript:download('${item.id}');" class="file-operate"><i class="fa fa-download"></i></a>
-                                            <a href="${item.accessUrl}" class="file-text" title="${item.showName}">
+                                            <a href="<c:if test="${item.fileEngine == '1'}">javascript:viewFile('${item.id}');</c:if><c:if test="${item.fileEngine != '1'}">${item.accessUrl}</c:if>" class="file-text" title="${item.showName}" style="float:left;">
                                                 <span style="float:left;">${item.showName}</span>
-                                                <span style="float:right;" filesSize="${item.fileSize}">${item.fileSize}</span>
+                                                <span style="float:right;" class="fileSize" filesSize="${item.fileSize}">(${item.fileSize})</span>
                                             </a>
+
+                                            <a href="javascript:downloadFile('${item.id}');" class="file-operate" style="float:right;"><i class="fa fa-download"></i></a>
                                             <div style="clear: both;"></div>
                                         </li>
                                         </c:forEach>
@@ -180,7 +181,7 @@
                                             </div>
                                             <div id="thelist-investorFiles-items" style="display: none;">
                                                 <c:forEach var="item" items="${m.investorFilesList}">
-                                                <span id="${item.id}" size="${item.fileSize}">${item.showName}</span>
+                                                <span id="${item.id}" accessUrl="${item.accessUrl}" fileEng fileSize="${item.fileSize}" showName="${item.showName}" businessId="${item.businessId}"   />
                                                 </c:forEach>
                                             </div>
 

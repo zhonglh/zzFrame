@@ -6,6 +6,24 @@ $(function() {
 
 });
 
+/**
+ * 下载文件
+ * @param fileUseId
+ */
+function downloadFile(fileUseId)
+{
+    location.href = ctx + '/oss/file/download/' + fileUseId;
+}
+
+
+/**
+ * 下载文件
+ * @param fileUseId
+ */
+function viewFile(fileUseId)
+{
+    location.href = ctx + '/oss/file/view/' + fileUseId;
+}
 
 //点击日期选择的×号按钮
 function clearTime(time) {

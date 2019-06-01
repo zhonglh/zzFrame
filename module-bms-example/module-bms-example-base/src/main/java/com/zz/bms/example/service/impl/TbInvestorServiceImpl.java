@@ -87,7 +87,7 @@ public class TbInvestorServiceImpl extends SystemBaseServiceImpl<TbInvestorBO,St
 			}
 		}
 
-		if(StringUtils.isNotEmpty(tbInvestorBO.getInvestorFiles())){
+		if(StringUtils.isNotEmpty(tbInvestorBO.getInvestorFiles()) && tbInvestorBO.getInvestorFilesList() == null){
 			QueryWrapper<VsFileUseBO> qw = new QueryWrapper<VsFileUseBO>();
 			qw.lambda().eq(VsFileUseBO::getBusinessTempId , tbInvestorBO.getInvestorFiles());
 			List<VsFileUseBO> investorFilesList = vsFileUseService.list(qw);
