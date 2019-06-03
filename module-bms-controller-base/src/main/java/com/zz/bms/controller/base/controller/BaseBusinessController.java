@@ -62,12 +62,17 @@ public abstract class BaseBusinessController<
     private final Class<QueryModel> queryEntityClass;
 
 
-    private final Class<RwModel> rwEntityClass;
+    private final Class<RwModel> rwEntityClass ;
 
 
     public BaseBusinessController(){
-        this.queryEntityClass = GenericsHelper.getSuperClassGenricType(getClass(), 0);
-        this.rwEntityClass = GenericsHelper.getSuperClassGenricType(getClass(), 1);
+        this.queryEntityClass = GenericsHelper.getSuperClassGenricType(getClass().getSuperclass().getSuperclass(), 0);
+        Class clz1 = GenericsHelper.getSuperClassGenricType(getClass(), 1);
+        if(clz1.getName().equals( String.class.getName()) || clz1.equals( Long.class.getName())){
+            clz1 = (Class<RwModel>)queryEntityClass ;
+        }
+        rwEntityClass = clz1;
+
     }
 
 

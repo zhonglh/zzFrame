@@ -151,8 +151,7 @@ public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
 
     @EntityAttrDBAnnotation(attrName="附件" ,attrColumn="fund_files"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
     @EntityAttrPageAnnotation(title = "附件",sort = 1400  , pageElement = "multifile"            , maxLength = 32        ,required=false )
-	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
+
 	private String  fundFiles ;
 
 
