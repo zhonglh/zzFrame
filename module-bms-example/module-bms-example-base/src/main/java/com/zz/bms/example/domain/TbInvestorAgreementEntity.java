@@ -17,9 +17,9 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 /**
  * 投资协议 实体类
  * @author Administrator
- * @date 2019-6-3 10:12:56
+ * @date 2019-6-3 18:47:57
  */
-public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity<String> implements java.io.Serializable  {
+public class TbInvestorAgreementEntity extends BaseBusinessExEntity<String> implements java.io.Serializable  {
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
@@ -45,7 +45,7 @@ public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBus
 
 
 
-    @EntityAttrFkAnnotation(group = "fundId",  groupName = "认购基金" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbFundBO.class)
+    @EntityAttrFkAnnotation(group = "fundId",  groupName = "认购基金" ,   isFkId = true, dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbFundBO.class)
     @EntityAttrDBAnnotation(attrName="认购基金" ,attrColumn="fund_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
     @EntityAttrPageAnnotation(title = "认购基金",sort = 400  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
@@ -56,7 +56,7 @@ public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBus
 
 
 
-    @EntityAttrFkAnnotation(group = "investorId",  groupName = "投资人" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbInvestorBO.class)
+    @EntityAttrFkAnnotation(group = "investorId",  groupName = "投资人" ,   isFkId = true, dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbInvestorBO.class)
     @EntityAttrDBAnnotation(attrName="投资人" ,attrColumn="investor_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
     @EntityAttrPageAnnotation(title = "投资人",sort = 500  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
@@ -97,7 +97,7 @@ public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBus
 
 
 
-    @EntityAttrFkAnnotation(group = "signDepId",  groupName = "部门" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsDepBO.class)
+    @EntityAttrFkAnnotation(group = "signDepId",  groupName = "部门" ,   isFkId = true, dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsDepBO.class)
     @EntityAttrDBAnnotation(attrName="部门" ,attrColumn="sign_dep_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
     @EntityAttrPageAnnotation(title = "部门",sort = 900  , pageElement = "text"            , maxLength = 32        ,required=false )
 	
@@ -118,7 +118,7 @@ public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBus
 
 
 
-    @EntityAttrFkAnnotation(group = "signUserId",  groupName = "签订人" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
+    @EntityAttrFkAnnotation(group = "signUserId",  groupName = "签订人" ,   isFkId = true, dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
     @EntityAttrDBAnnotation(attrName="签订人" ,attrColumn="sign_user_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
     @EntityAttrPageAnnotation(title = "签订人",sort = 1100  , pageElement = "text"            , maxLength = 32        ,required=true )
 	

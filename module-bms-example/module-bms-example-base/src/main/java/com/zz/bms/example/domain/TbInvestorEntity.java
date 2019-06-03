@@ -15,9 +15,9 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 /**
  * 投资人 实体类
  * @author Administrator
- * @date 2019-6-3 10:12:56
+ * @date 2019-6-3 18:47:55
  */
-public class TbInvestorEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity<String> implements java.io.Serializable  {
+public class TbInvestorEntity extends BaseBusinessExEntity<String> implements java.io.Serializable  {
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
@@ -54,7 +54,7 @@ public class TbInvestorEntity extends com.zz.bms.core.db.entity.BaseBusinessExEn
 
 
 
-    @EntityAttrFkAnnotation(group = "manageUserId",  groupName = "投资经理" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
+    @EntityAttrFkAnnotation(group = "manageUserId",  groupName = "投资经理" ,   isFkId = true, dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
     @EntityAttrDBAnnotation(attrName="投资经理" ,attrColumn="manage_user_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
     @EntityAttrPageAnnotation(title = "投资经理",sort = 500  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
@@ -88,6 +88,8 @@ public class TbInvestorEntity extends com.zz.bms.core.db.entity.BaseBusinessExEn
 
     @EntityAttrDBAnnotation(attrName="附件" ,attrColumn="investor_files"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
     @EntityAttrPageAnnotation(title = "附件",sort = 800  , pageElement = "multifile"            , maxLength = 32        ,required=false )
+	
+    
 	private String  investorFiles ;
 
 

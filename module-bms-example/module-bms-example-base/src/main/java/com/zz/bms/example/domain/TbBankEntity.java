@@ -13,9 +13,9 @@ import com.zz.bms.core.db.entity.BaseEntity;
 /**
  * 银行信息 实体类
  * @author Administrator
- * @date 2019-6-3 10:12:55
+ * @date 2019-6-3 18:47:56
  */
-public class TbBankEntity extends com.zz.bms.core.db.entity.BaseEntity<String> implements java.io.Serializable  {
+public class TbBankEntity extends BaseEntity<String> implements java.io.Serializable  {
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;

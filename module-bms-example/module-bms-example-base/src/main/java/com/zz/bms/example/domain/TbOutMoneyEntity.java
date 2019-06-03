@@ -17,15 +17,15 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 /**
  * 出资明细 实体类
  * @author Administrator
- * @date 2019-6-3 10:12:55
+ * @date 2019-6-3 18:47:56
  */
-public class TbOutMoneyEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity<String> implements java.io.Serializable  {
+public class TbOutMoneyEntity extends BaseBusinessExEntity<String> implements java.io.Serializable  {
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
 
 
-    @EntityAttrFkAnnotation(group = "investorAgreementId",  groupName = "协议" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbInvestorAgreementBO.class)
+    @EntityAttrFkAnnotation(group = "investorAgreementId",  groupName = "协议" ,   isFkId = true, dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbInvestorAgreementBO.class)
     @EntityAttrDBAnnotation(attrName="协议" ,attrColumn="investor_agreement_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
     @EntityAttrPageAnnotation(title = "协议",sort = 200  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
@@ -36,7 +36,7 @@ public class TbOutMoneyEntity extends com.zz.bms.core.db.entity.BaseBusinessExEn
 
 
 
-    @EntityAttrFkAnnotation(group = "fundId",  groupName = "基金" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbFundBO.class)
+    @EntityAttrFkAnnotation(group = "fundId",  groupName = "基金" ,   isFkId = true, dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbFundBO.class)
     @EntityAttrDBAnnotation(attrName="基金" ,attrColumn="fund_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
     @EntityAttrPageAnnotation(title = "基金",sort = 300  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
@@ -47,7 +47,7 @@ public class TbOutMoneyEntity extends com.zz.bms.core.db.entity.BaseBusinessExEn
 
 
 
-    @EntityAttrFkAnnotation(group = "investorId",  groupName = "投资人" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbInvestorBO.class)
+    @EntityAttrFkAnnotation(group = "investorId",  groupName = "投资人" ,   isFkId = true, dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbInvestorBO.class)
     @EntityAttrDBAnnotation(attrName="投资人" ,attrColumn="investor_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
     @EntityAttrPageAnnotation(title = "投资人",sort = 400  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
@@ -68,7 +68,7 @@ public class TbOutMoneyEntity extends com.zz.bms.core.db.entity.BaseBusinessExEn
 
 
 
-    @EntityAttrFkAnnotation(group = "handleDepId",  groupName = "部门" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsDepBO.class)
+    @EntityAttrFkAnnotation(group = "handleDepId",  groupName = "部门" ,   isFkId = true, dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsDepBO.class)
     @EntityAttrDBAnnotation(attrName="部门" ,attrColumn="handle_dep_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
     @EntityAttrPageAnnotation(title = "部门",sort = 600  , pageElement = "text"            , maxLength = 32        ,required=false )
 	
@@ -89,7 +89,7 @@ public class TbOutMoneyEntity extends com.zz.bms.core.db.entity.BaseBusinessExEn
 
 
 
-    @EntityAttrFkAnnotation(group = "handleUserId",  groupName = "经办人" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
+    @EntityAttrFkAnnotation(group = "handleUserId",  groupName = "经办人" ,   isFkId = true, dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
     @EntityAttrDBAnnotation(attrName="经办人" ,attrColumn="handle_user_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
     @EntityAttrPageAnnotation(title = "经办人",sort = 800  , pageElement = "text"            , maxLength = 32        ,required=true )
 	

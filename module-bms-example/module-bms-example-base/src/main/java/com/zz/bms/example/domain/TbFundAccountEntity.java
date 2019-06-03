@@ -14,15 +14,15 @@ import com.zz.bms.core.db.entity.BaseEntity;
 /**
  * 基金账户 实体类
  * @author Administrator
- * @date 2019-6-3 10:12:53
+ * @date 2019-6-3 18:47:55
  */
-public class TbFundAccountEntity extends com.zz.bms.core.db.entity.BaseEntity<String> implements java.io.Serializable  {
+public class TbFundAccountEntity extends BaseEntity<String> implements java.io.Serializable  {
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
 
 
-    @EntityAttrFkAnnotation(group = "fundId",  groupName = "基金信息" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbFundBO.class)
+    @EntityAttrFkAnnotation(group = "fundId",  groupName = "基金信息" ,   isFkId = true, dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbFundBO.class)
     @EntityAttrDBAnnotation(attrName="基金信息" ,attrColumn="fund_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
     @EntityAttrPageAnnotation(title = "基金信息",sort = 200  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
@@ -54,7 +54,7 @@ public class TbFundAccountEntity extends com.zz.bms.core.db.entity.BaseEntity<St
 
 
 
-    @EntityAttrFkAnnotation(group = "bankId",  groupName = "开户行" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbBankBO.class)
+    @EntityAttrFkAnnotation(group = "bankId",  groupName = "开户行" ,   isFkId = true, dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbBankBO.class)
     @EntityAttrDBAnnotation(attrName="开户行" ,attrColumn="bank_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
     @EntityAttrPageAnnotation(title = "开户行",sort = 500  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
@@ -85,7 +85,7 @@ public class TbFundAccountEntity extends com.zz.bms.core.db.entity.BaseEntity<St
 
 
 
-    @EntityAttrFkAnnotation(group = "otherBankId",  groupName = "其他行" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbBankBO.class)
+    @EntityAttrFkAnnotation(group = "otherBankId",  groupName = "其他行" ,   isFkId = true, dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbBankBO.class)
     @EntityAttrDBAnnotation(attrName="其他行" ,attrColumn="other_bank_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
     @EntityAttrPageAnnotation(title = "其他行",sort = 800  , pageElement = "text"            , maxLength = 32        ,required=false )
 	
@@ -96,7 +96,7 @@ public class TbFundAccountEntity extends com.zz.bms.core.db.entity.BaseEntity<St
 
 
 
-    @EntityAttrFkAnnotation(group = "userId",  groupName = "账户处理人" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
+    @EntityAttrFkAnnotation(group = "userId",  groupName = "账户处理人" ,   isFkId = true, dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
     @EntityAttrDBAnnotation(attrName="账户处理人" ,attrColumn="user_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
     @EntityAttrPageAnnotation(title = "账户处理人",sort = 900  , pageElement = "text"            , maxLength = 32        ,required=false )
 	

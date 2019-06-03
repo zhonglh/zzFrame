@@ -17,9 +17,9 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 /**
  * 基金 实体类
  * @author Administrator
- * @date 2019-6-3 10:12:55
+ * @date 2019-6-3 18:47:56
  */
-public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity<String> implements java.io.Serializable  {
+public class TbFundEntity extends BaseBusinessExEntity<String> implements java.io.Serializable  {
 
     @TableField(exist=false)
     private static final long serialVersionUID = 1L;
@@ -98,7 +98,7 @@ public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
 
 
 
-    @EntityAttrFkAnnotation(group = "managerUserId",  groupName = "基金经理" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
+    @EntityAttrFkAnnotation(group = "managerUserId",  groupName = "基金经理" ,   isFkId = true, dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsUserBO.class)
     @EntityAttrDBAnnotation(attrName="基金经理" ,attrColumn="manager_user_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
     @EntityAttrPageAnnotation(title = "基金经理",sort = 900  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
@@ -151,7 +151,8 @@ public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
 
     @EntityAttrDBAnnotation(attrName="附件" ,attrColumn="fund_files"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
     @EntityAttrPageAnnotation(title = "附件",sort = 1400  , pageElement = "multifile"            , maxLength = 32        ,required=false )
-
+	@EntityAttrExcelAnnotation(excelProcess= "3")
+    
 	private String  fundFiles ;
 
 
@@ -168,7 +169,7 @@ public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
 
 
 
-    @EntityAttrFkAnnotation(group = "depId",  groupName = "部门" ,   dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsDepBO.class)
+    @EntityAttrFkAnnotation(group = "depId",  groupName = "部门" ,   isFkId = true, dbColumnName = "id" , dbColumnType = "CHAR" , dbColumnLength = 32   , dbColumnNotNull = true , fkClass=com.zz.bms.system.bo.TsDepBO.class)
     @EntityAttrDBAnnotation(attrName="部门" ,attrColumn="dep_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
     @EntityAttrPageAnnotation(title = "部门",sort = 1600  , pageElement = "text"            , maxLength = 32        ,required=false )
 	
