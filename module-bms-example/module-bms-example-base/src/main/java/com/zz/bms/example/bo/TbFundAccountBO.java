@@ -25,7 +25,7 @@ import java.util.Map;
 /**
 * 基金账户 BO , 扩展 TbFundAccountEntity 对象
 * @author Administrator
-* @date 2019-6-3 10:12:53
+* @date 2019-6-3 17:45:25
 */
 @EntityAnnotation(value="基金账户" , resource = "example.fundaccount"    ,businessName = "account_no"    ,businessKey = { "account_no" }    )
 @TableName(value="tb_fund_account" , resultMap = "TbFundAccountResultMap")
@@ -35,7 +35,7 @@ public class TbFundAccountBO extends TbFundAccountEntity implements Serializable
 
 
     @TableField(exist = false)
-    @EntityAttrFkAnnotation(group = "fundId",  groupName = "基金信息" ,   dbColumnName = "fund_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbFundBO.class)
+    @EntityAttrFkAnnotation(group = "fundId",  groupName = "基金信息" ,   dbColumnName = "fund_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass= TbFundBO.class)
     @EntityAttrExcelAnnotation(excelProcess= "3")
     @EntityAttrPageAnnotation(title = "基金信息",sort = 201                      ,required=true )
     private String fundName ;
@@ -51,7 +51,7 @@ public class TbFundAccountBO extends TbFundAccountEntity implements Serializable
 
 
     @TableField(exist = false)
-    @EntityAttrFkAnnotation(group = "bankId",  groupName = "开户行" ,   dbColumnName = "bank_name" , dbColumnType = "VARCHAR" , dbColumnLength = 200   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbBankBO.class)
+    @EntityAttrFkAnnotation(group = "bankId",  groupName = "开户行" ,   dbColumnName = "bank_name" , dbColumnType = "VARCHAR" , dbColumnLength = 200   , dbColumnNotNull = true , fkClass= TbBankBO.class)
     @EntityAttrExcelAnnotation(excelProcess= "3")
     @EntityAttrPageAnnotation(title = "开户行",sort = 501                      ,required=true )
     private String bankName ;
@@ -59,7 +59,7 @@ public class TbFundAccountBO extends TbFundAccountEntity implements Serializable
 
 
     @TableField(exist = false)
-    @EntityAttrFkAnnotation(group = "otherBankId",  groupName = "其他行" ,   dbColumnName = "bank_name" , dbColumnType = "VARCHAR" , dbColumnLength = 200   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbBankBO.class)
+    @EntityAttrFkAnnotation(group = "otherBankId",  groupName = "其他行" ,   dbColumnName = "bank_name" , dbColumnType = "VARCHAR" , dbColumnLength = 200   , dbColumnNotNull = true , fkClass= TbBankBO.class)
     @EntityAttrExcelAnnotation(excelProcess= "3")
     @EntityAttrPageAnnotation(title = "其他行",sort = 801                      ,required=true )
     private String otherBankName ;

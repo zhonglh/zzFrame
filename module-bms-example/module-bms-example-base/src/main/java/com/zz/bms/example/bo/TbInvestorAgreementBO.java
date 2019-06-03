@@ -27,7 +27,7 @@ import java.util.Map;
 /**
 * 投资协议 BO , 扩展 TbInvestorAgreementEntity 对象
 * @author Administrator
-* @date 2019-6-3 10:12:56
+* @date 2019-6-3 17:45:28
 */
 @EntityAnnotation(value="投资协议" , resource = "example.investoragreement"  ,haveTenant = true   ,businessName = "agreement_name"    ,businessKey = { "agreement_code" }    )
 @TableName(value="tb_investor_agreement" , resultMap = "TbInvestorAgreementResultMap")
@@ -37,7 +37,7 @@ public class TbInvestorAgreementBO extends TbInvestorAgreementEntity implements 
 
 
     @TableField(exist = false)
-    @EntityAttrFkAnnotation(group = "fundId",  groupName = "认购基金" ,   dbColumnName = "fund_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbFundBO.class)
+    @EntityAttrFkAnnotation(group = "fundId",  groupName = "认购基金" ,   dbColumnName = "fund_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass= TbFundBO.class)
     @EntityAttrExcelAnnotation(excelProcess= "3")
     @EntityAttrPageAnnotation(title = "认购基金",sort = 401                      ,required=true )
     private String fundName ;
@@ -45,7 +45,7 @@ public class TbInvestorAgreementBO extends TbInvestorAgreementEntity implements 
 
 
     @TableField(exist = false)
-    @EntityAttrFkAnnotation(group = "investorId",  groupName = "投资人" ,   dbColumnName = "investor_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbInvestorBO.class)
+    @EntityAttrFkAnnotation(group = "investorId",  groupName = "投资人" ,   dbColumnName = "investor_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass= TbInvestorBO.class)
     @EntityAttrExcelAnnotation(excelProcess= "3")
     @EntityAttrPageAnnotation(title = "投资人",sort = 501                      ,required=true )
     private String investorName ;

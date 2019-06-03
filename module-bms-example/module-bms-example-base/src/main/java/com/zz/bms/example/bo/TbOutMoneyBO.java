@@ -27,7 +27,7 @@ import java.util.Map;
 /**
 * 出资明细 BO , 扩展 TbOutMoneyEntity 对象
 * @author Administrator
-* @date 2019-6-3 10:12:55
+* @date 2019-6-3 17:45:27
 */
 @EntityAnnotation(value="出资明细" , resource = "example.outmoney"  ,haveTenant = true   ,businessName = ""    ,businessKey = { "" }    )
 @TableName(value="tb_out_money" , resultMap = "TbOutMoneyResultMap")
@@ -37,7 +37,7 @@ public class TbOutMoneyBO extends TbOutMoneyEntity implements Serializable , IBo
 
 
     @TableField(exist = false)
-    @EntityAttrFkAnnotation(group = "investorAgreementId",  groupName = "协议" ,   dbColumnName = "agreement_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbInvestorAgreementBO.class)
+    @EntityAttrFkAnnotation(group = "investorAgreementId",  groupName = "协议" ,   dbColumnName = "agreement_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass= TbInvestorAgreementBO.class)
     @EntityAttrExcelAnnotation(excelProcess= "3")
     @EntityAttrPageAnnotation(title = "协议",sort = 201                      ,required=true )
     private String investorAgreementName ;
@@ -45,7 +45,7 @@ public class TbOutMoneyBO extends TbOutMoneyEntity implements Serializable , IBo
 
 
     @TableField(exist = false)
-    @EntityAttrFkAnnotation(group = "fundId",  groupName = "基金" ,   dbColumnName = "fund_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbFundBO.class)
+    @EntityAttrFkAnnotation(group = "fundId",  groupName = "基金" ,   dbColumnName = "fund_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass= TbFundBO.class)
     @EntityAttrExcelAnnotation(excelProcess= "3")
     @EntityAttrPageAnnotation(title = "基金",sort = 301                      ,required=true )
     private String fundName ;
@@ -53,7 +53,7 @@ public class TbOutMoneyBO extends TbOutMoneyEntity implements Serializable , IBo
 
 
     @TableField(exist = false)
-    @EntityAttrFkAnnotation(group = "investorId",  groupName = "投资人" ,   dbColumnName = "investor_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass=com.zz.bms.example.bo.TbInvestorBO.class)
+    @EntityAttrFkAnnotation(group = "investorId",  groupName = "投资人" ,   dbColumnName = "investor_name" , dbColumnType = "VARCHAR" , dbColumnLength = 50   , dbColumnNotNull = true , fkClass= TbInvestorBO.class)
     @EntityAttrExcelAnnotation(excelProcess= "3")
     @EntityAttrPageAnnotation(title = "投资人",sort = 401                      ,required=true )
     private String investorName ;

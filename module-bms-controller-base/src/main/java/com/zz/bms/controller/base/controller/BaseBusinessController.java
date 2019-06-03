@@ -66,7 +66,7 @@ public abstract class BaseBusinessController<
 
 
     public BaseBusinessController(){
-        this.queryEntityClass = GenericsHelper.getSuperClassGenricType(getClass().getSuperclass().getSuperclass(), 0);
+        this.queryEntityClass = GenericsHelper.getSuperClassGenricType(getClass(), 0);
         Class clz1 = GenericsHelper.getSuperClassGenricType(getClass(), 1);
         if(clz1.getName().equals( String.class.getName()) || clz1.equals( Long.class.getName())){
             clz1 = (Class<RwModel>)queryEntityClass ;

@@ -27,7 +27,7 @@ import java.util.Map;
 /**
 * 投资人 BO , 扩展 TbInvestorEntity 对象
 * @author Administrator
-* @date 2019-6-3 10:12:56
+* @date 2019-6-3 17:45:26
 */
 @EntityAnnotation(value="投资人" , resource = "example.investor"  ,haveTenant = true   ,businessName = "investor_name"    ,businessKey = { "investor_code" }    )
 @TableName(value="tb_investor" , resultMap = "TbInvestorResultMap")
@@ -55,7 +55,7 @@ public class TbInvestorBO extends TbInvestorEntity implements Serializable , IBo
     @TableField(exist = false)
     @EntityAttrDictAnnotation(group = "cardType", groupName = "证件类型" ,  dbColumnName = "dict_name" , dbColumnLength = 50 , isNameField = true , dictType = "card_type")
     @EntityAttrExcelAnnotation(excelProcess= "3")
-    @EntityAttrPageAnnotation(title = "证件类型",sort = 601                      ,required=true )
+    @EntityAttrPageAnnotation(title = "证件类型",sort = 601                      ,required=false )
     private String cardTypeName ;
 
 

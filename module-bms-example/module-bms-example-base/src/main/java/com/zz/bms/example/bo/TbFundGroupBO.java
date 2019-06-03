@@ -15,7 +15,7 @@ import java.util.List;
 * 基金 数据传输对象，对应界面中的所有元素
 * 注意： 对象属性需要和 TbFundGroupServiceImpl.getServices 对应
 * @author Administrator
-* @date 2019-6-3 10:12:55
+* @date 2019-6-3 17:45:27
 */
 public class TbFundGroupBO extends TbFundBO implements Serializable {
 
