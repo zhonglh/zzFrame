@@ -703,7 +703,7 @@ public class ExcelHelper {
                 for(Object[] rowData : sheetData) {
                     if(rowData != null && rowData.length > 0) {
                         QueryModel m = (QueryModel)conttroller.newQueryModel();
-                        ExcelUtil.row2Object(rowData, columns, m);
+                        ExcelUtil.row2Object(rowData, columns, m , conttroller.isAddNumberByImport());
                         list.add(m);
                     }
                     rowIndex ++ ;
