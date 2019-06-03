@@ -36,7 +36,6 @@ public class TsPermitBO extends TsPermitEntity implements Serializable , IBoEnti
 
 
 
-    @Override
     public boolean isTable() {
 
         return true;

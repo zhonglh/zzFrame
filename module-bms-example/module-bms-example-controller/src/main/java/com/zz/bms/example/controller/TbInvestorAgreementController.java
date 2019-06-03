@@ -24,6 +24,7 @@ import com.zz.bms.system.controller.ZzDefaultSimpleController;
 
 
 import com.zz.bms.util.base.java.IdUtils;
+import com.zz.bms.util.poi.ExcelDictHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.apache.commons.lang3.StringUtils;
@@ -39,7 +40,7 @@ import java.util.Map;
 /**
  * 投资协议 控制层
 * @author Administrator
-* @date 2019-5-8 14:17:27
+* @date 2019-6-3 10:23:02
  */
 @RequestMapping("/example/investoragreement")
 @Controller
@@ -59,7 +60,10 @@ public class TbInvestorAgreementController extends ZzDefaultSimpleController<TbI
 
 
 
-
+	@Override
+	protected void customInfoByCreateForm(TbInvestorAgreementBO m, ModelMap model) {
+		m.setAgreementFiles(IdUtils.getId());
+	}
 
 	@Override
 	public void setCustomInfoByInsert(TbInvestorAgreementBO bo , ILoginUserEntity sessionUser){

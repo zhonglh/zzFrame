@@ -7,26 +7,27 @@ import com.baomidou.mybatisplus.annotation.TableField;
 
 
 import com.zz.bms.core.db.entity.IBoEntity;
-import com.zz.bms.system.bo.VsFileUseBO;
 import com.zz.bms.util.configs.annotaions.*;
 import com.zz.bms.constants.DefaultTypeConstant;
 import com.zz.bms.constants.DictTypeConstant;
 import com.zz.bms.constants.ExcelTypeConstant;
 import com.baomidou.mybatisplus.annotation.TableName;
-
+import com.zz.bms.util.configs.annotaions.FilesAnnotation;
+import com.zz.bms.system.bo.VsFileUseBO;
 
 import org.apache.commons.lang3.StringUtils;
 
+
+import java.util.List;
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
 /**
 * 投资人 BO , 扩展 TbInvestorEntity 对象
 * @author Administrator
-* @date 2019-5-8 13:45:42
+* @date 2019-6-3 10:12:56
 */
 @EntityAnnotation(value="投资人" , resource = "example.investor"  ,haveTenant = true   ,businessName = "investor_name"    ,businessKey = { "investor_code" }    )
 @TableName(value="tb_investor" , resultMap = "TbInvestorResultMap")
@@ -58,12 +59,16 @@ public class TbInvestorBO extends TbInvestorEntity implements Serializable , IBo
     private String cardTypeName ;
 
 
+
     /**
-     * 附件列表
-     */
+    * 附件 列表
+    */
     @TableField(exist = false)
     @FilesAnnotation
     private List<VsFileUseBO> investorFilesList ;
+
+
+
 
 
 
@@ -91,17 +96,31 @@ public class TbInvestorBO extends TbInvestorEntity implements Serializable , IBo
         return this.cardTypeName;
     }
 
-    public List<VsFileUseBO> getInvestorFilesList() {
-        return investorFilesList;
-    }
 
-    public void setInvestorFilesList(List<VsFileUseBO> investorFilesList) {
+
+    public void setInvestorFilesList(List<VsFileUseBO> investorFilesList ){
         this.investorFilesList = investorFilesList;
     }
 
-    @Override
+
+    public List<VsFileUseBO> getInvestorFilesList(){
+        return this.investorFilesList;
+    }
+
+
+
+
+
+
+
+
+
+    
     public boolean isTable() {
+
         return true;
+
+
     }
 
 
@@ -113,6 +132,9 @@ public class TbInvestorBO extends TbInvestorEntity implements Serializable , IBo
 
     @Override
     public String toString() {
+
+
             return this.getInvestorName();
+        
     }
 }

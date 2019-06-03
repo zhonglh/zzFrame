@@ -24,6 +24,7 @@ import com.zz.bms.system.controller.ZzDefaultSimpleController;
 
 
 import com.zz.bms.util.base.java.IdUtils;
+import com.zz.bms.util.poi.ExcelDictHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.apache.commons.lang3.StringUtils;
@@ -39,7 +40,7 @@ import java.util.Map;
 /**
  * 银行信息 控制层
 * @author Administrator
-* @date 2019-5-8 14:17:27
+* @date 2019-6-3 10:23:01
  */
 @RequestMapping("/example/bank")
 @Controller
@@ -49,7 +50,6 @@ public class TbBankController extends ZzDefaultSimpleController<TbBankBO, String
 
 	@Autowired
 	private TsDictService tsDictService;
-
 
 
 

@@ -84,7 +84,6 @@ public class TsRoleBO extends TsRoleEntity implements Serializable , IBoEntity {
 
 
 
-    @Override
     public boolean isTable() {
 
         return true;

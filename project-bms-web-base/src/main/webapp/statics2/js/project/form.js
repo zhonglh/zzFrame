@@ -113,7 +113,7 @@ function computeFileSerialize() {
         $(".file-list").each(function () {
 
             var $ul = $(this);
-            //8为 “thelist-” 的长度
+            //8为 “thelist_” 的长度
             var fieldName = $ul.attr("id").substring(8) + "List";
 
             $ul.find("li").each(function (index, li) {

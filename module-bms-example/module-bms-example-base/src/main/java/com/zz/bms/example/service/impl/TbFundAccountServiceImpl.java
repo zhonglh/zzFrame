@@ -1,32 +1,47 @@
 package com.zz.bms.example.service.impl;
 
-import com.zz.bms.core.db.base.dao.BaseDAO;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.zz.bms.core.enums.EnumErrorMsg;
+import com.zz.bms.enums.*;
+
 import com.zz.bms.core.db.entity.EntityUtil;
-import com.zz.bms.enums.EnumDictType;
-import com.zz.bms.example.bo.TbBankBO;
-import com.zz.bms.example.bo.TbFundAccountBO;
-import com.zz.bms.example.bo.TbFundBO;
-import com.zz.bms.example.dao.TbBankDAO;
-import com.zz.bms.example.dao.TbFundAccountDAO;
-import com.zz.bms.example.dao.TbFundDAO;
-import com.zz.bms.example.service.TbFundAccountService;
+import com.zz.bms.core.exceptions.DbException;
+import com.zz.bms.core.exceptions.BizException;
+import com.zz.bms.core.db.base.dao.BaseDAO;
+import com.zz.bms.system.service.impl.SystemBaseServiceImpl;
+
+import com.zz.bms.system.service.TsDictService;
 import com.zz.bms.system.bo.TsDictBO;
+
+
+import com.zz.bms.example.bo.TbFundAccountBO;
+import com.zz.bms.example.dao.TbFundAccountDAO;
+import com.zz.bms.example.service.TbFundAccountService;
+
+import com.zz.bms.example.bo.TbFundBO;
+import com.zz.bms.example.dao.TbFundDAO;
 import com.zz.bms.system.bo.TsUserBO;
 import com.zz.bms.system.dao.TsUserDAO;
-import com.zz.bms.system.service.TsDictService;
-import com.zz.bms.system.service.impl.SystemBaseServiceImpl;
+import com.zz.bms.example.bo.TbBankBO;
+import com.zz.bms.example.dao.TbBankDAO;
+
+
+
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
 * 基金账户 ServiceImpl
 * @author Administrator
-* @date 2019-5-8 13:45:38
+* @date 2019-6-3 10:12:53
 */
 @Service
 public class TbFundAccountServiceImpl extends SystemBaseServiceImpl<TbFundAccountBO,String> implements TbFundAccountService {
@@ -38,12 +53,13 @@ public class TbFundAccountServiceImpl extends SystemBaseServiceImpl<TbFundAccoun
 
 
 
+
     @Autowired
     private TbFundDAO tbFundDAO;
     @Autowired
-    private TbBankDAO tbBankDAO;
-    @Autowired
     private TsUserDAO tsUserDAO;
+    @Autowired
+    private TbBankDAO tbBankDAO;
 
 
     @Autowired
@@ -97,6 +113,9 @@ public class TbFundAccountServiceImpl extends SystemBaseServiceImpl<TbFundAccoun
 				tbFundAccountBO.setUserName(temp.getUserName());
 			}
 		}
+
+
+
 
 		return tbFundAccountBO;
 

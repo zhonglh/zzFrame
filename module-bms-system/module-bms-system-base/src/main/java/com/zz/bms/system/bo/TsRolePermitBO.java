@@ -67,7 +67,6 @@ public class TsRolePermitBO extends TsRolePermitEntity implements Serializable ,
 
 
 
-    @Override
     public boolean isTable() {
 
         return true;

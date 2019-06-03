@@ -11,13 +11,10 @@ import com.zz.bms.core.db.entity.BaseEntity;
 
 
 
-
-
-
 /**
  * 基金备案 实体类
  * @author Administrator
- * @date 2019-5-8 13:45:40
+ * @date 2019-6-3 10:12:54
  */
 public class TbFundRecordEntity extends com.zz.bms.core.db.entity.BaseEntity<String> implements java.io.Serializable  {
 
@@ -30,7 +27,6 @@ public class TbFundRecordEntity extends com.zz.bms.core.db.entity.BaseEntity<Str
     @EntityAttrPageAnnotation(title = "基金信息",sort = 200  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
     
-    
 	private String  fundId ;
 
 
@@ -41,7 +37,6 @@ public class TbFundRecordEntity extends com.zz.bms.core.db.entity.BaseEntity<Str
     @EntityAttrPageAnnotation(title = "备案日期",sort = 300  , pageElement = "date"                  ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
-    
 	private Date  recordDate ;
 
 
@@ -51,7 +46,6 @@ public class TbFundRecordEntity extends com.zz.bms.core.db.entity.BaseEntity<Str
     @EntityAttrDBAnnotation(attrName="备案地点" ,attrColumn="record_addr"  , type = "VARCHAR"      ,  attrLength = 200 , notNull = true )
     @EntityAttrPageAnnotation(title = "备案地点",sort = 400  , pageElement = "text"            , maxLength = 200        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     
 	private String  recordAddr ;
 
@@ -64,7 +58,6 @@ public class TbFundRecordEntity extends com.zz.bms.core.db.entity.BaseEntity<Str
     @EntityAttrPageAnnotation(title = "开户行",sort = 500  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
     
-    
 	private String  bankId ;
 
 
@@ -76,7 +69,6 @@ public class TbFundRecordEntity extends com.zz.bms.core.db.entity.BaseEntity<Str
     @EntityAttrPageAnnotation(title = "证件类型",sort = 600  , pageElement = "select"            , maxLength = 2        ,required=false )
 	
     
-    
 	private String  cardType ;
 
 
@@ -87,7 +79,6 @@ public class TbFundRecordEntity extends com.zz.bms.core.db.entity.BaseEntity<Str
     @EntityAttrDBAnnotation(attrName="备案人" ,attrColumn="record_user_id"  , type = "VARCHAR"      ,  attrLength = 32 , notNull = false )
     @EntityAttrPageAnnotation(title = "备案人",sort = 700  , pageElement = "text"            , maxLength = 32        ,required=false )
 	
-    
     
 	private String  recordUserId ;
 

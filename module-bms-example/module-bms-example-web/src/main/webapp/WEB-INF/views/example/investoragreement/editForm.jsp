@@ -88,8 +88,22 @@
                                     <fmt:formatDate value="${ m.signDate }" pattern="yyyy-MM-dd" />
                                 </td>
                                 <th>附件</th>
-                                <td class="fd_agreementFiles">
-                                    <c:out value="${ m.agreementFiles }" escapeXml="true"/>
+                                <td class="fd_uploadFile_agreementFiles">
+
+                                    <ul style="margin: 0 0 10px 0">
+                                        <c:forEach var="item" items="${m.agreementFilesList}">
+                                            <li>
+                                                <a href="<c:if test="${item.fileEngine == '1'}">javascript:viewFile('${item.id}');</c:if><c:if test="${item.fileEngine != '1'}">${item.accessUrl}</c:if>" class="file-text" title="${item.showName}" style="float:left;">
+                                                <span style="float:left;">${item.showName}</span>
+                                                <span style="float:right;" class="fileSize" fileSize="${item.fileSize}">(${item.fileSize})</span>
+                                                </a>
+
+                                                <a href="javascript:downloadFile('${item.id}');" class="file-operate" style="float:right;"><i class="fa fa-download"></i></a>
+
+                                                <div style="clear: both;"></div>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
                                 </td>
                             </tr>
 
@@ -199,7 +213,7 @@
                                 <td>
                                         <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
-                                                      name="sketch" id="sketch"  placeholder="请输入协议简述，500字以内" maxlength="500" rows="6"><c:out value="${ m.sketch }" escapeXml="true"/></textarea>
+                                                      name="sketch" id="sketch"  placeholder="请输入协议简述，500字以内" maxlength="500" rows="5"><c:out value="${ m.sketch }" escapeXml="true"/></textarea>
                                         </div>
                                 </td>
                                 <th>部门<font color="red">*</font></th>
@@ -266,6 +280,26 @@
                                 </td>
                                 <th>附件</th>
                                 <td>
+                                        <div class="" style="margin-bottom: 0px">
+                                            <div class="info-detail">
+                                                <input type="hidden" id="agreementFiles" name="agreementFiles" value="${ m.agreementFiles}">
+                                                <div class="uploader-list">
+                                                    <ul id="thelist_agreementFiles" class="file-list" style="margin: 0 0 10px 0" ></ul>
+                                                </div>
+                                                <div id="thelist_agreementFiles_items" style="display: none;">
+                                                    <c:forEach var="item" items="${ m.agreementFilesList}">
+                                                        <span id="${ item.id}" fileUseId="${ item.id}" accessUrl="${ item.accessUrl}" fileEngine="${ item.fileEngine}" fileSize="${ item.fileSize}" showName="${ item.showName}" businessId="${ item.businessId}"   />
+                                                    </c:forEach>
+                                                </div>
+
+                                                <div class="btns">
+                                                    <div id="uploadFile_agreementFiles" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_agreementFiles', businessFileType:'agreementFiles'  ,businessTempId: '${ m.agreementFiles}' ">
+                                                        <i class="fa fa-upload"></i>
+                                                        <span>上传附件</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                 </td>
                             </tr>
 
@@ -274,7 +308,7 @@
                                 <td>
                                         <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
-                                                      name="remark" id="remark"  placeholder="请输入备注，500字以内" maxlength="500" rows="6"><c:out value="${ m.remark }" escapeXml="true"/></textarea>
+                                                      name="remark" id="remark"  placeholder="请输入备注，500字以内" maxlength="500" rows="5"><c:out value="${ m.remark }" escapeXml="true"/></textarea>
                                         </div>
                                 </td>
                             </tr>
@@ -337,6 +371,7 @@
 
 
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
+<script src="${ staticUrl }/statics2/js/project/common-upload.js"></script>
 
 
 <script src="${ staticUrl }/statics2/business-js/example/investor/search.js"></script>

@@ -35,7 +35,6 @@ public class TsMyShortcutBO extends TsMyShortcutEntity implements Serializable ,
 
 
 
-    @Override
     public boolean isTable() {
 
         return true;

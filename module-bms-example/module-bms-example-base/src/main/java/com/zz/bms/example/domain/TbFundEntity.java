@@ -14,13 +14,10 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 
 
 
-
-
-
 /**
  * 基金 实体类
  * @author Administrator
- * @date 2019-5-8 13:45:41
+ * @date 2019-6-3 10:12:55
  */
 public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity<String> implements java.io.Serializable  {
 
@@ -32,7 +29,6 @@ public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
     @EntityAttrPageAnnotation(title = "基金名称",sort = 200  , pageElement = "text"            , maxLength = 50        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
-    
 	private String  fundName ;
 
 
@@ -42,7 +38,6 @@ public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
     @EntityAttrDBAnnotation(attrName="基金代码" ,attrColumn="fund_code"  , type = "VARCHAR"      ,  attrLength = 10 , notNull = true )
     @EntityAttrPageAnnotation(title = "基金代码",sort = 300  , pageElement = "text"            , maxLength = 10        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     
 	private String  fundCode ;
 
@@ -55,7 +50,6 @@ public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
     @EntityAttrPageAnnotation(title = "基金类型",sort = 400  , pageElement = "select"            , maxLength = 2        ,required=true )
 	
     
-    
 	private String  fundType ;
 
 
@@ -67,7 +61,6 @@ public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
     @EntityAttrPageAnnotation(title = "基金投向",sort = 500  , pageElement = "select"            , maxLength = 2        ,required=true )
 	
     
-    
 	private String  fundDirection ;
 
 
@@ -77,7 +70,6 @@ public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
     @EntityAttrDBAnnotation(attrName="起购金额" ,attrColumn="start_money"  , type = "DECIMAL"      ,  attrLength = 14 , notNull = true )
     @EntityAttrPageAnnotation(title = "起购金额",sort = 600  , pageElement = "number"            , maxLength = 14        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     
 	private BigDecimal  startMoney ;
 
@@ -90,7 +82,6 @@ public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
     @EntityAttrPageAnnotation(title = "管理类型",sort = 700  , pageElement = "select"            , maxLength = 2        ,required=true )
 	
     
-    
 	private String  managType ;
 
 
@@ -100,7 +91,6 @@ public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
     @EntityAttrDBAnnotation(attrName="基金规模" ,attrColumn="fund_scale"  , type = "DECIMAL"      ,  attrLength = 14 , notNull = true )
     @EntityAttrPageAnnotation(title = "基金规模",sort = 800  , pageElement = "number"            , maxLength = 14        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     
 	private BigDecimal  fundScale ;
 
@@ -113,7 +103,6 @@ public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
     @EntityAttrPageAnnotation(title = "基金经理",sort = 900  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
     
-    
 	private String  managerUserId ;
 
 
@@ -123,7 +112,6 @@ public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
     @EntityAttrDBAnnotation(attrName="成立日期" ,attrColumn="start_date"  , type = "DATE"       , notNull = false )
     @EntityAttrPageAnnotation(title = "成立日期",sort = 1000  , pageElement = "date"                  ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     
 	private Date  startDate ;
 
@@ -135,7 +123,6 @@ public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
     @EntityAttrPageAnnotation(title = "到期日期",sort = 1100  , pageElement = "date"                  ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
-    
 	private Date  endDate ;
 
 
@@ -145,7 +132,6 @@ public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
     @EntityAttrDBAnnotation(attrName="投资领域" ,attrColumn="investment_field"  , type = "VARCHAR"      ,  attrLength = 500 , notNull = false )
     @EntityAttrPageAnnotation(title = "投资领域",sort = 1200  , pageElement = "textarea"            , maxLength = 500        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     
 	private String  investmentField ;
 
@@ -157,7 +143,6 @@ public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
     @EntityAttrPageAnnotation(title = "收入分配",sort = 1300  , pageElement = "textarea"            , maxLength = 500        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
-    
 	private String  incomeAllocation ;
 
 
@@ -167,7 +152,6 @@ public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
     @EntityAttrDBAnnotation(attrName="附件" ,attrColumn="fund_files"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
     @EntityAttrPageAnnotation(title = "附件",sort = 1400  , pageElement = "multifile"            , maxLength = 32        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     
 	private String  fundFiles ;
 
@@ -179,7 +163,6 @@ public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
     @EntityAttrPageAnnotation(title = "备注",sort = 1500  , pageElement = "textarea"            , maxLength = 500        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
-    
 	private String  remark ;
 
 
@@ -190,7 +173,6 @@ public class TbFundEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
     @EntityAttrDBAnnotation(attrName="部门" ,attrColumn="dep_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
     @EntityAttrPageAnnotation(title = "部门",sort = 1600  , pageElement = "text"            , maxLength = 32        ,required=false )
 	
-    
     
 	private String  depId ;
 

@@ -10,13 +10,10 @@ import com.zz.bms.core.db.entity.BaseEntity;
 
 
 
-
-
-
 /**
  * 银行信息 实体类
  * @author Administrator
- * @date 2019-5-8 13:45:41
+ * @date 2019-6-3 10:12:55
  */
 public class TbBankEntity extends com.zz.bms.core.db.entity.BaseEntity<String> implements java.io.Serializable  {
 
@@ -28,7 +25,6 @@ public class TbBankEntity extends com.zz.bms.core.db.entity.BaseEntity<String> i
     @EntityAttrPageAnnotation(title = "银行全称",sort = 200  , pageElement = "text"            , maxLength = 200        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
-    
 	private String  bankName ;
 
 
@@ -38,7 +34,6 @@ public class TbBankEntity extends com.zz.bms.core.db.entity.BaseEntity<String> i
     @EntityAttrDBAnnotation(attrName="银行简称" ,attrColumn="bank_short_name"  , type = "VARCHAR"      ,  attrLength = 20 , notNull = true )
     @EntityAttrPageAnnotation(title = "银行简称",sort = 300  , pageElement = "text"            , maxLength = 20        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     
 	private String  bankShortName ;
 
@@ -50,7 +45,6 @@ public class TbBankEntity extends com.zz.bms.core.db.entity.BaseEntity<String> i
     @EntityAttrPageAnnotation(title = "服务电话",sort = 400  , pageElement = "text"            , maxLength = 20        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
-    
 	private String  serviceTelephone ;
 
 
@@ -60,7 +54,6 @@ public class TbBankEntity extends com.zz.bms.core.db.entity.BaseEntity<String> i
     @EntityAttrDBAnnotation(attrName="官网" ,attrColumn="official_website"  , type = "VARCHAR"      ,  attrLength = 200 , notNull = false )
     @EntityAttrPageAnnotation(title = "官网",sort = 500  , pageElement = "text"            , maxLength = 200        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     
 	private String  officialWebsite ;
 

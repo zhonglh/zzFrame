@@ -67,7 +67,6 @@ public class TsNotificationReceiveBO extends TsNotificationReceiveEntity impleme
 
 
 
-    @Override
     public boolean isTable() {
 
         return true;

@@ -50,7 +50,6 @@ public class TsDictTypeBO extends TsDictTypeEntity implements Serializable , IBo
 
 
 
-    @Override
     public boolean isTable() {
 
         return true;

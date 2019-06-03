@@ -93,7 +93,6 @@ public class VsUserMenuBO extends VsUserMenuEntity implements Serializable , IBo
 
 
 
-    @Override
     public boolean isTable() {
 
 

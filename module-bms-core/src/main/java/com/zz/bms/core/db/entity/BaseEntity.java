@@ -106,10 +106,4 @@ public abstract class BaseEntity<PK extends Serializable> implements Serializabl
     public boolean haveFile(){
         return false;
     }
-
-
-    @Override
-    public boolean isTable(){
-        return true;
-    }
 }

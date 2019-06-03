@@ -1,32 +1,48 @@
 package com.zz.bms.example.service.impl;
 
-import com.zz.bms.core.db.base.dao.BaseDAO;
-import com.zz.bms.core.db.entity.EntityUtil;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.core.enums.EnumErrorMsg;
+import com.zz.bms.enums.*;
+
+import com.zz.bms.core.db.entity.EntityUtil;
+import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.exceptions.BizException;
-import com.zz.bms.enums.EnumDictType;
+import com.zz.bms.core.db.base.dao.BaseDAO;
+import com.zz.bms.system.service.impl.SystemBaseServiceImpl;
+
+import com.zz.bms.system.service.TsDictService;
+import com.zz.bms.system.service.VsFileUseService;
+
+import com.zz.bms.system.bo.VsFileUseBO;
+import com.zz.bms.system.bo.TsDictBO;
+
+
 import com.zz.bms.example.bo.TbFundBO;
 import com.zz.bms.example.dao.TbFundDAO;
 import com.zz.bms.example.service.TbFundService;
-import com.zz.bms.system.bo.TsDepBO;
-import com.zz.bms.system.bo.TsDictBO;
+
 import com.zz.bms.system.bo.TsUserBO;
-import com.zz.bms.system.dao.TsDepDAO;
 import com.zz.bms.system.dao.TsUserDAO;
-import com.zz.bms.system.service.TsDictService;
-import com.zz.bms.system.service.impl.SystemBaseServiceImpl;
+import com.zz.bms.system.bo.TsDepBO;
+import com.zz.bms.system.dao.TsDepDAO;
+
+
+
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
 * 基金 ServiceImpl
 * @author Administrator
-* @date 2019-5-8 13:45:41
+* @date 2019-6-3 10:12:55
 */
 @Service
 public class TbFundServiceImpl extends SystemBaseServiceImpl<TbFundBO,String> implements TbFundService {
@@ -36,6 +52,9 @@ public class TbFundServiceImpl extends SystemBaseServiceImpl<TbFundBO,String> im
 	@Autowired
 	private TsDictService tsDictService;
 
+
+	@Autowired
+	private VsFileUseService vsFileUseService;
 
 
     @Autowired
@@ -97,6 +116,19 @@ public class TbFundServiceImpl extends SystemBaseServiceImpl<TbFundBO,String> im
 				tbFundBO.setDepName(temp.getDepName());
 			}
 		}
+
+
+		try{
+			if(StringUtils.isNotEmpty(tbFundBO.getFundFiles()) && tbFundBO.getFundFilesList() == null){
+			QueryWrapper<VsFileUseBO> qw = new QueryWrapper<VsFileUseBO>();
+			qw.lambda().eq(VsFileUseBO::getBusinessId , tbFundBO.getId());
+			qw.lambda().eq(VsFileUseBO::getBusinessTempId , tbFundBO.getFundFiles());
+			List<VsFileUseBO> list = vsFileUseService.list(qw);
+				tbFundBO.setFundFilesList(list);
+			}
+		}catch(Exception e){}
+
+
 
 		return tbFundBO;
 

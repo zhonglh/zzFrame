@@ -101,7 +101,6 @@
 
 
 
-
 <script language="JavaScript">
     $(function() {
 
@@ -113,8 +112,6 @@
 
     });
 
-
-    var tableId , tableJavaName;
 
 
 

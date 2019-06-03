@@ -1,32 +1,52 @@
 package com.zz.bms.example.service.impl;
 
-import com.zz.bms.core.db.base.dao.BaseDAO;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.zz.bms.core.enums.EnumErrorMsg;
+import com.zz.bms.enums.*;
+
 import com.zz.bms.core.db.entity.EntityUtil;
-import com.zz.bms.example.bo.TbFundBO;
-import com.zz.bms.example.bo.TbInvestorAgreementBO;
-import com.zz.bms.example.bo.TbInvestorBO;
-import com.zz.bms.example.dao.TbFundDAO;
-import com.zz.bms.example.dao.TbInvestorAgreementDAO;
-import com.zz.bms.example.dao.TbInvestorDAO;
-import com.zz.bms.example.service.TbInvestorAgreementService;
-import com.zz.bms.system.bo.TsDepBO;
-import com.zz.bms.system.bo.TsUserBO;
-import com.zz.bms.system.dao.TsDepDAO;
-import com.zz.bms.system.dao.TsUserDAO;
-import com.zz.bms.system.service.TsDictService;
+import com.zz.bms.core.exceptions.DbException;
+import com.zz.bms.core.exceptions.BizException;
+import com.zz.bms.core.db.base.dao.BaseDAO;
 import com.zz.bms.system.service.impl.SystemBaseServiceImpl;
+
+import com.zz.bms.system.service.TsDictService;
+import com.zz.bms.system.service.VsFileUseService;
+
+import com.zz.bms.system.bo.VsFileUseBO;
+import com.zz.bms.system.bo.TsDictBO;
+
+
+import com.zz.bms.example.bo.TbInvestorAgreementBO;
+import com.zz.bms.example.dao.TbInvestorAgreementDAO;
+import com.zz.bms.example.service.TbInvestorAgreementService;
+
+import com.zz.bms.example.bo.TbInvestorBO;
+import com.zz.bms.example.dao.TbInvestorDAO;
+import com.zz.bms.example.bo.TbFundBO;
+import com.zz.bms.example.dao.TbFundDAO;
+import com.zz.bms.system.bo.TsUserBO;
+import com.zz.bms.system.dao.TsUserDAO;
+import com.zz.bms.system.bo.TsDepBO;
+import com.zz.bms.system.dao.TsDepDAO;
+
+
+
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
 * 投资协议 ServiceImpl
 * @author Administrator
-* @date 2019-5-8 13:45:42
+* @date 2019-6-3 10:12:56
 */
 @Service
 public class TbInvestorAgreementServiceImpl extends SystemBaseServiceImpl<TbInvestorAgreementBO,String> implements TbInvestorAgreementService {
@@ -37,11 +57,14 @@ public class TbInvestorAgreementServiceImpl extends SystemBaseServiceImpl<TbInve
 	private TsDictService tsDictService;
 
 
+	@Autowired
+	private VsFileUseService vsFileUseService;
+
 
     @Autowired
-    private TbFundDAO tbFundDAO;
-    @Autowired
     private TbInvestorDAO tbInvestorDAO;
+    @Autowired
+    private TbFundDAO tbFundDAO;
     @Autowired
     private TsUserDAO tsUserDAO;
     @Autowired
@@ -91,6 +114,19 @@ public class TbInvestorAgreementServiceImpl extends SystemBaseServiceImpl<TbInve
 				tbInvestorAgreementBO.setFundName(temp.getFundName());
 			}
 		}
+
+
+		try{
+			if(StringUtils.isNotEmpty(tbInvestorAgreementBO.getAgreementFiles()) && tbInvestorAgreementBO.getAgreementFilesList() == null){
+			QueryWrapper<VsFileUseBO> qw = new QueryWrapper<VsFileUseBO>();
+			qw.lambda().eq(VsFileUseBO::getBusinessId , tbInvestorAgreementBO.getId());
+			qw.lambda().eq(VsFileUseBO::getBusinessTempId , tbInvestorAgreementBO.getAgreementFiles());
+			List<VsFileUseBO> list = vsFileUseService.list(qw);
+				tbInvestorAgreementBO.setAgreementFilesList(list);
+			}
+		}catch(Exception e){}
+
+
 
 		return tbInvestorAgreementBO;
 

@@ -12,13 +12,10 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 
 
 
-
-
-
 /**
  * 投资人 实体类
  * @author Administrator
- * @date 2019-5-8 13:45:42
+ * @date 2019-6-3 10:12:56
  */
 public class TbInvestorEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity<String> implements java.io.Serializable  {
 
@@ -30,7 +27,6 @@ public class TbInvestorEntity extends com.zz.bms.core.db.entity.BaseBusinessExEn
     @EntityAttrPageAnnotation(title = "投资人名称",sort = 200  , pageElement = "text"            , maxLength = 50        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
-    
 	private String  investorName ;
 
 
@@ -40,7 +36,6 @@ public class TbInvestorEntity extends com.zz.bms.core.db.entity.BaseBusinessExEn
     @EntityAttrDBAnnotation(attrName="投资人代码" ,attrColumn="investor_code"  , type = "VARCHAR"      ,  attrLength = 10 , notNull = true )
     @EntityAttrPageAnnotation(title = "投资人代码",sort = 300  , pageElement = "text"            , maxLength = 10        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     
 	private String  investorCode ;
 
@@ -53,7 +48,6 @@ public class TbInvestorEntity extends com.zz.bms.core.db.entity.BaseBusinessExEn
     @EntityAttrPageAnnotation(title = "投资人类型",sort = 400  , pageElement = "select"            , maxLength = 2        ,required=true )
 	
     
-    
 	private String  investorType ;
 
 
@@ -64,7 +58,6 @@ public class TbInvestorEntity extends com.zz.bms.core.db.entity.BaseBusinessExEn
     @EntityAttrDBAnnotation(attrName="投资经理" ,attrColumn="manage_user_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
     @EntityAttrPageAnnotation(title = "投资经理",sort = 500  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
-    
     
 	private String  manageUserId ;
 
@@ -77,7 +70,6 @@ public class TbInvestorEntity extends com.zz.bms.core.db.entity.BaseBusinessExEn
     @EntityAttrPageAnnotation(title = "证件类型",sort = 600  , pageElement = "select"            , maxLength = 2        ,required=false )
 	
     
-    
 	private String  cardType ;
 
 
@@ -88,7 +80,6 @@ public class TbInvestorEntity extends com.zz.bms.core.db.entity.BaseBusinessExEn
     @EntityAttrPageAnnotation(title = "证件号码",sort = 700  , pageElement = "text"            , maxLength = 100        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
-    
 	private String  cardNo ;
 
 
@@ -97,7 +88,7 @@ public class TbInvestorEntity extends com.zz.bms.core.db.entity.BaseBusinessExEn
 
     @EntityAttrDBAnnotation(attrName="附件" ,attrColumn="investor_files"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
     @EntityAttrPageAnnotation(title = "附件",sort = 800  , pageElement = "multifile"            , maxLength = 32        ,required=false )
-    
+	@EntityAttrExcelAnnotation(excelProcess= "3")
     
 	private String  investorFiles ;
 
@@ -108,7 +99,6 @@ public class TbInvestorEntity extends com.zz.bms.core.db.entity.BaseBusinessExEn
     @EntityAttrDBAnnotation(attrName="备注" ,attrColumn="remark"  , type = "VARCHAR"      ,  attrLength = 500 , notNull = false )
     @EntityAttrPageAnnotation(title = "备注",sort = 900  , pageElement = "textarea"            , maxLength = 500        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     
 	private String  remark ;
 

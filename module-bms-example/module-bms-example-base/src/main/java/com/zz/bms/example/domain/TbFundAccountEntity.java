@@ -11,13 +11,10 @@ import com.zz.bms.core.db.entity.BaseEntity;
 
 
 
-
-
-
 /**
  * 基金账户 实体类
  * @author Administrator
- * @date 2019-5-8 13:45:38
+ * @date 2019-6-3 10:12:53
  */
 public class TbFundAccountEntity extends com.zz.bms.core.db.entity.BaseEntity<String> implements java.io.Serializable  {
 
@@ -30,7 +27,6 @@ public class TbFundAccountEntity extends com.zz.bms.core.db.entity.BaseEntity<St
     @EntityAttrPageAnnotation(title = "基金信息",sort = 200  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
     
-    
 	private String  fundId ;
 
 
@@ -42,7 +38,6 @@ public class TbFundAccountEntity extends com.zz.bms.core.db.entity.BaseEntity<St
     @EntityAttrPageAnnotation(title = "基金账户类型",sort = 300  , pageElement = "select"            , maxLength = 2        ,required=true )
 	
     
-    
 	private String  fundAccountType ;
 
 
@@ -52,7 +47,6 @@ public class TbFundAccountEntity extends com.zz.bms.core.db.entity.BaseEntity<St
     @EntityAttrDBAnnotation(attrName="户名" ,attrColumn="account_name"  , type = "VARCHAR"      ,  attrLength = 100 , notNull = true )
     @EntityAttrPageAnnotation(title = "户名",sort = 400  , pageElement = "text"            , maxLength = 100        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     
 	private String  accountName ;
 
@@ -65,7 +59,6 @@ public class TbFundAccountEntity extends com.zz.bms.core.db.entity.BaseEntity<St
     @EntityAttrPageAnnotation(title = "开户行",sort = 500  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
     
-    
 	private String  bankId ;
 
 
@@ -76,7 +69,6 @@ public class TbFundAccountEntity extends com.zz.bms.core.db.entity.BaseEntity<St
     @EntityAttrPageAnnotation(title = "账号",sort = 600  , pageElement = "text"            , maxLength = 50        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
-    
 	private String  accountNo ;
 
 
@@ -86,7 +78,6 @@ public class TbFundAccountEntity extends com.zz.bms.core.db.entity.BaseEntity<St
     @EntityAttrDBAnnotation(attrName="开始日期" ,attrColumn="start_date"  , type = "DATE"       , notNull = false )
     @EntityAttrPageAnnotation(title = "开始日期",sort = 700  , pageElement = "date"                  ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     
 	private Date  startDate ;
 
@@ -99,7 +90,6 @@ public class TbFundAccountEntity extends com.zz.bms.core.db.entity.BaseEntity<St
     @EntityAttrPageAnnotation(title = "其他行",sort = 800  , pageElement = "text"            , maxLength = 32        ,required=false )
 	
     
-    
 	private String  otherBankId ;
 
 
@@ -110,7 +100,6 @@ public class TbFundAccountEntity extends com.zz.bms.core.db.entity.BaseEntity<St
     @EntityAttrDBAnnotation(attrName="账户处理人" ,attrColumn="user_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
     @EntityAttrPageAnnotation(title = "账户处理人",sort = 900  , pageElement = "text"            , maxLength = 32        ,required=false )
 	
-    
     
 	private String  userId ;
 

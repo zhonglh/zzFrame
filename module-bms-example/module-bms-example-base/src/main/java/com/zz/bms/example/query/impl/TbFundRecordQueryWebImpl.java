@@ -10,7 +10,7 @@ import java.lang.String;
 * 基金备案 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2019-5-8 13:45:40
+* @date 2019-6-3 10:12:54
 */
 public class TbFundRecordQueryWebImpl<PK extends Serializable> extends TbFundRecordAbstractQueryImpl<PK> implements Serializable {
 

@@ -51,7 +51,6 @@ public class TsFileBO extends TsFileEntity implements Serializable , IBoEntity {
 
 
 
-    @Override
     public boolean isTable() {
 
         return true;

@@ -114,7 +114,6 @@ public class TsMenuBO extends TsMenuEntity implements Serializable , IBoEntity {
 
 
 
-    @Override
     public boolean isTable() {
 
         return true;

@@ -14,13 +14,10 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 
 
 
-
-
-
 /**
  * 投资协议 实体类
  * @author Administrator
- * @date 2019-5-8 13:45:42
+ * @date 2019-6-3 10:12:56
  */
 public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity<String> implements java.io.Serializable  {
 
@@ -32,7 +29,6 @@ public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBus
     @EntityAttrPageAnnotation(title = "协议名称",sort = 200  , pageElement = "text"            , maxLength = 50        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
-    
 	private String  agreementName ;
 
 
@@ -42,7 +38,6 @@ public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBus
     @EntityAttrDBAnnotation(attrName="协议代码" ,attrColumn="agreement_code"  , type = "VARCHAR"      ,  attrLength = 10 , notNull = true )
     @EntityAttrPageAnnotation(title = "协议代码",sort = 300  , pageElement = "text"            , maxLength = 10        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     
 	private String  agreementCode ;
 
@@ -55,7 +50,6 @@ public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBus
     @EntityAttrPageAnnotation(title = "认购基金",sort = 400  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
     
-    
 	private String  fundId ;
 
 
@@ -67,7 +61,6 @@ public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBus
     @EntityAttrPageAnnotation(title = "投资人",sort = 500  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
     
-    
 	private String  investorId ;
 
 
@@ -77,7 +70,6 @@ public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBus
     @EntityAttrDBAnnotation(attrName="认购金额" ,attrColumn="amount"  , type = "DECIMAL"      ,  attrLength = 14 , notNull = true )
     @EntityAttrPageAnnotation(title = "认购金额",sort = 600  , pageElement = "number"            , maxLength = 14        ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     
 	private BigDecimal  amount ;
 
@@ -89,7 +81,6 @@ public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBus
     @EntityAttrPageAnnotation(title = "实际出资金额",sort = 700  , pageElement = "number"            , maxLength = 14        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
-    
 	private BigDecimal  actualAmount ;
 
 
@@ -99,7 +90,6 @@ public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBus
     @EntityAttrDBAnnotation(attrName="协议简述" ,attrColumn="sketch"  , type = "VARCHAR"      ,  attrLength = 500 , notNull = false )
     @EntityAttrPageAnnotation(title = "协议简述",sort = 800  , pageElement = "textarea"            , maxLength = 500        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     
 	private String  sketch ;
 
@@ -112,7 +102,6 @@ public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBus
     @EntityAttrPageAnnotation(title = "部门",sort = 900  , pageElement = "text"            , maxLength = 32        ,required=false )
 	
     
-    
 	private String  signDepId ;
 
 
@@ -122,7 +111,6 @@ public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBus
     @EntityAttrDBAnnotation(attrName="机构" ,attrColumn="sign_organ_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
     @EntityAttrPageAnnotation(title = "机构",sort = 1000  , pageElement = "text"            , maxLength = 32        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     
 	private String  signOrganId ;
 
@@ -135,7 +123,6 @@ public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBus
     @EntityAttrPageAnnotation(title = "签订人",sort = 1100  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
     
-    
 	private String  signUserId ;
 
 
@@ -145,7 +132,6 @@ public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBus
     @EntityAttrDBAnnotation(attrName="签订日期" ,attrColumn="sign_date"  , type = "DATE"       , notNull = true )
     @EntityAttrPageAnnotation(title = "签订日期",sort = 1200  , pageElement = "date"                  ,required=true )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     
 	private Date  signDate ;
 
@@ -157,7 +143,6 @@ public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBus
     @EntityAttrPageAnnotation(title = "附件",sort = 1300  , pageElement = "multifile"            , maxLength = 32        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
     
-    
 	private String  agreementFiles ;
 
 
@@ -167,7 +152,6 @@ public class TbInvestorAgreementEntity extends com.zz.bms.core.db.entity.BaseBus
     @EntityAttrDBAnnotation(attrName="备注" ,attrColumn="remark"  , type = "VARCHAR"      ,  attrLength = 500 , notNull = false )
     @EntityAttrPageAnnotation(title = "备注",sort = 1400  , pageElement = "textarea"            , maxLength = 500        ,required=false )
 	@EntityAttrExcelAnnotation(excelProcess= "3")
-    
     
 	private String  remark ;
 

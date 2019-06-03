@@ -228,7 +228,7 @@ function UploadFile(options)
 
     // 加载已经存在文件列表
     function initFileList(){
-        $(options.viewAreaId + "-items").find("span").each(function(){
+        $(options.viewAreaId + "_items").find("span").each(function(){
             var id = $(this).attr("id");
             var fileUseId = $(this).attr("fileUseId");
             var fileSize = $(this).attr("fileSize");

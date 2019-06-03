@@ -98,7 +98,6 @@ public class TsMsgTempletBO extends TsMsgTempletEntity implements Serializable ,
 
 
 
-    @Override
     public boolean isTable() {
 
         return true;

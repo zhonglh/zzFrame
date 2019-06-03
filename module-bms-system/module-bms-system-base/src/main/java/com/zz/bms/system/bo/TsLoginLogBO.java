@@ -67,7 +67,6 @@ public class TsLoginLogBO extends TsLoginLogEntity implements Serializable , IBo
 
 
 
-    @Override
     public boolean isTable() {
         return true;
     }

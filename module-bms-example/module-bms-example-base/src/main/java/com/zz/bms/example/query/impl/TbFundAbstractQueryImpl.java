@@ -2,7 +2,6 @@ package com.zz.bms.example.query.impl;
 
 
 import com.zz.bms.core.db.mybatis.query.CommonQueryImpl;
-import com.zz.bms.core.db.mybatis.query.QueryImpl;
 import com.zz.bms.example.domain.TbFundEntity;
 
 import java.io.Serializable;
@@ -16,7 +15,7 @@ import java.lang.Integer;
  * 基金 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2019-5-8 13:45:41
+ * @date 2019-6-3 10:12:55
  */
 public abstract class TbFundAbstractQueryImpl<PK extends Serializable> extends CommonQueryImpl<TbFundEntity,PK> {
 

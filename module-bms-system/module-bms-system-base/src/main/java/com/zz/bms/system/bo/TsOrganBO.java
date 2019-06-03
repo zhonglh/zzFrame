@@ -112,7 +112,6 @@ public class TsOrganBO extends TsOrganEntity implements Serializable , IBoEntity
 
 
 
-    @Override
     public boolean isTable() {
 
         return true;

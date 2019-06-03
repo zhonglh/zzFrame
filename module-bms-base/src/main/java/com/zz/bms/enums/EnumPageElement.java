@@ -32,7 +32,6 @@ public enum EnumPageElement implements EnumBase<String> {
 
     singlefile("file","singlefile" ,"单文件"),
     multifile("file","multifile" ,"多文件"),
-
     singleimage("file","singleimage" ,"单图片"),
     multiimage("file","multiimage" ,"多图片"),
     ;

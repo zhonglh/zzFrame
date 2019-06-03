@@ -51,7 +51,6 @@ public class VsMenuPermitBO extends VsMenuPermitEntity implements Serializable ,
 
 
 
-    @Override
     public boolean isTable() {
 
 

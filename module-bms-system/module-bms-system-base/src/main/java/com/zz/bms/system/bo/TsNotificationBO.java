@@ -35,7 +35,6 @@ public class TsNotificationBO extends TsNotificationEntity implements Serializab
 
 
 
-    @Override
     public boolean isTable() {
 
         return true;

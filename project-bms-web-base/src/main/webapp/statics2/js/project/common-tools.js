@@ -1149,7 +1149,7 @@ $(function(){
 
                         $ul.append(
                             '<li>'+
-                            '   <a href="'+ ahref + '" class="file-text" title="'+f.showName+'" style="float:left;"' +
+                            '   <a href="'+ ahref + '" class="file-text" title="'+file.showName+'" style="float:left;"' +
                             '       <span style="float:left;">'+file.showName+'</span>'+
                             '       <span style="float:right;" class="fileSize" fileSize="'+file.fileSize+'">('+file.fileSize+')</span>' +
                             '   </a>' +
@@ -1210,13 +1210,14 @@ $(function(){
 
         // 填充附件信息
         $("#" + that.options.formId).find(".webuploader-container").each(function(){
+            debugger
             var options = $(this).attr("data-options");
             options = stringToJson(options);
 
             var key = $(this).attr("id");
             var file = that.data[key];
 
-            var viewArea = $(options.viewAreaId + "-items");
+            var viewArea = $(options.viewAreaId + "_items");
             viewArea.find("span").remove();
 
             if(file != null){
@@ -1305,8 +1306,9 @@ $(function(){
             data[key + "Name"] = text;
         });
 
-        // 收集附件数据
+        // 收集文件数据
         $(formId).find(".webuploader-container").each(function(){
+            debugger
             var options = $(this).attr("data-options");
             options = stringToJson(options);
 
@@ -1329,7 +1331,7 @@ $(function(){
 
             if(flag == true){
                 file = [];
-                $(options.viewAreaId + "-items").find("span").each(function(){
+                $(options.viewAreaId + "_items").find("span").each(function(){
                     var id = $(this).attr("id");
                     var fileUseId = $(this).attr("fileUseId");
                     var fileSize = $(this).attr("fileSize");

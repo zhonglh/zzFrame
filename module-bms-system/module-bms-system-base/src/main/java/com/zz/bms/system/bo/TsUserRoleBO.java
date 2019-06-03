@@ -109,7 +109,6 @@ public class TsUserRoleBO extends TsUserRoleEntity implements Serializable , IBo
         this.roleCode = roleCode;
     }
 
-    @Override
     public boolean isTable() {
 
         return true;

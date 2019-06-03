@@ -7,7 +7,7 @@ import com.zz.bms.example.bo.TbFundRecordBO;
 /**
 * 基金备案 Service
 * @author Administrator
-* @date 2019-5-8 13:45:40
+* @date 2019-6-3 10:12:54
 */
 public interface TbFundRecordService extends BaseService<TbFundRecordBO , String> {
 

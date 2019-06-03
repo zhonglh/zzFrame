@@ -12,10 +12,13 @@ import com.zz.bms.constants.DefaultTypeConstant;
 import com.zz.bms.constants.DictTypeConstant;
 import com.zz.bms.constants.ExcelTypeConstant;
 import com.baomidou.mybatisplus.annotation.TableName;
-
+import com.zz.bms.util.configs.annotaions.FilesAnnotation;
+import com.zz.bms.system.bo.VsFileUseBO;
 
 import org.apache.commons.lang3.StringUtils;
 
+
+import java.util.List;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,9 +27,9 @@ import java.util.Map;
 /**
 * 投资协议 BO , 扩展 TbInvestorAgreementEntity 对象
 * @author Administrator
-* @date 2019-5-8 13:45:42
+* @date 2019-6-3 10:12:56
 */
-@EntityAnnotation(value="投资协议" , resource = "example.investoragreement"  ,haveTenant = true   ,businessName = ""    ,businessKey = { "" }    )
+@EntityAnnotation(value="投资协议" , resource = "example.investoragreement"  ,haveTenant = true   ,businessName = "agreement_name"    ,businessKey = { "agreement_code" }    )
 @TableName(value="tb_investor_agreement" , resultMap = "TbInvestorAgreementResultMap")
 public class TbInvestorAgreementBO extends TbInvestorAgreementEntity implements Serializable , IBoEntity {
 
@@ -65,6 +68,18 @@ public class TbInvestorAgreementBO extends TbInvestorAgreementEntity implements 
 
 
 
+    /**
+    * 附件 列表
+    */
+    @TableField(exist = false)
+    @FilesAnnotation
+    private List<VsFileUseBO> agreementFilesList ;
+
+
+
+
+
+
     public void setFundName(String fundName){
         this.fundName = fundName;
     }
@@ -99,10 +114,24 @@ public class TbInvestorAgreementBO extends TbInvestorAgreementEntity implements 
 
 
 
+    public void setAgreementFilesList(List<VsFileUseBO> agreementFilesList ){
+        this.agreementFilesList = agreementFilesList;
+    }
+
+
+    public List<VsFileUseBO> getAgreementFilesList(){
+        return this.agreementFilesList;
+    }
 
 
 
-    @Override
+
+
+
+
+
+
+    
     public boolean isTable() {
 
         return true;
@@ -112,10 +141,16 @@ public class TbInvestorAgreementBO extends TbInvestorAgreementEntity implements 
 
 
     @Override
+    public boolean haveFile() {
+        return true;
+    }
+
+
+    @Override
     public String toString() {
 
 
-        return super.toString();
-
+            return this.getAgreementName();
+        
     }
 }

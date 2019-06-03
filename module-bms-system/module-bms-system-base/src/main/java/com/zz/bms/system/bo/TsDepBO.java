@@ -98,7 +98,6 @@ public class TsDepBO extends TsDepEntity implements Serializable , IBoEntity {
 
 
 
-    @Override
     public boolean isTable() {
 
         return true;

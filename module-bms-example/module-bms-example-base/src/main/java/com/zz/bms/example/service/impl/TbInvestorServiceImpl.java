@@ -1,31 +1,46 @@
 package com.zz.bms.example.service.impl;
 
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.zz.bms.core.db.base.dao.BaseDAO;
+import com.zz.bms.core.enums.EnumErrorMsg;
+import com.zz.bms.enums.*;
+
 import com.zz.bms.core.db.entity.EntityUtil;
-import com.zz.bms.enums.EnumDictType;
+import com.zz.bms.core.exceptions.DbException;
+import com.zz.bms.core.exceptions.BizException;
+import com.zz.bms.core.db.base.dao.BaseDAO;
+import com.zz.bms.system.service.impl.SystemBaseServiceImpl;
+
+import com.zz.bms.system.service.TsDictService;
+import com.zz.bms.system.service.VsFileUseService;
+
+import com.zz.bms.system.bo.VsFileUseBO;
+import com.zz.bms.system.bo.TsDictBO;
+
+
 import com.zz.bms.example.bo.TbInvestorBO;
 import com.zz.bms.example.dao.TbInvestorDAO;
 import com.zz.bms.example.service.TbInvestorService;
-import com.zz.bms.system.bo.TsDictBO;
+
 import com.zz.bms.system.bo.TsUserBO;
-import com.zz.bms.system.bo.VsFileUseBO;
 import com.zz.bms.system.dao.TsUserDAO;
-import com.zz.bms.system.service.TsDictService;
-import com.zz.bms.system.service.VsFileUseService;
-import com.zz.bms.system.service.impl.SystemBaseServiceImpl;
+
+
+
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
 * 投资人 ServiceImpl
 * @author Administrator
-* @date 2019-5-8 13:45:42
+* @date 2019-6-3 10:12:56
 */
 @Service
 public class TbInvestorServiceImpl extends SystemBaseServiceImpl<TbInvestorBO,String> implements TbInvestorService {
@@ -36,15 +51,11 @@ public class TbInvestorServiceImpl extends SystemBaseServiceImpl<TbInvestorBO,St
 	private TsDictService tsDictService;
 
 
-
 	@Autowired
 	private VsFileUseService vsFileUseService;
 
 
-
-
-
-	@Autowired
+    @Autowired
     private TsUserDAO tsUserDAO;
 
 
@@ -87,12 +98,18 @@ public class TbInvestorServiceImpl extends SystemBaseServiceImpl<TbInvestorBO,St
 			}
 		}
 
-		if(StringUtils.isNotEmpty(tbInvestorBO.getInvestorFiles()) && tbInvestorBO.getInvestorFilesList() == null){
+
+		try{
+			if(StringUtils.isNotEmpty(tbInvestorBO.getInvestorFiles()) && tbInvestorBO.getInvestorFilesList() == null){
 			QueryWrapper<VsFileUseBO> qw = new QueryWrapper<VsFileUseBO>();
+			qw.lambda().eq(VsFileUseBO::getBusinessId , tbInvestorBO.getId());
 			qw.lambda().eq(VsFileUseBO::getBusinessTempId , tbInvestorBO.getInvestorFiles());
-			List<VsFileUseBO> investorFilesList = vsFileUseService.list(qw);
-			tbInvestorBO.setInvestorFilesList(investorFilesList);
-		}
+			List<VsFileUseBO> list = vsFileUseService.list(qw);
+				tbInvestorBO.setInvestorFilesList(list);
+			}
+		}catch(Exception e){}
+
+
 
 		return tbInvestorBO;
 

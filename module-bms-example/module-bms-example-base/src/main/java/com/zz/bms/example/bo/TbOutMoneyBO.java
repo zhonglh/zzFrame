@@ -12,10 +12,13 @@ import com.zz.bms.constants.DefaultTypeConstant;
 import com.zz.bms.constants.DictTypeConstant;
 import com.zz.bms.constants.ExcelTypeConstant;
 import com.baomidou.mybatisplus.annotation.TableName;
-
+import com.zz.bms.util.configs.annotaions.FilesAnnotation;
+import com.zz.bms.system.bo.VsFileUseBO;
 
 import org.apache.commons.lang3.StringUtils;
 
+
+import java.util.List;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +27,7 @@ import java.util.Map;
 /**
 * 出资明细 BO , 扩展 TbOutMoneyEntity 对象
 * @author Administrator
-* @date 2019-5-8 13:45:41
+* @date 2019-6-3 10:12:55
 */
 @EntityAnnotation(value="出资明细" , resource = "example.outmoney"  ,haveTenant = true   ,businessName = ""    ,businessKey = { "" }    )
 @TableName(value="tb_out_money" , resultMap = "TbOutMoneyResultMap")
@@ -73,6 +76,18 @@ public class TbOutMoneyBO extends TbOutMoneyEntity implements Serializable , IBo
 
 
 
+    /**
+    * 附件 列表
+    */
+    @TableField(exist = false)
+    @FilesAnnotation
+    private List<VsFileUseBO> outMoneyFilesList ;
+
+
+
+
+
+
     public void setInvestorAgreementName(String investorAgreementName){
         this.investorAgreementName = investorAgreementName;
     }
@@ -115,15 +130,35 @@ public class TbOutMoneyBO extends TbOutMoneyEntity implements Serializable , IBo
 
 
 
+    public void setOutMoneyFilesList(List<VsFileUseBO> outMoneyFilesList ){
+        this.outMoneyFilesList = outMoneyFilesList;
+    }
+
+
+    public List<VsFileUseBO> getOutMoneyFilesList(){
+        return this.outMoneyFilesList;
+    }
 
 
 
-    @Override
+
+
+
+
+
+
+    
     public boolean isTable() {
 
         return true;
 
 
+    }
+
+
+    @Override
+    public boolean haveFile() {
+        return true;
     }
 
 

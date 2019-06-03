@@ -13,9 +13,10 @@ import com.zz.bms.constants.DictTypeConstant;
 import com.zz.bms.constants.ExcelTypeConstant;
 import com.baomidou.mybatisplus.annotation.TableName;
 
-
 import org.apache.commons.lang3.StringUtils;
 
+
+import java.util.List;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +25,7 @@ import java.util.Map;
 /**
 * 银行信息 BO , 扩展 TbBankEntity 对象
 * @author Administrator
-* @date 2019-5-8 13:45:41
+* @date 2019-6-3 10:12:55
 */
 @EntityAnnotation(value="银行信息" , resource = "example.bank"    ,businessName = "bank_name"    ,businessKey = { "bank_name" }    )
 @TableName(value="tb_bank" , resultMap = "TbBankResultMap")
@@ -38,12 +39,26 @@ public class TbBankBO extends TbBankEntity implements Serializable , IBoEntity {
 
 
 
-    @Override
+
+
+
+
+
+
+
+
+    
     public boolean isTable() {
 
         return true;
 
 
+    }
+
+
+    @Override
+    public boolean haveFile() {
+        return false;
     }
 
 

@@ -62,27 +62,26 @@
 
                             <tr>
                                 <th>附件</th>
-                                <td class="fd_investorFiles" colspan="3">
+                                <td class="fd_uploadFile_investorFiles">
+
                                     <ul style="margin: 0 0 10px 0">
                                         <c:forEach var="item" items="${m.investorFilesList}">
-                                        <li>
-                                            <a href="<c:if test="${item.fileEngine == '1'}">javascript:viewFile('${item.id}');</c:if><c:if test="${item.fileEngine != '1'}">${item.accessUrl}</c:if>" class="file-text" title="${item.showName}" style="float:left;">
+                                            <li>
+                                                <a href="<c:if test="${item.fileEngine == '1'}">javascript:viewFile('${item.id}');</c:if><c:if test="${item.fileEngine != '1'}">${item.accessUrl}</c:if>" class="file-text" title="${item.showName}" style="float:left;">
                                                 <span style="float:left;">${item.showName}</span>
                                                 <span style="float:right;" class="fileSize" fileSize="${item.fileSize}">(${item.fileSize})</span>
-                                            </a>
+                                                </a>
 
-                                            <a href="javascript:downloadFile('${item.id}');" class="file-operate" style="float:right;"><i class="fa fa-download"></i></a>
+                                                <a href="javascript:downloadFile('${item.id}');" class="file-operate" style="float:right;"><i class="fa fa-download"></i></a>
 
-                                            <div style="clear: both;"></div>
-                                        </li>
+                                                <div style="clear: both;"></div>
+                                            </li>
                                         </c:forEach>
                                     </ul>
-                                </td>
-                            </tr>
 
-                            <tr>
+                                </td>
                                 <th>备注</th>
-                                <td class="fd_remark" colspan="3">
+                                <td class="fd_remark">
                                     <c:out value="${ m.remark }" escapeXml="true"/>
                                 </td>
                             </tr>
@@ -170,39 +169,34 @@
                                 </td>
                             </tr>
 
-
                             <tr>
                                 <th>附件</th>
-                                <td colspan="3">
-                                    <div class="" style="margin-bottom: 0px">
-                                        <div class="info-detail">
-                                            <input type="hidden" id="investorFiles" name="investorFiles" value="${m.investorFiles}">
-                                            <div class="uploader-list">
-                                                <ul id="thelist-investorFiles" class="file-list" style="margin: 0 0 10px 0" ></ul>
-                                            </div>
-                                            <div id="thelist-investorFiles-items" style="display: none;">
-                                                <c:forEach var="item" items="${m.investorFilesList}">
-                                                <span id="${item.id}" fileUseId="${item.id}" accessUrl="${item.accessUrl}" fileEngine="${item.fileEngine}" fileSize="${item.fileSize}" showName="${item.showName}" businessId="${item.businessId}"   />
-                                                </c:forEach>
-                                            </div>
+                                <td>
+                                        <div class="" style="margin-bottom: 0px">
+                                            <div class="info-detail">
+                                                <input type="hidden" id="investorFiles" name="investorFiles" value="${ m.investorFiles}">
+                                                <div class="uploader-list">
+                                                    <ul id="thelist_investorFiles" class="file-list" style="margin: 0 0 10px 0" ></ul>
+                                                </div>
+                                                <div id="thelist_investorFiles_items" style="display: none;">
+                                                    <c:forEach var="item" items="${ m.investorFilesList}">
+                                                        <span id="${ item.id}" fileUseId="${ item.id}" accessUrl="${ item.accessUrl}" fileEngine="${ item.fileEngine}" fileSize="${ item.fileSize}" showName="${ item.showName}" businessId="${ item.businessId}"   />
+                                                    </c:forEach>
+                                                </div>
 
-                                            <div class="btns">
-                                                <div id="uploadFile-investorFiles" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist-investorFiles', businessFileType:'investorFiles'  ,businessTempId: '${m.investorFiles}' ">
-                                                    <i class="fa fa-upload"></i>
-                                                    <span>上传附件</span>
+                                                <div class="btns">
+                                                    <div id="uploadFile_investorFiles" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_investorFiles', businessFileType:'investorFiles'  ,businessTempId: '${ m.investorFiles}' ">
+                                                        <i class="fa fa-upload"></i>
+                                                        <span>上传附件</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                 </td>
-                            </tr>
-
-                            <tr>
-
                                 <th>备注</th>
-                                <td colspan="3">
+                                <td>
                                         <div class="info-detail">
-                                            <textarea  class="form-control input-sm  "
+                                            <textarea  class="form-control input-sm  " rows="5"
                                                       id="remark" name="remark" placeholder="请输入备注，500字以内" maxlength="500" rows="4">${ m.remark }</textarea>
                                         </div>
                                 </td>
@@ -272,8 +266,11 @@
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 
 
+
 <script language="JavaScript">
     $(function() {
+
+
         //选择投资经理
         $(".manageUserName").OpenSystemUserSelectWin({
             title: "投资经理",
@@ -283,7 +280,24 @@
             clearId: "clearManageUserId"
         });
 
+
+
+
+
+
     });
+
+
+    var tableId , tableJavaName;
+
+
+
+
+
+
+
+
+
 
 
 

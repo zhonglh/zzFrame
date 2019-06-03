@@ -35,7 +35,6 @@ public class TsTenantBO extends TsTenantEntity implements Serializable , IBoEnti
 
 
 
-    @Override
     public boolean isTable() {
 
         return true;

@@ -106,7 +106,7 @@
                                     <td>
                                                 <div class="info-detail">
                                                 <textarea  class="form-control input-sm  "
-                                                          name="sketch" id="sketch " placeholder="请输入协议简述，500字以内" maxlength="500" rows="4">${ m.sketch }</textarea>
+                                                          name="sketch" id="sketch " placeholder="请输入协议简述，500字以内" maxlength="500" rows="5">${ m.sketch }</textarea>
                                                 </div>
                                     </td>
                                         <th>部门<font color="red">*</font></th>
@@ -171,6 +171,20 @@
                                     </td>
                                         <th>附件</th>
                                         <td>
+                                                    <div class="" style="margin-bottom: 0px">
+                                                        <div class="info-detail">
+                                                            <input type="hidden" id="agreementFiles" name="agreementFiles" value="${  m.agreementFiles }">
+                                                            <div class="uploader-list">
+                                                                <ul id="thelist_agreementFiles" class="file-list" style="margin: 0 0 10px 0" ></ul>
+                                                            </div>
+                                                            <div class="btns">
+                                                                <div id="uploadFile_agreementFiles" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_agreementFiles', businessFileType:'agreementFiles'  ,businessTempId: '${  m.agreementFiles }' ">
+                                                                    <i class="fa fa-upload"></i>
+                                                                    <span>上传附件</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                         </td>
                                 </tr>
                                 <tr>
@@ -178,7 +192,7 @@
                                     <td>
                                                 <div class="info-detail">
                                                 <textarea  class="form-control input-sm  "
-                                                          name="remark" id="remark " placeholder="请输入备注，500字以内" maxlength="500" rows="4">${ m.remark }</textarea>
+                                                          name="remark" id="remark " placeholder="请输入备注，500字以内" maxlength="500" rows="5">${ m.remark }</textarea>
                                                 </div>
                                     </td>
                                 </tr>
@@ -220,7 +234,7 @@
 <bms:contentJS />
 
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
-
+<script src="${ staticUrl }/statics2/js/project/common-upload.js"></script>
 
 
 <script src="${ staticUrl }/statics2/business-js/example/investor/search.js"></script>
@@ -278,8 +292,6 @@
 
     });
 
-
-    var tableId , tableJavaName;
 
 
 

@@ -167,11 +167,25 @@
                                 <tr>
                                     <th>附件</th>
                                     <td>
+                                                <div class="" style="margin-bottom: 0px">
+                                                    <div class="info-detail">
+                                                        <input type="hidden" id="outMoneyFiles" name="outMoneyFiles" value="${  m.outMoneyFiles }">
+                                                        <div class="uploader-list">
+                                                            <ul id="thelist_outMoneyFiles" class="file-list" style="margin: 0 0 10px 0" ></ul>
+                                                        </div>
+                                                        <div class="btns">
+                                                            <div id="uploadFile_outMoneyFiles" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_outMoneyFiles', businessFileType:'outMoneyFiles'  ,businessTempId: '${  m.outMoneyFiles }' ">
+                                                                <i class="fa fa-upload"></i>
+                                                                <span>上传附件</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                     </td>
                                         <th>备注</th>
                                         <td>
                                                     <div class="info-detail">
-                                            <textarea  class="form-control input-sm  "
+                                            <textarea  class="form-control input-sm  " rows="5"
                                                       id="remark"  name="remark" placeholder="请输入备注，500字以内" maxlength="500" rows="4">${ m.remark }</textarea>
                                                     </div>
                                         </td>
@@ -214,14 +228,14 @@
 <bms:contentJS />
 
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
-
+<script src="${ staticUrl }/statics2/js/project/common-upload.js"></script>
 
 
 <script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
-<script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
-<script src="${ staticUrl }/statics2/business-js/example/fund/search.js"></script>
-<script src="${ staticUrl }/statics2/business-js/example/investor/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/example/investoragreement/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/example/fund/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/example/investor/search.js"></script>
 
 
 
@@ -282,8 +296,6 @@
 
     });
 
-
-    var tableId , tableJavaName;
 
 
 

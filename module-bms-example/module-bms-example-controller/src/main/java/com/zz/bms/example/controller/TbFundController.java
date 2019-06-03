@@ -45,7 +45,7 @@ import java.util.Map;
 /**
  * 基金 控制层
 * @author Administrator
-* @date 2019-5-8 14:17:26
+* @date 2019-6-3 10:23:01
  */
 @RequestMapping("/example/fund")
 @Controller
@@ -65,14 +65,17 @@ public class TbFundController extends ZzGroupDefaultSimpleController<TbFundGroup
 
 
 
-
-
-
 	@RequestMapping(value = "/fundAccount/list" , method={ RequestMethod.POST, RequestMethod.GET})
 	@ResponseBody
 	public List<TbFundAccountBO> fundAccountList(TbFundAccountBO m , TbFundAccountQueryWebImpl query,ModelMap modelMap){
 		QueryWrapper wrapper =   query.buildWrapper();
 		return tbFundAccountService.list(wrapper);
+	}
+
+
+	@Override
+	protected void customInfoByCreateForm(TbFundGroupBO m, ModelMap model) {
+		m.setFundFiles(IdUtils.getId());
 	}
 
 	@Override
@@ -87,13 +90,13 @@ public class TbFundController extends ZzGroupDefaultSimpleController<TbFundGroup
         }
 	}
 
-
-
 	@Override
 	public void setDictNames() {
 		Map<String , List<String>> dictMap = tsDictService.allDictNames(EnumDictType.FUND_TYPE.getVal(),EnumDictType.FUND_ACCOUNT_TYPE.getVal(),EnumDictType.FUND_DIRECTION.getVal(),EnumDictType.MANAG_TYPE.getVal(),EnumDictType.CARD_TYPE.getVal());
 		ExcelDictHolder.setDictMap(dictMap);
 	}
+
+
 
 
 

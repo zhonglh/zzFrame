@@ -81,7 +81,6 @@ public class TsMenuPermitBO extends TsMenuPermitEntity implements Serializable ,
 
 
 
-    @Override
     public boolean isTable() {
 
         return true;

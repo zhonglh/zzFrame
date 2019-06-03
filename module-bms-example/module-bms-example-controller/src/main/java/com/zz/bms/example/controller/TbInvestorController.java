@@ -24,6 +24,7 @@ import com.zz.bms.system.controller.ZzDefaultSimpleController;
 
 
 import com.zz.bms.util.base.java.IdUtils;
+import com.zz.bms.util.poi.ExcelDictHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.apache.commons.lang3.StringUtils;
@@ -39,7 +40,7 @@ import java.util.Map;
 /**
  * 投资人 控制层
 * @author Administrator
-* @date 2019-5-8 14:17:28
+* @date 2019-6-3 10:23:02
  */
 @RequestMapping("/example/investor")
 @Controller
@@ -54,15 +55,15 @@ public class TbInvestorController extends ZzDefaultSimpleController<TbInvestorBO
 
 
 
+
+
+
+
+
 	@Override
 	protected void customInfoByCreateForm(TbInvestorBO m, ModelMap model) {
 		m.setInvestorFiles(IdUtils.getId());
 	}
-
-
-
-
-
 
 	@Override
 	public void setCustomInfoByInsert(TbInvestorBO bo , ILoginUserEntity sessionUser){
@@ -74,6 +75,12 @@ public class TbInvestorController extends ZzDefaultSimpleController<TbInvestorBO
         for(Map.Entry<String , List<TsDictBO>> dictObj : dictMap.entrySet()){
         	model.put(dictObj.getKey()+"_dicts", dictObj.getValue());
         }
+	}
+
+	@Override
+	public void setDictNames() {
+		Map<String , List<String>> dictMap = tsDictService.allDictNames(EnumDictType.INVESTOR_TYPE.getVal(),EnumDictType.CARD_TYPE.getVal());
+		ExcelDictHolder.setDictMap(dictMap);
 	}
 
 

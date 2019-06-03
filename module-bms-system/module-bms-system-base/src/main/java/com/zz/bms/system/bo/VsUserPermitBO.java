@@ -40,7 +40,6 @@ public class VsUserPermitBO extends VsUserPermitEntity implements Serializable ,
 
 
 
-    @Override
     public boolean isTable() {
 
 

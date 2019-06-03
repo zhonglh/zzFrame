@@ -90,36 +90,31 @@
                                                                maxlength="100"  />
                                         </td>
                                 </tr>
-
                                 <tr>
                                     <th>附件</th>
-                                    <td colspan="3">
-                                        <div class="" style="margin-bottom: 0px">
-                                            <div class="info-detail">
-                                                <input type="hidden" id="investorFiles" name="investorFiles" value="${m.investorFiles}">
-                                                <div class="uploader-list">
-                                                    <ul id="thelist-investorFiles" class="file-list" style="margin: 0 0 10px 0" ></ul>
-                                                </div>
-                                                <div class="btns">
-                                                    <div id="uploadFile-investorFiles" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist-investorFiles', businessFileType:'investorFiles'  ,businessTempId: '${m.investorFiles}' ">
-                                                        <i class="fa fa-upload"></i>
-                                                        <span>上传附件</span>
+                                    <td>
+                                                <div class="" style="margin-bottom: 0px">
+                                                    <div class="info-detail">
+                                                        <input type="hidden" id="investorFiles" name="investorFiles" value="${  m.investorFiles }">
+                                                        <div class="uploader-list">
+                                                            <ul id="thelist_investorFiles" class="file-list" style="margin: 0 0 10px 0" ></ul>
+                                                        </div>
+                                                        <div class="btns">
+                                                            <div id="uploadFile_investorFiles" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_investorFiles', businessFileType:'investorFiles'  ,businessTempId: '${  m.investorFiles }' ">
+                                                                <i class="fa fa-upload"></i>
+                                                                <span>上传附件</span>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
                                     </td>
-                                </tr>
-
-                                <tr>
-
-                                    <th>备注</th>
-                                    <td colspan="3">
-                                        <div class="info-detail">
-                                            <textarea  class="form-control input-sm  "
-                                                       id="remark"  name="remark" placeholder="请输入备注，500字以内" maxlength="500" rows="4">${ m.remark }</textarea>
-                                        </div>
-                                    </td>
+                                        <th>备注</th>
+                                        <td>
+                                                    <div class="info-detail">
+                                            <textarea  class="form-control input-sm  " rows="5"
+                                                      id="remark"  name="remark" placeholder="请输入备注，500字以内" maxlength="500" rows="4">${ m.remark }</textarea>
+                                                    </div>
+                                        </td>
                                 </tr>
                         </tbody>
                     </table>
@@ -162,10 +157,7 @@
 <script src="${ staticUrl }/statics2/js/project/common-upload.js"></script>
 
 
-
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
-
-
 
 
 
@@ -183,10 +175,13 @@
             clearId: "clearManageUserId"
         });
 
+
+
+
+
+
     });
 
-
-    var tableId , tableJavaName;
 
 
 

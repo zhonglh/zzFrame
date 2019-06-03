@@ -12,10 +12,13 @@ import com.zz.bms.constants.DefaultTypeConstant;
 import com.zz.bms.constants.DictTypeConstant;
 import com.zz.bms.constants.ExcelTypeConstant;
 import com.baomidou.mybatisplus.annotation.TableName;
-
+import com.zz.bms.util.configs.annotaions.FilesAnnotation;
+import com.zz.bms.system.bo.VsFileUseBO;
 
 import org.apache.commons.lang3.StringUtils;
 
+
+import java.util.List;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +27,7 @@ import java.util.Map;
 /**
 * 基金 BO , 扩展 TbFundEntity 对象
 * @author Administrator
-* @date 2019-5-8 13:45:41
+* @date 2019-6-3 10:12:55
 */
 @EntityAnnotation(value="基金" , resource = "example.fund"  ,haveTenant = true  ,haveOrgan = true  ,businessName = "fund_name"    ,businessKey = { "fund_code" }    )
 @TableName(value="tb_fund" , resultMap = "TbFundResultMap")
@@ -73,6 +76,18 @@ public class TbFundBO extends TbFundEntity implements Serializable , IBoEntity {
 
 
 
+    /**
+    * 附件 列表
+    */
+    @TableField(exist = false)
+    @FilesAnnotation
+    private List<VsFileUseBO> fundFilesList ;
+
+
+
+
+
+
     public void setFundTypeName(String fundTypeName){
         this.fundTypeName = fundTypeName;
     }
@@ -115,15 +130,35 @@ public class TbFundBO extends TbFundEntity implements Serializable , IBoEntity {
 
 
 
+    public void setFundFilesList(List<VsFileUseBO> fundFilesList ){
+        this.fundFilesList = fundFilesList;
+    }
+
+
+    public List<VsFileUseBO> getFundFilesList(){
+        return this.fundFilesList;
+    }
 
 
 
-    @Override
+
+
+
+
+
+
+    
     public boolean isTable() {
 
         return true;
 
 
+    }
+
+
+    @Override
+    public boolean haveFile() {
+        return true;
     }
 
 

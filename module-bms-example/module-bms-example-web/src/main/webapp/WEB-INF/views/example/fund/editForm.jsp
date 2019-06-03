@@ -95,8 +95,23 @@
 
                             <tr>
                                 <th>附件</th>
-                                <td class="fd_fundFiles">
-                                    <c:out value="${ m.fundFiles }" escapeXml="true"/>
+                                <td class="fd_uploadFile_fundFiles">
+
+                                    <ul style="margin: 0 0 10px 0">
+                                        <c:forEach var="item" items="${m.fundFilesList}">
+                                            <li>
+                                                <a href="<c:if test="${item.fileEngine == '1'}">javascript:viewFile('${item.id}');</c:if><c:if test="${item.fileEngine != '1'}">${item.accessUrl}</c:if>" class="file-text" title="${item.showName}" style="float:left;">
+                                                <span style="float:left;">${item.showName}</span>
+                                                <span style="float:right;" class="fileSize" fileSize="${item.fileSize}">(${item.fileSize})</span>
+                                                </a>
+
+                                                <a href="javascript:downloadFile('${item.id}');" class="file-operate" style="float:right;"><i class="fa fa-download"></i></a>
+
+                                                <div style="clear: both;"></div>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
+
                                 </td>
                                 <th>备注</th>
                                 <td class="fd_remark">
@@ -242,13 +257,13 @@
                                 <td>
                                         <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
-                                                      name="investmentField" id="investmentField"  placeholder="请输入投资领域，500字以内" maxlength="500" rows="6"><c:out value="${ m.investmentField }" escapeXml="true"/></textarea>
+                                                      name="investmentField" id="investmentField"  placeholder="请输入投资领域，500字以内" maxlength="500" rows="5"><c:out value="${ m.investmentField }" escapeXml="true"/></textarea>
                                         </div>
                                 </td>
                                 <th>收入分配</th>
                                 <td>
                                         <div class="info-detail">
-                                            <textarea  class="form-control input-sm  "
+                                            <textarea  class="form-control input-sm  " rows="5"
                                                       id="incomeAllocation" name="incomeAllocation" placeholder="请输入收入分配，500字以内" maxlength="500" rows="4">${ m.incomeAllocation }</textarea>
                                         </div>
                                 </td>
@@ -257,11 +272,31 @@
                             <tr>
                                 <th>附件</th>
                                 <td>
+                                        <div class="" style="margin-bottom: 0px">
+                                            <div class="info-detail">
+                                                <input type="hidden" id="fundFiles" name="fundFiles" value="${ m.fundFiles}">
+                                                <div class="uploader-list">
+                                                    <ul id="thelist_fundFiles" class="file-list" style="margin: 0 0 10px 0" ></ul>
+                                                </div>
+                                                <div id="thelist_fundFiles_items" style="display: none;">
+                                                    <c:forEach var="item" items="${ m.fundFilesList}">
+                                                        <span id="${ item.id}" fileUseId="${ item.id}" accessUrl="${ item.accessUrl}" fileEngine="${ item.fileEngine}" fileSize="${ item.fileSize}" showName="${ item.showName}" businessId="${ item.businessId}"   />
+                                                    </c:forEach>
+                                                </div>
+
+                                                <div class="btns">
+                                                    <div id="uploadFile_fundFiles" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_fundFiles', businessFileType:'fundFiles'  ,businessTempId: '${ m.fundFiles}' ">
+                                                        <i class="fa fa-upload"></i>
+                                                        <span>上传附件</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                 </td>
                                 <th>备注</th>
                                 <td>
                                         <div class="info-detail">
-                                            <textarea  class="form-control input-sm  "
+                                            <textarea  class="form-control input-sm  " rows="5"
                                                       id="remark" name="remark" placeholder="请输入备注，500字以内" maxlength="500" rows="4">${ m.remark }</textarea>
                                         </div>
                                 </td>
@@ -335,7 +370,7 @@
                                         </table>
                                         <div class="show-area" style="text-align: center;margin: 5px">
                                             <button type="button" class="btn btn-primary btn-sm" onclick="doAddFundAccount()">
-                                                <i class="fa fa-plus"></i>
+                                               <i class="fa fa-plus"></i>
                                                 <span>添 加</span>
                                             </button>
                                         </div>
@@ -548,9 +583,10 @@
 
 
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
+<script src="${ staticUrl }/statics2/js/project/common-upload.js"></script>
 
-        <script src="${ staticUrl }/statics2/business-js/example/bank/search.js"></script>
-        <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/example/bank/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
@@ -750,14 +786,10 @@
         html += '<input type="text"  class="form-control input-sm openwindow bankName" onclick="openExampleBank(\'tableData-exampleFundaccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.bankName+'" id="fundAccountBOList_'+index+'_bankName"  name="fundAccountBOList['+index+'].bankName"  onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择开户行" readonly >';
         html += '<div class="input-group-btn">';
         html += '<div class="btn btn-primary btn-sm" onclick="openExampleBank(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_bankName\'),'+index+')">';
-        html += '<svg class="icon" aria-hidden="true">';
-        html += '<use xmlns:xlink="http://www.w3.org/1999/xlink"  xlink:href="#icon-sousuo"></use>';
-        html += '</svg>';
+        html += '&nbsp;<i class="fa fa-search"></i>&nbsp;';
         html += '</div>';
         html += '<div class="btn btn-primary btn-sm" onclick="clearExampleBank(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_bankName\'),'+index+')"  >';
-        html += '<svg class="icon" aria-hidden="true">';
-        html += ' <use xmlns:xlink="http://www.w3.org/1999/xlink"	xlink:href="#icon-close"></use>';
-        html += '</svg>';
+        html += '&nbsp;<i class="fa fa-close"></i>&nbsp;';
         html += '</div>';
         html += '</div>';
         html += '</div>';
@@ -805,14 +837,10 @@
         html += '<input type="text"  class="form-control input-sm openwindow otherBankName" onclick="openExampleBank(\'tableData-exampleFundaccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.otherBankName+'" id="fundAccountBOList_'+index+'_otherBankName"  name="fundAccountBOList['+index+'].otherBankName"  onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择其他行" readonly >';
         html += '<div class="input-group-btn">';
         html += '<div class="btn btn-primary btn-sm" onclick="openExampleBank(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_otherBankName\'),'+index+')">';
-        html += '<svg class="icon" aria-hidden="true">';
-        html += '<use xmlns:xlink="http://www.w3.org/1999/xlink"  xlink:href="#icon-sousuo"></use>';
-        html += '</svg>';
+        html += '&nbsp;<i class="fa fa-search"></i>&nbsp;';
         html += '</div>';
         html += '<div class="btn btn-primary btn-sm" onclick="clearExampleBank(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_otherBankName\'),'+index+')"  >';
-        html += '<svg class="icon" aria-hidden="true">';
-        html += ' <use xmlns:xlink="http://www.w3.org/1999/xlink"	xlink:href="#icon-close"></use>';
-        html += '</svg>';
+        html += '&nbsp;<i class="fa fa-close"></i>&nbsp;';
         html += '</div>';
         html += '</div>';
         html += '</div>';
@@ -831,14 +859,10 @@
         html += '<input type="text"  class="form-control input-sm openwindow userName" onclick="openSystemUser(\'tableData-exampleFundaccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.userName+'" id="fundAccountBOList_'+index+'_userName"  name="fundAccountBOList['+index+'].userName"  onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择账户处理人" readonly >';
         html += '<div class="input-group-btn">';
         html += '<div class="btn btn-primary btn-sm" onclick="openSystemUser(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_userName\'),'+index+')">';
-        html += '<svg class="icon" aria-hidden="true">';
-        html += '<use xmlns:xlink="http://www.w3.org/1999/xlink"  xlink:href="#icon-sousuo"></use>';
-        html += '</svg>';
+        html += '&nbsp;<i class="fa fa-search"></i>&nbsp;';
         html += '</div>';
         html += '<div class="btn btn-primary btn-sm" onclick="clearSystemUser(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_userName\'),'+index+')"  >';
-        html += '<svg class="icon" aria-hidden="true">';
-        html += ' <use xmlns:xlink="http://www.w3.org/1999/xlink"	xlink:href="#icon-close"></use>';
-        html += '</svg>';
+        html += '&nbsp;<i class="fa fa-close"></i>&nbsp;';
         html += '</div>';
         html += '</div>';
         html += '</div>';
@@ -850,7 +874,7 @@
     }
     function markFmtFundAccount(val, r,index){
         var html =	'<div class="grid-column-option">';
-        html+=	'<a href="javascript: doDelFundAccount('+ index + ');" title="删除"><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-delete"></use></svg></a>';
+        html+=	'<a href="javascript: doDelFundAccount('+ index + ');" title="删除"><i class="fa fa-trash"></i></a>';
         html+=	'</div>';
         return html;
     }

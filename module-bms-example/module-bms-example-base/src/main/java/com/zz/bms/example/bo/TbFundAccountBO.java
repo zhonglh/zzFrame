@@ -13,9 +13,10 @@ import com.zz.bms.constants.DictTypeConstant;
 import com.zz.bms.constants.ExcelTypeConstant;
 import com.baomidou.mybatisplus.annotation.TableName;
 
-
 import org.apache.commons.lang3.StringUtils;
 
+
+import java.util.List;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +25,7 @@ import java.util.Map;
 /**
 * 基金账户 BO , 扩展 TbFundAccountEntity 对象
 * @author Administrator
-* @date 2019-5-8 13:45:38
+* @date 2019-6-3 10:12:53
 */
 @EntityAnnotation(value="基金账户" , resource = "example.fundaccount"    ,businessName = "account_no"    ,businessKey = { "account_no" }    )
 @TableName(value="tb_fund_account" , resultMap = "TbFundAccountResultMap")
@@ -73,6 +74,10 @@ public class TbFundAccountBO extends TbFundAccountEntity implements Serializable
 
 
 
+
+
+
+
     public void setFundName(String fundName){
         this.fundName = fundName;
     }
@@ -118,12 +123,22 @@ public class TbFundAccountBO extends TbFundAccountEntity implements Serializable
 
 
 
-    @Override
+
+
+
+
+    
     public boolean isTable() {
 
         return true;
 
 
+    }
+
+
+    @Override
+    public boolean haveFile() {
+        return false;
     }
 
 

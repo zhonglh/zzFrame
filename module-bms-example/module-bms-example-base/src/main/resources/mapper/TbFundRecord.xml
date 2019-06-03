@@ -12,6 +12,12 @@
 
          	<result column="record_addr" property="recordAddr"/>
 
+         	<result column="bank_id" property="bankId"/>
+
+         	<result column="card_type" property="cardType"/>
+
+         	<result column="record_user_id" property="recordUserId"/>
+
 	</resultMap>
 
 
@@ -23,6 +29,9 @@
 					<if test="fundId != null and fundId != ''"> AND T.fund_id = #{fundId} </if>
 					<if test="recordDate != null"> AND T.record_date = #{recordDate} </if>
 					<if test="recordAddr != null and recordAddr != ''"> AND T.record_addr = #{recordAddr} </if>
+					<if test="bankId != null and bankId != ''"> AND T.bank_id = #{bankId} </if>
+					<if test="cardType != null and cardType != ''"> AND T.card_type = #{cardType} </if>
+					<if test="recordUserId != null and recordUserId != ''"> AND T.record_user_id = #{recordUserId} </if>
 
         </where>
     </sql>

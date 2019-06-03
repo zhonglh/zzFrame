@@ -25,7 +25,7 @@ function openExampleInvestoragreementWin(config, callBack)
         + '</td>'
     + '</tr>'
     + '</table>'
-    + '<table class="_dataContorl _w_height" style="height: 300px;" pagination="true" border="true"  sortName="" sortOrder="asc"></table>'
+    + '<table class="_dataContorl _w_height" style="height: 300px;" pagination="true" border="true"  sortName="agreementName" sortOrder="asc"></table>'
     + '</div>';
 
     var options = config || {};
@@ -47,7 +47,7 @@ function openExampleInvestoragreementWin(config, callBack)
         {field:"signUserName", title:"签订人", width: 150, align:"left" ,},
         {field:"signDate", title:"签订日期", width: 150, align:"center" ,formatter:dateFmt}
     ]];
-    options.sampleData = {id: "id", name: ""};
+    options.sampleData = {id: "id", name: "agreementName"};
     options.htmlTemple = tableTemple;
     options.compiledSuccess = function(){
         // 查询按钮事件

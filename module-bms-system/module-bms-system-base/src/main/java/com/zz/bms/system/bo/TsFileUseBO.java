@@ -140,7 +140,6 @@ public class TsFileUseBO extends TsFileUseEntity implements Serializable , IBoEn
         this.useFrequency = useFrequency;
     }
 
-    @Override
     public boolean isTable() {
 
         return true;

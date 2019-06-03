@@ -34,7 +34,6 @@ public class VsNodeUserBO extends TsUserBO implements Serializable , IBoEntity {
 
 
 
-    @Override
     public boolean isTable() {
 
 
