@@ -135,7 +135,7 @@ function cropImgUpload(callback)
     $.ajax(
         {
             //todo 需要替换 url
-            url: $AppContext + '/third/corpper/avatar', type: 'post', data: {"imageData": result.toDataURL().toString()}, dataType: 'json', async: false,
+            url: $AppContext + '/oss/file/upload', type: 'post', data: {"imageData": result.toDataURL().toString()}, dataType: 'json', async: false,
             success: function (data)
             {
                 if(data.success) {
