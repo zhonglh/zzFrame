@@ -62,6 +62,7 @@ public abstract class ZzDefaultController<
      * @return
      */
     private List<TsMenuBO> computeMenu(String uri){
+        //todo 缓存
         TsMenuQueryImpl<TsMenuBO> menuQuery = new TsMenuQueryImpl<TsMenuBO>();
         menuQuery.menuUrl(uri);
         Wrapper wrapper = menuQuery.buildWrapper();
