@@ -46,6 +46,37 @@ public class TsMenuServiceImpl extends SystemBaseServiceImpl<TsMenuBO,String> im
 
 
 	@Override
+	public List<TsMenuBO> getAllMenu(TsMenuBO tsMenuBO){
+    	if(tsMenuBO == null){
+    		return null;
+		}
+
+		List<TsMenuBO> list = new ArrayList<TsMenuBO>();
+    	list.add(tsMenuBO);
+    	if(StringUtils.isNotEmpty(tsMenuBO.getPid())) {
+			getParent(list);
+		}
+
+    	return list;
+
+	}
+
+	private void getParent(List<TsMenuBO> list){
+    	if(list == null || list.isEmpty()){
+    		return ;
+		}
+
+		TsMenuBO curr = list.get(0);
+		TsMenuBO parent = this.tsMenuDAO.selectById(curr.getPid());
+		list.add(0,parent);
+
+		if(StringUtils.isNotEmpty(parent.getPid())){
+			getParent(list);
+		}
+
+	}
+
+	@Override
 	public TsMenuBO processResult(TsMenuBO tsMenuBO) {
 
 		try {

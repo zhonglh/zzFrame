@@ -86,9 +86,11 @@ public abstract class BaseBusinessController<
         String tableid = prefix.replaceAll("/" , "");
         modelMap.put(Constant.TABLEID, tableid);
         modelMap.put(Constant.CURR_PARENT_URL, prefix);
-        //todo 处理面包屑 菜单路径
+
         if(AppConfig.USE_CRUMB) {
-            modelMap.put(Constant.BREADCRUMB, "");
+            String breadcrumb = "";
+            breadcrumb = computeBreadcrumb();
+            modelMap.put(Constant.BREADCRUMB, breadcrumb);
         }
     }
 
@@ -456,6 +458,12 @@ public abstract class BaseBusinessController<
         return null;
     }
 
+
+    /**
+     * 计算出面包屑
+     * @return
+     */
+    protected abstract String computeBreadcrumb();
 
     /**
      * 返回列表页面指定的Page 名称
