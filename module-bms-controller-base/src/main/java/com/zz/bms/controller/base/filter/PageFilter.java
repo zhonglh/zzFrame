@@ -19,7 +19,7 @@ public class PageFilter implements Filter {
 
         if(request instanceof HttpServletRequest){
             String uri = ((HttpServletRequest) request).getRequestURI() ;
-            if(!uri.endsWith("list") && !uri.endsWith("searchList")){
+            if(!uri.endsWith("list") && !uri.endsWith("List") ){
                 chain.doFilter(request, response);
             }else {
                 HttpServletRequest httpRequest = (HttpServletRequest) request;

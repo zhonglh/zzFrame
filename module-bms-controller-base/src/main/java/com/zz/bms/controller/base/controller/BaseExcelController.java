@@ -7,6 +7,7 @@ import com.zz.bms.core.db.entity.BaseEntity;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.core.enums.EnumErrorMsg;
+import com.zz.bms.core.ui.Pages;
 import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.util.configs.AppConfig;
 import com.zz.bms.util.configs.annotaions.EntityAnnotation;
@@ -26,7 +27,9 @@ import com.zz.bms.util.poi.export.filetype.SxssfExport;
 import com.zz.bms.util.poi.imports.ExcelImport;
 import com.zz.bms.util.poi.util.ColumnUtil;
 import com.zz.bms.util.poi.vo.Column;
+import com.zz.bms.util.web.PaginationContext;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -308,13 +311,64 @@ public abstract class BaseExcelController<
     }
 
 
-    /**
-     * Excel导入数据的自定义方法
-     * 可以将导入顺序插入的数据库中等
-     * @param m
-     * @param sessionUserVO
-     * @param index
-     */
+
+    @RequestMapping(value = "/excelResultPage" , method = {RequestMethod.GET } )
+    public String excelResultPage(ModelMap modelMap , HttpServletResponse res, HttpServletRequest request)  {
+
+
+        processPath(modelMap);
+        List<Column> columns = ColumnUtil.getExcelColumn(this.getQueryEntityClass(), true);
+        request.setAttribute("columns" , columns);
+        return viewName("excelPage");
+    }
+
+    @RequestMapping(value = "/excelList" , method = {RequestMethod.GET  , RequestMethod.POST } )
+    @ResponseBody
+    public Object excelList( HttpServletResponse res, HttpServletRequest request , Pages<QueryModel> pages)  {
+
+        List<QueryModel> list = (List<QueryModel>)request.getSession().getAttribute(this.getRwEntityClass().getName());
+
+
+
+        if(pages.getPageNum() == 0) {
+            pages.setPageNum(PaginationContext.getPageNum());
+        }
+
+        if(pages.getPageSize() == 0) {
+            pages.setPageSize(PaginationContext.getPageSize());
+        }
+
+
+        Page<QueryModel> page = new Page<QueryModel>(pages.getPageNum(), pages.getPageSize());
+
+        ILoginUserEntity<PK> sessionUserVO = getSessionUser();
+
+
+        page.setTotal(list.size());
+
+        int max = (int) ((page.getCurrent() ) * pages.getPageSize());
+        if(max > list.size()) {
+            max = list.size() ;
+        }
+        List<QueryModel> allList= list.subList( (int) ((page.getCurrent() - 1) * pages.getPageSize())  , max );
+        page.setRecords(allList);
+
+        //processResult(page.getRecords());
+
+        return toList(page);
+
+
+    }
+
+
+
+        /**
+         * Excel导入数据的自定义方法
+         * 可以将导入顺序插入的数据库中等
+         * @param m
+         * @param sessionUserVO
+         * @param index
+         */
     @Override
     public void customExcelInsert(QueryModel m, ILoginUserEntity<PK> sessionUserVO, int index){
         //m.setImportOrder(index);

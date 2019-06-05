@@ -25,7 +25,7 @@ import java.io.Serializable;
 * @author Administrator
 * @date 2019-4-10 11:08:55
 */
-@EntityAnnotation(value="用户" , resource = "system.user"  ,businessName = "user_name"    , haveOrgan =  true , haveTenant = true  )
+@EntityAnnotation(value="用户" , resource = "system.user"  ,businessName = "user_name"    , haveOrgan =  true , haveTenant = true , businessKey="user_name"   )
 @TableName(value="ts_user" , resultMap = "TsUserResultMap")
 public class TsUserBO extends TsUserEntity implements Serializable , IBoEntity , ILoginUserEntity<String> {
 

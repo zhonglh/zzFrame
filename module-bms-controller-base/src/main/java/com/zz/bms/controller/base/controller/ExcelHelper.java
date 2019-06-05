@@ -56,19 +56,32 @@ public class ExcelHelper {
      * @param <QueryModel>
      * @return
      */
-    public static <QueryModel>  Object[] buildKeyObject(QueryModel m , String[] keyFieldNames , IExcelConttroller conttroller ){
+    public static <QueryModel>  Object[] buildKeyObject(QueryModel m , EntityAttrFkAnnotation fkAnnotation,String[] keyFieldNames , IExcelConttroller conttroller ){
         Object[] result = new Object[keyFieldNames.length];
+
+        List<Field> fs = ReflectionUtil.getAllFields(conttroller.getRwEntityClass() , BaseEntity.class);
 
         try{
             int index = 0;
             for(String keyFieldName : keyFieldNames){
-                Field f = conttroller.getRwEntityClass().getField(keyFieldName);
+                Field f = null;
+                for(Field ff : fs){
+                    EntityAttrFkAnnotation eafa = ff.getAnnotation(EntityAttrFkAnnotation.class);
+                    if(eafa != null && eafa.group().equals(fkAnnotation.group()) && eafa.dbColumnName().equals(keyFieldName)){
+                        f = ff;
+                        break;
+                    }
+                }
+                if(f == null){
+                    throw new RuntimeException("BO没有设置这个EntityAttrFkAnnotation: group"+fkAnnotation.group() + "dbColumnName:" + keyFieldName );
+                }
                 ReflectionUtil.makeAccessible(f);
                 Object obj = ReflectionUtil.getField(f , m);
                 result[index] = obj;
                 index ++;
             }
         }catch(Exception e){
+            e.printStackTrace();
             throw new RuntimeException("获取业务KEY信息错误");
         }
         return result;
@@ -336,7 +349,7 @@ public class ExcelHelper {
             }
         }
 
-        String serviceName = fkClz.getSimpleName().replace("BO","")+"Service";
+        String serviceName = fkClz.getSimpleName().replace("BO","")+"ServiceImpl";
         serviceName = serviceName.substring(0,1).toLowerCase()+serviceName.substring(1);
         IService<QueryModel> iService = (IService<QueryModel>) SpringUtil.getBean(serviceName);
 
@@ -377,7 +390,7 @@ public class ExcelHelper {
                 break;
             }
 
-            Object[] keyObjs = buildKeyObject(m  , keyFieldNames , conttroller);
+            Object[] keyObjs = buildKeyObject(m , fkAnnotation,  keyFieldNames , conttroller);
             String key = buildKey(keyObjs);
             if(key == null){
                 if(fkIdColumn.isRequired()) {
@@ -430,10 +443,11 @@ public class ExcelHelper {
                         ReflectionUtil.setField(f, m, id);
                     }else {
                         try {
-                            Field field = fkClz.getField(StringFormatKit.toCamelCase(annotation.dbColumnName()));
+                            Field field = ReflectionUtil.getField(fkClz, Object.class ,StringFormatKit.toCamelCase(annotation.dbColumnName()) );
+                            ReflectionUtil.makeAccessible(field);
                             Object temp = (PK)ReflectionUtil.getField(field , fkObj);
                             ReflectionUtil.setField(f, m, temp);
-                        } catch (NoSuchFieldException e) {
+                        } catch (Exception e) {
                             logger.error(e.getMessage(),e);
                         }
                     }
@@ -649,6 +663,7 @@ public class ExcelHelper {
                 }
             }
         }catch(Exception e){
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
 

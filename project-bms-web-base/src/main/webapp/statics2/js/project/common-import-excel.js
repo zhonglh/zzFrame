@@ -70,7 +70,20 @@ uploader.on('uploadSuccess', function (file, response)
 {
     $Loading.fadeOut(500);
     var data = response.data;
-    //todo 处理成功后的逻辑
+    if(response.success){
+        search();
+        info('数据导入成功！');
+    }else {
+        var viewExcelUrl = $AppContext+dataUrl+"/excelResultPage";
+        var  divHtml = "<div><iframe width='100%' height='100%' frameborder='0px' src='"+viewExcelUrl+"'></iframe></div>";
+        var dialog = iDialog({
+            title:'<i class="fa fa-upload"></i> Excel导入信息',
+            lock: true,
+            width: 900,
+            height: 500,
+            content : divHtml
+        });
+    }
 
 
 });
