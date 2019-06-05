@@ -3,7 +3,7 @@
 <bms:contentHeader title="zz1" />
 
 <div region='center' style="padding: 0px 10px 0 10px;">
-    <table id='tableData-excel' class='easyui-datagrid' method='post' fit='true' pagination='true' fitColumns="false"
+    <table id='tableData-excel' class='easyui-datagrid' method='post' fit='false' pagination='true' fitColumns="true"
            border='true' sortName="id" sortOrder="desc" style="width: 100%;">
         <thead>
         <tr>
