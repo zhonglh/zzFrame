@@ -88,11 +88,18 @@ public class MainController extends BaseController {
 
         String userImageUrl = request.getContextPath() +"/statics2/image/default.png";
         if(StringUtils.isNotEmpty(loginUser.getAvatarImage())){
-            VsFileUseBO vsFileUseBO = vsFileUseService.getById(loginUser.getAvatarImage());
-            if(EnumFileEngine.FILESYSTEM.getVal().equals(vsFileUseBO.getFileEngine())){
-                userImageUrl = request.getContextPath() + vsFileUseBO.getAccessUrl() + vsFileUseBO.getId();
-            }else {
-                userImageUrl = vsFileUseBO.getAccessUrl();
+            VsFileUseBO vsFileUseBO = null;
+            try {
+                vsFileUseBO = vsFileUseService.getById(loginUser.getAvatarImage());
+            }catch (Exception e){
+
+            }
+            if(vsFileUseBO != null) {
+                if (EnumFileEngine.FILESYSTEM.getVal().equals(vsFileUseBO.getFileEngine())) {
+                    userImageUrl = request.getContextPath() + vsFileUseBO.getAccessUrl() + vsFileUseBO.getId();
+                } else {
+                    userImageUrl = vsFileUseBO.getAccessUrl();
+                }
             }
         }
 

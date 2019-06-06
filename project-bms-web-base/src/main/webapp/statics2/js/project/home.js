@@ -132,9 +132,10 @@ function cropImgUpload(callback)
     //截取方法
     var result = $image.cropper("getCroppedCanvas", option);
     var flag=true;
+    var avatarImage = $("#avatarImage").val();
     $.ajax(
         {
-            url: $AppContext + '/oss/image/upload', type: 'post', data: {"imageData": result.toDataURL().toString()}, dataType: 'json', async: false,
+            url: $AppContext + '/oss/image/uploadImage?businessTempId=" + avatarImage + "&businessFileType=avatarImage"', type: 'post', data: {"imageData": result.toDataURL().toString()}, dataType: 'json', async: false,
             success: function (data)
             {
                 if(data.success) {

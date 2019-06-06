@@ -6,6 +6,7 @@ import com.zz.bms.core.db.entity.ILoginPermitEntity;
 import com.zz.bms.core.db.entity.ILoginRoleEntity;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.enums.EnumYesNo;
+import com.zz.bms.system.domain.TsUserEntity;
 import com.zz.bms.system.query.TsPermitQuery;
 import com.zz.bms.system.query.TsUserQuery;
 import com.zz.bms.system.query.TsUserRoleQuery;
@@ -18,6 +19,7 @@ import com.zz.bms.system.service.TsPermitService;
 import com.zz.bms.system.service.TsUserRoleService;
 import com.zz.bms.system.service.TsUserService;
 import com.zz.bms.system.service.VsUserPermitService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,7 +57,14 @@ public class UserServiceImpl implements IUserService<String> {
         userQuery.loginName(loginName);
         userQuery.email(loginName);
         userQuery.phone(loginName);
-        return tsUserService.getOne(userQuery.buildWrapper(true)  );
+        ILoginUserEntity loginUserEntity =  tsUserService.getOne(userQuery.buildWrapper(true)  );
+        if(loginUserEntity instanceof TsUserEntity) {
+            TsUserEntity tsUserEntity = (TsUserEntity)loginUserEntity;
+            if (StringUtils.isEmpty(tsUserEntity.getAvatarImage())) {
+                tsUserEntity.setAvatarImage(tsUserEntity.getId());
+            }
+        }
+        return loginUserEntity;
 
     }
 
