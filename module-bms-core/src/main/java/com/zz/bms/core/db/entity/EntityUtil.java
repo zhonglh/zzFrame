@@ -17,6 +17,30 @@ import java.util.*;
 public class EntityUtil {
 
 
+    public static boolean isAllEmpty(Object[] objs){
+        if(objs == null || objs.length == 0){
+            return true;
+        }
+
+        for(Object obj : objs) {
+            if(!isEmpty(obj)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isEmpty(Object obj){
+        if(obj == null){
+            return true;
+        }else if(obj instanceof Serializable){
+            if(EntityUtil.isEmpty((Serializable)obj)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean isEmpty(Serializable id){
         if(id == null){
             return true;

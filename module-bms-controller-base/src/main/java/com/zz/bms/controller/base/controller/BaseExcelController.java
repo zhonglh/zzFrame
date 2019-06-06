@@ -396,10 +396,13 @@ public abstract class BaseExcelController<
     public void analysisFk(List<QueryModel> list,
                            Column column,
                            EntityAttrFkAnnotation fkAnnotation,
-                           Map<Class, Map<String, Object>> fkInfoMaps,
+                           Map<Class, Map<String, Object>> fkKeyInfoMaps,
+                           Map<Class, Map<String, Object>> fkNameInfoMaps,
+                           Map<Class, Map<String, Object>> fkErrorKeyInfoMaps,
+                           Map<Class, Map<String, Object>> fkErrorNameInfoMaps,
                            Map<String, Map<Field, List<Field>>> fkFieldMap) {
 
-        ExcelHelper.analysisFk(list , column , fkAnnotation , fkInfoMaps ,fkFieldMap , this);
+        ExcelHelper.analysisFk(list , column , fkAnnotation , fkKeyInfoMaps, fkNameInfoMaps ,fkErrorKeyInfoMaps , fkErrorNameInfoMaps  ,fkFieldMap , this);
 
     }
 

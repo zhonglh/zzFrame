@@ -67,7 +67,10 @@ public interface IExcelConttroller<RwModel extends BaseEntity<PK>,
     public void analysisFk(List<QueryModel> list,
                            Column column,
                            EntityAttrFkAnnotation fkAnnotation,
-                           Map<Class, Map<String, Object>> fkInfoMaps,
+                           Map<Class, Map<String, Object>> fkKeyInfoMaps,
+                           Map<Class, Map<String, Object>> fkNameInfoMaps,
+                           Map<Class, Map<String, Object>> fkErrorKeyInfoMaps,
+                           Map<Class, Map<String, Object>> fkErrorNameInfoMaps,
                            Map<String, Map<Field, List<Field>>> fkFieldMap) ;
 
     public void analysisDict(List<QueryModel> list,
