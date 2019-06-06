@@ -6,9 +6,7 @@
 
 
     <c:if test="${ inAllPage == null || inAllPage != '1' }">
-    <div class="navigation">
-        <c:if test="${breadcrumb != ''}"><span class="words"><a>${ breadcrumb }</a></span></c:if>
-    </div>
+    <c:if test="${breadcrumb != ''}"><div class="navigation"><span class="words"><a>${ breadcrumb }</a></span></div></c:if>
     </c:if>
 
     <div id="content-sec" style="padding: 10px 10px 0 10px;">

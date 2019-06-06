@@ -5,13 +5,7 @@
 
 
 <div region='north'>
-    <div class="navigation">
-
-
-        <c:if test="${breadcrumb != ''}"><span class="words"><a>${ breadcrumb }</a></span></c:if>
-
-
-    </div>
+    <c:if test="${breadcrumb != ''}"><div class="navigation"><span class="words"><a>${ breadcrumb }</a></span></div></c:if>
     <div id="content-sec" style="padding: 1px 10px 0 10px;">
         <!-- 筛选条件表单开始 -->
         <form id="searchForm" onsubmit="return false" >
