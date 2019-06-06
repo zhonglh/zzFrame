@@ -135,7 +135,7 @@
 
                 <li class='dropdown'>
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" style='margin-top: -8px; margin-bottom: 0px; padding-bottom: 3px;'>
-                        <img id='imgUserAvatar' class='img-circle' src="${staticUrl}/statics2/image/default.png"
+                        <img id='imgUserAvatar' class='img-circle' src="${userImageUrl}"
                              width=40 height=40 style='border:solid 2px;' />
                         <span>&nbsp; <shiro:principal property="userName" /> &nbsp;</span><span class="caret"></span>
 
@@ -282,7 +282,7 @@
 
 <div class="hidden">
     <form id="formProfile" class="form-horizontal" action="${ctx}/system/user/updateMyProfile" method="post">
-        <input name="headImg" type="hidden" value="default.png">
+        <input name="avatarImage" type="hidden" value="">
         <table width="100%">
             <tr>
                 <td>

@@ -4,20 +4,19 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.controller.base.controller.BaseController;
 import com.zz.bms.core.Constant;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
-import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.core.exceptions.InternalException;
 import com.zz.bms.core.vo.AjaxJson;
+import com.zz.bms.enums.EnumYesNo;
+import com.zz.bms.oss.engine.engine.StorageProcess;
+import com.zz.bms.oss.engine.enums.EnumFileEngine;
 import com.zz.bms.oss.service.FileService;
 import com.zz.bms.oss.vo.FileUseVO;
 import com.zz.bms.oss.vo.FileVO;
-import com.zz.bms.oss.engine.engine.StorageProcess;
-import com.zz.bms.oss.engine.enums.EnumFileEngine;
 import com.zz.bms.system.bo.TsFileBO;
 import com.zz.bms.system.bo.TsFileUseBO;
 import com.zz.bms.system.bo.VsFileUseBO;
 import com.zz.bms.system.service.TsFileService;
 import com.zz.bms.system.service.VsFileUseService;
-import com.zz.bms.util.base.java.IdUtils;
 import com.zz.bms.util.file.DownloadBaseUtil;
 import com.zz.bms.util.file.FileKit;
 import com.zz.bms.util.file.FileUtils;
@@ -32,12 +31,14 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 处理用户信息
+ * 处理文件信息
  * @author Administrator
  */
 @RequestMapping("oss/file")
@@ -114,7 +115,24 @@ public class OssController extends BaseController<String> {
         if(file == null ) {
             return AjaxJson.errorAjax;
         }
+        return saveFileInfo(file, request);
+    }
 
+
+    protected Object saveFileInfo(MultipartFile file, HttpServletRequest request) {
+        try {
+            return saveFileInfo(file.getInputStream() , file.getOriginalFilename() , file.getSize() , file.getContentType() , request);
+        } catch (IOException e) {
+            log.error(e.getMessage() ,e);
+        }
+
+        return AjaxJson.errorAjax;
+    }
+    protected Object saveFileInfo(InputStream inputStream,
+                                String originalFilename,
+                                long size ,
+                                String contentType,
+                                HttpServletRequest request) {
         String businessType = request.getParameter("businessType");
         String businessId = request.getParameter("businessId");
         String businessFileType = request.getParameter("businessFileType");
@@ -137,8 +155,8 @@ public class OssController extends BaseController<String> {
 
                 bo = new TsFileUseBO();
 
-                String showName = file.getOriginalFilename();
-                String md5 = FileKit.getFileMD5(file.getInputStream());
+                String showName = originalFilename;
+                String md5 = FileKit.getFileMD5(inputStream);
 
                 bo.setShowName(showName);
                 bo.setBusinessType(businessType);
@@ -162,10 +180,9 @@ public class OssController extends BaseController<String> {
                 if( oneFile == null ){
                     oneFile = new TsFileBO();
 
-                    FileVO fileVO = sp.store(file.getInputStream() , FileKit.buildFilePath(""));
+                    FileVO fileVO = sp.store(inputStream , FileKit.buildFilePath(""));
                     String suffix = FileKit.getSuffix(showName);
-                    long fileSize = file.getSize();
-                    String contentType = file.getContentType();
+                    long fileSize = size;
 
                     oneFile.setFileEngineName(sp.getEngine().getLabel());
                     oneFile.setFileEngine(sp.getEngine().getVal());
@@ -192,7 +209,6 @@ public class OssController extends BaseController<String> {
             logger.error(e);
             return AjaxJson.errorAjax;
         }
-
 
 
         AjaxJson ajaxJson =  new AjaxJson(true);

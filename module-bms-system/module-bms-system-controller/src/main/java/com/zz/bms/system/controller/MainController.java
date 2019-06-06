@@ -4,9 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.controller.base.controller.BaseController;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.enums.EnumYesNo;
+import com.zz.bms.oss.engine.enums.EnumFileEngine;
 import com.zz.bms.shiro.utils.ShiroUtils;
 import com.zz.bms.system.bo.TsMyShortcutBO;
 import com.zz.bms.system.bo.TsNotificationBO;
+import com.zz.bms.system.bo.VsFileUseBO;
 import com.zz.bms.system.bo.VsUserMenuBO;
 import com.zz.bms.system.domain.TsUserEntity;
 import com.zz.bms.system.logic.MenuLogic;
@@ -18,8 +20,10 @@ import com.zz.bms.system.query.impl.TsNotificationQueryImpl;
 import com.zz.bms.system.query.impl.VsUserMenuQueryImpl;
 import com.zz.bms.system.service.TsMyShortcutService;
 import com.zz.bms.system.service.TsNotificationService;
+import com.zz.bms.system.service.VsFileUseService;
 import com.zz.bms.system.service.VsUserMenuService;
 import com.zz.bms.system.websocket.ZzSendNotify;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -41,6 +45,10 @@ import java.util.Map;
 @RequestMapping("/main")
 @Controller
 public class MainController extends BaseController {
+
+
+    @Autowired
+    private VsFileUseService vsFileUseService ;
 
     @Autowired
     private VsUserMenuService vsUserMenuService;
@@ -77,6 +85,21 @@ public class MainController extends BaseController {
 
         model.put("loginUser", loginUser);
         model.put("userSessoinId",ShiroUtils.getSession().getId());
+
+        String userImageUrl = request.getContextPath() +"/statics2/image/default.png";
+        if(StringUtils.isNotEmpty(loginUser.getAvatarImage())){
+            VsFileUseBO vsFileUseBO = vsFileUseService.getById(loginUser.getAvatarImage());
+            if(EnumFileEngine.FILESYSTEM.getVal().equals(vsFileUseBO.getFileEngine())){
+                userImageUrl = request.getContextPath() + vsFileUseBO.getAccessUrl() + vsFileUseBO.getId();
+            }else {
+                userImageUrl = vsFileUseBO.getAccessUrl();
+            }
+        }
+
+
+        model.put("userImageUrl", userImageUrl);
+
+
 
         try {
             //处理菜单

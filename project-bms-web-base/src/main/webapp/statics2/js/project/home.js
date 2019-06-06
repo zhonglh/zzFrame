@@ -134,8 +134,7 @@ function cropImgUpload(callback)
     var flag=true;
     $.ajax(
         {
-            //todo 需要替换 url
-            url: $AppContext + '/oss/file/upload', type: 'post', data: {"imageData": result.toDataURL().toString()}, dataType: 'json', async: false,
+            url: $AppContext + '/oss/image/upload', type: 'post', data: {"imageData": result.toDataURL().toString()}, dataType: 'json', async: false,
             success: function (data)
             {
                 if(data.success) {
@@ -560,11 +559,16 @@ function changeProfile(id)
 function changeHeadImage()
 {
 
-    //todo , oss 还没有做， 替换头像功能
-    initCropImgDialog(function(newFileName){
+    initCropImgDialog(function(fileUse){
+        if(fileUse.fileEngine == '1') {
+            $('#userHeadImg').prop('src', ctx + '/oss/file/view/' + fileUse.id);
+            $('#imgUserAvatar').prop('src', ctx + '/oss/file/view/' + fileUse.id);
 
-        $('#userHeadImg').prop('src', 'http://123.57.235.9:88/tzcp/third/avatar/temp/' + newFileName);
-        $('input[name="headImg"]').val(newFileName);
+        }else {
+            $('#userHeadImg').prop('src', fileUse.accessUrl);
+            $('#imgUserAvatar').prop('src', fileUse.accessUrl);
+        }
+        $('input[name="avatarImage"]').val(fileUse.id);
     });
 
 }

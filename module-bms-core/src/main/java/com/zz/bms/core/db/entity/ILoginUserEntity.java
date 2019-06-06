@@ -92,5 +92,11 @@ public interface ILoginUserEntity<PK extends Serializable> {
 
     public String getLeadName() ;
 
+    /**
+     * 头像ID
+     * @return
+     */
+    public String getAvatarImage();
+
 
 }

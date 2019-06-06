@@ -78,7 +78,6 @@ public class TsUserEntity extends com.zz.bms.core.db.entity.BaseBusinessExEntity
 
     @EntityAttrDBAnnotation(attrName="头像" ,attrColumn="avatar_image"  , type = "CHAR"      ,  attrLength = 32 , notNull = false )
     @EntityAttrPageAnnotation(title = "头像",sort = 1000  , pageElement = "singleimage"            , maxLength = 32        ,required=false )
-	@EntityAttrExcelAnnotation(excelProcess= "3")
 	private String  avatarImage ;
 
 

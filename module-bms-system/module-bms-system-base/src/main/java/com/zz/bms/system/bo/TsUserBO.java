@@ -123,6 +123,7 @@ public class TsUserBO extends TsUserEntity implements Serializable , IBoEntity ,
     }
 
 
+
     public boolean isTable() {
 
         return true;
