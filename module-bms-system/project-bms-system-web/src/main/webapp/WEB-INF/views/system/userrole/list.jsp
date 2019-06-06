@@ -6,7 +6,7 @@
 
     <c:if test="${inAllPage == null || inAllPage != '1'}">
     <div class="navigation">
-        <span class="words"><a>${ breadcrumb }</a></span>
+        <c:if test="${breadcrumb != ''}"><span class="words"><a>${ breadcrumb }</a></span></c:if>
     </div>
     </c:if>
     

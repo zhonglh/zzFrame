@@ -463,7 +463,9 @@ public abstract class BaseBusinessController<
      * 计算出面包屑
      * @return
      */
-    protected abstract String computeBreadcrumb();
+    protected  String computeBreadcrumb(){
+        return "";
+    }
 
     /**
      * 返回列表页面指定的Page 名称

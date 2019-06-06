@@ -4,7 +4,7 @@
 
 <div region='north'>
     <div class="navigation">
-        <span class="words"><a>${ breadcrumb }</a></span>
+        <c:if test="${breadcrumb != ''}"><span class="words"><a>${ breadcrumb }</a></span></c:if>
     </div>
     
     <div id="content-sec" style="padding: 10px 10px 0 10px;">
