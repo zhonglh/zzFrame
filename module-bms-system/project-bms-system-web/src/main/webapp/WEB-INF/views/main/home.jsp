@@ -282,7 +282,7 @@
 
 <div class="hidden">
     <form id="formProfile" class="form-horizontal" action="${ctx}/system/user/updateMyProfile" method="post">
-        <input name="avatarImage" type="hidden" value="">
+        <input name="avatarImage" type="hidden" value="${loginUser.avatarImage}">
         <table width="100%">
             <tr>
                 <td>

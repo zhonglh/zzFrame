@@ -104,8 +104,14 @@ public class TsUserController extends ZzDefaultController<TsUserBO,VsUserBO, Str
 		}
 
 
+
+
 		setUpdateInfo(vsUserBO , this.getSessionUser());
 		vsUserBO.setVersionNo(temp.getVersionNo());
+		String avatarImage = vsUserBO.getAvatarImage();
+		if(avatarImage == null || "undefined".equals(avatarImage) || "null".equals(avatarImage) || "".equals(avatarImage)){
+			avatarImage = "";
+		}
 
 		checkEntityLegality(vsUserBO , false , true , true );
 		boolean success = false;
