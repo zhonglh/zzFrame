@@ -2,6 +2,8 @@ package com.zz.bms.system.websocket;
 
 
 import com.zz.bms.system.bo.TsNotificationBO;
+import com.zz.bms.system.bo.TsNotificationReceiveBO;
+import org.springframework.scheduling.annotation.Async;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +34,11 @@ public class WebSocketHelp {
      * 给客户端发送消息
      * @param notification
      */
-    public static void sendMessage(TsNotificationBO notification , int noReadCount){
-        //todo
+    public static void sendMessage(TsNotificationBO notification , TsNotificationReceiveBO bo , int noReadCount){
 
-        /**
-        if(userConnectionMap.containsKey(notification.getToUserId())) {
+
+
+        if(userConnectionMap.containsKey(bo.getReceiveUserId())) {
 
             WsMessage message = new WsMessage();
             message.setId(notification.getId());
@@ -44,15 +46,15 @@ public class WebSocketHelp {
             message.setTitle(notification.getTitle());
             message.setContent(notification.getContent());
             message.setNotifyModule(notification.getNotifyModule());
-            //todo
-            //message.setToUserId(new String[]{notification.getToUserId()});
+
+            message.setToUserId(new String[]{bo.getReceiveUserId()});
             message.setNotifyTime(notification.getCreateTime());
             message.setNoReadCount(noReadCount);
 
             AbstractNotifyWebSocket.broadcastToSpecia(message);
 
         }
-         */
+
 
     }
 
