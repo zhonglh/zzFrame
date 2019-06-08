@@ -50,15 +50,6 @@
 
 
 
-                <shiro:hasPermission name="system.msgtemplet:importExcel">
-                    <div type="button" id="importExcel" class="btn btn-primary btn-sm" >
-                        <i class="fa fa-upload"></i>
-                        <span>导入</span>
-                    </div>
-                </shiro:hasPermission>
-
-
-
 
                 <shiro:hasPermission name="system.msgtemplet:exportExcel">
                 <div class="btn-group">
@@ -68,23 +59,7 @@
                     </button>
                     <ul class="dropdown-menu">
 
-                        <li>
-                            <a href="${ ctx }/${ currParentUrl }/hssf/download" class="export">
-                                <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-download"></use>
-                                </svg>下载模板(Excel2003)
-                            </a>
-                        </li>
 
-                        <li>
-                            <a href="${ ctx }/${ currParentUrl }/sxssf/download" class="export">
-                                <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-download"></use>
-                                </svg>下载模板(Excel2007)
-                            </a>
-                        </li>
-
-                        <li role="separator" class="divider"></li>
 
                         <li>
                             <a href="${ ctx }/${ currParentUrl }/csv/export" class="export" >
