@@ -42,8 +42,7 @@ public class TsNotificationReceiveEntity extends com.zz.bms.core.db.entity.BaseE
     @EntityAttrDBAnnotation(attrName="已读" ,attrColumn="is_read"  , type = "CHAR"      ,  attrLength = 1 , notNull = true )
     @EntityAttrPageAnnotation(title = "已读",sort = 400  , pageElement = "select"            , maxLength = 1        ,required=true )
 	
-    
-    //yes_no        
+
 	private String  isRead ;
 
 

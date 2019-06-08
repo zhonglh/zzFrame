@@ -666,7 +666,7 @@ function startMyNotify(){
                     window.location = ctx+'/login/logout';
                 }else {
                     loadMyMessageCount(notify.noReadCount);
-                    //$(".badge").shake(3);
+                    $(".badge").shake(3);
                     //弹框显示通知信息
                     showWsMsg(notify);
                     console.log(notify.title + notify.content);

@@ -55,6 +55,7 @@ public class VsUserBO extends TsUserBO implements Serializable , IBoEntity {
         this.tenantName = tenantName;
     }
 
+    @Override
     public boolean isTable() {
 
 

@@ -94,10 +94,7 @@ public class VsUserMenuBO extends VsUserMenuEntity implements Serializable , IBo
 
 
     public boolean isTable() {
-
-
         return false;
-
     }
 
 

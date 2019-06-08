@@ -33,16 +33,7 @@ import java.util.Map;
 public class VsUserPermitBO extends VsUserPermitEntity implements Serializable , IBoEntity , ILoginPermitEntity {
 
 
-
-
-
-
-
-
-
     public boolean isTable() {
-
-
         return false;
 
     }

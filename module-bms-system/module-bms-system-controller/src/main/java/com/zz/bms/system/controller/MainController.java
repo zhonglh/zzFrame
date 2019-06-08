@@ -14,14 +14,13 @@ import com.zz.bms.system.domain.TsUserEntity;
 import com.zz.bms.system.logic.MenuLogic;
 import com.zz.bms.system.query.TsMyShortcutQuery;
 import com.zz.bms.system.query.TsNotificationQuery;
+import com.zz.bms.system.query.VsNotificationQuery;
 import com.zz.bms.system.query.VsUserMenuQuery;
 import com.zz.bms.system.query.impl.TsMyShortcutQueryImpl;
 import com.zz.bms.system.query.impl.TsNotificationQueryImpl;
+import com.zz.bms.system.query.impl.VsNotificationQueryImpl;
 import com.zz.bms.system.query.impl.VsUserMenuQueryImpl;
-import com.zz.bms.system.service.TsMyShortcutService;
-import com.zz.bms.system.service.TsNotificationService;
-import com.zz.bms.system.service.VsFileUseService;
-import com.zz.bms.system.service.VsUserMenuService;
+import com.zz.bms.system.service.*;
 import com.zz.bms.system.websocket.ZzSendNotify;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,11 +56,8 @@ public class MainController extends BaseController {
     private TsMyShortcutService myShortcutService;
 
     @Autowired
-    private TsNotificationService tsNotificationService;
+    private VsNotificationService vsNotificationService;
 
-
-    @Autowired
-    private ZzSendNotify sendNotify;
 
 
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
@@ -161,58 +157,16 @@ public class MainController extends BaseController {
         }
 
         //处理未读通知数
-        //todo
-        /*TsNotificationQuery notifyQuery = new TsNotificationQueryImpl();
-        notifyQuery.toUserId(loginUser.getId());
+        VsNotificationQuery notifyQuery = new VsNotificationQueryImpl();
+        notifyQuery.receiveUserId(loginUser.getId());
         notifyQuery.isRead(EnumYesNo.NO.getCode());
-
-        int count = tsNotificationService.count(notifyQuery.buildWrapper());
-        model.put("notReadNotifyCount", count);*/
-        model.put("notReadNotifyCount", 0);
-        //todo 测试使用 , 后期需要删除
-        //testNotify(loginUser);
+        int count = vsNotificationService.count(notifyQuery.buildWrapper());
+        model.put("notReadNotifyCount", count);
 
         return "main/home";
     }
 
 
-    /**
-     * 测试发送通知， 正式版本需要可删除
-     * @param loginUser
-     */
-    private void testNotify(ILoginUserEntity loginUser){
-        //todo , 测试用 正式环境要删除
-        for (int i = 0; i < 10; i++){
-            new Thread(new Aaa(i+1 , sendNotify , loginUser)).start();
-        }
-    }
 
-
-    static class Aaa implements Runnable{
-        ZzSendNotify sendNotify;
-        ILoginUserEntity loginUser;
-        int index ;
-        public Aaa(int index , ZzSendNotify sendNotify , ILoginUserEntity loginUser){
-            this.index = index;
-            this.sendNotify = sendNotify;
-            this.loginUser = loginUser;
-        }
-
-        @Override
-        public void run() {
-            long stime = 1000 * 10 * index;
-            try {
-                Thread.sleep(stime);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            TsNotificationBO notify = new TsNotificationBO();
-            //todo
-            //notify.setToUserId((String) loginUser.getId());
-            notify.setTitle("aaa");
-            notify.setContent("dfsadweqq    这是一个动画显示的\r\n对话框，用于显示信息。对话框窗口weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这可以移动，调整尺寸，<br>默认可通过 这vd sdafa  weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这 ewfe  背景：在项目中，<br>登录页验证用户名和密码是否匹配，如果不匹配，则抖动输入框，提示用户输入错误 fweif efdeadsffff efeqr er   qerefadqw  qeqweqweqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这是一个动画显示的对话框，背景：在项目中，登录页验证用户名和密码是否匹配，如果不weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这匹配，则抖动输入框，提示用户输入错误 用于显示信息。对话框窗口可以移动，调dfsadweqq    这是一个动画显示的对话框，用于显示信息。对话框窗口weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这可以移动，调整尺寸，<br>默认可通过 这vd sdafa  weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可\n以移动，调整尺寸，<br>默认可通过 这 ewfe  背景：在项目中，<br>登录页验证用户名和密码是否匹配，如果不匹配，则抖动输入框，提示用户输入错误 fweif efdeadsffff efeqr er   qerefadqw  qeqweqweqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这是一个动画显示的对话框，背景：在项目中，登录页验证用户名和密码是否匹配，如果不weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这匹配，则抖动输入框，提示用户输入错误 用于显示dfsadweqq    这是一个动画显示的对话框，用于显示信息。对话框窗口weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这可以移动，调整尺寸，<br>默认可通过 这vd sdafa  weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这 ewfe  背景：在项目中，<br>登录页验证用户名和密码是否匹配，如果不匹配，则抖动输入框，提示用户输入错误 fweif efdeadsffff efeqr er   qerefadqw  qeqweqweqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这是一个动画显示的对话框，背景：在项目中，登录页验证用户名和密码是否匹配，如果不weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这匹配，则抖动输入框，提示dfsadweqq    这是一个动画显示的对话框，用于显示信息。对话框窗口weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这可以移动，调整尺寸，<br>默认可通过 这vd sdafa  weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这 ewfe  背景：在项目中，<br>登录页验证用户名和密码是否匹配，如果不匹配，则抖动输入框，提示用户输入错误 fweif efdeadsffff efeqr er   qerefadqw  qeqweqweqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这是一个动画显示的对话框，背景：在项目中，登录页验证用户名和密码是否匹配，如果不weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话\n框窗口可以移动，调整尺寸，<br>默认可通过 这weqq    这是一个动画显示的对话框，用于显示信息。对话框窗口可以移动，\n调整尺寸，<br>默认可通过 这匹配，则抖动输入框，提示用户输入错误 用于显示信息。对话框窗口可以移动，调整尺寸，默认可通过 用户输入错误 用于显示信息。对话框窗口可以移动，调整尺寸，默认可通过 信息。对话框窗口可以移动，调整尺寸，默认可通过 整尺寸，默认可通过    ");
-            sendNotify.sendNotify(notify, loginUser);
-        }
-    }
 
 }

@@ -24,8 +24,8 @@ public class VsUserPermitEntity extends BaseEntity<String> implements java.io.Se
 
     @EntityAttrDBAnnotation(attrName="PERMIT_CODE" ,attrColumn="permit_code"  , type = "VARCHAR"      ,  attrLength = 50 , notNull = true )
     @EntityAttrPageAnnotation(title = "PERMIT_CODE",sort = 200  , pageElement = "text"            , maxLength = 50        ,required=true )
-	@EntityAttrExcelAnnotation(excelProcess= "3")
-    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+	@EntityAttrExcelAnnotation(excelProcess= "2")
+    
     
 	private String  permitCode ;
 
@@ -33,8 +33,7 @@ public class VsUserPermitEntity extends BaseEntity<String> implements java.io.Se
 
     @EntityAttrDBAnnotation(attrName="PERMIT_NAME" ,attrColumn="permit_name"  , type = "VARCHAR"      ,  attrLength = 20 , notNull = true )
     @EntityAttrPageAnnotation(title = "PERMIT_NAME",sort = 300  , pageElement = "text"            , maxLength = 20        ,required=true )
-	@EntityAttrExcelAnnotation(excelProcess= "3")
-    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+	@EntityAttrExcelAnnotation(excelProcess= "2")
     
 	private String  permitName ;
 
@@ -42,8 +41,7 @@ public class VsUserPermitEntity extends BaseEntity<String> implements java.io.Se
 
     @EntityAttrDBAnnotation(attrName="USER_NAME" ,attrColumn="user_name"  , type = "VARCHAR"      ,  attrLength = 50 , notNull = true )
     @EntityAttrPageAnnotation(title = "USER_NAME",sort = 400  , pageElement = "text"            , maxLength = 50        ,required=true )
-	@EntityAttrExcelAnnotation(excelProcess= "3")
-    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+	@EntityAttrExcelAnnotation(excelProcess= "2")
     
 	private String  userName ;
 
@@ -51,8 +49,7 @@ public class VsUserPermitEntity extends BaseEntity<String> implements java.io.Se
 
     @EntityAttrDBAnnotation(attrName="LOGIN_NAME" ,attrColumn="login_name"  , type = "VARCHAR"      ,  attrLength = 20 , notNull = true )
     @EntityAttrPageAnnotation(title = "LOGIN_NAME",sort = 500  , pageElement = "text"            , maxLength = 20        ,required=true )
-	@EntityAttrExcelAnnotation(excelProcess= "3")
-    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
+	@EntityAttrExcelAnnotation(excelProcess= "2")
     
 	private String  loginName ;
 
@@ -62,7 +59,6 @@ public class VsUserPermitEntity extends BaseEntity<String> implements java.io.Se
     @EntityAttrDBAnnotation(attrName="USER_ID" ,attrColumn="user_id"  , type = "CHAR"      ,  attrLength = 32 , notNull = true )
     @EntityAttrPageAnnotation(title = "USER_ID",sort = 600  , pageElement = "text"            , maxLength = 32        ,required=true )
 	
-    //todo 如果需要Excel导入 请先设置外键信息 EntityAttrFkAnnotation ， 参考 VsUserEntity 
     
 	private String  userId ;
 
