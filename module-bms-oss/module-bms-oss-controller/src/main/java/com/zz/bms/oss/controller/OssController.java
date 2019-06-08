@@ -9,6 +9,7 @@ import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.oss.engine.engine.StorageProcess;
 import com.zz.bms.oss.engine.enums.EnumFileEngine;
+import com.zz.bms.oss.engine.enums.EnumFileType;
 import com.zz.bms.oss.service.FileService;
 import com.zz.bms.oss.vo.FileUseVO;
 import com.zz.bms.oss.vo.FileVO;
@@ -139,7 +140,7 @@ public class OssController extends BaseController<String> {
         String businessTempId = request.getParameter("businessTempId");
         String remark = request.getParameter("remark");
 
-        StorageProcess sp = buildStorageProcess(null , null , 0) ;
+        StorageProcess sp = buildStorageProcess(businessType , businessFileType , size) ;
 
 
         ILoginUserEntity<String> loginUser =  getSessionUser();
@@ -180,7 +181,9 @@ public class OssController extends BaseController<String> {
                 if( oneFile == null ){
                     oneFile = new TsFileBO();
 
-                    FileVO fileVO = sp.store(inputStream , FileKit.buildFilePath(""));
+                    //保存文件
+                    FileVO fileVO = saveFile(inputStream, sp);
+
                     String suffix = FileKit.getSuffix(showName);
                     long fileSize = size;
 
@@ -221,6 +224,17 @@ public class OssController extends BaseController<String> {
         ajaxJson.setObj(vsFileUseBO);
 
         return ajaxJson;
+    }
+
+
+    /**
+     * 真正保存文件到本地
+     * @param inputStream
+     * @param sp
+     * @return
+     */
+    protected FileVO saveFile(InputStream inputStream, StorageProcess sp) {
+        return sp.store(inputStream , FileKit.buildFilePath("") , EnumFileType.FileType);
     }
 
 

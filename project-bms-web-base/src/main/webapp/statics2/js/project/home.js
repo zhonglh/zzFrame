@@ -138,9 +138,11 @@ function cropImgUpload(callback)
             url: $AppContext + '/oss/image/uploadImage?businessTempId=" + avatarImage + "&businessFileType=avatarImage"', type: 'post', data: {"imageData": result.toDataURL().toString()}, dataType: 'json', async: false,
             success: function (data)
             {
+                debugger;
                 if(data.success) {
-                    if (data.id) {
-                        avatar_callback(data.id);
+                    var obj = data.obj;
+                    if (obj.id) {
+                        avatar_callback(obj);
                         resetCrop();
                         $("#modal").modal('hide');
                     }
@@ -484,7 +486,7 @@ var profileDlg;
 /**
  * 修改个人参数
  */
-function changeProfile(id)
+function changeProfile()
 {
     if (null == profileDlg)
     {

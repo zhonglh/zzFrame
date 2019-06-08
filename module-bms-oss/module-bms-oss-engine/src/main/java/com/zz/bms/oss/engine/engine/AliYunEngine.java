@@ -4,6 +4,7 @@ import com.aliyun.oss.OSSClient;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.oss.engine.config.cloudconfig.impl.AliCloudConfig;
 import com.zz.bms.oss.engine.enums.EnumFileEngine;
+import com.zz.bms.oss.engine.enums.EnumFileType;
 import com.zz.bms.oss.vo.FileVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -38,7 +39,7 @@ public class AliYunEngine extends AbstractEngine implements StorageProcess {
     }
 
     @Override
-    public FileVO store(InputStream inputStream, String path) {
+    public FileVO store(InputStream inputStream, String path , EnumFileType enumFileType) {
         try {
             client.putObject(config.getCloudBucketName(), path, inputStream);
         } catch (Exception e) {

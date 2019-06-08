@@ -3,14 +3,18 @@ package com.zz.bms.oss.engine.engine;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.oss.engine.config.FileSystemConfig;
 import com.zz.bms.oss.engine.enums.EnumFileEngine;
+import com.zz.bms.oss.engine.enums.EnumFileType;
 import com.zz.bms.oss.vo.FileVO;
 import com.zz.bms.util.web.IpUtil;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -40,13 +44,19 @@ public  class FileEngine extends AbstractEngine implements StorageProcess {
 
 
     @Override
-    public FileVO store(InputStream inputStream, String filename) {
+    public FileVO store(InputStream inputStream, String filename , EnumFileType enumFileType) {
         try {
-            Path target = rootLocation.resolve(config.getRoot() + filename) ;
-            if(!target.toFile().getParentFile().exists()){
-                target.toFile().getParentFile().mkdirs();
+            Path target = getTargetPath(filename);
+
+
+            if(enumFileType == EnumFileType.ImageType){
+
+                BufferedImage bi = ImageIO.read(inputStream);
+                ImageIO.write(bi, "jpg", target.toFile());
+            }else {
+                //Files.copy(inputStream, target , StandardCopyOption.REPLACE_EXISTING);
+                FileUtils.copyInputStreamToFile(inputStream, target.toFile());
             }
-            Files.copy(inputStream, target , StandardCopyOption.REPLACE_EXISTING);
 
             FileVO fileVO = new FileVO();
             fileVO.setFileBasePath(rootLocation.toAbsolutePath().toString());
@@ -60,6 +70,15 @@ public  class FileEngine extends AbstractEngine implements StorageProcess {
         catch (IOException e) {
             throw new RuntimeException ("Failed to store file " + filename, e);
         }
+    }
+
+    @Override
+    public Path getTargetPath(String filename) {
+        Path target = rootLocation.resolve(config.getRoot() + filename) ;
+        if(!target.toFile().getParentFile().exists()){
+            target.toFile().getParentFile().mkdirs();
+        }
+        return target;
     }
 
 

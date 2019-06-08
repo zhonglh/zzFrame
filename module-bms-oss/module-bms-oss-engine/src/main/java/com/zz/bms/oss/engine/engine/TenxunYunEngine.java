@@ -15,6 +15,7 @@ import com.qcloud.cos.transfer.Upload;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.oss.engine.config.cloudconfig.impl.TenxunCloudConfig;
 import com.zz.bms.oss.engine.enums.EnumFileEngine;
+import com.zz.bms.oss.engine.enums.EnumFileType;
 import com.zz.bms.oss.vo.FileVO;
 import org.apache.http.entity.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,7 @@ public class TenxunYunEngine extends AbstractEngine implements StorageProcess {
 
 
     @Override
-    public FileVO store(InputStream inputStream, String filename) {
+    public FileVO store(InputStream inputStream, String filename , EnumFileType enumFileType) {
         {
             // 腾讯云必需要以"/"开头
             if (!filename.startsWith("/")) {

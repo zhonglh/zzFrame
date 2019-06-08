@@ -10,6 +10,7 @@ import com.qiniu.util.Auth;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.oss.engine.config.cloudconfig.impl.QiniuCloudConfig;
 import com.zz.bms.oss.engine.enums.EnumFileEngine;
+import com.zz.bms.oss.engine.enums.EnumFileType;
 import com.zz.bms.oss.vo.FileVO;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ public class QiniuYunEngine extends AbstractEngine implements StorageProcess {
 
 
     @Override
-    public FileVO store(InputStream inputStream, String filename) {
+    public FileVO store(InputStream inputStream, String filename , EnumFileType enumFileType) {
         try {
             byte[] data = IOUtils.toByteArray(inputStream);
             String accessUrl =  this.upload(data, filename);

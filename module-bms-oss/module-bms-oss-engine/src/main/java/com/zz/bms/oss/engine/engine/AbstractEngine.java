@@ -5,6 +5,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.tools.ant.util.DateUtils;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.Date;
 import java.util.UUID;
 
@@ -14,6 +15,10 @@ import java.util.UUID;
 public abstract class AbstractEngine implements StorageProcess {
 
 
+    @Override
+    public Path getTargetPath(String filename) {
+        return null;
+    }
 
 
 }
