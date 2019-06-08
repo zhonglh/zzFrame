@@ -209,7 +209,7 @@ public class OssController extends BaseController<String> {
             fileService.saveFiles(list);
 
         }catch(Exception e){
-            logger.error(e);
+            logger.error(e.getMessage() ,e);
             return AjaxJson.errorAjax;
         }
 
