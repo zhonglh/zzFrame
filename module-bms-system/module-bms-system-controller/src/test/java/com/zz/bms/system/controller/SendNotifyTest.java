@@ -4,7 +4,9 @@ import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.system.bo.TsNotificationBO;
 import com.zz.bms.system.bo.TsNotificationReceiveBO;
+import com.zz.bms.system.bo.TsUserBO;
 import com.zz.bms.system.websocket.ZzSendNotify;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -12,16 +14,21 @@ import java.util.List;
 
 public class SendNotifyTest extends BaseTest {
 
-
-
     @Autowired
     private ZzSendNotify sendNotify;
+
+    @Test
+    public void send(){
+        TsUserBO userBO = new TsUserBO();
+        userBO.setId("11111111111111111111111111111111");
+        testNotify(userBO);
+    }
 
     /**
      * 测试发送通知
      * @param loginUser
      */
-    private void testNotify(ILoginUserEntity loginUser){
+    public void testNotify(ILoginUserEntity loginUser){
         for (int i = 0; i < 10; i++){
             new Thread(new Aaa(i+1 , sendNotify , loginUser)).start();
         }

@@ -642,7 +642,6 @@ function saveShortcut()
 
 function startMyNotify(){
     var ws = null;
-    //todo IP 端口号 需要兼容实际环境, 需获取
     var targetUrl = "ws://localhost:8081"+ctx+"/websocket/notify/"+userKey+"/"+userSessoinId;
 
     if('WebSocket' in window){

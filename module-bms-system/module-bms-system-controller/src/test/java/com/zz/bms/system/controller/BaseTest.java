@@ -9,7 +9,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = {
         "classpath:spring-context.xml",
         "classpath:spring-mybatis.xml",
-        "classpath:spring-util-redis.xml"
+        "classpath:spring-util-redis.xml",
+        "classpath:spring-oss.xml"
 })
 public abstract class BaseTest extends AbstractTransactionalJUnit4SpringContextTests {
 

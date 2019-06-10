@@ -6,12 +6,11 @@ import com.zz.bms.core.exceptions.InternalException;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.system.bo.TsNotificationBO;
 import com.zz.bms.system.bo.TsNotificationReceiveBO;
-import com.zz.bms.system.query.TsNotificationQuery;
 import com.zz.bms.system.query.VsNotificationQuery;
-import com.zz.bms.system.query.impl.TsNotificationQueryImpl;
 import com.zz.bms.system.query.impl.VsNotificationQueryImpl;
+import com.zz.bms.system.service.TsNotificationReceiveService;
 import com.zz.bms.system.service.TsNotificationService;
-import com.zz.bms.system.service.VsNotificationService;
+import com.zz.bms.util.base.java.IdUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -32,7 +31,9 @@ public class ZzSendNotify {
 
 
     @Autowired
-    private VsNotificationService vsNotificationService ;
+    private TsNotificationReceiveService tsNotificationReceiveService ;
+
+
 
 
     @Transactional(rollbackFor = Exception.class)
@@ -53,6 +54,11 @@ public class ZzSendNotify {
         EntityUtil.autoSetInsertEntity(notify, loginUser);
         tsNotificationService.save(notify);
 
+        for(TsNotificationReceiveBO bo : receiveBOs){
+            bo.setId(IdUtils.getId());
+            bo.setNotifyId(notify.getId());
+        }
+        tsNotificationReceiveService.saveBatch(receiveBOs);
 
         sendNotify(notify, receiveBOs);
 

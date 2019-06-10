@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zz.bms.system.dao.VsNotificationDAO">
+ 	<!-- 映射配置 -->
+	<resultMap id="VsNotificationResultMap" type="com.zz.bms.system.bo.VsNotificationBO" >
+         	<result column="id" property="id"/>
+
+         	<result column="notify_module" property="notifyModule"/>
+
+         	<result column="title" property="title"/>
+
+         	<result column="content" property="content"/>
+
+         	<result column="notify_time" property="notifyTime"/>
+
+         	<result column="notify_files" property="notifyFiles"/>
+
+         	<result column="create_user_id" property="createUserId"/>
+
+         	<result column="create_user_name" property="createUserName"/>
+
+         	<result column="create_time" property="createTime"/>
+
+         	<result column="update_user_id" property="updateUserId"/>
+
+         	<result column="update_user_name" property="updateUserName"/>
+
+         	<result column="update_time" property="updateTime"/>
+
+         	<result column="version_no" property="versionNo"/>
+
+         	<result column="tenant_id" property="tenantId"/>
+
+         	<result column="receive_user_id" property="receiveUserId"/>
+
+         	<result column="read_time" property="readTime"/>
+
+         	<result column="is_read" property="isRead"/>
+
+         	<result column="send_name" property="sendName"/>
+
+         	<result column="receive_name" property="receiveName"/>
+
+	</resultMap>
+
+
+    <!-- 校验条件配置 -->
+    <sql id="VsNotification4CheckQueryFilter">
+        <where>
+
+                    <if test="id != null and id != ''"> AND T.id != #{id} </if>
+					<if test="notifyModule != null and notifyModule != ''"> AND T.notify_module = #{notifyModule} </if>
+					<if test="title != null and title != ''"> AND T.title = #{title} </if>
+					<if test="content != null"> AND T.content = #{content} </if>
+					<if test="notifyTime != null"> AND T.notify_time = #{notifyTime} </if>
+					<if test="notifyFiles != null and notifyFiles != ''"> AND T.notify_files = #{notifyFiles} </if>
+					<if test="createUserId != null and createUserId != ''"> AND T.create_user_id = #{createUserId} </if>
+					<if test="createUserName != null and createUserName != ''"> AND T.create_user_name = #{createUserName} </if>
+					<if test="createTime != null"> AND T.create_time = #{createTime} </if>
+					<if test="updateUserId != null and updateUserId != ''"> AND T.update_user_id = #{updateUserId} </if>
+					<if test="updateUserName != null and updateUserName != ''"> AND T.update_user_name = #{updateUserName} </if>
+					<if test="updateTime != null"> AND T.update_time = #{updateTime} </if>
+					<if test="versionNo != null"> AND T.version_no = #{versionNo} </if>
+					<if test="tenantId != null and tenantId != ''"> AND T.tenant_id = #{tenantId} </if>
+					<if test="receiveUserId != null and receiveUserId != ''"> AND T.receive_user_id = #{receiveUserId} </if>
+					<if test="readTime != null"> AND T.read_time = #{readTime} </if>
+					<if test="isRead != null and isRead != ''"> AND T.is_read = #{isRead} </if>
+					<if test="sendName != null and sendName != ''"> AND T.send_name = #{sendName} </if>
+					<if test="receiveName != null and receiveName != ''"> AND T.receive_name = #{receiveName} </if>
+
+        </where>
+    </sql>
+
+    <select id="selectCheck" parameterType="com.zz.bms.system.bo.VsNotificationBO" resultMap="VsNotificationResultMap">
+        SELECT T.* FROM vs_notification T
+        <include refid="VsNotification4CheckQueryFilter"/>  limit 1
+    </select>
+
+
+</mapper>
