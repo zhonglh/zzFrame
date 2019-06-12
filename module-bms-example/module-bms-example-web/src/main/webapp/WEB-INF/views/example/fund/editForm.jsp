@@ -219,7 +219,7 @@
                                             <div class="input-group">
                                                 <input type="hidden" name="managerUserId" id="managerUserId" value="${ m.managerUserId }" >
                                                 <input type="text" name="managerUserName" id="managerUserName" value="${ m.managerUserName }" required="required" class="form-control input-sm managerUserName " placeholder="请选择基金经理" style="cursor: pointer;" readonly="readonly">
-                                                <div class="input-group-btn" style="float:left">
+                                                <div class="input-group-btn" >
                                                     <button type="button"  class="btn btn-primary btn-sm managerUserName">
                                                         &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                     </button>
@@ -312,7 +312,7 @@
                                         <div class="input-group">
                                             <input type="hidden" name="depId" id="depId" value="${ m.depId }">
                                             <input type="text" name="depName" id="depName" value="${ m.depName }" required="required" class="form-control input-sm depName " placeholder="请选择部门" style="cursor: pointer;" readonly="readonly">
-                                            <div class="input-group-btn" style="float:left">
+                                            <div class="input-group-btn" >
                                                 <button type="button"
                                                         class="btn btn-primary btn-sm depName">
                                                     &nbsp;<i class="fa fa-search"></i>&nbsp;
@@ -784,7 +784,7 @@
         var html = '<div class="input-group show-area">';
         html += '<input type="hidden" name="fundAccountBOList['+index+'].bankId" id="fundAccountBOList_'+index+'_bankId" value="'+row.bankId+'" >';
         html += '<input type="text"  class="form-control input-sm openwindow bankName" onclick="openExampleBank(\'tableData-exampleFundaccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.bankName+'" id="fundAccountBOList_'+index+'_bankName"  name="fundAccountBOList['+index+'].bankName"  onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择开户行" readonly >';
-        html += '<div class="input-group-btn">';
+        html += '<div class="input-group-btn" style="float:left">';
         html += '<div class="btn btn-primary btn-sm" onclick="openExampleBank(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_bankName\'),'+index+')">';
         html += '&nbsp;<i class="fa fa-search"></i>&nbsp;';
         html += '</div>';
@@ -835,7 +835,7 @@
         var html = '<div class="input-group show-area">';
         html += '<input type="hidden" name="fundAccountBOList['+index+'].otherBankId" id="fundAccountBOList_'+index+'_otherBankId" value="'+row.otherBankId+'" >';
         html += '<input type="text"  class="form-control input-sm openwindow otherBankName" onclick="openExampleBank(\'tableData-exampleFundaccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.otherBankName+'" id="fundAccountBOList_'+index+'_otherBankName"  name="fundAccountBOList['+index+'].otherBankName"  onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择其他行" readonly >';
-        html += '<div class="input-group-btn">';
+        html += '<div class="input-group-btn" style="float:left">';
         html += '<div class="btn btn-primary btn-sm" onclick="openExampleBank(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_otherBankName\'),'+index+')">';
         html += '&nbsp;<i class="fa fa-search"></i>&nbsp;';
         html += '</div>';
@@ -857,7 +857,7 @@
         var html = '<div class="input-group show-area">';
         html += '<input type="hidden" name="fundAccountBOList['+index+'].userId" id="fundAccountBOList_'+index+'_userId" value="'+row.userId+'" >';
         html += '<input type="text"  class="form-control input-sm openwindow userName" onclick="openSystemUser(\'tableData-exampleFundaccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.userName+'" id="fundAccountBOList_'+index+'_userName"  name="fundAccountBOList['+index+'].userName"  onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择账户处理人" readonly >';
-        html += '<div class="input-group-btn">';
+        html += '<div class="input-group-btn" style="float:left">';
         html += '<div class="btn btn-primary btn-sm" onclick="openSystemUser(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_userName\'),'+index+')">';
         html += '&nbsp;<i class="fa fa-search"></i>&nbsp;';
         html += '</div>';
