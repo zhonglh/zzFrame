@@ -93,6 +93,11 @@ function openEdit(){
     $(".form").tform().showEdit();
     $(".webuploader-container").UploadFile();
 
+    $(".webuploader-container").each(function () {
+        $(this).children().eq(1).width(80);
+        $(this).children().eq(1).height(80);
+    })
+
 }
 
 //取消编辑
