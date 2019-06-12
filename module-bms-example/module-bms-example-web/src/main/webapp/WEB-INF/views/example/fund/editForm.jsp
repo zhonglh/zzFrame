@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/views/common/taglibs.jspf" %>
-<bms:contentHeader />
+<bms:contentHeader  />
 
 
 
@@ -27,7 +27,7 @@
                         </colgroup>
 
                         <tbody>
-                            <tr>
+                                                    <tr>
                                 <th>基金名称<font color="red">*</font></th>
                                 <td class="fd_fundName">
                                     <c:out value="${ m.fundName }" escapeXml="true"/>
@@ -219,7 +219,7 @@
                                             <div class="input-group">
                                                 <input type="hidden" name="managerUserId" id="managerUserId" value="${ m.managerUserId }" >
                                                 <input type="text" name="managerUserName" id="managerUserName" value="${ m.managerUserName }" required="required" class="form-control input-sm managerUserName " placeholder="请选择基金经理" style="cursor: pointer;" readonly="readonly">
-                                                <div class="input-group-btn">
+                                                <div class="input-group-btn" style="float:left">
                                                     <button type="button"  class="btn btn-primary btn-sm managerUserName">
                                                         &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                     </button>
@@ -312,7 +312,7 @@
                                         <div class="input-group">
                                             <input type="hidden" name="depId" id="depId" value="${ m.depId }">
                                             <input type="text" name="depName" id="depName" value="${ m.depName }" required="required" class="form-control input-sm depName " placeholder="请选择部门" style="cursor: pointer;" readonly="readonly">
-                                            <div class="input-group-btn">
+                                            <div class="input-group-btn" style="float:left">
                                                 <button type="button"
                                                         class="btn btn-primary btn-sm depName">
                                                     &nbsp;<i class="fa fa-search"></i>&nbsp;

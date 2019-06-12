@@ -13,7 +13,7 @@ import java.lang.Integer;
 * 基金 用于装载用户在查询时提交的数据
 * 用于链式查询
 * @author Administrator
-* @date 2019-6-3 10:12:55
+* @date 2019-6-12 19:11:19
 */
 public class TbFundQueryWebImpl<PK extends Serializable> extends TbFundAbstractQueryImpl<PK> implements Serializable {
 

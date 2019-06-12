@@ -15,7 +15,7 @@ import java.lang.Integer;
  * 基金 查询抽象类
  *
  * @author Administrator
- * @date 2019-6-3 10:12:55
+ * @date 2019-6-12 19:11:19
  */
 public interface TbFundQuery<PK extends Serializable> extends Query<TbFundEntity,PK> {
 

@@ -17,7 +17,7 @@ import com.zz.bms.core.db.entity.BaseBusinessExEntity;
 /**
  * 投资协议 实体类
  * @author Administrator
- * @date 2019-6-3 18:47:57
+ * @date 2019-6-12 19:11:27
  */
 public class TbInvestorAgreementEntity extends BaseBusinessExEntity<String> implements java.io.Serializable  {
 

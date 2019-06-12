@@ -14,7 +14,7 @@ import com.zz.bms.core.db.entity.BaseEntity;
 /**
  * 基金账户 实体类
  * @author Administrator
- * @date 2019-6-3 18:47:55
+ * @date 2019-6-12 19:11:18
  */
 public class TbFundAccountEntity extends BaseEntity<String> implements java.io.Serializable  {
 

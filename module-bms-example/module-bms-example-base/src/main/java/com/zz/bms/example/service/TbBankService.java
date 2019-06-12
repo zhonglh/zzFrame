@@ -7,7 +7,7 @@ import com.zz.bms.example.bo.TbBankBO;
 /**
 * 银行信息 Service
 * @author Administrator
-* @date 2019-6-3 10:12:55
+* @date 2019-6-12 19:11:25
 */
 public interface TbBankService extends BaseService<TbBankBO , String> {
 

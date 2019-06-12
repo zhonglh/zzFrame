@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/views/common/taglibs.jspf" %>
-<bms:contentHeader />
+<bms:contentHeader  />
 
 
 
@@ -27,7 +27,7 @@
                         </colgroup>
 
                         <tbody>
-                            <tr>
+                                                    <tr>
                                 <th>协议<font color="red">*</font></th>
                                 <td class="fd_investorAgreementName">
                                     <c:out value="${ m.investorAgreementName }" escapeXml="true"/>
@@ -122,7 +122,7 @@
                                         <div class="input-group">
                                             <input type="hidden" name="investorAgreementId" id="investorAgreementId" value="${ m.investorAgreementId }">
                                             <input type="text" name="investorAgreementName" id="investorAgreementName" value="${ m.investorAgreementName }" required="required" class="form-control input-sm investorAgreementName " placeholder="请选择协议" style="cursor: pointer;" readonly="readonly">
-                                            <div class="input-group-btn">
+                                            <div class="input-group-btn" style="float:left">
                                                 <button type="button"
                                                         class="btn btn-primary btn-sm investorAgreementName">
                                                     &nbsp;<i class="fa fa-search"></i>&nbsp;
@@ -144,7 +144,7 @@
                                             <div class="input-group">
                                                 <input type="hidden" name="fundId" id="fundId" value="${ m.fundId }" >
                                                 <input type="text" name="fundName" id="fundName" value="${ m.fundName }" required="required" class="form-control input-sm fundName " placeholder="请选择基金" style="cursor: pointer;" readonly="readonly">
-                                                <div class="input-group-btn">
+                                                <div class="input-group-btn" style="float:left">
                                                     <button type="button"  class="btn btn-primary btn-sm fundName">
                                                         &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                     </button>
@@ -167,7 +167,7 @@
                                         <div class="input-group">
                                             <input type="hidden" name="investorId" id="investorId" value="${ m.investorId }">
                                             <input type="text" name="investorName" id="investorName" value="${ m.investorName }" required="required" class="form-control input-sm investorName " placeholder="请选择投资人" style="cursor: pointer;" readonly="readonly">
-                                            <div class="input-group-btn">
+                                            <div class="input-group-btn" style="float:left">
                                                 <button type="button"
                                                         class="btn btn-primary btn-sm investorName">
                                                     &nbsp;<i class="fa fa-search"></i>&nbsp;
@@ -199,7 +199,7 @@
                                         <div class="input-group">
                                             <input type="hidden" name="handleDepId" id="handleDepId" value="${ m.handleDepId }">
                                             <input type="text" name="handleDepName" id="handleDepName" value="${ m.handleDepName }" required="required" class="form-control input-sm handleDepName " placeholder="请选择部门" style="cursor: pointer;" readonly="readonly">
-                                            <div class="input-group-btn">
+                                            <div class="input-group-btn" style="float:left">
                                                 <button type="button"
                                                         class="btn btn-primary btn-sm handleDepName">
                                                     &nbsp;<i class="fa fa-search"></i>&nbsp;
@@ -231,7 +231,7 @@
                                         <div class="input-group">
                                             <input type="hidden" name="handleUserId" id="handleUserId" value="${ m.handleUserId }">
                                             <input type="text" name="handleUserName" id="handleUserName" value="${ m.handleUserName }" required="required" class="form-control input-sm handleUserName " placeholder="请选择经办人" style="cursor: pointer;" readonly="readonly">
-                                            <div class="input-group-btn">
+                                            <div class="input-group-btn" style="float:left">
                                                 <button type="button"
                                                         class="btn btn-primary btn-sm handleUserName">
                                                     &nbsp;<i class="fa fa-search"></i>&nbsp;

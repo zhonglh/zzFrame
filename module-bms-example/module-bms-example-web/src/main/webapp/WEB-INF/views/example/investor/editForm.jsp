@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/views/common/taglibs.jspf" %>
-<bms:contentHeader />
+<bms:contentHeader  />
 
 
 
@@ -27,7 +27,7 @@
                         </colgroup>
 
                         <tbody>
-                            <tr>
+                                                    <tr>
                                 <th>投资人名称<font color="red">*</font></th>
                                 <td class="fd_investorName">
                                     <c:out value="${ m.investorName }" escapeXml="true"/>
@@ -137,7 +137,7 @@
                                             <div class="input-group">
                                                 <input type="hidden" name="manageUserId" id="manageUserId" value="${ m.manageUserId }" >
                                                 <input type="text" name="manageUserName" id="manageUserName" value="${ m.manageUserName }" required="required" class="form-control input-sm manageUserName " placeholder="请选择投资经理" style="cursor: pointer;" readonly="readonly">
-                                                <div class="input-group-btn">
+                                                <div class="input-group-btn" style="float:left">
                                                     <button type="button"  class="btn btn-primary btn-sm manageUserName">
                                                         &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                     </button>

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 /**
 * 基金 ServiceImpl
 * @author Administrator
-* @date 2019-6-3 10:12:55
+* @date 2019-6-12 19:11:19
 */
 @Service
 public class TbFundGroupServiceImpl extends BaseGroupServiceImpl<TbFundGroupBO,String> implements TbFundGroupService {

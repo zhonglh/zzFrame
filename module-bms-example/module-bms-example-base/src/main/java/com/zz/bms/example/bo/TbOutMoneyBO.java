@@ -27,7 +27,7 @@ import java.util.Map;
 /**
 * 出资明细 BO , 扩展 TbOutMoneyEntity 对象
 * @author Administrator
-* @date 2019-6-3 17:45:27
+* @date 2019-6-12 19:11:19
 */
 @EntityAnnotation(value="出资明细" , resource = "example.outmoney"  ,haveTenant = true   ,businessName = ""    ,businessKey = { "" }    )
 @TableName(value="tb_out_money" , resultMap = "TbOutMoneyResultMap")

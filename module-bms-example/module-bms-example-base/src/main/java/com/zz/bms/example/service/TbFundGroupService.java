@@ -7,7 +7,7 @@ import com.zz.bms.example.bo.TbFundGroupBO;
 
 /**
 * @author Administrator
-* @date 2019-6-3 10:12:55
+* @date 2019-6-12 19:11:19
 */
 public interface TbFundGroupService extends BaseService<TbFundGroupBO , String> {
 

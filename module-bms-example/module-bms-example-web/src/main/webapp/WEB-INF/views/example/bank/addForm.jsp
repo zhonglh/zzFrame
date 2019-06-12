@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/views/common/taglibs.jspf" %>
-<bms:contentHeader />
+<bms:contentHeader  />
 
 
 <div style="padding:0 10px">
@@ -25,7 +25,7 @@
                         <tbody>
 
 
-                                <tr>
+                                                        <tr>
                                     <th>银行全称<font color="red">*</font></th>
                                     <td>
                                                 <input type="text" required="required" class="form-control input-sm required"

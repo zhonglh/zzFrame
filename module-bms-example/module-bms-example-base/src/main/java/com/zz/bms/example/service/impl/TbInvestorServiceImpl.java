@@ -28,9 +28,11 @@ import com.zz.bms.system.dao.TsUserDAO;
 
 
 
+import com.zz.bms.util.base.java.IdUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,7 +42,7 @@ import java.util.Map;
 /**
 * 投资人 ServiceImpl
 * @author Administrator
-* @date 2019-6-3 10:12:56
+* @date 2019-6-12 19:11:24
 */
 @Service
 public class TbInvestorServiceImpl extends SystemBaseServiceImpl<TbInvestorBO,String> implements TbInvestorService {
@@ -75,14 +77,6 @@ public class TbInvestorServiceImpl extends SystemBaseServiceImpl<TbInvestorBO,St
 	public TbInvestorBO processResult(TbInvestorBO tbInvestorBO) {
 
 		try {
-			if(StringUtils.isEmpty(tbInvestorBO.getCardTypeName()) && StringUtils.isNotEmpty(tbInvestorBO.getCardType()) ) {
-				String dictName = tsDictService.getDictName(tbInvestorBO.getCardType(),EnumDictType.CARD_TYPE.getVal());
-				tbInvestorBO.setCardTypeName(dictName);
-			}
-		}catch(Exception e){
-
-		}
-		try {
 			if(StringUtils.isEmpty(tbInvestorBO.getInvestorTypeName()) && StringUtils.isNotEmpty(tbInvestorBO.getInvestorType()) ) {
 				String dictName = tsDictService.getDictName(tbInvestorBO.getInvestorType(),EnumDictType.INVESTOR_TYPE.getVal());
 				tbInvestorBO.setInvestorTypeName(dictName);
@@ -96,6 +90,14 @@ public class TbInvestorServiceImpl extends SystemBaseServiceImpl<TbInvestorBO,St
 			if(temp != null){
 				tbInvestorBO.setManageUserName(temp.getUserName());
 			}
+		}
+		try {
+			if(StringUtils.isEmpty(tbInvestorBO.getCardTypeName()) && StringUtils.isNotEmpty(tbInvestorBO.getCardType()) ) {
+				String dictName = tsDictService.getDictName(tbInvestorBO.getCardType(),EnumDictType.CARD_TYPE.getVal());
+				tbInvestorBO.setCardTypeName(dictName);
+			}
+		}catch(Exception e){
+
 		}
 
 
@@ -153,20 +155,20 @@ public class TbInvestorServiceImpl extends SystemBaseServiceImpl<TbInvestorBO,St
 
 
 
-		String[] dictTypes = new String[]{EnumDictType.CARD_TYPE.getVal(),EnumDictType.INVESTOR_TYPE.getVal()};
+		String[] dictTypes = new String[]{EnumDictType.INVESTOR_TYPE.getVal(),EnumDictType.CARD_TYPE.getVal()};
 		Map<String , TsDictBO> dictMap = tsDictService.allDict(dictTypes);
 
 		tbInvestorBOs.forEach(tbInvestorBO -> {
-			if(StringUtils.isEmpty(tbInvestorBO.getCardTypeName()) && StringUtils.isNotEmpty(tbInvestorBO.getCardType()) ) {
-				TsDictBO dict = dictMap.get(EnumDictType.CARD_TYPE.getVal() + tbInvestorBO.getCardType());
-				if(dict != null) {
-					tbInvestorBO.setCardTypeName(dict.getDictName());
-				}
-			}
 			if(StringUtils.isEmpty(tbInvestorBO.getInvestorTypeName()) && StringUtils.isNotEmpty(tbInvestorBO.getInvestorType()) ) {
 				TsDictBO dict = dictMap.get(EnumDictType.INVESTOR_TYPE.getVal() + tbInvestorBO.getInvestorType());
 				if(dict != null) {
 					tbInvestorBO.setInvestorTypeName(dict.getDictName());
+				}
+			}
+			if(StringUtils.isEmpty(tbInvestorBO.getCardTypeName()) && StringUtils.isNotEmpty(tbInvestorBO.getCardType()) ) {
+				TsDictBO dict = dictMap.get(EnumDictType.CARD_TYPE.getVal() + tbInvestorBO.getCardType());
+				if(dict != null) {
+					tbInvestorBO.setCardTypeName(dict.getDictName());
 				}
 			}
 		});

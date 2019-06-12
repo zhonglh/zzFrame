@@ -12,7 +12,7 @@ import java.lang.String;
  * 基金账户 查询抽象类
  * 用于链式查询
  * @author Administrator
- * @date 2019-6-3 10:12:53
+ * @date 2019-6-12 19:11:18
  */
 public abstract class TbFundAccountAbstractQueryImpl<PK extends Serializable> extends CommonQueryImpl<TbFundAccountEntity,PK> {
 

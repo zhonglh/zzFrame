@@ -13,7 +13,7 @@ import java.lang.Integer;
  * 投资人 查询抽象类
  *
  * @author Administrator
- * @date 2019-6-3 10:12:56
+ * @date 2019-6-12 19:11:24
  */
 public interface TbInvestorQuery<PK extends Serializable> extends Query<TbInvestorEntity,PK> {
 

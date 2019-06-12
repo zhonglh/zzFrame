@@ -22,21 +22,23 @@ import com.zz.bms.example.bo.TbInvestorAgreementBO;
 import com.zz.bms.example.dao.TbInvestorAgreementDAO;
 import com.zz.bms.example.service.TbInvestorAgreementService;
 
-import com.zz.bms.example.bo.TbInvestorBO;
-import com.zz.bms.example.dao.TbInvestorDAO;
-import com.zz.bms.example.bo.TbFundBO;
-import com.zz.bms.example.dao.TbFundDAO;
-import com.zz.bms.system.bo.TsUserBO;
-import com.zz.bms.system.dao.TsUserDAO;
 import com.zz.bms.system.bo.TsDepBO;
 import com.zz.bms.system.dao.TsDepDAO;
+import com.zz.bms.example.bo.TbFundBO;
+import com.zz.bms.example.dao.TbFundDAO;
+import com.zz.bms.example.bo.TbInvestorBO;
+import com.zz.bms.example.dao.TbInvestorDAO;
+import com.zz.bms.system.bo.TsUserBO;
+import com.zz.bms.system.dao.TsUserDAO;
 
 
 
 
+import com.zz.bms.util.base.java.IdUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,7 +48,7 @@ import java.util.Map;
 /**
 * 投资协议 ServiceImpl
 * @author Administrator
-* @date 2019-6-3 10:12:56
+* @date 2019-6-12 19:11:27
 */
 @Service
 public class TbInvestorAgreementServiceImpl extends SystemBaseServiceImpl<TbInvestorAgreementBO,String> implements TbInvestorAgreementService {
@@ -62,13 +64,13 @@ public class TbInvestorAgreementServiceImpl extends SystemBaseServiceImpl<TbInve
 
 
     @Autowired
-    private TbInvestorDAO tbInvestorDAO;
+    private TsDepDAO tsDepDAO;
     @Autowired
     private TbFundDAO tbFundDAO;
     @Autowired
-    private TsUserDAO tsUserDAO;
+    private TbInvestorDAO tbInvestorDAO;
     @Autowired
-    private TsDepDAO tsDepDAO;
+    private TsUserDAO tsUserDAO;
 
 
     @Autowired

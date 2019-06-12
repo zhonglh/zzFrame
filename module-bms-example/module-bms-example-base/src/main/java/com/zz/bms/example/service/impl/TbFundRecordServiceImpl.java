@@ -19,19 +19,21 @@ import com.zz.bms.example.bo.TbFundRecordBO;
 import com.zz.bms.example.dao.TbFundRecordDAO;
 import com.zz.bms.example.service.TbFundRecordService;
 
+import com.zz.bms.example.bo.TbBankBO;
+import com.zz.bms.example.dao.TbBankDAO;
 import com.zz.bms.example.bo.TbFundBO;
 import com.zz.bms.example.dao.TbFundDAO;
 import com.zz.bms.system.bo.TsUserBO;
 import com.zz.bms.system.dao.TsUserDAO;
-import com.zz.bms.example.bo.TbBankBO;
-import com.zz.bms.example.dao.TbBankDAO;
 
 
 
 
+import com.zz.bms.util.base.java.IdUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,7 +43,7 @@ import java.util.Map;
 /**
 * 基金备案 ServiceImpl
 * @author Administrator
-* @date 2019-6-3 10:12:54
+* @date 2019-6-12 19:11:24
 */
 @Service
 public class TbFundRecordServiceImpl extends SystemBaseServiceImpl<TbFundRecordBO,String> implements TbFundRecordService {
@@ -55,11 +57,11 @@ public class TbFundRecordServiceImpl extends SystemBaseServiceImpl<TbFundRecordB
 
 
     @Autowired
+    private TbBankDAO tbBankDAO;
+    @Autowired
     private TbFundDAO tbFundDAO;
     @Autowired
     private TsUserDAO tsUserDAO;
-    @Autowired
-    private TbBankDAO tbBankDAO;
 
 
     @Autowired

@@ -23,9 +23,11 @@ import com.zz.bms.example.service.TbBankService;
 
 
 
+import com.zz.bms.util.base.java.IdUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +37,7 @@ import java.util.Map;
 /**
 * 银行信息 ServiceImpl
 * @author Administrator
-* @date 2019-6-3 10:12:55
+* @date 2019-6-12 19:11:25
 */
 @Service
 public class TbBankServiceImpl extends SystemBaseServiceImpl<TbBankBO,String> implements TbBankService {

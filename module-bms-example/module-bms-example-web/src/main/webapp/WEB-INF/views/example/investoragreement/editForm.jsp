@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/views/common/taglibs.jspf" %>
-<bms:contentHeader />
+<bms:contentHeader  />
 
 
 
@@ -27,7 +27,7 @@
                         </colgroup>
 
                         <tbody>
-                            <tr>
+                                                    <tr>
                                 <th>协议名称<font color="red">*</font></th>
                                 <td class="fd_agreementName">
                                     <c:out value="${ m.agreementName }" escapeXml="true"/>
@@ -156,7 +156,7 @@
                                         <div class="input-group">
                                             <input type="hidden" name="fundId" id="fundId" value="${ m.fundId }">
                                             <input type="text" name="fundName" id="fundName" value="${ m.fundName }" required="required" class="form-control input-sm fundName " placeholder="请选择认购基金" style="cursor: pointer;" readonly="readonly">
-                                            <div class="input-group-btn">
+                                            <div class="input-group-btn" style="float:left">
                                                 <button type="button"
                                                         class="btn btn-primary btn-sm fundName">
                                                     &nbsp;<i class="fa fa-search"></i>&nbsp;
@@ -178,7 +178,7 @@
                                             <div class="input-group">
                                                 <input type="hidden" name="investorId" id="investorId" value="${ m.investorId }" >
                                                 <input type="text" name="investorName" id="investorName" value="${ m.investorName }" required="required" class="form-control input-sm investorName " placeholder="请选择投资人" style="cursor: pointer;" readonly="readonly">
-                                                <div class="input-group-btn">
+                                                <div class="input-group-btn" style="float:left">
                                                     <button type="button"  class="btn btn-primary btn-sm investorName">
                                                         &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                     </button>
@@ -225,7 +225,7 @@
                                             <div class="input-group">
                                                 <input type="hidden" name="signDepId" id="signDepId" value="${ m.signDepId }" >
                                                 <input type="text" name="signDepName" id="signDepName" value="${ m.signDepName }" required="required" class="form-control input-sm signDepName " placeholder="请选择部门" style="cursor: pointer;" readonly="readonly">
-                                                <div class="input-group-btn">
+                                                <div class="input-group-btn" style="float:left">
                                                     <button type="button"  class="btn btn-primary btn-sm signDepName">
                                                         &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                     </button>
@@ -255,7 +255,7 @@
                                             <div class="input-group">
                                                 <input type="hidden" name="signUserId" id="signUserId" value="${ m.signUserId }" >
                                                 <input type="text" name="signUserName" id="signUserName" value="${ m.signUserName }" required="required" class="form-control input-sm signUserName " placeholder="请选择签订人" style="cursor: pointer;" readonly="readonly">
-                                                <div class="input-group-btn">
+                                                <div class="input-group-btn" style="float:left">
                                                     <button type="button"  class="btn btn-primary btn-sm signUserName">
                                                         &nbsp;<i class="fa fa-search"></i>&nbsp;
                                                     </button>

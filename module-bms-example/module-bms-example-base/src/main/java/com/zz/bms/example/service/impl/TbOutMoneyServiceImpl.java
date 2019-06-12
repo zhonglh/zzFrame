@@ -22,23 +22,25 @@ import com.zz.bms.example.bo.TbOutMoneyBO;
 import com.zz.bms.example.dao.TbOutMoneyDAO;
 import com.zz.bms.example.service.TbOutMoneyService;
 
+import com.zz.bms.example.bo.TbInvestorAgreementBO;
+import com.zz.bms.example.dao.TbInvestorAgreementDAO;
+import com.zz.bms.system.bo.TsDepBO;
+import com.zz.bms.system.dao.TsDepDAO;
 import com.zz.bms.example.bo.TbFundBO;
 import com.zz.bms.example.dao.TbFundDAO;
 import com.zz.bms.example.bo.TbInvestorBO;
 import com.zz.bms.example.dao.TbInvestorDAO;
-import com.zz.bms.example.bo.TbInvestorAgreementBO;
-import com.zz.bms.example.dao.TbInvestorAgreementDAO;
 import com.zz.bms.system.bo.TsUserBO;
 import com.zz.bms.system.dao.TsUserDAO;
-import com.zz.bms.system.bo.TsDepBO;
-import com.zz.bms.system.dao.TsDepDAO;
 
 
 
 
+import com.zz.bms.util.base.java.IdUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,7 +50,7 @@ import java.util.Map;
 /**
 * 出资明细 ServiceImpl
 * @author Administrator
-* @date 2019-6-3 10:12:55
+* @date 2019-6-12 19:11:19
 */
 @Service
 public class TbOutMoneyServiceImpl extends SystemBaseServiceImpl<TbOutMoneyBO,String> implements TbOutMoneyService {
@@ -64,15 +66,15 @@ public class TbOutMoneyServiceImpl extends SystemBaseServiceImpl<TbOutMoneyBO,St
 
 
     @Autowired
+    private TbInvestorAgreementDAO tbInvestorAgreementDAO;
+    @Autowired
+    private TsDepDAO tsDepDAO;
+    @Autowired
     private TbFundDAO tbFundDAO;
     @Autowired
     private TbInvestorDAO tbInvestorDAO;
     @Autowired
-    private TbInvestorAgreementDAO tbInvestorAgreementDAO;
-    @Autowired
     private TsUserDAO tsUserDAO;
-    @Autowired
-    private TsDepDAO tsDepDAO;
 
 
     @Autowired

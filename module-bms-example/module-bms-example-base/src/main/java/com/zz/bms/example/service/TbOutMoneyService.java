@@ -7,7 +7,7 @@ import com.zz.bms.example.bo.TbOutMoneyBO;
 /**
 * 出资明细 Service
 * @author Administrator
-* @date 2019-6-3 10:12:55
+* @date 2019-6-12 19:11:19
 */
 public interface TbOutMoneyService extends BaseService<TbOutMoneyBO , String> {
 

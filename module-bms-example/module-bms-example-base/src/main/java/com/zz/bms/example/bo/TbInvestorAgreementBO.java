@@ -27,7 +27,7 @@ import java.util.Map;
 /**
 * 投资协议 BO , 扩展 TbInvestorAgreementEntity 对象
 * @author Administrator
-* @date 2019-6-3 17:45:28
+* @date 2019-6-12 19:11:27
 */
 @EntityAnnotation(value="投资协议" , resource = "example.investoragreement"  ,haveTenant = true   ,businessName = "agreement_name"    ,businessKey = { "agreement_code" }    )
 @TableName(value="tb_investor_agreement" , resultMap = "TbInvestorAgreementResultMap")
