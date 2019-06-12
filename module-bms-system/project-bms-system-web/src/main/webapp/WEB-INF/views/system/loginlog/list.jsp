@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/views/common/taglibs.jspf" %>
-<bms:contentHeader title="zz" />
+<bms:contentHeader />
 
 
 
@@ -58,7 +58,7 @@
             <th field='operationTypeName' align="left" width="1" sortable='false' >操作类型</th>
             <th field='depName' align="left" width="1" sortable='false'  >部门</th>
             <th field='operationIp' align="left" width="1" sortable='false'  >操作人IP</th>
-            <th field='operationTime' align="center" width="1" sortable='true' formatter='dateFmt' >操作时间</th>
+            <th field='operationTime' align="center" width="1" sortable='true' formatter='datetimeFmt' >操作时间</th>
 
 
 

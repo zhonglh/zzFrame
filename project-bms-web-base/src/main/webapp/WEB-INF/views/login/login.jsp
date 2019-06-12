@@ -16,7 +16,7 @@
     <meta http-equiv="Expires" content="0" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>zz后台管理系统-登录</title>
+    <title><spring:message code="common.platform.info" text="zz后台管理系统" /></title>
     <link rel="icon" href="${staticUrl}/statics2/image/favicon.ico">
     <link rel="shortcut icon" href="${staticUrl}/statics2/image/favicon.ico">
 
@@ -99,7 +99,7 @@
                 <div class="col-xs-12  col-lg-4 col-lg-offset-1  col-md-5  col-md-offset-0  col-sm-6 col-sm-offset-1" style='margin-bottom: 20px;'>
                     <!--右侧界面-->
                     <div class="login_main_r ">
-                        <div class="login_title"><ul><li title='后台管理系统'>后台管理系统</li></ul></div>
+                        <div class="login_title"><ul><li title='<spring:message code="common.platform.info" text="zz后台管理系统" />'><spring:message code="common.platform.info" text="zz后台管理系统" /></li></ul></div>
 
 
                         <form action="" method='post'>

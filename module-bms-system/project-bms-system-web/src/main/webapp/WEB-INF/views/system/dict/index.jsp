@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/views/common/taglibs.jspf" %>
-<bms:contentHeader title="zz后台管理系统" />
+<bms:contentHeader />
 
 
 <div class="panel layout-panel layout-panel-north" style="width: 100%; left: 0px; top: 0px;">

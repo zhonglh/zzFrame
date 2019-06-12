@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/views/common/taglibs.jspf" %>
-<bms:contentHeader title="zz1" />
+<bms:contentHeader />
 
 <div region='center' style="padding: 0px 10px 0 10px;">
     <table id='tableData-excel' class='easyui-datagrid' method='post' fit='false' pagination='true' fitColumns="true"

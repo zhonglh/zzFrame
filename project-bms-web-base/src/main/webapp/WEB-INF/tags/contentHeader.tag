@@ -1,7 +1,8 @@
 <%@tag pageEncoding="UTF-8"%>
 <%@attribute name="title" type="java.lang.String" required="false" %>
 <%@attribute name="index" type="java.lang.Boolean" required="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <c:set var="staticUrl" value="${pageContext.request.contextPath}"/>
 <%--
@@ -29,7 +30,7 @@
     <!-- 页面按原比例显示 -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>${title}</title>
+    <title><spring:message code='common.platform.info' text='zz后台管理系统' /></title>
     <link rel="icon" href="${staticUrl}/statics2/image/favicon.ico">
     <link rel="shortcut icon" href="${staticUrl}/statics2/image/favicon.ico">
     <%@include file="/WEB-INF/views/common/import-css.jspf"%>

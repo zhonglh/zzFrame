@@ -4,6 +4,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <c:set var="staticUrl" value="${pageContext.request.contextPath}"/>
@@ -26,7 +27,7 @@
     <!-- 页面按原比例显示 -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>zz后台管理系统</title>
+    <title><spring:message code="common.platform.info" text="zz后台管理系统" /></title>
     <link rel="icon" href="${staticUrl}/statics2/image/favicon.ico">
     <link rel="shortcut icon" href="${staticUrl}/statics2/image/favicon.ico">
 
@@ -89,11 +90,11 @@
                 <a href="${ctx}/main/home" class="home-btn" data-ot=" 首页 " data-ot-delay="1"><i class="fa fa-home"></i></a>
                 <ul class="nav navbar-nav" id="nav-bar">
 
-                    <c:forEach items="${topShortcutMenus}" var="shortcut">
+                    <%--<c:forEach items="${topShortcutMenus}" var="shortcut">
 
                         <li menuId='${shortcut.id}' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('${ctx}${shortcut.path}')"><c:if test="${not empty shortcut.icon}"><i class="fa ${shortcut.icon}"></i></c:if><span>${shortcut.title}</span></a></li>
 
-                    </c:forEach>
+                    </c:forEach>--%>
 
 
                     <%--
