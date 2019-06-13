@@ -29,6 +29,14 @@ public interface StorageProcess {
     public FileVO store(InputStream inputStream, String filename  ,  EnumFileType enumFileType);
 
 
+    /**
+     * 储存文件
+     * @param bs
+     * @param filename
+     */
+    public FileVO store(byte[] bs , String filename  ,  EnumFileType enumFileType);
+
+
 
     /**
      * 删除文件

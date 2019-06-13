@@ -1,6 +1,7 @@
 package com.zz.bms.oss.controller;
 
 
+import com.sun.org.apache.xml.internal.security.utils.Base64;
 import com.zz.bms.oss.engine.engine.StorageProcess;
 import com.zz.bms.oss.engine.enums.EnumFileType;
 import com.zz.bms.oss.vo.FileVO;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 处理图片信息
@@ -26,6 +29,19 @@ import java.io.InputStream;
 @Controller
 @Slf4j
 public class ImageController extends OssController  {
+
+
+
+    public String getSubUtilSimple(String soap,String rgex){
+        Pattern pattern = Pattern.compile(rgex);
+        Matcher m = pattern.matcher(soap);
+        while(m.find()){
+            return m.group(1);
+        }
+        return "";
+
+
+    }
 
     /**
      * 上传图片
@@ -39,26 +55,23 @@ public class ImageController extends OssController  {
     @ResponseBody
     public Object uploadImage(String  imageData, HttpServletResponse res, HttpServletRequest request) throws  Exception{
 
-        imageData = imageData.substring(22);
-        BASE64Decoder decoder = new sun.misc.BASE64Decoder();
-        byte[] bytes = decoder.decodeBuffer(imageData);
-        ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
+
+        String rgex = "data:image/(.*?);base64";
+        String type = getSubUtilSimple(imageData, rgex);
+        //去除base64图片的前缀
+        imageData = imageData.replaceFirst("data:(.+?);base64,", "");
 
 
-        String businessType = request.getParameter("businessType");
-        String businessId = request.getParameter("businessId");
-        String businessFileType = request.getParameter("businessFileType");
-        String businessTempId = request.getParameter("businessTempId");
-        String remark = request.getParameter("remark");
 
-        StorageProcess sp = buildStorageProcess(businessType , businessFileType , bytes.length) ;
+        //把图片转换成二进制
+        byte[] bytes = Base64.decode(imageData.replaceAll(" ", "+"));
 
-
-        //保存文件
-        FileVO fileVO = saveFile(bais, sp);
+        BASE64Decoder d = new BASE64Decoder();
+        byte[] bs = d.decodeBuffer(Base64.encode(bytes));
+        ByteArrayInputStream bais = new ByteArrayInputStream(bs);
 
 
-        return this.saveFileInfo(fileVO ,sp , "header.jpg" , new Long (bytes.length) , "image/jpg" ,request );
+        return this.saveFileInfo(bs , "header."+type , new Long (bytes.length) , "image/"+type ,request );
 
     }
 

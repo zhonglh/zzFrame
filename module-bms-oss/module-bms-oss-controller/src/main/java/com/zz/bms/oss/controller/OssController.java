@@ -228,9 +228,7 @@ public class OssController extends BaseController<String> {
         return ajaxJson;
     }
 
-
-    protected Object saveFileInfo(FileVO fileVO,
-                                  StorageProcess sp ,
+    protected Object saveFileInfo(byte[] bs,
                                   String originalFilename,
                                   long size ,
                                   String contentType,
@@ -242,6 +240,8 @@ public class OssController extends BaseController<String> {
         String businessFileType = request.getParameter("businessFileType");
         String businessTempId = request.getParameter("businessTempId");
         String remark = request.getParameter("remark");
+        StorageProcess sp = buildStorageProcess(businessType , businessFileType ,size) ;
+
 
         ILoginUserEntity<String> loginUser =  getSessionUser();
 
@@ -275,8 +275,13 @@ public class OssController extends BaseController<String> {
             bo.setDeleteFlag(EnumYesNo.NO.getCode());
 
             oneFile = new TsFileBO();
+
+            //保存文件
+            FileVO fileVO = saveFile(bs, sp);
+
             String suffix = FileKit.getSuffix(showName);
             long fileSize = size;
+
             oneFile.setFileEngineName(sp.getEngine().getLabel());
             oneFile.setFileEngine(sp.getEngine().getVal());
             oneFile.setFileSize(fileSize);
@@ -289,7 +294,13 @@ public class OssController extends BaseController<String> {
             oneFile.setFilePath(fileVO.getFilePath());
             oneFile.setFileHost(IpUtil.getIp());
             oneFile.setFileName(fileVO.getFileName());
+
+
             list.add(new FileUseVO(oneFile ,bo));
+
+
+
+
             fileService.saveFiles(list);
 
         }catch(Exception e){
@@ -320,6 +331,19 @@ public class OssController extends BaseController<String> {
     protected FileVO saveFile(InputStream inputStream, StorageProcess sp) {
         return sp.store(inputStream , FileKit.buildFilePath("") , EnumFileType.FileType);
     }
+
+
+
+    /**
+     * 真正保存文件到本地
+     * @param bs
+     * @param sp
+     * @return
+     */
+    protected FileVO saveFile(byte[] bs , StorageProcess sp) {
+        return sp.store(bs , FileKit.buildFilePath("") , EnumFileType.FileType);
+    }
+
 
 
     /**

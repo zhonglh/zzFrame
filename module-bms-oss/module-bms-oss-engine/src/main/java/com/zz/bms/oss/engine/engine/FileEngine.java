@@ -1,5 +1,7 @@
 package com.zz.bms.oss.engine.engine;
 
+import com.sun.org.apache.xml.internal.security.utils.Base64;
+import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.oss.engine.config.FileSystemConfig;
 import com.zz.bms.oss.engine.enums.EnumFileEngine;
@@ -15,8 +17,10 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -44,15 +48,60 @@ public  class FileEngine extends AbstractEngine implements StorageProcess {
 
 
     @Override
-    public FileVO store(InputStream inputStream, String filename , EnumFileType enumFileType) {
+    public FileVO store(byte[] bs , String filename  , EnumFileType enumFileType){
         try {
             Path target = getTargetPath(filename);
 
 
             if(enumFileType == EnumFileType.ImageType){
 
-                BufferedImage bi = ImageIO.read(inputStream);
-                ImageIO.write(bi, "jpg", target.toFile());
+                OutputStream os = null;
+                try {
+                    os = new FileOutputStream(target.toFile());
+                    os.write(bs);
+                    os.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }finally {
+                    if (os != null) {
+                        try {
+                            os.close();
+                        } catch (IOException e) {
+                            e.getLocalizedMessage();
+                        }
+                    }
+                }
+
+
+            }else {
+
+                throw EnumErrorMsg.code_error.toException();
+            }
+
+            FileVO fileVO = new FileVO();
+            fileVO.setFileBasePath(rootLocation.toAbsolutePath().toString());
+            fileVO.setFilePath(target.toAbsolutePath().toString());
+            fileVO.setFileName(target.toFile().getName());
+            fileVO.setAccessUrl("/oss/file/view/");
+            fileVO.setAccessUrlPrefix("");
+            fileVO.setFileHost(IpUtil.getIp());
+            return fileVO;
+        }
+        catch (Exception e) {
+            throw new RuntimeException ("Failed to store file " + filename, e);
+        }
+    }
+
+
+
+    @Override
+    public FileVO store(InputStream inputStream, String filename , EnumFileType enumFileType) {
+        try {
+            Path target = getTargetPath(filename);
+
+
+            if(enumFileType == EnumFileType.ImageType){
+                throw EnumErrorMsg.code_error.toException();
             }else {
                 //Files.copy(inputStream, target , StandardCopyOption.REPLACE_EXISTING);
                 FileUtils.copyInputStreamToFile(inputStream, target.toFile());
