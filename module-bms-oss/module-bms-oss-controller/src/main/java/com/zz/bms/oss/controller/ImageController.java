@@ -39,7 +39,7 @@ public class ImageController extends OssController  {
     @ResponseBody
     public Object uploadImage(String  imageData, HttpServletResponse res, HttpServletRequest request) throws  Exception{
 
-
+        imageData = imageData.substring(22);
         BASE64Decoder decoder = new sun.misc.BASE64Decoder();
         byte[] bytes = decoder.decodeBuffer(imageData);
         ByteArrayInputStream bais = new ByteArrayInputStream(bytes);

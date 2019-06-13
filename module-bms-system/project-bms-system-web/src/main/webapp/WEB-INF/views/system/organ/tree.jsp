@@ -28,29 +28,12 @@
                 </shiro:hasPermission>
 
 
-
-
                 <shiro:hasPermission name="system.organ:delete">
                     <button type="button" class="btn btn-primary btn-sm" onclick="doDelete()">
                         <i class="fa fa-trash"></i>
                         <span>删除 </span>
                     </button>
                 </shiro:hasPermission>
-
-
-
-
-
-
-
-                <shiro:hasPermission name="system.organ:importExcel">
-                    <div type="button" id="importExcel" class="btn btn-primary btn-sm" >
-                        <i class="fa fa-upload"></i>
-                        <span>导入</span>
-                    </div>
-                </shiro:hasPermission>
-
-
 
 
                 <shiro:hasPermission name="system.organ:exportExcel">

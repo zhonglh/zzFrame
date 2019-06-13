@@ -402,6 +402,14 @@ function addMenuEvent()
         {
             curLi.find("a").addClass("right-arrow");
         }
+
+        var _thisMenuNo = curLi.attr("menuNodeNo");
+        var children = curLi.siblings('[parentNodeNo=\'' + _thisMenuNo + '\']');
+
+        for (var t = 0; t < children.length; t++){
+            $(children[t]).find("a").addClass("right-arrow");
+        }
+
     }
 
     $lis.click(function()
