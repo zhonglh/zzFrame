@@ -129,18 +129,20 @@ public class OssController extends BaseController<String> {
 
         return AjaxJson.errorAjax;
     }
+
     protected Object saveFileInfo(InputStream inputStream,
                                 String originalFilename,
                                 long size ,
                                 String contentType,
                                 HttpServletRequest request) {
+
+
         String businessType = request.getParameter("businessType");
         String businessId = request.getParameter("businessId");
         String businessFileType = request.getParameter("businessFileType");
         String businessTempId = request.getParameter("businessTempId");
         String remark = request.getParameter("remark");
-
-        StorageProcess sp = buildStorageProcess(businessType , businessFileType , size) ;
+        StorageProcess sp = buildStorageProcess(businessType , businessFileType ,size) ;
 
 
         ILoginUserEntity<String> loginUser =  getSessionUser();
@@ -227,6 +229,88 @@ public class OssController extends BaseController<String> {
     }
 
 
+    protected Object saveFileInfo(FileVO fileVO,
+                                  StorageProcess sp ,
+                                  String originalFilename,
+                                  long size ,
+                                  String contentType,
+                                  HttpServletRequest request) {
+
+
+        String businessType = request.getParameter("businessType");
+        String businessId = request.getParameter("businessId");
+        String businessFileType = request.getParameter("businessFileType");
+        String businessTempId = request.getParameter("businessTempId");
+        String remark = request.getParameter("remark");
+
+        ILoginUserEntity<String> loginUser =  getSessionUser();
+
+        List<FileUseVO> list = new ArrayList<FileUseVO>();
+
+        TsFileBO oneFile = null ;
+        TsFileUseBO bo = null;
+
+        int index = 1;
+
+        try {
+
+            bo = new TsFileUseBO();
+
+            String showName = originalFilename;
+            String md5 = null;
+
+            bo.setShowName(showName);
+            bo.setBusinessType(businessType);
+            bo.setBusinessId(businessId);
+            bo.setBusinessFileType(businessFileType);
+            bo.setBusinessTempId(businessTempId);
+            bo.setRemark(remark);
+            bo.setFileOrder(index++);
+            bo.setCreateTime(new Timestamp(System.currentTimeMillis()));
+            bo.setCreateUserId(loginUser.getId());
+            bo.setCreateUserName(loginUser.getUserName());
+            bo.setTenantId(loginUser.getTenantId());
+            bo.setOrganId(loginUser.getOrganId());
+            bo.setVersionNo(Constant.INIT_VERSION);
+            bo.setDeleteFlag(EnumYesNo.NO.getCode());
+
+            oneFile = new TsFileBO();
+            String suffix = FileKit.getSuffix(showName);
+            long fileSize = size;
+            oneFile.setFileEngineName(sp.getEngine().getLabel());
+            oneFile.setFileEngine(sp.getEngine().getVal());
+            oneFile.setFileSize(fileSize);
+            oneFile.setMd5(md5);
+            oneFile.setContentType(contentType);
+            oneFile.setFileSuffix(suffix);
+            oneFile.setAccessUrlPrefix(fileVO.getAccessUrlPrefix());
+            oneFile.setAccessUrl(fileVO.getAccessUrl());
+            oneFile.setFileBasePath(fileVO.getFileBasePath());
+            oneFile.setFilePath(fileVO.getFilePath());
+            oneFile.setFileHost(IpUtil.getIp());
+            oneFile.setFileName(fileVO.getFileName());
+            list.add(new FileUseVO(oneFile ,bo));
+            fileService.saveFiles(list);
+
+        }catch(Exception e){
+            logger.error(e.getMessage() ,e);
+            return AjaxJson.errorAjax;
+        }
+
+
+        AjaxJson ajaxJson =  new AjaxJson(true);
+        VsFileUseBO vsFileUseBO = new VsFileUseBO();
+        vsFileUseBO.setId(bo.getId());
+        vsFileUseBO.setFileId(oneFile.getId());
+        vsFileUseBO.setShowName(bo.getShowName());
+        vsFileUseBO.setAccessUrl(oneFile.getAccessUrl());
+        vsFileUseBO.setFileEngine(sp.getEngine().getVal());
+        ajaxJson.setObj(vsFileUseBO);
+
+        return ajaxJson;
+    }
+
+
     /**
      * 真正保存文件到本地
      * @param inputStream
@@ -246,7 +330,7 @@ public class OssController extends BaseController<String> {
      * @param fileSize          文件大小
      * @return
      */
-    private StorageProcess buildStorageProcess(String businessType , String fileType , long fileSize) {
+    protected StorageProcess buildStorageProcess(String businessType , String fileType , long fileSize) {
         //因为没有其他的方式， 直接用本地文件系统的方式
 
         if(storageProcesss == null || storageProcesss.length == 0){

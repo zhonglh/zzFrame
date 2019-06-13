@@ -88,25 +88,26 @@
 
                 <%--<div id="drag-placeholder" >点击"+"号定制<br/>快捷菜单</div>--%>
                 <a href="${ctx}/main/home" class="home-btn" data-ot=" 首页 " data-ot-delay="1"><i class="fa fa-home"></i></a>
+                <%--
                 <ul class="nav navbar-nav" id="nav-bar">
 
-                    <%--<c:forEach items="${topShortcutMenus}" var="shortcut">
+                    <c:forEach items="${topShortcutMenus}" var="shortcut">
 
                         <li menuId='${shortcut.id}' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('${ctx}${shortcut.path}')"><c:if test="${not empty shortcut.icon}"><i class="fa ${shortcut.icon}"></i></c:if><span>${shortcut.title}</span></a></li>
 
-                    </c:forEach>--%>
+                    </c:forEach>
 
 
-                    <%--
 
                     <li menuId='100' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/100/3')"><i class="fa fa-list-alt"></i></i><span>发起流程</span></a></li>
 
                     <li menuId='2' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/2/3')"><i class="fa fa-random"></i></i><span>待办流程</span></a></li>
 
                     <li menuId='34' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/34/3')"><i class="fa fa-list-alt"></i></i><span>我的项目</span></a></li>
-                    --%>
+
 
                 </ul>
+                --%>
 
                 <div class="last-nav">
                     <a href="javascript:;"><i class="fa fa-plus"></i></a>
@@ -200,69 +201,17 @@
             <li menuNodeNo="${menu.id}" menuLevel="${menu.level}" menuLeaf="${menu.leaf}" style="display : <c:if test="${menu.level == 1}">block</c:if><c:if test="${menu.level > 1}">none</c:if>" parentNodeNo="<c:if test="${empty menu.pid}">-1</c:if><c:if test="${not empty menu.pid}">${menu.pid}</c:if>"  >
                 <c:if test="${empty menu.target}">
                 <a href="javascript: openMenu('<c:if test="${menu.leaf == '1'}">${ctx}${menu.path}</c:if>');" title="${menu.title}"  style="padding-left: <c:if test="${menu.level == 1}">6</c:if><c:if test="${menu.level != 1}">${(menu.level-1)*22}</c:if>px;">
-                    <c:if test="${not empty menu.icon}"><i class="fa ${menu.icon}"></i></c:if>${menu.title}
+                    <c:if test="${not empty menu.icon}"><i class="${menu.icon}"></i></c:if>${menu.title}
                 </a>
                 </c:if>
                 <c:if test="${not empty menu.target}">
                     <a href="${menu.path}" target="${menu.target}" title="${menu.title}"  style="padding-left: <c:if test="${menu.level == 1}">6</c:if><c:if test="${menu.level != 1}">${(menu.level-1)*22}</c:if>px;">
-                        <c:if test="${not empty menu.icon}"><i class="fa ${menu.icon}"></i></c:if>${menu.title}
+                        <c:if test="${not empty menu.icon}"><i class="${menu.icon}"></i></c:if>${menu.title}
                     </a>
                 </c:if>
             </li>
 
         </c:forEach>
-
-
-        <!--
-        <li menuNodeNo="2" menuLevel="1" parentNodeNo="-1" style="display: block">
-            <a href="javascript: openMenu('url/2/3');" title="待办流程" style="padding-left: 6px;">
-                <i class="fa fa-random"></i>待办流程</a>
-        </li>
-
-        <li menuNodeNo="100" menuLevel="1" parentNodeNo="-1" style="display: block">
-            <a href="javascript: openMenu('url/100/3');" title="发起流程" style="padding-left: 6px;">
-                <i class="fa fa-list-alt"></i>发起流程</a>
-        </li>
-
-        <li menuNodeNo="32" menuLevel="1" parentNodeNo="-1" style="display: block">
-            <a href="javascript: openMenu('url/32/3');" title="投资人管理" style="padding-left: 6px;">
-                <i class="fa fa-user"></i>投资人管理</a>
-        </li>
-
-        <li menuNodeNo="31" menuLevel="1" parentNodeNo="-1" style="display: block">
-            <a href="javascript: openMenu('url/31/3');" title="私募基金管理" style="padding-left: 6px;">
-                <i class="fa fa-shield"></i>私募基金管理</a>
-        </li>
-
-        <li menuNodeNo="33" menuLevel="1" parentNodeNo="-1" style="display: block">
-            <a href="javascript: openMenu('');" title="投资项目管理" style="padding-left: 6px;"><i class="fa fa-suitcase"></i>投资项目管理</a>
-        </li>
-
-        <li menuNodeNo="33-34" menuLevel="2" parentNodeNo="33" style="display: none">
-            <a href="javascript: openMenu('url/34/3');" title="我的项目" style="padding-left: 28px;">
-                <i class="fa fa-list-alt"></i>我的项目</a>
-        </li>
-
-        <li menuNodeNo="33-35" menuLevel="2" parentNodeNo="33" style="display: none">
-            <a href="javascript: openMenu('url/35/3');" title="投资项目管理" style="padding-left: 28px;">
-                <i class="fa fa-list-alt"></i>投资项目管理</a>
-        </li>
-
-        <li menuNodeNo="54" menuLevel="1" parentNodeNo="-1" style="display: block">
-            <a href="javascript: openMenu('');" title="风控合规管理" style="padding-left: 6px;"><i class="fa fa-rocket"></i>风控合规管理</a>
-        </li>
-
-        <li menuNodeNo="54-57" menuLevel="2" parentNodeNo="54" style="display: none">
-            <a href="javascript: openMenu('url/57/3');" title="基金风险检测" style="padding-left: 28px;">
-                <i class="fa fa-list-alt"></i>基金风险检测</a>
-        </li>
-
-        <li menuNodeNo="54-56" menuLevel="2" parentNodeNo="54" style="display: none">
-            <a href="javascript: openMenu('url/56/3');" title="项目风险检测" style="padding-left: 28px;">
-                <i class="fa fa-list-alt"></i>项目风险检测</a>
-        </li>
-        -->
-
 
     </ul>
 
@@ -277,7 +226,7 @@
 <div class='interruption' style="display: none">
     <div class="item">
         <div class="item-inner"><div class="item-loader-container"><div class="la-timer"><div></div></div></div></div>
-        <div class="item-title"><span>处理中，请稍候......</span></div>
+        <div class="item-title"><span>正在处理，请稍候......</span></div>
     </div>
 </div>
 

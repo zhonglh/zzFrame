@@ -45,27 +45,21 @@ public class ImageController extends OssController  {
         ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
 
 
-        return this.saveFileInfo(bais , "header.jpg" , new Long (bytes.length) , "image/jpg" ,request );
+        String businessType = request.getParameter("businessType");
+        String businessId = request.getParameter("businessId");
+        String businessFileType = request.getParameter("businessFileType");
+        String businessTempId = request.getParameter("businessTempId");
+        String remark = request.getParameter("remark");
 
-        /*String imgBase64 = URLDecoder.decode(imageData,"UTF-8");
-        imgBase64 = imgBase64.substring(22);
-        InputStream inputStream = null;
-        try {
-            byte[] imgByte = base64StringToImage(imgBase64);
-            inputStream = new ByteArrayInputStream(imgByte);
-            return this.saveFileInfo(inputStream , "" , new Long (imgBase64.length()) , "image/png" ,request );
-        }catch (Exception e) {
-            log.error(e.getMessage() , e);
-        }finally {
-            if(inputStream != null){
-                try {
-                    inputStream.close();
-                }catch (Exception ee){
+        StorageProcess sp = buildStorageProcess(businessType , businessFileType , bytes.length) ;
 
-                }
-            }
-        }*/
-        //return AjaxJson.errorAjax;
+
+        //保存文件
+        FileVO fileVO = saveFile(bais, sp);
+
+
+        return this.saveFileInfo(fileVO ,sp , "header.jpg" , new Long (bytes.length) , "image/jpg" ,request );
+
     }
 
 
