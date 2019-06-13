@@ -48,7 +48,7 @@ import java.util.Map;
 
 /**
  * 处理数据库基础的Excel 功能
- * 包括导出，导入 支持 Excel2003  Excel2007  CVS 格式
+ * 包括导出，导入 支持 Excel2003  Excel2007  CSV 格式
  * @author Administrator
  */
 public abstract class BaseGroupExcelController <
