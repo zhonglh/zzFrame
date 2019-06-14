@@ -1,6 +1,5 @@
 package com.zz.bms.oss.engine.engine;
 
-import com.sun.org.apache.xml.internal.security.utils.Base64;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.oss.engine.config.FileSystemConfig;

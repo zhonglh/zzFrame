@@ -1,7 +1,9 @@
 package com.zz.bms.oss.controller;
 
 
-import com.sun.org.apache.xml.internal.security.utils.Base64;
+import java.util.Base64;
+
+
 import com.zz.bms.oss.engine.engine.StorageProcess;
 import com.zz.bms.oss.engine.enums.EnumFileType;
 import com.zz.bms.oss.vo.FileVO;
@@ -11,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -61,17 +62,16 @@ public class ImageController extends OssController  {
         //去除base64图片的前缀
         imageData = imageData.replaceFirst("data:(.+?);base64,", "");
 
+        Base64.Decoder decoder = Base64.getDecoder();
 
 
         //把图片转换成二进制
-        byte[] bytes = Base64.decode(imageData.replaceAll(" ", "+"));
+        byte[] bytes = decoder.decode(imageData.replaceAll(" ", "+"));
 
-        BASE64Decoder d = new BASE64Decoder();
-        byte[] bs = d.decodeBuffer(Base64.encode(bytes));
-        ByteArrayInputStream bais = new ByteArrayInputStream(bs);
+        ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
 
 
-        return this.saveFileInfo(bs , "header."+type , new Long (bytes.length) , "image/"+type ,request );
+        return this.saveFileInfo(bytes , "header."+type , new Long (bytes.length) , "image/"+type ,request );
 
     }
 
