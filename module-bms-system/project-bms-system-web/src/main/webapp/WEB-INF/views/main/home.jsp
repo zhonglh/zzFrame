@@ -233,6 +233,7 @@
 <div class="hidden">
     <form id="formProfile" class="form-horizontal" action="${ctx}/system/user/updateMyProfile" method="post">
         <input name="avatarImage" id="avatarImage" type="hidden" value="${loginUser.avatarImage}">
+        <input name="hasSaveHeaderImage" id="hasSaveHeaderImage" type="hidden" value="0">
         <table width="100%">
             <tr>
                 <td>
@@ -275,7 +276,7 @@
                     </table>
                 </td>
                 <td width="160" align="right">
-                    <img id="userHeadImg" src="" onclick="changeHeadImage();"
+                    <img id="userHeadImg" src="${userImageUrl}" onclick="changeHeadImage();"
                           style="cursor: pointer; border: solid 1px #c0c0c0;  width: 150px; height: 170px;" />
                 </td>
             </tr>

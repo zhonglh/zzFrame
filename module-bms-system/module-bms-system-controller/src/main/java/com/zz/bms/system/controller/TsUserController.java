@@ -100,7 +100,7 @@ public class TsUserController extends ZzDefaultController<TsUserBO,VsUserBO, Str
 	 */
 	@RequestMapping(value = "/updateMyProfile" , method = RequestMethod.POST)
 	@ResponseBody
-	public Object updateMyProfile(VsUserBO vsUserBO ,   String origPassword, String newPassword,
+	public Object updateMyProfile(VsUserBO vsUserBO , String hasSaveHeaderImage,   String origPassword, String newPassword,
 								  ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 
 		String id = this.getSessionUser().getId();
@@ -136,20 +136,24 @@ public class TsUserController extends ZzDefaultController<TsUserBO,VsUserBO, Str
 
 		setUpdateInfo(vsUserBO , this.getSessionUser());
 		vsUserBO.setVersionNo(temp.getVersionNo());
-		String avatarImage = vsUserBO.getAvatarImage();
-		if(avatarImage == null || "undefined".equals(avatarImage) || "null".equals(avatarImage) || "".equals(avatarImage)){
-			vsUserBO.setAvatarImage("");
-		}else {
-			TsFileUseBO tsFileUseBO = null;
-			QueryWrapper<TsFileUseBO> qw = new QueryWrapper<TsFileUseBO>();
-			qw.lambda().eq(TsFileUseBO::getBusinessTempId , vsUserBO.getAvatarImage());
-			qw.lambda().orderByDesc(TsFileUseBO::getCreateTime);
-			List<TsFileUseBO> list = tsFileUseService.list(qw);
-			if(list != null && !list.isEmpty()) {
-				tsFileUseBO = list.get(0);
-				tsFileUseBO.setBusinessType(TsUserBO.class.getSimpleName());
-				tsFileUseBO.setBusinessId(vsUserBO.getId());
-				tsFileUseService.updateById(tsFileUseBO);
+
+
+		if(EnumYesNo.YES.getCode().equals(hasSaveHeaderImage)) {
+			String avatarImage = vsUserBO.getAvatarImage();
+			if (avatarImage == null || "undefined".equals(avatarImage) || "null".equals(avatarImage) || "".equals(avatarImage)) {
+				vsUserBO.setAvatarImage("");
+			} else {
+				TsFileUseBO tsFileUseBO = null;
+				QueryWrapper<TsFileUseBO> qw = new QueryWrapper<TsFileUseBO>();
+				qw.lambda().eq(TsFileUseBO::getBusinessTempId, vsUserBO.getAvatarImage());
+				qw.lambda().orderByDesc(TsFileUseBO::getCreateTime);
+				List<TsFileUseBO> list = tsFileUseService.list(qw);
+				if (list != null && !list.isEmpty()) {
+					tsFileUseBO = list.get(0);
+					tsFileUseBO.setBusinessType(TsUserBO.class.getSimpleName());
+					tsFileUseBO.setBusinessId(vsUserBO.getId());
+					tsFileUseService.updateById(tsFileUseBO);
+				}
 			}
 		}
 
@@ -165,9 +169,9 @@ public class TsUserController extends ZzDefaultController<TsUserBO,VsUserBO, Str
 
 
 		if(!success){
-			refresh(vsUserBO);
 			throw DbException.DB_UPDATE_RESULT_0;
 		}else {
+			refresh(vsUserBO);
 			return AjaxJson.successAjax;
 		}
 

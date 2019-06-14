@@ -138,7 +138,6 @@ function cropImgUpload(callback)
             url: $AppContext + '/oss/image/uploadImage?businessTempId=' + avatarImage + '&businessFileType=avatarImage', type: 'post', data: {"imageData": result.toDataURL().toString()}, dataType: 'json', async: false,
             success: function (data)
             {
-                debugger;
                 if(data.success) {
                     var obj = data.obj;
                     if (obj.id) {
@@ -537,6 +536,7 @@ function changeProfile()
                                             if (rsp.success)
                                             {
                                                 profileDlg.hide();
+
                                                 info('个人参数信息保存成功！', function(){window.location.reload();});
                                             }
                                             else
@@ -555,13 +555,15 @@ function changeProfile()
         $('select[name="pageLimit"]').html(getSelectOptions([[20, '20条每页'], [30, '30条每页'], [40, '40条每页'], [50, '50条每页'], [100, '100条每页']], 20));
         profileDlg.$title.html('<i class="fa fa-pencil"></i>&nbsp修改');
 
+        $("#hasSaveHeaderImage").val("0");
+
         // 初始化校验规则
         $("#formProfile").validate();
     }
 
     $('#formProfile')[0].reset();
     fillFormData('formProfile', myProfile);
-    $('#userHeadImg').prop('src', getUserAvatarUrl(myProfile.headImg, 1));
+    //$('#userHeadImg').prop('src', getUserAvatarUrl(myProfile.headImg, 1));
     profileDlg.show();
     $("#formProfile").clearValidate();
 }
@@ -571,6 +573,9 @@ function changeHeadImage()
 {
 
     initCropImgDialog(function(fileUse){
+
+        $('#hasSaveHeaderImage').val("1");
+
         if(fileUse.fileEngine == '1') {
             $('#userHeadImg').prop('src', ctx + '/oss/file/view/' + fileUse.id);
             //$('#imgUserAvatar').prop('src', ctx + '/oss/file/view/' + fileUse.id);
@@ -579,6 +584,7 @@ function changeHeadImage()
             $('#userHeadImg').prop('src', fileUse.accessUrl);
             //$('#imgUserAvatar').prop('src', fileUse.accessUrl);
         }
+
     });
 
 }
