@@ -75,11 +75,11 @@ uploader.on('uploadSuccess', function (file, response)
         info('数据导入成功！');
     }else {
         var viewExcelUrl = $AppContext+dataUrl+"/excelResultPage";
-        var  divHtml = "<div style='width: 100% ; height: 100%'><iframe width='100%' height='100%' frameborder='0px' src='"+viewExcelUrl+"'></iframe></div>";
+        var  divHtml = "<div style='width: 598px ; height: 454px;margin: 0px'><iframe width='100%' height='100%' frameborder='0px' src='"+viewExcelUrl+"'></iframe></div>";
         var dialog = iDialog({
-            title:'<i class="fa fa-upload"></i> Excel导入信息',
+            title:' Excel导入信息',
             lock: true,
-            width: 400,
+            width: 600,
             height: 500,
             content : divHtml
         });
