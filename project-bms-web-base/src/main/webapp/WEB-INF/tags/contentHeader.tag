@@ -76,7 +76,7 @@
 
         var staticUrl = '${staticUrl}';
 
-        var $PagingSize = 50 || 20;
+        var $PagingSize = ${PagingSize} || 20;
 
         var $AttachmentEngine = 'file';
 

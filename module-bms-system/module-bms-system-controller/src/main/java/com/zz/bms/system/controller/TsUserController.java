@@ -11,12 +11,18 @@ import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.shiro.utils.ShiroUtils;
 import com.zz.bms.system.bo.TsFileUseBO;
 import com.zz.bms.system.bo.TsUserBO;
+import com.zz.bms.system.bo.VsFileUseBO;
 import com.zz.bms.system.bo.VsUserBO;
+import com.zz.bms.system.domain.TsUserEntity;
 import com.zz.bms.system.query.impl.TsUserQueryWebImpl;
 import com.zz.bms.system.query.impl.VsUserQueryWebImpl;
 import com.zz.bms.system.service.TsDictService;
 import com.zz.bms.system.service.TsFileUseService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.SimplePrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,6 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * 用户 控制层
@@ -62,6 +69,22 @@ public class TsUserController extends ZzDefaultController<TsUserBO,VsUserBO, Str
 		tsUserBO.setSystemAdminName(EnumYesNo.NO.getCode());
 		tsUserBO.setSalt("2");
 		tsUserBO.setLoginPassword(ShiroUtils.encodeSalt(tsUserBO.getLoginPassword() , tsUserBO.getSalt()));
+	}
+
+
+
+	public static void refresh(VsUserBO vsUserBO){
+		Subject subject = SecurityUtils.getSubject();
+		TsUserEntity shiroUser = (TsUserEntity)subject.getPrincipal();
+		PrincipalCollection principalCollection = subject.getPrincipals();
+		//修改属性
+		shiroUser.setPageLimit(vsUserBO.getPageLimit());
+		shiroUser.setPhone(vsUserBO.getPhone());
+		shiroUser.setEmail(vsUserBO.getEmail());
+		String realmName = principalCollection.getRealmNames().iterator().next();
+		PrincipalCollection newPrincipalCollection = new SimplePrincipalCollection(shiroUser, realmName);
+		//重新加载Principal
+		subject.runAs(newPrincipalCollection);
 	}
 
 
@@ -117,10 +140,17 @@ public class TsUserController extends ZzDefaultController<TsUserBO,VsUserBO, Str
 		if(avatarImage == null || "undefined".equals(avatarImage) || "null".equals(avatarImage) || "".equals(avatarImage)){
 			vsUserBO.setAvatarImage("");
 		}else {
-			TsFileUseBO tsFileUseBO = tsFileUseService.getById(avatarImage);
-			tsFileUseBO.setBusinessType(TsUserBO.class.getSimpleName());
-			tsFileUseBO.setBusinessId(vsUserBO.getId());
-			tsFileUseService.updateById(tsFileUseBO);
+			TsFileUseBO tsFileUseBO = null;
+			QueryWrapper<TsFileUseBO> qw = new QueryWrapper<TsFileUseBO>();
+			qw.lambda().eq(TsFileUseBO::getBusinessTempId , vsUserBO.getAvatarImage());
+			qw.lambda().orderByDesc(TsFileUseBO::getCreateTime);
+			List<TsFileUseBO> list = tsFileUseService.list(qw);
+			if(list != null && !list.isEmpty()) {
+				tsFileUseBO = list.get(0);
+				tsFileUseBO.setBusinessType(TsUserBO.class.getSimpleName());
+				tsFileUseBO.setBusinessId(vsUserBO.getId());
+				tsFileUseService.updateById(tsFileUseBO);
+			}
 		}
 
 		checkEntityLegality(vsUserBO , false , true , true );
@@ -135,6 +165,7 @@ public class TsUserController extends ZzDefaultController<TsUserBO,VsUserBO, Str
 
 
 		if(!success){
+			refresh(vsUserBO);
 			throw DbException.DB_UPDATE_RESULT_0;
 		}else {
 			return AjaxJson.successAjax;

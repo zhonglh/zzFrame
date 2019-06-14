@@ -83,6 +83,7 @@ public class Constant {
     public final static String TABLEID = "tableId";
     public final static String CURR_PARENT_URL = "currParentUrl";
     public final static String BREADCRUMB = "breadcrumb";
+    public final static String PAGINGSIZE = "PagingSize";
 
 
 

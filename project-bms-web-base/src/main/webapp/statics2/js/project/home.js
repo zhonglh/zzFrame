@@ -176,7 +176,7 @@ $(function()
 
 
     // 刷新头像
-    $('#imgUserAvatar').prop('src', getUserAvatarUrl('default.png', 1));
+    //$('#imgUserAvatar').prop('src', getUserAvatarUrl('default.png', 1));
     // 初始化左侧菜单
     initMenu();
 
@@ -573,11 +573,11 @@ function changeHeadImage()
     initCropImgDialog(function(fileUse){
         if(fileUse.fileEngine == '1') {
             $('#userHeadImg').prop('src', ctx + '/oss/file/view/' + fileUse.id);
-            $('#imgUserAvatar').prop('src', ctx + '/oss/file/view/' + fileUse.id);
+            //$('#imgUserAvatar').prop('src', ctx + '/oss/file/view/' + fileUse.id);
 
         }else {
             $('#userHeadImg').prop('src', fileUse.accessUrl);
-            $('#imgUserAvatar').prop('src', fileUse.accessUrl);
+            //$('#imgUserAvatar').prop('src', fileUse.accessUrl);
         }
     });
 

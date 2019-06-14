@@ -98,5 +98,11 @@ public interface ILoginUserEntity<PK extends Serializable> {
      */
     public String getAvatarImage();
 
+    /**
+     * 每页显示记录数
+     * @return
+     */
+    public Integer getPageLimit() ;
+
 
 }

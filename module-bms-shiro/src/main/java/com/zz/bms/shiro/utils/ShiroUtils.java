@@ -64,6 +64,8 @@ public class ShiroUtils {
 	}
 
 
+
+
 	public static void main(String[] args) {
 		System.out.println(encodeSalt("123456","1"));
 

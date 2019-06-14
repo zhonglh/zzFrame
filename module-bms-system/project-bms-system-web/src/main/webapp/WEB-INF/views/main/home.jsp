@@ -249,7 +249,7 @@
 
                         <tr>
                             <td align="right">每页记录数：</td>
-                            <td><select name="pageLimit" name="pageLimit"  class="form-control input-sm"></select></td>
+                            <td><select name="pageLimit" id="pageLimit"  class="form-control input-sm"></select></td>
                         </tr>
 
                         <tr>

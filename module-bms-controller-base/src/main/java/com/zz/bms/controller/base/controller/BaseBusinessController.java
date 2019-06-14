@@ -86,6 +86,12 @@ public abstract class BaseBusinessController<
         String tableid = prefix.replaceAll("/" , "");
         modelMap.put(Constant.TABLEID, tableid);
         modelMap.put(Constant.CURR_PARENT_URL, prefix);
+        ILoginUserEntity loginUserEntity = this.getSessionUser();
+        if(loginUserEntity != null) {
+            modelMap.put(Constant.PAGINGSIZE, (this.getSessionUser().getPageLimit()==null?20:this.getSessionUser().getPageLimit()));
+        }else {
+            modelMap.put(Constant.PAGINGSIZE, 20);
+        }
 
         if(AppConfig.USE_CRUMB) {
             String breadcrumb = "";
