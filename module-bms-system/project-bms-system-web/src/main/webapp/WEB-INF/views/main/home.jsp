@@ -291,7 +291,7 @@
         <input type="hidden" id="cropHeightVal">
         <div class="row" style="position: relative">
             <div class="col-md-8">
-                <div class="img-container" style="width: 480px;height: 390px;background-color: #ccc;"><img id="image" src=""></div>
+                <div class="img-container" style="width: 480px;height: 390px;background-color: #ccc;"><img id="image"></div>
             </div>
 
             <div class="col-md-4">
@@ -378,15 +378,15 @@
 
 
 
-<script src="${staticUrl}/statics2/js/project/common.js"></script>
-<script src="${staticUrl}/statics2/js/project/common-tools.js"></script>
-<script src="${staticUrl}/statics2/js/project/common-setting.js"></script>
-<script src="${staticUrl}/statics2/js/project/common-jquery.js"></script>
-<script src="${staticUrl}/statics2/js/project/common-data.js"></script>
-<script src="${staticUrl}/statics2/js/project/common-validate.js"></script>
-<script src="${staticUrl}/statics2/js/project/common-upload.js"></script>
+<script src="${staticUrl}/statics2/js/project/common.js?dt=${applicationScope.startServerTime}"></script>
+<script src="${staticUrl}/statics2/js/project/common-tools.js?dt=${applicationScope.startServerTime}"></script>
+<script src="${staticUrl}/statics2/js/project/common-setting.js?dt=${applicationScope.startServerTime}"></script>
+<script src="${staticUrl}/statics2/js/project/common-jquery.js?dt=${applicationScope.startServerTime}"></script>
+<script src="${staticUrl}/statics2/js/project/common-data.js?dt=${applicationScope.startServerTime}"></script>
+<script src="${staticUrl}/statics2/js/project/common-validate.js?dt=${applicationScope.startServerTime}"></script>
+<script src="${staticUrl}/statics2/js/project/common-upload.js?dt=${applicationScope.startServerTime}"></script>
 
-<script src="${staticUrl}/statics2/js/project/home.js"></script>
+<script src="${staticUrl}/statics2/js/project/home.js?dt=${applicationScope.startServerTime}"></script>
 
 
 </body>

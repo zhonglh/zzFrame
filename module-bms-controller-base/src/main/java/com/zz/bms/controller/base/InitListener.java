@@ -21,6 +21,7 @@ public class InitListener implements javax.servlet.ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
 
         Constant.servletRealPath = sce.getServletContext().getRealPath("/");
+        sce.getServletContext().setAttribute("startServerTime" , System.currentTimeMillis());
 
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(sce.getServletContext());
         Map<String, IModuleAutoRun> map = webApplicationContext.getBeansOfType(IModuleAutoRun.class);

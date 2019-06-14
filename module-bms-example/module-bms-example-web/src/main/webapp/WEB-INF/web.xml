@@ -107,6 +107,10 @@
   </listener>
 
 
+  <listener>
+    <listener-class>com.zz.bms.controller.base.InitListener</listener-class>
+  </listener>
+
 
   <!-- Spring MVC servlet -->
 
