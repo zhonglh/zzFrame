@@ -181,14 +181,15 @@ public class OssController extends BaseController<String> {
                 wrapper.gt("use_frequency" , 0) ;
                 oneFile = tsFileService.getOne(wrapper);
                 if( oneFile == null ){
-                    oneFile = new TsFileBO();
 
-                    //保存文件
-                    FileVO fileVO = saveFile(inputStream, sp);
 
                     String suffix = FileKit.getSuffix(showName);
-                    long fileSize = size;
 
+                    oneFile = new TsFileBO();
+                    //保存文件
+                    FileVO fileVO = saveFile(inputStream, sp , suffix);
+
+                    long fileSize = size;
                     oneFile.setFileEngineName(sp.getEngine().getLabel());
                     oneFile.setFileEngine(sp.getEngine().getVal());
                     oneFile.setFileSize(fileSize);
@@ -275,13 +276,12 @@ public class OssController extends BaseController<String> {
             bo.setDeleteFlag(EnumYesNo.NO.getCode());
 
             oneFile = new TsFileBO();
+            String suffix = FileKit.getSuffix(showName);
 
             //保存文件
-            FileVO fileVO = saveFile(bs, sp);
+            FileVO fileVO = saveFile(bs, sp , suffix);
 
-            String suffix = FileKit.getSuffix(showName);
             long fileSize = size;
-
             oneFile.setFileEngineName(sp.getEngine().getLabel());
             oneFile.setFileEngine(sp.getEngine().getVal());
             oneFile.setFileSize(fileSize);
@@ -328,8 +328,8 @@ public class OssController extends BaseController<String> {
      * @param sp
      * @return
      */
-    protected FileVO saveFile(InputStream inputStream, StorageProcess sp) {
-        return sp.store(inputStream , FileKit.buildFilePath("") , EnumFileType.FileType);
+    protected FileVO saveFile(InputStream inputStream, StorageProcess sp , String suffix) {
+        return sp.store(inputStream , FileKit.buildFilePath("" , suffix) , EnumFileType.FileType);
     }
 
 
@@ -340,8 +340,8 @@ public class OssController extends BaseController<String> {
      * @param sp
      * @return
      */
-    protected FileVO saveFile(byte[] bs , StorageProcess sp) {
-        return sp.store(bs , FileKit.buildFilePath("") , EnumFileType.ImageType);
+    protected FileVO saveFile(byte[] bs , StorageProcess sp  , String suffix) {
+        return sp.store(bs , FileKit.buildFilePath("" , suffix) , EnumFileType.FileType);
     }
 
 

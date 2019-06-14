@@ -102,7 +102,6 @@ public  class FileEngine extends AbstractEngine implements StorageProcess {
             if(enumFileType == EnumFileType.ImageType){
                 throw EnumErrorMsg.code_error.toException();
             }else {
-                //Files.copy(inputStream, target , StandardCopyOption.REPLACE_EXISTING);
                 FileUtils.copyInputStreamToFile(inputStream, target.toFile());
             }
 

@@ -1,9 +1,6 @@
 package com.zz.bms.oss.controller;
 
 
-import java.util.Base64;
-
-
 import com.zz.bms.oss.engine.engine.StorageProcess;
 import com.zz.bms.oss.engine.enums.EnumFileType;
 import com.zz.bms.oss.vo.FileVO;
@@ -17,8 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
+import java.util.Base64;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,6 +28,7 @@ import java.util.regex.Pattern;
 @Slf4j
 public class ImageController extends OssController  {
 
+    final String rgex = "data:image/(.*?);base64";
 
 
     public String getSubUtilSimple(String soap,String rgex){
@@ -57,7 +55,6 @@ public class ImageController extends OssController  {
     public Object uploadImage(String  imageData, HttpServletResponse res, HttpServletRequest request) throws  Exception{
 
 
-        String rgex = "data:image/(.*?);base64";
         String type = getSubUtilSimple(imageData, rgex);
         //去除base64图片的前缀
         imageData = imageData.replaceFirst("data:(.+?);base64,", "");
@@ -68,8 +65,6 @@ public class ImageController extends OssController  {
         //把图片转换成二进制
         byte[] bytes = decoder.decode(imageData.replaceAll(" ", "+"));
 
-        ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
-
 
         return this.saveFileInfo(bytes , "header."+type , new Long (bytes.length) , "image/"+type ,request );
 
@@ -77,8 +72,8 @@ public class ImageController extends OssController  {
 
 
     @Override
-    protected FileVO saveFile(InputStream inputStream, StorageProcess sp) {
-        return sp.store(inputStream , FileKit.buildFilePath("") , EnumFileType.ImageType);
+    protected FileVO saveFile(InputStream inputStream, StorageProcess sp , String suffix) {
+        return sp.store(inputStream , FileKit.buildFilePath("" , suffix) , EnumFileType.ImageType);
     }
 
 }
