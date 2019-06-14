@@ -341,7 +341,7 @@ public class OssController extends BaseController<String> {
      * @return
      */
     protected FileVO saveFile(byte[] bs , StorageProcess sp  , String suffix) {
-        return sp.store(bs , FileKit.buildFilePath("" , suffix) , EnumFileType.FileType);
+        return sp.store(bs , FileKit.buildFilePath("" , suffix) , EnumFileType.ImageType);
     }
 
 

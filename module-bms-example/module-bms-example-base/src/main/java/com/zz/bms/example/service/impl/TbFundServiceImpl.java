@@ -122,10 +122,10 @@ public class TbFundServiceImpl extends SystemBaseServiceImpl<TbFundBO,String> im
 
 		try{
 			if(StringUtils.isNotEmpty(tbFundBO.getFundFiles()) && tbFundBO.getFundFilesList() == null){
-			QueryWrapper<VsFileUseBO> qw = new QueryWrapper<VsFileUseBO>();
-			qw.lambda().eq(VsFileUseBO::getBusinessId , tbFundBO.getId());
-			qw.lambda().eq(VsFileUseBO::getBusinessTempId , tbFundBO.getFundFiles());
-			List<VsFileUseBO> list = vsFileUseService.list(qw);
+				QueryWrapper<VsFileUseBO> qw = new QueryWrapper<VsFileUseBO>();
+				qw.lambda().eq(VsFileUseBO::getBusinessId , tbFundBO.getId());
+				qw.lambda().eq(VsFileUseBO::getBusinessTempId , tbFundBO.getFundFiles());
+				List<VsFileUseBO> list = vsFileUseService.list(qw);
 				tbFundBO.setFundFilesList(list);
 			}
 		}catch(Exception e){}

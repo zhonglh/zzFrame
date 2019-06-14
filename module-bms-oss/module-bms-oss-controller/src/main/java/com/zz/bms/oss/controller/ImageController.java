@@ -71,9 +71,4 @@ public class ImageController extends OssController  {
     }
 
 
-    @Override
-    protected FileVO saveFile(InputStream inputStream, StorageProcess sp , String suffix) {
-        return sp.store(inputStream , FileKit.buildFilePath("" , suffix) , EnumFileType.ImageType);
-    }
-
 }

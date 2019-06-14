@@ -86,7 +86,12 @@ public class MainController extends BaseController {
         if(StringUtils.isNotEmpty(loginUser.getAvatarImage())){
             VsFileUseBO vsFileUseBO = null;
             try {
-                vsFileUseBO = vsFileUseService.getById(loginUser.getAvatarImage());
+                QueryWrapper<VsFileUseBO> qw = new QueryWrapper<VsFileUseBO>();
+                qw.lambda().eq(VsFileUseBO::getBusinessId , loginUser.getId());
+                qw.lambda().eq(VsFileUseBO::getBusinessTempId , loginUser.getAvatarImage());
+                qw.lambda().orderByDesc(VsFileUseBO::getCreateTime);
+                List<VsFileUseBO> list = vsFileUseService.list(qw);
+                vsFileUseBO = list.get(0);
             }catch (Exception e){
 
             }

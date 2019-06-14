@@ -9,11 +9,13 @@ import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.enums.EnumUserStatus;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.shiro.utils.ShiroUtils;
+import com.zz.bms.system.bo.TsFileUseBO;
 import com.zz.bms.system.bo.TsUserBO;
 import com.zz.bms.system.bo.VsUserBO;
 import com.zz.bms.system.query.impl.TsUserQueryWebImpl;
 import com.zz.bms.system.query.impl.VsUserQueryWebImpl;
 import com.zz.bms.system.service.TsDictService;
+import com.zz.bms.system.service.TsFileUseService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +39,9 @@ public class TsUserController extends ZzDefaultController<TsUserBO,VsUserBO, Str
 
 	@Autowired
 	private TsDictService tsDictService;
+
+	@Autowired
+	private TsFileUseService tsFileUseService;
 
 
 
@@ -110,7 +115,12 @@ public class TsUserController extends ZzDefaultController<TsUserBO,VsUserBO, Str
 		vsUserBO.setVersionNo(temp.getVersionNo());
 		String avatarImage = vsUserBO.getAvatarImage();
 		if(avatarImage == null || "undefined".equals(avatarImage) || "null".equals(avatarImage) || "".equals(avatarImage)){
-			avatarImage = "";
+			vsUserBO.setAvatarImage("");
+		}else {
+			TsFileUseBO tsFileUseBO = tsFileUseService.getById(avatarImage);
+			tsFileUseBO.setBusinessType(TsUserBO.class.getSimpleName());
+			tsFileUseBO.setBusinessId(vsUserBO.getId());
+			tsFileUseService.updateById(tsFileUseBO);
 		}
 
 		checkEntityLegality(vsUserBO , false , true , true );

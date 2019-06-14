@@ -135,7 +135,7 @@ function cropImgUpload(callback)
     var avatarImage = $("#avatarImage").val();
     $.ajax(
         {
-            url: $AppContext + '/oss/image/uploadImage?businessTempId=" + avatarImage + "&businessFileType=avatarImage"', type: 'post', data: {"imageData": result.toDataURL().toString()}, dataType: 'json', async: false,
+            url: $AppContext + '/oss/image/uploadImage?businessTempId=' + avatarImage + '&businessFileType=avatarImage', type: 'post', data: {"imageData": result.toDataURL().toString()}, dataType: 'json', async: false,
             success: function (data)
             {
                 debugger;
@@ -579,7 +579,6 @@ function changeHeadImage()
             $('#userHeadImg').prop('src', fileUse.accessUrl);
             $('#imgUserAvatar').prop('src', fileUse.accessUrl);
         }
-        $('input[name="avatarImage"]').val(fileUse.id);
     });
 
 }
