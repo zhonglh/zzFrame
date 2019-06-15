@@ -66,7 +66,7 @@ public class MenuLogic {
         TsMenuBO parentMenu = allMenuMap.get(node.getPid());
         if(parentMenu != null && !menuSet.contains(parentMenu)){
             menuSet.add(parentMenu);
-            if(StringUtils.isEmpty(parentMenu.getPid())){
+            if(StringUtils.isNotEmpty(parentMenu.getPid())){
                 getParentMenus(parentMenu , allMenuMap , menuSet);
             }
         }

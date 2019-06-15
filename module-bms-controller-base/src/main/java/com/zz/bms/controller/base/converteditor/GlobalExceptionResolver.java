@@ -40,7 +40,7 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
 
     @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object o, Exception e) {
-        logger.error(e);
+        logger.error(e.getMessage(),e);
         boolean isajax = isAjax(request);
         if(!isajax){
             if( o != null && o instanceof HandlerMethod){

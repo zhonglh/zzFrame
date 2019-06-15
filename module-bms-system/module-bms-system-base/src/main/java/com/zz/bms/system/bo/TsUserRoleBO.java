@@ -1,5 +1,6 @@
 package com.zz.bms.system.bo;
 
+import com.zz.bms.core.db.entity.ILoginRoleEntity;
 import com.zz.bms.system.domain.TsUserRoleEntity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -25,7 +26,7 @@ import java.io.Serializable;
 */
 @EntityAnnotation(value="用户角色关联" , resource = "system.userrole"  ,businessName = ""    ,businessKey = { "" }    )
 @TableName(value="ts_user_role" , resultMap = "TsUserRoleResultMap")
-public class TsUserRoleBO extends TsUserRoleEntity implements Serializable , IBoEntity {
+public class TsUserRoleBO extends TsUserRoleEntity implements Serializable , IBoEntity , ILoginRoleEntity {
 
 
 
@@ -80,6 +81,7 @@ public class TsUserRoleBO extends TsUserRoleEntity implements Serializable , IBo
         this.roleName = roleName;
     }
 
+    @Override
     public String getRoleName(){
         return this.roleName;
     }
@@ -101,6 +103,7 @@ public class TsUserRoleBO extends TsUserRoleEntity implements Serializable , IBo
         this.userEmail = userEmail;
     }
 
+    @Override
     public String getRoleCode() {
         return roleCode;
     }

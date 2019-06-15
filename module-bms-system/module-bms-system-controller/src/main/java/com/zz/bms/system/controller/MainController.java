@@ -123,6 +123,7 @@ public class MainController extends BaseController {
                 List<TsMenuBO> parentMenus = MenuLogic.getAllParentMenusByView(tsMenuService.list() , menus);
                 if(parentMenus != null && !parentMenus.isEmpty()) {
                     menus.addAll(MenuLogic.toVsUserMenu(parentMenus));
+                    menus.sort ((o1, o2) -> o1.getLevel() - o2.getLevel() );
                     vsUserMenuService.processResult(menus);
                 }
             }
