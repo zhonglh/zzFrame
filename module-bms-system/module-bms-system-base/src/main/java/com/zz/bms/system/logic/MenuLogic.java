@@ -1,12 +1,11 @@
 package com.zz.bms.system.logic;
 
+import com.zz.bms.system.bo.TsMenuBO;
+import com.zz.bms.system.bo.TsUserBO;
 import com.zz.bms.system.bo.VsUserMenuBO;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -14,6 +13,93 @@ import java.util.stream.Collectors;
  * @author Administrator
  */
 public class MenuLogic {
+
+
+    public static List<TsMenuBO> getAllParentMenusByView(List<TsMenuBO> allMenus  ,  List<VsUserMenuBO> nodeMenus){
+        if(allMenus == null || allMenus.isEmpty() || nodeMenus == null || nodeMenus.isEmpty()){
+            return null;
+        }
+
+
+        Map<String, TsMenuBO> allMenuMap = new HashMap<String, TsMenuBO>();
+        for(TsMenuBO menu : allMenus){
+            allMenuMap.put(menu.getId() , menu);
+        }
+
+        List<TsMenuBO> menus = new ArrayList<TsMenuBO>();
+        for(VsUserMenuBO node : nodeMenus){
+            TsMenuBO menu = allMenuMap.get(node.getId());
+            if(menu != null){
+                menus.add(menu);
+            }
+        }
+
+        return getAllParentMenus(allMenus , menus);
+
+    }
+
+    public static List<TsMenuBO> getAllParentMenus(List<TsMenuBO> allMenus  ,  List<TsMenuBO> nodeMenus){
+        if(allMenus == null || allMenus.isEmpty() || nodeMenus == null || nodeMenus.isEmpty()){
+            return null;
+        }
+
+        Map<String, TsMenuBO> allMenuMap = new HashMap<String, TsMenuBO>();
+        for(TsMenuBO menu : allMenus){
+            allMenuMap.put(menu.getId() , menu);
+        }
+
+        Set<TsMenuBO>  menuSet = new HashSet<TsMenuBO>();
+        for(TsMenuBO node : nodeMenus){
+            if(node == null || StringUtils.isEmpty(node.getPid())){
+                continue;
+            }
+            getParentMenus( node  , allMenuMap , menuSet );
+        }
+        if(menuSet.isEmpty()){
+            return null;
+        }else {
+            return new ArrayList<>(menuSet);
+        }
+    }
+
+    private static void getParentMenus(TsMenuBO node , Map<String, TsMenuBO> allMenuMap, Set<TsMenuBO>  menuSet) {
+        TsMenuBO parentMenu = allMenuMap.get(node.getPid());
+        if(parentMenu != null && !menuSet.contains(parentMenu)){
+            menuSet.add(parentMenu);
+            if(StringUtils.isEmpty(parentMenu.getPid())){
+                getParentMenus(parentMenu , allMenuMap , menuSet);
+            }
+        }
+    }
+
+    /**
+     * 类型转换
+     * @param tsMenuBOs
+     * @return
+     */
+    public static List<VsUserMenuBO> toVsUserMenu(List<TsMenuBO> tsMenuBOs){
+        if(tsMenuBOs == null || tsMenuBOs.isEmpty()){
+            return null;
+        }
+        List<VsUserMenuBO> userMenuBOs = new ArrayList<VsUserMenuBO>();
+        for(TsMenuBO tsMenuBO : tsMenuBOs){
+            VsUserMenuBO vsUserMenuBO = new VsUserMenuBO();
+            vsUserMenuBO.setId(tsMenuBO.getId());
+            vsUserMenuBO.setPid(tsMenuBO.getPid());
+            vsUserMenuBO.setTitle(tsMenuBO.getMenuName());
+            vsUserMenuBO.setIcon(tsMenuBO.getMenuIcon());
+            vsUserMenuBO.setComponent(tsMenuBO.getMenuMsg());
+            vsUserMenuBO.setSortno(tsMenuBO.getMenuSort());
+            vsUserMenuBO.setPath(tsMenuBO.getMenuUrl());
+            vsUserMenuBO.setShortcut(tsMenuBO.getShortcut());
+            vsUserMenuBO.setName(tsMenuBO.getMenuCode());
+            vsUserMenuBO.setLeaf(tsMenuBO.getLeaf());
+            vsUserMenuBO.setLevel(tsMenuBO.getLevel());
+            vsUserMenuBO.setTarget(tsMenuBO.getTarget());
+            userMenuBOs.add(vsUserMenuBO);
+        }
+        return userMenuBOs;
+    }
 
 
     /**

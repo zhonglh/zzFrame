@@ -563,7 +563,6 @@ function changeProfile()
 
     $('#formProfile')[0].reset();
     fillFormData('formProfile', myProfile);
-    //$('#userHeadImg').prop('src', getUserAvatarUrl(myProfile.headImg, 1));
     profileDlg.show();
     $("#formProfile").clearValidate();
 }

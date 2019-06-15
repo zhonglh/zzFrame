@@ -1,9 +1,12 @@
 package com.zz.bms.shiro.utils;
 
 import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.db.entity.ILoginUserEntity;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.Subject;
 
 
@@ -64,6 +67,21 @@ public class ShiroUtils {
 	}
 
 
+	/**
+	 * 刷新 subject Principal
+	 * @param loginUser
+	 */
+	public static void refreshPrincipal(ILoginUserEntity loginUser){
+		Subject subject = SecurityUtils.getSubject();
+		ILoginUserEntity shiroUser = (ILoginUserEntity)subject.getPrincipal();
+		PrincipalCollection principalCollection = subject.getPrincipals();
+
+		shiroUser = loginUser;
+		String realmName = principalCollection.getRealmNames().iterator().next();
+		PrincipalCollection newPrincipalCollection = new SimplePrincipalCollection(shiroUser, realmName);
+		//重新加载Principal
+		subject.runAs(newPrincipalCollection);
+	}
 
 
 	public static void main(String[] args) {

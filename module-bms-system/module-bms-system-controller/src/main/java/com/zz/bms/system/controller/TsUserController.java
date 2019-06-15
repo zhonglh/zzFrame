@@ -1,6 +1,5 @@
 package com.zz.bms.system.controller;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.enums.EnumErrorMsg;
@@ -11,7 +10,6 @@ import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.shiro.utils.ShiroUtils;
 import com.zz.bms.system.bo.TsFileUseBO;
 import com.zz.bms.system.bo.TsUserBO;
-import com.zz.bms.system.bo.VsFileUseBO;
 import com.zz.bms.system.bo.VsUserBO;
 import com.zz.bms.system.domain.TsUserEntity;
 import com.zz.bms.system.query.impl.TsUserQueryWebImpl;
@@ -73,24 +71,10 @@ public class TsUserController extends ZzDefaultController<TsUserBO,VsUserBO, Str
 
 
 
-	public static void refresh(VsUserBO vsUserBO){
-		Subject subject = SecurityUtils.getSubject();
-		TsUserEntity shiroUser = (TsUserEntity)subject.getPrincipal();
-		PrincipalCollection principalCollection = subject.getPrincipals();
-		//修改属性
-		shiroUser.setPageLimit(vsUserBO.getPageLimit());
-		shiroUser.setPhone(vsUserBO.getPhone());
-		shiroUser.setEmail(vsUserBO.getEmail());
-		String realmName = principalCollection.getRealmNames().iterator().next();
-		PrincipalCollection newPrincipalCollection = new SimplePrincipalCollection(shiroUser, realmName);
-		//重新加载Principal
-		subject.runAs(newPrincipalCollection);
-	}
-
 
 	/**
 	 * 修改登录人自己的设置
-	 * @param vsUserBO
+	 * @param tsUserBO
 	 * @param origPassword
 	 * @param newPassword
 	 * @param model
@@ -100,12 +84,12 @@ public class TsUserController extends ZzDefaultController<TsUserBO,VsUserBO, Str
 	 */
 	@RequestMapping(value = "/updateMyProfile" , method = RequestMethod.POST)
 	@ResponseBody
-	public Object updateMyProfile(VsUserBO vsUserBO , String hasSaveHeaderImage,   String origPassword, String newPassword,
+	public Object updateMyProfile(TsUserBO tsUserBO, String hasSaveHeaderImage, String origPassword, String newPassword,
 								  ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 
 		String id = this.getSessionUser().getId();
 
-		vsUserBO.setId(id);
+		tsUserBO.setId(id);
 		TsUserBO temp = this.baseRwService.getById(id);
 		if(temp == null){
 			throw EnumErrorMsg.no_auth.toException();
@@ -127,41 +111,41 @@ public class TsUserController extends ZzDefaultController<TsUserBO,VsUserBO, Str
 				return new AjaxJson(false , "请输入正确的原密码!");
 			}
 
-			vsUserBO.setLoginPassword(ShiroUtils.encodeSalt(newPassword , temp.getSalt()));
+			tsUserBO.setLoginPassword(ShiroUtils.encodeSalt(newPassword , temp.getSalt()));
 
 		}
 
 
 
 
-		setUpdateInfo(vsUserBO , this.getSessionUser());
-		vsUserBO.setVersionNo(temp.getVersionNo());
+		setUpdateInfo(tsUserBO, this.getSessionUser());
+		tsUserBO.setVersionNo(temp.getVersionNo());
 
 
 		if(EnumYesNo.YES.getCode().equals(hasSaveHeaderImage)) {
-			String avatarImage = vsUserBO.getAvatarImage();
+			String avatarImage = tsUserBO.getAvatarImage();
 			if (avatarImage == null || "undefined".equals(avatarImage) || "null".equals(avatarImage) || "".equals(avatarImage)) {
-				vsUserBO.setAvatarImage("");
+				tsUserBO.setAvatarImage("");
 			} else {
 				TsFileUseBO tsFileUseBO = null;
 				QueryWrapper<TsFileUseBO> qw = new QueryWrapper<TsFileUseBO>();
-				qw.lambda().eq(TsFileUseBO::getBusinessTempId, vsUserBO.getAvatarImage());
+				qw.lambda().eq(TsFileUseBO::getBusinessTempId, tsUserBO.getAvatarImage());
 				qw.lambda().orderByDesc(TsFileUseBO::getCreateTime);
 				List<TsFileUseBO> list = tsFileUseService.list(qw);
 				if (list != null && !list.isEmpty()) {
 					tsFileUseBO = list.get(0);
 					tsFileUseBO.setBusinessType(TsUserBO.class.getSimpleName());
-					tsFileUseBO.setBusinessId(vsUserBO.getId());
+					tsFileUseBO.setBusinessId(tsUserBO.getId());
 					tsFileUseService.updateById(tsFileUseBO);
 				}
 			}
 		}
 
-		checkEntityLegality(vsUserBO , false , true , true );
+		checkEntityLegality(tsUserBO, false , true , true );
 		boolean success = false;
 		try {
-			Assert.notNull(vsUserBO.getId(),"出现内部错误");
-			success = baseRwService.updateById(vsUserBO);
+			Assert.notNull(tsUserBO.getId(),"出现内部错误");
+			success = baseRwService.updateById(tsUserBO);
 		}catch(Exception e){
 			logger.error(e.getMessage() , e);
 			throw DbException.DB_SAVE_SAME;
@@ -171,7 +155,7 @@ public class TsUserController extends ZzDefaultController<TsUserBO,VsUserBO, Str
 		if(!success){
 			throw DbException.DB_UPDATE_RESULT_0;
 		}else {
-			refresh(vsUserBO);
+			ShiroUtils.refreshPrincipal(baseRwService.getById(id));
 			return AjaxJson.successAjax;
 		}
 

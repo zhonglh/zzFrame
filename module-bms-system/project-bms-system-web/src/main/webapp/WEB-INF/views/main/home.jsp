@@ -338,7 +338,7 @@
     var userKey = "${loginUser.id}";
     var userSessoinId = "${userSessoinId}";
 
-    var myProfile = {headImg: 'default.png', phone: '<shiro:principal property="phone" />', email: '<shiro:principal property="email" />', pageLimit: <shiro:principal property="pageLimit" /> };
+    var myProfile = {phone: '<shiro:principal property="phone" />', email: '<shiro:principal property="email" />', pageLimit: <shiro:principal property="pageLimit" /> };
 </script>
 
 <script src="${staticUrl}/statics2/iconfont/iconfont.js"></script>

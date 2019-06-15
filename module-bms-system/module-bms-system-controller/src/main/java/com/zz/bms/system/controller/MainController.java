@@ -6,10 +6,7 @@ import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.oss.engine.enums.EnumFileEngine;
 import com.zz.bms.shiro.utils.ShiroUtils;
-import com.zz.bms.system.bo.TsMyShortcutBO;
-import com.zz.bms.system.bo.TsNotificationBO;
-import com.zz.bms.system.bo.VsFileUseBO;
-import com.zz.bms.system.bo.VsUserMenuBO;
+import com.zz.bms.system.bo.*;
 import com.zz.bms.system.domain.TsUserEntity;
 import com.zz.bms.system.logic.MenuLogic;
 import com.zz.bms.system.query.TsMyShortcutQuery;
@@ -51,6 +48,10 @@ public class MainController extends BaseController {
 
     @Autowired
     private VsUserMenuService vsUserMenuService;
+
+
+    @Autowired
+    private TsMenuService tsMenuService;
 
     @Autowired
     private TsMyShortcutService myShortcutService;
@@ -117,8 +118,17 @@ public class MainController extends BaseController {
             qw.orderByAsc("level");
             List<VsUserMenuBO> menus = vsUserMenuService.list(qw);
 
+            if(menus != null && !menus.isEmpty() && !loginUser.isSystemUser()) {
+
+                List<TsMenuBO> parentMenus = MenuLogic.getAllParentMenusByView(tsMenuService.list() , menus);
+                if(parentMenus != null && !parentMenus.isEmpty()) {
+                    menus.addAll(MenuLogic.toVsUserMenu(parentMenus));
+                    vsUserMenuService.processResult(menus);
+                }
+            }
+
             if(menus != null && !menus.isEmpty()) {
-                menus = MenuLogic.sortMenu(menus);
+                //menus = MenuLogic.sortMenu(menus);
                 menus.sort ((o1, o2) -> o1.getSortIndex() - o2.getSortIndex() );
             }else {
                 menus = new ArrayList<VsUserMenuBO>();

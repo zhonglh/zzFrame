@@ -56,12 +56,14 @@ public abstract class ZzDefaultController<
         return sb.toString();
     }
 
+
+
     /**
      * 计算对应的菜单
      * @param uri
      * @return
      */
-    private List<TsMenuBO> computeMenu(String uri){
+    protected List<TsMenuBO> computeMenu(String uri){
         //todo 缓存
         TsMenuQueryImpl<TsMenuBO> menuQuery = new TsMenuQueryImpl<TsMenuBO>();
         menuQuery.menuUrl(uri);

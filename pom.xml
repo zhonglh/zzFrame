@@ -7,6 +7,13 @@
   <groupId>com.zz.bms</groupId>
   <artifactId>zzFrame</artifactId>
   <version>1.0.1</version>
+
+
+  <packaging>pom</packaging>
+  <name>zzFrame</name>
+  <url>http://www.example.com</url>
+  <description>Background Management System</description>
+
   <modules>
 
     <module>module-bms-core</module>
@@ -19,13 +26,9 @@
 
     <module>project-bms-web-base</module>
     <module>module-bms-system</module>
-    <module>module-bms-example</module>
+    <!--<module>module-bms-example</module>-->
 
   </modules>
-  <packaging>pom</packaging>
-  <name>zzFrame</name>
-  <url>http://www.example.com</url>
-  <description>Background Management System</description>
 
 
 

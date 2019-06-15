@@ -272,31 +272,6 @@ function showPanel(url,pHeight,pWidth){
     $("#shadePanel").css({right:"0",opacity:1})
 }
 
-/**
- * 打开项目文档
- * @returns
- */
-function openDocumentView(url)
-{
-    if (window.plus)
-    {
-        // App端下载
-        plus.runtime.openURL(JSON.parse(plus.storage.getItem("forp_server_url")) + url);
-    }
-    else
-    {
-        if(type <= 1)
-        {
-            // 项目文档
-            window.open($AppContext + url);
-        }
-        else
-        {
-            // 其他业务文档
-            window.open($AppContext + url);
-        }
-    }
-}
 
 
 
@@ -367,52 +342,4 @@ var dynamicLoading = {
 }
 
 
-/**
- * 获取用户的头像图片URL
- *
- * @param avatar			头像文件名称
- * @param domainId		域ID
- */
-function getUserAvatarUrl(avatar, domainId)
-{
-    if ('file' == $AttachmentEngine)
-        return $AppContext + '/statics2/image/' + ('default.png' == avatar ? '' : domainId + '/') + avatar;
-    else
-    if ('mongodb' == $AttachmentEngine)
-    {
-        if ('default.png' == avatar)
-            return $AppContext + '/statics2/image/default.png';
-        else
-            return $AppContext + '/third/mongodb/' + avatar;
-    }
-    else
-    if ('alibaba' == $AttachmentEngine)
-        return 'http://' + $AlibabaMediaNameSpace + '.image.alimmdn.com/user-avatar/' + avatar;
-
-    return '';
-}
-
-
-
-/**
- * 加载富文本html内容
- *
- * @param type			业务类别编号（查看“研发部\技术规范\上传文件编号规则.xlsx”）
- * @param id				业务ID
- * @param callback		回调方法
- */
-function loadRichTextContent(type, id, callback)
-{
-    Ext.Ajax.request(
-        {
-            url: $AppContext + '/platform/thirdManager!loadRichTextContent.do?type=' + type + '&id=' + id, failure: handleAjaxFailure, success: function(response, opts)
-        {
-            var json = Ext.decode(response.responseText);
-            if (json.success)
-                callback.call(this, json.html);
-            else
-                error(json.msg);
-        }
-        });
-}
 
