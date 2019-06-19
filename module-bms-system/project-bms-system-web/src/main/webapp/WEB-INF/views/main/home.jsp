@@ -75,10 +75,13 @@
         }
     </style>
     <script>
-        var theme = window.localStorage.getItem("theme");
 
-        debugger
-        if (theme == undefined)  theme = "default";
+        var theme = "default";
+        try{
+            theme = window.localStorage.getItem("theme");
+        }catch (e) {
+
+        }
         var href =  '${ctx}/statics2/css/common-style-'+ theme + '.css';
         var style = document.createElement('link');
         style.href = href;
