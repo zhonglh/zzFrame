@@ -49,13 +49,44 @@
     <!--[if lt IE 9]>
     <script src="${staticUrl}/statics2/js/html5shiv.min.js"></script>
     <script src="${staticUrl}/statics2/js/respond.js"></script>
+
     <![endif]-->
 
 
     <link rel="stylesheet" href="${ctx}/statics2/css/home.css">
-    <link rel="stylesheet" href="${ctx}/statics2/css/common-style-red.css"/>
+
+<%--    <link rel="stylesheet" href="${ctx}/statics2/css/common.css"/>--%>
 
 
+    <style>
+        .theme-panel ul{
+            display: block;
+        }
+
+        .theme-panel ul li{
+            width: 60px;
+            height: 50px;
+            display: block;
+            float: left;
+            margin-left: 5px;
+            margin-top: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        var theme = window.localStorage.getItem("theme");
+
+        debugger
+        if (theme == undefined)  theme = "default";
+        var href =  '${ctx}/statics2/css/common-style-'+ theme + '.css';
+        var style = document.createElement('link');
+        style.href = href;
+        style.rel = 'stylesheet';
+        style.type = 'text/css';
+        document.getElementsByTagName('head').item(0).appendChild(style);
+
+    </script>
 
 
     <script>
@@ -109,7 +140,7 @@
                 </ul>
                 --%>
 
-                <div class="last-nav">
+       <%--         <div class="last-nav">
                     <a href="javascript:;"><i class="fa fa-plus"></i></a>
                     <div class="nav-more" style="display: none">
                         <ul id="nav-more">
@@ -120,16 +151,17 @@
 
                             </c:forEach>
 
-                           <%--
+                           &lt;%&ndash;
                             <li menuId='61' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/61/3')"><i class="fa fa-calendar-o"></i></i><span title='会议室预定'>会议室预定</span></a></li>
 
                             <li menuId='58' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/58/3')"><i class="fa fa-bar-chart"></i></i><span title='我的报表'>我的报表</span></a></li>
 
                             <li menuId='62' data-ot="<b>点击</b>: 打开菜单功能<br/><b>拖动</b>：变更位置" data-ot-delay="2"><a href="javascript: openMenu('http://123.57.235.9:88/tzcp/platform/menu/62/3')"><i class="fa fa-list-alt"></i></i><span title='员工通讯录'>员工通讯录</span></a></li>
-                            --%>
+                            &ndash;%&gt;
                         </ul>
                     </div>
                 </div>
+--%>
             </div>
 
             <!-- 右侧菜单按钮 -->
@@ -148,19 +180,6 @@
                         <li><a href="javascript: changeProfile();"><i class='fa fa-cog'></i>&nbsp;个人设置</a></li>
                         <li role="presentation" class="divider"></li>
                         <li><a href="javascript: logoutSystem();"><i class='fa fa-power-off'></i>&nbsp;退出系统</a></li>
-                    </ul>
-                </li>
-
-
-                <li class='dropdown'>
-                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" style='margin-top: -8px; margin-bottom: 0px; padding-bottom: 3px;'>
-                        <img id='colorImg'  src="${staticUrl}/statics2/image/color.png"
-                             width=30 height=30 style='border:solid 0px;' />
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li style="background: red"><a href="javascript: change2Red();">    </a></li>
-                        <li style="background: green"><a href="javascript: change2Green();">  </a></li>
-                        <li style="background: blue"><a href="javascript: change2Blue();">   </a></li>
                     </ul>
                 </li>
 
@@ -186,6 +205,37 @@
                         </a>
                     </div>--%>
                 </li>
+                <li class='dropdown'>
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" style='margin-top: -8px; margin-bottom: 0px; padding-bottom: 3px;line-height: 35px;'>
+                        <img id='colorImg'  src="${staticUrl}/statics2/image/color.png"
+                             width=20 height=20 style='border:solid 0px;border-radius: 10px;' />
+                    </a>
+
+                    <div class="dropdown-menu theme-panel" style="width: 280px;display: none;height: 90px;background-color: #ccc; overflow-y: auto">
+                        <ul>
+                            <li onclick="changeTheme('red')">
+                                <span style="background: rgba(236, 100, 75, 1);width: 30px;height: 30px;border-radius: 20px;display: block;margin: 0 auto"></span>
+                                <span style="clear: left;display: block">红色</span>
+                            </li>
+                            <li onclick="changeTheme('green')">
+                                <span style="background: rgba(38, 166, 91, 1);width: 30px;height: 30px;border-radius: 20px;display: block;margin: 0 auto"></span>
+                                <span style="clear: left">绿色</span>
+                            </li>
+                            <li onclick="changeTheme('blue')">
+                                <span style="background: rgba(68, 108, 179, 1);width: 30px;height: 30px;border-radius: 20px;display: block;margin: 0 auto"></span>
+                                <span style="clear: left">蓝色</span>
+                            </li>
+
+                            <li onclick="changeTheme('brown')">
+                                <span style="background: #918072;width: 30px;height: 30px;border-radius: 20px;display: block;margin: 0 auto"></span>
+                                <span style="clear: left">棕色</span>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+
             </ul>
         </div>
     </div>
@@ -388,6 +438,13 @@
 
 <script src="${staticUrl}/statics2/js/project/home.js?dt=${applicationScope.startServerTime}"></script>
 
+<script>
+    function changeTheme(theme) {
+
+        window.localStorage.setItem('theme',theme);
+        window.location.reload();
+    }
+</script>
 
 </body>
 

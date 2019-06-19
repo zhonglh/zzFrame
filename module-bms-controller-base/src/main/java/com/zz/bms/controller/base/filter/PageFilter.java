@@ -4,12 +4,14 @@ import com.zz.bms.util.web.PaginationContext;
 import org.apache.commons.lang.StringUtils;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
  * @author Administrator
  */
+@WebFilter(filterName = "pageFilter",urlPatterns = "/*")
 public class PageFilter implements Filter {
     public PageFilter() {}
 

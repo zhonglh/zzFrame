@@ -34,13 +34,26 @@
     <![endif]-->
 
     <link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/css/login.css" >
-    <link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/css/common-style-red.css" >
+<%--    <link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/css/common-style-red.css" >--%>
+
+
+    <script>
+        var theme = window.localStorage.getItem("theme");
+
+        if (theme == undefined)  theme = "default";
+        var href =  '${ctx}/statics2/css/common-style-'+ theme + '.css';
+        var style = document.createElement('link');
+        style.href = href;
+        style.rel = 'stylesheet';
+        style.type = 'text/css';
+        document.getElementsByTagName('head').item(0).appendChild(style);
+
+    </script>
     <style>
         .input-group {
             width: 100%;
         }
     </style>
-
 </head>
 <body>
 
