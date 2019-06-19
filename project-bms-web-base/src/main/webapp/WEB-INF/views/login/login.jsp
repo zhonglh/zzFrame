@@ -39,6 +39,9 @@
         var theme = "default";
         try{
             theme = window.localStorage.getItem("theme");
+            if(theme == null || theme == undefined){
+                theme = "default";
+            }
         }catch (e) {
 
         }
