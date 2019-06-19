@@ -34,9 +34,6 @@
     <![endif]-->
 
     <link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/css/login.css" >
-<%--    <link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/css/common-style-red.css" >--%>
-
-
     <script>
 
         var theme = "default";

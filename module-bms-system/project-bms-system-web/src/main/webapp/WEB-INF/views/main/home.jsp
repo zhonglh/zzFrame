@@ -55,7 +55,6 @@
 
     <link rel="stylesheet" href="${ctx}/statics2/css/home.css">
 
-<%--    <link rel="stylesheet" href="${ctx}/statics2/css/common.css"/>--%>
 
 
     <style>
