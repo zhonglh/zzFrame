@@ -180,8 +180,37 @@ function toAdd(){
     }catch(e){
 
     }
-    showIframeWindow('<a>'+breadcrumb+'</a> ＞ <a>新建</a>', addUrl ,100);
+
+    if(inAllPage == "1"){
+        toSubAdd(addUrl);
+    }else {
+        showIframeWindow('<a>' + breadcrumb + '</a> ＞ <a>新建</a>', addUrl, 100);
+    }
 }
+
+//弹出方式打开界面
+function toSubAdd(addUrl){
+    $(".panal-layer").attr("src",addUrl)
+    $("#viewShade").show();
+    $("#shadePanel").css({right:"0",opacity:1})
+}
+
+
+//关闭弹层
+function closePanel(type){
+    if(type==0){
+        confirm("确定关闭页面吗?",function(){
+            $("#shadePanel").css({right:-window.screen.availWidth,opacity:0})
+            $("#viewShade").hide();
+            $(".shade-close").hide();
+        })
+    }else{
+        $("#shadePanel").css({right:-window.screen.availWidth,opacity:0})
+        $("#viewShade").hide();
+        $(".shade-close").hide();
+    }
+}
+
 
 
 /**

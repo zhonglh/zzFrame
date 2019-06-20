@@ -105,6 +105,9 @@
 </div>
 
 
+<bms:openPanel />
+
+
 
 
 <script>

@@ -41,47 +41,6 @@ function closeWindow() {
 }
 
 
-var tableHeight = 44;
-/*
-
-//显示编辑
-function openEdit(){
-    tableHeight = 44;
-    $(".form").validate();
-
-    try {
-        $(".easyui-datagrid").datagrid("showColumn", "option");
-        $.each($(".easyui-datagrid"), function (index, value) {
-            var rows = $(this).datagrid("getRows");
-            $(this).datagrid("resize", {height: (rows.length + 1) * tableHeight});
-        });
-    }catch(e){
-        console.log(e);
-    }
-
-
-    $(".show-area").show();
-    $(".hide-area").hide();
-    $(".form").tform().showEdit();
-}
-
-//取消编辑
-function cancelEdit(){
-    tableHeight = 37;
-
-    try {
-        $(".easyui-datagrid").datagrid("hideColumn", "option");
-        $('.easyui-datagrid').datagrid("reload");
-    }catch (e) {
-        console.log(e);
-    }
-
-
-    $(".show-area").hide();
-    $(".hide-area").show();
-    $(".form").clearValidate();//清除验证
-}
-*/
 
 
 //显示编辑
