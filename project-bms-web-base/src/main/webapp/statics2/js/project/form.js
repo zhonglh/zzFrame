@@ -47,7 +47,7 @@ function closeWindow() {
         if(win.inAllPage == "1") {
             closePanel.click();
         }else{
-            closeIframeWindow();
+            closeIframeWindowInAllPage();
         }
     }
 }
