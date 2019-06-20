@@ -36,11 +36,19 @@ function closeWindow() {
     if(!isInAllPage()) {
         closeIframeWindow();
     }else {
+        var win = parent;
         var closePanel = $(".shade-close", parent.document);
+
         if(closePanel.length == 0){
             closePanel = $(".shade-close", parent.parent.document);
+            win = parent.parent;
         }
-        closePanel.click();
+
+        if(win.inAllPage == "1") {
+            closePanel.click();
+        }else{
+            closeIframeWindow();
+        }
     }
 }
 
