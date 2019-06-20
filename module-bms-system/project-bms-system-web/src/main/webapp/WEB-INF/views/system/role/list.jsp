@@ -105,10 +105,6 @@
 </div>
 
 
-<bms:openPanel />
-
-
-
 
 <script>
     var tableid = "tableData-${ tableId }";

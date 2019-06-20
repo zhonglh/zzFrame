@@ -38,3 +38,21 @@ body {
     bottom: 94px;
     color: #bbbbbb !important
 }
+
+
+
+
+.panal-layer {
+  position:absolute;
+  top:0;
+  right:-100%;
+  width:80%;
+  height:100%;
+  background:#fff;
+  z-index:15;
+  opacity:0;
+  transition:all  .6s;
+  -moz-transition:all  .6s; /* Firefox 4 */
+  -webkit-transition:all  .6s; /* Safari and Chrome */
+  -o-transition:all  .6s; /* Opera */
+}
