@@ -26,6 +26,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -69,8 +70,10 @@ public class MainController extends BaseController {
 
 
     @RequestMapping(value = "/setTheme", method = {RequestMethod.GET , RequestMethod.POST})
+    @ResponseBody
     public AjaxJson setTheme(String theme , HttpServletRequest request , HttpServletResponse response) {
         this.addCookie(response , "theme" , theme , 0);
+        request.setAttribute("theme" , theme);
         return AjaxJson.successAjax;
     }
 
