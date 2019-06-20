@@ -78,6 +78,19 @@ function closeIframeWindow(callback)
 }
 
 
+/**
+ * 关闭iframe层对话框
+ */
+function closeIframeWindowInAllPage(callback)
+{
+    if(typeof(callback) == "function")
+    {
+        callback.call(this);
+    }
+
+    // 关闭当前层
+    $(window.frameElement.parentElement.parentElement.parentElement).remove();
+}
 
 /**
  * 弹出iframe层对话框（带动画和切换）
