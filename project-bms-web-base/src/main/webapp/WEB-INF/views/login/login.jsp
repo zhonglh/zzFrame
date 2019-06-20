@@ -33,26 +33,9 @@
     <script src="${staticUrl}/statics2/js/respond.js"></script>
     <![endif]-->
 
+    <link rel="stylesheet" href="${ctx}/statics2/css/common-style-${theme}.css">
     <link type="text/css" rel="stylesheet" href="${staticUrl}/statics2/css/login.css" >
-    <script>
 
-        var theme = "default";
-        try{
-            theme = window.localStorage.getItem("theme");
-            if(theme == null || theme == undefined){
-                theme = "default";
-            }
-        }catch (e) {
-
-        }
-        var href =  '${ctx}/statics2/css/common-style-'+ theme + '.css';
-        var style = document.createElement('link');
-        style.href = href;
-        style.rel = 'stylesheet';
-        style.type = 'text/css';
-        document.getElementsByTagName('head').item(0).appendChild(style);
-
-    </script>
     <style>
         .input-group {
             width: 100%;

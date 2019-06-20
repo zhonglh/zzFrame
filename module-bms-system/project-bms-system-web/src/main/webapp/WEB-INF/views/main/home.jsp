@@ -54,6 +54,7 @@
 
 
     <link rel="stylesheet" href="${ctx}/statics2/css/home.css">
+    <link rel="stylesheet" href="${ctx}/statics2/css/common-style-${theme}.css">
 
 
 
@@ -73,25 +74,7 @@
             cursor: pointer;
         }
     </style>
-    <script>
 
-        var theme = "default";
-        try{
-            theme = window.localStorage.getItem("theme");
-            if(theme == null || theme == undefined){
-                theme = "default";
-            }
-        }catch (e) {
-
-        }
-        var href =  '${ctx}/statics2/css/common-style-'+ theme + '.css';
-        var style = document.createElement('link');
-        style.href = href;
-        style.rel = 'stylesheet';
-        style.type = 'text/css';
-        document.getElementsByTagName('head').item(0).appendChild(style);
-
-    </script>
 
 
     <script>
@@ -444,10 +427,18 @@
 <script src="${staticUrl}/statics2/js/project/home.js?dt=${applicationScope.startServerTime}"></script>
 
 <script>
+
     function changeTheme(theme) {
 
-        window.localStorage.setItem('theme',theme);
-        window.location.reload();
+        $.ajax({
+            url: '${staticUrl}/main/setTheme',
+            type: 'POST',
+            data: {"theme" : theme } ,
+            success: function(rsp, status) {
+                window.location.reload();
+            }
+        });
+
     }
 </script>
 

@@ -3,6 +3,7 @@ package com.zz.bms.system.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zz.bms.controller.base.controller.BaseController;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
+import com.zz.bms.core.vo.AjaxJson;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.oss.engine.enums.EnumFileEngine;
 import com.zz.bms.shiro.utils.ShiroUtils;
@@ -65,6 +66,14 @@ public class MainController extends BaseController {
     public String home2(HttpServletRequest request , HttpServletResponse response){
         return "main/welcome";
     }
+
+
+    @RequestMapping(value = "/setTheme", method = {RequestMethod.GET , RequestMethod.POST})
+    public AjaxJson setTheme(String theme , HttpServletRequest request , HttpServletResponse response) {
+        this.addCookie(response , "theme" , theme , 0);
+        return AjaxJson.successAjax;
+    }
+
 
     /**
      * 主页

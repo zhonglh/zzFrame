@@ -5,21 +5,84 @@ import org.apache.commons.lang.StringUtils;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Administrator
  */
 @WebFilter(filterName = "pageFilter",urlPatterns = "/*")
 public class PageFilter implements Filter {
-    public PageFilter() {}
+
+
+
+    protected Map<String, Cookie> ReadCookieMap(HttpServletRequest request){
+        Map<String, Cookie> cookieMap = new HashMap<String, Cookie>();
+        Cookie[] cookies = request.getCookies ();
+        if (null != cookies) {
+            for ( Cookie cookie : cookies ) {
+                cookieMap.put (cookie.getName (), cookie);
+            }
+        }
+        return cookieMap;
+    }
+
+    /**
+     * 根据名字获取cookie
+     *
+     * @param request
+     * @param name      cookie名字
+     * @return
+     */
+    protected Cookie getCookieByName(HttpServletRequest request, String name){
+        Map<String, Cookie> cookieMap = ReadCookieMap (request);
+        if (cookieMap.containsKey (name)) {
+            Cookie cookie = (Cookie) cookieMap.get (name);
+            return cookie;
+        } else {
+            return null;
+        }
+    }
+
+
+    protected  String getCookieVal(Cookie cookie){
+        if(cookie==null) {
+            return "";
+        }else {
+            String val = cookie.getValue();
+
+            try {
+                val = URLDecoder.decode(val,"UTF-8");
+            } catch (Exception e) {
+            }
+            return val;
+
+        }
+    }
+
 
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
         if(request instanceof HttpServletRequest){
+
+            String theme = null;
+            try {
+                Cookie cookie = getCookieByName((HttpServletRequest) request, "theme");
+                theme = getCookieVal(cookie);
+            }catch(Exception e){
+
+            }
+            if(theme == null || theme.isEmpty()){
+                theme = "default";
+            }
+            request.setAttribute("theme" , theme);
+
             String uri = ((HttpServletRequest) request).getRequestURI() ;
             if(!uri.endsWith("list") && !uri.endsWith("List") ){
                 chain.doFilter(request, response);
