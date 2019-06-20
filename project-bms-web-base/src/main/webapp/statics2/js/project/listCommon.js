@@ -254,7 +254,7 @@ function toAll(id){
     var allUrl = ctx+dataUrl+"/"+id+"/all"
     try{
         if(queryString != undefined && queryString != ""){
-            addUrl = addUrl+ "?" + queryString;
+            allUrl = allUrl+ "?" + queryString;
         }
     }catch(e){
 
