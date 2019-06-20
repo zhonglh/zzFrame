@@ -54,12 +54,17 @@ function openEdit(){
     $(".hide-area").hide();
     $(".easyui-datagrid").datagrid("showColumn","option");
     $(".form").tform().showEdit();
-    $(".webuploader-container").UploadFile();
+    
+    try {
+        $(".webuploader-container").UploadFile();
 
-    $(".webuploader-container").each(function () {
-        $(this).children().eq(1).width(80);
-        $(this).children().eq(1).height(80);
-    })
+        $(".webuploader-container").each(function () {
+            $(this).children().eq(1).width(80);
+            $(this).children().eq(1).height(80);
+        })
+    }catch (e) {
+        console.info(e)
+    }
 
 }
 
