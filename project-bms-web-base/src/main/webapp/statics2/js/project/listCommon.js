@@ -182,15 +182,16 @@ function toAdd(){
     }
 
     if(inAllPage == "1"){
-        toSubAdd(addUrl);
+        addUrl = addUrl + addUrl.indexOf("\\?")>-1?"&inAllPage=1":"?inAllPage=1";
+        toSubWindow(addUrl);
     }else {
         showIframeWindow('<a>' + breadcrumb + '</a> ＞ <a>新建</a>', addUrl, 100);
     }
 }
 
 //弹出方式打开界面
-function toSubAdd(addUrl){
-    $(".panal-layer").attr("src",addUrl)
+function toSubWindow(addUrl){
+    $(".panal-layer").attr("src",addUrl);
     $("#viewShade").show();
     $("#shadePanel").css({right:"0",opacity:1})
 }
@@ -229,8 +230,18 @@ function toUpdate(id){
     }catch(e){
 
     }
-    var title = '<a id="iframePath">'+breadcrumb+'</a>＞<a>详情</a>';
-    showIframeWindow(title,    updateUrl );
+
+
+    if(inAllPage == "1"){
+        updateUrl = updateUrl + updateUrl.indexOf("\\?")>-1?"&inAllPage=1":"?inAllPage=1";
+        toSubWindow(updateUrl);
+    }else {
+
+        var title = '<a id="iframePath">'+breadcrumb+'</a>＞<a>详情</a>';
+        showIframeWindow(title,    updateUrl );
+    }
+
+
 }
 
 

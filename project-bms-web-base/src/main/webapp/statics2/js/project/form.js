@@ -36,7 +36,7 @@ function closeWindow() {
     if(!isInAllPage()) {
         closeIframeWindow();
     }else {
-        parent.closeIframeWindow();
+        $(".shade-close", parent.document).click();
     }
 }
 
