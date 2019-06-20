@@ -185,7 +185,7 @@ function toAdd(){
         addUrl = addUrl + (addUrl.indexOf("?")>-1?"&inAllPage=1":"?inAllPage=1");
         toSubWindow(addUrl);
     }else {
-        showIframeWindow('<a>' + breadcrumb + '</a> ＞ <a>新建</a>', addUrl, 100);
+        showIframeWindow('<a>' + breadcrumb + '</a> > <a>新建</a>', addUrl, 100);
     }
 }
 
@@ -237,7 +237,7 @@ function toUpdate(id){
         toSubWindow(updateUrl);
     }else {
 
-        var title = '<a id="iframePath">'+breadcrumb+'</a>＞<a>详情</a>';
+        var title = '<a id="iframePath">'+breadcrumb+'</a>><a>详情</a>';
         showIframeWindow(title,    updateUrl );
     }
 
@@ -266,7 +266,7 @@ function toAll(id){
         allUrl = allUrl + (allUrl.indexOf("?")>-1?"&inAllPage=1":"?inAllPage=1");
         toSubWindow(allUrl);
     }else {
-        var title = '<a id="iframePath">' + breadcrumb + '</a>＞<a>详情</a>';
+        var title = '<a id="iframePath">' + breadcrumb + '</a>><a>详情</a>';
         showIframeWindow(title, allUrl);
     }
 }

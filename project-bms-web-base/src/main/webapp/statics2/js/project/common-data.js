@@ -212,7 +212,7 @@ function get(number)
 
     //小數位數
     var po = number.split(".")[1].length;
-    //轉成整數 4.1 --＞ 41 ， 4.33 --＞ 433
+    //轉成整數 4.1 --> 41 ， 4.33 --> 433
 
     var st = number.split(".").join("");
 
