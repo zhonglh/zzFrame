@@ -123,6 +123,7 @@ function doSave() {
         doMultiFormSave();
     }
 }
+
 function doSingleFormSave() {
     $("form").validate();
     // 校验数据规则
@@ -130,7 +131,6 @@ function doSingleFormSave() {
         warn('保存失败：表单信息填写不完整！');
         return false;
     }
-
 
     try{
         //业务上的逻辑校验
@@ -142,16 +142,10 @@ function doSingleFormSave() {
 
     }
 
-
-
-
-
-
     var fileSerialize = "";
     try{
         fileSerialize = computeFileSerialize();
     }catch(e){}
-
 
     try{
         //业务上的逻辑处理
@@ -159,8 +153,6 @@ function doSingleFormSave() {
     }catch(e){
 
     }
-
-
 
     //提交表单
     $.ajax({
@@ -172,6 +164,7 @@ function doSingleFormSave() {
         }
     });
 }
+
 
 function doMultiFormSave() {
 
