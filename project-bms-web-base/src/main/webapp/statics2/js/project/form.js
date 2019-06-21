@@ -231,6 +231,7 @@ function saveSuccess(rsp, status){
             try{
                 parent.search();
             }catch(e){
+                parent.parent.search();
             }
             var h = $AppContext+dataUrl+"/"+rsp.id+"/update?"+queryString;
             location.href = h;
@@ -379,8 +380,9 @@ function updateSuccess(rsp, status){
             }
 
             try{
-                parent.parent.search();
+                parent.search();
             }catch(e){
+                parent.parent.search();
             }
 
             //切换到显示界面
