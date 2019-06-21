@@ -29,9 +29,6 @@ public class TenantIntercept {
 
     Logger logger = Logger.getLogger(TenantIntercept.class);
 
-    public TenantIntercept(){
-        System.out.println("....TenantIntercept.......");
-    }
 
 
     @Around("execution(* com..*Service*.*(..))")

@@ -66,6 +66,9 @@
 <script language="JavaScript">
     var tableid = "tableData-${tableId}";
     var queryString = "dictTypeId=${fistTypeId}";
+
+
+    var inAllPage = "${inAllPage}";
 </script>
 
 
