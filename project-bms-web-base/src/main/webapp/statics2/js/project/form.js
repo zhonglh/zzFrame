@@ -229,7 +229,7 @@ function saveSuccess(rsp, status){
             }
 
             try{
-                parent.parent.search();
+                parent.search();
             }catch(e){
             }
             var h = $AppContext+dataUrl+"/"+rsp.id+"/update?"+queryString;
