@@ -441,6 +441,10 @@ public abstract class BaseExcelController<
 
 
 
+    @Override
+    public void checkEntity(BaseEntity be) {
+
+    }
 
 
 

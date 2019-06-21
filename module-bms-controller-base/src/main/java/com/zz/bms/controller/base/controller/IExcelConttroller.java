@@ -64,6 +64,17 @@ public interface IExcelConttroller<RwModel extends BaseEntity<PK>,
     public void analysis(List<QueryModel> list)  ;
 
 
+    /**
+     * 分析外键列
+     * @param list
+     * @param column
+     * @param fkAnnotation
+     * @param fkKeyInfoMaps
+     * @param fkNameInfoMaps
+     * @param fkErrorKeyInfoMaps
+     * @param fkErrorNameInfoMaps
+     * @param fkFieldMap
+     */
     public void analysisFk(List<QueryModel> list,
                            Column column,
                            EntityAttrFkAnnotation fkAnnotation,
@@ -73,6 +84,14 @@ public interface IExcelConttroller<RwModel extends BaseEntity<PK>,
                            Map<Class, Map<String, Object>> fkErrorNameInfoMaps,
                            Map<String, Map<Field, List<Field>>> fkFieldMap) ;
 
+    /**
+     * 分析字典列
+     * @param list
+     * @param column
+     * @param dictAnnotation
+     * @param dictInfoMaps
+     * @param dictFieldMap
+     */
     public void analysisDict(List<QueryModel> list,
                              Column column,
                              EntityAttrDictAnnotation dictAnnotation,
@@ -80,7 +99,19 @@ public interface IExcelConttroller<RwModel extends BaseEntity<PK>,
                              Map<String, Map<Field, Field>> dictFieldMap) ;
 
 
+    /**
+     * 分析非外键非字典列
+     * @param list
+     * @param column
+     */
     public void analysisOther(List<QueryModel> list,Column column) ;
+
+    /**
+     * 检查外键对象是否有效
+     * @param be
+     */
+    public void checkEntity(BaseEntity be) ;
+
 
 
 

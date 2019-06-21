@@ -338,7 +338,7 @@ public class ExcelHelper {
      * @param fkErrorKeyInfoMaps
      * @param fkErrorNameInfoMaps
      * @param fkFieldMap
-     * @param conttroller
+     * @param controller
      * @param <RwModel>
      * @param <QueryModel>
      * @param <PK>
@@ -352,7 +352,7 @@ public class ExcelHelper {
                     Map<Class, Map<String, Object>> fkErrorKeyInfoMaps,
                     Map<Class, Map<String, Object>> fkErrorNameInfoMaps,
                     Map<String, Map<Field, List<Field>>> fkFieldMap,
-                    IExcelConttroller conttroller) {
+                    IExcelConttroller controller) {
 
         Class fkClz = fkAnnotation.fkClass();
         if(fkClz == null){
@@ -389,7 +389,7 @@ public class ExcelHelper {
             throw new RuntimeException(fkAnnotation.group()+"外键设置错误");
         }
 
-        Method setErrorMethod = ExcelUtil.setErrorMethod(conttroller.getRwEntityClass());
+        Method setErrorMethod = ExcelUtil.setErrorMethod(controller.getRwEntityClass());
 
 
         Field fkIdField = null;
@@ -411,7 +411,7 @@ public class ExcelHelper {
 
             boolean isAllNull = false;
             Object fkObj = null;
-            Object[] keyObjs = buildKeyObject(m , fkAnnotation,  keyFieldNames , conttroller);
+            Object[] keyObjs = buildKeyObject(m , fkAnnotation,  keyFieldNames , controller);
             if(!EntityUtil.isAllEmpty(keyObjs)) {
                 String key = buildKey(keyObjs);
                 if (key != null) {
@@ -423,7 +423,7 @@ public class ExcelHelper {
                     ExcelHelper.errorProcess(setErrorMethod, m, fkIdColumn.getName() + "信息填写不全 ");
                 }
             }else {
-                Object[] nameObjs = buildKeyObject(m, fkAnnotation, nameFieldNames, conttroller);
+                Object[] nameObjs = buildKeyObject(m, fkAnnotation, nameFieldNames, controller);
                 if(!EntityUtil.isAllEmpty(nameObjs)) {
                     String key = buildKey(nameObjs);
                     if (key != null) {
@@ -447,6 +447,19 @@ public class ExcelHelper {
                     ExcelHelper.errorProcess(setErrorMethod, m, fkIdColumn.getName() + "信息必须输入 ");
                 }
                 continue;
+            }
+
+
+            if(fkObj != null){
+                try{
+                    controller.checkEntity((BaseEntity) fkObj);
+                }catch (BizException e){
+                    ExcelHelper.errorProcess(setErrorMethod, m, fkIdColumn.getName() + e.getMsg());
+                    continue;
+                }catch (Exception e){
+                    ExcelHelper.errorProcess(setErrorMethod, m, fkIdColumn.getName() + e.getMessage());
+                    continue;
+                }
             }
 
             if(fkObj != null){

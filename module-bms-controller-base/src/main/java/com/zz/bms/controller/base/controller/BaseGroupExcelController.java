@@ -397,11 +397,6 @@ public abstract class BaseGroupExcelController <
     }
 
 
-
-
-
-
-
     /**
      * 分析处理字典类属性
      * @param list
@@ -431,6 +426,10 @@ public abstract class BaseGroupExcelController <
     }
 
 
+    @Override
+    public void checkEntity(BaseEntity be) {
+
+    }
 
 
 
