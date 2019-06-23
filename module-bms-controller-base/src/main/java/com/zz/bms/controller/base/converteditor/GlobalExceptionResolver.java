@@ -73,7 +73,7 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
             return new ModelAndView("common/error", model);
 
 
-        }else if(e instanceof RuntimeException){
+        }/*else if(e instanceof RuntimeException){
             msg = (((RuntimeException)e).getMessage());
             if(StringUtils.isEmpty(msg)){
                 msg = e.getMessage();
@@ -81,7 +81,7 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
             model.put("exceptionMessage", msg);
             model.put("e", e);
             return new ModelAndView("common/error", model);
-        }else {
+        }*/else {
             if(e.getMessage() != null && e.getMessage().indexOf("index")!=-1){
                 msg = "数据重复， 请修改后重试！";
             }else {
@@ -110,10 +110,10 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
             if(be.getCode() != 500 && be.getCode() != 401 ){
                 json.setCode(500);
             }
-        }else if(e instanceof RuntimeException){
+        }/*else if(e instanceof RuntimeException){
             json.setMsg(e.getMessage());
             json.setCode(500);
-        }else {
+        }*/else {
             if(e.getMessage() != null && e.getMessage().indexOf("index")!=-1){
                 json.setCode(500);
                 json.setMsg( "数据重复， 请修改后重试！" );
