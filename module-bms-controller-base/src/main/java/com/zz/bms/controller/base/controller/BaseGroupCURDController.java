@@ -571,9 +571,11 @@ public abstract class   BaseGroupCURDController<
 
         }catch(RuntimeException e){
             logger.error(e.getMessage() , e);
+            recoveryResources(m,sessionUserVO);
             throw e;
         }catch(Exception e){
             logger.error(e.getMessage() , e);
+            recoveryResources(m,sessionUserVO);
             throw DbException.DB_SAVE_SAME;
         }
 

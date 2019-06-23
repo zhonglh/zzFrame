@@ -157,6 +157,15 @@ public abstract class BaseBusinessController<
 
     }
 
+    /**
+     * 插入错误时 ， 回收资源
+     * @param m
+     * @param sessionUser
+     */
+    protected void recoveryResources(RwModel m , ILoginUserEntity<PK> sessionUser){
+
+    }
+
 
 
 
