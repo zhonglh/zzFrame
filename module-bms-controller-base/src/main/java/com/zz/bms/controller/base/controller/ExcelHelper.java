@@ -688,6 +688,12 @@ public class ExcelHelper {
         ReflectionUtil.makeAccessible(column.getField());
         for(QueryModel m : list){
             Object obj = ReflectionUtil.getField(column.getField(),m);
+            if(obj != null && obj instanceof String){
+                if(obj.toString().endsWith(".0")){
+                    obj = obj.toString().substring(0, obj.toString().length() -2);
+                    ReflectionUtil.setField(column.getField() , m  , obj );
+                }
+            }
             ExcelHelper.checkField(column, setErrorMethod, m, obj);
 
         }

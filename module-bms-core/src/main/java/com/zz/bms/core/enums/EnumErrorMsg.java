@@ -20,6 +20,7 @@ public enum EnumErrorMsg {
     db_update_error(-820 , "数据没有改变" , "EnumErrorMsg.db_update_error"),
     db_delete_error(-830 , "操作错误,删除失败" , "EnumErrorMsg.db_delete_error"),
     not_select_todelete(-840 , "请选择要删除的数据" , "EnumErrorMsg.not_select_todelete"),
+    not_select(-841 , "请选择要操作的数据" , "EnumErrorMsg.not_select"),
 
 
     success(200,"操作成功" , "EnumErrorMsg.success"),
