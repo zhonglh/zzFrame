@@ -9,6 +9,7 @@ import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.core.enums.EnumErrorMsg;
 import com.zz.bms.core.enums.EnumSymbol;
+import com.zz.bms.core.exceptions.BizException;
 import com.zz.bms.core.exceptions.DbException;
 import com.zz.bms.core.ui.Pages;
 import com.zz.bms.core.vo.AjaxJson;
@@ -87,6 +88,12 @@ public abstract class BaseCURDController<
                 pageName = defaultListPageName;
             }
             return viewName(pageName);
+        }catch (BizException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
+        }catch (RuntimeException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             throw  new RuntimeException(e);
@@ -125,6 +132,12 @@ public abstract class BaseCURDController<
             processResult(page.getRecords());
 
             return toList(page);
+        }catch (BizException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
+        }catch (RuntimeException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             throw  new RuntimeException(e);
@@ -162,6 +175,12 @@ public abstract class BaseCURDController<
                 pageName = defaultTreePageName;
             }
             return viewName(pageName);
+        }catch (BizException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
+        }catch (RuntimeException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             throw  new RuntimeException(e);
@@ -234,6 +253,12 @@ public abstract class BaseCURDController<
             }
 
             return list;
+        }catch (BizException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
+        }catch (RuntimeException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             throw  new RuntimeException(e);
@@ -286,6 +311,12 @@ public abstract class BaseCURDController<
                 pageName = defaultViewPageName;
             }
             return viewName(pageName);
+        }catch (BizException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
+        }catch (RuntimeException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             throw  new RuntimeException(e);
@@ -322,6 +353,12 @@ public abstract class BaseCURDController<
                 pageName = defaultAddPageName;
             }
             return viewName(pageName);
+        }catch (BizException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
+        }catch (RuntimeException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             throw  new RuntimeException(e);
@@ -362,6 +399,12 @@ public abstract class BaseCURDController<
                 pageName = defaultEditPageName;
             }
             return viewName(pageName);
+        }catch (BizException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
+        }catch (RuntimeException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             throw  new RuntimeException(e);
@@ -426,6 +469,12 @@ public abstract class BaseCURDController<
                 }
             }
             return viewName(pageName);
+        }catch (BizException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
+        }catch (RuntimeException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             throw  new RuntimeException(e);
@@ -452,6 +501,12 @@ public abstract class BaseCURDController<
                 pageName = defaultAllPageName;
             }
             return viewName(pageName);
+        }catch (BizException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
+        }catch (RuntimeException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             throw  new RuntimeException(e);
@@ -485,6 +540,12 @@ public abstract class BaseCURDController<
             AjaxJson result = AjaxJson.ok();
             result.setId(m.getId());
             return result;
+        }catch (BizException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
+        }catch (RuntimeException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             throw  new RuntimeException(e);
@@ -684,6 +745,12 @@ public abstract class BaseCURDController<
                 }
             }
             return viewName(pageName);
+        }catch (BizException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
+        }catch (RuntimeException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             throw  new RuntimeException(e);
@@ -736,6 +803,12 @@ public abstract class BaseCURDController<
                 throw EnumErrorMsg.no_auth.toException();
             }
             return AjaxJson.successAjax;
+        }catch (BizException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
+        }catch (RuntimeException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             throw  new RuntimeException(e);
@@ -822,6 +895,12 @@ public abstract class BaseCURDController<
                 throw DbException.DB_DELETE_RESULT_0;
             }
             return AjaxJson.successAjax;
+        }catch (BizException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
+        }catch (RuntimeException e){
+            logger.error(e.getMessage(),e);
+            throw  e;
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             throw  new RuntimeException(e);
