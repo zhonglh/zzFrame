@@ -75,7 +75,7 @@ public class ExcelHelper {
                     }
                 }
                 if(f == null){
-                    throw new RuntimeException("BO没有设置这个EntityAttrFkAnnotation: group"+fkAnnotation.group() + "dbColumnName:" + keyFieldName );
+                    return  null;
                 }
                 ReflectionUtil.makeAccessible(f);
                 Object obj = ReflectionUtil.getField(f , m);
@@ -412,7 +412,7 @@ public class ExcelHelper {
             boolean isAllNull = false;
             Object fkObj = null;
             Object[] keyObjs = buildKeyObject(m , fkAnnotation,  keyFieldNames , controller);
-            if(!EntityUtil.isAllEmpty(keyObjs)) {
+            if(keyObjs != null && !EntityUtil.isAllEmpty(keyObjs)) {
                 String key = buildKey(keyObjs);
                 if (key != null) {
                     fkObj = getFkObjByKey(m, fkAnnotation,
