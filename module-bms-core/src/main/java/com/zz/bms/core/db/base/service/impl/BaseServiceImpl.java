@@ -416,7 +416,9 @@ public abstract class BaseServiceImpl<T extends BaseEntity<PK> ,  PK extends Ser
 
     @Override
     public void deletesByIdsAfter(Collection<T> ts){
-
+        for(T t : ts){
+            deleteByIdAfter(t);
+        }
     }
 
     @Override
