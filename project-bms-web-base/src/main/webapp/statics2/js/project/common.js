@@ -89,7 +89,7 @@ function closeIframeWindowInAllPage(callback)
     }
 
     // 关闭当前层
-    $(window.frameElement.parentElement.parentElement.parentElement).remove();
+    parent.parent.window.document.getElementsByClassName("fullScreenMask")[0].remove();
 }
 
 /**
