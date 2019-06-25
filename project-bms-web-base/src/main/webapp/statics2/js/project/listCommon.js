@@ -162,18 +162,16 @@ function deleteOne (obj)
     });
 }
 
-/**
- * 打开新建界面
- */
-function toAdd(){
-    var addUrl = ctx+dataUrl+"/create";
+
+function toXXX(url , title) {
+    var  xxxUrl = url ;
     try{
 
 
         if(queryString != undefined && queryString != ""){
             var simpleQueryString = getSimpleQueryString(queryString);
-            if(addUrl != null && simpleQueryString != "") {
-                addUrl = addUrl + "?" + simpleQueryString;
+            if(xxxUrl != null && simpleQueryString != "") {
+                xxxUrl = xxxUrl + "?" + simpleQueryString;
             }
         }
 
@@ -182,11 +180,19 @@ function toAdd(){
     }
 
     if(inAllPage == "1"){
-        addUrl = addUrl + (addUrl.indexOf("?")>-1?"&inAllPage=1":"?inAllPage=1");
-        toSubWindow(addUrl);
+        xxxUrl = xxxUrl + (xxxUrl.indexOf("?")>-1?"&inAllPage=1":"?inAllPage=1");
+        toSubWindow(xxxUrl);
     }else {
-        showIframeWindow('<a>' + breadcrumb + '</a> > <a>新建</a>', addUrl, 100);
+        showIframeWindow('<a>' + breadcrumb + '</a> > <a>'+title+'</a>', xxxUrl, 100);
     }
+}
+
+/**
+ * 打开新建界面
+ */
+function toAdd(){
+    var addUrl = ctx+dataUrl+"/create";
+    toXXX(addUrl , '新建');
 }
 
 //弹出方式打开界面
@@ -220,26 +226,8 @@ function closePanel(type){
  */
 function toUpdate(id){
     var updateUrl = ctx+dataUrl+"/"+id+"/update";
-    try{
-        if(queryString != undefined && queryString != ""){
-            var simpleQueryString = getSimpleQueryString(queryString);
-            if(simpleQueryString != null && simpleQueryString != "") {
-                updateUrl = updateUrl + "?" + simpleQueryString;
-            }
-        }
-    }catch(e){
 
-    }
-
-
-    if(inAllPage == "1"){
-        updateUrl = updateUrl + (updateUrl.indexOf("?")>-1?"&inAllPage=1":"?inAllPage=1");
-        toSubWindow(updateUrl);
-    }else {
-
-        var title = '<a id="iframePath">'+breadcrumb+'</a>><a>详情</a>';
-        showIframeWindow(title,    updateUrl );
-    }
+    toXXX(updateUrl , '详情');
 
 
 }
@@ -251,7 +239,7 @@ function toUpdate(id){
  */
 function toAll(id){
 
-    var allUrl = ctx+dataUrl+"/"+id+"/all"
+    var allUrl = ctx+dataUrl+"/"+id+"/all";
     try{
         if(queryString != undefined && queryString != ""){
             allUrl = allUrl+ "?" + queryString;
