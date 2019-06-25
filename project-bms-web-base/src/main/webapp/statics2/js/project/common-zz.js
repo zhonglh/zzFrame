@@ -21,8 +21,12 @@ function isInAllPage(){
 function getSimpleQueryString(queryString){
     if(queryString != undefined && queryString != ""){
         var simpleQueryString = queryString;
-        if(queryString.startsWith("inAllPage=1&")){
-            simpleQueryString = simpleQueryString.substring(12,simpleQueryString.length);
+        if(queryString.startsWith("inAllPage=1")){
+            simpleQueryString = simpleQueryString.substring(11,simpleQueryString.length);
+        }
+        if(simpleQueryString.index("inAllPage=1")!=-1){
+            var index = simpleQueryString.indexOf("inAllPage=1");
+            simpleQueryString=simpleQueryString.substr(0,index) + simpleQueryString.substr(index+11 , simpleQueryString.length);
         }
         return simpleQueryString;
     }else {
