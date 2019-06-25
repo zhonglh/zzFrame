@@ -308,21 +308,28 @@ public class ExcelHelper {
         }
         Map<String, Map<Field, List<Field>>> fkFieldMap = ColumnUtil.getFkMap(fs);
 
-        for(Column column : columns){
-            Field f = column.getField();
-            EntityAttrPageAnnotation pageAnnotation = f.getAnnotation(EntityAttrPageAnnotation.class);
-            EntityAttrDBAnnotation dbAnnotation = f.getAnnotation(EntityAttrDBAnnotation.class);
-            EntityAttrDictAnnotation dictAnnotation = f.getAnnotation(EntityAttrDictAnnotation.class);
-            EntityAttrFkAnnotation fkAnnotation = f.getAnnotation(EntityAttrFkAnnotation.class);
+        try {
+            for (Column column : columns) {
+                Field f = column.getField();
+                EntityAttrPageAnnotation pageAnnotation = f.getAnnotation(EntityAttrPageAnnotation.class);
+                EntityAttrDBAnnotation dbAnnotation = f.getAnnotation(EntityAttrDBAnnotation.class);
+                EntityAttrDictAnnotation dictAnnotation = f.getAnnotation(EntityAttrDictAnnotation.class);
+                EntityAttrFkAnnotation fkAnnotation = f.getAnnotation(EntityAttrFkAnnotation.class);
 
-            if(dictAnnotation != null){
-                conttroller.analysisDict(list,column,dictAnnotation,dictInfoMaps,dictFieldMap);
-            }else if(fkAnnotation != null){
-                conttroller.analysisFk(list,column,fkAnnotation,fkKeyInfoMaps,fkNameInfoMaps,fkErrorKeyInfoMaps,fkErrorNameInfoMaps,fkFieldMap);
-            }else {
-                conttroller.analysisOther(list,column);
+                if (dictAnnotation != null) {
+                    conttroller.analysisDict(list, column, dictAnnotation, dictInfoMaps, dictFieldMap);
+                } else if (fkAnnotation != null) {
+                    conttroller.analysisFk(list, column, fkAnnotation, fkKeyInfoMaps, fkNameInfoMaps, fkErrorKeyInfoMaps, fkErrorNameInfoMaps, fkFieldMap);
+                } else {
+                    conttroller.analysisOther(list, column);
+                }
             }
+        }catch (Exception e){
+            logger.error(e.getMessage() , e);
         }
+
+        //调用自定义的分析方法
+        conttroller.customAnalysis(list , columns);
 
 
     }

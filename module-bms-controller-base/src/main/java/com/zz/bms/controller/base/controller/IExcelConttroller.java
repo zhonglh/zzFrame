@@ -106,6 +106,17 @@ public interface IExcelConttroller<RwModel extends BaseEntity<PK>,
      */
     public void analysisOther(List<QueryModel> list,Column column) ;
 
+
+    /**
+     * 自定义分析
+     * @param list
+     * @param columns
+     */
+    public void customAnalysis(List<QueryModel> list,List<Column> columns) ;
+
+
+
+
     /**
      * 检查外键对象是否有效
      * @param be

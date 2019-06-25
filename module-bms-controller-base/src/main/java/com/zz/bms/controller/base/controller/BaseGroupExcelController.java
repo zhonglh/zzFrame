@@ -426,6 +426,20 @@ public abstract class BaseGroupExcelController <
     }
 
 
+
+    /**
+     * 自定义分析
+     * @param list
+     * @param columns
+     */
+    @Override
+    public void customAnalysis(List<QueryModel> list,List<Column> columns) {
+
+    }
+
+
+
+
     @Override
     public void checkEntity(BaseEntity be) {
 
