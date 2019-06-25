@@ -378,7 +378,10 @@ public abstract class BaseCURDController<
     public String showUpdateForm(ModelMap modelMap, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
 
         try {
-            this.assertHasUpdatePermission();
+
+
+            //检查功能权限
+            this.assertHasViewPermission();
 
 
             QueryWrapper<RwModel> wrapper = new QueryWrapper<RwModel>();
@@ -618,7 +621,7 @@ public abstract class BaseCURDController<
 
 
         //检查功能权限
-        this.assertHasViewPermission();
+        this.assertHasUpdatePermission();
 
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();

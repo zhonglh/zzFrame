@@ -393,6 +393,9 @@ public abstract class   BaseGroupCURDController<
 
         try {
 
+
+
+            //检查功能权限
             this.assertHasViewPermission();
 
 

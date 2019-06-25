@@ -399,3 +399,8 @@ function updateSuccess(rsp, status){
     }
 }
 
+
+
+function printWindow(div) {
+    $(div).printArea();
+}
