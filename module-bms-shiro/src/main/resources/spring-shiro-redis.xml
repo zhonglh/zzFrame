@@ -36,6 +36,7 @@
         <property name="sessionDAO" ref="sessionDao"/>
         <property name="sessionIdCookieEnabled" value="true"/>
         <property name="sessionIdCookie" ref="sessionIdCookie"/>
+        <property name="sessionIdUrlRewritingEnabled" value="false" />
         <property name="sessionListeners">
             <list>
                 <ref bean="shiroSessionListener"/>
