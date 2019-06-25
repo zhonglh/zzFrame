@@ -370,6 +370,14 @@ public class BaseCommonController<PK extends Serializable> extends BaseControlle
         permissionList.assertHasEditPermission();
     }
 
+
+    /**
+     * 增加或者查看
+     */
+    public void assertHasAddorViewPermission() {
+        permissionList.assertHasAddorViewPermission();
+    }
+
     public void assertHasPermission(String permission) {
         permissionList.assertHasPermission(permission);
     }

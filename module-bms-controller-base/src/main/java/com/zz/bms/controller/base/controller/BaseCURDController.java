@@ -427,7 +427,7 @@ public abstract class BaseCURDController<
     public String showAddOrUpdateForm(ModelMap modelMap,RwModel m, RwQuery q, HttpServletRequest request, HttpServletResponse response) {
 
         try {
-            this.assertHasEditPermission();
+            this.assertHasAddorViewPermission();
 
 
             QueryWrapper<RwModel> wrapper = q.buildWrapper();

@@ -118,6 +118,14 @@ public class PermissionList implements Serializable {
         });
     }
 
+
+    public void assertHasAddorViewPermission() {
+        assertHasAnyPermission(new String[]{
+                CREATE_PERMISSION,
+                VIEW_PERMISSION,
+        });
+    }
+
     public void assertHasPermission(String permission) {
         assertHasPermission(permission, null);
     }
