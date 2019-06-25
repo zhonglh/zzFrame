@@ -618,7 +618,7 @@ public abstract class BaseCURDController<
 
 
         //检查功能权限
-        this.assertHasUpdatePermission();
+        this.assertHasViewPermission();
 
 
         ILoginUserEntity<PK> sessionUserVO = getSessionUser();

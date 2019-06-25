@@ -393,7 +393,7 @@ public abstract class   BaseGroupCURDController<
 
         try {
 
-            this.assertHasUpdatePermission();
+            this.assertHasViewPermission();
 
 
             QueryWrapper<RwModel> wrapper = new QueryWrapper<>();
