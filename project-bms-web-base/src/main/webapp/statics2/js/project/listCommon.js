@@ -162,8 +162,12 @@ function deleteOne (obj)
     });
 }
 
-
-function toXXX(url , title) {
+/**
+ * 前往界面
+ * @param url
+ * @param title
+ */
+function toAnyPage(url , title) {
     var  xxxUrl = url ;
     try{
 
@@ -175,9 +179,19 @@ function toXXX(url , title) {
             }
         }
 
+        openZzWindow(xxxUrl , title);
     }catch(e){
 
     }
+
+}
+
+/**
+ * 打开窗口
+ * @param xxxUrl
+ * @param title
+ */
+function openZzWindow(xxxUrl , title){
 
     if(inAllPage == "1"){
         xxxUrl = xxxUrl + (xxxUrl.indexOf("?")>-1?"&inAllPage=1":"?inAllPage=1");
@@ -187,12 +201,13 @@ function toXXX(url , title) {
     }
 }
 
+
 /**
  * 打开新建界面
  */
 function toAdd(){
     var addUrl = ctx+dataUrl+"/create";
-    toXXX(addUrl , '新建');
+    toAnyPage(addUrl , '新建');
 }
 
 //弹出方式打开界面
@@ -227,7 +242,7 @@ function closePanel(type){
 function toUpdate(id){
     var updateUrl = ctx+dataUrl+"/"+id+"/update";
 
-    toXXX(updateUrl , '详情');
+    toAnyPage(updateUrl , '详情');
 
 
 }
