@@ -57,7 +57,8 @@ var tableHeight = 44;
 
 //显示编辑
 function openEdit(){
-    $(".form").validate();//开启验证
+    //开启验证
+    $(".form").validate();
     $(".show-area").show();
     $(".hide-area").hide();
     $(".easyui-datagrid").datagrid("showColumn","option");
