@@ -52,7 +52,7 @@ function closeWindow() {
     }
 }
 
-
+var tableHeight = 44;
 
 
 //显示编辑
