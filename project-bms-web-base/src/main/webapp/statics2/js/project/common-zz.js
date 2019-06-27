@@ -24,7 +24,7 @@ function getSimpleQueryString(queryString){
         if(queryString.startsWith("inAllPage=1")){
             simpleQueryString = simpleQueryString.substring(11,simpleQueryString.length);
         }
-        if(simpleQueryString.index("inAllPage=1")!=-1){
+        if(simpleQueryString.indexOf("inAllPage=1")!=-1){
             var index = simpleQueryString.indexOf("inAllPage=1");
             simpleQueryString=simpleQueryString.substr(0,index) + simpleQueryString.substr(index+11 , simpleQueryString.length);
         }
