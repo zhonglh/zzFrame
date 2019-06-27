@@ -233,8 +233,13 @@ function saveSuccess(rsp, status){
             }catch(e){
                 parent.parent.search();
             }
-            var h = $AppContext+dataUrl+"/"+rsp.id+"/update?"+queryString;
-            location.href = h;
+            if(rsp.id != null && rsp.id != undefined && rsp.id != "") {
+                var h = $AppContext + dataUrl + "/" + rsp.id + "/update?" + queryString;
+                location.href = h;
+            }else {
+
+                closeWindow();
+            }
         }else {
 
             try{
