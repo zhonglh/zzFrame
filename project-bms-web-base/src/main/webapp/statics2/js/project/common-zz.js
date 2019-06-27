@@ -19,7 +19,7 @@ function isInAllPage(){
 
 
 function getSimpleQueryString(queryString){
-    if(queryString != undefined && queryString != ""){
+    if(queryString != undefined && queryString != null && queryString != ""){
         var simpleQueryString = queryString;
         if(queryString.startsWith("inAllPage=1")){
             simpleQueryString = simpleQueryString.substring(11,simpleQueryString.length);
