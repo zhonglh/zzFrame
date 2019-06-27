@@ -302,6 +302,12 @@ public abstract class   BaseGroupCURDController<
     public String showViewForm(ModelMap modelMap, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
 
         try {
+
+
+            if(id == null || EntityUtil.isEmpty(id) ){
+                throw EnumErrorMsg.code_error.toException();
+            }
+
             this.assertHasViewPermission();
 
 
@@ -394,6 +400,9 @@ public abstract class   BaseGroupCURDController<
         try {
 
 
+            if(id == null || EntityUtil.isEmpty(id) ){
+                throw EnumErrorMsg.code_error.toException();
+            }
 
             //检查功能权限
             this.assertHasViewPermission();
@@ -505,6 +514,11 @@ public abstract class   BaseGroupCURDController<
     @RequestMapping(value = "/{id}/all", method = RequestMethod.GET)
     public String showAllPage(ModelMap modelMap, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
         try {
+
+            if(id == null || EntityUtil.isEmpty(id) ){
+                throw EnumErrorMsg.code_error.toException();
+            }
+
             RwModel m = baseRwService.getById(id);
 
 

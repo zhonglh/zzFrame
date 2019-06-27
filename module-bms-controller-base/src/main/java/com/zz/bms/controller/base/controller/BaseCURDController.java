@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zz.bms.core.db.entity.BaseBusinessEntity;
 import com.zz.bms.core.db.entity.BaseEntity;
+import com.zz.bms.core.db.entity.EntityUtil;
 import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.core.db.mybatis.query.Query;
 import com.zz.bms.core.enums.EnumErrorMsg;
@@ -289,6 +290,12 @@ public abstract class BaseCURDController<
     public String showViewForm(ModelMap modelMap, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
 
         try {
+
+
+            if(id == null || EntityUtil.isEmpty(id) ){
+                throw EnumErrorMsg.code_error.toException();
+            }
+
             this.assertHasViewPermission();
 
 
@@ -380,8 +387,13 @@ public abstract class BaseCURDController<
         try {
 
 
+            if(id == null || EntityUtil.isEmpty(id) ){
+                throw EnumErrorMsg.code_error.toException();
+            }
+
             //检查功能权限
             this.assertHasViewPermission();
+
 
 
             QueryWrapper<RwModel> wrapper = new QueryWrapper<RwModel>();
@@ -489,6 +501,12 @@ public abstract class BaseCURDController<
     @RequestMapping(value = "/{id}/all", method = RequestMethod.GET)
     public String showAllPage(ModelMap modelMap, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
         try {
+
+
+            if(id == null || EntityUtil.isEmpty(id) ){
+                throw EnumErrorMsg.code_error.toException();
+            }
+
             RwModel m = baseRwService.getById(id, false);
 
 
