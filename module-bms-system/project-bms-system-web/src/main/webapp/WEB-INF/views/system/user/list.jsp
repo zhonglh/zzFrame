@@ -41,8 +41,8 @@
                                 <i class="fa fa-close"></i>
                             </button>
                         </div>
-
                     </div>
+
 
                     <div class="form-group">
                         <input  class="form-control input-sm" style='width: 300px;'
