@@ -142,6 +142,59 @@ function costTableRows(easyuiTableId , tableJavaName , index){
 }
 
 
+/**
+ * 去掉字符中所有的逗号
+ * @param str
+ * @returns {*}
+ */
+function clearComma (str) {
+    return str.replace(/,/g, "");
+}
+
+/**
+ * 将输入框中的数据转换为数字， 如果不是数字返回0
+ */
+function changeDouble(textField){
+    var thisVal = 0.0;
+    try{
+        thisVal = parseFloat(textField.value);
+        thisVal = fixed(thisVal);
+    }catch(e){
+        thisVal = 0.0;
+    }
+    if(isNaN( thisVal )) thisVal = 0;
+    return thisVal;
+}
+
+/**
+ * 四舍五入
+ * @param result
+ */
+function fixed(result){
+    result = parseFloat(result).toFixed(10);
+    result = parseFloat(result);
+    return parseFloat(tofixed1(result,2));
+}
+
+/**
+ * 真正四舍五入
+ * @param result
+ * @param fractionDigits
+ * @returns
+ */
+function tofixed1(result,fractionDigits){
+    try{
+        with(Math){
+            return parseFloat(round(this*pow(10,d)))/pow(10,d);
+        }
+    }catch(e){
+    }
+
+    return result.toFixed(fractionDigits);
+}
+
+
+
 
 // 格式化时间
 /*
