@@ -670,7 +670,7 @@ public abstract class   BaseGroupCURDController<
             bbe.setVersionNo(((BaseBusinessEntity)temp).getVersionNo());
         }
 
-        //设置一些旧的值
+        //设置一些旧的值 ,或者比对新值和旧值是否有逻辑问题
         m = setOldValue(m , temp);
 
         //处理更新附加信息，如更新时间  更新人等

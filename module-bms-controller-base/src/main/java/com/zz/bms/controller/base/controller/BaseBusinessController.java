@@ -191,7 +191,7 @@ public abstract class BaseBusinessController<
     }
 
     /**
-     * 设置一些旧的值
+     * 设置一些旧的值 , 或者比对新值和旧值是否有逻辑问题
      * @param newVal
      * @param oldVal
      */
