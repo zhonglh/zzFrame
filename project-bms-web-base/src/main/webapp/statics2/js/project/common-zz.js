@@ -147,17 +147,17 @@ function costTableRows(easyuiTableId , tableJavaName , index){
  * @param str
  * @returns {*}
  */
-function clearComma (str) {
+function clearComma(str) {
     return str.replace(/,/g, "");
 }
 
 /**
  * 将输入框中的数据转换为数字， 如果不是数字返回0
  */
-function changeDouble(textField){
+function changeDouble(val){
     var thisVal = 0.0;
     try{
-        thisVal = parseFloat(textField.value);
+        thisVal = parseFloat(val);
         thisVal = fixed(thisVal);
     }catch(e){
         thisVal = 0.0;
