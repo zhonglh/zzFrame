@@ -81,7 +81,7 @@
                                         <button type="button" class="btn btn-primary btn-sm depName">
                                             <i class="fa fa-search-plus"></i>
                                         </button>
-                                        <button type="button" id="cleaDepId" class="btn btn-primary btn-sm">
+                                        <button type="button" id="clearDepId" class="btn btn-primary btn-sm">
                                             <i class="fa fa-close"></i>
                                         </button>
                                     </div>

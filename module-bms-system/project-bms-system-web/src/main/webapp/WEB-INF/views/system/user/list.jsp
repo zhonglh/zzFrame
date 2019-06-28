@@ -31,9 +31,17 @@
 
                     <div class="input-group">
                         <input type="hidden" id="depId" name="depId" value="">
-                        <input name='depName' id='depName' class="form-control input-sm" placeholder='部门' title='点击选择部门'
+                        <input name='depName' id='depName' class="form-control input-sm depName" placeholder='部门' title='点击选择部门'
                                style='width: 150px; cursor: pointer;' readonly="readonly" onclick="showSysDepWindow()">
-                        <div class="input-group-addon" title='清除' onclick="clearSysDep()"><i class="fa fa-remove"></i></div>
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-primary btn-sm depName">
+                                <i class="fa fa-search-plus"></i>
+                            </button>
+                            <button type="button" id="cleaDepId" class="btn btn-primary btn-sm">
+                                <i class="fa fa-close"></i>
+                            </button>
+                        </div>
+
                     </div>
 
                     <div class="form-group">
@@ -153,28 +161,23 @@
 <script src="${staticUrl}/statics2/business-js/system/dep/search.js"></script>
 
 <script language="JavaScript">
-    /**
-     * 选择模板
-     */
-    function showSysDepWindow()
-    {
-        openDeptWin(function(dep)
-        {
-            $('#depId').val(dep.id);
-            $('#depName').val(dep.depName);
-            // 刷新
-            search();
+
+
+
+
+    $(function() {
+        /**
+         * 选择部门
+         */
+        $(".depName").OpenSystemDepSelectWin({
+            title: "上级部门",
+            selectType: "t1",
+            callId: "depId",
+            callName: "depName",
+            clearId: "cleaDepId"
         });
-    }
-    /**
-     * 清除模板查询条件
-     */
-    function clearSysDep()
-    {
-        $('#depId').val('');
-        $('#depName').val('');
-        waitOperateDG.datagrid('reload',getQueryParams());
-    }
+    });
+
 
 
 
