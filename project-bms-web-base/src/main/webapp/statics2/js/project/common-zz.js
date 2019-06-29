@@ -136,7 +136,9 @@ function costTableRows(easyuiTableId , tableJavaName , index){
             val = "";
         }
         var e = "row."+item + "= '" +val+ "'";
-        eval(e);
+        try {
+            eval(e);
+        }catch(e){}
     }
 
 }
