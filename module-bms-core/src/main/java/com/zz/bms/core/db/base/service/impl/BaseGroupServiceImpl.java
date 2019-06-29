@@ -768,6 +768,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
 
     @Override
     public T processResult(T t){
+        this.getServices()[0].processResult(t);
         return t;
     }
 
@@ -775,6 +776,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
 
     @Override
     public List<T> processResult(List<T> ts) {
+        this.getServices()[0].processResult(ts);
         return ts;
     }
 
