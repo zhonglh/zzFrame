@@ -347,10 +347,10 @@ public abstract class BaseCURDController<
             processQueryString(modelMap, request);
             setCommonData(m, modelMap);
 
-            this.baseRwService.processResult(m);
-
             setInit(m);
+            this.baseRwService.processResult(m);
             customInfoByCreateForm(m, modelMap);
+
             modelMap.addAttribute("m", m);
             modelMap.addAttribute("entity", m);
 

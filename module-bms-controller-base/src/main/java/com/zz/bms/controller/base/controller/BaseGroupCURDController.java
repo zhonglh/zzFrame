@@ -360,9 +360,8 @@ public abstract class   BaseGroupCURDController<
             setCommonData(m, modelMap);
 
             setInit(m);
-            customInfoByCreateForm(m, modelMap);
-
             this.baseRwService.processResult(m);
+            customInfoByCreateForm(m, modelMap);
 
             modelMap.addAttribute("m", m);
             modelMap.addAttribute("entity", m);
