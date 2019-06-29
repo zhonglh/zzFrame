@@ -101,10 +101,19 @@ function changeDatetimeFormat(cellval) {
  * @returns {String}
  */
 function moneyFmt(val, r){
-    return FormatMoney(val,4,true);
+    return FormatMoney(val,2,true);
 }
 
 
+/**
+ * 金额格式化
+ * @param val
+ * @param r
+ * @returns {String}
+ */
+function money4Fmt(val, r){
+    return FormatMoney(val,4,true);
+}
 
 //设置选中项
 function checkedOption(str,val){
