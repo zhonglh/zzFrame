@@ -347,6 +347,7 @@ public abstract class BaseCURDController<
             processQueryString(modelMap, request);
             setCommonData(m, modelMap);
 
+            customInit(m, modelMap);
             setInit(m);
             this.baseRwService.processResult(m);
             customInfoByCreateForm(m, modelMap);

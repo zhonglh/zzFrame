@@ -374,6 +374,16 @@ public abstract class BaseBusinessController<
     protected void customInfoByViewForm(RwModel m, ModelMap model) {
     }
 
+
+    /**
+     * 自定义初始化值
+     * @param m
+     * @param model
+     */
+    protected void customInit(RwModel m, ModelMap model) {
+
+    }
+
     /**
      * 增加界面一些定制的操作
      * 如有， 需要重载

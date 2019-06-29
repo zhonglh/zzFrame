@@ -360,6 +360,7 @@ public abstract class   BaseGroupCURDController<
             setCommonData(m, modelMap);
 
             setInit(m);
+            customInit(m, modelMap);
             this.baseRwService.processResult(m);
             customInfoByCreateForm(m, modelMap);
 
