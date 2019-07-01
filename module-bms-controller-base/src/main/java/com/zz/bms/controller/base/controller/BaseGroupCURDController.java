@@ -730,6 +730,123 @@ public abstract class   BaseGroupCURDController<
 
 
 
+
+    /**
+     * 显示更新或者新增页面
+     * @param modelMap
+     * @param m
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/addOrUpdate", method = {RequestMethod.POST , RequestMethod.PUT})
+    @ResponseBody
+    public Object addOrUpdate(ModelMap modelMap,RwModel m, RwQuery q, HttpServletRequest request, HttpServletResponse response) {
+
+
+
+        if (EntityUtil.isEmpty(m.getId())) {
+            try{
+
+                this.assertHasCreatePermission();
+
+                ILoginUserEntity<PK> sessionUserVO = getSessionUser();
+
+                this.gatherCreateInformation( m,  modelMap , sessionUserVO, request,  response);
+
+                //插入信息
+                insertInfo(m, sessionUserVO);
+
+                AjaxJson result =  AjaxJson.ok();
+                result.setId(m.getId());
+                return result;
+
+            }catch(RuntimeException re){
+                logger.error(re.getMessage() ,re);
+                throw re;
+            }catch(Exception e){
+                logger.error(e.getMessage() ,e);
+                throw new RuntimeException(e);
+            }
+        }else{
+
+            //检查功能权限
+            this.assertHasUpdatePermission();
+
+            ILoginUserEntity<PK> sessionUserVO = getSessionUser();
+
+            this.gatherUpdateInformation( m,  modelMap , sessionUserVO, request,  response);
+
+            QueryWrapper<RwModel> wrapper = new QueryWrapper<RwModel>();
+            wrapper.eq("id" , m.getId());
+            RwModel temp = baseRwService.getOne(wrapper);
+            if(temp == null){
+                throw EnumErrorMsg.no_auth.toException();
+            }
+
+            if(m instanceof BaseBusinessEntity) {
+                BaseBusinessEntity bbe = (BaseBusinessEntity)m;
+                bbe.setVersionNo(((BaseBusinessEntity)temp).getVersionNo());
+            }
+
+            //设置一些旧的值 ,或者比对新值和旧值是否有逻辑问题
+            m = setOldValue(m , temp);
+
+            //处理更新附加信息，如更新时间  更新人等
+            this.setUpdateInfo(m, sessionUserVO);
+
+            //设置更新时的一些属性信息
+            setCustomInfoByUpdate(m , sessionUserVO);
+
+
+            setChildFkInfo(m);
+
+
+            //处理创建的数据， 如反填状态名称，外键信息等
+            this.processBO(m);
+
+
+
+
+            boolean success = false;
+            try {
+
+                //检查数据合法性
+                checkEntityLegality(m , false , true , true);
+                Assert.notNull(m.getId(),"出现内部错误");
+
+                this.checkCanUpdate(m , sessionUserVO);
+
+                //检查重复数据
+                this.baseRwService.isExist(m);
+
+
+                success = baseRwService.updateById(m);
+
+            }catch(RuntimeException e){
+                logger.error(e.getMessage() , e);
+                throw e;
+            }catch(Exception e){
+                logger.error(e.getMessage() , e);
+                throw DbException.DB_SAVE_SAME;
+            }
+
+            if(!success){
+                throw DbException.DB_UPDATE_RESULT_0;
+            }else {
+
+                AjaxJson result =  AjaxJson.ok();
+                result.setId(m.getId());
+                return result;
+            }
+
+        }
+
+
+    }
+
+
+
     /**
      * 单条删除
      * @param id

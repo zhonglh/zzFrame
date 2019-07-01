@@ -726,64 +726,105 @@ public abstract class BaseCURDController<
      * @return
      */
     @RequestMapping(value = "/addOrUpdate", method = {RequestMethod.POST , RequestMethod.PUT})
-    public String addOrUpdate(ModelMap modelMap,RwModel m, RwQuery q, HttpServletRequest request, HttpServletResponse response) {
-
-        try {
-            this.assertHasEditPermission();
+    @ResponseBody
+    public Object addOrUpdate(ModelMap modelMap,RwModel m, RwQuery q, HttpServletRequest request, HttpServletResponse response) {
 
 
-            QueryWrapper<RwModel> wrapper = q.buildWrapper();
-            this.buildRwWrapper(q, m);
-            List<RwModel> list = baseRwService.list(wrapper);
-            if (list != null && list.size() > 1) {
-                throw EnumErrorMsg.code_error.toException();
-            }
 
-            boolean isInsert = true;
-            RwModel entity = m;
-            if (list != null && list.size() == 1) {
-                entity = list.get(0);
-                isInsert = false;
-            }
+            if (EntityUtil.isEmpty(m.getId())) {
+                try {
+                    this.assertHasCreatePermission();
 
-            processQueryString(modelMap, request);
-            setCommonData(entity, modelMap);
-
-            if (isInsert) {
-                customInfoByCreateForm(entity, modelMap);
-            } else {
-                customInfoByUpdateForm(entity, modelMap);
-            }
-
-            entity = this.baseRwService.processResult(entity);
-
-            modelMap.addAttribute("m", entity);
-            modelMap.addAttribute("entity", entity);
+                    ILoginUserEntity<PK> sessionUserVO = getSessionUser();
 
 
-            String pageName = null;
-            if (isInsert) {
-                pageName = this.getAddPageName();
-                if (StringUtils.isEmpty(pageName)) {
-                    pageName = defaultAddPageName;
+                    this.gatherCreateInformation(m, modelMap, sessionUserVO, request, response);
+
+                    //插入信息
+                    insertInfo(m, sessionUserVO);
+
+                    AjaxJson result = AjaxJson.ok();
+                    result.setId(m.getId());
+                    return result;
+                } catch (BizException e) {
+                    logger.error(e.getMessage(), e);
+                    throw e;
+                } catch (RuntimeException e) {
+                    logger.error(e.getMessage(), e);
+                    throw e;
+                } catch (Exception e) {
+                    logger.error(e.getMessage(), e);
+                    throw new RuntimeException(e);
                 }
-            } else {
-                pageName = this.getEditPageName();
-                if (StringUtils.isEmpty(pageName)) {
-                    pageName = defaultEditPageName;
+            }else{
+
+                //检查功能权限
+                this.assertHasUpdatePermission();
+                ILoginUserEntity<PK> sessionUserVO = getSessionUser();
+                this.gatherUpdateInformation( m,  modelMap , sessionUserVO, request,  response);
+                QueryWrapper<RwModel> wrapper = new QueryWrapper<>();
+                wrapper.eq("id" , m.getId());
+                RwModel temp = baseRwService.getOne(wrapper);
+                if(temp == null){
+                    throw EnumErrorMsg.no_auth.toException();
+                }
+
+                if(m instanceof BaseBusinessEntity) {
+                    BaseBusinessEntity bbe = (BaseBusinessEntity)m;
+                    bbe.setVersionNo(((BaseBusinessEntity)temp).getVersionNo());
+                }
+
+                //设置一些旧的值 , 或者比对新值和旧值是否有逻辑问题
+                m = setOldValue(m , temp);
+
+                //处理更新附加信息，如更新时间  更新人等
+                this.setUpdateInfo(m, sessionUserVO);
+
+                //设置更新时的一些属性信息
+                setCustomInfoByUpdate(m , sessionUserVO);
+
+
+                //处理创建的数据， 如反填状态名称，外键信息等
+                this.processBO(m);
+
+
+
+
+                boolean success = false;
+                try {
+
+                    //检查数据合法性
+                    checkEntityLegality(m , false , true , true);
+                    Assert.notNull(m.getId(),"出现内部错误");
+
+
+                    //检查重复数据
+                    this.baseRwService.isExist(m);
+
+                    //检查业务上是否允许修改
+                    this.checkCanUpdate(m,sessionUserVO);
+
+                    success = baseRwService.updateById(m);
+
+                }catch(RuntimeException e){
+                    logger.error(e.getMessage() , e);
+                    throw e;
+                }catch(Exception e){
+                    logger.error(e.getMessage() , e);
+                    throw DbException.DB_SAVE_SAME;
+                }
+
+                if(!success){
+                    throw DbException.DB_UPDATE_RESULT_0;
+                }else {
+
+                    AjaxJson result =  AjaxJson.ok();
+                    result.setId(m.getId());
+                    return result;
                 }
             }
-            return viewName(pageName);
-        }catch (BizException e){
-            logger.error(e.getMessage(),e);
-            throw  e;
-        }catch (RuntimeException e){
-            logger.error(e.getMessage(),e);
-            throw  e;
-        }catch (Exception e){
-            logger.error(e.getMessage(),e);
-            throw  new RuntimeException(e);
-        }
+
+
     }
 
 
