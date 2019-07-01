@@ -395,12 +395,21 @@ public abstract class BaseBusinessController<
 
 
     /**
+     * 根据查询条件获取第一个对象
+     * @param rwQuery
+     * @return
+     */
+    protected RwModel getModelByQuery(RwQuery rwQuery){
+        return this.baseRwService.getOne((QueryWrapper<RwModel>)rwQuery.buildWrapper());
+    }
+
+    /**
      * 所有界面一些定制的操作
      * 如有， 需要重载
      * @param model
      */
-    protected void customInfoByAllPage(RwModel m, ModelMap model) {
-
+    protected RwModel customInfoByAllPage(RwModel m, ModelMap model) {
+        return m;
     }
 
     /**

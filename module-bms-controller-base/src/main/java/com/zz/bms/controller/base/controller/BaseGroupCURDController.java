@@ -512,14 +512,20 @@ public abstract class   BaseGroupCURDController<
 
 
     @RequestMapping(value = "/{id}/all", method = RequestMethod.GET)
-    public String showAllPage(ModelMap modelMap, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
+    public String showAllPage(ModelMap modelMap, @PathVariable("id") PK id, RwQuery rwQuery ,HttpServletRequest request, HttpServletResponse response) {
+
         try {
+            RwModel m = null;
 
             if(id == null || EntityUtil.isEmpty(id) ){
+                m = getModelByQuery(rwQuery) ;
+            }else {
+                m = baseRwService.getById(id, false);
+            }
+            if(m == null){
                 throw EnumErrorMsg.code_error.toException();
             }
 
-            RwModel m = baseRwService.getById(id);
 
 
             customInfoByAllPage(m, modelMap);

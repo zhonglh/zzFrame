@@ -18,9 +18,9 @@ import com.zz.bms.enums.EnumTreeState;
 import com.zz.bms.util.base.java.ReflectionSuper;
 import com.zz.bms.util.configs.annotaions.EntityAnnotation;
 import com.zz.bms.util.web.PaginationContext;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -500,15 +500,21 @@ public abstract class BaseCURDController<
 
 
     @RequestMapping(value = "/{id}/all", method = RequestMethod.GET)
-    public String showAllPage(ModelMap modelMap, @PathVariable("id") PK id, HttpServletRequest request, HttpServletResponse response) {
+    public String showAllPage(@PathVariable("id") PK id,RwQuery rwQuery, ModelMap modelMap,  HttpServletRequest request, HttpServletResponse response) {
         try {
 
+            RwModel m = null;
 
             if(id == null || EntityUtil.isEmpty(id) ){
-                throw EnumErrorMsg.code_error.toException();
+                m = getModelByQuery(rwQuery) ;
+            }else {
+                m = baseRwService.getById(id, false);
             }
 
-            RwModel m = baseRwService.getById(id, false);
+
+            if(m == null){
+                throw EnumErrorMsg.code_error.toException();
+            }
 
 
             customInfoByAllPage(m, modelMap);
@@ -534,6 +540,7 @@ public abstract class BaseCURDController<
             throw  new RuntimeException(e);
         }
     }
+
 
 
     /**
