@@ -1085,7 +1085,6 @@ $(function(){
         formList: [],
         getForm: function(options){
             //判断是否已经创建
-            debugger;
             var formData = null;
             for(var i=0; i<this.formList.length; i++){
                 if(this.formList[i].options.id == options.id){
@@ -1210,7 +1209,7 @@ $(function(){
 
         // 填充附件信息
         $("#" + that.options.formId).find(".webuploader-container").each(function(){
-            debugger
+
             var options = $(this).attr("data-options");
             options = stringToJson(options);
 
@@ -1308,7 +1307,7 @@ $(function(){
 
         // 收集文件数据
         $(formId).find(".webuploader-container").each(function(){
-            debugger
+
             var options = $(this).attr("data-options");
             options = stringToJson(options);
 

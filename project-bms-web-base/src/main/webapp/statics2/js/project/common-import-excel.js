@@ -42,7 +42,6 @@ var uploader = WebUploader.create({
 
 // 验证通过后，将文件添加到上传队列中
 uploader.on('beforeFileQueued', function (file) {
-    debugger;
     if(file.size > options.maxFileSize){
         error("附件不能大于50M。");
         return false;

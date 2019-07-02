@@ -36,7 +36,6 @@
      * 初始化 easyUI 列表
      */
     function initPage() {
-        debugger
         //加载table列表数据
         var initUrl =  ctx+dataUrl+"/excelList";
         var ajaxUrl = initUrl;
