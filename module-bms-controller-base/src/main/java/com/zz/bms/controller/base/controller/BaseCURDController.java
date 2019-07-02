@@ -505,10 +505,18 @@ public abstract class BaseCURDController<
 
             RwModel m = null;
 
-            if(id == null || EntityUtil.isEmpty(id) ){
+            try {
+                if (id == null || EntityUtil.isEmpty(id)) {
+                    m = getModelByQuery(rwQuery);
+                } else {
+                    m = baseRwService.getById(id, false);
+                }
+            }catch (Exception e){
+
+            }
+
+            if(m == null){
                 m = getModelByQuery(rwQuery) ;
-            }else {
-                m = baseRwService.getById(id, false);
             }
 
 

@@ -517,11 +517,21 @@ public abstract class   BaseGroupCURDController<
         try {
             RwModel m = null;
 
-            if(id == null || EntityUtil.isEmpty(id) ){
-                m = getModelByQuery(rwQuery) ;
-            }else {
-                m = baseRwService.getById(id, false);
+            try {
+                if (id == null || EntityUtil.isEmpty(id)) {
+                    m = getModelByQuery(rwQuery);
+                } else {
+                    m = baseRwService.getById(id, false);
+                }
+            }catch (Exception e){
+
             }
+
+            if(m == null){
+                m = getModelByQuery(rwQuery) ;
+            }
+
+
             if(m == null){
                 throw EnumErrorMsg.code_error.toException();
             }
