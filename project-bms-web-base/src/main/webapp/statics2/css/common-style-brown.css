@@ -7,7 +7,9 @@
  *		重置platform.css样式
  *------------------------------------------------------------------------------------------*/
 
-
+.btns{
+	clear: both;
+}
 #full-screen {padding: 10px; background: #ffffff; position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 99999; overflow: auto}
 .fixed-top-show{position: fixed;top: 0;left: 0;right: 0;bottom: 0}
 @media (min-width: 992px){.col-md-3 .block-each{margin-left: 10px}}
