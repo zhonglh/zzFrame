@@ -202,7 +202,10 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
                 }
                 index ++;
             }
+
+            saveAfter(entity);
         }
+
 
 
         return result;
@@ -224,7 +227,11 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
         }
 
         if(!isGroup()){
-            return this.getServices()[0].saveBatch(entityList,batchSize);
+            boolean result = this.getServices()[0].saveBatch(entityList, batchSize);
+            for(T t : entityList) {
+                saveAfter(t);
+            }
+            return result;
         }else {
 
             for (T entity : entityList) {
@@ -307,6 +314,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
                 }
                 index ++ ;
             }
+            this.deleteByIdAfter(entity);
         }
 
         return result;
@@ -461,6 +469,8 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
 
                 index ++ ;
             }
+
+            this.updateAfter(entity);
         }
 
         return true;
@@ -490,6 +500,7 @@ public abstract class BaseGroupServiceImpl<T extends BaseEntity<PK> ,  PK extend
         }else {
             for (T entity : entityList) {
                 updateById(entity);
+
             }
             return true;
         }
