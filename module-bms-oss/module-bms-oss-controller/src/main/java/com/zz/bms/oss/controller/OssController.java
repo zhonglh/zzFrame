@@ -73,9 +73,7 @@ public class OssController extends BaseController<String> {
             return ;
         }
         try {
-            FileUtils.download(request, response, vsFileUseBO.getFilePullName(), vsFileUseBO.getContentType(), vsFileUseBO.getShowName());
-
-            //FileUtils.print(request, response, vsFileUseBO.getFilePullName(), vsFileUseBO.getContentType(), vsFileUseBO.getShowName());
+            FileUtils.print(request, response, vsFileUseBO.getFilePullName(), vsFileUseBO.getContentType(), vsFileUseBO.getShowName());
         }catch (Exception e) {
             File f = new File(vsFileUseBO.getFileName());
             DownloadBaseUtil.download(f, vsFileUseBO.getShowName(), response, false);
