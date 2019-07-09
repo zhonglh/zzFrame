@@ -6,9 +6,6 @@
 
 <link rel="stylesheet" href="${ctx}/statics2/font-awesome/font-awesome.min.css"/>
 
-<link rel="stylesheet" href="${ctx}/statics2/font-awesome/font-awesome.min.css"/>
-<link rel="stylesheet" href="${ctx}/statics2/font-awesome/font-awesome.min.css"/>
-
 
 <link rel="stylesheet" href="${ctx}/statics2/bootstrap/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="${ctx}/statics2/jquery/easyui/themes/default/easyui.css">
