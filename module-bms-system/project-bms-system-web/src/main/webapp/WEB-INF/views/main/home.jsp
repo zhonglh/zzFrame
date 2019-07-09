@@ -256,9 +256,7 @@
     <ul class="menu search-menu"  id="sMenu"></ul>
 </div>
 
-<div style='position: absolute; left: 230px; top: 50px; bottom: 0px; right: 0px;'>
-    <iframe id='ifrmWorkspace'  name='ifrmWorkspace' src="${ctx}/main/welcome" width='100%' height='100%' frameborder='0'  style="background-color: #ffffff;"></iframe>
-</div>
+<jsp:include page="ifrmWorkspace.jsp" />
 
 
 <div class='interruption' style="display: none">
