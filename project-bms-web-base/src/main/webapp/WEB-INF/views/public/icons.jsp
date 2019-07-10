@@ -3795,6 +3795,8 @@
         window.Pace.stop();
     }
 
+    var $PagingSize = 20;
+
 </script>
 <bms:contentJS />
 
