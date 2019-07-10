@@ -37,7 +37,12 @@ public class ShiroUtils {
 	}
 
 	public static <T> T getUserEntity() {
-		return  (T)SecurityUtils.getSubject().getPrincipal();
+		Subject s = SecurityUtils.getSubject();
+		if(s == null){
+			return null;
+		}else {
+			return (T) s.getPrincipal();
+		}
 	}
 
 	public static <T> T getUserId() {
