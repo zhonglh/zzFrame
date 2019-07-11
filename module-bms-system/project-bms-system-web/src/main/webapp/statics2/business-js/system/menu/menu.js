@@ -9,7 +9,7 @@ function changeIcon()
     {
         iconDialog = iDialog(
             {
-                content: $('#iconsDiv')[0], effect: 'i-super-scale', width: 600, lock: true,
+                content: $('#iconsDiv')[0], effect: 'i-super-scale', width: 900, height:400 , lock: true,
                 btn:
                     {
                         ok:
@@ -23,7 +23,9 @@ function changeIcon()
                                         return false;
                                     }
 
-                                    $("#menuIcon").val($("#icon").val())
+                                    $("#menuIcon").val($("#icon").val());
+                                    $("#icon-show").removeClass();
+                                    $("#icon-show").addClass($("#icon").val());
 
                                 }
                             },

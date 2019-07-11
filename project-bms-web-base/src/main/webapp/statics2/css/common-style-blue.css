@@ -169,7 +169,7 @@ a:focus {
 }
 
 .menu li a i {
-	display: none
+	/*display: none*/
 }
 
 .arrow:after {

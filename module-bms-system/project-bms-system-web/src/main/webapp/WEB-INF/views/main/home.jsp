@@ -31,8 +31,12 @@
     <link rel="icon" href="${staticUrl}/statics2/image/favicon.ico">
     <link rel="shortcut icon" href="${staticUrl}/statics2/image/favicon.ico">
 
-    <link rel="stylesheet" href="${ctx}/statics2/font-awesome/font-awesome.min.css"/>
+
     <link rel="stylesheet" href="${ctx}/statics2/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="${ctx}/statics2/font-awesome/font-awesome.min.css"/>
+    <link rel="stylesheet" href="${ctx}/statics2/ionicons/css/ionicons.css"/>
+    <link rel="stylesheet" href="${ctx}/statics2/css/icons.css"/>
+
     <link rel="stylesheet" href="${ctx}/statics2/jquery/easyui/themes/default/easyui.css">
     <link rel="stylesheet" href="${ctx}/statics2/jquery/opentip/opentip.css" />
     <link rel="stylesheet" href="${ctx}/statics2/jquery/jquery-confirm/jquery-confirm.min.css"/>

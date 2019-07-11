@@ -3,6 +3,10 @@
 <bms:contentHeader />
 
 
+<link rel="stylesheet" href="${ctx}/statics2/ionicons/css/ionicons.css"/>
+<link rel="stylesheet" href="${ctx}/statics2/css/icons.css"/>
+
+
 
 
 <div style="padding:0 10px">
@@ -81,7 +85,7 @@
                                     <th>菜单图标</th>
 
                                     <td class="fd_menuIcon">
-                                         <c:if test="${m.menuIcon != null && m.menuIcon != ''}"><i  class="${ m.menuIcon }"></i></c:if>   ${ m.menuIcon }
+                                         <c:if test="${m.menuIcon != null && m.menuIcon != ''}"><i   class="${ m.menuIcon }"></i></c:if>   ${ m.menuIcon }
                                     </td>
 
 
@@ -317,11 +321,11 @@
 
                                 <th>备注</th>
                                 <td colspan="3">
-                                <input type="text"  class="form-control input-sm "
-                                placeholder="请输入备注" autocomplete="off"
-                                value="${ m.remark }" id="remark" name="remark"
-                                maxlength="200"  />
 
+                                    <input type="text"  class="form-control input-sm "
+                                        placeholder="请输入备注" autocomplete="off"
+                                        value="${ m.remark }" id="remark" name="remark"
+                                        maxlength="200"  />
                                 </td>
 
 
@@ -375,7 +379,7 @@
 
 
     <div class="hidden">
-        <div class="Container" style="margin-left: 12px" id="iconsDiv" >
+        <div class="Container" style="margin-left: 12px;overflow-y:auto; height: 300px;" id="iconsDiv" >
 
 
 

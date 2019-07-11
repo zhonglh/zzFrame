@@ -32,6 +32,7 @@
 
 
     <link rel="stylesheet" href="${ctx}/statics2/font-awesome/font-awesome.min.css"/>
+
     <link rel="stylesheet" href="${ctx}/statics2/ionicons/css/ionicons.css"/>
     <link rel="stylesheet" href="${ctx}/statics2/css/icons.css"/>
 
