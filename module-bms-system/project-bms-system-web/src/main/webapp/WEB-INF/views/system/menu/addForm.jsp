@@ -127,16 +127,23 @@
 
                                     <td>
 
-
+                                        <div class="input-group">
+                                            <!--显示图标-->
+                                            <span class="input-group-addon" style="width: 38px;">
+                                            <i id="icon-show"></i>
+                                            </span>
 
 
 
                                             <input type="text"  class="form-control input-sm "
-                                                   placeholder="请输入菜单图标" autocomplete="off"
-                                                   value="${ m.menuIcon }" id="menuIcon" name="menuIcon"
-                                                       maxlength="20"  />
+                                                   placeholder="请输入菜单图标" autocomplete="off"  maxlength="20"
+                                                    value="${ m.menuIcon }" id="menuIcon" name="menuIcon"  />
 
+                                            <span class="input-group-addon"  onclick="changeIcon()">
+                                            <i class="fa fa-search"></i>
+                                            </span>
 
+                                        </div>
 
 
                                     </td>
@@ -294,6 +301,23 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+    <div class="hidden">
+        <div class="Container" style="margin-left: 12px" id="icons" >
+
+            <iframe src="${ctx}/public/icons" />
+
+        </div>
+    </div>
+
+
+
+
 </div>
 
 
@@ -311,10 +335,8 @@
 
 
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
-
-
 <script src="${ staticUrl }/statics2/business-js/system/menu/search.js"></script>
-
+<script src="${ staticUrl }/statics2/business-js/system/menu/menu.js"></script>
 
 
 <script language="JavaScript">
