@@ -4,7 +4,7 @@
 <mapper namespace="com.zz.bms.system.dao.TsUserRoleDAO">
  	<!-- 映射配置 -->
 	<resultMap id="TsUserRoleResultMap" type="com.zz.bms.system.bo.TsUserRoleBO" >
-         	<result column="id" property="id" javaType="java.lang.String" jdbcType="char"/>
+         	<result column="id" property="id" javaType="java.lang.String" jdbcType="CHAR"/>
 
          	<result column="user_id" property="userId"/>
 
