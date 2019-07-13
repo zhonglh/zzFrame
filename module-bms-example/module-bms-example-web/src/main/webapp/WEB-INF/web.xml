@@ -14,10 +14,10 @@
     <param-value>
       classpath:spring-context.xml
       classpath:spring-common.xml
-      classpath:spring-mybatis.xml
       classpath:spring-shiro-redis.xml
       classpath:spring-util-redis.xml
       classpath:spring-oss.xml
+      classpath:spring-mybatis-fund.xml
 
 
     </param-value>
