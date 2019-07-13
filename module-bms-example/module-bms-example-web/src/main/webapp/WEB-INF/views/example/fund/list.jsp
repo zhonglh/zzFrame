@@ -14,6 +14,62 @@
     <div id="content-sec" style="padding: 10px 10px 0 10px;">
         <!-- 筛选条件表单开始 -->
         <form id="searchForm" onsubmit="return false" >
+            <div id='toolbar' style='height: 40px;     border-bottom: 2px solid #0896ba; '>
+                <div class="form-inline" role="form">
+
+                    <div class="form-group"    style='margin-left: -15px;'  >
+                        <input type="text"  class="form-control input-sm" style='width: 200px;' id="fundName_LIKE" name='fundName_LIKE'  placeholder='基金名称' onkeydown='enterKeySearch(event, search);'>
+                    </div>
+
+
+                    <div class="form-group"     >
+                        <input type="text"  class="form-control input-sm" style='width: 200px;' id="fundCode_LIKE" name='fundCode_LIKE'  placeholder='基金代码' onkeydown='enterKeySearch(event, search);'>
+                    </div>
+
+                    <div class="form-group"     >
+                        <select id="fundType" name='fundType'   class="form-control input-sm" onChange='search();'  >
+                            <option value="" >基金类型</option>
+                            <c:forEach items="${ fund_type_dicts }" var="dict">
+                                <option value="${ dict.dictVal }">${ dict.dictName }</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+
+                    <div class="form-group"     >
+                        <select id="fundDirection" name='fundDirection'   class="form-control input-sm" onChange='search();'  >
+                            <option value="" >基金投向</option>
+                            <c:forEach items="${ fund_direction_dicts }" var="dict">
+                                <option value="${ dict.dictVal }">${ dict.dictName }</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+
+                    <div class="input-group"    >
+                        <c:if test="${ fn.indexOf(queryString,'managerUserId') }">
+                            <input type="text" class="form-control input-sm" name="managerUserName" id="managerUserName" value="${ m.managerUserName }" readonly>
+                        </c:if>
+
+                        <c:if test="${ !fn.indexOf(queryString,'managerUserId') }">
+                            <input type="hidden" name="managerUserId" id="managerUserId">
+                            <input type="text" name="managerUserName" id="managerUserName" class="form-control input-sm managerUserName" placeholder="基金经理" style="width: 150px; cursor: pointer;" readonly="readonly">
+
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-primary btn-sm managerUserName">
+                                    <i class="fa fa-search-plus"></i>
+                                </button>
+                                <button type="button" id="clearmanagerUserName" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-close"></i>
+                                </button>
+                            </div>
+                        </c:if>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-sm" onclick='search();'><i class="fa fa-search"></i>&nbsp;查询</button>
+                    </div>
+                </div>
+            </div>
+
 
         </form>
 
@@ -146,6 +202,17 @@
 
     $(function() {
 
+        //基金经理
+        $(".managerUserName").OpenSystemUserSelectWin({
+            title: "基金经理",
+            selectType: "d1",
+            callId: "managerUserId",
+            callName: "managerUserName",
+            clearId: "clearmanagerUserName"
+        } ,function(val , name , row){
+
+            search();
+        });
 
     });
 

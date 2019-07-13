@@ -36,7 +36,7 @@
 
     var urls = [
             ctx+'/example/investoragreement/${ m.id }/update?inAllPage=1',
-            ctx+'/example/outmoney/addOrUpdate?inAllPage=1&investorAgreementId=${ m.id }'
+            ctx+'/example/outmoney/toList?inAllPage=1&investorAgreementId=${ m.id }'
     ];
 
     /**
