@@ -39,7 +39,7 @@
 
     var urls = [
             ctx+'/example/investor/${ m.id }/update?inAllPage=1',
-            ctx+'/example/outmoney/addorUpdate?inAllPage=1&investorId=${ m.id }',
+            ctx+'/example/outmoney/addOrUpdate?inAllPage=1&investorId=${ m.id }',
             ctx+'/example/investoragreement/toList?inAllPage=1&investorId=${ m.id }'
     ];
 
