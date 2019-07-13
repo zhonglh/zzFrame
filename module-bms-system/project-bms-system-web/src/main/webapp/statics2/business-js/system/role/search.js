@@ -39,10 +39,7 @@ function openSystemRoleWin(config, callBack)
         {field:"roleName", title:"角色名称", width: 150, align:"left" ,},
         {field:"roleCode", title:"角色编号", width: 150, align:"left" ,},
         {field:"roleTypeName", title:"角色类型", width: 150, align:"left" ,},
-        {field:"depName", title:"部门", width: 150, align:"left" ,},
-        {field:"organId", title:"机构", width: 150, align:"left" ,},
-        {field:"roleStatusName", title:"角色状态", width: 150, align:"left" ,},
-        {field:"remark", title:"备注", width: 150, align:"left" ,}
+        {field:"roleStatusName", title:"角色状态", width: 150, align:"left" ,}
     ]];
     options.sampleData = {id: "id", name: "roleName"};
     options.htmlTemple = tableTemple;

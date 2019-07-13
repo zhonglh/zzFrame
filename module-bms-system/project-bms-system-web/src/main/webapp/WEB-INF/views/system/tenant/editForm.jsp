@@ -52,21 +52,26 @@
                                 <td class="fd_leadUserName">
                                     <c:out value="${ m.leadUserName }" escapeXml="true"/>
                                 </td>
-                                <th>LOGO</th>
-                                <td class="fd_logoFile">
-                                    <c:out value="${ m.logoFile }" escapeXml="true"/>
-                                </td>
-                            </tr>
-
-                            <tr>
                                 <th>官网</th>
                                 <td class="fd_website">
                                     <c:out value="${ m.website }" escapeXml="true"/>
                                 </td>
+                            </tr>
+
+                            <tr>
+
                                 <th>说明</th>
-                                <td class="fd_remark">
+                                <td class="fd_remark" colspan="3">
                                     <c:out value="${ m.remark }" escapeXml="true"/>
                                 </td>
+                            </tr>
+
+                            <tr>
+                                <th>LOGO</th>
+                                <td class="fd_logoFile" colspan="3">
+                                    <c:out value="${ m.logoFile }" escapeXml="true"/>
+                                </td>
+
                             </tr>
 
                         </tbody>
@@ -126,25 +131,33 @@
                                                value="${ m.leadUserName }" id="leadUserName" name="leadUserName"
                                                    maxlength="50"  />
                                 </td>
-                                <th>LOGO</th>
+
+
+                                <th>官网</th>
                                 <td>
+                                    <input type="text"  class="form-control input-sm "
+                                           placeholder="请输入官网" autocomplete="off"
+                                           value="${ m.website }" id="website" name="website"
+                                           maxlength="200"  />
                                 </td>
                             </tr>
 
                             <tr>
-                                <th>官网</th>
-                                <td>
-                                        <input type="text"  class="form-control input-sm "
-                                               placeholder="请输入官网" autocomplete="off"
-                                               value="${ m.website }" id="website" name="website"
-                                                   maxlength="200"  />
-                                </td>
+
                                 <th>说明</th>
-                                <td>
+                                <td colspan="3">
                                         <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
                                               name="remark" placeholder="请输入说明，2000字以内" maxlength="2000" rows="4">${ m.remark }</textarea>
                                         </div>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <th>LOGO</th>
+                                <td colspan="3">
                                 </td>
                             </tr>
 
