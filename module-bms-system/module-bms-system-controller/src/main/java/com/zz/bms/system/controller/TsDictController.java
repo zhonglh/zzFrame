@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 import com.zz.bms.core.db.entity.BaseBusinessEntity;
 import com.zz.bms.core.db.entity.BaseBusinessSimpleEntity;
+import com.zz.bms.core.db.entity.ILoginUserEntity;
 import com.zz.bms.enums.EnumYesNo;
 import com.zz.bms.system.bo.TsDictBO;
 import com.zz.bms.system.bo.TsDictTypeBO;
@@ -43,12 +44,24 @@ public class TsDictController extends ZzDefaultSimpleController<TsDictBO, String
 		return wrapper;
 	}
 
+
+	/**
+	 * 检查是否可以修改
+	 * @param m
+	 * @param sessionUserVO
+	 */
+	@Override
+	protected void checkCanUpdate(TsDictBO m, ILoginUserEntity<String> sessionUserVO){
+		m.setDictVal(null);
+	}
+
 	@RequestMapping(value = "/index" , method = RequestMethod.GET)
 	public String index(ModelMap model , HttpServletRequest request, HttpServletResponse response) {
 		processPath(model);
 		TsDictTypeQueryImpl tsDictTypeQuery = new TsDictTypeQueryImpl();
-		//tsDictTypeQuery.dictTypeShowable(EnumYesNo.YES.getCode());
+		tsDictTypeQuery.dictTypeShowable(EnumYesNo.YES.getCode());
 		QueryWrapper<TsDictTypeBO> queryWrapper = tsDictTypeQuery.buildWrapper();
+		queryWrapper.lambda().orderByAsc(TsDictTypeBO::getOrderby) ;
 		List<TsDictTypeBO> list = this.tsDictTypeService.list(queryWrapper);
 		model.addAttribute("list" , list);
 		if(list != null && !list.isEmpty()) {

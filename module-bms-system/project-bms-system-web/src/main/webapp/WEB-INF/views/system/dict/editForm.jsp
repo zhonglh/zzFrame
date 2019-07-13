@@ -36,7 +36,7 @@
 
                                 <th>字典值<font color="red">*</font></th>
 
-                                <td class="fd_dictVal">
+                                <td>
                                         ${ m.dictVal }
                                 </td>
 
@@ -95,7 +95,7 @@
                                     <th>字典值<font color="red">*</font></th>
                                     <td>
                                         <input type="text" id="dictVal" name="dictVal" maxlength="2" value="${m.dictVal}"
-                                               required="required" class="form-control input-sm required"
+                                               required="required" class="form-control input-sm required" readonly
                                                placeholder="请输入字典值" autocomplete="off">
                                     </td>
 
