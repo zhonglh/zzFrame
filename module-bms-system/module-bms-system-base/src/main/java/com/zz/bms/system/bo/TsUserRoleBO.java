@@ -26,7 +26,7 @@ import java.io.Serializable;
 */
 @EntityAnnotation(value="用户角色关联" , resource = "system.userrole"  ,businessName = ""    ,businessKey = { "" }    )
 @TableName(value="ts_user_role" , resultMap = "TsUserRoleResultMap")
-public class TsUserRoleBO extends TsUserRoleEntity implements Serializable , IBoEntity , ILoginRoleEntity {
+public class TsUserRoleBO extends TsUserRoleEntity implements Serializable , IBoEntity , ILoginRoleEntity<String> {
 
 
 
