@@ -25,7 +25,7 @@
                         <tbody>
 
 
-                                                        <tr>
+                              <tr>
                                     <th>协议名称<font color="red">*</font></th>
                                     <td>
                                                 <input type="text" required="required" class="form-control input-sm required"
@@ -103,63 +103,38 @@
                                 </tr>
                                 <tr>
                                     <th>协议简述</th>
-                                    <td>
+                                    <td colspan="3">
                                                 <div class="info-detail">
                                                 <textarea  class="form-control input-sm  "
                                                           name="sketch" id="sketch " placeholder="请输入协议简述，500字以内" maxlength="500" rows="5">${ m.sketch }</textarea>
                                                 </div>
                                     </td>
-                                        <th>部门<font color="red">*</font></th>
-                                        <td>
-                                                    <c:if test="${ fn:indexOf(allQueryString,'&signDepId=') >= 0 }">
-                                                        <input type="text" class="form-control input-sm" name="signDepName" id="signDepName"  value="${ m.signDepName }" readonly>
-                                                    </c:if>
-                                                    <c:if test="${ fn:indexOf(allQueryString,'&signDepId=') < 0 }">
-                                                        <div class="input-group">
-                                                            <input type="hidden" name="signDepId" id="signDepId" value="${ m.signDepId }" >
-                                                            <input type="text" name="signDepName" id="signDepName" value="${ m.signDepName }" required="required" class="form-control input-sm signDepName " placeholder="请选择部门" style="cursor: pointer;" readonly="readonly">
-                                                            <div class="input-group-btn">
-                                                                <button type="button"  class="btn btn-primary btn-sm signDepName">
-                                                                    &nbsp;<i class="fa fa-search"></i>&nbsp;
-                                                                </button>
-                                                                <button type="button" id="clearSignDepId"   class="btn btn-primary btn-sm">
-                                                                    &nbsp;<i class="fa fa-close"></i>&nbsp;
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </c:if>
-                                        </td>
+
+
                                 </tr>
                                 <tr>
-                                    <th>机构</th>
+
+                                    <th>签订人<font color="red">*</font></th>
                                     <td>
-                                                <input type="text"  class="form-control input-sm "
-                                                       placeholder="请输入机构" autocomplete="off"
-                                                       value="${ m.signOrganId }" id="signOrganId" name="signOrganId"
-                                                           maxlength="32"  />
-                                    </td>
-                                        <th>签订人<font color="red">*</font></th>
-                                        <td>
-                                                    <c:if test="${ fn:indexOf(allQueryString,'&signUserId=') >= 0 }">
-                                                        <input type="text" class="form-control input-sm" name="signUserName" id="signUserName"  value="${ m.signUserName }" readonly>
-                                                    </c:if>
-                                                    <c:if test="${ fn:indexOf(allQueryString,'&signUserId=') < 0 }">
-                                                        <div class="input-group">
-                                                            <input type="hidden" name="signUserId" id="signUserId" value="${ m.signUserId }" >
-                                                            <input type="text" name="signUserName" id="signUserName" value="${ m.signUserName }" required="required" class="form-control input-sm signUserName " placeholder="请选择签订人" style="cursor: pointer;" readonly="readonly">
-                                                            <div class="input-group-btn">
-                                                                <button type="button"  class="btn btn-primary btn-sm signUserName">
-                                                                    &nbsp;<i class="fa fa-search"></i>&nbsp;
-                                                                </button>
-                                                                <button type="button" id="clearSignUserId"   class="btn btn-primary btn-sm">
-                                                                    &nbsp;<i class="fa fa-close"></i>&nbsp;
-                                                                </button>
-                                                            </div>
+                                                <c:if test="${ fn:indexOf(allQueryString,'&signUserId=') >= 0 }">
+                                                    <input type="text" class="form-control input-sm" name="signUserName" id="signUserName"  value="${ m.signUserName }" readonly>
+                                                </c:if>
+                                                <c:if test="${ fn:indexOf(allQueryString,'&signUserId=') < 0 }">
+                                                    <div class="input-group">
+                                                        <input type="hidden" name="signUserId" id="signUserId" value="${ m.signUserId }" >
+                                                        <input type="text" name="signUserName" id="signUserName" value="${ m.signUserName }" required="required" class="form-control input-sm signUserName " placeholder="请选择签订人" style="cursor: pointer;" readonly="readonly">
+                                                        <div class="input-group-btn">
+                                                            <button type="button"  class="btn btn-primary btn-sm signUserName">
+                                                                &nbsp;<i class="fa fa-search"></i>&nbsp;
+                                                            </button>
+                                                            <button type="button" id="clearSignUserId"   class="btn btn-primary btn-sm">
+                                                                &nbsp;<i class="fa fa-close"></i>&nbsp;
+                                                            </button>
                                                         </div>
-                                                    </c:if>
-                                        </td>
-                                </tr>
-                                <tr>
+                                                    </div>
+                                                </c:if>
+                                    </td>
+
                                     <th>签订日期<font color="red">*</font></th>
                                     <td>
 
@@ -169,8 +144,11 @@
                                                            value="${ m.signDate }" id="signDate" name="signDate" readonly   />
 
                                     </td>
+
+                                </tr>
+                                <tr>
                                         <th>附件</th>
-                                        <td>
+                                        <td colspan="3">
                                                     <div class="" style="margin-bottom: 0px">
                                                         <div class="info-detail">
                                                             <input type="hidden" id="agreementFiles" name="agreementFiles" value="${  m.agreementFiles }">
@@ -189,7 +167,7 @@
                                 </tr>
                                 <tr>
                                     <th>备注</th>
-                                    <td>
+                                    <td colspan="3">
                                                 <div class="info-detail">
                                                 <textarea  class="form-control input-sm  "
                                                           name="remark" id="remark " placeholder="请输入备注，500字以内" maxlength="500" rows="5">${ m.remark }</textarea>

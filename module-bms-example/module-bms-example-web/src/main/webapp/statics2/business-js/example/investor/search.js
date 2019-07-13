@@ -39,7 +39,6 @@ function openExampleInvestorWin(config, callBack)
         {field:"investorName", title:"投资人名称", width: 150, align:"left" ,},
         {field:"investorCode", title:"投资人代码", width: 150, align:"left" ,},
         {field:"investorTypeName", title:"投资人类型", width: 150, align:"left" ,},
-        {field:"manageUserName", title:"投资经理", width: 150, align:"left" ,},
         {field:"cardTypeName", title:"证件类型", width: 150, align:"left" ,},
         {field:"cardNo", title:"证件号码", width: 150, align:"left" ,}
     ]];

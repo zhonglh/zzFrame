@@ -36,10 +36,9 @@ function openExampleBankWin(config, callBack)
     options.url = url;
     options.columns = [[
     {field:"id", checkbox: true, width: 40},
-        {field:"bankName", title:"银行全称", width: 150, align:"left" ,},
+        {field:"bankName", title:"银行全称", width: 350, align:"left" ,},
         {field:"bankShortName", title:"银行简称", width: 150, align:"left" ,},
-        {field:"serviceTelephone", title:"服务电话", width: 150, align:"left" ,},
-        {field:"officialWebsite", title:"官网", width: 150, align:"left" ,}
+        {field:"serviceTelephone", title:"服务电话", width: 100, align:"left" ,}
     ]];
     options.sampleData = {id: "id", name: "bankName"};
     options.htmlTemple = tableTemple;

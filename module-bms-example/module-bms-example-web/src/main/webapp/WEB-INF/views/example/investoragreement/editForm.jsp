@@ -27,7 +27,7 @@
                         </colgroup>
 
                         <tbody>
-                                                    <tr>
+                            <tr>
                                 <th>协议名称<font color="red">*</font></th>
                                 <td class="fd_agreementName">
                                     <c:out value="${ m.agreementName }" escapeXml="true"/>
@@ -62,33 +62,26 @@
 
                             <tr>
                                 <th>协议简述</th>
-                                <td class="fd_sketch">
+                                <td class="fd_sketch" colspan="3">
                                     <c:out value="${ m.sketch }" escapeXml="true"/>
-                                </td>
-                                <th>部门<font color="red">*</font></th>
-                                <td class="fd_signDepName">
-                                    <c:out value="${ m.signDepName }" escapeXml="true"/>
                                 </td>
                             </tr>
 
                             <tr>
-                                <th>机构</th>
-                                <td class="fd_signOrganId">
-                                    <c:out value="${ m.signOrganId }" escapeXml="true"/>
-                                </td>
                                 <th>签订人<font color="red">*</font></th>
                                 <td class="fd_signUserName">
                                     <c:out value="${ m.signUserName }" escapeXml="true"/>
                                 </td>
-                            </tr>
 
-                            <tr>
                                 <th>签订日期<font color="red">*</font></th>
                                 <td class="fd_signDate">
                                     <fmt:formatDate value="${ m.signDate }" pattern="yyyy-MM-dd" />
                                 </td>
+                            </tr>
+
+                            <tr>
                                 <th>附件</th>
-                                <td class="fd_uploadFile_agreementFiles">
+                                <td class="fd_uploadFile_agreementFiles" colspan="3">
 
                                     <ul style="margin: 0 0 10px 0">
                                         <c:forEach var="item" items="${m.agreementFilesList}">
@@ -109,7 +102,7 @@
 
                             <tr>
                                 <th>备注</th>
-                                <td class="fd_remark">
+                                <td class="fd_remark" colspan="3">
                                     <c:out value="${ m.remark }" escapeXml="true"/>
                                 </td>
                             </tr>
@@ -210,42 +203,16 @@
 
                             <tr>
                                 <th>协议简述</th>
-                                <td>
+                                <td colspan="3">
                                         <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
                                                       name="sketch" id="sketch"  placeholder="请输入协议简述，500字以内" maxlength="500" rows="5"><c:out value="${ m.sketch }" escapeXml="true"/></textarea>
                                         </div>
                                 </td>
-                                <th>部门<font color="red">*</font></th>
-                                <td>
-                                            <c:if test="${ fn:indexOf(allQueryString,'&signDepId=') >= 0 }">
-                                                <input type="text" class="form-control input-sm" name="signDepName" id="signDepName" value="${ m.signDepName }" readonly>
-                                            </c:if>
-                                            <c:if test="${ fn:indexOf(allQueryString,'&signDepId=') < 0 }">
-                                            <div class="input-group">
-                                                <input type="hidden" name="signDepId" id="signDepId" value="${ m.signDepId }" >
-                                                <input type="text" name="signDepName" id="signDepName" value="${ m.signDepName }" required="required" class="form-control input-sm signDepName " placeholder="请选择部门" style="cursor: pointer;" readonly="readonly">
-                                                <div class="input-group-btn" >
-                                                    <button type="button"  class="btn btn-primary btn-sm signDepName">
-                                                        &nbsp;<i class="fa fa-search"></i>&nbsp;
-                                                    </button>
-                                                    <button type="button" id="clearSignDepId"   class="btn btn-primary btn-sm">
-                                                        &nbsp;<i class="fa fa-close"></i>&nbsp;
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            </c:if>
-                                </td>
+
                             </tr>
 
                             <tr>
-                                <th>机构</th>
-                                <td>
-                                        <input type="text"  class="form-control input-sm "
-                                               placeholder="请输入机构" autocomplete="off"
-                                               value="${ m.signOrganId }" id="signOrganId" name="signOrganId"
-                                                   maxlength="32"  />
-                                </td>
                                 <th>签订人<font color="red">*</font></th>
                                 <td>
                                             <c:if test="${ fn:indexOf(allQueryString,'&signUserId=') >= 0 }">
@@ -266,9 +233,7 @@
                                             </div>
                                             </c:if>
                                 </td>
-                            </tr>
 
-                            <tr>
                                 <th>签订日期<font color="red">*</font></th>
                                 <td>
 
@@ -278,8 +243,12 @@
                                                    value='<fmt:formatDate value="${ m.signDate }" pattern="yyyy-MM-dd" />' id="signDate" name="signDate" readonly   />
 
                                 </td>
+
+                            </tr>
+
+                            <tr>
                                 <th>附件</th>
-                                <td>
+                                <td colspan="3">
                                         <div class="" style="margin-bottom: 0px">
                                             <div class="info-detail">
                                                 <input type="hidden" id="agreementFiles" name="agreementFiles" value="${ m.agreementFiles}">
@@ -305,7 +274,7 @@
 
                             <tr>
                                 <th>备注</th>
-                                <td>
+                                <td colspan="3">
                                         <div class="info-detail">
                                             <textarea  class="form-control input-sm  "
                                                       name="remark" id="remark"  placeholder="请输入备注，500字以内" maxlength="500" rows="5"><c:out value="${ m.remark }" escapeXml="true"/></textarea>

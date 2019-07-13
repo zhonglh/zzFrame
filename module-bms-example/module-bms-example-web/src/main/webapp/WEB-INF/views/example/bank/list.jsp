@@ -99,10 +99,10 @@
         <tr>
             <th field="ck" checkbox="true"></th>
 
-            <th field='bankName' align="left" width="1" sortable='false' formatter='titleFmt' >银行全称</th>
+            <th field='bankName' align="left" width="2" sortable='false' formatter='titleFmt' >银行全称</th>
             <th field='bankShortName' align="left" width="1" sortable='false'  >银行简称</th>
             <th field='serviceTelephone' align="left" width="1" sortable='false'  >服务电话</th>
-            <th field='officialWebsite' align="left" width="1" sortable='false'  >官网</th>
+            <th field='officialWebsite' align="left" width="2" sortable='false'  >官网</th>
 
         </tr>
         </thead>

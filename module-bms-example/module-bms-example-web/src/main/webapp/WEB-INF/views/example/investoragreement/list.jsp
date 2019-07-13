@@ -99,7 +99,7 @@
         <tr>
             <th field="ck" checkbox="true"></th>
 
-            <th field='agreementName' align="left" width="1" sortable='false' formatter='titleAllFmt' >协议名称</th>
+            <th field='agreementName' align="left" width="1" sortable='false' formatter='titleFmt' >协议名称</th>
             <th field='agreementCode' align="left" width="1" sortable='false'  >协议代码</th>
             <th field='fundName' align="left" width="1" sortable='false'  >认购基金</th>
             <th field='investorName' align="left" width="1" sortable='false'  >投资人</th>
@@ -114,6 +114,8 @@
         </thead>
     </table>
 </div>
+
+<bms:openPanel />
 
 <script>
     var tableid = "tableData-${ tableId }";

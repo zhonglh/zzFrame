@@ -103,8 +103,6 @@
             <th field='fundName' align="left" width="1" sortable='false'  >基金</th>
             <th field='investorName' align="left" width="1" sortable='false'  >投资人</th>
             <th field='actualAmount' align="right" width="1" sortable='true'  >实际出资金额</th>
-            <th field='handleDepName' align="left" width="1" sortable='false'  >部门</th>
-            <th field='handleOrganId' align="left" width="1" sortable='false'  >机构</th>
             <th field='handleUserName' align="left" width="1" sortable='false'  >经办人</th>
             <th field='arrivalAccountDate' align="center" width="1" sortable='true' formatter='dateFmt' >到账日期</th>
 
@@ -112,6 +110,8 @@
         </thead>
     </table>
 </div>
+
+<bms:openPanel />
 
 <script>
     var tableid = "tableData-${ tableId }";

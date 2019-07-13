@@ -49,16 +49,7 @@
                                 </td>
                             </tr>
 
-                            <tr>
-                                <th>部门<font color="red">*</font></th>
-                                <td class="fd_handleDepName">
-                                    <c:out value="${ m.handleDepName }" escapeXml="true"/>
-                                </td>
-                                <th>机构</th>
-                                <td class="fd_handleOrganId">
-                                    <c:out value="${ m.handleOrganId }" escapeXml="true"/>
-                                </td>
-                            </tr>
+
 
                             <tr>
                                 <th>经办人<font color="red">*</font></th>
@@ -189,37 +180,7 @@
                                 </td>
                             </tr>
 
-                            <tr>
-                                <th>部门<font color="red">*</font></th>
-                                <td>
-                                        <c:if test="${ fn:indexOf(allQueryString,'&handleDepId=') >= 0 }">
-                                            <input type="text" class="form-control input-sm" name="handleDepName"  id="handleDepName" value="${ m.handleDepName }" readonly>
-                                        </c:if>
-                                        <c:if test="${ fn:indexOf(allQueryString,'&handleDepId=') <0  }">
-                                        <div class="input-group">
-                                            <input type="hidden" name="handleDepId" id="handleDepId" value="${ m.handleDepId }">
-                                            <input type="text" name="handleDepName" id="handleDepName" value="${ m.handleDepName }" required="required" class="form-control input-sm handleDepName " placeholder="请选择部门" style="cursor: pointer;" readonly="readonly">
-                                            <div class="input-group-btn" >
-                                                <button type="button"
-                                                        class="btn btn-primary btn-sm handleDepName">
-                                                    &nbsp;<i class="fa fa-search"></i>&nbsp;
-                                                </button>
-                                                <button type="button" id="clearHandleDepId"
-                                                        class="btn btn-primary btn-sm">
-                                                    &nbsp;<i class="fa fa-close"></i>&nbsp;
-                                                </button>
-                                            </div>
-                                        </div>
-                                        </c:if>
-                                </td>
-                                <th>机构</th>
-                                <td>
-                                        <input type="text"  class="form-control input-sm "
-                                               placeholder="请输入机构" autocomplete="off"
-                                               value="${ m.handleOrganId }" id="handleOrganId" name="handleOrganId"
-                                                   maxlength="32"  />
-                                </td>
-                            </tr>
+
 
                             <tr>
                                 <th>经办人<font color="red">*</font></th>

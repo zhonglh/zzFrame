@@ -27,7 +27,7 @@
                         </colgroup>
 
                         <tbody>
-                                                    <tr>
+                            <tr>
                                 <th>基金名称<font color="red">*</font></th>
                                 <td class="fd_fundName">
                                     <c:out value="${ m.fundName }" escapeXml="true"/>
@@ -120,13 +120,9 @@
                             </tr>
 
                             <tr>
-                                <th>部门<font color="red">*</font></th>
+                                <th>部门</th>
                                 <td class="fd_depName">
                                     <c:out value="${ m.depName }" escapeXml="true"/>
-                                </td>
-                                <th>机构</th>
-                                <td class="fd_organId">
-                                    <c:out value="${ m.organId }" escapeXml="true"/>
                                 </td>
                             </tr>
 
@@ -303,7 +299,7 @@
                             </tr>
 
                             <tr>
-                                <th>部门<font color="red">*</font></th>
+                                <th>部门</th>
                                 <td>
                                         <c:if test="${ fn:indexOf(allQueryString,'&depId=') >= 0 }">
                                             <input type="text" class="form-control input-sm" name="depName"  id="depName" value="${ m.depName }" readonly>
@@ -311,7 +307,7 @@
                                         <c:if test="${ fn:indexOf(allQueryString,'&depId=') <0  }">
                                         <div class="input-group">
                                             <input type="hidden" name="depId" id="depId" value="${ m.depId }">
-                                            <input type="text" name="depName" id="depName" value="${ m.depName }" required="required" class="form-control input-sm depName " placeholder="请选择部门" style="cursor: pointer;" readonly="readonly">
+                                            <input type="text" name="depName" id="depName" value="${ m.depName }" class="form-control input-sm depName " placeholder="请选择部门" style="cursor: pointer;" readonly="readonly">
                                             <div class="input-group-btn" >
                                                 <button type="button"
                                                         class="btn btn-primary btn-sm depName">
@@ -325,13 +321,7 @@
                                         </div>
                                         </c:if>
                                 </td>
-                                <th>机构</th>
-                                <td>
-                                        <input type="text"  class="form-control input-sm "
-                                               placeholder="请输入机构" autocomplete="off"
-                                               value="${ m.organId }" id="organId" name="organId"
-                                                   maxlength="32"  />
-                                </td>
+
                             </tr>
 
                         </tbody>

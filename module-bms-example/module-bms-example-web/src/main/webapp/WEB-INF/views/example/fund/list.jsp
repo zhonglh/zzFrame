@@ -99,7 +99,7 @@
         <tr>
             <th field="ck" checkbox="true"></th>
 
-            <th field='fundName' align="left" width="1" sortable='false' formatter='titleAllFmt' >基金名称</th>
+            <th field='fundName' align="left" width="2" sortable='false' formatter='titleAllFmt' >基金名称</th>
             <th field='fundCode' align="left" width="1" sortable='false'  >基金代码</th>
             <th field='fundTypeName' align="left" width="1" sortable='false'  >基金类型</th>
             <th field='fundDirectionName' align="left" width="1" sortable='false'  >基金投向</th>
@@ -109,13 +109,17 @@
             <th field='managerUserName' align="left" width="1" sortable='false'  >基金经理</th>
             <th field='startDate' align="center" width="1" sortable='true' formatter='dateFmt' >成立日期</th>
             <th field='endDate' align="center" width="1" sortable='true' formatter='dateFmt' >到期日期</th>
-            <th field='depName' align="left" width="1" sortable='false'  >部门</th>
-            <th field='organId' align="left" width="1" sortable='false'  >机构</th>
+
 
         </tr>
         </thead>
     </table>
 </div>
+
+
+<bms:openPanel />
+
+
 
 <script>
     var tableid = "tableData-${ tableId }";
