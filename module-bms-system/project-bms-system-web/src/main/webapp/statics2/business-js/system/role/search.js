@@ -68,8 +68,8 @@ function openSystemRoleWin(config, callBack)
 
 
 
-        // 调用查询方法
-        dialog.tableTemple.search(params);
+            // 调用查询方法
+            dialog.tableTemple.search(params);
         }
     };
 

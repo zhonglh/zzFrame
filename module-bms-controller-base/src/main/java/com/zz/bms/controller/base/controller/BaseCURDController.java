@@ -940,13 +940,15 @@ public abstract class BaseCURDController<
 
 
             List<RwModel> deleteList = new ArrayList<RwModel>();
-
+            int count = list.size();
             for (RwModel m : list) {
                 try {
                     this.checkCanDelete(m, sessionUserVO);
                     deleteList.add(m);
                 } catch (Exception e) {
-
+                    if(count == 1){
+                        throw e;
+                    }
                 }
             }
 
