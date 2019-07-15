@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title><spring:message code="common.platform.info" text="zz后台管理系统" /></title>
-    <link rel="icon" href="${staticUrl}/statics2/image/favicon.ico">
+    <%--<link rel="icon" href="${staticUrl}/statics2/image/favicon.ico">--%>
     <link rel="shortcut icon" href="${staticUrl}/statics2/image/favicon.ico">
 
 
