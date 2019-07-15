@@ -24,7 +24,7 @@
 
 .login_bg_img {}
 .login_bg_img:after {
-    background: url(../image/p_login_slider2.jpg) center center no-repeat;
+    /*background: url(../image/p_login_slider2.jpg) center center no-repeat;*/
 }
 
 /*底部*/
