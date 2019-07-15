@@ -46,11 +46,11 @@
 
 
 <div class="slider">
-    <div class="feather"><img src="${staticUrl}/statics2/image/p_login_slider.jpg" ></div>
+    <%--<div class="feather"><img src="${staticUrl}/statics2/image/p_login_slider.jpg" ></div>--%>
     <div class="feather"><img src="${staticUrl}/statics2/image/p_login_slider1.jpg" ></div>
-    <div class="feather"> <img src="${staticUrl}/statics2/image/p_login_slider2.jpg" > </div>
+    <%--<div class="feather"> <img src="${staticUrl}/statics2/image/p_login_slider2.jpg" > </div>
     <div class="feather"> <img src="${staticUrl}/statics2/image/p_login_slider3.jpg" > </div>
-    <div class="feather"> <img src="${staticUrl}/statics2/image/p_login_slider2.jpg" > </div>
+    <div class="feather"> <img src="${staticUrl}/statics2/image/p_login_slider2.jpg" > </div>--%>
 </div>
 
 
