@@ -48,6 +48,8 @@ import java.util.List;
 public class OssController extends BaseController<String> {
 
 
+
+
     @Autowired
     private TsFileService tsFileService;
 
@@ -75,6 +77,7 @@ public class OssController extends BaseController<String> {
         try {
             FileUtils.print(request, response, vsFileUseBO.getFilePullName(), vsFileUseBO.getContentType(), vsFileUseBO.getShowName());
         }catch (Exception e) {
+            e.printStackTrace();
             File f = new File(vsFileUseBO.getFileName());
             DownloadBaseUtil.download(f, vsFileUseBO.getShowName(), response, false);
         }
