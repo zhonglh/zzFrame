@@ -123,7 +123,7 @@ public class BaseCommonController<PK extends Serializable> extends BaseControlle
                     if (defaultType != null && defaultType != EnumDefaultType.CUSTOM) {
                         field.setAccessible(true);
                         Object fieldVal = ReflectionUtil.getField(field , be);
-                        if(!BaseValidateUtils.isEmpty(fieldVal)) {
+                        if(BaseValidateUtils.isEmpty(fieldVal)) {
                             Object obj = BaseUtil.getDefaultValue(defaultType, this.getSessionUser());
                             field.setAccessible(true);
                             field.set(be, obj);
