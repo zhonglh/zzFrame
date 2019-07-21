@@ -1,5 +1,5 @@
 DROP FUNCTION IF EXISTS `getChildId`;
--- ´´½¨º¯Êý £¬ »ñÈ¡ÏÂ¼¶ËùÓÐµÄ×ÓËï½ÚµãID £¬ °üÀ¨×Ô¼ºµÄ
+-- åˆ›å»ºå‡½æ•° ï¼Œ èŽ·å–ä¸‹çº§æ‰€æœ‰çš„å­å­™èŠ‚ç‚¹ID ï¼Œ åŒ…æ‹¬è‡ªå·±çš„
 CREATE FUNCTION `getChildId`(rootId INT) RETURNS VARCHAR(3300)
 BEGIN
         DECLARE ptemp VARCHAR(3300);
@@ -13,3 +13,46 @@ BEGIN
 		END WHILE;  
 		RETURN ptemp;  
 END
+
+
+
+
+
+/**
+DROP FUNCTION IF EXISTS `getChild`;
+
+CREATE   FUNCTION `getChild`(rootId INT)
+ RETURNS varchar(3300)
+BEGIN
+        DECLARE ptemp VARCHAR(3300);
+        DECLARE ctemp VARCHAR(3300);
+               SET ptemp = '';
+               SET ctemp =CAST(rootId AS CHAR);
+               WHILE ctemp IS NOT NULL DO
+                 SET ptemp = CONCAT(ptemp,',',ctemp);
+                SELECT GROUP_CONCAT(id) INTO ctemp FROM nodelist
+                WHERE FIND_IN_SET(pid,ctemp)>0;
+               END WHILE;
+               RETURN ptemp;
+    END;
+
+
+
+DROP FUNCTION IF EXISTS `getChildId`;
+
+CREATE   FUNCTION `getChildId`(rootId INT)
+ RETURNS varchar(3300)
+BEGIN
+        DECLARE ptemp VARCHAR(3300);
+        DECLARE ctemp VARCHAR(3300);
+		SET ptemp = '';
+		SET ctemp =CAST(rootId AS CHAR);
+		WHILE ctemp IS NOT NULL DO
+		SET ptemp = CONCAT(ptemp,',',ctemp);
+		SELECT GROUP_CONCAT(id) INTO ctemp FROM nodelist
+		WHERE FIND_IN_SET(pid,ctemp)>0;
+		END WHILE;
+		RETURN ptemp;
+END ;
+
+*/

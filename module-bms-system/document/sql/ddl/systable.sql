@@ -42,30 +42,30 @@ drop table if exists ts_user_role;
 create table ts_dep
 (
    id                   char(32) not null comment 'ID',
-   dep_name             varchar(100) not null comment '²¿ÃÅÃû³Æ',
-   dep_code             varchar(20) not null comment '²¿ÃÅ´úÂë',
-   dep_addr             varchar(200) comment '²¿ÃÅµØÖ·',
-   pid                  char(32) comment 'ÉÏ¼¶²¿ÃÅ',
-   dep_status           char(1) not null default '1' comment '²¿ÃÅ×´Ì¬
-            0:½âÉ¢  1: Õı³£   ',
-   lead_user_id         char(32) comment '¸ºÔğÈË',
-   organ_id             char(32) not null comment '»ú¹¹',
-   remark               varchar(200) comment '±¸×¢',
-   delete_flag          char(1) not null comment 'É¾³ı±êÖ¾',
-   create_user_id       char(32) not null comment '´´½¨ÈË',
-   create_user_name     varchar(50) not null comment '´´½¨ÈËÃû³Æ',
-   create_time          timestamp not null default CURRENT_TIMESTAMP comment '´´½¨Ê±¼ä',
-   update_user_id       char(32) comment 'ĞŞ¸ÄÈË',
-   update_user_name     varchar(50) comment 'ĞŞ¸ÄÈËÃû³Æ',
-   update_time          timestamp null default null  comment 'ĞŞ¸ÄÊ±¼ä',
-   version_no           int not null comment '°æ±¾',
-   tenant_id            char(32) not null comment '×â»§',
+   dep_name             varchar(100) not null comment 'éƒ¨é—¨åç§°',
+   dep_code             varchar(20) not null comment 'éƒ¨é—¨ä»£ç ',
+   dep_addr             varchar(200) comment 'éƒ¨é—¨åœ°å€',
+   pid                  char(32) comment 'ä¸Šçº§éƒ¨é—¨',
+   dep_status           char(1) not null default '1' comment 'éƒ¨é—¨çŠ¶æ€
+            0:è§£æ•£  1: æ­£å¸¸   ',
+   lead_user_id         char(32) comment 'è´Ÿè´£äºº',
+   organ_id             char(32) not null comment 'æœºæ„',
+   remark               varchar(200) comment 'å¤‡æ³¨',
+   delete_flag          char(1) not null comment 'åˆ é™¤æ ‡å¿—',
+   create_user_id       char(32) not null comment 'åˆ›å»ºäºº',
+   create_user_name     varchar(50) not null comment 'åˆ›å»ºäººåç§°',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment 'åˆ›å»ºæ—¶é—´',
+   update_user_id       char(32) comment 'ä¿®æ”¹äºº',
+   update_user_name     varchar(50) comment 'ä¿®æ”¹äººåç§°',
+   update_time          timestamp null default null  comment 'ä¿®æ”¹æ—¶é—´',
+   version_no           int not null comment 'ç‰ˆæœ¬',
+   tenant_id            char(32) not null comment 'ç§Ÿæˆ·',
    primary key (id),
    UNIQUE key AK_Identifier_3 (dep_code, organ_id),
    UNIQUE key AK_Identifier_2 (dep_name, organ_id)
 );
 
-alter table ts_dep comment '²¿ÃÅ';
+alter table ts_dep comment 'éƒ¨é—¨';
 
 /*==============================================================*/
 /* Table: ts_dict                                               */
@@ -73,27 +73,27 @@ alter table ts_dep comment '²¿ÃÅ';
 create table ts_dict
 (
    id                   char(32) not null comment 'ID',
-   dict_type_id         char(32) not null comment '×ÖµäÀàĞÍ',
-   dict_val             varchar(2) not null comment '×ÖµäÖµ',
-   dict_name            varchar(50) not null comment '×ÖµäÃû',
-   dict_i18n            varchar(100) comment 'Ãû³Æ¹ú¼Ê»¯',
-   dict_reg             varchar(100) comment '×ÖµäÏŞÖÆÕıÔò',
-   orderby              int not null default 0 comment 'Ë³Ğò',
-   organ_id             char(32) not null comment '»ú¹¹',
-   create_user_id       char(32) not null comment '´´½¨ÈË',
-   create_user_name     varchar(50) not null comment '´´½¨ÈËÃû³Æ',
-   create_time          timestamp not null default CURRENT_TIMESTAMP comment '´´½¨Ê±¼ä',
-   update_user_id       char(32) comment 'ĞŞ¸ÄÈË',
-   update_user_name     varchar(50) comment 'ĞŞ¸ÄÈËÃû³Æ',
-   update_time          timestamp null default null  comment 'ĞŞ¸ÄÊ±¼ä',
-   version_no           int not null comment '°æ±¾',
-   delete_flag          char(1) not null comment 'É¾³ı±êÖ¾',
-   tenant_id            char(32) not null comment '×â»§',
+   dict_type_id         char(32) not null comment 'å­—å…¸ç±»å‹',
+   dict_val             varchar(2) not null comment 'å­—å…¸å€¼',
+   dict_name            varchar(50) not null comment 'å­—å…¸å',
+   dict_i18n            varchar(100) comment 'åç§°å›½é™…åŒ–',
+   dict_reg             varchar(100) comment 'å­—å…¸é™åˆ¶æ­£åˆ™',
+   orderby              int not null default 0 comment 'é¡ºåº',
+   organ_id             char(32) not null comment 'æœºæ„',
+   create_user_id       char(32) not null comment 'åˆ›å»ºäºº',
+   create_user_name     varchar(50) not null comment 'åˆ›å»ºäººåç§°',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment 'åˆ›å»ºæ—¶é—´',
+   update_user_id       char(32) comment 'ä¿®æ”¹äºº',
+   update_user_name     varchar(50) comment 'ä¿®æ”¹äººåç§°',
+   update_time          timestamp null default null  comment 'ä¿®æ”¹æ—¶é—´',
+   version_no           int not null comment 'ç‰ˆæœ¬',
+   delete_flag          char(1) not null comment 'åˆ é™¤æ ‡å¿—',
+   tenant_id            char(32) not null comment 'ç§Ÿæˆ·',
    primary key (id),
    UNIQUE key AK_Identifier_2 (dict_type_id, dict_val, tenant_id)
 );
 
-alter table ts_dict comment '×ÖµäĞÅÏ¢';
+alter table ts_dict comment 'å­—å…¸ä¿¡æ¯';
 
 /*==============================================================*/
 /* Table: ts_dict_type                                          */
@@ -101,24 +101,24 @@ alter table ts_dict comment '×ÖµäĞÅÏ¢';
 create table ts_dict_type
 (
    id                   char(32) not null comment 'ID',
-   pid                  char(32) comment 'ÉÏ¼¶ÀàĞÍ',
-   dict_type_code       varchar(60) not null comment 'ÀàĞÍ´úÂë',
-   dict_type_name       varchar(60) not null comment 'ÀàĞÍÃû³Æ',
-   dict_type_showable   char(1) not null comment 'ÀàĞÍÊÇ·ñÏÔÊ¾
+   pid                  char(32) comment 'ä¸Šçº§ç±»å‹',
+   dict_type_code       varchar(60) not null comment 'ç±»å‹ä»£ç ',
+   dict_type_name       varchar(60) not null comment 'ç±»å‹åç§°',
+   dict_type_showable   char(1) not null comment 'ç±»å‹æ˜¯å¦æ˜¾ç¤º
             yes_no',
-   dict_addable         char(1) not null comment '×ÖµäÊÇ·ñ¿ÉÒÔÔö¼Ó
+   dict_addable         char(1) not null comment 'å­—å…¸æ˜¯å¦å¯ä»¥å¢åŠ 
             yes_no',
-   dict_update          char(1) not null comment '×ÖµäÊÇ·ñ¿ÉÒÔĞŞ¸Ä
+   dict_update          char(1) not null comment 'å­—å…¸æ˜¯å¦å¯ä»¥ä¿®æ”¹
             yes_no',
-   dict_delete          char(1) not null comment '×ÖµäÊÇ·ñ¿ÉÒÔÉ¾³ı
+   dict_delete          char(1) not null comment 'å­—å…¸æ˜¯å¦å¯ä»¥åˆ é™¤
             yes_no',
-   orderby              int not null default 0 comment 'Ë³Ğò',
+   orderby              int not null default 0 comment 'é¡ºåº',
    primary key (id),
    UNIQUE key AK_Identifier_3 (dict_type_name),
    UNIQUE key AK_Identifier_2 (dict_type_code)
 );
 
-alter table ts_dict_type comment '×ÖµäÀàĞÍ';
+alter table ts_dict_type comment 'å­—å…¸ç±»å‹';
 
 /*==============================================================*/
 /* Table: ts_file                                               */
@@ -126,24 +126,24 @@ alter table ts_dict_type comment '×ÖµäÀàĞÍ';
 create table ts_file
 (
    id                   char(32) not null comment 'ID',
-   access_url_prefix    varchar(50) comment '·ÃÎÊÂ·¾¶Ç°×º',
-   access_url           varchar(200) not null comment '·ÃÎÊÂ·¾¶
-            ²»°üÀ¨Ç°×º',
-   file_host            varchar(27) comment 'ÎÄ¼şËùÔÚÖ÷»ú',
+   access_url_prefix    varchar(50) comment 'è®¿é—®è·¯å¾„å‰ç¼€',
+   access_url           varchar(200) not null comment 'è®¿é—®è·¯å¾„
+            ä¸åŒ…æ‹¬å‰ç¼€',
+   file_host            varchar(27) comment 'æ–‡ä»¶æ‰€åœ¨ä¸»æœº',
    file_base_path       varchar(100),
-   file_path            varchar(200) comment 'ÎÄ¼şÂ·¾¶',
-   file_name            varchar(100) not null comment 'ÎÄ¼şÃû',
-   file_size            bigint not null comment 'ÎÄ¼ş´óĞ¡',
-   file_suffix          varchar(30) comment 'ÎÄ¼şºó×º',
-   file_engine          char(1) not null comment 'ÎÄ¼şÒıÇæ
-            ÎÄ¼şÏµÍ³ ÆßÅ£  °¢ÀïÔÆ  ÌÚÑ¶ FastNFS MongoDB',
-   md5                  varchar(128) comment 'MD5Âë',
-   content_type         varchar(256) comment 'ÎÄ¼şÀàĞÍ',
-   use_frequency        int comment 'Ê¹ÓÃ´ÎÊı',
+   file_path            varchar(200) comment 'æ–‡ä»¶è·¯å¾„',
+   file_name            varchar(100) not null comment 'æ–‡ä»¶å',
+   file_size            bigint not null comment 'æ–‡ä»¶å¤§å°',
+   file_suffix          varchar(30) comment 'æ–‡ä»¶åç¼€',
+   file_engine          char(1) not null comment 'æ–‡ä»¶å¼•æ“
+            æ–‡ä»¶ç³»ç»Ÿ ä¸ƒç‰›  é˜¿é‡Œäº‘  è…¾è®¯ FastNFS MongoDB',
+   md5                  varchar(128) comment 'MD5ç ',
+   content_type         varchar(256) comment 'æ–‡ä»¶ç±»å‹',
+   use_frequency        int comment 'ä½¿ç”¨æ¬¡æ•°',
    primary key (id)
 );
 
-alter table ts_file comment 'ÎÄ¼ş';
+alter table ts_file comment 'æ–‡ä»¶';
 
 /*==============================================================*/
 /* Table: ts_file_use                                           */
@@ -151,28 +151,28 @@ alter table ts_file comment 'ÎÄ¼ş';
 create table ts_file_use
 (
    id                   char(32) not null comment 'ID',
-   file_id              char(32) not null comment 'ÎÄ¼şID',
-   show_name            varchar(256) not null comment 'ÏÔÊ¾Ãû³Æ',
-   business_type        varchar(256) comment 'ÒµÎñÀàĞÍ',
-   business_id          char(32) comment 'ÒµÎñID',
-   business_file_type   varchar(100) not null comment 'ÒµÎñÎÄ¼şÀàĞÍ',
-   business_temp_id     char(32) not null comment 'ÒµÎñÁÙÊ±ID',
-   file_order           int not null comment 'Ë³Ğò',
-   organ_id             char(32) not null comment '»ú¹¹',
-   remark               varchar(200) comment '±¸×¢',
-   delete_flag          char(1) not null comment 'É¾³ı±êÖ¾',
-   create_user_id       char(32) not null comment '´´½¨ÈË',
-   create_user_name     varchar(50) not null comment '´´½¨ÈËÃû³Æ',
-   create_time          timestamp not null default CURRENT_TIMESTAMP comment '´´½¨Ê±¼ä',
-   update_user_id       char(32) comment 'ĞŞ¸ÄÈË',
-   update_user_name     varchar(50) comment 'ĞŞ¸ÄÈËÃû³Æ',
-   update_time          timestamp null default null  comment 'ĞŞ¸ÄÊ±¼ä',
-   version_no           int not null comment '°æ±¾',
-   tenant_id            char(32) not null comment '×â»§',
+   file_id              char(32) not null comment 'æ–‡ä»¶ID',
+   show_name            varchar(256) not null comment 'æ˜¾ç¤ºåç§°',
+   business_type        varchar(256) comment 'ä¸šåŠ¡ç±»å‹',
+   business_id          char(32) comment 'ä¸šåŠ¡ID',
+   business_file_type   varchar(100) not null comment 'ä¸šåŠ¡æ–‡ä»¶ç±»å‹',
+   business_temp_id     char(32) not null comment 'ä¸šåŠ¡ä¸´æ—¶ID',
+   file_order           int not null comment 'é¡ºåº',
+   organ_id             char(32) not null comment 'æœºæ„',
+   remark               varchar(200) comment 'å¤‡æ³¨',
+   delete_flag          char(1) not null comment 'åˆ é™¤æ ‡å¿—',
+   create_user_id       char(32) not null comment 'åˆ›å»ºäºº',
+   create_user_name     varchar(50) not null comment 'åˆ›å»ºäººåç§°',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment 'åˆ›å»ºæ—¶é—´',
+   update_user_id       char(32) comment 'ä¿®æ”¹äºº',
+   update_user_name     varchar(50) comment 'ä¿®æ”¹äººåç§°',
+   update_time          timestamp null default null  comment 'ä¿®æ”¹æ—¶é—´',
+   version_no           int not null comment 'ç‰ˆæœ¬',
+   tenant_id            char(32) not null comment 'ç§Ÿæˆ·',
    primary key (id)
 );
 
-alter table ts_file_use comment 'ÎÄ¼şÊ¹ÓÃ';
+alter table ts_file_use comment 'æ–‡ä»¶ä½¿ç”¨';
 
 /*==============================================================*/
 /* Table: ts_login_log                                          */
@@ -180,20 +180,20 @@ alter table ts_file_use comment 'ÎÄ¼şÊ¹ÓÃ';
 create table ts_login_log
 (
    id                   char(32) not null comment 'ID',
-   operation_type       varchar(2) not null comment '²Ù×÷ÀàĞÍ
-            1: µÇÂ½   2:ÍË³ö  3:Ç¿ÖÆÍË³ö  4:Ìß³ö',
-   operation_remark     varchar(100) comment '²Ù×÷ËµÃ÷',
-   dep_id               char(32) comment '²¿ÃÅ',
-   organ_id             char(32) not null comment '»ú¹¹',
-   operation_user_id    char(32) not null comment '²Ù×÷ÈË',
-   operation_ip         varchar(30) comment '²Ù×÷ÈËIP',
-   operation_user_name  varchar(50) not null comment '²Ù×÷ÈËÃû³Æ',
-   operation_time       timestamp not null default CURRENT_TIMESTAMP comment '²Ù×÷Ê±¼ä',
-   tenant_id            char(32) not null comment '×â»§',
+   operation_type       varchar(2) not null comment 'æ“ä½œç±»å‹
+            1: ç™»é™†   2:é€€å‡º  3:å¼ºåˆ¶é€€å‡º  4:è¸¢å‡º',
+   operation_remark     varchar(100) comment 'æ“ä½œè¯´æ˜',
+   dep_id               char(32) comment 'éƒ¨é—¨',
+   organ_id             char(32) not null comment 'æœºæ„',
+   operation_user_id    char(32) not null comment 'æ“ä½œäºº',
+   operation_ip         varchar(30) comment 'æ“ä½œäººIP',
+   operation_user_name  varchar(50) not null comment 'æ“ä½œäººåç§°',
+   operation_time       timestamp not null default CURRENT_TIMESTAMP comment 'æ“ä½œæ—¶é—´',
+   tenant_id            char(32) not null comment 'ç§Ÿæˆ·',
    primary key (id)
 );
 
-alter table ts_login_log comment 'µÇÂ½ÈÕÖ¾';
+alter table ts_login_log comment 'ç™»é™†æ—¥å¿—';
 
 /*==============================================================*/
 /* Table: ts_menu                                               */
@@ -201,35 +201,35 @@ alter table ts_login_log comment 'µÇÂ½ÈÕÖ¾';
 create table ts_menu
 (
    id                   char(32) not null comment 'ID',
-   menu_name            varchar(30) not null comment '²Ëµ¥Ãû³Æ',
-   menu_code            varchar(50) not null comment '²Ëµ¥±àºÅ',
-   pid                  char(32) comment 'ÉÏ¼¶²Ëµ¥',
-   menu_sort            int not null comment '²Ëµ¥Ë³Ğò',
-   menu_url             varchar(200) comment '²Ëµ¥µØÖ·',
-   menu_msg             varchar(50) comment '²Ëµ¥ÌáÊ¾ĞÅÏ¢',
-   menu_icon            varchar(20) comment '²Ëµ¥Í¼±ê',
-   menu_redirect        varchar(50) comment 'Ìø×ªÄ¿±ê',
-   shortcut             char(1) not null comment '¿ì½İ²Ëµ¥
+   menu_name            varchar(30) not null comment 'èœå•åç§°',
+   menu_code            varchar(50) not null comment 'èœå•ç¼–å·',
+   pid                  char(32) comment 'ä¸Šçº§èœå•',
+   menu_sort            int not null comment 'èœå•é¡ºåº',
+   menu_url             varchar(200) comment 'èœå•åœ°å€',
+   menu_msg             varchar(50) comment 'èœå•æç¤ºä¿¡æ¯',
+   menu_icon            varchar(20) comment 'èœå•å›¾æ ‡',
+   menu_redirect        varchar(50) comment 'è·³è½¬ç›®æ ‡',
+   shortcut             char(1) not null comment 'å¿«æ·èœå•
             yes_no',
-   level                int not null comment '²ã¼¶',
-   leaf                 char(1) not null comment 'ÊÇ·ñÒ¶½Úµã
+   level                int not null comment 'å±‚çº§',
+   leaf                 char(1) not null comment 'æ˜¯å¦å¶èŠ‚ç‚¹
             yes_no',
-   hidden               char(1) not null default '0' comment ' ÊÇ·ñÒş²Ø',
-   target               varchar(20) comment 'Á´½ÓÄ¿±ê',
-   remark               varchar(200) comment '±¸×¢',
-   delete_flag          char(1) not null comment 'É¾³ı±êÖ¾',
-   create_user_id       char(32) not null comment '´´½¨ÈËID',
-   create_user_name     varchar(50) not null comment '´´½¨ÈËÃû³Æ',
-   create_time          timestamp not null default CURRENT_TIMESTAMP comment '´´½¨Ê±¼ä',
-   update_user_id       char(32) comment 'ĞŞ¸ÄÈËID',
-   update_user_name     varchar(50) comment 'ĞŞ¸ÄÈËÃû³Æ',
-   update_time          timestamp null default null  comment 'ĞŞ¸ÄÊ±¼ä',
-   version_no           int not null comment '°æ±¾',
+   hidden               char(1) not null default '0' comment ' æ˜¯å¦éšè—',
+   target               varchar(20) comment 'é“¾æ¥ç›®æ ‡',
+   remark               varchar(200) comment 'å¤‡æ³¨',
+   delete_flag          char(1) not null comment 'åˆ é™¤æ ‡å¿—',
+   create_user_id       char(32) not null comment 'åˆ›å»ºäººID',
+   create_user_name     varchar(50) not null comment 'åˆ›å»ºäººåç§°',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment 'åˆ›å»ºæ—¶é—´',
+   update_user_id       char(32) comment 'ä¿®æ”¹äººID',
+   update_user_name     varchar(50) comment 'ä¿®æ”¹äººåç§°',
+   update_time          timestamp null default null  comment 'ä¿®æ”¹æ—¶é—´',
+   version_no           int not null comment 'ç‰ˆæœ¬',
    primary key (id),
    UNIQUE key AK_Identifier_2 (menu_code)
 );
 
-alter table ts_menu comment '²Ëµ¥
+alter table ts_menu comment 'èœå•
 
 path                       menu_url
 co';
@@ -240,13 +240,13 @@ co';
 create table ts_menu_permit
 (
    id                   char(32) not null comment 'ID',
-   menu_id              char(32) not null comment '²Ëµ¥',
-   permit_id            char(32) not null comment 'Ğí¿É',
+   menu_id              char(32) not null comment 'èœå•',
+   permit_id            char(32) not null comment 'è®¸å¯',
    primary key (id),
    UNIQUE key AK_Identifier_2 (menu_id, permit_id)
 );
 
-alter table ts_menu_permit comment '²Ëµ¥Ğí¿É¹ØÁª';
+alter table ts_menu_permit comment 'èœå•è®¸å¯å…³è”';
 
 /*==============================================================*/
 /* Table: ts_msg_templet                                        */
@@ -254,30 +254,30 @@ alter table ts_menu_permit comment '²Ëµ¥Ğí¿É¹ØÁª';
 create table ts_msg_templet
 (
    id                   char(32) not null comment 'ID',
-   msg_templet_name     varchar(50) not null comment 'ÏûÏ¢Ä£°åÃû³Æ',
-   msg_templet_type     char(1) not null comment 'ÏûÏ¢Ä£°åÀàĞÍ
-            ±ÈÈç: ÓÊ¼ş ¶ÌĞÅ Î¢ĞÅ',
-   msg_title            varchar(200) comment 'ÏûÏ¢±êÌâ',
-   msg_content          varchar(5000) not null comment 'ÏûÏ¢ÄÚÈİ',
-   msg_language         char(1) comment 'ÓïÑÔ
-            ±ÈÈç 1ÖĞÎÄ  2Ó¢ÎÄ ',
-   templet_effective    char(1) not null comment 'Ä£°åÊÇ·ñÓĞĞ§
+   msg_templet_name     varchar(50) not null comment 'æ¶ˆæ¯æ¨¡æ¿åç§°',
+   msg_templet_type     char(1) not null comment 'æ¶ˆæ¯æ¨¡æ¿ç±»å‹
+            æ¯”å¦‚: é‚®ä»¶ çŸ­ä¿¡ å¾®ä¿¡',
+   msg_title            varchar(200) comment 'æ¶ˆæ¯æ ‡é¢˜',
+   msg_content          varchar(5000) not null comment 'æ¶ˆæ¯å†…å®¹',
+   msg_language         char(1) comment 'è¯­è¨€
+            æ¯”å¦‚ 1ä¸­æ–‡  2è‹±æ–‡ ',
+   templet_effective    char(1) not null comment 'æ¨¡æ¿æ˜¯å¦æœ‰æ•ˆ
             yes_no',
-   dep_id               char(32) comment '²¿ÃÅ',
-   organ_id             char(32) not null comment '»ú¹¹',
-   create_user_id       char(32) not null comment '´´½¨ÈË',
-   create_user_name     varchar(50) not null comment '´´½¨ÈËÃû³Æ',
-   create_time          timestamp not null default CURRENT_TIMESTAMP comment '´´½¨Ê±¼ä',
-   update_user_id       char(32) comment 'ĞŞ¸ÄÈË',
-   update_user_name     varchar(50) comment 'ĞŞ¸ÄÈËÃû³Æ',
-   update_time          timestamp null default null  comment 'ĞŞ¸ÄÊ±¼ä',
-   version_no           int not null comment '°æ±¾',
-   tenant_id            char(32) not null comment '×â»§',
+   dep_id               char(32) comment 'éƒ¨é—¨',
+   organ_id             char(32) not null comment 'æœºæ„',
+   create_user_id       char(32) not null comment 'åˆ›å»ºäºº',
+   create_user_name     varchar(50) not null comment 'åˆ›å»ºäººåç§°',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment 'åˆ›å»ºæ—¶é—´',
+   update_user_id       char(32) comment 'ä¿®æ”¹äºº',
+   update_user_name     varchar(50) comment 'ä¿®æ”¹äººåç§°',
+   update_time          timestamp null default null  comment 'ä¿®æ”¹æ—¶é—´',
+   version_no           int not null comment 'ç‰ˆæœ¬',
+   tenant_id            char(32) not null comment 'ç§Ÿæˆ·',
    primary key (id),
    UNIQUE key AK_Identifier_2 (msg_templet_name, tenant_id)
 );
 
-alter table ts_msg_templet comment 'ÏûÏ¢Ä£°å';
+alter table ts_msg_templet comment 'æ¶ˆæ¯æ¨¡æ¿';
 
 /*==============================================================*/
 /* Table: ts_my_shortcut                                        */
@@ -285,14 +285,14 @@ alter table ts_msg_templet comment 'ÏûÏ¢Ä£°å';
 create table ts_my_shortcut
 (
    id                   char(32) not null comment 'ID',
-   menu_id              char(32) not null comment '²Ëµ¥',
-   user_id              char(32) not null comment 'ÓÃ»§',
-   orderby              int not null comment 'Ë³Ğò',
+   menu_id              char(32) not null comment 'èœå•',
+   user_id              char(32) not null comment 'ç”¨æˆ·',
+   orderby              int not null comment 'é¡ºåº',
    primary key (id),
    UNIQUE key AK_Identifier_2 (menu_id, user_id)
 );
 
-alter table ts_my_shortcut comment 'ÖÃ¶¥¿ì½İ²Ëµ¥';
+alter table ts_my_shortcut comment 'ç½®é¡¶å¿«æ·èœå•';
 
 /*==============================================================*/
 /* Table: ts_notification                                       */
@@ -300,23 +300,23 @@ alter table ts_my_shortcut comment 'ÖÃ¶¥¿ì½İ²Ëµ¥';
 create table ts_notification
 (
    id                   char(32) not null comment 'ID',
-   notify_module        varchar(100) comment 'Ä£¿é',
-   title                varchar(100) comment 'Í¨Öª±êÌâ',
-   content              text not null comment 'Í¨ÖªÄÚÈİ',
-   notify_time          timestamp not null comment 'Í¨ÖªÊ±¼ä',
-   notify_files         char(32) comment 'Í¨ÖªÎÄ¼ş',
-   create_user_id       char(32) not null comment '´´½¨ÈË',
-   create_user_name     varchar(50) not null comment '´´½¨ÈËÃû³Æ',
-   create_time          timestamp not null default CURRENT_TIMESTAMP comment '´´½¨Ê±¼ä',
-   update_user_id       char(32) comment 'ĞŞ¸ÄÈË',
-   update_user_name     varchar(50) comment 'ĞŞ¸ÄÈËÃû³Æ',
-   update_time          timestamp null default null  comment 'ĞŞ¸ÄÊ±¼ä',
-   version_no           int not null comment '°æ±¾',
-   tenant_id            char(32) not null comment '×â»§',
+   notify_module        varchar(100) comment 'æ¨¡å—',
+   title                varchar(100) comment 'é€šçŸ¥æ ‡é¢˜',
+   content              text not null comment 'é€šçŸ¥å†…å®¹',
+   notify_time          timestamp not null comment 'é€šçŸ¥æ—¶é—´',
+   notify_files         char(32) comment 'é€šçŸ¥æ–‡ä»¶',
+   create_user_id       char(32) not null comment 'åˆ›å»ºäºº',
+   create_user_name     varchar(50) not null comment 'åˆ›å»ºäººåç§°',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment 'åˆ›å»ºæ—¶é—´',
+   update_user_id       char(32) comment 'ä¿®æ”¹äºº',
+   update_user_name     varchar(50) comment 'ä¿®æ”¹äººåç§°',
+   update_time          timestamp null default null  comment 'ä¿®æ”¹æ—¶é—´',
+   version_no           int not null comment 'ç‰ˆæœ¬',
+   tenant_id            char(32) not null comment 'ç§Ÿæˆ·',
    primary key (id)
 );
 
-alter table ts_notification comment 'ÏµÍ³Í¨Öª';
+alter table ts_notification comment 'ç³»ç»Ÿé€šçŸ¥';
 
 /*==============================================================*/
 /* Table: ts_notification_receive                               */
@@ -324,15 +324,15 @@ alter table ts_notification comment 'ÏµÍ³Í¨Öª';
 create table ts_notification_receive
 (
    id                   char(32) not null comment 'ID',
-   notify_id            char(32) not null comment 'Í¨Öª',
-   receive_user_id      char(32) not null comment '½ÓÊÕÈË',
-   is_read              char(1) not null comment 'ÒÑ¶Á
+   notify_id            char(32) not null comment 'é€šçŸ¥',
+   receive_user_id      char(32) not null comment 'æ¥æ”¶äºº',
+   is_read              char(1) not null comment 'å·²è¯»
             yes_no',
-   read_time            timestamp comment '¶ÁÈ¡Ê±¼ä',
+   read_time            timestamp comment 'è¯»å–æ—¶é—´',
    primary key (id)
 );
 
-alter table ts_notification_receive comment 'Í¨Öª½ÓÊÕÈË';
+alter table ts_notification_receive comment 'é€šçŸ¥æ¥æ”¶äºº';
 
 /*==============================================================*/
 /* Table: ts_organ                                              */
@@ -340,31 +340,31 @@ alter table ts_notification_receive comment 'Í¨Öª½ÓÊÕÈË';
 create table ts_organ
 (
    id                   char(32) not null comment 'ID',
-   organ_name           varchar(100) not null comment '»ú¹¹Ãû³Æ',
-   organ_code           varchar(20) not null comment '»ú¹¹´úÂë',
-   organ_type           char(1) comment '»ú¹¹ÀàĞÍ
-            ¾ßÌåµÄ²Î¿¼ÒµÎñÒªÇó',
-   organ_addr           varchar(200) comment '»ú¹¹µØÖ·',
-   pid                  char(32) comment 'ÉÏ¼¶»ú¹¹',
-   organ_status         char(1) not null comment '»ú¹¹×´Ì¬
-            1:Õı³£ 0:½âÉ¢',
-   lead_user_id         char(32) comment '¸ºÔğÈË',
-   remark               varchar(200) comment '±¸×¢',
-   delete_flag          char(1) not null comment 'É¾³ı±êÖ¾',
-   create_user_id       char(32) not null comment '´´½¨ÈË',
-   create_user_name     varchar(50) not null comment '´´½¨ÈËÃû³Æ',
-   create_time          timestamp not null default CURRENT_TIMESTAMP comment '´´½¨Ê±¼ä',
-   update_user_id       char(32) comment 'ĞŞ¸ÄÈË',
-   update_user_name     varchar(50) comment 'ĞŞ¸ÄÈËÃû³Æ',
-   update_time          timestamp null default null  comment 'ĞŞ¸ÄÊ±¼ä',
-   version_no           int not null comment '°æ±¾',
-   tenant_id            char(32) not null comment '×â»§',
+   organ_name           varchar(100) not null comment 'æœºæ„åç§°',
+   organ_code           varchar(20) not null comment 'æœºæ„ä»£ç ',
+   organ_type           char(1) comment 'æœºæ„ç±»å‹
+            å…·ä½“çš„å‚è€ƒä¸šåŠ¡è¦æ±‚',
+   organ_addr           varchar(200) comment 'æœºæ„åœ°å€',
+   pid                  char(32) comment 'ä¸Šçº§æœºæ„',
+   organ_status         char(1) not null comment 'æœºæ„çŠ¶æ€
+            1:æ­£å¸¸ 0:è§£æ•£',
+   lead_user_id         char(32) comment 'è´Ÿè´£äºº',
+   remark               varchar(200) comment 'å¤‡æ³¨',
+   delete_flag          char(1) not null comment 'åˆ é™¤æ ‡å¿—',
+   create_user_id       char(32) not null comment 'åˆ›å»ºäºº',
+   create_user_name     varchar(50) not null comment 'åˆ›å»ºäººåç§°',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment 'åˆ›å»ºæ—¶é—´',
+   update_user_id       char(32) comment 'ä¿®æ”¹äºº',
+   update_user_name     varchar(50) comment 'ä¿®æ”¹äººåç§°',
+   update_time          timestamp null default null  comment 'ä¿®æ”¹æ—¶é—´',
+   version_no           int not null comment 'ç‰ˆæœ¬',
+   tenant_id            char(32) not null comment 'ç§Ÿæˆ·',
    primary key (id),
    UNIQUE key AK_Identifier_3 (organ_code, tenant_id),
    UNIQUE key AK_Identifier_2 (organ_name, tenant_id)
 );
 
-alter table ts_organ comment '»ú¹¹';
+alter table ts_organ comment 'æœºæ„';
 
 /*==============================================================*/
 /* Table: ts_permit                                             */
@@ -372,15 +372,15 @@ alter table ts_organ comment '»ú¹¹';
 create table ts_permit
 (
    id                   char(32) not null comment 'ID',
-   permit_name          varchar(20) not null comment 'Ğí¿ÉÃû³Æ',
-   permit_code          varchar(50) not null comment 'Ğí¿É±àºÅ',
-   remark               varchar(200) comment '±¸×¢',
-   delete_flag          char(1) not null comment 'É¾³ı±êÖ¾',
+   permit_name          varchar(20) not null comment 'è®¸å¯åç§°',
+   permit_code          varchar(50) not null comment 'è®¸å¯ç¼–å·',
+   remark               varchar(200) comment 'å¤‡æ³¨',
+   delete_flag          char(1) not null comment 'åˆ é™¤æ ‡å¿—',
    primary key (id),
    UNIQUE key AK_Identifier_2 (permit_code)
 );
 
-alter table ts_permit comment 'Ğí¿É';
+alter table ts_permit comment 'è®¸å¯';
 
 /*==============================================================*/
 /* Table: ts_role                                               */
@@ -388,28 +388,28 @@ alter table ts_permit comment 'Ğí¿É';
 create table ts_role
 (
    id                   char(32) not null comment 'ID',
-   role_name            varchar(50) not null comment '½ÇÉ«Ãû³Æ',
-   role_code            varchar(20) not null comment '½ÇÉ«±àºÅ',
-   role_type            char(1) not null comment '½ÇÉ«ÀàĞÍ',
-   dep_id               char(32) comment '²¿ÃÅ',
-   organ_id             char(32) not null comment '»ú¹¹',
-   role_status          char(1) not null comment '½ÇÉ«×´Ì¬
-            0: ½ûÓÃ   1:¿ÉÓÃ',
-   remark               varchar(200) comment '±¸×¢',
-   create_user_id       char(32) not null comment '´´½¨ÈË',
-   create_user_name     varchar(50) not null comment '´´½¨ÈËÃû³Æ',
-   create_time          timestamp not null default CURRENT_TIMESTAMP comment '´´½¨Ê±¼ä',
-   update_user_id       char(32) comment 'ĞŞ¸ÄÈË',
-   update_user_name     varchar(50) comment 'ĞŞ¸ÄÈËÃû³Æ',
-   update_time          timestamp null default null  comment 'ĞŞ¸ÄÊ±¼ä',
-   version_no           int not null comment '°æ±¾',
-   tenant_id            char(32) not null comment '×â»§',
+   role_name            varchar(50) not null comment 'è§’è‰²åç§°',
+   role_code            varchar(20) not null comment 'è§’è‰²ç¼–å·',
+   role_type            char(1) not null comment 'è§’è‰²ç±»å‹',
+   dep_id               char(32) comment 'éƒ¨é—¨',
+   organ_id             char(32) not null comment 'æœºæ„',
+   role_status          char(1) not null comment 'è§’è‰²çŠ¶æ€
+            0: ç¦ç”¨   1:å¯ç”¨',
+   remark               varchar(200) comment 'å¤‡æ³¨',
+   create_user_id       char(32) not null comment 'åˆ›å»ºäºº',
+   create_user_name     varchar(50) not null comment 'åˆ›å»ºäººåç§°',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment 'åˆ›å»ºæ—¶é—´',
+   update_user_id       char(32) comment 'ä¿®æ”¹äºº',
+   update_user_name     varchar(50) comment 'ä¿®æ”¹äººåç§°',
+   update_time          timestamp null default null  comment 'ä¿®æ”¹æ—¶é—´',
+   version_no           int not null comment 'ç‰ˆæœ¬',
+   tenant_id            char(32) not null comment 'ç§Ÿæˆ·',
    primary key (id),
    UNIQUE key AK_Identifier_3 (role_code, tenant_id),
    UNIQUE key AK_Identifier_2 (role_name, tenant_id)
 );
 
-alter table ts_role comment '½ÇÉ«';
+alter table ts_role comment 'è§’è‰²';
 
 /*==============================================================*/
 /* Table: ts_role_permit                                        */
@@ -417,13 +417,13 @@ alter table ts_role comment '½ÇÉ«';
 create table ts_role_permit
 (
    id                   char(32) not null comment 'ID',
-   role_id              char(32) not null comment '½ÇÉ«',
-   permit_id            char(32) not null comment 'Ğí¿É',
+   role_id              char(32) not null comment 'è§’è‰²',
+   permit_id            char(32) not null comment 'è®¸å¯',
    primary key (id),
    UNIQUE key AK_Identifier_2 (role_id, permit_id)
 );
 
-alter table ts_role_permit comment '½ÇÉ«Ğí¿É¹ØÁª';
+alter table ts_role_permit comment 'è§’è‰²è®¸å¯å…³è”';
 
 /*==============================================================*/
 /* Table: ts_tenant                                             */
@@ -431,29 +431,29 @@ alter table ts_role_permit comment '½ÇÉ«Ğí¿É¹ØÁª';
 create table ts_tenant
 (
    id                   char(32) not null comment 'ID',
-   tenant_name          varchar(150) not null comment 'ÆóÒµÃû³Æ',
-   tenant_code          char(4) not null comment 'ÆóÒµ±àºÅ',
-   tenant_addr          varchar(200) comment 'ÆóÒµµØÖ·',
-   link_tel             varchar(20) comment 'ÁªÏµµç»°',
-   lead_user_name       varchar(50) comment '·¨ÈËĞÕÃû',
+   tenant_name          varchar(150) not null comment 'ä¼ä¸šåç§°',
+   tenant_code          char(4) not null comment 'ä¼ä¸šç¼–å·',
+   tenant_addr          varchar(200) comment 'ä¼ä¸šåœ°å€',
+   link_tel             varchar(20) comment 'è”ç³»ç”µè¯',
+   lead_user_name       varchar(50) comment 'æ³•äººå§“å',
    logo_file            char(32) comment 'LOGO',
-   website              varchar(200) comment '¹ÙÍø',
-   remark               varchar(2000) comment 'ËµÃ÷',
-   delete_flag          char(1) not null comment 'É¾³ı±êÖ¾',
-   create_user_id       char(32) not null comment '´´½¨ÈË',
-   create_user_name     varchar(50) not null comment '´´½¨ÈËÃû³Æ',
-   create_time          timestamp not null default CURRENT_TIMESTAMP comment '´´½¨Ê±¼ä',
-   update_user_id       char(32) comment 'ĞŞ¸ÄÈË',
-   update_user_name     varchar(50) comment 'ĞŞ¸ÄÈËÃû³Æ',
-   update_time          timestamp null default null  comment 'ĞŞ¸ÄÊ±¼ä',
-   version_no           int not null comment '°æ±¾',
+   website              varchar(200) comment 'å®˜ç½‘',
+   remark               varchar(2000) comment 'è¯´æ˜',
+   delete_flag          char(1) not null comment 'åˆ é™¤æ ‡å¿—',
+   create_user_id       char(32) not null comment 'åˆ›å»ºäºº',
+   create_user_name     varchar(50) not null comment 'åˆ›å»ºäººåç§°',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment 'åˆ›å»ºæ—¶é—´',
+   update_user_id       char(32) comment 'ä¿®æ”¹äºº',
+   update_user_name     varchar(50) comment 'ä¿®æ”¹äººåç§°',
+   update_time          timestamp null default null  comment 'ä¿®æ”¹æ—¶é—´',
+   version_no           int not null comment 'ç‰ˆæœ¬',
    primary key (id, tenant_name, tenant_code),
    UNIQUE key AK_Identifier_3 (tenant_code),
    UNIQUE key AK_Identifier_2 (tenant_name)
 );
 
-alter table ts_tenant comment 'ÆóÒµ
-Ò²ÊÇÆóÒµµÄ¸ÅÄî';
+alter table ts_tenant comment 'ä¼ä¸š
+ä¹Ÿæ˜¯ä¼ä¸šçš„æ¦‚å¿µ';
 
 /*==============================================================*/
 /* Table: ts_user                                               */
@@ -461,39 +461,39 @@ alter table ts_tenant comment 'ÆóÒµ
 create table ts_user
 (
    id                   char(32) not null comment 'ID',
-   user_name            varchar(50) not null comment 'ÓÃ»§ĞÕÃû',
-   login_name           varchar(20) not null comment 'µÇÂ¼Ãû',
-   login_password       varchar(128) comment 'µÇÂ¼ÃÜÂë',
-   salt                 varchar(64) comment '¼ÓÃÜÑÎ',
-   user_status          char(1) not null comment 'ÓÃ»§×´Ì¬',
-   lead_user_id         char(32) comment 'ÉÏ¼¶Áìµ¼',
-   phone                varchar(20) not null comment 'µç»°',
-   email                varchar(60) not null comment 'ÓÊÏä',
-   avatar_image         char(32) comment 'Í·Ïñ',
-   open_id              varchar(64) comment 'Î¢ĞÅID',
-   union_id             varchar(64) comment 'Î¢ĞÅÎ¨Ò»ID',
-   system_admin         char(1) not null comment 'ÏµÍ³¹ÜÀíÈËÔ±
+   user_name            varchar(50) not null comment 'ç”¨æˆ·å§“å',
+   login_name           varchar(20) not null comment 'ç™»å½•å',
+   login_password       varchar(128) comment 'ç™»å½•å¯†ç ',
+   salt                 varchar(64) comment 'åŠ å¯†ç›',
+   user_status          char(1) not null comment 'ç”¨æˆ·çŠ¶æ€',
+   lead_user_id         char(32) comment 'ä¸Šçº§é¢†å¯¼',
+   phone                varchar(20) not null comment 'ç”µè¯',
+   email                varchar(60) not null comment 'é‚®ç®±',
+   avatar_image         char(32) comment 'å¤´åƒ',
+   open_id              varchar(64) comment 'å¾®ä¿¡ID',
+   union_id             varchar(64) comment 'å¾®ä¿¡å”¯ä¸€ID',
+   system_admin         char(1) not null comment 'ç³»ç»Ÿç®¡ç†äººå‘˜
             yes_no',
-   dep_id               char(32) comment '²¿ÃÅ',
-   organ_id             char(32) not null comment '»ú¹¹',
-   page_limit           int not null default 20 comment 'Ã¿Ò³¼ÇÂ¼Êı',
-   remark               varchar(500) comment '±¸×¢',
-   delete_flag          char(1) not null comment 'É¾³ı±êÖ¾',
-   create_user_id       char(32) not null comment '´´½¨ÈË',
-   create_user_name     varchar(50) not null comment '´´½¨ÈËÃû³Æ',
-   create_time          timestamp not null default CURRENT_TIMESTAMP comment '´´½¨Ê±¼ä',
-   update_user_id       char(32) comment 'ĞŞ¸ÄÈË',
-   update_user_name     varchar(50) comment 'ĞŞ¸ÄÈËÃû³Æ',
-   update_time          timestamp null default null  comment 'ĞŞ¸ÄÊ±¼ä',
-   version_no           int not null comment '°æ±¾',
-   tenant_id            char(32) not null comment '×â»§',
+   dep_id               char(32) comment 'éƒ¨é—¨',
+   organ_id             char(32) not null comment 'æœºæ„',
+   page_limit           int not null default 20 comment 'æ¯é¡µè®°å½•æ•°',
+   remark               varchar(500) comment 'å¤‡æ³¨',
+   delete_flag          char(1) not null comment 'åˆ é™¤æ ‡å¿—',
+   create_user_id       char(32) not null comment 'åˆ›å»ºäºº',
+   create_user_name     varchar(50) not null comment 'åˆ›å»ºäººåç§°',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment 'åˆ›å»ºæ—¶é—´',
+   update_user_id       char(32) comment 'ä¿®æ”¹äºº',
+   update_user_name     varchar(50) comment 'ä¿®æ”¹äººåç§°',
+   update_time          timestamp null default null  comment 'ä¿®æ”¹æ—¶é—´',
+   version_no           int not null comment 'ç‰ˆæœ¬',
+   tenant_id            char(32) not null comment 'ç§Ÿæˆ·',
    primary key (id),
    UNIQUE key AK_Identifier_2 (login_name),
    UNIQUE key AK_Identifier_3 (email),
    UNIQUE key AK_Identifier_4 (phone)
 );
 
-alter table ts_user comment 'ÓÃ»§';
+alter table ts_user comment 'ç”¨æˆ·';
 
 /*==============================================================*/
 /* Table: ts_user_role                                          */
@@ -501,10 +501,10 @@ alter table ts_user comment 'ÓÃ»§';
 create table ts_user_role
 (
    id                   char(32) not null comment 'ID',
-   user_id              char(32) not null comment 'ÓÃ»§',
-   role_id              char(32) not null comment '½ÇÉ«',
+   user_id              char(32) not null comment 'ç”¨æˆ·',
+   role_id              char(32) not null comment 'è§’è‰²',
    primary key (id),
    UNIQUE key AK_Identifier_2 (user_id, role_id)
 );
 
-alter table ts_user_role comment 'ÓÃ»§½ÇÉ«¹ØÁª';
+alter table ts_user_role comment 'ç”¨æˆ·è§’è‰²å…³è”';

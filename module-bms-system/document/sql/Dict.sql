@@ -1,15 +1,15 @@
 INSERT INTO `ts_dict_type` VALUES ('14ca5b5371e14e9b84d83c933c71bcae', NULL, 'role_status', '角色状态', '0', '0', '0', '0', 11);
 INSERT INTO `ts_dict_type` VALUES ('1807debb1f684db2a9d85429ae3bd8ca', NULL, 'organ_status', '机构状态', '0', '0', '0', '0', 9);
-INSERT INTO `ts_dict_type` VALUES ('275ef03775af42d1a003539647ba3995', NULL, 'msg_language', '语言', '0', '0', '0', '0', 8);
+INSERT INTO `ts_dict_type` VALUES ('275ef03775af42d1a003539647ba3995', NULL, 'msg_language', '语言', '1', '0', '0', '0', 8);
 INSERT INTO `ts_dict_type` VALUES ('2a0bde5e833a42fcb5be4ba6e7242e3c', NULL, 'sex', '性别', '0', '0', '0', '0', 8);
-INSERT INTO `ts_dict_type` VALUES ('3a03d239d82c4871a6166c9f7508e219', NULL, 'msg_templet_type', '消息模板类型', '0', '0', '0', '0', 13);
+INSERT INTO `ts_dict_type` VALUES ('3a03d239d82c4871a6166c9f7508e219', NULL, 'msg_templet_type', '消息模板类型', '1', '0', '0', '0', 13);
 INSERT INTO `ts_dict_type` VALUES ('4c6cf2a718e4438988db53b78b38c6b2', NULL, 'role_type', '角色类型', '0', '0', '0', '0', 2);
 INSERT INTO `ts_dict_type` VALUES ('57ee5e4b98e944c4a833d706cdb2e966', NULL, 'user_status', '用户状态', '0', '0', '0', '0', 0);
-INSERT INTO `ts_dict_type` VALUES ('57ef20f444e2475d9bd20e08e14cad83', NULL, 'operation_type', '操作类型', '0', '0', '0', '0', 1);
+INSERT INTO `ts_dict_type` VALUES ('57ef20f444e2475d9bd20e08e14cad83', NULL, 'operation_type', '操作类型', '1', '0', '0', '0', 1);
 INSERT INTO `ts_dict_type` VALUES ('820cb718ed1d404ab6d146dd13dc0f35', NULL, 'file_engine', '文件存储引擎', '0', '0', '0', '0', 10);
 INSERT INTO `ts_dict_type` VALUES ('86e45cac9ecc41c9a6e1b4f6eafbf794', NULL, 'organ_type', '机构类型', '0', '0', '0', '0', 3);
 INSERT INTO `ts_dict_type` VALUES ('d27c74acae194fb2b383eebc81a4611f', NULL, 'yes_no', '是否', '0', '0', '0', '0', 4);
-INSERT INTO `ts_dict_type` VALUES ('f8a059e8a4a9430db78f1298e07954cd', NULL, 'card_type', '证件类型', '0', '0', '0', '0', 8);
+INSERT INTO `ts_dict_type` VALUES ('f8a059e8a4a9430db78f1298e07954cd', NULL, 'card_type', '证件类型', '1', '0', '0', '0', 8);
 INSERT INTO `ts_dict_type` VALUES ('fc82b24e44dc472fbc5d1641aa48ee81', NULL, 'dep_status', '部门状态', '0', '0', '0', '0', 6);
 
 
