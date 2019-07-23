@@ -12,7 +12,8 @@ $(function() {
  */
 function downloadFile(fileUseId)
 {
-    location.href = ctx + '/oss/file/download/' + fileUseId;
+
+    window.open( ctx + '/oss/file/download/' + fileUseId);
 }
 
 
@@ -22,7 +23,7 @@ function downloadFile(fileUseId)
  */
 function viewFile(fileUseId)
 {
-    location.href = ctx + '/oss/file/view/' + fileUseId;
+    window.open(ctx + '/oss/file/view/' + fileUseId);
 }
 
 //点击日期选择的×号按钮

@@ -138,6 +138,7 @@ $(function(){
 
             if(bl == true)
             {
+
                 if (options.isImage == 'true'){
                     vewArea.append(getImageTemp(file.id, "" ,"", file.name, "", file.size , "1"));
                 } else {
@@ -189,7 +190,9 @@ $(function(){
                 fileQueued.attr("fileEngine", data.fileEngine);
 
                 var ahref = getViewHref(data.fileEngine  , data.accessUrl , data.id  ) ;
-                fileQueued.find(".file-text").attr("href" , ahref);
+                var imageDom = fileQueued.find(".image-text");
+                $(imageDom).next().children().eq(0).find("a").attr("href",ahref);
+                imageDom.find("img").attr("src" , getImageSrc(data.fileEngine  , data.accessUrl , data.id));
 
 
                 fileQueued.find(".file-remove").removeClass("hidden");
@@ -202,6 +205,9 @@ $(function(){
                     deleteFlag: 0
                 });
                 new DeleteFile(file.id, '', file.name, data.accessUrl, file.size, file);
+                if (options.maxCount == 1){
+                    $(options.viewAreaId + "_items").next().hide();
+                }
             }catch(e){}
         });
 
@@ -246,11 +252,22 @@ $(function(){
                 var fileEngine = $(this).attr("fileEngine");
 
 
-                var fileQueued = getFileTemp(id, fileUseId, businessId , showName  , accessUrl , fileSize ,fileEngine);
-                fileQueued.find(".file-remove").removeClass("hidden");
+                var fileQueued;
+                if (options.isImage == 'true'){
+                    fileQueued = getImageTemp(id, fileUseId, businessId , showName  , accessUrl , fileSize ,fileEngine);
+                } else {
+                    fileQueued = getFileTemp(id, fileUseId, businessId , showName  , accessUrl , fileSize ,fileEngine);
+                    fileQueued.find(".file-remove").removeClass("hidden");
+                }
+
                 vewArea.append(fileQueued);
                 new DeleteFile(id, businessId, showName,  accessUrl, fileSize  , null);
             });
+
+            if (options.maxCount == 1){
+                $(options.viewAreaId + "_items").next().hide();
+            }
+
         };
 
         // 初始化列表
@@ -276,6 +293,8 @@ $(function(){
 
                     // 文件容器发生变化
                     fileChangeEvent(id, {id:id, showName:showName, accessUrl:accessUrl, size:getFileSize(size) , deleteFlag : 1} );
+
+                    $(options.viewAreaId + "_items").next().show();
                 });
             });
         };
@@ -322,19 +341,19 @@ $(function(){
          */
         function getImageTemp(id , fileUseId ,  businessId , showName  , accessUrl , size , fileEngine){
 
-            var html = '<li style="float: left;margin-left: 10px;" id="' + id +'" showName="' + showName + '" isDel="0" fileSize="' + size + '" businessId="' + businessId + '" fileUseId="' + fileUseId + '" accessUrl="' + accessUrl +  + '" fileEngine="' + fileEngine + '">' +
+            var imageUrl = ctx + accessUrl + fileUseId;
+            var html = '<li onmouseover="javascript:$(this).children().eq(1).css(\'display\',\'flex\')"  onmouseout="javascript:$(this).children().eq(1).css(\'display\',\'none\')"  style="float: left;margin-left: 10px;margin-top: 5px; margin-bottom: 5px" id="' + id +'" showName="' + showName + '" isDel="0" fileSize="' + size + '" businessId="' + businessId + '" fileUseId="' + fileUseId + '" accessUrl="' + accessUrl +  + '" fileEngine="' + fileEngine + '">' +
 
 
-                '<div style="width: 60px;height: 60px">' +
-                '<a href="javascript:void(0);" class="file-operate file-remove hidden">' +
-                '<span style="width: 15px;height: 15px;line-height:15px;background-color: #ea4b48;color: #FFFFFF;font-weight:bold;float: right;cursor: pointer;text-align: center;position: relative;top: 10px;left: 5px; border-radius: 8px;">X</span>' +
-                '</a>' +
-                '<a href="'+getViewHref(fileEngine  , accessUrl , fileUseId  )+'" title="' + showName + '">' +
-                '<img style="float:left;height: 60px;width: 60px" src="'+getViewHref(fileEngine  , accessUrl , fileUseId  )+'">	' +
-                '</a>' +
+                '<div style="width: 80px;height: 80px"  class="image-text">' +
+                '<img style="float:left;height: 80px;width: 80px" src="'+imageUrl+'">	' +
                 '</div>' +
-                '<div style="clear: both;"></div>' +
-                '</li>';
+                '<div style="z-index: 99;position: absolute;margin-top: -80px;display:none; flex-direction: row;height: 80px;width: 80px;background-color: #539bb1;opacity: 0.9;">' +
+                '<div style="float: left;text-align: center;flex: 1;"><a href="'+getViewHref(fileEngine  , accessUrl , fileUseId  )+'" title="' + showName + '" style="color: #FFFFFF;font-size: 20px;height: 80px;line-height: 80px;"><i class="fa fa-arrows-alt"></i>\</a></div>' +
+                '<div style="float: left;text-align: center;flex: 1"><a  class="file-remove" title="' + showName + '" style="cursor: pointer; color: #ff8855;font-size: 20px;height: 80px;line-height: 80px;"><i class="fa fa-close"></i>\</a></div>' +
+                '</div>'
+            '<div style="clear: both;"></div>' +
+            '</li>';
 
             return $(html);
         }
@@ -348,6 +367,10 @@ $(function(){
                 a = accessUrl;
             }
             return a;
+        }
+
+        function getImageSrc(fileEngine ,  accessUrl , fileUseId){
+            return ctx + accessUrl + fileUseId;
         }
 
     }

@@ -66,7 +66,7 @@ public class ImageController extends OssController  {
         byte[] bytes = decoder.decode(imageData.replaceAll(" ", "+"));
 
 
-        return this.saveFileInfo(bytes , "header."+type , new Long (bytes.length) , "image/"+type ,request );
+        return this.saveFileInfo(FileKit.getFileMD5(bytes), bytes , "header."+type , new Long (bytes.length) , "image/"+type ,request );
 
     }
 

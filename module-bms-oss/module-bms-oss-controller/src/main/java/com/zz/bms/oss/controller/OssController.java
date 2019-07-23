@@ -119,13 +119,13 @@ public class OssController extends BaseController<String> {
         if(file == null ) {
             return AjaxJson.errorAjax;
         }
-        return saveFileInfo(file, request);
+        return saveFileInfo(FileKit.getFileMD5(file.getInputStream()), file, request);
     }
 
 
-    protected Object saveFileInfo(MultipartFile file, HttpServletRequest request) {
+    protected Object saveFileInfo(String md5, MultipartFile file, HttpServletRequest request) {
         try {
-            return saveFileInfo(file.getInputStream() , file.getOriginalFilename() , file.getSize() , file.getContentType() , request);
+            return saveFileInfo(md5, file.getInputStream() , file.getOriginalFilename() , file.getSize() , file.getContentType() , request);
         } catch (IOException e) {
             log.error(e.getMessage() ,e);
         }
@@ -133,7 +133,7 @@ public class OssController extends BaseController<String> {
         return AjaxJson.errorAjax;
     }
 
-    protected Object saveFileInfo(InputStream inputStream,
+    protected Object saveFileInfo(String md5, InputStream inputStream,
                                 String originalFilename,
                                 long size ,
                                 String contentType,
@@ -162,7 +162,6 @@ public class OssController extends BaseController<String> {
                 bo = new TsFileUseBO();
 
                 String showName = originalFilename;
-                String md5 = FileKit.getFileMD5(inputStream);
 
                 bo.setShowName(showName);
                 bo.setBusinessType(businessType);
@@ -232,7 +231,7 @@ public class OssController extends BaseController<String> {
         return ajaxJson;
     }
 
-    protected Object saveFileInfo(byte[] bs,
+    protected Object saveFileInfo(String md5, byte[] bs,
                                   String originalFilename,
                                   long size ,
                                   String contentType,
@@ -261,7 +260,6 @@ public class OssController extends BaseController<String> {
             bo = new TsFileUseBO();
 
             String showName = originalFilename;
-            String md5 = null;
 
             bo.setShowName(showName);
             bo.setBusinessType(businessType);
