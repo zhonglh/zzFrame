@@ -726,7 +726,6 @@ function loadMyMessageCount(total){
         $('.badge').addClass('hidden');
         $('i.fa-bell-o').removeClass('animated-bell');
     }else {
-
         $('.badge').removeClass('hidden');
         $('.badge').addClass('hidden');
         $('i.fa-bell-o').removeClass('animated-bell');
