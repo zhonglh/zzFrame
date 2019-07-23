@@ -450,16 +450,23 @@ function addMenuEvent()
                 }
 
                 $this.find("a").removeClass("right-arrow");
-            }
-            else
-            if (!$this.find("a").hasClass('right-arrow'))
+
+            } else if (!$this.find("a").hasClass('right-arrow'))
             {
                 // 合并菜单
                 for (var i=0;i<children.length;i++)
                 {
                     var child = $(children[i]);
+                    var myMenuNo = child.attr("menuNodeNo");
+                    var subChild = child.siblings('[parentNodeNo=\'' + myMenuNo + '\']');
+                    for (var t=0;t<subChild.length;t++){
+                        var mchild = $(subChild[t]);
+                        mchild.slideUp();
+                    }
+
                     var num = parseInt(child.attr('num'));
                     child.slideUp().attr('num', num + 1);
+                    child.find("a").addClass("right-arrow");
                 }
 
                 $this.find("a").addClass("right-arrow");
@@ -505,48 +512,48 @@ function changeProfile()
                         ok:
                             {
                                 val: '保存', type: 'green', click: function(btn)
-                            {
-                                if (!$("#formProfile").valid())
                                 {
-                                    warn('保存失败：表单信息填写不完整！');
-                                    return false;
-                                }
-
-                                // 校验修改密码逻辑
-                                var passwds = 0;
-                                if ($('input[name="origPassword"]').val().length > 0)
-                                    passwds ++;
-
-                                if ($('input[name="newPassword"]').val().length > 0)
-                                    passwds ++;
-
-                                if ($('input[name="confirmNewPassword"]').val().length > 0)
-                                    passwds ++;
-
-                                if (passwds > 0 && 3 != passwds)
-                                {
-                                    warn('请输入“原密码”、“新密码”和“确认新密码”3项信息才能修改密码。请检查您的输入！');
-                                    return false;
-                                }
-
-                                $('#formProfile').ajaxSubmit(
+                                    if (!$("#formProfile").valid())
                                     {
-                                        success: function(rsp)
+                                        warn('保存失败：表单信息填写不完整！');
+                                        return false;
+                                    }
+
+                                    // 校验修改密码逻辑
+                                    var passwds = 0;
+                                    if ($('input[name="origPassword"]').val().length > 0)
+                                        passwds ++;
+
+                                    if ($('input[name="newPassword"]').val().length > 0)
+                                        passwds ++;
+
+                                    if ($('input[name="confirmNewPassword"]').val().length > 0)
+                                        passwds ++;
+
+                                    if (passwds > 0 && 3 != passwds)
+                                    {
+                                        warn('请输入“原密码”、“新密码”和“确认新密码”3项信息才能修改密码。请检查您的输入！');
+                                        return false;
+                                    }
+
+                                    $('#formProfile').ajaxSubmit(
                                         {
-                                            if (rsp.success)
+                                            success: function(rsp)
                                             {
-                                                profileDlg.hide();
+                                                if (rsp.success)
+                                                {
+                                                    profileDlg.hide();
 
-                                                info('个人参数信息保存成功！', function(){window.location.reload();});
+                                                    info('个人参数信息保存成功！', function(){window.location.reload();});
+                                                }
+                                                else
+                                                    error(rsp.msg);
                                             }
-                                            else
-                                                error(rsp.msg);
-                                        }
-                                    });
+                                        });
 
-                                // 不关闭对话框
-                                return false;
-                            }
+                                    // 不关闭对话框
+                                    return false;
+                                }
                             },
                         cancle: {val: '取消'}
                     }
@@ -695,9 +702,9 @@ function startMyNotify(){
 function showWsMsg(notify){
     var contentHtml = "<div style='height: 200px;overflow:auto'>" +  notify.content + "</div>";
     var dialog = iDialog({
-             content: contentHtml , lock: true, effect: 'i-super-scale', width: 550, height: 300,
-             btn: {ok: {val: '已阅', type: 'green', click: readNotify(notify.id)}, cancel: {val: '取消'}}
-        });
+        content: contentHtml , lock: true, effect: 'i-super-scale', width: 550, height: 300,
+        btn: {ok: {val: '已阅', type: 'green', click: readNotify(notify.id)}, cancel: {val: '取消'}}
+    });
 
     var title = notify.title;
     if(!title){
@@ -753,8 +760,8 @@ jQuery.fn.shake = function (intShakes ) {
 }
 
 /**
-function loadMyMessage()
-{
+ function loadMyMessage()
+ {
     $.post('http://123.57.235.9:88/tzcp/platform/msg/unread', function(rsp, textStatus, jqXHR)
     {
         if (200 == rsp.code)
@@ -765,7 +772,7 @@ function loadMyMessage()
  */
 
 /**
-function showMessage(rspData){
+ function showMessage(rspData){
 
     if (0 == rspData.total)
     {
@@ -808,4 +815,4 @@ function showMessage(rspData){
         $(".unread-list").html(html);
     }
 }
-*/
+ */
