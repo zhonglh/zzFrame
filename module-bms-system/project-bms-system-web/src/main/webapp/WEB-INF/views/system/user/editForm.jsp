@@ -141,26 +141,6 @@
                                        value="${m.email}"  id="email" name="email" minlength="4" maxlength='50'/></td>
                         </tr>
 
-                        <tr>
-                            <th >附件</th>
-                            <td colspan="3">
-
-                                <div class="" style="margin-bottom: 0px;width: 80px">
-                                    <div class="info-detail">
-                                        <div class="uploader-list">
-                                            <ul id="thelist" class="file-list" style="margin: 0 0 10px 0" ></ul>
-                                        </div>
-                                        <div class="btns">
-                                            <div id="uploadFile" title='附件' class="webuploader-container" data-options="viewAreaId:'#thelist', fileSource:100">
-                                                <i class="fa fa-upload"></i>
-                                                <span>上传附件</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </td>
-                        </tr>
 
 
 
