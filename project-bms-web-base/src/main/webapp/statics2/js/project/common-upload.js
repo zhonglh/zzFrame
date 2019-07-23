@@ -190,6 +190,7 @@ $(function(){
                 fileQueued.attr("fileEngine", data.fileEngine);
 
                 var ahref = getViewHref(data.fileEngine  , data.accessUrl , data.id  ) ;
+                fileQueued.find(".file-text").attr("href" , ahref);
                 var imageDom = fileQueued.find(".image-text");
                 $(imageDom).next().children().eq(0).find("a").attr("href",ahref);
                 imageDom.find("img").attr("src" , getImageSrc(data.fileEngine  , data.accessUrl , data.id));
@@ -205,6 +206,7 @@ $(function(){
                     deleteFlag: 0
                 });
                 new DeleteFile(file.id, '', file.name, data.accessUrl, file.size, file);
+                debugger
                 if (options.maxCount == 1){
                     $(options.viewAreaId + "_items").next().hide();
                 }
