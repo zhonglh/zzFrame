@@ -25,38 +25,44 @@
                         <tbody>
 
 
-                                                        <tr>
-                                    <th>投资人名称<font color="red">*</font></th>
+                                                <tr>
+                                <th>投资人名称<font color="red">*</font></th>
+                                <td>
+                                            <input type="text" required="required" class="form-control input-sm required"
+                                                   placeholder="请输入投资人名称" autocomplete="off"
+                                                   value="${ m.investorName }" id="investorName" name="investorName"
+                                                       maxlength="50"  />
+                                </td>
+                                    <th>投资人代码<font color="red">*</font></th>
                                     <td>
                                                 <input type="text" required="required" class="form-control input-sm required"
-                                                       placeholder="请输入投资人名称" autocomplete="off"
-                                                       value="${ m.investorName }" id="investorName" name="investorName"
-                                                           maxlength="50"  />
+                                                       placeholder="请输入投资人代码" autocomplete="off"
+                                                       value="${ m.investorCode }" id="investorCode" name="investorCode"
+                                                           maxlength="10"  />
                                     </td>
-                                        <th>投资人代码<font color="red">*</font></th>
-                                        <td>
-                                                    <input type="text" required="required" class="form-control input-sm required"
-                                                           placeholder="请输入投资人代码" autocomplete="off"
-                                                           value="${ m.investorCode }" id="investorCode" name="investorCode"
-                                                               maxlength="10"  />
-                                        </td>
-                                </tr>
-                                <tr>
-                                    <th>投资人类型<font color="red">*</font></th>
+                            </tr>
+                            <tr>
+                                <th>投资人类型<font color="red">*</font></th>
+                                <td>
+                                            <select id="investorType"  name="investorType" required="required" style="width:98%">
+                                                <option value="" ></option>
+                                                <c:forEach items="${ investor_type_dicts }" var="dict">
+                                                    <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.investorType }">selected</c:if>>${ dict.dictName  }</option>
+                                                </c:forEach>
+                                            </select>
+                                </td>
+                                    <th>投资经理<font color="red">*</font></th>
                                     <td>
-                                                <select id="investorType"  name="investorType" required="required" style="width:98%">
-                                                    <option value="" ></option>
-                                                    <c:forEach items="${ investor_type_dicts }" var="dict">
-                                                        <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.investorType }">selected</c:if>>${ dict.dictName  }</option>
-                                                    </c:forEach>
-                                                </select>
-                                    </td>
-                                        <th>投资经理<font color="red">*</font></th>
-                                        <td>
-                                                    <c:if test="${ fn:indexOf(allQueryString,'&manageUserId=') >= 0 }">
-                                                        <input type="text" class="form-control input-sm" name="manageUserName" id="manageUserName"  value="${ m.manageUserName }" readonly>
+                                                <c:if test="${ fn:indexOf(allQueryString,'&manageUserId=') >= 0 }">
+                                                    <input type="text" class="form-control input-sm" name="manageUserName" id="manageUserName"  value="${ m.manageUserName }" readonly>
+                                                </c:if>
+                                                <c:if test="${ fn:indexOf(allQueryString,'&manageUserId=') < 0 }">
+
+                                                    <c:if test="${ m.manageUserId != null}">
+                                                        <input type="hidden" name="manageUserId" id="manageUserId" value="${ m.manageUserId }">
+                                                        <input type="text" name="manageUserName" id="manageUserName" value="${ m.manageUserName }" required="required" class="form-control input-sm " readonly="readonly">
                                                     </c:if>
-                                                    <c:if test="${ fn:indexOf(allQueryString,'&manageUserId=') < 0 }">
+                                                    <c:if test="${ m.manageUserId == null}">
                                                         <div class="input-group">
                                                             <input type="hidden" name="manageUserId" id="manageUserId" value="${ m.manageUserId }" >
                                                             <input type="text" name="manageUserName" id="manageUserName" value="${ m.manageUserName }" required="required" class="form-control input-sm manageUserName " placeholder="请选择投资经理" style="cursor: pointer;" readonly="readonly">
@@ -70,53 +76,57 @@
                                                             </div>
                                                         </div>
                                                     </c:if>
-                                        </td>
-                                </tr>
-                                <tr>
-                                    <th>证件类型</th>
-                                    <td>
-                                                <select id="cardType"  name="cardType"  style="width:98%">
-                                                    <option value="" ></option>
-                                                    <c:forEach items="${ card_type_dicts }" var="dict">
-                                                        <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.cardType }">selected</c:if>>${ dict.dictName  }</option>
-                                                    </c:forEach>
-                                                </select>
+                                                </c:if>
                                     </td>
-                                        <th>证件号码</th>
-                                        <td>
-                                                    <input type="text"  class="form-control input-sm "
-                                                           placeholder="请输入证件号码" autocomplete="off"
-                                                           value="${ m.cardNo }" id="cardNo" name="cardNo"
-                                                               maxlength="100"  />
-                                        </td>
-                                </tr>
-                                <tr>
-                                    <th>附件</th>
+                            </tr>
+                            <tr>
+                                <th>证件类型</th>
+                                <td>
+                                            <select id="cardType"  name="cardType"  style="width:98%">
+                                                <option value="" ></option>
+                                                <c:forEach items="${ card_type_dicts }" var="dict">
+                                                    <option value="${ dict.dictVal }" <c:if test="${ dict.dictVal == m.cardType }">selected</c:if>>${ dict.dictName  }</option>
+                                                </c:forEach>
+                                            </select>
+                                </td>
+                                    <th>证件号码</th>
                                     <td>
-                                                <div class="" style="margin-bottom: 0px">
-                                                    <div class="info-detail">
-                                                        <input type="hidden" id="investorFiles" name="investorFiles" value="${  m.investorFiles }">
-                                                        <div class="uploader-list">
-                                                            <ul id="thelist_investorFiles" class="file-list" style="margin: 0 0 10px 0" ></ul>
-                                                        </div>
-                                                        <div class="btns">
-                                                            <div id="uploadFile_investorFiles" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_investorFiles', businessFileType:'investorFiles'  ,businessTempId: '${  m.investorFiles }' ">
-                                                                <i class="fa fa-upload"></i>
-                                                                <span>上传附件</span>
-                                                            </div>
+                                                <input type="text"  class="form-control input-sm "
+                                                       placeholder="请输入证件号码" autocomplete="off"
+                                                       value="${ m.cardNo }" id="cardNo" name="cardNo"
+                                                           maxlength="100"  />
+                                    </td>
+                            </tr>
+                            <tr>
+                                <th>附件</th>
+                                <td>
+                                            <div class="" style="margin-bottom: 0px">
+                                                <div class="info-detail">
+                                                    <input type="hidden" id="investorFiles" name="investorFiles" value="${  m.investorFiles }">
+                                                    <div class="uploader-list">
+                                                        <ul id="thelist_investorFiles" class="file-list" style="margin: 0 0 10px 0" ></ul>
+                                                    </div>
+                                                    <div class="btns">
+                                                        <div id="uploadFile_investorFiles" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_investorFiles',  businessFileType:'investorFiles'  ,businessTempId: '${  m.investorFiles }' ">
+                                                            <i class="fa fa-upload"></i>
+                                                            <span>上传附件</span>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
+
+
+
+                                </td>
+                                    <th>备注</th>
+                                    <td>
+                                                <div class="info-detail">
+                                        <textarea  class="form-control input-sm  " rows="5"
+                                                  id="remark"  name="remark" placeholder="请输入备注，500字以内" maxlength="500" rows="4">${ m.remark }</textarea>
+                                                </div>
                                     </td>
-                                        <th>备注</th>
-                                        <td>
-                                                    <div class="info-detail">
-                                            <textarea  class="form-control input-sm  " rows="5"
-                                                      id="remark"  name="remark" placeholder="请输入备注，500字以内" maxlength="500" rows="4">${ m.remark }</textarea>
-                                                    </div>
-                                        </td>
-                                </tr>
-                        </tbody>
+                            </tr>
+                    </tbody>
                     </table>
 
 
@@ -131,7 +141,7 @@
             </div>
 
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
-                <shiro:hasPermission name="example.investor:add">
+                <shiro:hasPermission name="fundmanage.investor:add">
                     <button type="button" class="btn btn-primary btn-sm" onclick="doSave()">
                         <i class="fa fa-save"></i>
                         <span>保 存</span>
@@ -149,6 +159,7 @@
 
 <script>
     var inAllPage = "${ inAllPage }";
+    var queryString = "${ queryString }";
 </script>
 
 <bms:contentJS />

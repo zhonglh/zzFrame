@@ -8,7 +8,7 @@ f.access_url,
 f.content_type,
 f.file_engine,
 f.file_host,
-f.file_name file_pull_name,
+f.file_path file_pull_name,
 f.file_size,
 f.use_frequency 
 from ts_file_use fu , ts_file f

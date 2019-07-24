@@ -49,7 +49,16 @@
                                 </td>
                             </tr>
 
-
+                            <tr>
+                                <th>部门</th>
+                                <td class="fd_handleDepName">
+                                    <c:out value="${ m.handleDepName }" escapeXml="true"/>
+                                </td>
+                                <th>机构</th>
+                                <td class="fd_handleOrganId">
+                                    <c:out value="${ m.handleOrganId }" escapeXml="true"/>
+                                </td>
+                            </tr>
 
                             <tr>
                                 <th>经办人<font color="red">*</font></th>
@@ -110,20 +119,26 @@
                                             <input type="text" class="form-control input-sm" name="investorAgreementName"  id="investorAgreementName" value="${ m.investorAgreementName }" readonly>
                                         </c:if>
                                         <c:if test="${ fn:indexOf(allQueryString,'&investorAgreementId=') <0  }">
-                                        <div class="input-group">
-                                            <input type="hidden" name="investorAgreementId" id="investorAgreementId" value="${ m.investorAgreementId }">
-                                            <input type="text" name="investorAgreementName" id="investorAgreementName" value="${ m.investorAgreementName }" required="required" class="form-control input-sm investorAgreementName " placeholder="请选择协议" style="cursor: pointer;" readonly="readonly">
-                                            <div class="input-group-btn" >
-                                                <button type="button"
-                                                        class="btn btn-primary btn-sm investorAgreementName">
-                                                    &nbsp;<i class="fa fa-search"></i>&nbsp;
-                                                </button>
-                                                <button type="button" id="clearInvestorAgreementId"
-                                                        class="btn btn-primary btn-sm">
-                                                    &nbsp;<i class="fa fa-close"></i>&nbsp;
-                                                </button>
-                                            </div>
-                                        </div>
+                                            <c:if test="${ m.investorAgreementId != null}">
+                                                <input type="hidden" name="investorAgreementId" id="investorAgreementId" value="${ m.investorAgreementId }">
+                                                <input type="text" name="investorAgreementName" id="investorAgreementName" value="${ m.investorAgreementName }" required="required" class="form-control input-sm " readonly="readonly">
+                                            </c:if>
+                                            <c:if test="${ m.investorAgreementId == null}">
+                                                <div class="input-group">
+                                                    <input type="hidden" name="investorAgreementId" id="investorAgreementId" value="${ m.investorAgreementId }">
+                                                    <input type="text" name="investorAgreementName" id="investorAgreementName" value="${ m.investorAgreementName }" required="required" class="form-control input-sm investorAgreementName " placeholder="请选择协议" style="cursor: pointer;" readonly="readonly">
+                                                    <div class="input-group-btn" >
+                                                        <button type="button"
+                                                                class="btn btn-primary btn-sm investorAgreementName">
+                                                            &nbsp;<i class="fa fa-search"></i>&nbsp;
+                                                        </button>
+                                                        <button type="button" id="clearInvestorAgreementId"
+                                                                class="btn btn-primary btn-sm">
+                                                            &nbsp;<i class="fa fa-close"></i>&nbsp;
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </c:if>
                                         </c:if>
                                 </td>
                                 <th>基金<font color="red">*</font></th>
@@ -132,18 +147,25 @@
                                                 <input type="text" class="form-control input-sm" name="fundName" id="fundName" value="${ m.fundName }" readonly>
                                             </c:if>
                                             <c:if test="${ fn:indexOf(allQueryString,'&fundId=') < 0 }">
-                                            <div class="input-group">
-                                                <input type="hidden" name="fundId" id="fundId" value="${ m.fundId }" >
-                                                <input type="text" name="fundName" id="fundName" value="${ m.fundName }" required="required" class="form-control input-sm fundName " placeholder="请选择基金" style="cursor: pointer;" readonly="readonly">
-                                                <div class="input-group-btn" >
-                                                    <button type="button"  class="btn btn-primary btn-sm fundName">
-                                                        &nbsp;<i class="fa fa-search"></i>&nbsp;
-                                                    </button>
-                                                    <button type="button" id="clearFundId"   class="btn btn-primary btn-sm">
-                                                        &nbsp;<i class="fa fa-close"></i>&nbsp;
-                                                    </button>
-                                                </div>
-                                            </div>
+
+                                                <c:if test="${ m.fundId != null}">
+                                                    <input type="hidden" name="fundId" id="fundId" value="${ m.fundId }">
+                                                    <input type="text" name="fundName" id="fundName" value="${ m.fundName }" required="required" class="form-control input-sm " readonly="readonly">
+                                                </c:if>
+                                                <c:if test="${ m.fundId == null}">
+                                                    <div class="input-group">
+                                                        <input type="hidden" name="fundId" id="fundId" value="${ m.fundId }" >
+                                                        <input type="text" name="fundName" id="fundName" value="${ m.fundName }" required="required" class="form-control input-sm fundName " placeholder="请选择基金" style="cursor: pointer;" readonly="readonly">
+                                                        <div class="input-group-btn" >
+                                                            <button type="button"  class="btn btn-primary btn-sm fundName">
+                                                                &nbsp;<i class="fa fa-search"></i>&nbsp;
+                                                            </button>
+                                                            <button type="button" id="clearFundId"   class="btn btn-primary btn-sm">
+                                                                &nbsp;<i class="fa fa-close"></i>&nbsp;
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </c:if>
                                             </c:if>
                                 </td>
                             </tr>
@@ -155,20 +177,26 @@
                                             <input type="text" class="form-control input-sm" name="investorName"  id="investorName" value="${ m.investorName }" readonly>
                                         </c:if>
                                         <c:if test="${ fn:indexOf(allQueryString,'&investorId=') <0  }">
-                                        <div class="input-group">
-                                            <input type="hidden" name="investorId" id="investorId" value="${ m.investorId }">
-                                            <input type="text" name="investorName" id="investorName" value="${ m.investorName }" required="required" class="form-control input-sm investorName " placeholder="请选择投资人" style="cursor: pointer;" readonly="readonly">
-                                            <div class="input-group-btn" >
-                                                <button type="button"
-                                                        class="btn btn-primary btn-sm investorName">
-                                                    &nbsp;<i class="fa fa-search"></i>&nbsp;
-                                                </button>
-                                                <button type="button" id="clearInvestorId"
-                                                        class="btn btn-primary btn-sm">
-                                                    &nbsp;<i class="fa fa-close"></i>&nbsp;
-                                                </button>
-                                            </div>
-                                        </div>
+                                            <c:if test="${ m.investorId != null}">
+                                                <input type="hidden" name="investorId" id="investorId" value="${ m.investorId }">
+                                                <input type="text" name="investorName" id="investorName" value="${ m.investorName }" required="required" class="form-control input-sm " readonly="readonly">
+                                            </c:if>
+                                            <c:if test="${ m.investorId == null}">
+                                                <div class="input-group">
+                                                    <input type="hidden" name="investorId" id="investorId" value="${ m.investorId }">
+                                                    <input type="text" name="investorName" id="investorName" value="${ m.investorName }" required="required" class="form-control input-sm investorName " placeholder="请选择投资人" style="cursor: pointer;" readonly="readonly">
+                                                    <div class="input-group-btn" >
+                                                        <button type="button"
+                                                                class="btn btn-primary btn-sm investorName">
+                                                            &nbsp;<i class="fa fa-search"></i>&nbsp;
+                                                        </button>
+                                                        <button type="button" id="clearInvestorId"
+                                                                class="btn btn-primary btn-sm">
+                                                            &nbsp;<i class="fa fa-close"></i>&nbsp;
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </c:if>
                                         </c:if>
                                 </td>
                                 <th>实际出资金额</th>
@@ -180,7 +208,43 @@
                                 </td>
                             </tr>
 
-
+                            <tr>
+                                <th>部门</th>
+                                <td>
+                                        <c:if test="${ fn:indexOf(allQueryString,'&handleDepId=') >= 0 }">
+                                            <input type="text" class="form-control input-sm" name="handleDepName"  id="handleDepName" value="${ m.handleDepName }" readonly>
+                                        </c:if>
+                                        <c:if test="${ fn:indexOf(allQueryString,'&handleDepId=') <0  }">
+                                            <c:if test="${ m.handleDepId != null}">
+                                                <input type="hidden" name="handleDepId" id="handleDepId" value="${ m.handleDepId }">
+                                                <input type="text" name="handleDepName" id="handleDepName" value="${ m.handleDepName }" required="required" class="form-control input-sm " readonly="readonly">
+                                            </c:if>
+                                            <c:if test="${ m.handleDepId == null}">
+                                                <div class="input-group">
+                                                    <input type="hidden" name="handleDepId" id="handleDepId" value="${ m.handleDepId }">
+                                                    <input type="text" name="handleDepName" id="handleDepName" value="${ m.handleDepName }"  class="form-control input-sm handleDepName " placeholder="请选择部门" style="cursor: pointer;" readonly="readonly">
+                                                    <div class="input-group-btn" >
+                                                        <button type="button"
+                                                                class="btn btn-primary btn-sm handleDepName">
+                                                            &nbsp;<i class="fa fa-search"></i>&nbsp;
+                                                        </button>
+                                                        <button type="button" id="clearHandleDepId"
+                                                                class="btn btn-primary btn-sm">
+                                                            &nbsp;<i class="fa fa-close"></i>&nbsp;
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </c:if>
+                                        </c:if>
+                                </td>
+                                <th>机构</th>
+                                <td>
+                                        <input type="text"  class="form-control input-sm "
+                                               placeholder="请输入机构" autocomplete="off"
+                                               value="${ m.handleOrganId }" id="handleOrganId" name="handleOrganId"
+                                                   maxlength="32"  />
+                                </td>
+                            </tr>
 
                             <tr>
                                 <th>经办人<font color="red">*</font></th>
@@ -189,20 +253,26 @@
                                             <input type="text" class="form-control input-sm" name="handleUserName"  id="handleUserName" value="${ m.handleUserName }" readonly>
                                         </c:if>
                                         <c:if test="${ fn:indexOf(allQueryString,'&handleUserId=') <0  }">
-                                        <div class="input-group">
-                                            <input type="hidden" name="handleUserId" id="handleUserId" value="${ m.handleUserId }">
-                                            <input type="text" name="handleUserName" id="handleUserName" value="${ m.handleUserName }" required="required" class="form-control input-sm handleUserName " placeholder="请选择经办人" style="cursor: pointer;" readonly="readonly">
-                                            <div class="input-group-btn" >
-                                                <button type="button"
-                                                        class="btn btn-primary btn-sm handleUserName">
-                                                    &nbsp;<i class="fa fa-search"></i>&nbsp;
-                                                </button>
-                                                <button type="button" id="clearHandleUserId"
-                                                        class="btn btn-primary btn-sm">
-                                                    &nbsp;<i class="fa fa-close"></i>&nbsp;
-                                                </button>
-                                            </div>
-                                        </div>
+                                            <c:if test="${ m.handleUserId != null}">
+                                                <input type="hidden" name="handleUserId" id="handleUserId" value="${ m.handleUserId }">
+                                                <input type="text" name="handleUserName" id="handleUserName" value="${ m.handleUserName }" required="required" class="form-control input-sm " readonly="readonly">
+                                            </c:if>
+                                            <c:if test="${ m.handleUserId == null}">
+                                                <div class="input-group">
+                                                    <input type="hidden" name="handleUserId" id="handleUserId" value="${ m.handleUserId }">
+                                                    <input type="text" name="handleUserName" id="handleUserName" value="${ m.handleUserName }" required="required" class="form-control input-sm handleUserName " placeholder="请选择经办人" style="cursor: pointer;" readonly="readonly">
+                                                    <div class="input-group-btn" >
+                                                        <button type="button"
+                                                                class="btn btn-primary btn-sm handleUserName">
+                                                            &nbsp;<i class="fa fa-search"></i>&nbsp;
+                                                        </button>
+                                                        <button type="button" id="clearHandleUserId"
+                                                                class="btn btn-primary btn-sm">
+                                                            &nbsp;<i class="fa fa-close"></i>&nbsp;
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </c:if>
                                         </c:if>
                                 </td>
                                 <th>到账日期<font color="red">*</font></th>
@@ -211,7 +281,6 @@
                                                    placeholder="请输入到账日期" autocomplete="off"
                                                    onclick="WdatePicker({dateFmt: 'yyyy-MM-dd', el: 'arrivalAccountDate'})"
                                                            value='<fmt:formatDate value="${ m.arrivalAccountDate }" pattern="yyyy-MM-dd" />' id="arrivalAccountDate" name="arrivalAccountDate" readonly   />
-
                                 </td>
                             </tr>
 
@@ -231,13 +300,15 @@
                                                 </div>
 
                                                 <div class="btns">
-                                                    <div id="uploadFile_outMoneyFiles" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_outMoneyFiles', businessFileType:'outMoneyFiles'  ,businessTempId: '${ m.outMoneyFiles}' ">
+                                                    <div id="uploadFile_outMoneyFiles" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_outMoneyFiles',  businessFileType:'outMoneyFiles'  ,businessTempId: '${ m.outMoneyFiles}' ">
                                                         <i class="fa fa-upload"></i>
                                                         <span>上传附件</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
+
                                 </td>
                                 <th>备注</th>
                                 <td>
@@ -268,7 +339,7 @@
 
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
 
-                <shiro:hasPermission name="example.outmoney:update">
+                <shiro:hasPermission name="fundmanage.outmoney:update">
                     <button type="button" class="btn btn-primary btn-sm hide-area" onclick="openEdit()">
                         <i class="fa fa-edit"></i>
                         <span>编 辑</span>
@@ -281,7 +352,7 @@
                 </button>
 
 
-                <shiro:hasPermission name="example.outmoney:update">
+                <shiro:hasPermission name="fundmanage.outmoney:update">
                     <button type="button" class="btn btn-primary btn-sm show-area" onclick="doUpdate()">
                         <i class="fa fa-save"></i>
                         <span>保 存</span>
@@ -300,6 +371,7 @@
 
 <script>
     var inAllPage = "${ inAllPage }";
+    var queryString = "${ queryString }";
 </script>
 
 <bms:contentJS />
@@ -309,11 +381,11 @@
 <script src="${ staticUrl }/statics2/js/project/common-upload.js"></script>
 
 
-<script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
-<script src="${ staticUrl }/statics2/business-js/example/investoragreement/search.js"></script>
-<script src="${ staticUrl }/statics2/business-js/example/fund/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/fundmanage/fund/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/fundmanage/investoragreement/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
-<script src="${ staticUrl }/statics2/business-js/example/investor/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/fundmanage/investor/search.js"></script>
 
 
 
@@ -322,7 +394,7 @@
 
 
         //选择协议
-        $(".investorAgreementName").OpenExampleInvestoragreementSelectWin({
+        $(".investorAgreementName").OpenFundmanageInvestoragreementSelectWin({
             title: "协议",
             selectType: "d1",
             callId: "investorAgreementId",
@@ -331,7 +403,7 @@
         });
 
         //选择基金
-        $(".fundName").OpenExampleFundSelectWin({
+        $(".fundName").OpenFundmanageFundSelectWin({
             title: "基金",
             selectType: "d1",
             callId: "fundId",
@@ -340,7 +412,7 @@
         });
 
         //选择投资人
-        $(".investorName").OpenExampleInvestorSelectWin({
+        $(".investorName").OpenFundmanageInvestorSelectWin({
             title: "投资人",
             selectType: "d1",
             callId: "investorId",

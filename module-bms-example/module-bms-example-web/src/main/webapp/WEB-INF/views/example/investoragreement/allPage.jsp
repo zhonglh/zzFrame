@@ -35,8 +35,8 @@
     });
 
     var urls = [
-            ctx+'/example/investoragreement/${ m.id }/update?inAllPage=1',
-            ctx+'/example/outmoney/toList?inAllPage=1&investorAgreementId=${ m.id }'
+            ctx+'/fundmanage/investoragreement/${ m.id }/update?inAllPage=1',
+            ctx+'/fundmanage/outmoney/toList?inAllPage=1&investorAgreementId=${ m.id }'
     ];
 
     /**

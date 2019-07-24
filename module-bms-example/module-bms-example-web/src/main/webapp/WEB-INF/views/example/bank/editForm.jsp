@@ -118,7 +118,7 @@
 
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
 
-                <shiro:hasPermission name="example.bank:update">
+                <shiro:hasPermission name="fundmanage.bank:update">
                     <button type="button" class="btn btn-primary btn-sm hide-area" onclick="openEdit()">
                         <i class="fa fa-edit"></i>
                         <span>编 辑</span>
@@ -131,7 +131,7 @@
                 </button>
 
 
-                <shiro:hasPermission name="example.bank:update">
+                <shiro:hasPermission name="fundmanage.bank:update">
                     <button type="button" class="btn btn-primary btn-sm show-area" onclick="doUpdate()">
                         <i class="fa fa-save"></i>
                         <span>保 存</span>
@@ -150,6 +150,7 @@
 
 <script>
     var inAllPage = "${ inAllPage }";
+    var queryString = "${ queryString }";
 </script>
 
 <bms:contentJS />

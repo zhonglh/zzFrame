@@ -134,18 +134,25 @@
                                                 <input type="text" class="form-control input-sm" name="manageUserName" id="manageUserName" value="${ m.manageUserName }" readonly>
                                             </c:if>
                                             <c:if test="${ fn:indexOf(allQueryString,'&manageUserId=') < 0 }">
-                                            <div class="input-group">
-                                                <input type="hidden" name="manageUserId" id="manageUserId" value="${ m.manageUserId }" >
-                                                <input type="text" name="manageUserName" id="manageUserName" value="${ m.manageUserName }" required="required" class="form-control input-sm manageUserName " placeholder="请选择投资经理" style="cursor: pointer;" readonly="readonly">
-                                                <div class="input-group-btn" >
-                                                    <button type="button"  class="btn btn-primary btn-sm manageUserName">
-                                                        &nbsp;<i class="fa fa-search"></i>&nbsp;
-                                                    </button>
-                                                    <button type="button" id="clearManageUserId"   class="btn btn-primary btn-sm">
-                                                        &nbsp;<i class="fa fa-close"></i>&nbsp;
-                                                    </button>
-                                                </div>
-                                            </div>
+
+                                                <c:if test="${ m.manageUserId != null}">
+                                                    <input type="hidden" name="manageUserId" id="manageUserId" value="${ m.manageUserId }">
+                                                    <input type="text" name="manageUserName" id="manageUserName" value="${ m.manageUserName }" required="required" class="form-control input-sm " readonly="readonly">
+                                                </c:if>
+                                                <c:if test="${ m.manageUserId == null}">
+                                                    <div class="input-group">
+                                                        <input type="hidden" name="manageUserId" id="manageUserId" value="${ m.manageUserId }" >
+                                                        <input type="text" name="manageUserName" id="manageUserName" value="${ m.manageUserName }" required="required" class="form-control input-sm manageUserName " placeholder="请选择投资经理" style="cursor: pointer;" readonly="readonly">
+                                                        <div class="input-group-btn" >
+                                                            <button type="button"  class="btn btn-primary btn-sm manageUserName">
+                                                                &nbsp;<i class="fa fa-search"></i>&nbsp;
+                                                            </button>
+                                                            <button type="button" id="clearManageUserId"   class="btn btn-primary btn-sm">
+                                                                &nbsp;<i class="fa fa-close"></i>&nbsp;
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </c:if>
                                             </c:if>
                                 </td>
                             </tr>
@@ -185,13 +192,15 @@
                                                 </div>
 
                                                 <div class="btns">
-                                                    <div id="uploadFile_investorFiles" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_investorFiles', businessFileType:'investorFiles'  ,businessTempId: '${ m.investorFiles}' ">
+                                                    <div id="uploadFile_investorFiles" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_investorFiles',  businessFileType:'investorFiles'  ,businessTempId: '${ m.investorFiles}' ">
                                                         <i class="fa fa-upload"></i>
                                                         <span>上传附件</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
+
                                 </td>
                                 <th>备注</th>
                                 <td>
@@ -222,7 +231,7 @@
 
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
 
-                <shiro:hasPermission name="example.investor:update">
+                <shiro:hasPermission name="fundmanage.investor:update">
                     <button type="button" class="btn btn-primary btn-sm hide-area" onclick="openEdit()">
                         <i class="fa fa-edit"></i>
                         <span>编 辑</span>
@@ -235,7 +244,7 @@
                 </button>
 
 
-                <shiro:hasPermission name="example.investor:update">
+                <shiro:hasPermission name="fundmanage.investor:update">
                     <button type="button" class="btn btn-primary btn-sm show-area" onclick="doUpdate()">
                         <i class="fa fa-save"></i>
                         <span>保 存</span>
@@ -254,6 +263,7 @@
 
 <script>
     var inAllPage = "${ inAllPage }";
+    var queryString = "${ queryString }";
 </script>
 
 <bms:contentJS />

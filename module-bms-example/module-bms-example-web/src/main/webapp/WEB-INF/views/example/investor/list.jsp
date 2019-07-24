@@ -15,16 +15,24 @@
         <!-- 筛选条件表单开始 -->
         <form id="searchForm" onsubmit="return false" >
 
+            <div id='toolbar' style='height: 40px;     border-bottom: 2px solid #0896ba; '>
+                <div class="form-inline" role="form">
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-sm" onclick='search();'><i class="fa fa-search"></i>&nbsp;查询</button>
+                    </div>
+                </div>
+            </div>
         </form>
 
         <div class="btn-bar" style="margin-left: -10px;">
-                <shiro:hasPermission name="example.investor:add">
+                <shiro:hasPermission name="fundmanage.investor:add">
                     <button type="button" class="btn btn-primary btn-sm" onclick="toAdd()">
                        <i class="fa fa-plus"></i>
                         <span>新增 </span>
                     </button>
                 </shiro:hasPermission>
-                <shiro:hasPermission name="example.investor:delete">
+                <shiro:hasPermission name="fundmanage.investor:delete">
                     <button type="button" class="btn btn-primary btn-sm" onclick="doDelete()">
                         <i class="fa fa-trash"></i>
                         <span>删除 </span>
@@ -32,12 +40,11 @@
                 </shiro:hasPermission>
 
 
-                <shiro:hasPermission name="example.investor:importExcel">
+                <shiro:hasPermission name="fundmanage.investor:importExcel">
                     <div type="button" id="importExcel" class="btn btn-primary btn-sm" >
                         <i class="fa fa-upload"></i>
                         <span>导入</span>
                     </div>
-                </shiro:hasPermission>
 
                 <div class="btn-group">
                     <button type="button" id="exportTemplet" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,21 +54,23 @@
                     <ul class="dropdown-menu">
 
                         <li>
-                            <a href="${ ctx }/${ currParentUrl }/hssf/download" class="export">
+                            <a href="${ ctx }/${ currParentUrl }/hssf/download?${ queryString }" class="export">
                                 <i class="fa fa-download"></i>下载模板(Excel2003)
                             </a>
                         </li>
 
                         <li>
-                            <a href="${ ctx }/${ currParentUrl }/sxssf/download" class="export">
+                            <a href="${ ctx }/${ currParentUrl }/sxssf/download?${ queryString }" class="export">
                                 <i class="fa fa-download"></i>下载模板(Excel2007)
                             </a>
                         </li>
                     </ul>
                 </div>
 
+                </shiro:hasPermission>
 
-                <shiro:hasPermission name="example.investor:exportExcel">
+
+                <shiro:hasPermission name="fundmanage.investor:exportExcel">
                 <div class="btn-group">
                     <button type="button" id="exportExcel" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-download"></i>
@@ -70,18 +79,18 @@
                     <ul class="dropdown-menu">
 
                         <li>
-                            <a href="${ ctx }/${ currParentUrl }/csv/export" class="export" >
+                            <a href="${ ctx }/${ currParentUrl }/csv/export?${ queryString }" class="export" >
                                 <i class="fa fa-download"></i>导出CSV
                             </a>
                         </li>
                         <li>
-                            <a href="${ ctx }/${ currParentUrl }/hssf/export" class="export" >
+                            <a href="${ ctx }/${ currParentUrl }/hssf/export?${ queryString }" class="export" >
                                 <i class="fa fa-download"></i>导出Excel2003
                             </a>
                         </li>
 
                         <li>
-                            <a href="${ ctx }/${ currParentUrl }/sxssf/export" class="export" >
+                            <a href="${ ctx }/${ currParentUrl }/sxssf/export?${ queryString }" class="export" >
                                 <i class="fa fa-download"></i>导出Excel2007
                             </a>
                         </li>
@@ -113,8 +122,6 @@
 
 <bms:openPanel />
 
-
-
 <script>
     var tableid = "tableData-${ tableId }";
 
@@ -128,7 +135,7 @@
 <script src="${ staticUrl }/statics2/js/project/listCommon.js"></script>
 <script src="${ staticUrl }/statics2/js/project/list.js"></script>
 
-<shiro:hasPermission name="example.investor:importExcel">
+<shiro:hasPermission name="fundmanage.investor:importExcel">
 <script src="${ staticUrl }/statics2/js/project/common-import-excel.js"></script>
 </shiro:hasPermission>
 
