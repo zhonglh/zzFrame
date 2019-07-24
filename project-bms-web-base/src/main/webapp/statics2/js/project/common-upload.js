@@ -114,6 +114,11 @@ $(function(){
 
         // 验证通过后，将文件添加到上传队列中
         uploader.on('beforeFileQueued', function (file) {
+
+
+            if(vewArea.find("li:visible").size()>=options.maxCount && options.maxCount>1){
+                return false;
+            }
             if(file.size > options.maxFileSize){
                 error("附件不能大于30M。");
                 return false;
@@ -206,9 +211,11 @@ $(function(){
                     deleteFlag: 0
                 });
                 new DeleteFile(file.id, '', file.name, data.accessUrl, file.size, file);
-                if (options.maxCount == 1){
-                    $(options.viewAreaId + "_items").next().hide();
+
+                if(vewArea.find("li:visible").size()>=options.maxCount && options.maxCount>1){
+                    $(options.viewAreaId).parent().parent().find(".btns").hide();
                 }
+
             }catch(e){}
         });
 
@@ -227,9 +234,12 @@ $(function(){
         // 当validate不通过时，会以派送错误事件的形式通知调用者
         uploader.on('error', function (reason)
         {
+
             $Loading.fadeOut(500);
             if(reason == 'F_EXCEED_SIZE'){
                 error("附件不能大于50M。");
+            }else if(reason == 'Q_EXCEED_NUM_LIMIT'){
+                error("文件超出允许个数");
             }else if(reason != 'Q_TYPE_DENIED'){
                 error("上传验证失败。");
             }
@@ -265,9 +275,8 @@ $(function(){
                 new DeleteFile(id, businessId, showName,  accessUrl, fileSize  , null);
             });
 
-
-            if (options.maxCount == 1 && $(options.viewAreaId + "_items").children().size()>0){
-                $(options.viewAreaId + "_items").next().hide();
+            if($(options.viewAreaId).children().size()>=options.maxCount && options.maxCount>1){
+                $(options.viewAreaId).parent().parent().find(".btns").hide();
             }
 
         };
@@ -296,7 +305,7 @@ $(function(){
                     // 文件容器发生变化
                     fileChangeEvent(id, {id:id, showName:showName, accessUrl:accessUrl, size:getFileSize(size) , deleteFlag : 1} );
 
-                    $(options.viewAreaId + "_items").next().show();
+                    $(options.viewAreaId).parent().parent().find(".btns").show();
                 });
             });
         };

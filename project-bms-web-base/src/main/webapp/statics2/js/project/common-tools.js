@@ -1141,12 +1141,12 @@ $(function(){
                         var file = files[i];
                         var ahref = "";
                         /*if(file.fileEngine == '1'){
-                            ahref = "javascript:viewFile('"+file.fileUseId+"'')";
+                            ahref = "javascript:viewFile('"+file.fileUseId+"')";
                         }else {
                             ahref = file.accessUrl;
                         }*/
 
-                        ahref = "javascript:viewFile('"+file.fileUseId+"'')";
+                        ahref = "javascript:viewFile('"+file.fileUseId+"')";
 
                         if(key.indexOf("Image") > 0 ){
 

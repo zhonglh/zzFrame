@@ -2958,8 +2958,7 @@
                     return me._addFile( file );
                 });
 
-                //lwz modify
-                // me.owner.trigger( 'fileQueued', file );
+                me.owner.trigger( 'fileQueued', file );
 
                 if ( me.options.auto ) {
                     setTimeout(function() {
@@ -4205,8 +4204,7 @@
 
             uploader.on( 'beforeFileQueued', function( file ) {
 
-                //lwz modify
-                if ( count > max && flag ) {
+                if ( count >= max && flag ) {
                     flag = false;
                     this.trigger( 'error', 'Q_EXCEED_NUM_LIMIT', max, file );
                     setTimeout(function() {
@@ -4214,7 +4212,7 @@
                     }, 1 );
                 }
 
-                return count > max ? false : true;
+                return count >= max ? false : true;
             });
 
             uploader.on( 'fileQueued', function() {
