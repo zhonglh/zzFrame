@@ -1146,16 +1146,32 @@ $(function(){
                             ahref = file.accessUrl;
                         }
 
-                        $ul.append(
-                            '<li>'+
-                            '   <a href="'+ ahref + '" class="file-text" title="'+file.showName+'" style="float:left;"' +
-                            '       <span style="float:left;">'+file.showName+'</span>'+
-                            '       <span style="float:right;" class="fileSize" fileSize="'+file.fileSize+'">('+file.fileSize+')</span>' +
-                            '   </a>' +
-                            '   <a href="javascript:downloadFile(\''+file.fileUseId+'\');" class="file-operate" style="float:right;"><i class="fa fa-download"></i></a>' +
-                            '   <div style="clear: both;"></div>' +
-                            '</li>'
-                        );
+                        if(key.indexOf("Image") > 0 ){
+
+                            $ul.append(
+                                '<li  style="float: left;margin-left: 10px;margin-top: 5px; margin-bottom: 5px" >' +
+                                '   <div style="width: 80px;height: 80px"  class="image-text">' +
+                                '       <a href="'+ahref+'"  class="file-operate">' +
+                                '       <img style="float:left;height: 80px;width: 80px" src="'+ctx+'/oss/file/view/'+file.fileUseId+'">' +
+                                '       </a>' +
+                                '   </div>' +
+                                '   <div style="clear: both;"></div>' +
+                                '</li>'
+                            );
+
+                        }else{
+
+                            $ul.append(
+                                '<li>' +
+                                '   <a href="' + ahref + '" class="file-text" title="' + file.showName + '" style="float:left;"' +
+                                '       <span style="float:left;">' + file.showName + '</span>' +
+                                '       <span style="float:right;" class="fileSize" fileSize="' + file.fileSize + '">(' + file.fileSize + ')</span>' +
+                                '   </a>' +
+                                '   <a href="javascript:downloadFile(\'' + file.fileUseId + '\');" class="file-operate" style="float:right;"><i class="fa fa-download"></i></a>' +
+                                '   <div style="clear: both;"></div>' +
+                                '</li>'
+                            );
+                        }
 
                     }
                 }
