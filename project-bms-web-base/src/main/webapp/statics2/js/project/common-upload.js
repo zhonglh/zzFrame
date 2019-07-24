@@ -206,7 +206,6 @@ $(function(){
                     deleteFlag: 0
                 });
                 new DeleteFile(file.id, '', file.name, data.accessUrl, file.size, file);
-                debugger
                 if (options.maxCount == 1){
                     $(options.viewAreaId + "_items").next().hide();
                 }
@@ -266,7 +265,8 @@ $(function(){
                 new DeleteFile(id, businessId, showName,  accessUrl, fileSize  , null);
             });
 
-            if (options.maxCount == 1){
+
+            if (options.maxCount == 1 && $(options.viewAreaId + "_items").children().size()>0){
                 $(options.viewAreaId + "_items").next().hide();
             }
 
