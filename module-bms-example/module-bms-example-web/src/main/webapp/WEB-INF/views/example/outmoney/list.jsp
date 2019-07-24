@@ -26,13 +26,13 @@
         </form>
 
         <div class="btn-bar" style="margin-left: -10px;">
-                <shiro:hasPermission name="fundmanage.outmoney:add">
+                <shiro:hasPermission name="example.outmoney:add">
                     <button type="button" class="btn btn-primary btn-sm" onclick="toAdd()">
                        <i class="fa fa-plus"></i>
                         <span>新增 </span>
                     </button>
                 </shiro:hasPermission>
-                <shiro:hasPermission name="fundmanage.outmoney:delete">
+                <shiro:hasPermission name="example.outmoney:delete">
                     <button type="button" class="btn btn-primary btn-sm" onclick="doDelete()">
                         <i class="fa fa-trash"></i>
                         <span>删除 </span>
@@ -40,7 +40,7 @@
                 </shiro:hasPermission>
 
 
-                <shiro:hasPermission name="fundmanage.outmoney:importExcel">
+                <shiro:hasPermission name="example.outmoney:importExcel">
                     <div type="button" id="importExcel" class="btn btn-primary btn-sm" >
                         <i class="fa fa-upload"></i>
                         <span>导入</span>
@@ -70,7 +70,7 @@
                 </shiro:hasPermission>
 
 
-                <shiro:hasPermission name="fundmanage.outmoney:exportExcel">
+                <shiro:hasPermission name="example.outmoney:exportExcel">
                 <div class="btn-group">
                     <button type="button" id="exportExcel" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-download"></i>
@@ -137,15 +137,15 @@
 <script src="${ staticUrl }/statics2/js/project/listCommon.js"></script>
 <script src="${ staticUrl }/statics2/js/project/list.js"></script>
 
-<shiro:hasPermission name="fundmanage.outmoney:importExcel">
+<shiro:hasPermission name="example.outmoney:importExcel">
 <script src="${ staticUrl }/statics2/js/project/common-import-excel.js"></script>
 </shiro:hasPermission>
 
-<script src="${ staticUrl }/statics2/business-js/fundmanage/fund/search.js"></script>
-<script src="${ staticUrl }/statics2/business-js/fundmanage/investoragreement/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/example/fund/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/example/investoragreement/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
-<script src="${ staticUrl }/statics2/business-js/fundmanage/investor/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/example/investor/search.js"></script>
 
 <script language="JavaScript">
 

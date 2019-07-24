@@ -342,7 +342,7 @@
 
 
 
-                            <input type="hidden" id="tempFundmanageBank" />
+                            <input type="hidden" id="tempExampleBank" />
                             <input type="hidden" id="tempSystemUser" />
 
 
@@ -355,18 +355,18 @@
 
 
 
-                                    <div class="fundmanageFundaccount" style="width: 100%">
-                                        <table id='tableData-fundmanageFundaccount' class='easyui-datagrid' singleSelect="true" scrollbarSize="0"   method='post' fit='false'  fitColumns="true" border='true'>
+                                    <div class="exampleFundaccount" style="width: 100%">
+                                        <table id='tableData-exampleFundaccount' class='easyui-datagrid' singleSelect="true" scrollbarSize="0"   method='post' fit='false'  fitColumns="true" border='true'>
                                             <thead>
                                             <tr>
                                                 <th field="id" align="left" hidden="true">id</th>
-                                                            <th field='fundAccountTypeName' align="left" width="1" sortable='false' formatter="fundmanageFundaccount_fundAccountTypeNameFmt"  >基金账户类型</th>
-                                                            <th field='accountName' align="left" width="1" sortable='false' formatter="fundmanageFundaccount_accountNameFmt"  >户名</th>
-                                                            <th field='bankName' align="left" width="1" sortable='false' formatter="fundmanageFundaccount_bankNameFmt"  >开户行</th>
-                                                            <th field='accountNo' align="left" width="1" sortable='false' formatter="fundmanageFundaccount_accountNoFmt"  >账号</th>
-                                                            <th field='startDate' align="center" width="1" sortable='false' formatter="fundmanageFundaccount_startDateFmt"  >开始日期</th>
-                                                            <th field='otherBankName' align="left" width="1" sortable='false' formatter="fundmanageFundaccount_otherBankNameFmt"  >其他行</th>
-                                                            <th field='userName' align="left" width="1" sortable='false' formatter="fundmanageFundaccount_userNameFmt"  >账户处理人</th>
+                                                            <th field='fundAccountTypeName' align="left" width="1" sortable='false' formatter="exampleFundaccount_fundAccountTypeNameFmt"  >基金账户类型</th>
+                                                            <th field='accountName' align="left" width="1" sortable='false' formatter="exampleFundaccount_accountNameFmt"  >户名</th>
+                                                            <th field='bankName' align="left" width="1" sortable='false' formatter="exampleFundaccount_bankNameFmt"  >开户行</th>
+                                                            <th field='accountNo' align="left" width="1" sortable='false' formatter="exampleFundaccount_accountNoFmt"  >账号</th>
+                                                            <th field='startDate' align="center" width="1" sortable='false' formatter="exampleFundaccount_startDateFmt"  >开始日期</th>
+                                                            <th field='otherBankName' align="left" width="1" sortable='false' formatter="exampleFundaccount_otherBankNameFmt"  >其他行</th>
+                                                            <th field='userName' align="left" width="1" sortable='false' formatter="exampleFundaccount_userNameFmt"  >账户处理人</th>
                                                 <th field="option" align="left" hidden="true" formatter="markFmtFundAccount">操作</th>
                                             </tr>
                                             </thead>
@@ -559,7 +559,7 @@
 
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
 
-                <shiro:hasPermission name="fundmanage.fund:update">
+                <shiro:hasPermission name="example.fund:update">
                     <button type="button" class="btn btn-primary btn-sm hide-area" onclick="openEdit()">
                         <i class="fa fa-edit"></i>
                         <span>编 辑</span>
@@ -572,7 +572,7 @@
                 </button>
 
 
-                <shiro:hasPermission name="fundmanage.fund:update">
+                <shiro:hasPermission name="example.fund:update">
                     <button type="button" class="btn btn-primary btn-sm show-area" onclick="doUpdate()">
                         <i class="fa fa-save"></i>
                         <span>保 存</span>
@@ -600,7 +600,7 @@
 <script src="${ staticUrl }/statics2/js/project/form.js"></script>
 <script src="${ staticUrl }/statics2/js/project/common-upload.js"></script>
 
-<script src="${ staticUrl }/statics2/business-js/fundmanage/bank/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/example/bank/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
@@ -630,7 +630,7 @@
             clearId: "clearDepId"
         });
 
-        $(".fundRecordBO_bankName").OpenFundmanageBankSelectWin({
+        $(".fundRecordBO_bankName").OpenExampleBankSelectWin({
             title: "开户行",
             selectType: "d1",
             callId: "fundRecordBO_bankId",
@@ -648,17 +648,17 @@
 
 
 
-        $("#tempFundmanageBank").OpenFundmanageBankSelectWin({
+        $("#tempExampleBank").OpenExampleBankSelectWin({
             title: "银行信息",
             selectType: "d1",
             callId: "",
             callName: "",
             clearId: ""
         },function(id,name,row){
-            $(tempFundmanageBank).val(row.bankName);
-            $(tempFundmanageBank).prev().val(row.id);
+            $(tempExampleBank).val(row.bankName);
+            $(tempExampleBank).prev().val(row.id);
 
-            costTableRows(tableId , tableJavaName , tempFundmanageBankIndex);
+            costTableRows(tableId , tableJavaName , tempExampleBankIndex);
 
         });
         $("#tempSystemUser").OpenSystemUserSelectWin({
@@ -675,11 +675,11 @@
 
         });
 
-        $('#tableData-fundmanageFundaccount').datagrid({
+        $('#tableData-exampleFundaccount').datagrid({
             url : $AppContext+dataUrl+"/fundAccount/list?fundId=${ m.id }",
             onLoadSuccess : function(data){
                 if(data.rows!=null){
-                    $('#tableData-fundmanageFundaccount').datagrid("resize", {height: (data.rows.length + 1) * tableHeight});
+                    $('#tableData-exampleFundaccount').datagrid("resize", {height: (data.rows.length + 1) * tableHeight});
                     $(".fd-decimal2").inputDecimal(2);
                 }
             }
@@ -689,7 +689,7 @@
 
     var tableId , tableJavaName;
 
-    var tempFundmanageBank  , tempFundmanageBankIndex ;
+    var tempExampleBank  , tempExampleBankIndex ;
     var tempSystemUser  , tempSystemUserIndex ;
 
 
@@ -703,35 +703,35 @@
 
 
 
-    function openFundmanageBank(theTabelId , theTableJavaName ,obj ,index){
+    function openExampleBank(theTabelId , theTableJavaName ,obj ,index){
         if(obj != null && obj != undefined) {
-            tempFundmanageBankIndex = index;
-            tempFundmanageBank = obj[0];
-            if(tempFundmanageBank == null){
-                tempFundmanageBank = obj;
+            tempExampleBankIndex = index;
+            tempExampleBank = obj[0];
+            if(tempExampleBank == null){
+                tempExampleBank = obj;
             }
 
 
             tableId = theTabelId;
             tableJavaName = theTableJavaName;
 
-            $("#tempFundmanageBank").click();
+            $("#tempExampleBank").click();
         }
     }
-    function clearFundmanageBank(theTabelId , theTableJavaName ,obj ,index){
+    function clearExampleBank(theTabelId , theTableJavaName ,obj ,index){
         if(obj != null && obj != undefined){
-            tempFundmanageBankIndex = index;
-            tempFundmanageBank = obj[0];
-            if(tempFundmanageBank == null){
-                tempFundmanageBank = obj;
+            tempExampleBankIndex = index;
+            tempExampleBank = obj[0];
+            if(tempExampleBank == null){
+                tempExampleBank = obj;
             }
 
             tableId = theTabelId
             tableJavaName = theTableJavaName
-            $(tempFundmanageBank).val("");
-            $(tempFundmanageBank).prev().val("");
+            $(tempExampleBank).val("");
+            $(tempExampleBank).prev().val("");
 
-            costTableRows(tableId , tableJavaName , tempFundmanageBankIndex);
+            costTableRows(tableId , tableJavaName , tempExampleBankIndex);
         }
     }
     function openSystemUser(theTabelId , theTableJavaName ,obj ,index){
@@ -772,8 +772,8 @@
 
 
 
-    function fundmanageFundaccount_fundAccountTypeNameFmt(val, row,index){
-        var html = "<select name='fundAccountBOList["+index+"].fundAccountType' id='fundAccountBOList_"+index+"_fundAccountType' onblur='costTableRows(\"tableData-fundmanageFundaccount\" , \"fundAccountBOList\" , "+index+")' class='form-control input-sm show-area required'>" ;
+    function exampleFundaccount_fundAccountTypeNameFmt(val, row,index){
+        var html = "<select name='fundAccountBOList["+index+"].fundAccountType' id='fundAccountBOList_"+index+"_fundAccountType' onblur='costTableRows(\"tableData-exampleFundaccount\" , \"fundAccountBOList\" , "+index+")' class='form-control input-sm show-area required'>" ;
         html += checkedOption(fund_account_type_dicts() , row.fundAccountType);
         html += "</select>";
         html += "<div class='hide-area'>"+row.fundAccountTypeName+"</div>";
@@ -781,10 +781,10 @@
     }
 
 
-    function fundmanageFundaccount_accountNameFmt(val, row,index){
+    function exampleFundaccount_accountNameFmt(val, row,index){
 
         var html = '<input type="text" required="required" class="form-control input-sm show-area required"'+
-            'placeholder="请输入户名" autocomplete="off" '+ ' onblur="costTableRows(\'tableData-fundmanageFundaccount\' , \'fundAccountBOList\' , '+index+')"'+
+            'placeholder="请输入户名" autocomplete="off" '+ ' onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')"'+
             'value="'+val+'" id="fundAccountBOList_'+index+'_accountName" name="fundAccountBOList['+index+'].accountName"'+
             '   maxlength="100"  />';
 
@@ -794,16 +794,16 @@
     }
 
 
-    function fundmanageFundaccount_bankNameFmt(val, row,index){
+    function exampleFundaccount_bankNameFmt(val, row,index){
 
         var html = '<div class="input-group show-area">';
         html += '<input type="hidden" name="fundAccountBOList['+index+'].bankId" id="fundAccountBOList_'+index+'_bankId" value="'+row.bankId+'" >';
-        html += '<input type="text"  class="form-control input-sm openwindow bankName" onclick="openFundmanageBank(\'tableData-fundmanageFundaccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.bankName+'" id="fundAccountBOList_'+index+'_bankName"  name="fundAccountBOList['+index+'].bankName"  onblur="costTableRows(\'tableData-fundmanageFundaccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择开户行" readonly >';
+        html += '<input type="text"  class="form-control input-sm openwindow bankName" onclick="openExampleBank(\'tableData-exampleFundaccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.bankName+'" id="fundAccountBOList_'+index+'_bankName"  name="fundAccountBOList['+index+'].bankName"  onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择开户行" readonly >';
         html += '<div class="input-group-btn" style="float:left">';
-        html += '<div class="btn btn-primary btn-sm" onclick="openFundmanageBank(\'tableData-fundmanageFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_bankName\'),'+index+')">';
+        html += '<div class="btn btn-primary btn-sm" onclick="openExampleBank(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_bankName\'),'+index+')">';
         html += '&nbsp;<i class="fa fa-search"></i>&nbsp;';
         html += '</div>';
-        html += '<div class="btn btn-primary btn-sm" onclick="clearFundmanageBank(\'tableData-fundmanageFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_bankName\'),'+index+')"  >';
+        html += '<div class="btn btn-primary btn-sm" onclick="clearExampleBank(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_bankName\'),'+index+')"  >';
         html += '&nbsp;<i class="fa fa-close"></i>&nbsp;';
         html += '</div>';
         html += '</div>';
@@ -816,10 +816,10 @@
     }
 
 
-    function fundmanageFundaccount_accountNoFmt(val, row,index){
+    function exampleFundaccount_accountNoFmt(val, row,index){
 
         var html = '<input type="text" required="required" class="form-control input-sm show-area required"'+
-            'placeholder="请输入账号" autocomplete="off" '+ ' onblur="costTableRows(\'tableData-fundmanageFundaccount\' , \'fundAccountBOList\' , '+index+')"'+
+            'placeholder="请输入账号" autocomplete="off" '+ ' onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')"'+
             'value="'+val+'" id="fundAccountBOList_'+index+'_accountNo" name="fundAccountBOList['+index+'].accountNo"'+
             '   maxlength="50"  />';
 
@@ -829,14 +829,14 @@
     }
 
 
-    function fundmanageFundaccount_startDateFmt(val, row,index){
+    function exampleFundaccount_startDateFmt(val, row,index){
 
         var dd = "";
         if(val != undefined && val != null && val != 0){
             dd = changeDateFormat(val);
         }
         var html = '<input type="text"  class="form-control input-sm show-area Wdate  "'+
-            'placeholder="请输入开始日期" autocomplete="off"'+ ' onblur="costTableRows(\'tableData-fundmanageFundaccount\' , \'fundAccountBOList\' , '+index+')"'+
+            'placeholder="请输入开始日期" autocomplete="off"'+ ' onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')"'+
             'onclick="WdatePicker({dateFmt: \'yyyy-MM-dd\', el: \'fundAccountBOList_'+index+'_startDate\'})"'+
             'value="'+dd+'" id="fundAccountBOList_'+index+'_startDate" name="fundAccountBOList['+index+'].startDate" readonly   />';
         html += "<div class='hide-area' >"+dd+"</div>" ;
@@ -845,16 +845,16 @@
     }
 
 
-    function fundmanageFundaccount_otherBankNameFmt(val, row,index){
+    function exampleFundaccount_otherBankNameFmt(val, row,index){
 
         var html = '<div class="input-group show-area">';
         html += '<input type="hidden" name="fundAccountBOList['+index+'].otherBankId" id="fundAccountBOList_'+index+'_otherBankId" value="'+row.otherBankId+'" >';
-        html += '<input type="text"  class="form-control input-sm openwindow otherBankName" onclick="openFundmanageBank(\'tableData-fundmanageFundaccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.otherBankName+'" id="fundAccountBOList_'+index+'_otherBankName"  name="fundAccountBOList['+index+'].otherBankName"  onblur="costTableRows(\'tableData-fundmanageFundaccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择其他行" readonly >';
+        html += '<input type="text"  class="form-control input-sm openwindow otherBankName" onclick="openExampleBank(\'tableData-exampleFundaccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.otherBankName+'" id="fundAccountBOList_'+index+'_otherBankName"  name="fundAccountBOList['+index+'].otherBankName"  onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择其他行" readonly >';
         html += '<div class="input-group-btn" style="float:left">';
-        html += '<div class="btn btn-primary btn-sm" onclick="openFundmanageBank(\'tableData-fundmanageFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_otherBankName\'),'+index+')">';
+        html += '<div class="btn btn-primary btn-sm" onclick="openExampleBank(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_otherBankName\'),'+index+')">';
         html += '&nbsp;<i class="fa fa-search"></i>&nbsp;';
         html += '</div>';
-        html += '<div class="btn btn-primary btn-sm" onclick="clearFundmanageBank(\'tableData-fundmanageFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_otherBankName\'),'+index+')"  >';
+        html += '<div class="btn btn-primary btn-sm" onclick="clearExampleBank(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_otherBankName\'),'+index+')"  >';
         html += '&nbsp;<i class="fa fa-close"></i>&nbsp;';
         html += '</div>';
         html += '</div>';
@@ -867,16 +867,16 @@
     }
 
 
-    function fundmanageFundaccount_userNameFmt(val, row,index){
+    function exampleFundaccount_userNameFmt(val, row,index){
 
         var html = '<div class="input-group show-area">';
         html += '<input type="hidden" name="fundAccountBOList['+index+'].userId" id="fundAccountBOList_'+index+'_userId" value="'+row.userId+'" >';
-        html += '<input type="text"  class="form-control input-sm openwindow userName" onclick="openSystemUser(\'tableData-fundmanageFundaccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.userName+'" id="fundAccountBOList_'+index+'_userName"  name="fundAccountBOList['+index+'].userName"  onblur="costTableRows(\'tableData-fundmanageFundaccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择账户处理人" readonly >';
+        html += '<input type="text"  class="form-control input-sm openwindow userName" onclick="openSystemUser(\'tableData-exampleFundaccount\',\'fundAccountBOList\',this,'+index+')" required="required" value="'+row.userName+'" id="fundAccountBOList_'+index+'_userName"  name="fundAccountBOList['+index+'].userName"  onblur="costTableRows(\'tableData-exampleFundaccount\' , \'fundAccountBOList\' , '+index+')" placeholder="请选择账户处理人" readonly >';
         html += '<div class="input-group-btn" style="float:left">';
-        html += '<div class="btn btn-primary btn-sm" onclick="openSystemUser(\'tableData-fundmanageFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_userName\'),'+index+')">';
+        html += '<div class="btn btn-primary btn-sm" onclick="openSystemUser(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_userName\'),'+index+')">';
         html += '&nbsp;<i class="fa fa-search"></i>&nbsp;';
         html += '</div>';
-        html += '<div class="btn btn-primary btn-sm" onclick="clearSystemUser(\'tableData-fundmanageFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_userName\'),'+index+')"  >';
+        html += '<div class="btn btn-primary btn-sm" onclick="clearSystemUser(\'tableData-exampleFundaccount\', \'fundAccountBOList\',document.getElementById(\'fundAccountBOList_'+index+'_userName\'),'+index+')"  >';
         html += '&nbsp;<i class="fa fa-close"></i>&nbsp;';
         html += '</div>';
         html += '</div>';
@@ -896,16 +896,16 @@
 
 
     function doDelFundAccount(index){
-        $('#tableData-fundmanageFundaccount').datagrid("deleteRow" , index);
-        var rows = $('#tableData-fundmanageFundaccount').datagrid("getRows");
-        $('#tableData-fundmanageFundaccount').datagrid("loadData",rows);
+        $('#tableData-exampleFundaccount').datagrid("deleteRow" , index);
+        var rows = $('#tableData-exampleFundaccount').datagrid("getRows");
+        $('#tableData-exampleFundaccount').datagrid("loadData",rows);
         openEdit();
     }
 
     function doAddFundAccount() {
-        var rows = $('#tableData-fundmanageFundaccount').datagrid("getRows");
+        var rows = $('#tableData-exampleFundaccount').datagrid("getRows");
         rows.push({ id : "" ,fundId : "" ,fundName : "" ,fundAccountType : "" ,fundAccountTypeName : "" ,accountName : "" ,bankId : "" ,bankName : "" ,accountNo : "" ,startDate : "" ,otherBankId : "" ,otherBankName : "" ,userId : "" ,userName : ""  });
-        $('#tableData-fundmanageFundaccount').datagrid("loadData",rows);
+        $('#tableData-exampleFundaccount').datagrid("loadData",rows);
         openEdit();
     }
 

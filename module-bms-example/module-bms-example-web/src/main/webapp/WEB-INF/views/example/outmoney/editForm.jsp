@@ -339,7 +339,7 @@
 
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
 
-                <shiro:hasPermission name="fundmanage.outmoney:update">
+                <shiro:hasPermission name="example.outmoney:update">
                     <button type="button" class="btn btn-primary btn-sm hide-area" onclick="openEdit()">
                         <i class="fa fa-edit"></i>
                         <span>编 辑</span>
@@ -352,7 +352,7 @@
                 </button>
 
 
-                <shiro:hasPermission name="fundmanage.outmoney:update">
+                <shiro:hasPermission name="example.outmoney:update">
                     <button type="button" class="btn btn-primary btn-sm show-area" onclick="doUpdate()">
                         <i class="fa fa-save"></i>
                         <span>保 存</span>
@@ -381,11 +381,11 @@
 <script src="${ staticUrl }/statics2/js/project/common-upload.js"></script>
 
 
-<script src="${ staticUrl }/statics2/business-js/fundmanage/fund/search.js"></script>
-<script src="${ staticUrl }/statics2/business-js/fundmanage/investoragreement/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/example/fund/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/example/investoragreement/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
-<script src="${ staticUrl }/statics2/business-js/fundmanage/investor/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/example/investor/search.js"></script>
 
 
 
@@ -394,7 +394,7 @@
 
 
         //选择协议
-        $(".investorAgreementName").OpenFundmanageInvestoragreementSelectWin({
+        $(".investorAgreementName").OpenExampleInvestoragreementSelectWin({
             title: "协议",
             selectType: "d1",
             callId: "investorAgreementId",
@@ -403,7 +403,7 @@
         });
 
         //选择基金
-        $(".fundName").OpenFundmanageFundSelectWin({
+        $(".fundName").OpenExampleFundSelectWin({
             title: "基金",
             selectType: "d1",
             callId: "fundId",
@@ -412,7 +412,7 @@
         });
 
         //选择投资人
-        $(".investorName").OpenFundmanageInvestorSelectWin({
+        $(".investorName").OpenExampleInvestorSelectWin({
             title: "投资人",
             selectType: "d1",
             callId: "investorId",

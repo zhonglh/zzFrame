@@ -38,9 +38,9 @@
     });
 
     var urls = [
-            ctx+'/fundmanage/fund/${ m.id }/update?inAllPage=1',
-            ctx+'/fundmanage/outmoney/toList?inAllPage=1&fundId=${ m.id }',
-            ctx+'/fundmanage/investoragreement/toList?inAllPage=1&fundId=${ m.id }'
+            ctx+'/example/fund/${ m.id }/update?inAllPage=1',
+            ctx+'/example/outmoney/toList?inAllPage=1&fundId=${ m.id }',
+            ctx+'/example/investoragreement/toList?inAllPage=1&fundId=${ m.id }'
     ];
 
     /**

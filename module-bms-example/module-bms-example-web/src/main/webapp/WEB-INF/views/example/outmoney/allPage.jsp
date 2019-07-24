@@ -32,7 +32,7 @@
     });
 
     var urls = [
-            ctx+'/fundmanage/outmoney/${ m.id }/update?inAllPage=1',
+            ctx+'/example/outmoney/${ m.id }/update?inAllPage=1',
     ];
 
     /**

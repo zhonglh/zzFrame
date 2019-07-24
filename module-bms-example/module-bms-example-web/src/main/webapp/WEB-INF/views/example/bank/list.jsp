@@ -26,13 +26,13 @@
         </form>
 
         <div class="btn-bar" style="margin-left: -10px;">
-                <shiro:hasPermission name="fundmanage.bank:add">
+                <shiro:hasPermission name="example.bank:add">
                     <button type="button" class="btn btn-primary btn-sm" onclick="toAdd()">
                        <i class="fa fa-plus"></i>
                         <span>新增 </span>
                     </button>
                 </shiro:hasPermission>
-                <shiro:hasPermission name="fundmanage.bank:delete">
+                <shiro:hasPermission name="example.bank:delete">
                     <button type="button" class="btn btn-primary btn-sm" onclick="doDelete()">
                         <i class="fa fa-trash"></i>
                         <span>删除 </span>
@@ -40,7 +40,7 @@
                 </shiro:hasPermission>
 
 
-                <shiro:hasPermission name="fundmanage.bank:importExcel">
+                <shiro:hasPermission name="example.bank:importExcel">
                     <div type="button" id="importExcel" class="btn btn-primary btn-sm" >
                         <i class="fa fa-upload"></i>
                         <span>导入</span>
@@ -70,7 +70,7 @@
                 </shiro:hasPermission>
 
 
-                <shiro:hasPermission name="fundmanage.bank:exportExcel">
+                <shiro:hasPermission name="example.bank:exportExcel">
                 <div class="btn-group">
                     <button type="button" id="exportExcel" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-download"></i>
@@ -133,7 +133,7 @@
 <script src="${ staticUrl }/statics2/js/project/listCommon.js"></script>
 <script src="${ staticUrl }/statics2/js/project/list.js"></script>
 
-<shiro:hasPermission name="fundmanage.bank:importExcel">
+<shiro:hasPermission name="example.bank:importExcel">
 <script src="${ staticUrl }/statics2/js/project/common-import-excel.js"></script>
 </shiro:hasPermission>
 

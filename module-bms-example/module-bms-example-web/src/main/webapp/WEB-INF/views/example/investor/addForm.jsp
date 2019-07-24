@@ -141,7 +141,7 @@
             </div>
 
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
-                <shiro:hasPermission name="fundmanage.investor:add">
+                <shiro:hasPermission name="example.investor:add">
                     <button type="button" class="btn btn-primary btn-sm" onclick="doSave()">
                         <i class="fa fa-save"></i>
                         <span>保 存</span>

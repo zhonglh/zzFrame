@@ -240,7 +240,7 @@
             </div>
 
             <div style="margin-top:10px;position:absolute;" align="center" class="toolBar">
-                <shiro:hasPermission name="fundmanage.investoragreement:add">
+                <shiro:hasPermission name="example.investoragreement:add">
                     <button type="button" class="btn btn-primary btn-sm" onclick="doSave()">
                         <i class="fa fa-save"></i>
                         <span>保 存</span>
@@ -267,10 +267,10 @@
 <script src="${ staticUrl }/statics2/js/project/common-upload.js"></script>
 
 
-<script src="${ staticUrl }/statics2/business-js/fundmanage/fund/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/example/fund/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/dep/search.js"></script>
 <script src="${ staticUrl }/statics2/business-js/system/user/search.js"></script>
-<script src="${ staticUrl }/statics2/business-js/fundmanage/investor/search.js"></script>
+<script src="${ staticUrl }/statics2/business-js/example/investor/search.js"></script>
 
 
 
@@ -280,7 +280,7 @@
 
 
         //选择认购基金
-        $(".fundName").OpenFundmanageFundSelectWin({
+        $(".fundName").OpenExampleFundSelectWin({
             title: "认购基金",
             selectType: "d1",
             callId: "fundId",
@@ -289,7 +289,7 @@
         });
 
         //选择投资人
-        $(".investorName").OpenFundmanageInvestorSelectWin({
+        $(".investorName").OpenExampleInvestorSelectWin({
             title: "投资人",
             selectType: "d1",
             callId: "investorId",
