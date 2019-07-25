@@ -98,7 +98,7 @@ $(function(){
         that.options = options;
 
         // 文件显示区域
-        var vewArea =  $(options.viewAreaId);
+        var viewArea =  $(options.viewAreaId);
         // 创建文件上传
         var uploader = WebUploader.create({
             auto: true,
@@ -115,8 +115,7 @@ $(function(){
         // 验证通过后，将文件添加到上传队列中
         uploader.on('beforeFileQueued', function (file) {
 
-
-            if(vewArea.find("li:visible").size()>=options.maxCount && options.maxCount>1){
+            if(viewArea.find("li:visible").size()>=options.maxCount && options.maxCount>1){
                 return false;
             }
             if(file.size > options.maxFileSize){
@@ -127,10 +126,13 @@ $(function(){
                 error("文件名称长度不能大于200字。");
                 return false;
             }
-            if(options.maxCount == 1){
-                vewArea.find("li").remove();
-            }
 
+
+            //零时存储要删除的li，在上传完成后删除数据
+            if(options.maxCount == 1){
+
+                options.tempLi =  viewArea.find("li");
+            }
             var bl = false;
             if(typeof options.beforeUpload == "function")
             {
@@ -145,9 +147,9 @@ $(function(){
             {
 
                 if (options.isImage == 'true'){
-                    vewArea.append(getImageTemp(file.id, "" ,"", file.name, "", file.size , "1"));
+                    viewArea.append(getImageTemp(file.id, "" ,"", file.name, "", file.size , "1"));
                 } else {
-                    vewArea.append(getFileTemp(file.id, "" ,"", file.name, "", file.size , "1"));
+                    viewArea.append(getFileTemp(file.id, "" ,"", file.name, "", file.size , "1"));
                 }
 
                 $Loading.show();
@@ -157,7 +159,7 @@ $(function(){
         // 文件派送
         uploader.on('uploadProgress', function (file, percentage)
         {
-            var $li = vewArea.find('#' + file.id),
+            var $li = viewArea.find('#' + file.id),
                 $percent = $li.find('.progress .progress-bar');
 
             // 避免重复创建
@@ -178,15 +180,29 @@ $(function(){
             if(!response.success){
                 error(response.msg, function(){
                     if(file != null){
-                        vewArea.find('#' + file.id).remove();
+                        viewArea.find('#' + file.id).remove();
                         uploader.removeFile(file, true);
                     }
                 });
+            }else {
+                if(options.maxCount == 1){
+                    options.tempLi .each(function () {
+
+                        $(this).attr("isDel", "1");
+                        $(this).hide();
+                        var id = $(this).attr("id");
+                        var showName = $(this).attr("showName");
+                        var accessUrl = $(this).attr("accessUrl");
+                        var size = $(this).attr("fileSize");
+                        fileChangeEvent(id, {id:id, showName:showName, accessUrl:accessUrl, size:getFileSize(size) , deleteFlag : 1} );
+
+                    });
+                }
             }
 
             try {
                 var data = response.obj;
-                var fileQueued = vewArea.find('#' + file.id);
+                var fileQueued = viewArea.find('#' + file.id);
                 fileQueued.attr("id", file.id);
                 fileQueued.find('.progress').remove();
                 fileQueued.attr("showName", data.showName);
@@ -212,7 +228,7 @@ $(function(){
                 });
                 new DeleteFile(file.id, '', file.name, data.accessUrl, file.size, file);
 
-                if(vewArea.find("li:visible").size()>=options.maxCount && options.maxCount>1){
+                if(viewArea.find("li:visible").size()>=options.maxCount && options.maxCount>1){
                     $(options.viewAreaId).parent().parent().find(".btns").hide();
                 }
 
@@ -225,7 +241,7 @@ $(function(){
             $Loading.fadeOut(500);
             error("上传失败。", function(){
                 if(file != null){
-                    vewArea.find('#' + file.id).remove();
+                    viewArea.find('#' + file.id).remove();
                     uploader.removeFile(file, true);
                 }
             });
@@ -247,7 +263,7 @@ $(function(){
 
         this.resetFileList = function(){
             // 加载之前已删除
-            vewArea.find("li").remove();
+            viewArea.find("li").remove();
             initFileList();
         };
 
@@ -271,7 +287,7 @@ $(function(){
                     fileQueued.find(".file-remove").removeClass("hidden");
                 }
 
-                vewArea.append(fileQueued);
+                viewArea.append(fileQueued);
                 new DeleteFile(id, businessId, showName,  accessUrl, fileSize  , null);
             });
 
@@ -286,20 +302,20 @@ $(function(){
 
         // 删除文件
         function DeleteFile(id , businessId , showName  , accessUrl , size  , file){
-            vewArea.find('#' + id).find(".file-remove").bind("click", function(){
+            viewArea.find('#' + id).find(".file-remove").bind("click", function(){
                 var that = $(this);
                 confirm('您确定要删除该文件吗？', function ()
                 {
                     if(businessId == undefined || businessId == '' || businessId == null){
                         // 新上传, 直接删除
-                        vewArea.find('#' + id).remove();
+                        viewArea.find('#' + id).remove();
                         if(file != null){
                             uploader.removeFile(file, true);
                         }
                     }else{
                         // 已经和数据建立关系，需要最后提交在删除
-                        vewArea.find('#' + id).attr("isDel", "1");
-                        vewArea.find('#' + id).hide();
+                        viewArea.find('#' + id).attr("isDel", "1");
+                        viewArea.find('#' + id).hide();
                     }
 
                     // 文件容器发生变化

@@ -192,7 +192,7 @@
                                                 </div>
 
                                                 <div class="btns">
-                                                    <div id="uploadFile_investorFiles" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_investorFiles',  businessFileType:'investorFiles'  ,businessTempId: '${ m.investorFiles}' ">
+                                                    <div id="uploadFile_investorFiles" title='附件' class="webuploader-container" style="width: 80px" data-options="viewAreaId:'#thelist_investorFiles', maxCount:1,  businessFileType:'investorFiles'  ,businessTempId: '${ m.investorFiles}' ">
                                                         <i class="fa fa-upload"></i>
                                                         <span>上传附件</span>
                                                     </div>
