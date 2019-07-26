@@ -152,19 +152,6 @@ function createGridHeaderContextMenu(e, field)
     headerContextMenu.menu('show', {left: e.pageX, top: e.pageY});
 }
 
-//------------------------------------------------------------------------------------------
-//		HighCharts
-//------------------------------------------------------------------------------------------
-
-if (typeof Highcharts != 'undefined')
-{
-    // 设置Highcharts默认属性
-    Highcharts.setOptions(
-        {
-            // 不显示credits信息
-            credits: {enabled: false, href: '', text: ''}
-        });
-}
 
 //------------------------------------------------------------------------------------------
 //		Validation

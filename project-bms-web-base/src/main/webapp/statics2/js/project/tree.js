@@ -3,7 +3,7 @@
 
 
 /**
- * 初始化 easyUI 列表
+ * 初始化 easyUI 树
  */
 function initPage() {
 
