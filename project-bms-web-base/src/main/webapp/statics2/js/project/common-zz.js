@@ -166,6 +166,10 @@ function clearComma(str) {
  * 将输入框中的数据转换为数字， 如果不是数字返回0
  */
 function changeDouble(val){
+    if(val == undefined || val == "" || val == null){
+        return 0;
+    }
+
     var thisVal = 0.0;
     try{
         thisVal = parseFloat(val);
