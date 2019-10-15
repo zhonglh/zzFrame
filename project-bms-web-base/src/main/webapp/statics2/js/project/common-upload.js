@@ -83,6 +83,7 @@ $(function(){
         options.maxCount = options.maxCount || 0;
         //文件类型是图片类型,默认不是
         options.isImage = options.isImage || 'false';
+        options.ext = options.ext || '';
         // 关联数据的ID
         options.dataId = options.dataId || "";
         // 单个文件大小限制
@@ -117,6 +118,17 @@ $(function(){
 
             if(viewArea.find("li:visible").size()>=options.maxCount && options.maxCount>1){
                 return false;
+            }
+
+            if (options.isImage && options.ext == ""){
+                    options.ext = "bmp,jpg,png,gif"
+            }
+
+            if(options.ext.toLowerCase().indexOf(file.ext.toLowerCase()) == -1){
+
+                error("文件格式不正确,请重新选择【"+options.ext+"】类型的文件！");
+               return false;
+
             }
             if(file.size > options.maxFileSize){
                 error("附件不能大于30M。");
