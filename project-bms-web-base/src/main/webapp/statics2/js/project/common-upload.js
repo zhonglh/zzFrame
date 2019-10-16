@@ -63,7 +63,7 @@ $(function(){
      * 文件上传
      * options{
      * 		id: 绑定上传事件控件ID
-     * 		maxFileSize: 单个文件大小限制，默认为50 * 1024 * 1024
+     * 		maxFileSize: 单个文件大小限制，默认为 100 * 1024 * 1024
      * 		uploadUrl: 文件上传地址
      * 		deleteUrl: 文件删除地址
      * 		viewAreaId: 上传完成后，文件显示区域
@@ -83,11 +83,10 @@ $(function(){
         options.maxCount = options.maxCount || 0;
         //文件类型是图片类型,默认不是
         options.isImage = options.isImage || 'false';
-        options.ext = options.ext || '';
         // 关联数据的ID
         options.dataId = options.dataId || "";
         // 单个文件大小限制
-        options.maxFileSize = options.maxFileSize || (2000 * 1024 * 1024);
+        options.maxFileSize = options.maxFileSize || (100 * 1024 * 1024);
         // 默认上传地址
         options.uploadUrl = options.uploadUrl || ($AppContext + "/oss/file/upload?businessTempId=" + options.businessTempId + "&businessFileType="+options.businessFileType );
         // 默认删除地址
@@ -119,19 +118,19 @@ $(function(){
             if(viewArea.find("li:visible").size()>=options.maxCount && options.maxCount>1){
                 return false;
             }
-
-            if (options.isImage && options.ext == ""){
-                    options.ext = "bmp,jpg,png,gif"
+            if (options.isImage == 'true'){
+                options.extensions = "bmp,jpg,jpeg,png,gif,svg,webp"
             }
 
-            if(options.ext.toLowerCase().indexOf(file.ext.toLowerCase()) == -1){
+            if(options.extensions != null && options.extensions != undefined  && options.extensions.toLowerCase().indexOf(file.ext.toLowerCase()) == -1){
 
-                error("文件格式不正确,请重新选择【"+options.ext+"】类型的文件！");
-               return false;
+                error("文件格式不正确,请重新选择【"+options.extensions.toLowerCase().replaceAll(";",", &nbsp;")+"】类型的文件！");
+                return false;
 
             }
+
             if(file.size > options.maxFileSize){
-                error("附件不能大于30M。");
+                error("附件不能大于100M。");
                 return false;
             }
             if(file.name.length > 200){
